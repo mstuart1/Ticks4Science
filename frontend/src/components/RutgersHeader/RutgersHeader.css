@@ -1,0 +1,32 @@
+.rutgers {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    width: 100%;
+    padding: 5px 10px;
+    background: #c03;
+}
+
+.rutgers a:link,
+.rutgers a:visited,
+.rutgers a:hover {
+    color: white;
+    text-decoration: none;
+    font-size: 1.3em;
+    /* background: #c03; */
+}
+
+.rutgers a:hover {
+    text-decoration: underline;
+}
+
+.rutgers-menu li {
+    display: inline;
+    margin-right: 10px;
+    font-size: 12px;
+}
+
+.rutgers-logo img {
+    width: 100px;   
+}
