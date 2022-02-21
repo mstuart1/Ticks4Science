@@ -30,7 +30,7 @@ a:hover {
 `
 export const StyledLogo = styled.div`
 img {
-    width: 10em;  
+    width: 17em;  
     max-width: 464px; 
 }
 `

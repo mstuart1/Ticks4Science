@@ -1,10 +1,10 @@
 import React from 'react'
-import { FooterMenuContainer, SingleMenu } from './RutgersFooter.styled'
+import {  SingleMenu } from './RutgersFooter.styled'
 
 const FooterMenu = ({menu}) => {
 
-    let linkElements = menu.links.map(link => (
-        <a href={link.path}>{link.text}</a>
+    let linkElements = menu.links.map((link, i) => (
+        <a key={i} href={link.path}>{link.text}</a>
     ))
 console.log(menu.title)
   return (
