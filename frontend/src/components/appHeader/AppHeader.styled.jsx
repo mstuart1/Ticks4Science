@@ -5,29 +5,24 @@ export const ScreenContainer = styled.div`
   background-color: #eead29;
   width: 100%;
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
 `;
 
-export const HeaderContainer = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 1366px;
-  a:link,
-  a:visited,
-  a:hover {
-    color: black;
-    text-decoration: none;
-    font-size: 1em;
-  }
-  a:hover {
-    text-decoration: underline;
-  }
-`;
-export const StyledMenu = styled.div`
-li {
-    display: inline;
-    margin-right: 2em;
-    font-size: 1.25em;
-}
+export const ProjectTitle = styled.div`
+width: 100%
+display: flex;
+justify-content: center;
+`
+export const MenuButton = styled.div`
+background-color: white;
+border: 1px solid #eead29;
+color: #eead29;
+width: 100%;
+text-align: center;
+`
+export const TickContainer = styled.div`
+transition: 3s;
+display: ${({setDisplay}) => setDisplay ? 'flex' : 'none'};
+flex-direction: column;
 `

@@ -1,0 +1,15 @@
+export const ticks = [
+    {sciName: 'Amblyomma americanum'},
+    {sciName: 'Amblyomma maculatum'},
+    {sciName: 'Carios kelleyi'},
+    {sciName: 'Dermacenter albipictus'},
+    {sciName: 'Dermacenter variabilis'},
+    {sciName: 'Haemaphysalis leporispalustris'},
+    {sciName: 'Haemaphysalis longicornis'},
+    {sciName: 'Ixodes brunneus'},
+    {sciName: 'Ixodes cookei'},
+    {sciName: 'Ixodes dentatus'},
+    {sciName: 'Ixodes scapularis'},
+    {sciName: 'Ixodes texanus'},
+    {sciName: 'Rhipicephalus sanguineus'},
+]

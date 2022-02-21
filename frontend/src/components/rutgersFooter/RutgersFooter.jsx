@@ -43,7 +43,7 @@ const RutgersFooter = () => {
             </ul>
           </StyledMenu>
         </StyledHeader>
-        <FooterMenuContainer>{footerMenuElements}</FooterMenuContainer>
+
         <Disclaimer>
         <p>Rutgers is an equal access/equal opportunity institution. Individuals with disabilities are encouraged to direct suggestions, comments, or complaints concerning any accessibility issues with Rutgers websites to&nbsp;<a href="mailto:accessibility@rutgers.edu">accessibility@rutgers.edu</a>&nbsp;or complete the&nbsp;<a href="https://it.rutgers.edu/it-accessibility-initiative/barrierform/" target="_blank" rel="noreferrer">Report Accessibility Barrier / Provide Feedback</a>&nbsp;form.</p>
 
