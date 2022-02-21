@@ -2,6 +2,7 @@
   "name": "frontend",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://mosaic.njaes.rutgers.edu/tick-map",
   "dependencies": {
     "axios": "^0.25.0",
     "react": "^17.0.2",
