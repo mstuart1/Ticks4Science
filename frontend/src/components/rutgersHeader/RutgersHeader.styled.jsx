@@ -1,21 +1,27 @@
 import styled from 'styled-components'
 
-export const StyledHeader = styled.div`
+export const WidthContainer = styled.div`
+width: 1366px;
 display: flex;
 justify-content: space-between;
 align-items: center;
+`
+
+export const StyledHeader = styled.div`
+display: flex;
+justify-content: center;
 
 font-family: 'Source Sans Pro', sans-serif;
 
 width: 100%;
 padding: 0.25em 0.75em;
-background: #c03;
+background: #fff;
 a:link,
 a:visited,
 a:hover {
-    color: white;
+    color: black;
     text-decoration: none;
-    font-size: 1.3em;
+    font-size: 1em;
     // /* background: #c03; */
 }
 a:hover {

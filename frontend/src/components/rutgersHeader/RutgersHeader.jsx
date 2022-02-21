@@ -1,13 +1,14 @@
 import React from "react";
-import logo from "../../img/RUTGERS_REVWHITE.png";
-import { StyledHeader, StyledLogo, StyledMenu } from "./RutgersHeader.styled";
+import headerLogo from "./RutgersHeaderLogo.svg";
+import { StyledHeader, StyledLogo, StyledMenu, WidthContainer } from "./RutgersHeader.styled";
 
 const RutgersHeader = () => {
   return (
     <StyledHeader>
+      <WidthContainer>
       <StyledLogo>
         <a href="https://www.rutgers.edu">
-          <img src={logo} alt="Rutgers Logo"  />
+          <img src={headerLogo} alt="Rutgers Logo"  />
         </a>
       </StyledLogo>
       <StyledMenu>
@@ -25,6 +26,7 @@ const RutgersHeader = () => {
           </li>
         </ul>
       </StyledMenu>
+      </WidthContainer>
     </StyledHeader>
   );
 };
