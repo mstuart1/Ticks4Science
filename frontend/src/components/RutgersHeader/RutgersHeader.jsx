@@ -1,16 +1,16 @@
 import React from "react";
-import "./RutgersHeader.css";
 import logo from "../../img/RUTGERS_REVWHITE.png";
+import { StyledHeader, StyledLogo, StyledMenu } from "./RutgersHeader.styled";
 
 const RutgersHeader = () => {
   return (
-    <div className="rutgers">
-      <div className="rutgers-logo">
+    <StyledHeader>
+      <StyledLogo>
         <a href="https://www.rutgers.edu">
-          <img src={logo} alt="Rutgers Logo" style={{ maxWidth: "464px" }} />
+          <img src={logo} alt="Rutgers Logo"  />
         </a>
-      </div>
-      <div className="rutgers-menu">
+      </StyledLogo>
+      <StyledMenu>
         <ul>
           <li>
             <a href="https://newbrunswick.rutgers.edu/">
@@ -24,8 +24,8 @@ const RutgersHeader = () => {
             <a href="https://search.rutgers.edu/web.html">Search Rutgers</a>
           </li>
         </ul>
-      </div>
-    </div>
+      </StyledMenu>
+    </StyledHeader>
   );
 };
 
