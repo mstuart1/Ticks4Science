@@ -6,7 +6,7 @@ const FooterMenu = ({menu}) => {
     let linkElements = menu.links.map((link, i) => (
         <a key={i} href={link.path}>{link.text}</a>
     ))
-console.log(menu.title)
+// console.log(menu.title)
   return (
     
     <SingleMenu>

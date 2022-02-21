@@ -6,14 +6,15 @@ const AppHeader = () => {
   return (
     <ScreenContainer>
       <HeaderContainer>
-        <Link><h1>Project Name Here</h1></Link>        
+        <Link to='/'><h1>Project Name Here</h1></Link>        
         <StyledMenu>
         <ul>
           <li>
-           What is this tick (dropdown)
+           <Link to='/submit'> What is this tick</Link>
           </li>
           <li>
-            Submit a photo
+            
+            <Link to='/submit'>Submit a photo</Link>
           </li>
           <li>
             <Link to='/'>About this project</Link>

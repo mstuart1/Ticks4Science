@@ -3,7 +3,7 @@ import styled from 'styled-components'
 export const ScreenContainer = styled.div`
   font-family: "Source Sans Pro", sans-serif;
   background-color: #eead29;
-  width: 100vw;
+  width: 100%;
   display: flex;
   justify-content: center;
 `;
