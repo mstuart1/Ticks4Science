@@ -4,21 +4,17 @@ export const TickName = styled.span`
 font-style: italic;
 `
 export const ShowMeButton = styled.div`
-background-color: ${({bgColor}) => bgColor || 'white'};
-border: 1px solid ${({color}) => color || '#eead29'};
-color: ${({color}) => color || '#eead29'};
+background-color: ${({bgColor}) => bgColor || '#eead29'};
+color: ${({color}) => color || 'black'};
 width: 100%;
 text-align: center;
-position: ${({position}) => position || 'initial'}
+padding: 1em;
 
 &:hover {
-  filter: brightness(1.2);
+  filter: brightness(1.1);
 }
 
 @media screen and (min-width: 450px){
-  background-color: ${({color}) => color || '#eead29'};
-  color: black;
-  width: 300px;
-  padding: 1em;
+  width: 300px;  
 }
 `
