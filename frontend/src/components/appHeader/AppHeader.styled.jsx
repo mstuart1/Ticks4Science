@@ -31,10 +31,11 @@ border: 1px solid ${({color}) => color || '#eead29'};
 color: ${({color}) => color || '#eead29'};
 width: 100%;
 text-align: center;
-position: ${({position}) => position || 'initial'}
+position: ${({position}) => position || 'initial'};
+transition: filter 300ms;
 
 &:hover {
-  filter: brightness(1.2);
+  filter: brightness(1.1);
 }
 
 @media screen and (min-width: 450px){
@@ -46,4 +47,6 @@ export const TickContainer = styled.div`
 display: ${({setDisplay}) => setDisplay ? 'flex' : 'none'};
 flex-direction: column;
 position: absolute;
+transition: height 300ms ease; 
+// this isn't working, I can't get the appearance of this to smooth out.
 `
