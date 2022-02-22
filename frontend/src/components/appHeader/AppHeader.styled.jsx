@@ -15,11 +15,16 @@ width: 100%;
 display: flex;
 justify-content: center;
 
+a {
+  text-decoration: none;
+  color: black;
+}
+
 @media screen and (min-width: 450px){
   align-items: center;
   justify-content: normal;
 
- & > h1 {
+ & > a {
    width: 100%;
    padding-left: 2%;
  }

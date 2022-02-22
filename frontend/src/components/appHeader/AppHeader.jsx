@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { ticks } from "../ticks/ticks";
 import { 
   MenuButton,
@@ -67,7 +67,7 @@ const AppHeader = () => {
   return (
     <ScreenContainer>
       <ProjectTitle>
-      <h1>Project Name</h1>
+      <Link to='/'><h1>Project Name</h1></Link>
       {width > 450 && mainMenuElements}
       </ProjectTitle>
       {width <= 450 && mainMenuElements}
