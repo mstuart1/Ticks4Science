@@ -37,12 +37,19 @@ example navItemArray: const navItemArray = [
 
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import {FaTimes, FaBars} from 'react-icons/fa'
+import { FaTimes, FaBars, FaCaretDown } from "react-icons/fa";
 import "./Navbar.css";
-import Dropdown from './Dropdown'
+import {
+  NavbarStyled,
+  NavbarLogo,
+  MenuIcon,
+  NavMenu,
+  NavItem,
+  NavLink,
+} from "./navStyles";
+import Dropdown from "./Dropdown";
 
-
-function Navbar({ title='', navItemArray = [] }) {
+function Navbar({ title = "", navItemArray = [] }) {
   const [click, setClick] = useState(false);
   const [dropdown, setDropdown] = useState(false);
 
@@ -65,49 +72,43 @@ function Navbar({ title='', navItemArray = [] }) {
     }
   };
 
-
-
   const navItemElements = navItemArray.map((item) => {
     if (item.menuItems) {
-      
       return (
-        <li
-        key={item.id}
-          className="nav-item"
+        <NavItem
+          key={item.id}
           onMouseEnter={onMouseEnter}
           onMouseLeave={onMouseLeave}
         >
-          <div className="nav-links" onClick={closeMobileMenu}>
-            {item.text} <i className="fas fa-caret-down" />
-          </div>
+          <NavLink onClick={closeMobileMenu}>
+            {item.text}<FaCaretDown/>
+          </NavLink>
           {dropdown && <Dropdown menuItems={item.menuItems} />}
-        </li>
+        </NavItem>
       );
     } else {
       return (
-        <li key={item.id} className="nav-item">
-          <Link to={item.path} className="nav-links" onClick={closeMobileMenu}>
+        <NavItem key={item.id}>
+          <NavLink>
+          <Link to={item.path} onClick={closeMobileMenu}>
             {item.text}
           </Link>
-        </li>
+          </NavLink>
+        </NavItem>
       );
     }
   });
 
   return (
-    <nav className="navbar">
-      <Link to="/" className="navbar-logo" onClick={closeMobileMenu}>
+    <NavbarStyled>
+      <NavbarLogo to="/" onClick={closeMobileMenu}>
         {title}
-        {/* <i className="fab fa-firstdraft" /> */}
-      </Link>
-      <div className="menu-icon" onClick={handleClick}>
-       {click ? <FaTimes/> : <FaBars/>}
-      </div>
-      <ul className={click ? "nav-menu active" : "nav-menu"}>
-        {navItemElements}
-      </ul>
-      
-    </nav>
+      </NavbarLogo>
+      <MenuIcon onClick={handleClick}>
+        {click ? <FaTimes /> : <FaBars />}
+      </MenuIcon>
+      <NavMenu active={click}>{navItemElements}</NavMenu>
+    </NavbarStyled>
   );
 }
 

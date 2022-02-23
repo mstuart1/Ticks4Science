@@ -7,6 +7,8 @@ import SubmitPhoto from './components/photos/SubmitPhoto';
 import ScrollToTop from './components/ScrollToTop';
 import TickPage from './components/ticks/TickPage';
 import { ticks } from './components/ticks/ticks';
+import { ThemeProvider } from "styled-components";
+import {theme} from './theme'
 // import RutgersFooter from './components/rutgersFooter/RutgersFooter';
 // import RutgersHeader from './components/rutgersHeader/RutgersHeader';
 
@@ -16,12 +18,9 @@ let navMenuItems = [
   {id: 3, text: 'About the Project', path: '/'},
 ]
 
-navMenuItems.map(item => {
-  console.log(item.menuItems)
-})
-
 const App = () => {
   return (
+    <ThemeProvider theme={theme}>
   <div>
     {/* <RutgersHeader/> */}
     {/* <AppHeader/> */}
@@ -36,6 +35,7 @@ const App = () => {
       
       {/* <RutgersFooter/> */}
   </div>
+  </ThemeProvider>
   )
 };
 
