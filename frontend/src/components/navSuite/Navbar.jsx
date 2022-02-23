@@ -38,7 +38,7 @@ example navItemArray: const navItemArray = [
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { FaTimes, FaBars, FaCaretDown } from "react-icons/fa";
-import "./Navbar.css";
+// import "./Navbar.css";
 import {
   NavbarStyled,
   NavbarLogo,
