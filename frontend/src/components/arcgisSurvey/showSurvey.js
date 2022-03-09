@@ -20,6 +20,9 @@ export const buttonClicked = () => {
 }
 */
 
+import {} from '@arcgis/core/assets/esri/widgets/'
+
+
 let webform;
 
 export const showSurvey = (tickId) => {

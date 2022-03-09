@@ -90,9 +90,11 @@ function Navbar({ title = "", navItemArray = [] }) {
       return (
         <NavItem key={item.id}>
           <NavLink>
-          <Link to={item.path} onClick={closeMobileMenu}>
-            {item.text}
-          </Link>
+            {item.internal 
+            ? (<Link to={item.path} onClick={closeMobileMenu}>{item.text}
+          </Link>)
+          : (<a href={item.path}>{item.text}</a>)
+          }
           </NavLink>
         </NavItem>
       );
