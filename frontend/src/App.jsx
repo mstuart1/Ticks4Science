@@ -3,7 +3,7 @@ import { Route, Routes } from 'react-router-dom';
 import About from './components/about/About';
 // import AppHeader from './components/appHeader/AppHeader';
 import Navbar from './components/navSuite/Navbar';
-import SubmitPhoto from './components/photos/SubmitPhoto';
+import SubmitTick from './components/submit/SubmitTick';
 import ScrollToTop from './components/ScrollToTop';
 import TickPage from './components/ticks/TickPage';
 import { ticks } from './components/ticks/ticks';
@@ -28,7 +28,7 @@ const App = () => {
     <ScrollToTop>
       <Routes>
         <Route path='/' element={<About/>}/>
-        <Route path='/submit' element={<SubmitPhoto/>}/>
+        <Route path='/submit' element={<SubmitTick/>}/>
         <Route path='/tick/:id' element={<TickPage/>}/>
       </Routes>
       </ScrollToTop>

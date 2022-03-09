@@ -1,7 +1,7 @@
 import React from "react";
 import { PageContainer, ScreenContainer } from "../about/About.styled";
 
-const SubmitPhoto = () => {
+const SubmitTick = () => {
   return (
     <ScreenContainer>
       <PageContainer>
@@ -38,4 +38,4 @@ const SubmitPhoto = () => {
   );
 };
 
-export default SubmitPhoto;
+export default SubmitTick;
