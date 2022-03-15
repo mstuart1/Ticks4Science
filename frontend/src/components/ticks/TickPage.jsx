@@ -3,9 +3,10 @@ import { Link, useParams } from 'react-router-dom'
 import { PageContainer, ScreenContainer } from '../about/About.styled'
 import { MenuButton } from '../appHeader/AppHeader.styled'
 import { ShowMeButton, TickName } from './TickPage.styled'
+import {ticks} from './ticks'
 
 const TickPage = () => {
-  let {sciName} = useParams()
+  let {id} = useParams()
   const [togglePhotos, setTogglePhotos] = useState(false)
 
   const photoList = [];
@@ -13,6 +14,11 @@ const TickPage = () => {
   const handleToggle = () => {
     setTogglePhotos(!togglePhotos)
   }
+
+  let tick = ticks.filter(tick => tick.id === id)
+  let sciName = tick.title
+
+
 
   return (
    <ScreenContainer>
