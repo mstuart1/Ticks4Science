@@ -1,32 +1,30 @@
-import React, { useState } from 'react';
-import './Dropdown.css';
-import { Link } from 'react-router-dom';
+import React from 'react';
+import { DropdownLink, DropdownMenu, DropdownMenuItem } from './DropdownStyled'
 
-function Dropdown({menuItems = []}) {
-  const [click, setClick] = useState(false);
 
-  const handleClick = () => setClick(!click);
+
+function Dropdown({menuItems = [], handleClick}) {
 
   return (
     
-      <ul
+      <DropdownMenu
         onClick={handleClick}
-        className={click ? 'dropdown-menu clicked' : 'dropdown-menu'}
       >
+        
         {menuItems.map(item => {
+          
           return (
-            <li key={item.id}>
-              <Link
-                className={item.cName || 'dropdown-link'}
+            <DropdownMenuItem key={item.id}>
+              <DropdownLink
                 to={item.path}
-                onClick={() => setClick(false)}
+                onClick={handleClick}
               >
                 {item.title}
-              </Link>
-            </li>
+              </DropdownLink>
+            </DropdownMenuItem>
           );
         })}
-      </ul>
+      </DropdownMenu>
     
   );
 }

@@ -34,6 +34,9 @@ export const StyledLogo = styled.div`
   img {
     width: 13em;
   }
+  @media screen and (max-width:${({theme}) => theme.mobile}) {
+    display: none;
+}
 `;
 
 export const StyledMenu = styled.div`
@@ -44,6 +47,9 @@ export const StyledMenu = styled.div`
     padding-right: 2em;
     border-right: 0.25px solid grey;
   }
+  @media screen and (max-width:${({theme}) => theme.mobile}) {
+    display: none;
+}
 `;
 export const FooterMenuContainer = styled.div`
   display: flex;

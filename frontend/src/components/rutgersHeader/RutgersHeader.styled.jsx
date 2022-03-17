@@ -1,10 +1,13 @@
 import styled from 'styled-components'
 
 export const WidthContainer = styled.div`
-width: 1366px;
+
 display: flex;
 justify-content: space-between;
 align-items: center;
+@media screen and (min-width:${({theme}) => theme.mobile}) {
+    max-width: 1366px;
+}
 `
 
 export const StyledHeader = styled.div`
@@ -39,5 +42,8 @@ li {
     display: inline;
     margin-right: 2em;
     font-size: 0.75em;
+}
+@media screen and (max-width:${({theme}) => theme.mobile}) {
+ display: none;
 }
 `

@@ -1,5 +1,5 @@
-import React from 'react';
-import { Route, Routes } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Route, Routes, useNavigate } from 'react-router-dom';
 import About from './components/About';
 // import AppHeader from './components/appHeader/AppHeader';
 import Navbar from './components/navSuite/Navbar';
@@ -12,8 +12,9 @@ import PreSurvey from './components/PreSurvey';
 import Steps from './components/Steps';
 import Identify from './components/Identify';
 import Photo from './components/Photo';
-// import RutgersFooter from './components/rutgersFooter/RutgersFooter';
-// import RutgersHeader from './components/rutgersHeader/RutgersHeader';
+import {MenuButton} from './components/appHeader/AppHeader.styled'
+import RutgersFooter from './components/rutgersFooter/RutgersFooter';
+import RutgersHeader from './components/rutgersHeader/RutgersHeader';
 
 // TODO add in rutgers header/footer
 
@@ -26,13 +27,29 @@ let navMenuItems = [
   {id: 3, text: 'About the Project', path: '/', internal: true},
 ]
 
+
+
 const App = () => {
+  const [toggleList, setToggleList] = useState(false)
+  const navigate = useNavigate()
+  const handleTickSelect = (id) => {
+    navigate(`/tick/${id}`) // future will go to specific id
+    setToggleList(!toggleList)
+  }
+  
+  const tickElements = ticks.map(tick => (
+    <MenuButton key={tick.id} onClick={ () => handleTickSelect(tick.sciName)}>
+      <h2>{tick.sciName}</h2>
+    </MenuButton>
+  ))
+
+
   return (
     <ThemeProvider theme={theme}>
   <div>
-    {/* <RutgersHeader/> */}
+    <RutgersHeader/>
     {/* <AppHeader/> */}
-    <Navbar title='Ticks for Science!' navItemArray={navMenuItems}/>
+    <Navbar title='Ticks for Science!' navItemArray={navMenuItems} navMobileLinks={tickElements}/>
     <ScrollToTop>
       <Routes>
         <Route path='/' element={<About/>}/>
@@ -44,7 +61,7 @@ const App = () => {
       </Routes>
       </ScrollToTop>
       
-      {/* <RutgersFooter/> */}
+      <RutgersFooter/>
   </div>
   </ThemeProvider>
   )

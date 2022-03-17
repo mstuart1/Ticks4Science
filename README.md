@@ -4,3 +4,5 @@ project for Dina Fonseca - given the details to begin project on 2/19/2022 with 
 
 `yarn build`
 `cp -r ./build/. /var/www/html/tick-map/`
+
+Google doc slides of example website: https://mosaic.njaes.rutgers.edu/tick-map/

@@ -1,76 +1,87 @@
+// from https://github.com/mstuart1/2021-react-nav-dropdowns.git
+
+
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import {FaTimes, FaBars} from 'react-icons/fa'
-import "./Navbar.css";
-import Dropdown from './Dropdown'
+import { FaTimes, FaBars, FaCaretDown } from "react-icons/fa";
+// import "./Navbar.css";
+import {
+  NavbarStyled,
+  NavbarLogo,
+  MenuIcon,
+  NavMenu,
+  NavItem,
+  NavLink,
+} from "./navStyles";
+import Dropdown from "./Dropdown";
+// import {theme} from '../../theme'
 
+// let mobileWidth = theme.mobile
 
-function Navbar({ title='', navItemArray = [] }) {
-  const [click, setClick] = useState(false);
-  const [dropdown, setDropdown] = useState(false);
+const Navbar = ({ title = "", navItemArray = [] }) =>  {
+  const [dropdownVis, setDropdownVis] = useState(false);
+  const [mobileMenuVis, setMobileMenuVis] = useState(false)
 
-  const handleClick = () => setClick(!click);
-  const closeMobileMenu = () => setClick(false);
+  const handleClick = () => setMobileMenuVis(!mobileMenuVis);
+  const closeMobileMenu = () => setMobileMenuVis(false);
 
   const onMouseEnter = () => {
-    if (window.innerWidth < 960) {
-      setDropdown(false);
-    } else {
-      setDropdown(true);
-    }
+    // if (window.innerWidth < mobileWidth) {
+      // setDropdownVis(true);
+    // } else {
+      setDropdownVis(true);
+    // }
   };
 
   const onMouseLeave = () => {
-    if (window.innerWidth < 960) {
-      setDropdown(false);
-    } else {
-      setDropdown(false);
-    }
+    // if (window.innerWidth < mobileWidth) {
+      // setDropdownVis(false);
+    // } else {
+      setDropdownVis(false);
+    // }
   };
-
-
 
   const navItemElements = navItemArray.map((item) => {
     if (item.menuItems) {
-      
       return (
-        <li
-        key={item.id}
-          className="nav-item"
+        <NavItem
+          key={item.id}
           onMouseEnter={onMouseEnter}
           onMouseLeave={onMouseLeave}
         >
-          <div className="nav-links" onClick={closeMobileMenu}>
-            {item.text} <i className="fas fa-caret-down" />
-          </div>
-          {dropdown && <Dropdown menuItems={item.menuItems} />}
-        </li>
+        
+          <NavLink onClick={() => setDropdownVis(!dropdownVis)}>
+            {item.text}{!mobileMenuVis ? <FaCaretDown/> : null}
+          </NavLink>
+          
+          {dropdownVis && <Dropdown menuItems={item.menuItems} handleClick={closeMobileMenu} menuState={mobileMenuVis} />}
+        </NavItem>
       );
     } else {
       return (
-        <li key={item.id} className="nav-item">
-          <Link to={item.path} className="nav-links" onClick={closeMobileMenu}>
-            {item.text}
-          </Link>
-        </li>
+        <NavItem key={item.id}>
+          <NavLink>
+            {item.internal 
+            ? (<Link to={item.path} onClick={closeMobileMenu}>{item.text}
+          </Link>)
+          : (<a href={item.path}>{item.text}</a>)
+          }
+          </NavLink>
+        </NavItem>
       );
     }
   });
 
   return (
-    <nav className="navbar">
-      <Link to="/" className="navbar-logo" onClick={closeMobileMenu}>
+    <NavbarStyled>
+      <NavbarLogo to="/" onClick={closeMobileMenu}>
         {title}
-        {/* <i className="fab fa-firstdraft" /> */}
-      </Link>
-      <div className="menu-icon" onClick={handleClick}>
-       {click ? <FaTimes/> : <FaBars/>}
-      </div>
-      <ul className={click ? "nav-menu active" : "nav-menu"}>
-        {navItemElements}
-      </ul>
-      
-    </nav>
+      </NavbarLogo>
+      <MenuIcon onClick={handleClick}>
+        {mobileMenuVis ? <FaTimes /> : <FaBars />}
+      </MenuIcon>
+      <NavMenu active={mobileMenuVis}>{navItemElements}</NavMenu>
+    </NavbarStyled>
   );
 }
 

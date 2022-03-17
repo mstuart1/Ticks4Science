@@ -11,6 +11,9 @@ align-items: center;
 font-size: 1.2rem;
 font-family: 'Source Sans Pro', sans-serif;
 font-weight: bold;
+@media screen and (max-width:${({theme}) => theme.mobile}) {
+  position: relative;
+}
 `
 export const NavbarLogo = styled(Link)`
 color: black;
@@ -19,7 +22,7 @@ cursor: pointer;
 text-decoration: none;
 font-size: 2em;
 
-@media screen and (max-width: 960px) {
+@media screen and (max-width:${({theme}) => theme.mobile}) {
     position: absolute;
     top: 0;
     left: 0;
@@ -28,7 +31,7 @@ font-size: 2em;
 `
 export const MenuIcon = styled.div`
 display: none;
-@media screen and (max-width: 960px) {
+@media screen and (max-width:${({theme}) => theme.mobile}) {
     display: block;
     position: absolute;
     top: 0;
@@ -48,7 +51,7 @@ width: 70vw;
 justify-content: end;
 margin-right: 2rem;
 
-@media screen and (max-width: 960px) {
+@media screen and (max-width:${({theme}) => theme.mobile}) {
     display: flex;
     flex-direction: column;
     width: 100%;
@@ -58,7 +61,7 @@ margin-right: 2rem;
     opacity: 1;
     transition: all 0.5s ease;
     left: ${({active}) => active ? 0 : '-100%' };
-    background: ${({active}) => active && '#cdcdcd'};
+    background: ${({active}) => active && '#f3f3f3'};
     z-index: ${({active}) => active && 1};
 }
 `
@@ -88,7 +91,7 @@ a {
     border-radius: 4px;
     transition: all 0.2s ease-out;
   }
-  @media screen and (max-width: 960px) {
+  @media screen and (max-width:${({theme}) => theme.mobile}) {
     text-align: center;
     padding: 2rem;
     width: 100%;
