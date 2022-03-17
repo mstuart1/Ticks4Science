@@ -1,21 +1,11 @@
-// from https://github.com/mstuart1/2021-react-nav-dropdowns.git
-
-
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { FaTimes, FaBars, FaCaretDown } from "react-icons/fa";
-// import "./Navbar.css";
-import {
-  NavbarStyled,
-  NavbarLogo,
-  MenuIcon,
-  NavMenu,
-  NavItem,
-  NavLink,
-} from "./navStyles";
-import Dropdown from "./Dropdown";
+import {FaTimes, FaBars} from 'react-icons/fa'
+import "./Navbar.css";
+import Dropdown from './Dropdown'
 
-const Navbar = ({ title = "", navItemArray = [] }) =>  {
+
+function Navbar({ title='', navItemArray = [] }) {
   const [click, setClick] = useState(false);
   const [dropdown, setDropdown] = useState(false);
 
@@ -38,45 +28,49 @@ const Navbar = ({ title = "", navItemArray = [] }) =>  {
     }
   };
 
+
+
   const navItemElements = navItemArray.map((item) => {
     if (item.menuItems) {
+      
       return (
-        <NavItem
-          key={item.id}
+        <li
+        key={item.id}
+          className="nav-item"
           onMouseEnter={onMouseEnter}
           onMouseLeave={onMouseLeave}
         >
-          <NavLink onClick={closeMobileMenu}>
-            {item.text}<FaCaretDown/>
-          </NavLink>
+          <div className="nav-links" onClick={closeMobileMenu}>
+            {item.text} <i className="fas fa-caret-down" />
+          </div>
           {dropdown && <Dropdown menuItems={item.menuItems} />}
-        </NavItem>
+        </li>
       );
     } else {
       return (
-        <NavItem key={item.id}>
-          <NavLink>
-            {item.internal 
-            ? (<Link to={item.path} onClick={closeMobileMenu}>{item.text}
-          </Link>)
-          : (<a href={item.path}>{item.text}</a>)
-          }
-          </NavLink>
-        </NavItem>
+        <li key={item.id} className="nav-item">
+          <Link to={item.path} className="nav-links" onClick={closeMobileMenu}>
+            {item.text}
+          </Link>
+        </li>
       );
     }
   });
 
   return (
-    <NavbarStyled>
-      <NavbarLogo to="/" onClick={closeMobileMenu}>
+    <nav className="navbar">
+      <Link to="/" className="navbar-logo" onClick={closeMobileMenu}>
         {title}
-      </NavbarLogo>
-      <MenuIcon onClick={handleClick}>
-        {click ? <FaTimes /> : <FaBars />}
-      </MenuIcon>
-      <NavMenu active={click}>{navItemElements}</NavMenu>
-    </NavbarStyled>
+        {/* <i className="fab fa-firstdraft" /> */}
+      </Link>
+      <div className="menu-icon" onClick={handleClick}>
+       {click ? <FaTimes/> : <FaBars/>}
+      </div>
+      <ul className={click ? "nav-menu active" : "nav-menu"}>
+        {navItemElements}
+      </ul>
+      
+    </nav>
   );
 }
 

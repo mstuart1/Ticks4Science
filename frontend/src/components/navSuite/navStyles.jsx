@@ -62,16 +62,19 @@ margin-right: 2rem;
     z-index: ${({active}) => active && 1};
 }
 `
+// was className nav-item in original code
 export const NavItem = styled.li`
 display: flex;
 align-items: center;
 height: 80px;
-// TODO check this when not remote...
 &:hover {
-  filter: brightness(2)
-  background-color: ${({theme}) => theme.colors.main + '20'};
+  // have to have color to apply filter to it
+  background-color: ${({theme}) => theme.colors.main};
+  filter: brightness(1.1);
 }
 `
+
+// was className nav-links in original code
 export const NavLink = styled.div`
 color: black;
 a {
@@ -96,3 +99,4 @@ a {
     }
   }
 `
+
