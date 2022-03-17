@@ -9,8 +9,8 @@ export const ScreenContainer = styled.div`
 export const PageContainer = styled.div`
   display: flex;
   justify-content: center;
-  @media screen and (min-width: 1366px) {
-    width: 1366px;
+  @media screen and (min-width:${({theme}) => theme.mobile}) {
+    max-width: 1366px;
   }
 `;
 export const TextDiv = styled.div`
@@ -19,6 +19,10 @@ export const TextDiv = styled.div`
   flex-direction: column;
   align-items: center;
   font-size: 1.25em;
+  @media screen and (min-width: 810px) {
+    width: 800px;
+    min-height: 60vh;
+  }
 `;
 export const BoxInset = styled.div`
   border: 1px solid black;

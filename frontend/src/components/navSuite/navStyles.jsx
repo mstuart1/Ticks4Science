@@ -15,9 +15,16 @@ font-weight: bold;
   position: relative;
 }
 `
+export const ContentContainer = styled.div`
+display: flex;
+@media screen and (min-width:${({theme}) => theme.mobile}) {
+  width: 1366px;
+  display: flex;
+}
+`
 export const NavbarLogo = styled(Link)`
 color: black;
-justify-self: start;
+// justify-self: start;
 cursor: pointer;
 text-decoration: none;
 font-size: 2em;
@@ -27,6 +34,7 @@ font-size: 2em;
     top: 0;
     left: 0;
     transform: translate(25%, 50%);
+    font-size: 1.5em;
 }
 `
 export const MenuIcon = styled.div`
@@ -42,9 +50,9 @@ display: none;
 }
 `
 export const NavMenu = styled.ul`
-display: grid;
-grid-template-columns: repeat(5, auto);
-grid-gap: 0.625em;
+display: flex;
+// grid-template-columns: repeat(5, auto);
+gap: 0.625em;
 list-style: none;
 text-align: center;
 width: 70vw;
@@ -54,7 +62,7 @@ margin-right: 2rem;
 @media screen and (max-width:${({theme}) => theme.mobile}) {
     display: flex;
     flex-direction: column;
-    width: 100%;
+    width: 45vh;
     height: 90vh;
     position: absolute;
     top: 80px;

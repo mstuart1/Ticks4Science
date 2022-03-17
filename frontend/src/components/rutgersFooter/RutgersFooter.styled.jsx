@@ -28,6 +28,9 @@ export const StyledHeader = styled.div`
   width: 100%;
   padding: 3em 0.75em 1em 0.75em;
   background: #000;
+  @media screen and (max-width:${({theme}) => theme.mobile}) {
+    display: none;
+}
 `;
 
 export const StyledLogo = styled.div`

@@ -21,9 +21,9 @@ import RutgersHeader from './components/rutgersHeader/RutgersHeader';
 let navMenuItems = [
   {id: 1, text: 'Tick Gallery', path: '#', menuItems: ticks, internal: true},
   {id: 4, text: 'Steps to Participate', path: '/steps', internal: true},
-  // {id: 5, text: 'How to Identify a Tick', path: '/identify', internal: true},
-  // {id: 5, text: 'How to Take Tick Pics', path: '/photo', internal: true},
-  // {id: 2, text: 'Tick Submission', path: '/preSurvey', internal: true},
+  {id: 5, text: 'How to Identify a Tick', path: '/identify', internal: true},
+  {id: 5, text: 'How to Take Tick Pics', path: '/photo', internal: true},
+  {id: 2, text: 'Tick Submission', path: '/preSurvey', internal: true},
   {id: 3, text: 'About the Project', path: '/', internal: true},
 ]
 

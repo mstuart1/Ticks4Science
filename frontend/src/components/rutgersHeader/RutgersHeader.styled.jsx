@@ -6,7 +6,7 @@ display: flex;
 justify-content: space-between;
 align-items: center;
 @media screen and (min-width:${({theme}) => theme.mobile}) {
-    max-width: 1366px;
+    width: 1366px;
 }
 `
 

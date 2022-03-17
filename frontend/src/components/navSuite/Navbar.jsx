@@ -12,6 +12,7 @@ import {
   NavMenu,
   NavItem,
   NavLink,
+  ContentContainer,
 } from "./navStyles";
 import Dropdown from "./Dropdown";
 // import {theme} from '../../theme'
@@ -74,6 +75,7 @@ const Navbar = ({ title = "", navItemArray = [] }) =>  {
 
   return (
     <NavbarStyled>
+      <ContentContainer>
       <NavbarLogo to="/" onClick={closeMobileMenu}>
         {title}
       </NavbarLogo>
@@ -81,6 +83,7 @@ const Navbar = ({ title = "", navItemArray = [] }) =>  {
         {mobileMenuVis ? <FaTimes /> : <FaBars />}
       </MenuIcon>
       <NavMenu active={mobileMenuVis}>{navItemElements}</NavMenu>
+      </ContentContainer>
     </NavbarStyled>
   );
 }
