@@ -15,8 +15,8 @@ const TickPage = () => {
     setTogglePhotos(!togglePhotos)
   }
 
-  let tick = ticks.filter(tick => tick.id === id)
-  let sciName = tick.title
+  let tick = ticks.filter(tick => tick.id === parseInt(id))
+  let sciName = tick[0].title
 
 
 
@@ -24,7 +24,7 @@ const TickPage = () => {
    <ScreenContainer>
      <PageContainer>
        <div>
-       <h1 style={{textAlign: 'center'}}>This page will contain information about <TickName>{sciName}</TickName>.</h1>
+         <h1 style={{textAlign: 'center'}}>This page will contain information about <TickName>{sciName}</TickName>.</h1>
 
        <h2>Text</h2>
        <p>

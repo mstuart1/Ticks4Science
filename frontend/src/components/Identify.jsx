@@ -23,16 +23,13 @@ const Identify = () => {
           <p>Lorem ipsum waiting for text and photos from group....</p>
           <h2>Engorged Ticks</h2>
           <p>Lorem ipsum waiting for text and photos from group....</p>
-          <h2>There are 4 species that will constitute 99% of the submissions in NJ.</h2>
-          <p>
-         
+          <h2>Four most common species in New Jersey:</h2>
           <ul>
             <li>Asian longhorned tick, Haemaphysalis longicornis</li>
             <li>blacklegged tick, Ixodes scapularis</li>
             <li>lone star tick, Amblyomma americanum</li>
             <li>American dog tick, Dermacentor variabilis</li>
           </ul>
-          </p>
         </TextDiv>
       </PageContainer>
     </ScreenContainer>

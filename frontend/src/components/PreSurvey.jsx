@@ -1,11 +1,14 @@
 import React from "react";
-import { ScreenContainer, PageContainer, TextDiv } from "./GeneralStyles";
+import { ScreenContainer, PageContainer, TextDiv, StyledButton } from "./GeneralStyles";
+
+// TODO get rid of the header on the survey (the Michelle grey header)
 
 const PreSurvey = () => {
   return (
     <ScreenContainer>
       <PageContainer>
       <TextDiv>
+        <div>
         <p>Please note that this is a program designed to identify NJ ticks and
         tick-borne illnesses.</p>
         <p>
@@ -23,7 +26,8 @@ const PreSurvey = () => {
         By clicking “I UNDERSTAND”, you agree to these terms and
         can continue to the form.
         </p>
-      <a href='https://arcg.is/1ODG9m0'><button>I UNDERSTAND, continue to form</button></a>
+        </div>
+      <a href='https://arcg.is/1ODG9m0'><StyledButton color="black">I UNDERSTAND, continue to form</StyledButton></a>
       </TextDiv>
       </PageContainer>
     </ScreenContainer>
