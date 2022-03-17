@@ -6,18 +6,16 @@ exports.createSubm = async (req, res, next) => {
     console.log(`@@@@---receiving form from arcgis---@@@@`);
     try {
         // console.log(JSON.stringify(req.body, null, 1))
-        // create an array of photo urls for all the attachments
         let front, back, createdRecord;
         let incomingInfo = req.body;
-        
+
+        // create an array of photo urls for all the attachments
         let photos = incomingInfo.feature.attachments.submitPhoto.map(photo => photo.url)
-        // if there are more than 2 ???
+        
         if (photos.length > 0){
-          front = photos[0];
-          back = photos[1];
+          incomingInfo.photoFrontUrl = photos[0];
+          incomingInfo.photoBackUrl = photos[1];
         }
-        incomingInfo.photoFrontUrl = front;
-        incomingInfo.photoBackUrl = back;
         
         await db.sequelize
       .transaction(async (t) => {
