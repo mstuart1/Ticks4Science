@@ -66,6 +66,11 @@ export const NavItem = styled.li`
 display: flex;
 align-items: center;
 height: 80px;
+// TODO check this when not remote...
+&:hover {
+  filter: brightness(2)
+  background-color: ${({theme}) => theme.colors.main + '20'};
+}
 `
 export const NavLink = styled.div`
 color: black;

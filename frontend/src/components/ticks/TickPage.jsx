@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
-import { PageContainer, ScreenContainer } from '../about/About.styled'
+import { PageContainer, ScreenContainer } from '../GeneralStyles'
 import { MenuButton } from '../appHeader/AppHeader.styled'
 import { ShowMeButton, TickName } from './TickPage.styled'
 import {ticks} from './ticks'

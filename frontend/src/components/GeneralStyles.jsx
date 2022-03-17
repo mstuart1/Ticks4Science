@@ -1,13 +1,17 @@
 import styled from "styled-components";
 
 export const ScreenContainer = styled.div`
+background-color: white;
+font-family: 'Source Sans Pro', sans-serif;
 display: flex;
 justify-content: center;
-background-color: white;
 `
 export const PageContainer = styled.div`
 width: 1366px;
 display: flex;
-// temporary!!!!!!
-height: 600px;
+justify-content: center;
+`
+export const TextDiv = styled.div`
+width: 800px;
+font-size: 1.25em;
 `
