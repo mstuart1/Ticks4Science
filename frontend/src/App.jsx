@@ -15,6 +15,8 @@ import Photo from './components/Photo';
 // import RutgersFooter from './components/rutgersFooter/RutgersFooter';
 // import RutgersHeader from './components/rutgersHeader/RutgersHeader';
 
+// TODO add in rutgers header/footer
+
 let navMenuItems = [
   {id: 1, text: 'Tick Gallery', path: '#', menuItems: ticks, internal: true},
   {id: 4, text: 'Steps to Participate', path: '/steps', internal: true},
