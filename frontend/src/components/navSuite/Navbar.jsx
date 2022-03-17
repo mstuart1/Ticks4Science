@@ -1,39 +1,5 @@
 // from https://github.com/mstuart1/2021-react-nav-dropdowns.git
-/*
-example navItemArray: const navItemArray = [
-  { id: 1, text: "Home", path: "/" },
-  {
-    id: 2,
-    text: "Services",
-    path: "/services",
-    menuItems: [
-      {
-        title: "Marketing",
-        path: "/marketing",
-        cName: "dropdown-link",
-      },
-      {
-        title: "Consulting",
-        path: "/consulting",
-        cName: "dropdown-link",
-      },
-      {
-        title: "Design",
-        path: "/design",
-        cName: "dropdown-link",
-      },
-      {
-        title: "Development",
-        path: "/development",
-        cName: "dropdown-link",
-      },
-    ],
-  },
-  { id: 3, text: "Products", path: "/products" },
-  { id: 4, text: "Contact Us", path: "/contact-us" },
-  // { id: 5, text: "Sign Up", path: "/sign-up" },
-];
- */
+
 
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
