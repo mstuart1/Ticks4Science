@@ -1,5 +1,5 @@
 import React from "react";
-import { PageContainer, ScreenContainer, TextDiv } from "./GeneralStyles";
+import { BoxInset, PageContainer, ScreenContainer, TextDiv } from "./GeneralStyles";
 
 const Photo = () => {
   return (
@@ -16,10 +16,15 @@ Picture #1: Point the camera straight down and keep the camera in focus while ge
 Example #1</p><p>
 Picture #2: Point the camera at the head, keeping the camera in focus while getting as close to the tick as possible. </p><p>
     {/* // TODO replace this with real photo */}
-Example #2</p><p>
-Reminder</p><p>
+Example #2</p>
+<BoxInset >
+<h2>
+Reminder</h2>
+<p>
 Keep tick in a crush proof container for several days. We will be contacting you via email for the tick submission or additional photographs of the specimen.
 </p>
+
+</BoxInset>
         </TextDiv>
       </PageContainer>
     </ScreenContainer>
