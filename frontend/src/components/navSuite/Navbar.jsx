@@ -15,7 +15,7 @@ import {
 } from "./navStyles";
 import Dropdown from "./Dropdown";
 
-function Navbar({ title = "", navItemArray = [] }) {
+const Navbar = ({ title = "", navItemArray = [] }) =>  {
   const [click, setClick] = useState(false);
   const [dropdown, setDropdown] = useState(false);
 
