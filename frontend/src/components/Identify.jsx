@@ -1,7 +1,11 @@
 import React from "react";
-import { PageContainer, ScreenContainer, TextDiv } from "./GeneralStyles";
+import { PageContainer, ScreenContainer, TextDiv, StyledButton } from "./GeneralStyles";
+import {useNavigate} from 'react-router-dom'
 
 const Identify = () => {
+
+  const navigate = useNavigate()
+
   return (
     <ScreenContainer>
       <PageContainer>
@@ -24,12 +28,13 @@ const Identify = () => {
           <h2>Engorged Ticks</h2>
           <p>Lorem ipsum waiting for text and photos from group....</p>
           <h2>Four most common species in New Jersey:</h2>
-          <ul>
-            <li>Asian longhorned tick, Haemaphysalis longicornis</li>
-            <li>blacklegged tick, Ixodes scapularis</li>
-            <li>lone star tick, Amblyomma americanum</li>
-            <li>American dog tick, Dermacentor variabilis</li>
-          </ul>
+          <div style={{marginBottom: '1em'}}>
+            {/* These ids come from the ticks.js flatfile that contains all of the info for the ticks */}
+            <StyledButton  onClick={() => navigate(`/ticks/7`)}color='black'>Asian longhorned tick, Haemaphysalis longicornis</StyledButton>
+            <StyledButton onClick={() => navigate(`/ticks/11`)}color='black'>Blacklegged tick, Ixodes scapularis</StyledButton>
+            <StyledButton onClick={() => navigate(`/ticks/1`)}color='black'>Lone star tick, Amblyomma americanum</StyledButton>
+            <StyledButton onClick={() => navigate(`/ticks/5`)}color='black'>American dog tick, Dermacentor variabilis</StyledButton>
+            </div>
         </TextDiv>
       </PageContainer>
     </ScreenContainer>
