@@ -18,3 +18,10 @@ padding: 1em;
   width: 300px;  
 }
 `
+export const MainTickDiv = styled.div`
+flex: 0 1 800px;
+display: flex;
+flex-direction: column;
+align-items: center;
+margin-bottom: 1em;
+`

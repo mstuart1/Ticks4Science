@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { BoxInset, PageContainer, ScreenContainer } from '../GeneralStyles'
 // import { MenuButton } from '../appHeader/AppHeader.styled'
-import { ShowMeButton, TickName } from './TickPage.styled'
+import { MainTickDiv, ShowMeButton, TickName } from './TickPage.styled'
 import { ticks } from './ticks'
 
 const TickPage = () => {
@@ -20,7 +20,7 @@ const TickPage = () => {
   return (
     <ScreenContainer>
       <PageContainer>
-        <div>
+        <MainTickDiv>
           <h1 style={{ textAlign: 'center' }}><TickName>{tick.title}</TickName></h1>
 
           {tick.common ? (<p>Common name(s): {tick.common}</p>) : null}
@@ -68,7 +68,7 @@ const TickPage = () => {
           {tick.engorged?.desc ? tick.engorged.desc : null}
           {/* <ShowMeButton  onClick={handleToggle}>Show Me Photos of Ticks</ShowMeButton> */}
           {/* {togglePhotos && photoList.length > 0 ? photoList : <h3>Sorry, no photos for this tick have been submitted, please <Link to='/submit'>submit a tick</Link> to help us share information.</h3>} */}
-        </div>
+        </MainTickDiv>
       </PageContainer>
     </ScreenContainer>
   )
