@@ -24,3 +24,13 @@ Copyright (c) 2022 Michelle Stuart
 
 Example website: https://mosaic.njaes.rutgers.edu/tick-map/
 Google doc slides: https://docs.google.com/presentation/d/1muZgI3MPhEVlv0JKxF1sGIYx0K7GVXOh/edit#slide=id.p1
+
+Dina would like to use this address for tick submissions:
+
+Tick4Science
+Rutgers CVB
+180 Jones Ave.
+New Brunswick, NJ 08901
+If the sender is using FedEx, they can use this phone number as the shipping phone:  848-932-3146
+contact email is CVB@rutgers.edu
+the url will be ticks.rutgers.edu
