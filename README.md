@@ -22,8 +22,9 @@ This project was developed by Michelle Stuart for the Office of Research Analyti
 MIT License
 Copyright (c) 2022 Michelle Stuart
 
-Example website: https://mosaic.njaes.rutgers.edu/tick-map/
-Google doc slides: https://docs.google.com/presentation/d/1muZgI3MPhEVlv0JKxF1sGIYx0K7GVXOh/edit#slide=id.p1
+[Example website](https://mosaic.njaes.rutgers.edu/tick-map/)
+
+[Google doc slides](https://docs.google.com/presentation/d/1muZgI3MPhEVlv0JKxF1sGIYx0K7GVXOh/edit#slide=id.p1)
 
 Dina would like to use this address for tick submissions:
 
