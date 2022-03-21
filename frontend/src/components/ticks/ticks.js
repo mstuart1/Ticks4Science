@@ -39,8 +39,18 @@ export const ticks = [
         }
 
     },
-    { id: 2, title: 'Amblyomma maculatum', path: `/ticks/2`, },
-    { id: 3, title: 'Carios kelleyi', path: `/ticks/3`, },
+    { id: 2, title: 'Amblyomma maculatum', path: `/ticks/2`, 
+    common: "Gulf Coast Tick",
+    comment: `Formerly distributed in Southeastern U.S. but new populations are being reported in Delaware and Maryland.  The closest distribution was in Delaware's Bombay Hook National Wildlife Refuge which is less than 13 miles from the Delware Bay in New Jersey.  Salem, Cumberland, and Cape May Counties border the Delaware Bay.`,
+    habitat: 'open grassy areas and pastures',
+    engorged: {photos: [], desc: 'Prefers large wild and domestic mammals such as deer, cattle, and pets.  Commonly found attached to ears.'}
+},
+    { id: 3, title: 'Carios kelleyi', path: `/ticks/3`, 
+    common: 'Bat Tick',
+    first: 'Mercer and Sussex Counties',
+    habitat: 'Where bats roost, which may be places like older homes, barns or cabins.  Other environments include grasslands or vegetation along forest edges.',
+    engorged: {photos: [], desc: 'Prefers bats however these ticks are opportunistic and can feed on people, pets, and other mammals if bats are not present'}
+},
     { id: 4, title: 'Dermacenter albipictus', path: `/ticks/4`, 
 common: 'Moose Tick',
 first: 'Monmouth County',
@@ -72,7 +82,7 @@ engorged: {photos: [], desc: 'Prefers moose or other ungulates such as deer, elk
     { id: 6, title: 'Haemaphysalis leporispalustris', path: `/ticks/6`,
 common: 'Rabbit Tick',
 first: 'Bergen County',
-common: 'Understood to be widely distributed across the eastern United States',
+comment: 'Understood to be widely distributed across the eastern United States',
 habitat: 'forests with pines, shrubs, or mixed vegetation',
 engorged: {photos: [], desc: 'Prefers ground-dwelling birds and rabbits'}
  },
@@ -104,7 +114,13 @@ engorged: {photos: [], desc: 'Prefers ground-dwelling birds and rabbits'}
         shape: 'tear-drop/sesame seed-like shape', 
         engorged: {photos: [], desc: 'Blood meals increase size drastically'}
     },
-    { id: 8, title: 'Ixodes brunneus', path: `/ticks/8`, },
+    { id: 8, title: 'Ixodes brunneus', path: `/ticks/8`,
+    common: 'Bird Tick',
+    first: 'Cumberland County',
+    comment: 'Understood to be widely distributed across the U.S.A.',
+    habitat: 'grasslands, woodlands, scrubs. Due to the migratory patterns of passerines, can be found in diverse environments',
+    engorged: {photos: [], desc: 'A passerine, known as perching birds, which is any bird in the order Passeriformes. Specifically, birds known as sparrows, finches, warbles, thrushes, tanagers, orioles, jays, chickadees, wrens, and more! There are roughly 5,000 unique species classified as passerines.'}
+ },
     { id: 9, title: 'Ixodes cookei', path: `/ticks/9`,
     common: 'Woodchuck or Groundhog Tick',
     first: 'Bergen County',
