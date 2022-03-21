@@ -6,7 +6,7 @@ const About = () => {
     <ScreenContainer>
       <PageContainer>
         <TextDiv>
-          <h1>Welcome to NJ Ticks for Science!</h1>A citizen science project
+          <h1 style={{textAlign: "center"}}>Welcome to NJ Ticks for Science!</h1>A citizen science project
           where we are enlisting the people in New Jersey to submit ticks they
           come across in their everyday lives! The goal is to understand the
           statewide risk of tick-borne pathogens to NJ communities. With your
