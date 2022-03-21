@@ -28,6 +28,7 @@ color: black;
 cursor: pointer;
 text-decoration: none;
 font-size: 2em;
+padding: 0.25em;
 
 @media screen and (max-width:${({theme}) => theme.mobile}) {
     position: absolute;
