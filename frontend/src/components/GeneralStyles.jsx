@@ -31,6 +31,7 @@ export const BoxInset = styled.div`
   padding: 0.5em;
   align-items: center;
   border-radius: 0.5em;
+  margin: 0.5em;
 `;
 export const StyledButton = styled.button`
 border-radius: 50px;
