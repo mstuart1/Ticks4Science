@@ -42,11 +42,11 @@ const Navbar = ({ title = "", navItemArray = [] }) =>  {
     // }
   };
 
-  const navItemElements = navItemArray.map((item) => {
+  const navItemElements = navItemArray.map((item, i) => {
     if (item.menuItems) {
       return (
         <NavItem
-          key={item.id}
+          key={`${item.id}-navDrop`}
           onMouseEnter={onMouseEnter}
           onMouseLeave={onMouseLeave}
         >
@@ -60,7 +60,7 @@ const Navbar = ({ title = "", navItemArray = [] }) =>  {
       );
     } else {
       return (
-        <NavItem key={item.id}>
+        <NavItem key={`${item.id}-navItem-${i}`}>
           <NavLink>
             {item.internal 
             ? (<Link to={item.path} onClick={closeMobileMenu}>{item.text}
