@@ -12,7 +12,7 @@ import PreSurvey from './components/PreSurvey';
 import Steps from './components/Steps';
 import Identify from './components/Identify';
 import Photo from './components/Photo';
-import {MenuButton} from './components/appHeader/AppHeader.styled'
+import { MenuButton } from './components/appHeader/AppHeader.styled'
 import RutgersFooter from './components/rutgersFooter/RutgersFooter';
 import RutgersHeader from './components/rutgersHeader/RutgersHeader';
 
@@ -49,7 +49,7 @@ const App = () => {
   <div>
     <RutgersHeader/>
     {/* <AppHeader/> */}
-    <Navbar title='Ticks for Science!' navItemArray={navMenuItems} navMobileLinks={tickElements}/>
+    <Navbar title='Ticks 4 Science!' navItemArray={navMenuItems} navMobileLinks={tickElements}/>
     <ScrollToTop>
       <Routes>
         <Route path='/' element={<About/>}/>
