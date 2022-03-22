@@ -20,17 +20,17 @@ import Dropdown from "./Dropdown";
 // let mobileWidth = theme.mobile
 
 const Navbar = ({ title = "", navItemArray = [] }) =>  {
-  const [dropdownVis, setDropdownVis] = useState(false);
+  const [dropdownVis, setDropdownVis] = useState(0);
   const [mobileMenuVis, setMobileMenuVis] = useState(false)
 
   const handleClick = () => setMobileMenuVis(!mobileMenuVis);
   const closeMobileMenu = () => setMobileMenuVis(false);
 
-  const onMouseEnter = () => {
+  const onMouseEnter = (id) => {
     // if (window.innerWidth < mobileWidth) {
       // setDropdownVis(true);
     // } else {
-      setDropdownVis(true);
+      setDropdownVis(id);
     // }
   };
 
@@ -38,7 +38,7 @@ const Navbar = ({ title = "", navItemArray = [] }) =>  {
     // if (window.innerWidth < mobileWidth) {
       // setDropdownVis(false);
     // } else {
-      setDropdownVis(false);
+      setDropdownVis(0);
     // }
   };
 
@@ -47,15 +47,15 @@ const Navbar = ({ title = "", navItemArray = [] }) =>  {
       return (
         <NavItem
           key={`${item.id}-navDrop`}
-          onMouseEnter={onMouseEnter}
-          onMouseLeave={onMouseLeave}
+          onMouseEnter={() => onMouseEnter(item.id)}
+          onMouseLeave={() => onMouseLeave(item.id)}
         >
         
           <NavLink onClick={() => setDropdownVis(!dropdownVis)}>
             {item.text}{!mobileMenuVis ? <FaCaretDown/> : null}
           </NavLink>
           
-          {dropdownVis && <Dropdown menuItems={item.menuItems} handleClick={closeMobileMenu} menuState={mobileMenuVis} />}
+          {dropdownVis === item.id && <Dropdown menuItems={item.menuItems} handleClick={closeMobileMenu} menuState={mobileMenuVis} />}
         </NavItem>
       );
     } else {
