@@ -1,12 +1,12 @@
 import React from 'react'
-import { PageContainer, ScreenContainer, TextDiv } from './GeneralStyles'
+import { BasicPage } from './GeneralStyles'
 import { Link } from 'react-router-dom'
 
 const Steps = () => {
   return (
-    <ScreenContainer >
-      <PageContainer>
-        <TextDiv>
+    <BasicPage.ScreenContainer >
+      <BasicPage.PageContainer>
+        <BasicPage.Text>
           <h1>Steps to Participate</h1>
           <ol>
             <li>Verify that your submission is a tick using the information from <Link to='/identify'>How to Identify a Tick</Link>.</li>
@@ -16,9 +16,9 @@ const Steps = () => {
             <li>Once you have received a notification describing next steps, follow the instructions on how to send the tick to NJ Ticks for Science!</li>
           </ol>
          
-        </TextDiv>
-      </PageContainer>
-    </ScreenContainer>
+        </BasicPage.Text>
+      </BasicPage.PageContainer>
+    </BasicPage.ScreenContainer>
   )
 }
 

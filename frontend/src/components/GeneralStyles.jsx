@@ -1,41 +1,45 @@
 import styled from 'styled-components';
 
-export const ScreenContainer = styled.div`
+export const BasicPage = {
+  ScreenContainer: styled.div`
   background-color: white;
   font-family: 'Source Sans Pro', sans-serif;
   display: flex;
   justify-content: center;
-`;
-export const PageContainer = styled.div`
+  `,
+  PageContainer: styled.div`
   display: flex;
   justify-content: center;
   
   @media screen and (min-width:${({theme}) => theme.mobile}) {
     max-width: 1366px;
   }
-`;
-export const TextDiv = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  font-size: 1.25em;
-  min-height: 80vh;
-  padding: 0 2em;
-  @media screen and (min-width: 810px) {
-    width: 800px;
-    
-  }
-`;
-export const BoxInset = styled.div`
-  border: 1px solid black;
-  display: flex;
-  flex-direction: column;
-  padding: 0.5em;
-  align-items: center;
-  border-radius: 0.5em;
-  margin: 0.5em;
-`;
-export const StyledButton = styled.button`
+`,
+Text: styled.div`
+display: flex;
+flex-direction: column;
+align-items: center;
+font-size: 1.25em;
+min-height: 80vh;
+padding: 0 2em;
+text-align: center;
+@media screen and (min-width: 810px) {
+  width: 800px;
+  text-align: left;
+  
+}
+`,
+BoxInset: styled.div`
+border: 1px solid black;
+display: flex;
+flex-direction: column;
+padding: 0.5em;
+align-items: center;
+border-radius: 0.5em;
+margin: 0.5em;
+`,
+
+StyledButton: styled.button`
 border-radius: 50px;
 border: none;
 box-shadow: 0 0 10px ${({color}) => color + '50'};
@@ -51,4 +55,20 @@ color: ${({color}) => color || 'white'};
 }
 margin: 0.6rem 0.6rem 0.6rem 0;
 padding: 0.5rem 0.75rem;    
+`,
+CenteredList: styled.ul`
+list-style: none;
+text-align: center;
+border-bottom: 1px solid black;
+& > li {
+  padding: 0.5em 0;
+}
 `
+
+}
+
+
+
+
+
+

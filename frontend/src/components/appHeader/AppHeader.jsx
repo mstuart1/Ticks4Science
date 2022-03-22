@@ -65,13 +65,13 @@ const AppHeader = () => {
   )
 
   return (
-    <ScreenContainer>
+    <BasicPage.ScreenContainer>
       <ProjectTitle>
       <Link to='/'><h1>Project Name</h1></Link>
       {width > 450 && mainMenuElements}
       </ProjectTitle>
       {width <= 450 && mainMenuElements}
-    </ScreenContainer>
+    </BasicPage.ScreenContainer>
   );
 };
 

@@ -1,5 +1,5 @@
 import React from "react";
-import { PageContainer, ScreenContainer, TextDiv, StyledButton } from "./GeneralStyles";
+import { BasicPage } from "./GeneralStyles";
 import {useNavigate} from 'react-router-dom'
 
 const Identify = () => {
@@ -7,9 +7,9 @@ const Identify = () => {
   const navigate = useNavigate()
 
   return (
-    <ScreenContainer>
-      <PageContainer>
-        <TextDiv>
+    <BasicPage.ScreenContainer>
+      <BasicPage.PageContainer>
+        <BasicPage.Text>
           <h1>How to identify a tick</h1>
           <p>
             As a citizen scientist, we encourage you to verify your specimen
@@ -30,14 +30,14 @@ const Identify = () => {
           <h2>Four most common species in New Jersey:</h2>
           <div style={{marginBottom: '1em'}}>
             {/* These ids come from the ticks.js flatfile that contains all of the info for the ticks */}
-            <StyledButton  onClick={() => navigate(`/ticks/7`)}color='black'>Asian longhorned tick, Haemaphysalis longicornis</StyledButton>
-            <StyledButton onClick={() => navigate(`/ticks/11`)}color='black'>Blacklegged tick, Ixodes scapularis</StyledButton>
-            <StyledButton onClick={() => navigate(`/ticks/1`)}color='black'>Lone star tick, Amblyomma americanum</StyledButton>
-            <StyledButton onClick={() => navigate(`/ticks/5`)}color='black'>American dog tick, Dermacentor variabilis</StyledButton>
+            <BasicPage.StyledButton  onClick={() => navigate(`/ticks/7`)}color='black'>Asian longhorned tick, Haemaphysalis longicornis</BasicPage.StyledButton>
+            <BasicPage.StyledButton onClick={() => navigate(`/ticks/11`)}color='black'>Blacklegged tick, Ixodes scapularis</BasicPage.StyledButton>
+            <BasicPage.StyledButton onClick={() => navigate(`/ticks/1`)}color='black'>Lone star tick, Amblyomma americanum</BasicPage.StyledButton>
+            <BasicPage.StyledButton onClick={() => navigate(`/ticks/5`)}color='black'>American dog tick, Dermacentor variabilis</BasicPage.StyledButton>
             </div>
-        </TextDiv>
-      </PageContainer>
-    </ScreenContainer>
+        </BasicPage.Text>
+      </BasicPage.PageContainer>
+    </BasicPage.ScreenContainer>
   );
 };
 

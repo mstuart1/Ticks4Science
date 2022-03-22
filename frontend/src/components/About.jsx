@@ -1,12 +1,13 @@
 import React from "react";
-import { PageContainer, ScreenContainer, StyledButton, TextDiv } from "./GeneralStyles";
+import { BasicPage } from "./GeneralStyles";
 import { Link } from 'react-router-dom'
+import TickReportLink from "./TickReportLink";
 
 const About = () => {
   return (
-    <ScreenContainer>
-      <PageContainer>
-        <TextDiv>
+    <BasicPage.ScreenContainer>
+      <BasicPage.PageContainer>
+        <BasicPage.Text>
           <h1 style={{textAlign: "center"}}>Welcome to NJ Ticks 4 Science!</h1>
           <p>A citizen science project
           where we are enlisting the people in New Jersey to submit ticks they
@@ -20,14 +21,14 @@ const About = () => {
           
             <h2 style={{textAlign: "center"}}>View a report of the 11 ticks found throughout New Jersey.</h2>
           <p>
-            <a href='https://vectorbio.rutgers.edu/outreach/Occi2019TickListNJ.pdf'>Annotated List of the Hard Ticks (Acari: Ixodida: Ixodidae) of New Jersey</a><br/>
+            <TickReportLink/><br/>
             Since this report, two more ticks have been discovered in NJ, which we review within <Link to='/notReady'>Ticks of NJ</Link>
           </p>
           
-          <a href='mailto:cvb@rutgers.edu' target='_blank'><StyledButton color='black'>Contact Us</StyledButton></a>
-        </TextDiv>
-      </PageContainer>
-    </ScreenContainer>
+          <a href='mailto:cvb@rutgers.edu' target='_blank'><BasicPage.StyledButton color='black'>Contact Us</BasicPage.StyledButton></a>
+        </BasicPage.Text>
+      </BasicPage.PageContainer>
+    </BasicPage.ScreenContainer>
   );
 };
 

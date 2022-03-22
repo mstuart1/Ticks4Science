@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
-import { Link, useParams } from 'react-router-dom'
-import { BoxInset, PageContainer, ScreenContainer } from '../GeneralStyles'
-// import { MenuButton } from '../appHeader/AppHeader.styled'
+import { useParams } from 'react-router-dom'
+import { BasicPage } from '../GeneralStyles'
 import { MainTickDiv, ShowMeButton, TickName } from './TickPage.styled'
 import { ticks } from './ticks'
 
@@ -18,30 +17,30 @@ const TickPage = () => {
   let tick = ticks.filter(tick => tick.id === parseInt(id))[0]
 
   return (
-    <ScreenContainer>
-      <PageContainer>
+    <BasicPage.ScreenContainer>
+      <BasicPage.PageContainer>
         <MainTickDiv>
           <h1 style={{ textAlign: 'center' }}><TickName>{tick.title}</TickName></h1>
 
           {tick.common ? (<p>Common name(s): {tick.common}</p>) : null}
 
           {tick.first || tick.comment ? (
-            <BoxInset>
+            <BasicPage.BoxInset>
 
             {tick.first ? (<span> First reported in {tick.first}.<br /></span>) : null}
             {tick.second ? (<span> Second report in {tick.second}.<br /></span>) : null}
             {tick.comment ? (<span>{tick.comment}.<br /></span>) : null}
-          </BoxInset>
+          </BasicPage.BoxInset>
           ) : null}
           {tick.loc || tick.habitat ? (
-            <BoxInset>
+            <BasicPage.BoxInset>
             {tick.loc ? (<> <h4>Location in New Jersey</h4>
               {tick.loc}</>) : null}
 
             {tick.habitat ? (<> <h4>Habitat</h4>
               {tick.habitat}</>) : null}
 
-          </BoxInset>
+          </BasicPage.BoxInset>
           ) : null}
           <h3>{tick.info}</h3>
           <h4>Larvae</h4>
@@ -69,8 +68,8 @@ const TickPage = () => {
           {/* <ShowMeButton  onClick={handleToggle}>Show Me Photos of Ticks</ShowMeButton> */}
           {/* {togglePhotos && photoList.length > 0 ? photoList : <h3>Sorry, no photos for this tick have been submitted, please <Link to='/submit'>submit a tick</Link> to help us share information.</h3>} */}
         </MainTickDiv>
-      </PageContainer>
-    </ScreenContainer>
+      </BasicPage.PageContainer>
+    </BasicPage.ScreenContainer>
   )
 }
 
