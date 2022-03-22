@@ -1,5 +1,5 @@
 import React from "react";
-import { PageContainer, ScreenContainer, TextDiv } from "./GeneralStyles";
+import { PageContainer, ScreenContainer, StyledButton, TextDiv } from "./GeneralStyles";
 
 const About = () => {
   return (
@@ -15,6 +15,7 @@ const About = () => {
           submission, utilize the tabs to the right of the screen. We encourage
           you to follow the steps on how to send a tick pic to begin the tick
           submission process!
+          <a href='mailto:cvb@rutgers.edu' target='_blank'><StyledButton color='black'>Contact Us</StyledButton></a>
         </TextDiv>
       </PageContainer>
     </ScreenContainer>
