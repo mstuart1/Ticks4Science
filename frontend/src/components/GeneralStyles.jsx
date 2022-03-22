@@ -9,19 +9,21 @@ export const ScreenContainer = styled.div`
 export const PageContainer = styled.div`
   display: flex;
   justify-content: center;
+  
   @media screen and (min-width:${({theme}) => theme.mobile}) {
     max-width: 1366px;
   }
 `;
 export const TextDiv = styled.div`
-  // width: 800px;
   display: flex;
   flex-direction: column;
   align-items: center;
   font-size: 1.25em;
+  min-height: 80vh;
+  padding: 0 2em;
   @media screen and (min-width: 810px) {
     width: 800px;
-    min-height: 60vh;
+    
   }
 `;
 export const BoxInset = styled.div`
