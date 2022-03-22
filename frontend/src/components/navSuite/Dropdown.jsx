@@ -2,13 +2,12 @@ import React from 'react';
 import { DropdownLink, DropdownMenu, DropdownMenuItem } from './DropdownStyled'
 
 
-
 function Dropdown({menuItems = [], handleClick}) {
 
   return (
     
       <DropdownMenu
-        onClick={handleClick}
+        onClick={ () => handleClick()}
       >
         
         {menuItems.map(item => {
@@ -17,7 +16,7 @@ function Dropdown({menuItems = [], handleClick}) {
             <DropdownMenuItem key={item.id}>
               <DropdownLink
                 to={item.path}
-                onClick={handleClick}
+                onClick={() => handleClick(item.id)}
               >
                 {item.title}
               </DropdownLink>
