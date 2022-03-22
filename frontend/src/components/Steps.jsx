@@ -12,7 +12,8 @@ const Steps = () => {
             <li>Verify that your submission is a tick using the information from <Link to='/identify'>How to Identify a Tick</Link>.</li>
             <li>Take a picture that follows the guidelines within <Link to='/photo'>How to Take Tick Pics</Link>.</li>
             <li>Enter information and submit photos in <Link to='/preSurvey'>Tick Submission</Link>.</li>
-            <li>Keep tick in a crush proof container. We will be providing you with instructions to mail in the tick or take additional photographs of the specimen.</li>
+            <li>Keep tick in a crush proof container. You will receive a notification once your tick has been.</li>
+            <li>Once you have received a notification describing next steps, follow the instructions on how to send the tick to NJ Ticks for Science!</li>
           </ol>
          
         </TextDiv>
