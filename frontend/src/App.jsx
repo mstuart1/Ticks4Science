@@ -15,7 +15,11 @@ import Photo from './components/Photo';
 import { MenuButton } from './components/appHeader/AppHeader.styled'
 import RutgersFooter from './components/rutgersFooter/RutgersFooter';
 import RutgersHeader from './components/rutgersHeader/RutgersHeader';
+import NavbarComp from './components/mobileNav/Navbar';
+import NotReady from './components/NotReady';
+import styled, { createGlobalStyle } from 'styled-components'
 
+// TODO move menubutton out of appHeader styled and move appheader to obsolete
 
 let steps = [
   {id: 1, title: 'How to identify a tick', path: '/identify'},
@@ -48,11 +52,15 @@ const App = () => {
 
 
   return (
-    <ThemeProvider theme={theme}>
+     <ThemeProvider theme={theme}>
+    <Styles.Wrapper>
+      <CSSReset/>
+    
   <div>
     <RutgersHeader/>
     {/* <AppHeader/> */}
-    <Navbar title='Ticks 4 Science!' navItemArray={navMenuItems} navMobileLinks={tickElements}/>
+    {/* <Navbar title='Ticks 4 Science!' navItemArray={navMenuItems} navMobileLinks={tickElements}/> */}
+    <NavbarComp/>
     <ScrollToTop>
       <Routes>
         <Route path='/' element={<About/>}/>
@@ -61,13 +69,44 @@ const App = () => {
         <Route path='/steps' element={<Steps/>}/>
         <Route path='/identify' element={<Identify/>}/>
         <Route path='/photo' element={<Photo/>}/>
+        <Route path='/notReady' element={<NotReady/>}/>
       </Routes>
       </ScrollToTop>
       
       <RutgersFooter/>
   </div>
+  </Styles.Wrapper>
   </ThemeProvider>
+  
   )
 };
 
 export default App;
+
+const Styles = {
+  Wrapper: styled.main`
+  display: flex;
+  background-color: #eeeeee;
+  height: 100vh;
+  `,
+};
+
+const CSSReset = createGlobalStyle`
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+html {
+  font-size: 62.5%; /* 1rem = 10px */
+  box-sizing: border-box;
+}
+
+body {
+  font-size: 1.4rem;
+  font-family: sans-serif;
+}
+`
