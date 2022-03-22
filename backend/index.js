@@ -17,7 +17,8 @@ app.use(helmet());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.options('*', cors(corsOptions)); // preflight OPTIONS; put before other routes
+
+app.use(cors(corsOptions));
 
 require("./api/submission.route")(app);
 
