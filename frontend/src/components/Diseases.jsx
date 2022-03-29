@@ -37,7 +37,7 @@ const RemovalPage = {
     border: 1px solid black;
     border-radius: 1em;
     background-color: ${({ theme }) => theme.colors.greyBG};
-    margin: 1em 0;
+    margin: 1em;
     span {
         padding: 0 1em;
     }
