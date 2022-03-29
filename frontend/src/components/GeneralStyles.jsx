@@ -23,6 +23,12 @@ font-size: 1.25em;
 min-height: 80vh;
 padding: 0 2em;
 text-align: center;
+p {
+  padding: 1rem;
+}
+ol {
+  padding-top: 1rem;
+}
 @media screen and (min-width: 810px) {
   width: 800px;
   text-align: left;

@@ -17,8 +17,7 @@ const TickPage = () => {
   let tick = ticks.filter(tick => tick.id === parseInt(id))[0]
 
   return (
-    <BasicPage.ScreenContainer>
-      <BasicPage.PageContainer>
+    
         <MainTickDiv>
           <h1 style={{ textAlign: 'center' }}><TickName>{tick.title}</TickName></h1>
 
@@ -68,8 +67,7 @@ const TickPage = () => {
           {/* <ShowMeButton  onClick={handleToggle}>Show Me Photos of Ticks</ShowMeButton> */}
           {/* {togglePhotos && photoList.length > 0 ? photoList : <h3>Sorry, no photos for this tick have been submitted, please <Link to='/submit'>submit a tick</Link> to help us share information.</h3>} */}
         </MainTickDiv>
-      </BasicPage.PageContainer>
-    </BasicPage.ScreenContainer>
+      
   )
 }
 

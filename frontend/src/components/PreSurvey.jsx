@@ -5,10 +5,10 @@ import { BasicPage } from "./GeneralStyles";
 
 const PreSurvey = () => {
   return (
-    <BasicPage.ScreenContainer>
-      <BasicPage.PageContainer>
+    
       <BasicPage.Text>
         <div>
+        <p>Here is where all the information about the person and tick will be submitted. </p>
         <p>Please note that this is a program designed to identify NJ ticks and
         tick-borne illnesses.</p>
         <p>
@@ -29,8 +29,7 @@ const PreSurvey = () => {
         </div>
       <a href='https://arcg.is/1ODG9m0'><BasicPage.StyledButton color="black">I UNDERSTAND, continue to form</BasicPage.StyledButton></a>
       </BasicPage.Text>
-      </BasicPage.PageContainer>
-    </BasicPage.ScreenContainer>
+      
   );
 };
 

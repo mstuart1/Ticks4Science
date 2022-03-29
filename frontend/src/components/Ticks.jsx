@@ -10,26 +10,25 @@ const Ticks = () => {
 
     let peopleTickElements = ticks.map(tick => {
         if (peopleTicks.includes(tick.id)){
-            return <li><Link to={tick.path}><i>{tick.title}</i>, {tick.common}</Link><br/></li>
+            return <li key={tick.id}><Link to={tick.path}><i>{tick.title}</i>, {tick.common}</Link><br/></li>
         }
     })
 
     let dogTickElements = ticks.map(tick => {
         if (tick.id === 13){
-            return <li><Link to={tick.path}><i>{tick.title}</i>, {tick.common}</Link><br/></li>
+            return <li key={tick.id}><Link to={tick.path}><i>{tick.title}</i>, {tick.common}</Link><br/></li>
         }
     })
 
     let briefTickElements = ticks.map(tick => {
         if (briefTicks.includes(tick.id)){
-            return <li><Link to={tick.path}><i>{tick.title}</i>, {tick.common}</Link><br/></li>
+            return <li key={tick.id}><Link to={tick.path}><i>{tick.title}</i>, {tick.common}</Link><br/></li>
         }
     })
 
 
   return (
-    <BasicPage.ScreenContainer>
-        <BasicPage.PageContainer>
+    
             <BasicPage.Text>
                 <h2>
                     Ticks of NJ
@@ -51,8 +50,6 @@ const Ticks = () => {
                 </BasicPage.CenteredList>
             </BasicPage.Text>
 
-        </BasicPage.PageContainer>
-        </BasicPage.ScreenContainer>
   )
 }
 

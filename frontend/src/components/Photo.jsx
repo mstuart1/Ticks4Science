@@ -3,8 +3,7 @@ import { BasicPage } from "./GeneralStyles";
 
 const Photo = () => {
   return (
-    <BasicPage.ScreenContainer>
-      <BasicPage.PageContainer>
+    
         <BasicPage.Text>
           <div>
             <h1>How to take Tick Pics</h1>
@@ -33,8 +32,7 @@ Keep tick in a crush proof container for several days. We will be contacting you
 
 </BasicPage.BoxInset>
         </BasicPage.Text>
-      </BasicPage.PageContainer>
-    </BasicPage.ScreenContainer>
+      
   );
 };
 

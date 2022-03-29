@@ -7,8 +7,8 @@ const Identify = () => {
   const navigate = useNavigate()
 
   return (
-    <BasicPage.ScreenContainer>
-      <BasicPage.PageContainer>
+    
+      
         <BasicPage.Text>
           <h1>How to identify a tick</h1>
           <p>
@@ -36,8 +36,7 @@ const Identify = () => {
             <BasicPage.StyledButton onClick={() => navigate(`/ticks/5`)}color='black'>American dog tick, Dermacentor variabilis</BasicPage.StyledButton>
             </div>
         </BasicPage.Text>
-      </BasicPage.PageContainer>
-    </BasicPage.ScreenContainer>
+      
   );
 };
 
