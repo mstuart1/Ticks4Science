@@ -5,8 +5,8 @@ import TickReportLink from "./TickReportLink";
 
 const About = () => {
   return (
-    <BasicPage.ScreenContainer>
-      <BasicPage.PageContainer>
+    
+      
         <BasicPage.Text>
           <h1 style={{textAlign: "center"}}>Welcome to NJ Ticks 4 Science!</h1>
           <p>A citizen science project
@@ -22,13 +22,16 @@ const About = () => {
             <h2 style={{textAlign: "center"}}>View a report of the 11 ticks found throughout New Jersey.</h2>
           <p>
             <TickReportLink/><br/>
-            Since this report, two more ticks have been discovered in NJ, which we review within <Link to='/notReady'>Ticks of NJ</Link>
+            Since this report, two more ticks have been discovered in NJ, which we review within <Link to='/ticks'>Ticks of NJ</Link>
           </p>
+          <div>
+            <a href='https://vectorbio.rutgers.edu/contact.php'>Visit Our Website</a>
+          </div>
           
           <a href='mailto:cvb@rutgers.edu' target='_blank'><BasicPage.StyledButton color='black'>Contact Us</BasicPage.StyledButton></a>
         </BasicPage.Text>
-      </BasicPage.PageContainer>
-    </BasicPage.ScreenContainer>
+    
+    
   );
 };
 
