@@ -15,11 +15,9 @@ import NavbarComp from './components/mobileNav/Navbar';
 import NotReady from './components/NotReady';
 import styled, { createGlobalStyle } from 'styled-components'
 import Ticks from './components/Ticks';
-
-
-
-
-
+import { BasicPage } from "./components/GeneralStyles";
+import TickRemoval from './components/TickRemoval';
+import TickCheck from './components/TickCheck';
 
 
 const App = () => {
@@ -35,16 +33,22 @@ const App = () => {
     {/* <Navbar title='Ticks 4 Science!' navItemArray={navMenuItems} navMobileLinks={tickElements}/> */}
     <NavbarComp/>
     <ScrollToTop>
+    <BasicPage.ScreenContainer>
+    <BasicPage.PageContainer>
       <Routes>
         <Route path='/' element={<About/>}/>
-        <Route path='/ticks/:id' element={<TickPage/>}/>
-        <Route path='/preSurvey' element={<PreSurvey/>}/>
-        <Route path='/steps' element={<Steps/>}/>
         <Route path='/identify' element={<Identify/>}/>
         <Route path='/photo' element={<Photo/>}/>
-        <Route path='/notReady' element={<NotReady/>}/>
+        <Route path='/preSurvey' element={<PreSurvey/>}/>
         <Route path='/ticks' element={<Ticks/>}/>
+        <Route path='/ticks/:id' element={<TickPage/>}/>
+        <Route path='/steps' element={<Steps/>}/>
+        <Route path='/removal' element={<TickRemoval/>}/>
+        <Route path='/check' element={<TickCheck/>}/>
+        <Route path='/notReady' element={<NotReady/>}/>
       </Routes>
+      </BasicPage.PageContainer>
+      </BasicPage.ScreenContainer>
       </ScrollToTop>
       
       <RutgersFooter/>
