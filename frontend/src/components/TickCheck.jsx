@@ -62,7 +62,7 @@ because some ticks may attach to them. Regularly check your dog or outdoor cat e
                 To learn more, check out <Link to='/removal'>Tick Removal</Link>
             </RemovalPage.Para>
             <RemovalPage.Para>
-            Even though we can check ourselves and our pets for ticks after adventures, we should consider taking necessary steps toward personal and pet <Link to='/notReady'>Tick Prevention</Link> to ensure our safety from common <Link to='/notReady'>Tick-borne Illnesses</Link> in New Jersey.
+            Even though we can check ourselves and our pets for ticks after adventures, we should consider taking necessary steps toward personal and pet <Link to='/prevention'>Tick Prevention</Link> to ensure our safety from common <Link to='/disease'>Tick-borne Illnesses</Link> in New Jersey.
             </RemovalPage.Para>
            
         </RemovalPage.Container>

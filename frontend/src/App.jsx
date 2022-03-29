@@ -18,6 +18,8 @@ import Ticks from './components/Ticks';
 import { BasicPage } from "./components/GeneralStyles";
 import TickRemoval from './components/TickRemoval';
 import TickCheck from './components/TickCheck';
+import Prevention from './components/Prevention';
+import Diseases from './components/Diseases';
 
 
 const App = () => {
@@ -45,6 +47,8 @@ const App = () => {
         <Route path='/steps' element={<Steps/>}/>
         <Route path='/removal' element={<TickRemoval/>}/>
         <Route path='/check' element={<TickCheck/>}/>
+        <Route path='/prevention' element={<Prevention/>}/>
+        <Route path='/disease' element={<Diseases/>}/>
         <Route path='/notReady' element={<NotReady/>}/>
       </Routes>
       </BasicPage.PageContainer>
