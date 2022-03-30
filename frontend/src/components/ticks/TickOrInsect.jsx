@@ -13,15 +13,29 @@ const TickIns = {
   `,
   List: styled.ul`
   width: 60vw;
+  // margin-left: 0.75rem;
+  // padding: 0 2.5rem;
+  list-style-position: inside;
+  li {
+    padding: 0.5rem;
+  }
+  @media screen and (min-width: ${({theme}) => theme.mobile}) {
+  margin-left: 0.75rem;
   padding: 0 2.5rem;
   li {
-    padding: 0.5rem 0;
+    padding: 0.5rem 2rem;
   }
+    
+  }
+
   `,
   ImageCont: styled.div`
   img {
     margin: 2rem;
     max-width: 300px;
+    @media screen and (min-width: ${({theme}) => theme.mobile}) {
+      max-width: 600px;
+    }
   }
   `
 }
