@@ -23,7 +23,7 @@ const About = () => {
 
       <BasicPage.SectionTitle>View a report of the 11 ticks found throughout New Jersey.</BasicPage.SectionTitle>
       
-        <TickReportLink />
+        <p><TickReportLink /></p>
         <p>
         Since this report, two more ticks have been discovered in NJ, which we review within <BasicPage.InnieLink  to='/ticks'><span>Ticks of NJ</span></BasicPage.InnieLink>
       </p>

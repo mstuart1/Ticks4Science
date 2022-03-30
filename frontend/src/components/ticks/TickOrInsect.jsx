@@ -10,26 +10,7 @@ const TickIns = {
   Subtitle: styled(BasicPage.SectionSubtitle)`
   padding: 1rem;
   border-top: 0.5px solid ${({ theme }) => theme.colors.greyBG};
-  `,
-  List: styled.ul`
-  width: 60vw;
-  // margin-left: 0.75rem;
-  // padding: 0 2.5rem;
-  list-style-position: inside;
-  li {
-    padding: 0.5rem;
-  }
-  @media screen and (min-width: ${({ theme }) => theme.mobile}) {
-  margin-left: 0.75rem;
-  padding: 0 2.5rem;
-  li {
-    padding: 0.5rem 2rem;
-  }
-    
-  }
-
-  `,
-  
+  `,  
 }
 
 const TickOrInsect = () => {
@@ -50,13 +31,13 @@ const TickOrInsect = () => {
             Tick Anatomy 101
           </BasicPage.SectionTitle>
           <TickIns.Subtitle>Adult Ticks</TickIns.Subtitle>
-          <TickIns.List>
+          <BasicPage.List>
             <li>8 legs</li>
             <li>The body is composed of 2 segments: the cephalothorax and the abdomen
             </li>
             <li>The mouthpart is what burrows into the skin</li>
             <li>Nymph ticks will have 6 legs</li>
-          </TickIns.List>
+          </BasicPage.List>
           <BasicPage.ImageCont>
             <figure>
               <img src={comp} alt='comparison of insect and tick' />
@@ -73,20 +54,20 @@ const TickOrInsect = () => {
             Common "Not Ticks"
           </BasicPage.SectionTitle>
           <TickIns.Subtitle>Insects such as beetles</TickIns.Subtitle>
-          <TickIns.List>
+          <BasicPage.List>
             <li>6 legs</li>
             <li>The body is composed of three segments: the head, the thorax, and the abdomen</li>
             <li>May even have wings or antennae</li>
-          </TickIns.List>
+          </BasicPage.List>
           <BasicPage.ImageCont>
             <img src={''} alt='insect' />
           </BasicPage.ImageCont>
 
           <TickIns.Subtitle>Spiders</TickIns.Subtitle>
-          <TickIns.List>
+          <BasicPage.List>
             <li>8 legs</li>
             <li>Their body has two segments: the cephalothorax and the abdomen</li>
-          </TickIns.List>
+          </BasicPage.List>
           <BasicPage.ImageCont>
             <img src='' alt='spider' />
           </BasicPage.ImageCont>

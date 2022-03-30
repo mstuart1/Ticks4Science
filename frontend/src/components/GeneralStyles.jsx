@@ -152,4 +152,23 @@ color: #00626d;
     }
   }
   `,
+  List: styled.ul`
+  width: 60vw;
+  // margin-left: 0.75rem;
+  // padding: 0 2.5rem;
+  list-style-position: inside;
+  li {
+    padding: 0.5rem;
+  }
+  @media screen and (min-width: ${({ theme }) => theme.mobile}) {
+  margin-left: 0.75rem;
+  padding: 0 2.5rem;
+  li {
+    padding: 0.5rem 2rem;
+  }
+    
+  }
+
+  `,
+  
 }
