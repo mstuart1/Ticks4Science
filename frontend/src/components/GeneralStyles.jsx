@@ -24,7 +24,7 @@ align-items: center;
 font-size: 1.25em;
 min-height: 80vh;
 padding: 0 2em;
-text-align: center;
+// text-align: center;
 p {
   padding: 1rem;
 }
@@ -107,6 +107,12 @@ color: #00626d;
   SectionTitle: styled.h3`
   text-align: center;
   font-size: 2rem;
+  font-weight: 600;
+  margin: 1rem;
+  `,
+  SectionSubtitle: styled.span`
+  text-align: center;
+  font-size: 1.5rem;
   font-weight: 600;
   margin: 1rem;
   `,

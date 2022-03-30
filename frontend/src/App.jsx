@@ -20,6 +20,7 @@ import TickRemoval from './components/ticks/TickRemoval';
 import TickCheck from './components/ticks/TickCheck';
 import Prevention from './components/Prevention';
 import Diseases from './components/Diseases';
+import TickOrInsect from './components/ticks/TickOrInsect';
 
 
 const App = () => {
@@ -49,6 +50,7 @@ const App = () => {
         <Route path='/check' element={<TickCheck/>}/>
         <Route path='/prevention' element={<Prevention/>}/>
         <Route path='/disease' element={<Diseases/>}/>
+        <Route path='/tickOrInsect' element={<TickOrInsect/>}/>
         <Route path='/notReady' element={<NotReady/>}/>
       </Routes>
       </BasicPage.PageContainer>
