@@ -1,36 +1,13 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import styled from 'styled-components'
-
-const RemovalPage = {
-Container: styled.div`
-display: flex;
-flex-direction: column;
-align-items: center;
-font-size: 1.1em;
-padding: 2em;
-
-li {
-    padding: 1em 0;
-}
-`,
-Title: styled.h2`
-font-size: 3rem;
-font-weight: 700;
-`,
-Para: styled.p`
-padding: 1rem;
-`
-
-}
-
+import { BasicPage } from '../GeneralStyles'
 
 const TickRemoval = ()=> {
     return (
-        <RemovalPage.Container>
-            <RemovalPage.Title>Tick Removal</RemovalPage.Title>
-            <RemovalPage.Para>As citizen scientists, when encountering ticks, one of the tools you may have readily available to remove a tick are tweezers.</RemovalPage.Para>
-            <ol><RemovalPage.Para>To properly remove a tick so it is removed intact:</RemovalPage.Para>
+        <BasicPage.Text>
+            <BasicPage.Title>Tick Removal</BasicPage.Title>
+            <p>As citizen scientists, when encountering ticks, one of the tools you may have readily available to remove a tick are tweezers.</p>
+            <ol><p>To properly remove a tick so it is removed intact:</p>
                 <li>
                     Place the tweezers as close to the skin as possible and grasp the tick
                 </li>
@@ -48,7 +25,7 @@ const TickRemoval = ()=> {
             </ol>
             <p>If you experience any symptoms such as a rash, fever, headache, or flu-like symptoms after the tick bite or cannot remove the whole tick, seek medical attention.
             </p>
-        </RemovalPage.Container>
+        </BasicPage.Text>
     )
 }
 
