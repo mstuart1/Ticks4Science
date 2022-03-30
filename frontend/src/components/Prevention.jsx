@@ -63,21 +63,22 @@ const Prevention = () => (
             </BasicPage.Card>
             <BasicPage.Card>
                 <BasicPage.CardSpecial>
-                    <BasicPage.StepSpan>
-                        What is DEET?
-                    </BasicPage.StepSpan>
+                    
                     <div>
-
+                    <BasicPage.SectionSubtitle>
+                        What is DEET?
+                    </BasicPage.SectionSubtitle>
                         DEET is a synthetic chemical that blocks the ability for biting bugs to smell us.
                     </div>
                 </BasicPage.CardSpecial>
             </BasicPage.Card>
             <BasicPage.Card>
                 <BasicPage.CardSpecial>
-                    <BasicPage.StepSpan>
-                    What is picaridin?
-                    </BasicPage.StepSpan>
+                    
                     <div>
+                        <BasicPage.SectionSubtitle>
+                    What is picaridin?
+                    </BasicPage.SectionSubtitle>
 
                     Picaridin is a synthetic compound that resembles that of the natural compound piperine or black pepper.
                     </div>
@@ -85,18 +86,20 @@ const Prevention = () => (
             </BasicPage.Card>
             <BasicPage.Card>
                 <BasicPage.CardSpecial>
-                    <BasicPage.StepSpan>
+                    
+                    <div>
+                        <BasicPage.SectionSubtitle>
                     What is IR3535?
-                    </BasicPage.StepSpan>
-                    <div>IR3535 is a biopesticide that can be applied to people and pets. </div>
+                    </BasicPage.SectionSubtitle>IR3535 is a biopesticide that can be applied to people and pets. </div>
                 </BasicPage.CardSpecial>
             </BasicPage.Card>
             <BasicPage.Card>
                 <BasicPage.CardSpecial>
-                    <BasicPage.StepSpan>
-                    What is permethrin?
-                    </BasicPage.StepSpan>
+                    
                     <div>
+                        <BasicPage.SectionSubtitle>
+                    What is permethrin?
+                    </BasicPage.SectionSubtitle>
                     Permethrin is an insecticide that can cause biting bugs to have severe reactions when ingested. This product should only be treated on clothes and can be toxic to cats.
                         </div>
                 </BasicPage.CardSpecial>
