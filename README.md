@@ -37,3 +37,9 @@ New Brunswick, NJ 08901
 If the sender is using FedEx, they can use this phone number as the shipping phone:  848-932-3146
 contact email is CVB@rutgers.edu
 the url will be ticks.rutgers.edu
+
+Missing Info:
+1. How will they be notified? Text should either provide instructions for accessing new info or collect email for notifications.
+1. Missing insect and spider images on Tick or Insect page
+1. Missing photos on identify tick page
+
