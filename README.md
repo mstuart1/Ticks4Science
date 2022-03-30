@@ -42,4 +42,5 @@ Missing Info:
 1. How will they be notified? Text should either provide instructions for accessing new info or collect email for notifications.
 1. Missing insect and spider images on Tick or Insect page
 1. Missing photos on identify tick page
-
+1. missing coin, ruler, and nail examples on how to take tick pics page
+1. Need to know max number of photos per person, can possibly run out of storage space which will result in submissions failing or being sent to nowhere (user will think it sent, but you will never get it).

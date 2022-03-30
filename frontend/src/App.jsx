@@ -90,7 +90,7 @@ html {
 }
 
 body {
-  font-size: 1.4rem;
+  font-size: 1.2rem;
   font-family: sans-serif;
 }
 `
