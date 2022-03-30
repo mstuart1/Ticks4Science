@@ -31,6 +31,9 @@ p {
 ol {
   padding-top: 1rem;
 }
+li {
+  padding: 1em 0;
+}
 @media screen and (min-width: 810px) {
   width: 800px;
   text-align: left;
@@ -113,4 +116,24 @@ color: #00626d;
    align-items: center;
    text-align: center;
   `,
+
+  CardContainer: styled.div`
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    `,
+    Card: styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid black;
+    border-radius: 1em;
+    background-color: ${({ theme }) => theme.colors.greyBG};
+    margin: 1em;
+    span {
+        padding: 0 1em;
+    }
+    `,
 }
