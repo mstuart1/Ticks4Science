@@ -1,7 +1,7 @@
 import React from 'react'
-import { BasicPage } from './GeneralStyles'
+import { BasicPage } from '../GeneralStyles'
 import TickReportLink from './TickReportLink'
-import {ticks} from './ticks/ticks'
+import {ticks} from './ticks'
 import { Link } from 'react-router-dom'
 
 const Ticks = () => {
@@ -11,18 +11,24 @@ const Ticks = () => {
     let peopleTickElements = ticks.map(tick => {
         if (peopleTicks.includes(tick.id)){
             return <li key={tick.id}><Link to={tick.path}><i>{tick.title}</i>, {tick.common}</Link><br/></li>
+        } else {
+            return null
         }
     })
 
     let dogTickElements = ticks.map(tick => {
         if (tick.id === 13){
             return <li key={tick.id}><Link to={tick.path}><i>{tick.title}</i>, {tick.common}</Link><br/></li>
+        }else {
+            return null
         }
     })
 
     let briefTickElements = ticks.map(tick => {
         if (briefTicks.includes(tick.id)){
             return <li key={tick.id}><Link to={tick.path}><i>{tick.title}</i>, {tick.common}</Link><br/></li>
+        }else {
+            return null
         }
     })
 

@@ -14,10 +14,10 @@ import RutgersHeader from './components/rutgersHeader/RutgersHeader';
 import NavbarComp from './components/mobileNav/Navbar';
 import NotReady from './components/NotReady';
 import styled, { createGlobalStyle } from 'styled-components'
-import Ticks from './components/Ticks';
+import Ticks from './components/ticks/Ticks';
 import { BasicPage } from "./components/GeneralStyles";
-import TickRemoval from './components/TickRemoval';
-import TickCheck from './components/TickCheck';
+import TickRemoval from './components/ticks/TickRemoval';
+import TickCheck from './components/ticks/TickCheck';
 import Prevention from './components/Prevention';
 import Diseases from './components/Diseases';
 

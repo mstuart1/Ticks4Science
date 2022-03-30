@@ -1,7 +1,7 @@
 import React from "react";
 import { BasicPage } from "./GeneralStyles";
 import { Link } from 'react-router-dom'
-import TickReportLink from "./TickReportLink";
+import TickReportLink from "./ticks/TickReportLink";
 
 const About = () => {
   return (
@@ -25,10 +25,10 @@ const About = () => {
             Since this report, two more ticks have been discovered in NJ, which we review within <Link to='/ticks'>Ticks of NJ</Link>
           </p>
           <div>
-            <a href='https://vectorbio.rutgers.edu/contact.php'>Visit Our Website</a>
+            <a href='https://vectorbio.rutgers.edu/contact.php' target='_blank' rel='noreferrer'>Visit the Center for Vector Biology Website</a>
           </div>
           
-          <a href='mailto:cvb@rutgers.edu' target='_blank'><BasicPage.StyledButton color='black'>Contact Us</BasicPage.StyledButton></a>
+          <a href='mailto:cvb@rutgers.edu' target='_blank' rel='noreferrer'><BasicPage.StyledButton color='black'>Contact Us</BasicPage.StyledButton></a>
         </BasicPage.Text>
     
     
