@@ -136,4 +136,7 @@ color: #00626d;
         padding: 0 1em;
     }
     `,
+    Indent: styled.p`
+    margin-left: 3em;
+    `,
 }
