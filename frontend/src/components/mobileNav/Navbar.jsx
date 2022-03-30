@@ -5,70 +5,70 @@ import navMenuItems from "./navMenuItems";
 import { Link } from "react-router-dom";
 
 const NavbarComp = () => {
-    const [windowDimension, setWindowDimension] = useState(null)
+  const [windowDimension, setWindowDimension] = useState(null)
 
-    useEffect(() => {
+  useEffect(() => {
+    setWindowDimension(window.innerWidth)
+  }, [])
+
+  // for production, debounce handleResize
+  useEffect(() => {
+    const handleResize = () => {
       setWindowDimension(window.innerWidth)
-    }, [])
-  
-    // for production, debounce handleResize
-    useEffect(() => {
-      const handleResize = () => {
-        setWindowDimension(window.innerWidth)
-      }
-      window.addEventListener("resize", handleResize)
-      return () => window.removeEventListener("resize", handleResize)
-    }, []);
-  
-    const isMobile = windowDimension <= 640;
+    }
+    window.addEventListener("resize", handleResize)
+    return () => window.removeEventListener("resize", handleResize)
+  }, []);
 
-    let mobileElements = navMenuItems.map(item => (
-      <MobileNavbar.Item key={`${item.id}-mobile`} >  <Link to={item.path}>
-        <MobileNavbar.Icon>
-          {item.icon}
-        </MobileNavbar.Icon><br/>
+  const isMobile = windowDimension <= 640;
+
+  let mobileElements = navMenuItems.map(item => (
+    <MobileNavbar.Item key={`${item.id}-mobile`} >  <Link to={item.path}>
+      <MobileNavbar.Icon>
+        {item.icon}
+      </MobileNavbar.Icon><br />
+      {item.title}
+    </Link>
+    </MobileNavbar.Item>
+  ))
+
+  let deskElements = navMenuItems.map(item => (
+    <Navbar.Item key={`${item.id}-desk`}>
+      <Link to={item.path}>
         {item.title}
-        </Link>
-        </MobileNavbar.Item>
-    ))
+      </Link>
+    </Navbar.Item>
+  ))
 
-    let deskElements = navMenuItems.map(item => (
-        <Navbar.Item key={`${item.id}-desk`}>
-            <Link to={item.path}>
-        {item.title}
-        </Link>
-        </Navbar.Item>
-    ))
+  let logoElement = (<Navbar.Logo>Ticks4Science</Navbar.Logo>)
 
-    let logoElement = (<Navbar.Logo>Ticks4Science</Navbar.Logo>)
-  
-    return (
-      
+  return (
+
+    <>
+
+      {isMobile ? (
         <>
-  
-        {isMobile ? (
-          <>
           <MobileNavbar.Brand>
-          {logoElement}
+            {logoElement}
           </MobileNavbar.Brand>
           <MobileNavbar.Wrapper>
             <MobileNavbar.Items>
               {mobileElements}
             </MobileNavbar.Items>
           </MobileNavbar.Wrapper>
-          </>
-        ) : (
-          <Navbar.Wrapper>
-            {logoElement}
-            <Navbar.Items>
-              {deskElements}
-            </Navbar.Items>
-          </Navbar.Wrapper>
-        )}
-  
-  </>
-    );
-  
+        </>
+      ) : (
+        <Navbar.Wrapper>
+          {logoElement}
+          <Navbar.Items>
+            {deskElements}
+          </Navbar.Items>
+        </Navbar.Wrapper>
+      )}
+
+    </>
+  );
+
 }
 
 export default NavbarComp
@@ -87,7 +87,7 @@ const Navbar = {
   justify-content: space-between;
   align-items: center;
 
-  background-color:${({theme}) => theme.colors.main};
+  background-color:${({ theme }) => theme.colors.main};
   `,
   Logo: styled.h1`
     // border: 1px solid gray;
@@ -98,19 +98,22 @@ const Navbar = {
     list-style: none;
   `,
   Item: styled.li`
-    padding: 0 1rem;
+    padding: 1rem;
     cursor: pointer;
+    border-radius: 3px;
+    &:hover {
+      background-color: ${({ theme }) => theme.colors.main};
+  filter: brightness(1.1);      
+  };
 
     a {
         text-decoration: none;
         &:visited, &:hover, &:active {
             color: black;
         };
-        &:hover {
-            background-color: ${({theme}) => theme.colors.greyBG}
-        };
+       
         &:focus {
-            border-bottom: 2px solid ${({theme}) => theme.colors.main};
+            border-bottom: 2px solid ${({ theme }) => theme.colors.main};
         };
     }
   `,
@@ -118,7 +121,7 @@ const Navbar = {
 
 const MobileNavbar = {
   Brand: styled.div`
-  background-color: ${({theme}) => theme.colors.main};
+  background-color: ${({ theme }) => theme.colors.main};
   width: 100vw;
   height: 5rem;
   display: flex;
