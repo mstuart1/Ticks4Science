@@ -2,11 +2,7 @@ import React from "react";
 import { BasicPage } from "./GeneralStyles";
 import {useNavigate} from 'react-router-dom'
 
-const Identify = () => {
-
-  const navigate = useNavigate()
-
-  return (
+const Identify = () => (
     
       
         <BasicPage.Text>
@@ -74,6 +70,6 @@ const Identify = () => {
         </BasicPage.Text>
       
   );
-};
+
 
 export default Identify;

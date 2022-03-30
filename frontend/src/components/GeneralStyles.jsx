@@ -23,14 +23,10 @@ flex-direction: column;
 align-items: center;
 font-size: 1.25em;
 min-height: 80vh;
-padding: 0 2em;
-// text-align: center;
 p {
   padding: 1rem;
 }
-ol {
-  padding-top: 1rem;
-}
+
 li {
   padding: 1em 0;
 }
@@ -124,6 +120,8 @@ color: #00626d;
   `,
 
   CardContainer: styled.div`
+  margin: 0;
+  padding: 0;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
@@ -134,14 +132,9 @@ color: #00626d;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    // border: 1px solid black;
-    border-radius: 1em;
-    --box-shadow-1: 0 3px 15px rgba(0,0,0,0.4);
-    background-color: ${({ theme }) => theme.colors.greyBG};
-    margin: 1em;
-    span {
-        padding: 0 1em;
-    }
+    border-radius: 1rem;
+    box-shadow: 0 3px 15px rgba(0,0,0,0.2);
+    margin: 1rem;
     `,
     Indent: styled.p`
     margin-left: 3em;
