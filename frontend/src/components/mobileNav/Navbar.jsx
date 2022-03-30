@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import styled, { createGlobalStyle } from 'styled-components'
-import { FaHome, FaRegBookmark, FaRegUser } from 'react-icons/fa'
+import styled from 'styled-components'
+// import { FaHome, FaRegBookmark, FaRegUser } from 'react-icons/fa'
 import navMenuItems from "./navMenuItems";
 import { Link } from "react-router-dom";
 
@@ -39,20 +39,27 @@ const NavbarComp = () => {
         </Link>
         </Navbar.Item>
     ))
+
+    let logoElement = (<Navbar.Logo>Ticks4Science</Navbar.Logo>)
   
     return (
       
         <>
   
         {isMobile ? (
+          <>
+          <MobileNavbar.Brand>
+          {logoElement}
+          </MobileNavbar.Brand>
           <MobileNavbar.Wrapper>
             <MobileNavbar.Items>
               {mobileElements}
             </MobileNavbar.Items>
           </MobileNavbar.Wrapper>
+          </>
         ) : (
           <Navbar.Wrapper>
-            <Navbar.Logo>Ticks4Science</Navbar.Logo>
+            {logoElement}
             <Navbar.Items>
               {deskElements}
             </Navbar.Items>
@@ -80,10 +87,10 @@ const Navbar = {
   justify-content: space-between;
   align-items: center;
 
-  background-color: white;
+  background-color:${({theme}) => theme.colors.main};
   `,
   Logo: styled.h1`
-    border: 1px solid gray;
+    // border: 1px solid gray;
     padding: 0.5rem 1rem;
   `,
   Items: styled.ul`
@@ -110,6 +117,14 @@ const Navbar = {
 }
 
 const MobileNavbar = {
+  Brand: styled.div`
+  background-color: ${({theme}) => theme.colors.main};
+  width: 100vw;
+  height: 5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  `,
   Wrapper: styled(Navbar.Wrapper)`
     position: fixed;
     width: 100vw;

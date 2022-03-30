@@ -6,6 +6,9 @@ export const ScreenContainer = styled.div`
   width: 100vw;
   display: flex;
   justify-content: center;
+  @media screen and (max-width:${({theme}) => theme.mobile}) {
+  height: 13em; 
+  // leave room for the nav at the bottom
 `;
 export const FooterContainer = styled.div`
   display: flex;
