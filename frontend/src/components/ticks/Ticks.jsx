@@ -51,14 +51,17 @@ const Ticks = () => {
             <BasicPage.SectionTitle>
                 Common Ticks of New Jersey
             </BasicPage.SectionTitle>
-
-
+                <p>
+                Listed below are the four most common ticks you may come across in New Jersey. While there are currently 13 ticks known to be in New Jersey, not all are interested in interacting with people.</p>
+                
+                <p> As citizen scientists, familiarizing yourselves with as many ticks as possible is important, but understanding what you may encounter most frequently will also help understand what <BasicPage.InnieLink to='/disease'><span>tick-borne diseases</span></BasicPage.InnieLink> you may contract if the tick is infected. z</p>
+                <p>Having this insight will allow you to enjoy nature safely and be vigilant for yourself and those around you! If you do happen to find a tick on you, do not panic! <BasicPage.InnieLink to='/removal'><span>Removing a tick</span></BasicPage.InnieLink> is safe and <BasicPage.InnieLink to='/preSurvey'><span>submitting the tick</span></BasicPage.InnieLink> is easy. 
+                </p>
             <BasicPage.List>
                 {peopleTickElements}
             </BasicPage.List>
             <BasicPage.SectionTitle> Spotlight: Tick commonly found on dogs across the U.S.</BasicPage.SectionTitle>
             <BasicPage.List>
-
                 {dogTickElements}
             </BasicPage.List>
             <BasicPage.SectionTitle>Other Ticks of New Jersey</BasicPage.SectionTitle>
