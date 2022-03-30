@@ -26,43 +26,43 @@ const Steps = () => (
           <BasicPage.CardContainer>
 
             <BasicPage.Card>
-              <StepStyles.CardSpecial>
-                <StepStyles.StepSpan>Step 1:</StepStyles.StepSpan>
+              <BasicPage.CardSpecial>
+                <BasicPage.StepSpan>Step 1:</BasicPage.StepSpan>
                 <div>
                 <BasicPage.InnieLink to='/tickOrInsect'><span> Verify that your submission is a tick</span></BasicPage.InnieLink>. Also reference <BasicPage.InnieLink to='/identify'><span>How to Identify a Tick</span></BasicPage.InnieLink>.</div>
-              </StepStyles.CardSpecial>
+              </BasicPage.CardSpecial>
               </BasicPage.Card>
             <BasicPage.Card>
-              <StepStyles.CardSpecial>
-                <StepStyles.StepSpan>Step 2:</StepStyles.StepSpan>
+              <BasicPage.CardSpecial>
+                <BasicPage.StepSpan>Step 2:</BasicPage.StepSpan>
                 <div>
                 Take a picture that follows the guidelines within <BasicPage.InnieLink to='/photo'><span>How to Take Tick Pics</span></BasicPage.InnieLink>.
                 </div>
-              </StepStyles.CardSpecial>
+              </BasicPage.CardSpecial>
               </BasicPage.Card>
             <BasicPage.Card>
-              <StepStyles.CardSpecial>
-                <StepStyles.StepSpan>Step 3:</StepStyles.StepSpan>
+              <BasicPage.CardSpecial>
+                <BasicPage.StepSpan>Step 3:</BasicPage.StepSpan>
                 <div>
                 Enter information and submit photos in <BasicPage.InnieLink to='/preSurvey'><span>Tick Submission</span></BasicPage.InnieLink>.               
                 </div>
-              </StepStyles.CardSpecial>
+              </BasicPage.CardSpecial>
               </BasicPage.Card>
             <BasicPage.Card>
-              <StepStyles.CardSpecial>
-                <StepStyles.StepSpan>Step 4:</StepStyles.StepSpan>
+              <BasicPage.CardSpecial>
+                <BasicPage.StepSpan>Step 4:</BasicPage.StepSpan>
                 <div>
                 After submitting the form, keep the tick in a plastic bag. Also, place in the refrigerator to preserve. You will receive a notification once your tick submission has been successfully reviewed.             
                 </div>
-              </StepStyles.CardSpecial>
+              </BasicPage.CardSpecial>
               </BasicPage.Card>
             <BasicPage.Card>
-              <StepStyles.CardSpecial>
-                <StepStyles.StepSpan>Step 5:</StepStyles.StepSpan>
+              <BasicPage.CardSpecial>
+                <BasicPage.StepSpan>Step 5:</BasicPage.StepSpan>
                 <div>
                 Once you have received a notification describing next steps, follow the instructions on how to send the tick to NJ Ticks for Science!            
                 </div>
-              </StepStyles.CardSpecial>
+              </BasicPage.CardSpecial>
               </BasicPage.Card>
               </BasicPage.CardContainer>
           </BasicPage.Text>

@@ -81,11 +81,11 @@ InnieLink: styled(Link)`
 text-decoration: none;
 color: ${({theme}) => theme.colors.rutgersTeal};
   span {
-    border-bottom: 1px solid ${({theme}) => theme.colors.main}
+    border-bottom: 1px solid ${({theme}) => theme.colors.main};
     //TODO get this hover to work
-    // &:hover {
-    //   border-bottom: 0px;
-    // }
+    &:hover {
+      border-bottom: 0px;
+    }
   }
   `,
 
@@ -94,11 +94,11 @@ margin: 1rem 0;
 text-decoration: none;
 color: ${({theme}) => theme.colors.rutgersTeal};
   span {
-    border-bottom: 1px solid ${({theme}) => theme.colors.main}
+    border-bottom: 1px solid ${({theme}) => theme.colors.main};
     //TODO get this hover to work
-    // &:hover {
-    //   border-bottom: 0px;
-    // }
+    &:hover {
+      border-bottom: 0px;
+    }
   }`,
   SectionTitle: styled.h3`
   text-align: center;
@@ -170,5 +170,16 @@ color: ${({theme}) => theme.colors.rutgersTeal};
   }
 
   `,
-  
+  CardSpecial: styled.div`
+    display: flex;
+    gap: 1rem;
+    div {
+      margin: 1rem;
+      width: 60vw;
+    }
+    `,
+    StepSpan: styled.span`
+    display: inline-block;
+    margin: 1rem;
+    `,
 }
