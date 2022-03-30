@@ -139,4 +139,17 @@ color: #00626d;
     Indent: styled.p`
     margin-left: 3em;
     `,
+    ImageCont: styled.div`
+  figure {
+    margin: 2rem;
+    img {max-width: 300px;}
+    figcaption {
+      margin: 0 1rem;
+      font-size: 1rem;
+    }
+    @media screen and (min-width: ${({ theme }) => theme.mobile}) {
+      img {max-width: 600px;}
+    }
+  }
+  `,
 }

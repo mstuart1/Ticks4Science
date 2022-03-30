@@ -1,38 +1,58 @@
 import React from "react";
 import { BasicPage } from "./GeneralStyles";
+import styled from "styled-components";
+
+const PhotoStyles = {
+  ULText: styled.span`
+  display: inline-block;
+  border-bottom: 2px solid black;
+  `,
+}
 
 const Photo = () => {
   return (
-    
-        <BasicPage.Text>
-          <div>
-            <h1>How to take Tick Pics</h1>
-            <p>Submit a focused .JPG of the back side and head of the tick.</p><p> 
-Place the tick on a light colored background.</p><p>
-Place the tick next to a reference item like a ruler or coin.  </p><p>
 
-Picture #1: Point the camera straight down and keep the camera in focus while getting as close to the tick as possible.</p></div>
-    {/* // TODO replace this with real photo */}
-Example #1
-<div>
-  <p>
-Picture #2: Point the camera at the head, keeping the camera in focus while getting as close to the tick as possible. </p>
-</div>
+    <BasicPage.Text>
+      <BasicPage.Title>
+        How to take Tick Pics
+      </BasicPage.Title>
+      <p>Here are instructions for taking an unfed tick pic for the <BasicPage.InnieLink to='/preSurvey'><span>Tick Submission</span></BasicPage.InnieLink>:
+      </p>
 
+      <p>Submit a focused .JPG of the <PhotoStyles.ULText>top side</PhotoStyles.ULText> and <PhotoStyles.ULText>head</PhotoStyles.ULText> of the tick.</p>
+      <p>
+        Place the tick on a light colored background.</p><p>
+        Place the tick next to a reference item like a ruler, coin, or nail.</p>
 
-    {/* // TODO replace this with real photo */}
-Example #2
+      <BasicPage.CardContainer>
+        <BasicPage.Card>
+          Coin Example
+          <img src='' alt='example next to coin' />
+          <img src='' alt='example next to coin' />
+        </BasicPage.Card>
+        <BasicPage.Card>
+          Nail Example
+          <img src='' alt='example next to nail' />
+          <img src='' alt='example next to nail' />
+        </BasicPage.Card>
+        <BasicPage.Card>
+          Ruler Example
+          <img src='' alt='example next to ruler' />
+          <img src='' alt='example next to ruler' />
+        </BasicPage.Card>
+      </BasicPage.CardContainer>
 
-<BasicPage.BoxInset >
-<h2>
-Reminder</h2>
-<p>
-Keep tick in a crush proof container for several days. We will be contacting you via email for the tick submission or additional photographs of the specimen.
+      <p>
+        We understand everyone will have different devices ranging with quality of cameras. Here, we demonstrate on an older generation iPhone how to take photos of the ticks you may find.
+      </p>
+      <p>Before we deep dive into tick pics…
 </p>
-
-</BasicPage.BoxInset>
-        </BasicPage.Text>
+      <BasicPage.SectionSubtitle>Tick-ionary</BasicPage.SectionSubtitle>
       
+
+
+    </BasicPage.Text>
+
   );
 };
 

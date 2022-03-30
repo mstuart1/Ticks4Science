@@ -19,7 +19,7 @@ const TickIns = {
   li {
     padding: 0.5rem;
   }
-  @media screen and (min-width: ${({theme}) => theme.mobile}) {
+  @media screen and (min-width: ${({ theme }) => theme.mobile}) {
   margin-left: 0.75rem;
   padding: 0 2.5rem;
   li {
@@ -29,15 +29,7 @@ const TickIns = {
   }
 
   `,
-  ImageCont: styled.div`
-  img {
-    margin: 2rem;
-    max-width: 300px;
-    @media screen and (min-width: ${({theme}) => theme.mobile}) {
-      max-width: 600px;
-    }
-  }
-  `
+  
 }
 
 const TickOrInsect = () => {
@@ -65,9 +57,14 @@ const TickOrInsect = () => {
             <li>The mouthpart is what burrows into the skin</li>
             <li>Nymph ticks will have 6 legs</li>
           </TickIns.List>
-          <TickIns.ImageCont>
-            <img src={comp} alt='comparison of insect and tick' />
-          </TickIns.ImageCont>
+          <BasicPage.ImageCont>
+            <figure>
+              <img src={comp} alt='comparison of insect and tick' />
+              <figcaption>Image provided by Andrea Egizi, PhD
+              </figcaption>
+            </figure>
+
+          </BasicPage.ImageCont>
 
         </TickIns.Card>
 
@@ -81,18 +78,18 @@ const TickOrInsect = () => {
             <li>The body is composed of three segments: the head, the thorax, and the abdomen</li>
             <li>May even have wings or antennae</li>
           </TickIns.List>
-          <TickIns.ImageCont>
+          <BasicPage.ImageCont>
             <img src={''} alt='insect' />
-          </TickIns.ImageCont>
+          </BasicPage.ImageCont>
 
           <TickIns.Subtitle>Spiders</TickIns.Subtitle>
           <TickIns.List>
             <li>8 legs</li>
             <li>Their body has two segments: the cephalothorax and the abdomen</li>
           </TickIns.List>
-          <TickIns.ImageCont>
+          <BasicPage.ImageCont>
             <img src='' alt='spider' />
-          </TickIns.ImageCont>
+          </BasicPage.ImageCont>
 
         </TickIns.Card>
       </BasicPage.CardContainer>
