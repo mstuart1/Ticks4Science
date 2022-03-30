@@ -26,6 +26,8 @@ Copyright (c) 2022 Michelle Stuart
 
 [Google doc slides](https://docs.google.com/presentation/d/1muZgI3MPhEVlv0JKxF1sGIYx0K7GVXOh/edit#slide=id.p1)
 
+[images folder](https://drive.google.com/drive/u/0/folders/1Jee3Wwa-ECUgsmB5n5MsIWpg2R7W25yg)
+
 Dina would like to use this address for tick submissions:
 
 Tick4Science

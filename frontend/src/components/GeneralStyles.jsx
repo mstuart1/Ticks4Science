@@ -134,8 +134,9 @@ color: #00626d;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    border: 1px solid black;
+    // border: 1px solid black;
     border-radius: 1em;
+    --box-shadow-1: 0 3px 15px rgba(0,0,0,0.4);
     background-color: ${({ theme }) => theme.colors.greyBG};
     margin: 1em;
     span {
