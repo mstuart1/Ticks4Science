@@ -40,7 +40,7 @@ const NavbarComp = () => {
     </Navbar.Item>
   ))
 
-  let logoElement = (<Navbar.Logo>Ticks4Science</Navbar.Logo>)
+  let logoElement = (<Navbar.Logo>Ticks 4 Science!</Navbar.Logo>)
 
   return (
 

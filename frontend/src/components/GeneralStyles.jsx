@@ -1,9 +1,11 @@
 import styled from 'styled-components';
+import { Link } from 'react-router-dom'
 
 export const BasicPage = {
+  
   ScreenContainer: styled.div`
   background-color: white;
-  font-family: 'Source Sans Pro', sans-serif;
+  font-family: 'Poppins', sans-serif;
   display: flex;
   justify-content: center;
   `,
@@ -34,6 +36,12 @@ ol {
   text-align: left;
   
 }
+`,
+Title: styled.h2`
+font-size: 2.5rem;
+font-weight: 700;
+text-align: center;
+margin: 1rem;
 `,
 BoxInset: styled.div`
 border: 1px solid black;
@@ -69,12 +77,40 @@ border-bottom: 1px solid black;
 & > li {
   padding: 0.5em 0;
 }
-`
+`,
+InnieLink: styled(Link)`
+text-decoration: none;
+color: #00626d;
+  span {
+    border-bottom: 1px solid ${({theme}) => theme.colors.main}
+    //TODO get this hover to work
+    // &:hover {
+    //   border-bottom: 0px;
+    // }
+  }
+  `,
 
+OutieLink: styled.a`
+margin: 1rem 0;
+text-decoration: none;
+color: #00626d;
+  span {
+    border-bottom: 1px solid ${({theme}) => theme.colors.main}
+    //TODO get this hover to work
+    // &:hover {
+    //   border-bottom: 0px;
+    // }
+  }`,
+  SectionTitle: styled.h3`
+  text-align: center;
+  font-size: 2rem;
+  font-weight: 600;
+  margin: 1rem;
+  `,
+  CenteredText: styled.div`
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   text-align: center;
+  `,
 }
-
-
-
-
-
-

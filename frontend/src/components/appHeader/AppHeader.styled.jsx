@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 export const ScreenContainer = styled.div`
-  font-family: "Source Sans Pro", sans-serif;
+  font-family: "Poppins", sans-serif;
   background-color: #eead29;
   width: 100%;
   display: flex;

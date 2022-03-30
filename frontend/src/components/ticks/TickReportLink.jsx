@@ -1,8 +1,10 @@
 import React from 'react'
+import {BasicPage} from '../GeneralStyles'
+
 
 const TickReportLink = () => {
   return (
-    <a href='https://vectorbio.rutgers.edu/outreach/Occi2019TickListNJ.pdf'>Annotated List of the Hard Ticks (Acari: Ixodida: Ixodidae) of New Jersey</a>
+    <BasicPage.OutieLink href='https://vectorbio.rutgers.edu/outreach/Occi2019TickListNJ.pdf'><span>Annotated List of the Hard Ticks (Acari: Ixodida: Ixodidae) of New Jersey</span></BasicPage.OutieLink>
   )
 }
 

@@ -9,7 +9,7 @@ display: flex;
 justify-content: center;
 align-items: center;
 font-size: 1.2rem;
-font-family: 'Source Sans Pro', sans-serif;
+font-family: 'Poppins', sans-serif;
 font-weight: bold;
 @media screen and (max-width:${({theme}) => theme.mobile}) {
   position: relative;

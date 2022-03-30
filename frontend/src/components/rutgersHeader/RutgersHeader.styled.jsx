@@ -14,7 +14,7 @@ export const StyledHeader = styled.div`
 display: flex;
 justify-content: center;
 
-font-family: 'Source Sans Pro', sans-serif;
+font-family: 'Poppins', sans-serif;
 
 width: 100%;
 padding: 0.25em 0.75em;
