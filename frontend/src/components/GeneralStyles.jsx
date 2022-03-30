@@ -79,7 +79,7 @@ border-bottom: 1px solid black;
 `,
 InnieLink: styled(Link)`
 text-decoration: none;
-color: #00626d;
+color: ${({theme}) => theme.colors.rutgersTeal};
   span {
     border-bottom: 1px solid ${({theme}) => theme.colors.main}
     //TODO get this hover to work
@@ -92,7 +92,7 @@ color: #00626d;
 OutieLink: styled.a`
 margin: 1rem 0;
 text-decoration: none;
-color: #00626d;
+color: ${({theme}) => theme.colors.rutgersTeal};
   span {
     border-bottom: 1px solid ${({theme}) => theme.colors.main}
     //TODO get this hover to work

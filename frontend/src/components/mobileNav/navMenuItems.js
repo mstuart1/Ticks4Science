@@ -4,7 +4,7 @@ const navMenuItems = [
     {id: 1, title: 'Home', path: '/', icon: <FaHome/>},
     {id: 2, title: 'Steps to Participate', path: '/steps', icon: <FaListOl/>},
     {id: 3, title: 'Ticks of NJ', path: '/ticks', icon: <FaSpider/>},
-    {id: 4, title: `Tick Check & Prevention`, path: '/check', icon: <FaEye/>},
+    {id: 4, title: `Tick Check & Prevention`, path: '/checkMenu', icon: <FaEye/>},
 ]
 
 export default navMenuItems

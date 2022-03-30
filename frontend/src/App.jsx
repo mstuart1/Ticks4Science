@@ -21,6 +21,7 @@ import TickCheck from './components/ticks/TickCheck';
 import Prevention from './components/Prevention';
 import Diseases from './components/Diseases';
 import TickOrInsect from './components/ticks/TickOrInsect';
+import TickCheckMenu from './components/ticks/TickCheckMenu';
 
 
 const App = () => {
@@ -51,6 +52,7 @@ const App = () => {
         <Route path='/prevention' element={<Prevention/>}/>
         <Route path='/disease' element={<Diseases/>}/>
         <Route path='/tickOrInsect' element={<TickOrInsect/>}/>
+        <Route path='/checkMenu' element={<TickCheckMenu/>}/>
         <Route path='/notReady' element={<NotReady/>}/>
       </Routes>
       </BasicPage.PageContainer>

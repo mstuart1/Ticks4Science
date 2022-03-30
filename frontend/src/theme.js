@@ -4,6 +4,7 @@ export const theme = {
       body: "#fff",
       // footer: '#003333',
       main: "#eead29",
+      rutgersTeal: '#00626d',
       greyFont: "#838d8c",
       // greyFont: "#707070",
       greyBG: "#ecebea",
