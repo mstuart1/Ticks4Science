@@ -1,5 +1,6 @@
 import React from 'react'
 import { BasicPage } from './GeneralStyles'
+// todo split the sections out into separate card containers so that on horizontal mobile view the sections still look ok
 
 const Prevention = () => (
     <BasicPage.Text>
