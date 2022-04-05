@@ -2,6 +2,12 @@ import React from 'react'
 import { BasicPage } from '../GeneralStyles'
 import TickReportLink from './TickReportLink'
 import { ticks } from './ticks'
+import {FaStar} from 'react-icons/fa'
+import styled from 'styled-components'
+
+const Icon = styled.span`
+    color: ${({theme}) => theme.colors.main};
+`
 
 const Ticks = () => {
     let peopleTicks = [11, 5, 1, 7]
@@ -9,7 +15,7 @@ const Ticks = () => {
 
     let peopleTickElements = ticks.map(tick => {
         if (peopleTicks.includes(tick.id)) {
-            return <li key={tick.id}><BasicPage.InnieLink to={tick.path}><span>⭐️<i>{tick.title}</i>, {tick.common}</span></BasicPage.InnieLink><br /></li>
+            return <li key={tick.id}><BasicPage.InnieLink to={tick.path}><span><Icon><FaStar/></Icon><i>{tick.title}</i>, {tick.common}</span></BasicPage.InnieLink><br /></li>
         } else {
             return null
         }
@@ -17,7 +23,7 @@ const Ticks = () => {
 
     let dogTickElements = ticks.map(tick => {
         if (tick.id === 13) {
-            return <li key={tick.id}><BasicPage.InnieLink to={tick.path}><span>⭐️<i>{tick.title}</i>, {tick.common}</span></BasicPage.InnieLink><br /></li>
+            return <li key={tick.id}><BasicPage.InnieLink to={tick.path}><span><Icon><FaStar/></Icon><i>{tick.title}</i>, {tick.common}</span></BasicPage.InnieLink><br /></li>
         } else {
             return null
         }
@@ -26,7 +32,7 @@ const Ticks = () => {
     let briefTickElements = ticks.map(tick => {
         if (briefTicks.includes(tick.id)) {
             if (tick.common.toLowerCase().includes('gulf coast tick') || tick.common.toLowerCase().includes('groundhog tick')) {
-                return <li key={tick.id}><BasicPage.InnieLink to={tick.path}><span>⭐️<i>{tick.title}</i>, {tick.common}</span></BasicPage.InnieLink><br /></li>
+                return <li key={tick.id}><BasicPage.InnieLink to={tick.path}><span><Icon><FaStar/></Icon><i>{tick.title}</i>, {tick.common}</span></BasicPage.InnieLink><br /></li>
             } else {
                 return <li key={tick.id}><BasicPage.InnieLink to={tick.path}><span><i>{tick.title}</i>, {tick.common}</span></BasicPage.InnieLink><br /></li>
             }
@@ -46,7 +52,7 @@ const Ticks = () => {
             <p>As citizen scientists, familiarizing yourselves with the ticks you may come across in your day-to-day in New Jersey is essential. Each tick is unique, and not all are interested in people. However, it is important to recognize their similarities and differences and taking necessary <BasicPage.InnieLink to='/prevention'><span>Tick Preventions</span></BasicPage.InnieLink> when enjoying the outdoors and entering tick habitats.
             </p>
             <BasicPage.SectionSubtitle>
-                ⭐️ Indicates ticks that seek people as hosts!
+                <Icon><FaStar/></Icon> Indicates ticks that seek people as hosts!
             </BasicPage.SectionSubtitle>
             <BasicPage.SectionTitle>
                 Common Ticks of New Jersey
@@ -59,6 +65,7 @@ const Ticks = () => {
                 <p>Having this insight will allow you to enjoy nature safely and be vigilant for yourself and those around you! If you do happen to find a tick on you, do not panic! <BasicPage.InnieLink to='/removal'><span>Removing a tick</span></BasicPage.InnieLink> is safe and <BasicPage.InnieLink to='/preSurvey'><span>submitting the tick</span></BasicPage.InnieLink> is easy. 
                 </p>
             <BasicPage.List>
+                {/* //TODO create cards that scroll horizontally, the star should have a circle background */}
                 {peopleTickElements}
             </BasicPage.List>
             <BasicPage.SectionTitle> Spotlight: Tick commonly found on dogs across the U.S.</BasicPage.SectionTitle>
