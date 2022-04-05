@@ -37,7 +37,7 @@ const Diseases = () => {
     let commonElements = createDiseaseCards(commonDiseases)
     let emergingElements = createDiseaseCards(emergingDiseases)
 
-console.log(commonElements)
+// console.log(commonElements)
 
     return (
         <BasicPage.Text>

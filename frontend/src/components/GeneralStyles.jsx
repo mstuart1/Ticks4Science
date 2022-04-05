@@ -82,7 +82,7 @@ text-decoration: none;
 color: ${({theme}) => theme.colors.rutgersTeal};
   span {
     border-bottom: 1px solid ${({theme}) => theme.colors.main};
-    //TODO get this hover to work
+    //TODO get this hover works with desktop but not mobile - NEED AN ON TOUCH FOR MOBILE
     &:hover {
       border-bottom: 0px;
     }
@@ -95,7 +95,7 @@ text-decoration: none;
 color: ${({theme}) => theme.colors.rutgersTeal};
   span {
     border-bottom: 1px solid ${({theme}) => theme.colors.main};
-    //TODO get this hover to work
+    //TODO get this hover works with desktop but not mobile - NEED AN ON TOUCH FOR MOBILE
     &:hover {
       border-bottom: 0px;
     }

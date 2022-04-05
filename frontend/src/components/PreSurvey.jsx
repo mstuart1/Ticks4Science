@@ -1,8 +1,6 @@
 import React from "react";
 import { BasicPage } from "./GeneralStyles";
 
-// TODO get rid of the header on the survey (the Michelle grey header)
-
 const PreSurvey = () => {
   return (
     
