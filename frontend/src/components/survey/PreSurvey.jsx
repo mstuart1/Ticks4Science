@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { BasicPage } from "./GeneralStyles";
+import { BasicPage } from "../GeneralStyles";
 
 const PreSurvey = () => {
   return (

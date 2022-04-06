@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom'
 
 export const BasicPage = {
-  
+
   ScreenContainer: styled.div`
   background-color: white;
   font-family: 'Poppins', sans-serif;
@@ -182,4 +182,78 @@ color: ${({theme}) => theme.colors.rutgersTeal};
     display: inline-block;
     margin: 1rem;
     `,
+    Form: styled.form`
+    display: flex;
+    flex-direction: column;
+
+    div {
+      margin: 1rem;
+    }
+    
+    label {
+    line-height: 2.24rem;
+    // font-weight: bold;
+    margin-top: 2rem;
+    font-size: 1.6rem;
+    }
+    
+      input {
+        width: 100%;
+        padding: 0.7rem;
+        margin: 0.5rem;
+        border: 0.5px solid ${({ theme }) => theme.colors.darkGreyBG};
+        border-radius: 0.25em;
+
+      }
+      input::placeholder,
+      input::-webkit-input-placeholder {
+        font-size: 1.6rem;
+        font-family: inherit;
+        color: ${({ theme }) => theme.colors.darkGreyBG};
+        opacity: 0.8;
+      }
+      input:-ms-input-placeholder {
+        font-size: 1.6rem;
+        font-family: inherit;
+        color: ${({ theme }) => theme.colors.main};
+        opacity: 0.8;
+      }
+    `,
+    RadioButtons: styled.div`
+    display: flex;
+    // width: 80vw;
+    /*
+    Hide radio button (the round disc)
+    we will use just the label to create pushbutton effect
+  */
+    input[type="radio"] {
+      display: none;
+      // margin:10px;
+    }
+  
+    /*
+    Change the look'n'feel of labels (which are adjacent to radiobuttons).
+    Add some margin, padding to label
+  */
+    input[type="radio"] + label {
+      margin-top: 0.5rem;
+      display: inline-block;
+      padding: 0.5rem;
+      color: ${({theme}) => theme.colors.darkGreyBG};
+      background-color: #fff;
+      border: 0.5px solid ${({theme}) => theme.colors.darkGreyBG};
+    }
+    /*
+   Change background color for label next to checked radio button
+   to make it look like highlighted button
+  */
+    input[type="radio"]:checked + label {
+      background-image: none;
+      background-color: ${({theme}) => theme.colors.darkGreyBG};
+      color: #fff;
+    }
+    
+  `,
+  
+    
 }

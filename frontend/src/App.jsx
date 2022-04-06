@@ -5,7 +5,7 @@ import ScrollToTop from './components/ScrollToTop';
 import TickPage from './components/ticks/TickPage';
 import { ThemeProvider } from "styled-components";
 import {theme} from './theme'
-import PreSurvey from './components/PreSurvey';
+import PreSurvey from './components/survey/PreSurvey';
 import Steps from './components/Steps';
 import Identify from './components/Identify';
 import Photo from './components/Photo';
@@ -22,7 +22,7 @@ import Prevention from './components/Prevention';
 import Diseases from './components/Diseases';
 import TickOrInsect from './components/ticks/TickOrInsect';
 import TickCheckMenu from './components/ticks/TickCheckMenu';
-import Survey from './components/Survey';
+import Survey from './components/survey/Survey';
 
 
 const App = () => {
