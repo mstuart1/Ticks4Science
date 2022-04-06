@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { BasicPage } from "./GeneralStyles";
 
 const PreSurvey = () => {
@@ -25,7 +26,8 @@ const PreSurvey = () => {
         can continue to the form.
         </p>
         </div>
-      <a href='https://arcg.is/1ODG9m0'><BasicPage.StyledButton color="black">I UNDERSTAND, continue to form</BasicPage.StyledButton></a>
+      {/* <a href='https://arcg.is/1ODG9m0'><BasicPage.StyledButton color="black">I UNDERSTAND, continue to form</BasicPage.StyledButton></a> */}
+      <Link to='/survey'><BasicPage.StyledButton color="black">I UNDERSTAND, continue to form</BasicPage.StyledButton></Link>
       </BasicPage.Text>
       
   );

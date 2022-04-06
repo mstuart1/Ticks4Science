@@ -22,6 +22,7 @@ import Prevention from './components/Prevention';
 import Diseases from './components/Diseases';
 import TickOrInsect from './components/ticks/TickOrInsect';
 import TickCheckMenu from './components/ticks/TickCheckMenu';
+import Survey from './components/Survey';
 
 
 const App = () => {
@@ -44,6 +45,7 @@ const App = () => {
         <Route path='/identify' element={<Identify/>}/>
         <Route path='/photo' element={<Photo/>}/>
         <Route path='/preSurvey' element={<PreSurvey/>}/>
+        <Route path='/survey' element={<Survey/>}/>
         <Route path='/ticks' element={<Ticks/>}/>
         <Route path='/ticks/:id' element={<TickPage/>}/>
         <Route path='/steps' element={<Steps/>}/>
