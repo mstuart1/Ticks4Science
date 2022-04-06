@@ -1,31 +1,43 @@
 import React, { useEffect, useState } from 'react'
 
 const UploadImages = () => {
-    const [images, setImages] = useState([])
+    const [imageFront, setImageFront] = useState([])
+    const [imageBack, setImageBack] = useState([])
+    const [imageOther, setImageOther] = useState([])
     const [imageUrls, setImageUrls] = useState([])
 
-    console.log(imageUrls)
-
     useEffect(() => {
-        if (images.length < 1) return;
+        if (imageFront.length < 1) return;
         const newImageUrls = [];
-        images.forEach(image => newImageUrls.push(URL.createObjectURL(image)));
+        imageFront.forEach(image => newImageUrls.push(URL.createObjectURL(image)));
+        imageBack.forEach(image => newImageUrls.push(URL.createObjectURL(image)));
+        imageOther.forEach(image => newImageUrls.push(URL.createObjectURL(image)));
         setImageUrls(newImageUrls)
         
-    }, [images]);
+    }, [imageFront, imageBack, imageOther]);
 
 
-    const handleChange = evt => {
-        setImages([...evt.target.files])
+    const handleFront = evt => {
+        setImageFront([...evt.target.files])
     }
-
+    const handleBack = evt => {
+        setImageBack([...evt.target.files])
+    }
+    const handleOther = evt => {
+        setImageOther([...evt.target.files])
+    }
+console.log(imageUrls)
   return (
     <div>
-        {images.length < 3 && (
-            <input type='file' multiple accept='image/*' onChange={handleChange} required/>
-        )} 
+            <label htmlFor='front'>Photo of top side</label>
+            <input type='file'accept='image/*' onChange={handleFront} required id='front'/>
+            <label htmlFor='back'>Photo of head</label>
+            <input type='file'accept='image/*' onChange={handleBack} required id='back'/>
+            <label htmlFor='other'>Any additional photo of tick</label>
+            <input type='file'accept='image/*' onChange={handleOther} required id='other'/>
         
-        { imageUrls.map(imageSrc => <img src={imageSrc} style={{maxWidth: '300px'}} />) }
+        
+        { imageUrls.map((imageSrc, i) => <img key={i} src={imageSrc} style={{maxWidth: '300px'}} />) }
     </div>
   )
 }
