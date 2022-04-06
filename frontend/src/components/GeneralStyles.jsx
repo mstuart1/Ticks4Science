@@ -185,6 +185,7 @@ color: ${({theme}) => theme.colors.rutgersTeal};
     Form: styled.form`
     display: flex;
     flex-direction: column;
+    margin-bottom: 2rem;
 
     div {
       margin: 1rem;
@@ -249,7 +250,7 @@ color: ${({theme}) => theme.colors.rutgersTeal};
   */
     input[type="radio"]:checked + label {
       background-image: none;
-      background-color: ${({theme}) => theme.colors.darkGreyBG};
+      background-color: ${({theme}) => theme.colors.rutgersTeal};
       color: #fff;
     }
     

@@ -23,6 +23,8 @@ import Diseases from './components/Diseases';
 import TickOrInsect from './components/ticks/TickOrInsect';
 import TickCheckMenu from './components/ticks/TickCheckMenu';
 import Survey from './components/survey/Survey';
+import ThankYou from './components/survey/ThankYou';
+import TickProgress from './components/ticks/TickProgress';
 
 
 const App = () => {
@@ -46,6 +48,8 @@ const App = () => {
         <Route path='/photo' element={<Photo/>}/>
         <Route path='/preSurvey' element={<PreSurvey/>}/>
         <Route path='/survey' element={<Survey/>}/>
+        <Route path='/thanks' element={<ThankYou/>}/>
+        <Route path='/progress/:id' element={<TickProgress/>}/>
         <Route path='/ticks' element={<Ticks/>}/>
         <Route path='/ticks/:id' element={<TickPage/>}/>
         <Route path='/steps' element={<Steps/>}/>

@@ -5,7 +5,7 @@ export const createRadioElems = (elemArray, inputName, handleChange, input) => {
        type='radio'
        name={inputName}
        value={item.text}
-       checked={input.foundOn === item.text}
+       checked={input[inputName] === item.text}
        id={`${inputName}-${item.text}`}
        onChange={handleChange}
        />

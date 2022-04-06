@@ -6,6 +6,7 @@ const Subm = db.submission;
 
 exports.createSubm = async (req, res, next) => {
     console.log(`@@@@---receiving form from arcgis---@@@@`);
+    console.log(JSON.stringify(req.body, null, 1))
     try {
         // console.log(JSON.stringify(req.body, null, 1))
         let createdRecord;
@@ -13,13 +14,13 @@ exports.createSubm = async (req, res, next) => {
         
         
     
-        let photos = incomingInfo.feature.attachments 
+        // let photos = incomingInfo.feature.attachments 
         
-        incomingInfo = incomingInfo.feature.attributes;
-        if (Object.keys(photos).length > 0){
-          incomingInfo.photoFrontUrl = photos.photoFront[0].url; // ?token=7UTVeIz0jyv8LVMGwzVWo-HIQVbEfVMmRVVUv5Zx3pa2G21rMsK398v93M3YSQUpraQJ64I-iimQkAOOmXcuXqfa6YDyZgaIBT1jVJhEmkNAteHCFNq5uxWulZLCMkeQ0OLJ5ICn34wSWKPITxPm4CHYzSbZENbc_ljBtHyvmfRn0X5VVhSNz7fcAp02MwkQ6PV7wda9acD4S8ObH--txOp8LxdxzjYahPWrCPRRF4Q.
-          incomingInfo.photoBackUrl = photos.photoBack[0].url;
-        }
+        // incomingInfo = incomingInfo.feature.attributes;
+        // if (Object.keys(photos).length > 0){
+        //   incomingInfo.photoFrontUrl = photos.photoFront[0].url; // ?token=7UTVeIz0jyv8LVMGwzVWo-HIQVbEfVMmRVVUv5Zx3pa2G21rMsK398v93M3YSQUpraQJ64I-iimQkAOOmXcuXqfa6YDyZgaIBT1jVJhEmkNAteHCFNq5uxWulZLCMkeQ0OLJ5ICn34wSWKPITxPm4CHYzSbZENbc_ljBtHyvmfRn0X5VVhSNz7fcAp02MwkQ6PV7wda9acD4S8ObH--txOp8LxdxzjYahPWrCPRRF4Q.
+        //   incomingInfo.photoBackUrl = photos.photoBack[0].url;
+        // }
         console.log(incomingInfo)
         await db.sequelize
       .transaction(async (t) => {
@@ -28,6 +29,7 @@ exports.createSubm = async (req, res, next) => {
       console.log(JSON.stringify(createdRecord, null, 1))
         return res.json({data: createdRecord})
     } catch (err) {
+      console.log(err.message)
         next({status: 400, message: err.message})
     }
   
