@@ -5,6 +5,7 @@ import { theme } from '../../theme'
 import { createInputElems, createRadioElems } from '../../tools/createElemFunc'
 import { BasicPage } from '../GeneralStyles'
 import { attachedOptions, bittenInfoArray, foundOptions, inputElemArray1, inputElemArray2, locationOptions, yesNo } from './surveyFormData'
+import UploadImages from './UploadImages'
 
 
 const Survey = () => {
@@ -156,7 +157,9 @@ const Survey = () => {
           <textarea id='activities' name='activities' value={input.activities || ''} onChange={handleChange}></textarea>
         </div>
         <div>
-          <h4>Section to upload photos</h4>
+          <p>Please include a photo of the top side of the tick and a photo of the head of the tick.  You may include one additional photo.</p>
+          <UploadImages/>
+          <p>Reminder: Review <BasicPage.InnieLink to='/photo'><span>How to Take a Tick Pic</span></BasicPage.InnieLink></p>
         </div>
         <div style={{ display: 'flex', flexDirection: 'column' }}>
           <label htmlFor='additionalInfo'>Any additional information about the environment, tick(s), and or person/pet:</label>
