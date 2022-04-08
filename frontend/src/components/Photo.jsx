@@ -28,24 +28,24 @@ const Photo = () => {
       <p>
         Place the tick on a light colored background.</p><p>
         Place the tick next to a reference item like a ruler, coin, or nail.</p>
-
-      <BasicPage.CardContainer>
-        <BasicPage.Card>
+{/* // TODO waiting for photos to make this section active */}
+      {/* <BasicPage.CardContainer>
+        <BasicPage.HoverCard>
           Coin Example
           <img src='' alt='example next to coin' />
           <img src='' alt='example next to coin' />
-        </BasicPage.Card>
-        <BasicPage.Card>
+        </BasicPage.HoverCard>
+        <BasicPage.HoverCard>
           Nail Example
           <img src='' alt='example next to nail' />
           <img src='' alt='example next to nail' />
-        </BasicPage.Card>
-        <BasicPage.Card>
+        </BasicPage.HoverCard>
+        <BasicPage.HoverCard>
           Ruler Example
           <img src='' alt='example next to ruler' />
           <img src='' alt='example next to ruler' />
-        </BasicPage.Card>
-      </BasicPage.CardContainer>
+        </BasicPage.HoverCard>
+      </BasicPage.CardContainer> */}
 
       <p>
         We understand everyone will have different devices ranging with quality of cameras. Here, we demonstrate on an older generation iPhone how to take photos of the ticks you may find.

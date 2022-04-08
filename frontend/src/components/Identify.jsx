@@ -34,25 +34,25 @@ const Identify = () => (
           Keep in mind when you're out exploring New Jersey, and doing your <BasicPage.InnieLink to='/check'><span>Tick Checks</span></BasicPage.InnieLink> on your body and pets that not all ticks will look the same shape, size, or color!
           </p>
           <BasicPage.CardContainer>
-            <BasicPage.Card>
+            <BasicPage.HoverCard>
               <BasicPage.SectionSubtitle>
               Asian longhorn tick and Blacklegged tick next to poppy seeds
               </BasicPage.SectionSubtitle>
               <img src='' alt='ticks with poppy seeds'/>
-            </BasicPage.Card>
+            </BasicPage.HoverCard>
 
-            <BasicPage.Card>
+            <BasicPage.HoverCard>
               <BasicPage.SectionSubtitle>
               Blacklegged tick next to sesame seeds
               </BasicPage.SectionSubtitle>
               <img src='' alt='tick with sesame seeds'/>
-            </BasicPage.Card>
-            <BasicPage.Card>
+            </BasicPage.HoverCard>
+            <BasicPage.HoverCard>
               <BasicPage.SectionSubtitle>
               Nymph on seed
               </BasicPage.SectionSubtitle>
               <img src='' alt='tick nymph on seed'/>
-            </BasicPage.Card>
+            </BasicPage.HoverCard>
           
           </BasicPage.CardContainer>
 

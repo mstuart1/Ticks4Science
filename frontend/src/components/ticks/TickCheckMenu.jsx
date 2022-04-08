@@ -30,13 +30,13 @@ let menuArray = [
 ]
 let menuElements = menuArray.map(item => (
     <MenuStyles.LinkSpec key={item.id} to={item.path}>
-<BasicPage.Card>
+<BasicPage.HoverCard>
 <MenuStyles.CardSpecial>
                 <span> {item.title}</span>
                
               </MenuStyles.CardSpecial>
                
-            </BasicPage.Card>
+            </BasicPage.HoverCard>
     </MenuStyles.LinkSpec>
 ))
 

@@ -127,13 +127,23 @@ color: ${({theme}) => theme.colors.rutgersTeal};
     align-items: center;
     justify-content: center;
     `,
-    Card: styled.div`
+    HoverCard: styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     border-radius: 1rem;
     box-shadow: 0 3px 15px rgba(0,0,0,0.2);
+    margin: 1rem;
+    `,
+    OutlineCard: styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 1rem;
+    border: 1px solid ${({bgColor, theme}) => bgColor || 'grey'};
+    background-color: ${({bgColor}) => bgColor+20 || 'white'};
     margin: 1rem;
     `,
     Indent: styled.p`

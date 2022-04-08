@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import comp from '../../images/Slide6.jpg'
 
 const TickIns = {
-  Card: styled(BasicPage.Card)`
+  Card: styled(BasicPage.HoverCard)`
   width: 90%;
   `,
   Subtitle: styled(BasicPage.SectionSubtitle)`
@@ -48,8 +48,8 @@ const TickOrInsect = () => {
           </BasicPage.ImageCont>
 
         </TickIns.Card>
-
-        <TickIns.Card>
+{/* // TODO need photos in order to make this card active */}
+        {/* <TickIns.Card>
           <BasicPage.SectionTitle>
             Common "Not Ticks"
           </BasicPage.SectionTitle>
@@ -72,7 +72,7 @@ const TickOrInsect = () => {
             <img src='' alt='spider' />
           </BasicPage.ImageCont>
 
-        </TickIns.Card>
+        </TickIns.Card> */}
       </BasicPage.CardContainer>
     </BasicPage.Text>
   )

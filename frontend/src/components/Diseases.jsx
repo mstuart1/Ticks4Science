@@ -21,13 +21,13 @@ const Diseases = () => {
             }
 
             return  (
-                <BasicPage.Card key={i}>
+                <BasicPage.HoverCard key={i}>
                     <span>{dis.title}</span>
                     <br />
                     <span>{dis.symptoms}</span>
                     <br />
                     {assocElement}
-                </BasicPage.Card>)
+                </BasicPage.HoverCard>)
 
 
         })
