@@ -14,7 +14,8 @@
     "path": "^0.12.7",
     "sequelize": "^6.17.0",
     "sharp": "^0.30.3",
-    "uuid": "^8.3.2"
+    "uuid": "^8.3.2",
+    "uuidv4": "^6.2.13"
   },
   "devDependencies": {
     "sequelize-cli": "^6.4.1"
