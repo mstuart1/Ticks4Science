@@ -2,10 +2,15 @@ import React from "react";
 import { BasicPage } from "./GeneralStyles";
 import styled from "styled-components";
 import tickMouth from '../images/Slide9.jpg'
-import festoons from '../images/Slide10.jpg'
+import festoons from '../images/slide 10 diagram.png'
 import unfed1 from '../images/Slide 11.jpg'
 import unfed2 from '../images/Slide 12.jpg'
-import engorged from '../images/Slide 15.jpg'
+import unfed3 from '../images/IMG-7104.jpg'
+import unfed4 from '../images/IMG-7105.jpg'
+import unfed5 from '../images/IMG-7106.jpg'
+import unfed6 from '../images/Slide 13.jpg'
+import engorged1 from '../images/Slide 15.jpg'
+import engorged2 from '../images/IMG-7144.jpg'
 import { theme } from "../theme";
 
 const PhotoStyles = {
@@ -111,7 +116,7 @@ const Photo = () => {
               </figcaption>
         </figure>
         <figure>
-          <img src={''} alt='image unavailable' />
+          <img src={unfed3} alt='unfed tick' />
           <figcaption>Image provided by Kayla Vuoso, Andrea Egizi, PhD
               </figcaption>
         </figure>
@@ -129,7 +134,7 @@ const Photo = () => {
               </figcaption>
         </figure>
         <figure>
-          <img src={''} alt='image unavailable' />
+          <img src={unfed4} alt='unfed tick' />
           <figcaption>Image provided by Kayla Vuoso, Andrea Egizi, PhD
               </figcaption>
         </figure>
@@ -140,6 +145,20 @@ const Photo = () => {
       <p>
         Feel free to send us additional angles of the tick if you need to capture more of the tick's anatomy to help us identify your submission. For unfed ticks, the mouthparts, the scutum, and the festoons are the keys to a successful ID!
       </p>
+      <BasicPage.ImageCont>
+        <figure>
+          <img src={unfed6} alt='unfed tick' />
+          <figcaption>Image provided by Kayla Vuoso, Andrea Egizi, PhD
+              </figcaption>
+        </figure>
+      </BasicPage.ImageCont>
+      <BasicPage.ImageCont>
+        <figure>
+          <img src={unfed5} alt='unfed tick' />
+          <figcaption>Image provided by Kayla Vuoso, Andrea Egizi, PhD
+              </figcaption>
+        </figure>
+      </BasicPage.ImageCont>
       <BasicPage.SectionTitle>Engorged Ticks</BasicPage.SectionTitle>
       <p>
         Ticks comes in many shapes and sizes! When they just had a meal or are feed, they become swollen and look very different than their usual <BasicPage.InnieLink to='/identify'><span>seed-like shapes</span></BasicPage.InnieLink>. Ticks can become swollen depending on how long they have taken their blood meal, and when making a <BasicPage.InnieLink to='/preSurvey'><span>Tick Submission</span></BasicPage.InnieLink>, it will also determine what types of pictures should be taken.
@@ -154,9 +173,16 @@ const Photo = () => {
       </p>
       <BasicPage.ImageCont>
         <figure>
-          <img src={engorged} alt='unfed tick' />
-          {/* <figcaption>Image provided by Andrea Egizi, PhD
-              </figcaption> */}
+          <img src={engorged1} alt='engorged tick' />
+          <figcaption>Image provided by Kayla Vuoso, Andrea Egizi, PhD
+              </figcaption>
+        </figure>
+      </BasicPage.ImageCont>
+      <BasicPage.ImageCont>
+        <figure>
+          <img src={engorged2} alt='engorged tick' />
+          <figcaption>Image provided by Kayla Vuoso, Andrea Egizi, PhD
+              </figcaption>
         </figure>
       </BasicPage.ImageCont>
       <p>This examples shows all parts necessary for an ID
