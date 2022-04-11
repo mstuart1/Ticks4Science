@@ -161,7 +161,10 @@ const Photo = () => {
       </BasicPage.ImageCont>
       <BasicPage.SectionTitle>Engorged Ticks</BasicPage.SectionTitle>
       <p>
-        Ticks comes in many shapes and sizes! When they just had a meal or are feed, they become swollen and look very different than their usual <BasicPage.InnieLink to='/identify'><span>seed-like shapes</span></BasicPage.InnieLink>. Ticks can become swollen depending on how long they have taken their blood meal, and when making a <BasicPage.InnieLink to='/preSurvey'><span>Tick Submission</span></BasicPage.InnieLink>, it will also determine what types of pictures should be taken.
+        Ticks comes in many shapes and sizes! When they just had a meal or are feed, they become swollen and look very different than their usual 
+      {/* // TODO this section has been deactivated because of missing photos */}
+        {/* <BasicPage.InnieLink to='/identify'><span>seed-like shapes</span></BasicPage.InnieLink> */}
+         {" "}seed-like shapes. Ticks can become swollen depending on how long they have taken their blood meal, and when making a <BasicPage.InnieLink to='/preSurvey'><span>Tick Submission</span></BasicPage.InnieLink>, it will also determine what types of pictures should be taken.
       </p>
       <BasicPage.SectionSubtitle>
         Here are instructions for taking an engorged tick pic for the <BasicPage.InnieLink to='/preSurvey'><span>Tick Submission</span></BasicPage.InnieLink>:
@@ -187,8 +190,6 @@ const Photo = () => {
       </BasicPage.ImageCont>
       <p>This examples shows all parts necessary for an ID
       </p>
-
-
     </BasicPage.Text>
 
   );
