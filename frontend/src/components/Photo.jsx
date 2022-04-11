@@ -11,6 +11,9 @@ import unfed5 from '../images/IMG-7106.jpg'
 import unfed6 from '../images/Slide 13.jpg'
 import engorged1 from '../images/Slide 15.jpg'
 import engorged2 from '../images/IMG-7144.jpg'
+import bad1 from '../images/IMG-7133.jpg'
+import bad2 from '../images/IMG-7137.jpg'
+import bad3 from '../images/IMG-7112.jpg'
 import { theme } from "../theme";
 
 const PhotoStyles = {
@@ -188,8 +191,45 @@ const Photo = () => {
               </figcaption>
         </figure>
       </BasicPage.ImageCont>
-      <p>This examples shows all parts necessary for an ID
+      <BasicPage.SectionTitle>Bad Photo Gallery</BasicPage.SectionTitle>
+      <p>Below are examples of photos that should try to be avoided as submissions.</p>
+      <BasicPage.ImageCont>
+        <figure>
+          <img src={bad1} alt='bad example' />
+          <figcaption>Image provided by Kayla Vuoso, Andrea Egizi, PhD
+              </figcaption>
+        </figure>
+      </BasicPage.ImageCont>
+      <p>
+      The tick is upside down, showing no features to help identify it.
       </p>
+      <BasicPage.ImageCont>
+        <figure>
+          <img src={bad2} alt='bad example' />
+          <figcaption>Image provided by Kayla Vuoso, Andrea Egizi, PhD
+              </figcaption>
+        </figure>
+      </BasicPage.ImageCont>
+      <p>
+      This tick is not in a light-colored background, which makes identifying the markings and outline of the tick easier. 
+      </p>
+      <BasicPage.ImageCont>
+        <figure>
+          <img src={bad3} alt='bad example' />
+          <figcaption>Image provided by Kayla Vuoso, Andrea Egizi, PhD
+              </figcaption>
+        </figure>
+      </BasicPage.ImageCont>
+      <p>
+      This tick is too far away. While this photo has an element we are looking for in the pictures (using an object as a reference), this photo doesn't capture features well enough to identify the tick.
+      </p>
+      <BasicPage.LinkButton.LinkSpec to={'/steps'}>
+        <BasicPage.HoverCard>
+          <BasicPage.LinkButton.CardSpecial>
+            <span>Back to Steps</span>
+          </BasicPage.LinkButton.CardSpecial>
+        </BasicPage.HoverCard>
+      </BasicPage.LinkButton.LinkSpec>
     </BasicPage.Text>
 
   );
