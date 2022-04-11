@@ -2,15 +2,16 @@ import React from 'react'
 import { BasicPage } from '../GeneralStyles'
 import styled from 'styled-components'
 import comp from '../../images/Slide6.jpg'
+import { theme } from '../../theme'
 
 const TickIns = {
-  Card: styled(BasicPage.HoverCard)`
+  Card: styled(BasicPage.OutlineCard)`
   width: 90%;
   `,
   Subtitle: styled(BasicPage.SectionSubtitle)`
   padding: 1rem;
   border-top: 0.5px solid ${({ theme }) => theme.colors.greyBG};
-  `,  
+  `,
 }
 
 const TickOrInsect = () => {
@@ -26,7 +27,7 @@ const TickOrInsect = () => {
         But, ticks are arachnids like spiders and scorpions. In New Jersey, spiders are the most likely arachnids to be confused with ticks. Below, we classify some differences between insects, spiders, and ticks to visually identify before moving forward with a <BasicPage.InnieLink to='/preSurvey'><span>Tick Submission</span></BasicPage.InnieLink>.
       </p>
       <BasicPage.CardContainer>
-        <TickIns.Card>
+        <TickIns.Card bgColor={theme.colors.rutgersTeal}>
           <BasicPage.SectionTitle>
             Tick Anatomy 101
           </BasicPage.SectionTitle>
@@ -48,7 +49,7 @@ const TickOrInsect = () => {
           </BasicPage.ImageCont>
 
         </TickIns.Card>
-{/* // TODO need photos in order to make this card active */}
+        {/* // TODO need photos in order to make this card active */}
         {/* <TickIns.Card>
           <BasicPage.SectionTitle>
             Common "Not Ticks"
@@ -74,6 +75,13 @@ const TickOrInsect = () => {
 
         </TickIns.Card> */}
       </BasicPage.CardContainer>
+      <BasicPage.LinkButton.LinkSpec to={'/steps'}>
+        <BasicPage.HoverCard>
+          <BasicPage.LinkButton.CardSpecial>
+            <span>Back to Steps</span>
+          </BasicPage.LinkButton.CardSpecial>
+        </BasicPage.HoverCard>
+      </BasicPage.LinkButton.LinkSpec>
     </BasicPage.Text>
   )
 }
