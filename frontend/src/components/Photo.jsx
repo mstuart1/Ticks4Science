@@ -6,6 +6,7 @@ import festoons from '../images/Slide10.jpg'
 import unfed1 from '../images/Slide 11.jpg'
 import unfed2 from '../images/Slide 12.jpg'
 import engorged from '../images/Slide 15.jpg'
+import { theme } from "../theme";
 
 const PhotoStyles = {
   ULText: styled.span`
@@ -21,7 +22,12 @@ const Photo = () => {
       <BasicPage.Title>
         How to take Tick Pics
       </BasicPage.Title>
-      <p>Here are instructions for taking an unfed tick pic for the <BasicPage.InnieLink to='/preSurvey'><span>Tick Submission</span></BasicPage.InnieLink>:
+      <p>We understand everyone will have different devices ranging in camera quality. Here, we demonstrate on an older generation iPhone how to take photos of the ticks you may find.
+</p>
+      <p>Below are instructions for taking an unfed tick pic for the <BasicPage.InnieLink to='/preSurvey'><span>Tick Submission</span></BasicPage.InnieLink>.
+      </p>
+      <p style={{color: theme.colors.RURed}}>
+      <strong>Reminder</strong>: Keep tick in a plastic container after submission and place in the refrigerator to preserve. Once you submit your ticks, you can use your personalized Tick ID to conveniently track the status of your submission at the website provided with your submission ID.
       </p>
 
       <p>Submit a focused .JPG of the <PhotoStyles.ULText>top side</PhotoStyles.ULText> and <PhotoStyles.ULText>head</PhotoStyles.ULText> of the tick.</p>
@@ -47,9 +53,7 @@ const Photo = () => {
         </BasicPage.HoverCard>
       </BasicPage.CardContainer> */}
 
-      <p>
-        We understand everyone will have different devices ranging with quality of cameras. Here, we demonstrate on an older generation iPhone how to take photos of the ticks you may find.
-      </p>
+      
       <p>Before we deep dive into tick pics…
       </p>
       <BasicPage.SectionTitle>Tick-ionary</BasicPage.SectionTitle>
@@ -98,13 +102,18 @@ const Photo = () => {
         Picture #1: Unfed Tick
       </BasicPage.SectionSubtitle>
       <p>
-        Point the camera straight down and keep the camera in focus while getting as close to the tick as possible. Concentrate on capturing the markings on the top side of the tick.
+        Point the camera straight down and keep the camera in focus while getting as close to the tick as possible. Concentrate on capturing the <span  style={{fontWeight: 'bold'}}>markings</span> on the top side of the tick.
       </p>
       <BasicPage.ImageCont>
         <figure>
           <img src={unfed1} alt='unfed tick' />
-          {/* <figcaption>Image provided by Andrea Egizi, PhD
-              </figcaption> */}
+          <figcaption>Image provided by Kayla Vuoso, Andrea Egizi, PhD
+              </figcaption>
+        </figure>
+        <figure>
+          <img src={''} alt='image unavailable' />
+          <figcaption>Image provided by Kayla Vuoso, Andrea Egizi, PhD
+              </figcaption>
         </figure>
       </BasicPage.ImageCont>
       <BasicPage.SectionSubtitle>
@@ -116,8 +125,13 @@ const Photo = () => {
       <BasicPage.ImageCont>
         <figure>
           <img src={unfed2} alt='unfed tick' />
-          {/* <figcaption>Image provided by Andrea Egizi, PhD
-              </figcaption> */}
+          <figcaption>Image provided by Kayla Vuoso, Andrea Egizi, PhD
+              </figcaption>
+        </figure>
+        <figure>
+          <img src={''} alt='image unavailable' />
+          <figcaption>Image provided by Kayla Vuoso, Andrea Egizi, PhD
+              </figcaption>
         </figure>
       </BasicPage.ImageCont>
       <BasicPage.SectionSubtitle>
