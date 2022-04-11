@@ -133,7 +133,7 @@ color: ${({theme}) => theme.colors.rutgersTeal};
     align-items: center;
     justify-content: center;
     border-radius: 1rem;
-    box-shadow: 0 3px 15px rgba(0,0,0,0.2);
+    box-shadow: 0 3px 15px ${({shadowColor}) => shadowColor || '#000000'}20;
     margin: 1rem;
     `,
     OutlineCard: styled.div`
@@ -265,6 +265,20 @@ color: ${({theme}) => theme.colors.rutgersTeal};
     }
     
   `,
-  
+  LinkButton: {
+    LinkSpec: styled(Link)`
+    text-decoration: none;
+    color: ${({theme}) => theme.colors.rutgersTeal};
+    `,
+    CardSpecial: styled.div`
+    
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  width: 22.5rem;
+  height: 5rem;
+  `,
+  },
     
 }
