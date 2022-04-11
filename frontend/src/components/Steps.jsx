@@ -23,7 +23,7 @@ const Steps = () => (
       <BasicPage.PageContainer>
         <BasicPage.Text>
           <BasicPage.Title>Steps to Participate</BasicPage.Title>
-          <p>Below are detailed the steps participate in our tick submission program!</p>
+          <p>Below are detailing the steps participate in our tick submission program!</p>
           <BasicPage.CardContainer>
 
             <BasicPage.OutlineCard bgColor={theme.colors.rutgersTeal}>
@@ -40,7 +40,7 @@ const Steps = () => (
               <BasicPage.CardSpecial>
                 <BasicPage.StepSpan>Step 2:</BasicPage.StepSpan>
                 <div>
-                Take a picture that follows the guidelines within <BasicPage.InnieLink to='/photo'><span>How to Take Tick Pics</span></BasicPage.InnieLink>.
+                Take a picture that follows the guidelines in <BasicPage.InnieLink to='/photo'><span>How to Take Tick Pics</span></BasicPage.InnieLink>.
                 </div>
               </BasicPage.CardSpecial>
               </BasicPage.OutlineCard>
@@ -56,7 +56,7 @@ const Steps = () => (
               <BasicPage.CardSpecial>
                 <BasicPage.StepSpan>Step 4:</BasicPage.StepSpan>
                 <div>
-                After submitting the form, keep the tick in a plastic bag. Also, place in the refrigerator to preserve. You will receive a notification once your tick submission has been successfully reviewed.             
+                After submitting the form, keep the tick in a plastic bag. Safely place the tick in the refrigerator to keep preserved. You will receive a personalized ID number based on your Tick submission. Save that number for future reference as well! reviewed.             
                 </div>
               </BasicPage.CardSpecial>
               </BasicPage.OutlineCard>
@@ -64,7 +64,7 @@ const Steps = () => (
               <BasicPage.CardSpecial>
                 <BasicPage.StepSpan>Step 5:</BasicPage.StepSpan>
                 <div>
-                Once you have received a notification describing next steps, follow the instructions on how to send the tick to NJ Ticks for Science!            
+                Check back at your convenience at the website provided when you submitted your form to track the status of any submitted ticks. You will receive instructions describing next steps on how to continue your participation with NJ Ticks for Science!
                 </div>
               </BasicPage.CardSpecial>
               </BasicPage.OutlineCard>
