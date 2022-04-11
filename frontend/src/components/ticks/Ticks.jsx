@@ -79,7 +79,15 @@ const Ticks = () => {
             <BasicPage.SectionTitle>
                 Literature Highlight
             </BasicPage.SectionTitle>
+           
             <p><TickReportLink /></p>
+            <BasicPage.ImageCont>
+        <figure>
+          <img src={'https://www.cdc.gov/ticks/images/gallery/TrailSign2.jpg?_=04099'} alt='tree sign' />
+          {/* <figcaption>Image provided by Andrea Egizi, PhD
+              </figcaption> */}
+        </figure>
+      </BasicPage.ImageCont>
         </BasicPage.Text>
 
     )
