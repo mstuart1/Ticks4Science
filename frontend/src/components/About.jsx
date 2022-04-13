@@ -25,6 +25,8 @@ const About = () => {
          <span>Tick Submission</span>
        </BasicPage.InnieLink> process!
       </p>
+      <p>If you have already submitted ticks and want to track a submission status,  <BasicPage.InnieLink to={'/progress'}><span>click here</span></BasicPage.InnieLink>
+</p>
 
       <BasicPage.SectionTitle>Before sending us your ticks, view a report of the 11 ticks found throughout New Jersey.</BasicPage.SectionTitle>
       

@@ -1,6 +1,7 @@
 import { TickName } from "./TickPage.styled";
 
 export const ticks = [
+    // lone star tick
     {
         id: 1, title: 'Amblyomma americanum',
         path: `/ticks/1`,
@@ -136,6 +137,7 @@ engorged: {photos: [], desc: 'Prefers ground-dwelling birds and rabbits'}
     habitat: 'grasslands, bushy woodlands, and croplands',
     engorged: {photos: [], desc: 'Prefers small animals such as eastern cottontail rabbits and birds'}
  },
+ // deer tick, blacklegged tick
     { id: 11, title: 'Ixodes scapularis', path: `/ticks/11`, 
     common: 'Blacklegged Deer Tick, Deer Tick', first: 'Mercer County', comment: 'Understood to be statewide', loc: 'Rural and suburban areas.', habitat: 'Wooded, bushy areas', info: `The Blacklegged Ticks are known for potentially carrying Lyme Disease, an inflammatory disease caused by a bacterial infection from an infected tick bite. Black-legged Tick nymphs and adults can bite people, so it's important to be able to recognize if a tick is on you.`, larvae: {photos: [], active: 'Apr to Nov', feed: 'small animals such as mice and birds'}, nymphs: {photos: [], active: 'Apr to Jul, Oct, Nov', feed: 'small to large mammals including deer and people'}, adults: {photos: [], active: 'Oct to Jun', feed: 'large mammals including people'},  sexPhotos: [], female: 'orange and black', male: 'black/brown', nymph: 'black/brown', shape: 'oval or sesame seed-like', engorged: {photos: [], desc: 'Blood meals increase size drastically, however nymphs may become engorged and go unnoticed because of their size'}
 },

@@ -50,7 +50,8 @@ const App = () => {
         <Route path='/survey' element={<Survey/>}/>
         <Route path='/thanks' element={<ThankYou/>}/>
         <Route path='/progress/:id' element={<TickProgress/>}/>
-        <Route path='/progress' element={<div>A place for people to enter their id number</div>}/>
+        <Route path='/progress' element={<BasicPage.Text><div><h3>A place for people to enter their ID number</h3> </div>
+        <BasicPage.InnieLink to='/progress/1'><span>Click here for an example progress page</span></BasicPage.InnieLink></BasicPage.Text>}/>
         <Route path='/ticks' element={<Ticks/>}/>
         <Route path='/ticks/:id' element={<TickPage/>}/>
         <Route path='/steps' element={<Steps/>}/>

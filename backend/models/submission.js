@@ -15,6 +15,7 @@ module.exports = (sequelize, DataTypes) => {
     }
     submission.init({
         dateSubmitted: DataTypes.DATE,
+        tickId: DataTypes.STRING,
         userMuni: DataTypes.STRING,
         userZip: DataTypes.DOUBLE,
         dateTickFound: DataTypes.DATE,
@@ -39,6 +40,13 @@ module.exports = (sequelize, DataTypes) => {
         travelInfo: DataTypes.STRING(1000),
         photoFrontUrl: DataTypes.STRING,
         photoBackUrl: DataTypes.STRING,
+        photoOtherUrl: DataTypes.STRING,
+        additionalInfo: DataTypes.STRING,
+        photosReviewed: DataTypes.DATE,
+        specimenRequested: DataTypes.DATE,
+        specimenReceived: DataTypes.DATE,
+        specimenIdentified: DataTypes.DATE,
+        species: DataTypes.STRING,
 
     }, {
         sequelize,

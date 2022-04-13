@@ -18,21 +18,25 @@ const UploadImages = () => {
 
 
     const handleFront = evt => {
-        setImageFront([...evt.target.files])
+        const file = evt.target.files[0]
+        setImageFront([file])
     }
     const handleBack = evt => {
-        setImageBack([...evt.target.files])
+        const file = evt.target.files[0]
+        setImageBack([file])
     }
     const handleOther = evt => {
-        setImageOther([...evt.target.files])
+        const file = evt.target.files[0]
+        setImageOther([file])
     }
-console.log(imageUrls)
+    console.log(`imageFront: ${JSON.stringify(imageFront)}`)
+console.log(`imageUrls: ${JSON.stringify(imageUrls)}`)
   return (
     <div>
             <label htmlFor='front'>Photo of top side</label>
-            <input type='file'accept='image/*' onChange={handleFront} required id='front'/>
+            <input type='file'accept='image/*' onChange={handleFront} required id='front'/><br/>
             <label htmlFor='back'>Photo of head</label>
-            <input type='file'accept='image/*' onChange={handleBack} required id='back'/>
+            <input type='file'accept='image/*' onChange={handleBack} required id='back'/><br/>
             <label htmlFor='other'>Any additional photo of tick</label>
             <input type='file'accept='image/*' onChange={handleOther} required id='other'/>
         

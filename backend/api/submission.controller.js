@@ -1,5 +1,5 @@
 const db = require("../models");
-const Resize = require("../resize");
+// const Resize = require("../resize");  // trying something more simple
 // const Op = db.Sequelize.Op;
 const Subm = db.submission;
 
@@ -7,7 +7,7 @@ const Subm = db.submission;
 
 exports.createSubm = async (req, res, next) => {
     console.log(`@@@@---receiving form from arcgis or website---@@@@`);
-    console.log(JSON.stringify(req.body, null, 1))
+    // console.log(JSON.stringify(req.body, null, 1))
     try {
         // console.log(JSON.stringify(req.body, null, 1))
         let createdRecord;
@@ -22,12 +22,12 @@ exports.createSubm = async (req, res, next) => {
         //   incomingInfo.photoFrontUrl = photos.photoFront[0].url; // ?token=7UTVeIz0jyv8LVMGwzVWo-HIQVbEfVMmRVVUv5Zx3pa2G21rMsK398v93M3YSQUpraQJ64I-iimQkAOOmXcuXqfa6YDyZgaIBT1jVJhEmkNAteHCFNq5uxWulZLCMkeQ0OLJ5ICn34wSWKPITxPm4CHYzSbZENbc_ljBtHyvmfRn0X5VVhSNz7fcAp02MwkQ6PV7wda9acD4S8ObH--txOp8LxdxzjYahPWrCPRRF4Q.
         //   incomingInfo.photoBackUrl = photos.photoBack[0].url;
         // }
-        console.log(incomingInfo)
+        // console.log(incomingInfo)
         await db.sequelize
       .transaction(async (t) => {
         createdRecord = await Subm.create(incomingInfo, {transaction: t})
       });
-      console.log(JSON.stringify(createdRecord, null, 1))
+      // console.log(JSON.stringify(createdRecord, null, 1))
         return res.json({data: createdRecord})
     } catch (err) {
       console.log(err.message)
@@ -38,16 +38,33 @@ exports.createSubm = async (req, res, next) => {
 exports.uploadPhoto = async (req, res, next) => {
   // TODO need to return the storage path so that can send it the db with the rest of the form info
     console.log(`@@@@---receiving image from website---@@@@`);
-    
     try {
-        const imagePath = path.join(__dirname, '/tickImages');
-        const fileUpload = new Resize(imagePath)
-        if (!req.file) {
+      let {id} = req.params
+      const url = `${req.protocol}://${req.get('host')}`
+      const filesArray = req.files
+      
+        // const imagePath = path.join(__dirname, '/public/tickImages');
+        // const fileUpload = new Resize(imagePath)
+        if (!filesArray || filesArray < 1) {
           throw new Error('Please provide an image')
         }
-        console.log(req.file)
-        const filename = await fileUpload.save(req.file.buffer);
-        return res.json({name: filename, path: fileUpload})
+        let record = await Subm.findByPk(id)
+        filesArray.forEach((file, i) => {
+          if (i === 0){
+            record.photoFrontUrl = `${url}/${file.path}`;
+          }
+          if (i === 1){
+            record.photoBackUrl = `${url}/${file.path}`;
+          }
+          if (i === 2){
+            record.photoOtherUrl = `${url}/${file.path}`;
+          }
+
+        })
+        
+        await record.save();
+        
+        return res.json({newUrls: [record.photoFrontUrl, record.photoBackUrl, record.photoOtherUrl]})
     } catch (err) {
       console.log(err.message)
         next(err)

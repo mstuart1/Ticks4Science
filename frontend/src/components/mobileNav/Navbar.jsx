@@ -47,16 +47,13 @@ const NavbarComp = () => {
     <>
 
       {isMobile ? (
-        <>
-          <MobileNavbar.Brand>
-            {logoElement}
-          </MobileNavbar.Brand>
+        
           <MobileNavbar.Wrapper>
             <MobileNavbar.Items>
               {mobileElements}
             </MobileNavbar.Items>
           </MobileNavbar.Wrapper>
-        </>
+        
       ) : (
         <Navbar.Wrapper>
           {logoElement}
@@ -120,20 +117,14 @@ const Navbar = {
 }
 
 const MobileNavbar = {
-  Brand: styled.div`
-  background-color: ${({ theme }) => theme.colors.main};
-  width: 100vw;
-  height: 5rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  `,
+ 
   Wrapper: styled(Navbar.Wrapper)`
+  background-color: ${({ theme }) => theme.colors.main};
     position: fixed;
     width: 100vw;
     bottom: 0;
-
     justify-content: center;
+    z-index: 1;
   `,
   Items: styled(Navbar.Items)`
     flex: 1;

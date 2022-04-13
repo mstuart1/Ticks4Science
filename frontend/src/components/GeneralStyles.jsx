@@ -13,11 +13,11 @@ export const BasicPage = {
   display: flex;
   justify-content: center;
   
-  @media screen and (min-width:${({theme}) => theme.mobile}) {
+  @media screen and (min-width:${({ theme }) => theme.mobile}) {
     max-width: 1366px;
   }
 `,
-Text: styled.div`
+  Text: styled.div`
 display: flex;
 flex-direction: column;
 align-items: center;
@@ -36,13 +36,13 @@ li {
   
 }
 `,
-Title: styled.h2`
+  Title: styled.h2`
 font-size: 2.5rem;
 font-weight: 700;
 text-align: center;
 margin: 1rem;
 `,
-BoxInset: styled.div`
+  BoxInset: styled.div`
 border: 1px solid black;
 display: flex;
 flex-direction: column;
@@ -52,24 +52,24 @@ border-radius: 0.5em;
 margin: 0.5em;
 `,
 
-StyledButton: styled.button`
-border-radius: 50px;
+  StyledButton: styled.button`
+border-radius: 5rem;
 border: none;
-box-shadow: 0 0 10px ${({color}) => color + '50'};
+box-shadow: 0 0 10px ${({ color }) => color + '50'};
 cursor: pointer;
-font-size: 16px;
+font-size: 1.6rem;
 font-weight: 700;
-padding: 15px 60px;
+padding: 1.5rem 3rem;
 background-color: ${(props) => props.bgColor || props.theme.colors.main};
-color: ${({color}) => color || 'white'};
+color: ${({ color }) => color || 'white'};
 &:hover {
     opacity: 0.9;
     transform: scale(0.98);
 }
 margin: 0.6rem 0.6rem 0.6rem 0;
-padding: 0.5rem 0.75rem;    
+
 `,
-CenteredList: styled.ul`
+  CenteredList: styled.ul`
 list-style: none;
 text-align: center;
 border-bottom: 1px solid black;
@@ -77,11 +77,11 @@ border-bottom: 1px solid black;
   padding: 0.5em 0;
 }
 `,
-InnieLink: styled(Link)`
+  InnieLink: styled(Link)`
 text-decoration: none;
-color: ${({theme}) => theme.colors.rutgersTeal};
+color: ${({ theme }) => theme.colors.rutgersTeal};
   span {
-    border-bottom: 1px solid ${({theme}) => theme.colors.main};
+    border-bottom: 1px solid ${({ theme }) => theme.colors.main};
     //TODO get this hover works with desktop but not mobile - NEED AN ON TOUCH FOR MOBILE
     &:hover {
       border-bottom: 0px;
@@ -89,12 +89,12 @@ color: ${({theme}) => theme.colors.rutgersTeal};
   }
   `,
 
-OutieLink: styled.a`
+  OutieLink: styled.a`
 margin: 1rem 0;
 text-decoration: none;
-color: ${({theme}) => theme.colors.rutgersTeal};
+color: ${({ theme }) => theme.colors.rutgersTeal};
   span {
-    border-bottom: 1px solid ${({theme}) => theme.colors.main};
+    border-bottom: 1px solid ${({ theme }) => theme.colors.main};
     //TODO get this hover works with desktop but not mobile - NEED AN ON TOUCH FOR MOBILE
     &:hover {
       border-bottom: 0px;
@@ -127,29 +127,34 @@ color: ${({theme}) => theme.colors.rutgersTeal};
     align-items: center;
     justify-content: center;
     `,
-    HoverCard: styled.div`
+  HoverCard: styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     border-radius: 1rem;
-    box-shadow: 0 3px 15px ${({shadowColor}) => shadowColor || '#000000'}20;
+    box-shadow: 0 3px 15px ${({ shadowColor }) => shadowColor || '#000000'}20;
     margin: 1rem;
+    background-color: ${({ bgColor }) => bgColor || 'white'};
+    &:hover {
+      opacity: 0.9;
+      transform: scale(0.98);
+  }
     `,
-    OutlineCard: styled.div`
+  OutlineCard: styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     border-radius: 1rem;
-    border: 1px solid ${({bgColor, theme}) => bgColor || 'grey'};
-    background-color: ${({bgColor}) => bgColor+20 || 'white'};
+    border: 1px solid ${({ bgColor, theme }) => bgColor || 'grey'};
+    background-color: ${({ bgColor }) => bgColor + 20 || 'white'};
     margin: 1rem;
     `,
-    Indent: styled.p`
+  Indent: styled.p`
     margin-left: 3em;
     `,
-    ImageCont: styled.div`
+  ImageCont: styled.div`
   figure {
     margin: 2rem;
     img {max-width: 300px;}
@@ -188,17 +193,21 @@ color: ${({theme}) => theme.colors.rutgersTeal};
       width: 60vw;
     }
     `,
-    StepSpan: styled.span`
+  StepSpan: styled.span`
     display: inline-block;
     margin: 1rem;
     `,
-    Form: styled.form`
+  Form: styled.div`
     display: flex;
     flex-direction: column;
     margin-bottom: 2rem;
+    
 
     div {
+      display: flex;
       margin: 1rem;
+      flex-direction: column;
+      // justify-content: space-between;
     }
     
     label {
@@ -209,7 +218,7 @@ color: ${({theme}) => theme.colors.rutgersTeal};
     }
     
       input {
-        width: 100%;
+        // width: 100%;
         padding: 0.7rem;
         margin: 0.5rem;
         border: 0.5px solid ${({ theme }) => theme.colors.darkGreyBG};
@@ -230,7 +239,7 @@ color: ${({theme}) => theme.colors.rutgersTeal};
         opacity: 0.8;
       }
     `,
-    RadioButtons: styled.div`
+  RadioButtons: styled.div`
     display: flex;
     // width: 80vw;
     /*
@@ -250,9 +259,9 @@ color: ${({theme}) => theme.colors.rutgersTeal};
       margin-top: 0.5rem;
       display: inline-block;
       padding: 0.5rem;
-      color: ${({theme}) => theme.colors.darkGreyBG};
+      color: ${({ theme }) => theme.colors.darkGreyBG};
       background-color: #fff;
-      border: 0.5px solid ${({theme}) => theme.colors.darkGreyBG};
+      border: 0.5px solid ${({ theme }) => theme.colors.darkGreyBG};
     }
     /*
    Change background color for label next to checked radio button
@@ -260,7 +269,7 @@ color: ${({theme}) => theme.colors.rutgersTeal};
   */
     input[type="radio"]:checked + label {
       background-image: none;
-      background-color: ${({theme}) => theme.colors.rutgersTeal};
+      background-color: ${({ theme }) => theme.colors.rutgersTeal};
       color: #fff;
     }
     
@@ -268,17 +277,20 @@ color: ${({theme}) => theme.colors.rutgersTeal};
   LinkButton: {
     LinkSpec: styled(Link)`
     text-decoration: none;
-    color: ${({theme}) => theme.colors.rutgersTeal};
+    color: ${({ theme }) => theme.colors.rutgersTeal};
+    
     `,
     CardSpecial: styled.div`
-    
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 1rem;
-  width: 22.5rem;
-  height: 5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    width: 22.5rem;
+    height: 5rem;
+    span {
+      padding: 1.6rem;
+    }
   `,
   },
-    
+
 }

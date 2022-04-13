@@ -8,7 +8,7 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      tick_id: { type: Sequelize.INTEGER },
+      tickId: { type: Sequelize.STRING },
       dateSubmitted: {type:  Sequelize.DATE},
       userMuni: {type:  Sequelize.STRING},
       userZip: {type:  Sequelize.DOUBLE},
@@ -34,6 +34,13 @@ module.exports = {
       travelInfo: {type:  Sequelize.STRING(1000)},
       photoFrontUrl: {type:  Sequelize.STRING},
       photoBackUrl: {type:  Sequelize.STRING},
+      photoOtherUrl: {type:  Sequelize.STRING},
+        additionalInfo: {type:  Sequelize.STRING},
+        photosReviewed: {type: Sequelize.DATE},
+        specimenRequested: {type: Sequelize.DATE},
+        specimenReceived: {type: Sequelize.DATE},
+        specimenIdentified: {type: Sequelize.DATE},
+        species: {type:  Sequelize.STRING},
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE
