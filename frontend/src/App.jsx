@@ -1,10 +1,10 @@
 import React from 'react';
-import { Route, Routes,  } from 'react-router-dom';
+import { Route, Routes, } from 'react-router-dom';
 import About from './components/About';
 import ScrollToTop from './components/ScrollToTop';
 import TickPage from './components/ticks/TickPage';
 import { ThemeProvider } from "styled-components";
-import {theme} from './theme'
+import { theme } from './theme'
 import PreSurvey from './components/survey/PreSurvey';
 import Steps from './components/Steps';
 import Identify from './components/Identify';
@@ -30,48 +30,51 @@ import TickProgress from './components/ticks/TickProgress';
 const App = () => {
 
   return (
-     <ThemeProvider theme={theme}>
-    <Styles.Wrapper>
-      <CSSReset/>
-    
-  <div>
-    <RutgersHeader/>
-    {/* <AppHeader/> */}
-    {/* <Navbar title='Ticks 4 Science!' navItemArray={navMenuItems} navMobileLinks={tickElements}/> */}
-    <NavbarComp/>
-    <ScrollToTop>
-    <BasicPage.ScreenContainer bgColor='white'>
-    <BasicPage.PageContainer>
-      <Routes>
-        <Route path='/' element={<About/>}/>
-        <Route path='/identify' element={<Identify/>}/>
-        <Route path='/photo' element={<Photo/>}/>
-        <Route path='/preSurvey' element={<PreSurvey/>}/>
-        <Route path='/survey' element={<Survey/>}/>
-        <Route path='/thanks' element={<ThankYou/>}/>
-        <Route path='/progress/:id' element={<TickProgress/>}/>
-        <Route path='/progress' element={<BasicPage.Text><div><h3>A place for people to enter their ID number</h3> </div>
+    <ThemeProvider theme={theme}>
+      <CSSReset />
+      <Styles.Wrapper>
+        <ScrollToTop>
+          <RutgersHeader />
+          <NavbarComp />
+          <Styles.PageContainer>
+            <Routes>
+              <Route path='/' element={<About />} />
+              <Route path='/steps' element={<Steps/>}/>
+              <Route path='/ticks' element={<Ticks/>}/>
+              <Route path='/checkMenu' element={<TickCheckMenu/>}/>
+
+              <Route path='/tickOrInsect' element={<TickOrInsect/>}/>
+              <Route path='/photo' element={<Photo/>}/>
+              <Route path='/preSurvey' element={<PreSurvey/>}/>
+              <Route path='/survey' element={<Survey/>}/>
+              <Route path='/thanks' element={<ThankYou/>}/>
+              <Route path='/progress' element={<BasicPage.Text><div><h3>A place for people to enter their ID number</h3> </div>
         <BasicPage.InnieLink to='/progress/1'><span>Click here for an example progress page</span></BasicPage.InnieLink></BasicPage.Text>}/>
-        <Route path='/ticks' element={<Ticks/>}/>
+              <Route path='/progress/:id' element={<TickProgress/>}/>
+
+              <Route path='/check' element={<TickCheck/>}/>
+              <Route path='/prevention' element={<Prevention/>}/>
+              <Route path='/disease' element={<Diseases/>}/>
+
+              
+      
+        
+        <Route path='/identify' element={<Identify/>}/>
         <Route path='/ticks/:id' element={<TickPage/>}/>
-        <Route path='/steps' element={<Steps/>}/>
         <Route path='/removal' element={<TickRemoval/>}/>
-        <Route path='/check' element={<TickCheck/>}/>
-        <Route path='/prevention' element={<Prevention/>}/>
-        <Route path='/disease' element={<Diseases/>}/>
-        <Route path='/tickOrInsect' element={<TickOrInsect/>}/>
-        <Route path='/checkMenu' element={<TickCheckMenu/>}/>
         <Route path='/notReady' element={<NotReady/>}/>
       </Routes>
-      </BasicPage.PageContainer>
-      </BasicPage.ScreenContainer>
-      </ScrollToTop>
+      <Routes>
+        <Route path='/admin/login' element={<div style={{height: '100vh'}}><h1>A login element will go here</h1></div>} />
       
-      <RutgersFooter/>
-  </div>
-  </Styles.Wrapper>
-  </ThemeProvider>
-  
+       
+            </Routes>
+          </Styles.PageContainer>
+          <RutgersFooter />
+        </ScrollToTop>
+      </Styles.Wrapper>
+    </ThemeProvider>
+
   )
 };
 
@@ -80,9 +83,22 @@ export default App;
 const Styles = {
   Wrapper: styled.main`
   display: flex;
-  background-color: #eeeeee;
-  height: 100vh;
+  flex-direction: column;
+  align-items: center;
+  background-color: ${({bgColor}) => bgColor || 'white'};
+  // height: 100vh;
+  font-family: 'Poppins', sans-serif;
   `,
+  PageContainer: styled.div`
+  display: flex;
+  justify-content: center;
+  width: 100vw;
+  // height: 100vh;
+  
+  @media screen and (min-width:${({ theme }) => theme.mobile}) {
+    max-width: 1366px;
+  }
+`,
 };
 
 const CSSReset = createGlobalStyle`

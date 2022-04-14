@@ -1,7 +1,7 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import { theme } from "../../theme";
 import { BasicPage } from "../GeneralStyles";
+import styled from "styled-components";
 
 const PreSurvey = () => {
   return (
@@ -22,9 +22,9 @@ const PreSurvey = () => {
 
       <BasicPage.LinkButton.LinkSpec to={'/survey'} >
         <BasicPage.HoverCard bgColor={theme.colors.main}>
-          <BasicPage.LinkButton.CardSpecial >
+          <Styles.CardSpecial >
             <span >I UNDERSTAND, continue to form</span>
-          </BasicPage.LinkButton.CardSpecial>
+          </Styles.CardSpecial>
         </BasicPage.HoverCard>
       </BasicPage.LinkButton.LinkSpec>
       
@@ -41,3 +41,16 @@ const PreSurvey = () => {
 };
 
 export default PreSurvey;
+
+const Styles = {
+  CardSpecial: styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    padding: 1rem 2rem;
+    span {
+      padding: 1.6rem;
+    }
+  `,
+  }

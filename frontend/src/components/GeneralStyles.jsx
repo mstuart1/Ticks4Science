@@ -7,11 +7,14 @@ export const BasicPage = {
   background-color: ${({bgColor}) => bgColor || 'white'} ;
   font-family: 'Poppins', sans-serif;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  // justify-content: center;
   `,
   PageContainer: styled.div`
   display: flex;
   justify-content: center;
+  width: 100vw;
   
   @media screen and (min-width:${({ theme }) => theme.mobile}) {
     max-width: 1366px;
@@ -21,9 +24,11 @@ export const BasicPage = {
 display: flex;
 flex-direction: column;
 align-items: center;
-font-size: 1.25em;
+font-size: 1.4em;
+margin: 1rem;
 min-height: 80vh;
 p {
+  margin: 2rem;
   padding: 1rem;
 }
 
@@ -147,7 +152,7 @@ color: ${({ theme }) => theme.colors.ruTeal};
     align-items: center;
     justify-content: center;
     border-radius: 1rem;
-    border: 1px solid ${({ bgColor, theme }) => bgColor || 'grey'};
+    border: 2px solid ${({ bgColor }) => bgColor + 30 || 'grey'};
     background-color: ${({ bgColor }) => bgColor + 20 || 'white'};
     margin: 1rem;
     `,
@@ -155,16 +160,23 @@ color: ${({ theme }) => theme.colors.ruTeal};
     margin-left: 3em;
     `,
   ImageCont: styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   figure {
     margin: 2rem;
-    img {max-width: 300px;}
+    img {
+      max-width: 300px;
+    }
     figcaption {
-      margin: 0 1rem;
+      margin: 1rem;
       font-size: 1rem;
+      
     }
-    @media screen and (min-width: ${({ theme }) => theme.mobile}) {
-      img {max-width: 600px;}
-    }
+    // @media screen and (min-width: ${({ theme }) => theme.mobile}) {
+    //   img {max-width: 600px;}
+    // }
   }
   `,
   List: styled.ul`
@@ -275,6 +287,7 @@ color: ${({ theme }) => theme.colors.ruTeal};
     
   `,
   LinkButton: {
+  
     LinkSpec: styled(Link)`
     text-decoration: none;
     color: ${({ theme }) => theme.colors.ruTeal};
