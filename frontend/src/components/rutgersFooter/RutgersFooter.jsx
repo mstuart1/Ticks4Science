@@ -75,7 +75,7 @@ const Styles = {
   align-items: center;
   width: 100%;
   background: #000;
-  height: 20rem; // room for mobile nav bar
+  height: 15rem; // room for mobile nav bar
   a:link,
   a:visited,
   a:hover {
