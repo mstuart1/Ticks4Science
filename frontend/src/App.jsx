@@ -40,7 +40,7 @@ const App = () => {
     {/* <Navbar title='Ticks 4 Science!' navItemArray={navMenuItems} navMobileLinks={tickElements}/> */}
     <NavbarComp/>
     <ScrollToTop>
-    <BasicPage.ScreenContainer>
+    <BasicPage.ScreenContainer bgColor='white'>
     <BasicPage.PageContainer>
       <Routes>
         <Route path='/' element={<About/>}/>
