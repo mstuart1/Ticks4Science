@@ -28,7 +28,7 @@ const TickCheck = () => {
            
             <BasicPage.CardContainer>
 
-                <BasicPage.OutlineCard bgColor={theme.colors.rutgersTeal}>
+                <BasicPage.OutlineCard bgColor={theme.colors.ruTeal}>
                     <StepStyles.CardSpecial>
                         <BasicPage.StepSpan>Inspection #1 - Clothing:</BasicPage.StepSpan>
                         <div>
@@ -36,7 +36,7 @@ const TickCheck = () => {
                             </div>
                     </StepStyles.CardSpecial>
                 </BasicPage.OutlineCard>
-                <BasicPage.OutlineCard bgColor={theme.colors.rutgersTeal}>
+                <BasicPage.OutlineCard bgColor={theme.colors.ruTeal}>
                     <StepStyles.CardSpecial>
                         <BasicPage.StepSpan> Inspection #2 - Skin:</BasicPage.StepSpan>
                         <div>
@@ -44,7 +44,7 @@ const TickCheck = () => {
                         </div>
                     </StepStyles.CardSpecial>
                 </BasicPage.OutlineCard>
-                <BasicPage.OutlineCard bgColor={theme.colors.rutgersTeal}>
+                <BasicPage.OutlineCard bgColor={theme.colors.ruTeal}>
                     <StepStyles.CardSpecial>
                         <BasicPage.StepSpan>Inspection #3 - In the shower</BasicPage.StepSpan>
                         <div>

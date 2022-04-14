@@ -26,7 +26,7 @@ const Steps = () => (
           <p>Below are detailing the steps participate in our tick submission program!</p>
           <BasicPage.CardContainer>
 
-            <BasicPage.OutlineCard bgColor={theme.colors.rutgersTeal}>
+            <BasicPage.OutlineCard bgColor={theme.colors.ruTeal}>
               <StepStyles.CardSpecial  >
                 <BasicPage.StepSpan>Step 1:</BasicPage.StepSpan>
                 <div>
@@ -36,7 +36,7 @@ const Steps = () => (
                 </div>
               </StepStyles.CardSpecial >
               </BasicPage.OutlineCard>
-            <BasicPage.OutlineCard bgColor={theme.colors.rutgersTeal}>
+            <BasicPage.OutlineCard bgColor={theme.colors.ruTeal}>
               <BasicPage.CardSpecial>
                 <BasicPage.StepSpan>Step 2:</BasicPage.StepSpan>
                 <div>
@@ -44,7 +44,7 @@ const Steps = () => (
                 </div>
               </BasicPage.CardSpecial>
               </BasicPage.OutlineCard>
-            <BasicPage.OutlineCard bgColor={theme.colors.rutgersTeal}>
+            <BasicPage.OutlineCard bgColor={theme.colors.ruTeal}>
               <BasicPage.CardSpecial>
                 <BasicPage.StepSpan>Step 3:</BasicPage.StepSpan>
                 <div>
@@ -52,7 +52,7 @@ const Steps = () => (
                 </div>
               </BasicPage.CardSpecial>
               </BasicPage.OutlineCard>
-            <BasicPage.OutlineCard bgColor={theme.colors.rutgersTeal}>
+            <BasicPage.OutlineCard bgColor={theme.colors.ruTeal}>
               <BasicPage.CardSpecial>
                 <BasicPage.StepSpan>Step 4:</BasicPage.StepSpan>
                 <div>
@@ -60,7 +60,7 @@ const Steps = () => (
                 </div>
               </BasicPage.CardSpecial>
               </BasicPage.OutlineCard>
-            <BasicPage.OutlineCard bgColor={theme.colors.rutgersTeal}>
+            <BasicPage.OutlineCard bgColor={theme.colors.ruTeal}>
               <BasicPage.CardSpecial>
                 <BasicPage.StepSpan>Step 5:</BasicPage.StepSpan>
                 <div>

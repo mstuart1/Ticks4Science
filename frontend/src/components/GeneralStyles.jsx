@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 export const BasicPage = {
 
   ScreenContainer: styled.div`
-  background-color: white;
+  background-color: ${({bgColor}) => bgColor || 'white'} ;
   font-family: 'Poppins', sans-serif;
   display: flex;
   justify-content: center;
@@ -79,7 +79,7 @@ border-bottom: 1px solid black;
 `,
   InnieLink: styled(Link)`
 text-decoration: none;
-color: ${({ theme }) => theme.colors.rutgersTeal};
+color: ${({ theme }) => theme.colors.ruTeal};
   span {
     border-bottom: 1px solid ${({ theme }) => theme.colors.main};
     //TODO get this hover works with desktop but not mobile - NEED AN ON TOUCH FOR MOBILE
@@ -92,7 +92,7 @@ color: ${({ theme }) => theme.colors.rutgersTeal};
   OutieLink: styled.a`
 margin: 1rem 0;
 text-decoration: none;
-color: ${({ theme }) => theme.colors.rutgersTeal};
+color: ${({ theme }) => theme.colors.ruTeal};
   span {
     border-bottom: 1px solid ${({ theme }) => theme.colors.main};
     //TODO get this hover works with desktop but not mobile - NEED AN ON TOUCH FOR MOBILE
@@ -269,7 +269,7 @@ color: ${({ theme }) => theme.colors.rutgersTeal};
   */
     input[type="radio"]:checked + label {
       background-image: none;
-      background-color: ${({ theme }) => theme.colors.rutgersTeal};
+      background-color: ${({ theme }) => theme.colors.ruTeal};
       color: #fff;
     }
     
@@ -277,7 +277,7 @@ color: ${({ theme }) => theme.colors.rutgersTeal};
   LinkButton: {
     LinkSpec: styled(Link)`
     text-decoration: none;
-    color: ${({ theme }) => theme.colors.rutgersTeal};
+    color: ${({ theme }) => theme.colors.ruTeal};
     
     `,
     CardSpecial: styled.div`

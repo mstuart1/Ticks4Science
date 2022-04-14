@@ -27,7 +27,7 @@ const TickOrInsect = () => {
         But, ticks are arachnids like spiders and scorpions. In New Jersey, spiders are the most likely arachnids to be confused with ticks. Below, we classify some differences between insects, spiders, and ticks to visually identify before moving forward with a <BasicPage.InnieLink to='/preSurvey'><span>Tick Submission</span></BasicPage.InnieLink>.
       </p>
       <BasicPage.CardContainer>
-        <TickIns.Card bgColor={theme.colors.rutgersTeal}>
+        <TickIns.Card bgColor={theme.colors.ruTeal}>
           <BasicPage.SectionTitle>
             Tick Anatomy 101
           </BasicPage.SectionTitle>

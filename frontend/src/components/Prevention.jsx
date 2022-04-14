@@ -15,21 +15,21 @@ const Prevention = () => (
         </p>
         <BasicPage.CardContainer>
             <BasicPage.SectionSubtitle>Tick Repellent</BasicPage.SectionSubtitle>
-            <BasicPage.OutlineCard bgColor={theme.colors.rutgersTeal}>
+            <BasicPage.OutlineCard bgColor={theme.colors.ruTeal}>
                 <BasicPage.CardSpecial>
                     <div>
                         Reading labels is important when apply types of tick repellent.
                     </div>
                 </BasicPage.CardSpecial>
             </BasicPage.OutlineCard>
-            <BasicPage.OutlineCard bgColor={theme.colors.rutgersTeal}>
+            <BasicPage.OutlineCard bgColor={theme.colors.ruTeal}>
                 <BasicPage.CardSpecial>
                     <div>
                         Use repellent that contains 20%-30% DEET, 20%picaridin, or IR3535 on exposed skin, regularly apply every 5 hours.
                     </div>
                 </BasicPage.CardSpecial>
             </BasicPage.OutlineCard>
-            <BasicPage.OutlineCard bgColor={theme.colors.rutgersTeal}>
+            <BasicPage.OutlineCard bgColor={theme.colors.ruTeal}>
                 <BasicPage.CardSpecial>
                     <div>
                         Use 0.5% permethrin to treat clothing and gear.
@@ -37,7 +37,7 @@ const Prevention = () => (
                 </BasicPage.CardSpecial>
             </BasicPage.OutlineCard>
             <BasicPage.SectionSubtitle>Permethrin-treated clothing</BasicPage.SectionSubtitle>
-            <BasicPage.OutlineCard bgColor={theme.colors.rutgersTeal}>
+            <BasicPage.OutlineCard bgColor={theme.colors.ruTeal}>
                 <BasicPage.CardSpecial>
                     <div>
                         There is permethrin-treated clothing or ways to wear everyday clothing to prevent tick bites:
@@ -45,7 +45,7 @@ const Prevention = () => (
                     </div>
                 </BasicPage.CardSpecial>
             </BasicPage.OutlineCard>
-            <BasicPage.OutlineCard bgColor={theme.colors.rutgersTeal}>
+            <BasicPage.OutlineCard bgColor={theme.colors.ruTeal}>
                 <BasicPage.CardSpecial>
                     <div>
 
@@ -57,7 +57,7 @@ const Prevention = () => (
             <BasicPage.SectionSubtitle>
                 Don't forget about your pets!
             </BasicPage.SectionSubtitle>
-            <BasicPage.OutlineCard bgColor={theme.colors.rutgersTeal}>
+            <BasicPage.OutlineCard bgColor={theme.colors.ruTeal}>
                 <BasicPage.CardSpecial>
                     <div>
 
@@ -65,7 +65,7 @@ const Prevention = () => (
                     </div>
                 </BasicPage.CardSpecial>
             </BasicPage.OutlineCard>
-            <BasicPage.OutlineCard bgColor={theme.colors.rutgersTeal}>
+            <BasicPage.OutlineCard bgColor={theme.colors.ruTeal}>
                 <BasicPage.CardSpecial>
                     
                     <div>
@@ -76,7 +76,7 @@ const Prevention = () => (
                     </div>
                 </BasicPage.CardSpecial>
             </BasicPage.OutlineCard>
-            <BasicPage.OutlineCard bgColor={theme.colors.rutgersTeal}>
+            <BasicPage.OutlineCard bgColor={theme.colors.ruTeal}>
                 <BasicPage.CardSpecial>
                     
                     <div>
@@ -88,7 +88,7 @@ const Prevention = () => (
                     </div>
                 </BasicPage.CardSpecial>
             </BasicPage.OutlineCard>
-            <BasicPage.OutlineCard bgColor={theme.colors.rutgersTeal}>
+            <BasicPage.OutlineCard bgColor={theme.colors.ruTeal}>
                 <BasicPage.CardSpecial>
                     
                     <div>
@@ -97,7 +97,7 @@ const Prevention = () => (
                     </BasicPage.SectionSubtitle>IR3535 is a biopesticide that can be applied to people and pets. </div>
                 </BasicPage.CardSpecial>
             </BasicPage.OutlineCard>
-            <BasicPage.OutlineCard bgColor={theme.colors.rutgersTeal}>
+            <BasicPage.OutlineCard bgColor={theme.colors.ruTeal}>
                 <BasicPage.CardSpecial>
                     
                     <div>
