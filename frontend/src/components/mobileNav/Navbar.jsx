@@ -56,10 +56,12 @@ const NavbarComp = () => {
         
       ) : (
         <Navbar.Wrapper>
-          {logoElement}
+         <Navbar.WidthCnt>
+         {logoElement}
           <Navbar.Items>
             {deskElements}
           </Navbar.Items>
+         </Navbar.WidthCnt>
         </Navbar.Wrapper>
       )}
 
@@ -81,10 +83,15 @@ const Navbar = {
   padding: 1rem 3rem;
 
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   width: 100vw;
   background-color:${({ theme }) => theme.colors.main};
+  `,
+  WidthCnt: styled.div`
+  display: flex;
+  justify-content: space-between;
+  width: 1366px;
   `,
   Logo: styled.h1`
     // border: 1px solid gray;
