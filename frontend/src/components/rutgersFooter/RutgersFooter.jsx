@@ -1,32 +1,26 @@
+import styled from "styled-components";
 import React from "react";
-import FooterMenu from "./FooterMenu";
-import {
-  Disclaimer,
-  FooterContainer,
-  FooterMenuContainer,
-  ScreenContainer,
-  StyledHeader,
-  StyledLogo,
-  StyledMenu,
-} from "./RutgersFooter.styled";
+// import FooterMenu from "./FooterMenu";
 import footerLogo from "./RutgersFooterLogo.svg";
-import { footerMenus } from "./footerMenus";
+// import { footerMenus } from "./footerMenus";
 
 const RutgersFooter = () => {
-  let footerMenuElements = footerMenus.map((menu, i) => (
-    <FooterMenu key={i} menu={menu} />
-  ));
+  // let footerMenuElements = footerMenus.map((menu, i) => (
+  //   <FooterMenu key={i} menu={menu} />
+  // ));
 
   return (
-    <ScreenContainer>
-      <FooterContainer>
-        <StyledHeader>
-          <StyledLogo>
+    
+      <Styles.FooterContainer>
+        <Styles.WidthContainer>
+          <Styles.Header>
+          <Styles.Logo>
             <a href="https://www.rutgers.edu">
               <img src={footerLogo} alt="Rutgers Logo" />
             </a>
-          </StyledLogo>
-          <StyledMenu>
+          </Styles.Logo>
+          <Styles.Menu>
+          {/* {footerMenuElements} */}
             <ul>
               <li>
                 <a href="https://newbrunswick.rutgers.edu/">New Brunswick</a>
@@ -41,17 +35,127 @@ const RutgersFooter = () => {
                 <a href="https://www.camden.rutgers.edu/">Camden</a>
               </li>
             </ul>
-          </StyledMenu>
-        </StyledHeader>
-
-        <Disclaimer>
+          </Styles.Menu>
+        </Styles.Header>
+        
+        <Styles.Disclaimer>
         <p>Rutgers is an equal access/equal opportunity institution. Individuals with disabilities are encouraged to direct suggestions, comments, or complaints concerning any accessibility issues with Rutgers websites to&nbsp;<a href="mailto:accessibility@rutgers.edu">accessibility@rutgers.edu</a>&nbsp;or complete the&nbsp;<a href="https://it.rutgers.edu/it-accessibility-initiative/barrierform/" target="_blank" rel="noreferrer">Report Accessibility Barrier / Provide Feedback</a>&nbsp;form.</p>
 
         <p><a href="/copyright-information" target="_blank" rel="noreferrer">Copyright ©{new Date().getFullYear()}</a>, Rutgers, The State University of New Jersey. All rights reserved.&nbsp;<br/><a href="https://rutgers.ca1.qualtrics.com/jfe/form/SV_cMZTiDLz0sftzhP" target="_blank" rel="noreferrer">Contact webmaster</a></p>
-        </Disclaimer>
-      </FooterContainer>
-    </ScreenContainer>
+        </Styles.Disclaimer>
+        </Styles.WidthContainer>
+      </Styles.FooterContainer>
+    
   );
 };
 
 export default RutgersFooter;
+
+// const FooterMenu = ({menu}) => {
+
+//   let linkElements = menu.links.map((link, i) => (
+//       <a key={i} href={link.path}>{link.text}</a>
+//   ))
+// // console.log(menu.title)
+// return (
+  
+//   <Styles.SingleMenu>
+//       <h3>{menu.title}</h3>
+//       {linkElements}
+//   </Styles.SingleMenu>
+  
+// )
+// }
+
+
+const Styles = {
+  FooterContainer: styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  background: #000;
+  a:link,
+  a:visited,
+  a:hover {
+    color: white;
+    text-decoration: none;
+    font-size: 1em;
+  }
+  a:hover {
+    text-decoration: underline;
+  }
+`,
+WidthContainer: styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100vw;
+  @media screen and (min-width:${({theme}) => theme.mobile}) {
+      max-width: 1366px;
+  }
+  `,
+Header: styled.div`
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: 3em 0.75em 1em 0.75em;
+  
+  @media screen and (max-width:${({theme}) => theme.mobile}) {
+    display: none;
+}
+`,
+Logo: styled.div`
+  img {
+    width: 13em;
+  }
+  @media screen and (max-width:${({theme}) => theme.mobile}) {
+    display: none;
+}
+`,
+Menu: styled.div`
+  li {
+    display: inline;
+    margin-right: 2em;
+    font-size: 0.75em;
+    padding-right: 2em;
+    border-right: 0.25px solid grey;
+  }
+  @media screen and (max-width:${({theme}) => theme.mobile}) {
+    display: none;
+}
+`,
+FooterMenuContainer: styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  border-bottom: 0.25px solid grey;
+  justify-content: space-evenly;
+`,
+SingleMenu: styled.div`
+  display: flex;
+  flex-direction: column;
+  padding: 1em;
+  color: white;
+  font-size: 0.75em;
+  font-weight: 200;
+  line-height: 4em;
+//   height: 400px;
+//   flex-wrap: wrap;
+`, 
+Disclaimer: styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 0.75em;
+p {
+    text-align: center;
+}
+`
+}
+
+
+
+
+
