@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import styled from 'styled-components'
-// import { FaHome, FaRegBookmark, FaRegUser } from 'react-icons/fa'
 import navMenuItems from "./navMenuItems";
 import { Link } from "react-router-dom";
+import { theme } from "../../theme";
 
 const NavbarComp = () => {
   const [windowDimension, setWindowDimension] = useState(null)
@@ -20,7 +20,7 @@ const NavbarComp = () => {
     return () => window.removeEventListener("resize", handleResize)
   }, []);
 
-  const isMobile = windowDimension <= 640;
+  const isMobile = windowDimension <= parseInt(theme.mobile);
 
   let mobileElements = navMenuItems.map(item => (
     <MobileNavbar.Item key={`${item.id}-mobile`} >  <Link to={item.path}>
@@ -83,7 +83,7 @@ const Navbar = {
   display: flex;
   justify-content: space-between;
   align-items: center;
-
+  width: 100vw;
   background-color:${({ theme }) => theme.colors.main};
   `,
   Logo: styled.h1`
