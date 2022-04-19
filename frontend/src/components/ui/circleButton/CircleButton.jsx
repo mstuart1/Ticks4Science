@@ -4,9 +4,9 @@ import React from 'react'
 
 export const Button = {
     Button: styled.div`
-    padding: 1rem;
+        padding: 1rem;
         cursor: pointer;
-        background-color: ${({active, bgColor, activeColor}) => active ?  activeColor: bgColor};
+        background-color: ${({active, bgColor, activeColors}) => active ?  activeColors.bg : bgColor};
         width: 55px;
         height: 55px; // width and height have to be the same if you want it to be circles;
         border-radius: 50%;
@@ -19,7 +19,7 @@ export const Button = {
         box-shadow: 0 3px 15px rgba(0,0,0,0.3);
         i {
             font-size: 1.2rem;
-            color:  ${({iconColor}) => iconColor};
+            color:  ${({active, iconColor, activeColors}) => active ?  activeColors.icon : iconColor};
             pointer-events: none;
         }
     `
@@ -27,9 +27,9 @@ export const Button = {
 
 
 
-const CircleButton = ({active, iconColor, bgColor, activeColor, icon}) => {
+const CircleButton = ({active = false, colors = {bg: 'black', icon: 'white'}, activeColors = {bg: 'white', icon: 'black'}, icon}) => {
   return (
-    <Button.Button active={active} bgColor={bgColor} activeColor={activeColor} iconColor={iconColor}
+    <Button.Button active={active} bgColor={colors.bg} activeColors={activeColors} iconColor={colors.icon}
     >
         <i>{icon}</i>
     </Button.Button>

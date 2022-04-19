@@ -67,7 +67,7 @@ const About = () => {
         </BasicPage.HoverCard>
       </BasicPage.LinkButton.LinkSpec>
       </div>
-      <div style={{margin: '1rem 0'}}>
+      {/* <div style={{margin: '1rem 0'}}>
       <BasicPage.SectionTitle>Before sending us your ticks</BasicPage.SectionTitle>
       <Styles.RptLnkBtn.LinkSpec href='https://vectorbio.rutgers.edu/outreach/Occi2019TickListNJ.pdf' target='_blank' rel='noreferrer'>
         <BasicPage.HoverCard>
@@ -78,11 +78,11 @@ const About = () => {
         </BasicPage.HoverCard>
       </Styles.RptLnkBtn.LinkSpec>
 
-      {/* <p><TickReportLink /></p> */}
+      
       <p>
         Since this report, two more ticks have been discovered in NJ, which we review in <BasicPage.InnieLink to='/ticks'><span>Ticks of NJ</span></BasicPage.InnieLink>
       </p>
-      </div>
+      </div> */}
       </div>
       <BasicPage.ImageCont>
         <figure>
