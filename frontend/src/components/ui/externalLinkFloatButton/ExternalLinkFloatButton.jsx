@@ -1,9 +1,9 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Link } from 'react-router-dom'
+
 
 const Styles =  {
-    Link: styled(Link)`
+    Link: styled.a`
     text-decoration: none;
     color: ${({ colors }) => colors.text};
     `,
@@ -29,9 +29,9 @@ const Styles =  {
     `,
 }
 
-const InternalLinkFloatButton = ({colors={text: 'black', shadow: '#000000', bg: 'white'}, to='/', width='', height='', padding='2rem 4rem', text='internal link'}) => {
+const ExternalLinkFloatButton = ({colors={text: 'black', shadow: '#000000', bg: 'white'}, to='https://www.rutgers.edu/', width='', height='', padding='2rem 4rem', text='external link'}) => {
   return (
-    <Styles.Link to={to} colors={colors}>
+    <Styles.Link href={to} target='_blank' rel='noreferrer' colors={colors}>
         <Styles.HoverCard colors={colors} width={width} height={height} padding={padding}>
             <span>{text}</span>
         </Styles.HoverCard>
@@ -39,4 +39,4 @@ const InternalLinkFloatButton = ({colors={text: 'black', shadow: '#000000', bg: 
   )
 }
 
-export default InternalLinkFloatButton
+export default ExternalLinkFloatButton
