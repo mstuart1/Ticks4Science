@@ -1,17 +1,30 @@
-import React from 'react'
-import { FaImages, FaMailBulk, FaSearch, FaWpforms } from 'react-icons/fa'
+import React, { useEffect, useState } from 'react'
+import { FaImages, FaMailBulk, FaRegEnvelopeOpen, FaSearch, FaWpforms } from 'react-icons/fa'
 import { useParams } from 'react-router-dom'
 import styled from 'styled-components'
 import { BasicPage } from '../GeneralStyles'
+import SubmissionDataService from '../../services/submission'
 
 const TickProgress = () => {
-
-  
-
     let {id} = useParams()
-    console.log(id)
+    // console.log(id)
+    const [data, setData] = useState({})
 
-  return (
+    useEffect(() => {
+      let getData = async () => 
+       await SubmissionDataService.getProgress(id);
+       
+      getData().then(response => {
+        // console.log(response.data.record)
+        setData(response.data.record)
+      })
+      
+      
+    }, [id])
+
+    // console.log(data.specimenRequested)
+
+  return ( Object.keys(data).length > 0 ? (
     <BasicPage.Text>
       <BasicPage.Title>Tick Progress for Tick # {id}</BasicPage.Title>
     <Styles.Timeline>
@@ -21,50 +34,103 @@ const TickProgress = () => {
         <i><FaWpforms/></i>
       </Styles.TimelineIcon>
        
-       <p className="tl-duration">Date</p>
+       <p className="tl-duration">{data.createdAt.substring(0,10)}</p>
         <h5>Form Received</h5>
         <p>
-           We have received your form.  Check back in a certain amount of time for updates.
+           We have received your form.  Please check back for updates.
         </p>
     </div>
-    {/* // TODO next part could be either reviewing photos or request specimen  */}
-    <div className="timeline-item">
+   
+   {data?.photosReviewed !== null && (
+      <div className="timeline-item">
       <Styles.TimelineIcon>
         <i><FaImages/></i>
       </Styles.TimelineIcon>
        
-       <p className="tl-duration">Date</p>
+       <p className="tl-duration">{data.photosReviewed.substring(0,10)}</p>
         <h5>Photos Reviewed</h5>
-        <p>
+        {/* <p>
            We have reviewed your photos.   (depending on the results, either the tick species or the submission requested will appear below)
-        </p>
+        </p> */}
     </div>
-    <div className="timeline-item">
+   )}
+   {data?.specimenRequested !== null && (
+      <div className="timeline-item">
       <Styles.TimelineIcon>
         <i><FaMailBulk/></i>
       </Styles.TimelineIcon>
        
-       <p className="tl-duration">Date</p>
-        <h5>Submission Reqeusted</h5>
+       <p className="tl-duration">{data.specimenRequested.substring(0,10)}</p>
+        <h5>Specimen Requested</h5>
         <p>
-           Please mail your tick to [address]
+        Thank you for your tick submission to NJ Ticks for Science! We appreciate your contribution and encourage you to continue your participation with the program by sending the ticks to the Center for Vector Biology at Rutgers University.
         </p>
+        <ol>
+          <li>Place a few cotton balls in the specimen's plastic bag that it's already contained in.</li>
+          <li>
+          Package the tick into a standard envelope and address it:<br/>
+NJ Ticks for Science<br/>
+Center for Vector Biology<br/>
+180 Jones Avenue<br/>
+New Brunswick, NJ 08901-8536<br/>
+          </li>
+          <li>
+          Write your Tick ID number on a piece of paper and place into the envelope
+          </li>
+          <li>
+          Do NOT provide a return address.
+          </li>
+          <li>
+          Check back to see when your specimen has arrived at the Center for Vector Biology!
+          </li>
+        </ol>
     </div>
-    <div className="timeline-item">
+   )}
+    {data?.specimenReceived !== null && (
+      <div className="timeline-item">
+      <Styles.TimelineIcon>
+        <i><FaRegEnvelopeOpen/></i>
+      </Styles.TimelineIcon>
+       
+       <p className="tl-duration">{data.specimenReceived.substring(0,10)}</p>
+        <h5>Specimen Received</h5>
+        <p>
+        The specimen has arrived at the Center for Vector Biology! We appreciate your contribution and encourage you to continue exploring New Jersey and sending in ticks when encountered. 
+Reminder: you must complete a new tick submission each time a tick is sent to NJ Ticks for Science.
+
+        </p>
+        
+    </div>
+   )}
+    {data?.specimenIdentified !== null && (
+      <div className="timeline-item">
       <Styles.TimelineIcon>
         <i><FaSearch/></i>
       </Styles.TimelineIcon>
        
-       <p className="tl-duration">Date</p>
+       <p className="tl-duration">{data.specimenIdentified.substring(0,10)}</p>
         <h5>Specimen Identified</h5>
-        <p>
-           Your tick is a [species]
-        </p>
+          {data.species === 'notATick' ? (
+            <p>
+              NJ Ticks for Science has identified the specimen as not to be a tick in the photo. We encourage you to continue participating in Ticks for Science by looking into <BasicPage.InnieLink><span>How to Identify a Tick</span></BasicPage.InnieLink> and send other Tick Submissions in the future. Thank you!
+            </p>
+          ) : (
+            <p>
+              {data.species}
+              {/* // TODO create a way to link to the identified tick */}
+            </p>
+          )}      
     </div>
+   )}
+   
+   <p>
+   Thank you for your tick submission to NJ Ticks for Science! We appreciate your contribution and encourage you to continue exploring New Jersey and sending in ticks when encountered. 
+Reminder: you must complete a new tick submission each time a tick is sent to NJ Ticks for Science.
+   </p>
     {/* <!-- end timeline items --> */}
 </Styles.Timeline>
 </BasicPage.Text>
-  )
+  ): (<div>Loading...</div>))
 }
 
 export default TickProgress

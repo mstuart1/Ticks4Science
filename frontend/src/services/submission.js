@@ -11,6 +11,10 @@ class SubmissionDataService {
     submitImage(id, formData, config) {
         return http.put(`/api/submission/${id}`, formData, config)
     }
+    getProgress(id) {
+        // console.log('getting progress')
+        return http.get(`/api/submission/${id}`)
+    }
 }
 
 export default new SubmissionDataService();
