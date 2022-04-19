@@ -26,6 +26,8 @@ import Survey from './components/survey/Survey';
 import ThankYou from './components/survey/ThankYou';
 import TickProgress from './components/ticks/TickProgress';
 import TickProgressInput from './components/ticks/TickProgressInput';
+import Login from './components/admin/Login';
+import AddEditTick from './components/admin/AddEditTick';
 
 
 const App = () => {
@@ -66,7 +68,8 @@ const App = () => {
               <Route path='/ticks/:id' element={<TickPage />} />
               <Route path='/removal' element={<TickRemoval />} />
               <Route path='/notReady' element={<NotReady />} />
-              <Route path='/admin/login' element={<div style={{ height: '100vh' }}><h1>A login element will go here</h1></div>} />
+              <Route path='/admin/login' element={<Login/>} />
+              <Route path='/admin/addEditTick' element={<AddEditTick/>} />
             </Routes>
 
           </Styles.PageContainer>
