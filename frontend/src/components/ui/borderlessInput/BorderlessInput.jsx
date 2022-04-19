@@ -64,10 +64,10 @@ const Styles = {
     
 }
 
-const BorderlessInput = ({ colors = { bg: '#f2f2f2', text: 'black', ph: '#aaa', label: '#222', errorBg: '#d30909', errorText: '#fff' }, type = 'email', placeholder = 'Enter Email', errorText='The email is invalid', name = '', value='' }) => {
+const BorderlessInput = ({ colors = { bg: '#f2f2f2', text: 'black', ph: '#aaa', label: '#222', errorBg: '#d30909', errorText: '#fff' }, placeholder = 'Enter Email', errorText='The email is invalid', children }) => {
     return (
         <Styles.CustomField colors={colors}>
-            <input type={type} placeholder='&nbsp;' name={name} value={value} />
+            {children}
             <span className='placeholder'>{placeholder}</span>
             <span class="error-message" aria-live="polite">{errorText}</span>
         </Styles.CustomField>
