@@ -1,14 +1,26 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { theme } from '../../theme'
 import { BasicPage } from '../GeneralStyles'
 import BorderlessInput from '../ui/borderlessInput/BorderlessInput'
 import TickDataService from '../../services/ticks'
-import { Navigate } from 'react-router-dom'
+import { Navigate, useParams } from 'react-router-dom'
 
 const AddEditTick = () => {
-
+    let {id} = useParams()
 
     const [input, setInput] = useState({})
+
+    useEffect(() => {
+        let getData = async () =>
+          await TickDataService.getTick(id);
+    
+        getData().then(response => {
+          console.log(response.data.record)
+          setInput(response.data.record)
+        })
+      }, [id])
+
+    
 
     const handleChange = (evt) => {
         const { name, value, type, checked } = evt.target;
@@ -22,8 +34,14 @@ const AddEditTick = () => {
     const handleSave = async evt => {
         try {
             evt.preventDefault()
+            if (id) {
+            await TickDataService.updateForm(input, id)
+            } else {
+                
             let response = await TickDataService.submitForm(input);
-            let id = response.data.data.id
+            id = response.data.data.id
+            }
+            
             setInput({})
             Navigate(`/ticks/${id}`)
         } catch(err) {

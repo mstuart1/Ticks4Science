@@ -49,5 +49,33 @@ exports.createTick = async (req, res, next) => {
   
 }
 
+exports.updateTick = async (req, res, next) => {
+  console.log(`@@@@---receiving form from website---@@@@`);
+  // console.log(JSON.stringify(req.body, null, 1))
+  try {
+      // console.log(JSON.stringify(req.body, null, 1))
+      let updatedRecord;
+      let incomingInfo = req.body;
+      let {id} = req.params
+      
+      await db.sequelize
+    .transaction(async (t) => {
+      updatedRecord = await Tick.update(incomingInfo,{
+        where: {
+          id,
+        }
+      }, {transaction: t})
+    });
+    // console.log(JSON.stringify(createdRecord, null, 1))
+      return res.json({data: updatedRecord})
+  } catch (err) {
+    console.log(err.message)
+      next(err)
+  }
+
+}
+
+
+
 
 

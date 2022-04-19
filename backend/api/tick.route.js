@@ -5,6 +5,7 @@ module.exports = (app) => {
     router
       .post("/", TickCtl.createTick)
       .get('/:id', TickCtl.getTick)
+      .put('/:id', TickCtl.updateTick)
 
       app.use("/api/tick", router);
   };

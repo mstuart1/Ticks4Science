@@ -70,6 +70,7 @@ const App = () => {
               <Route path='/notReady' element={<NotReady />} />
               <Route path='/admin/login' element={<Login/>} />
               <Route path='/admin/addEditTick' element={<AddEditTick/>} />
+              <Route path='/admin/addEditTick/:id' element={<AddEditTick/>} />
             </Routes>
 
           </Styles.PageContainer>
