@@ -21,6 +21,7 @@ app.use('/public', express.static('public'));
 app.use(cors(corsOptions));
 
 require("./api/submission.route")(app);
+require("./api/tick.route")(app);
 
 app.get('/', (req, res) => {
   res.send(`The server is working: ${new Date()}`)

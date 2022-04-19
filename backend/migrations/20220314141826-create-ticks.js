@@ -14,6 +14,7 @@ module.exports = {
       common: {
         type: Sequelize.STRING
       },
+      intro: {type: Sequelize.TEXT},
       colors: {
         type: Sequelize.STRING
       },
@@ -37,11 +38,13 @@ module.exports = {
       adultFeed: { type: Sequelize.STRING },
       createdAt: {
         allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
+        defaultValue: new Date(),
       },
       updatedAt: {
         allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
+        defaultValue: new Date(),
       }
     });
   },

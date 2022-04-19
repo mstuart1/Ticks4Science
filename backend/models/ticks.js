@@ -16,6 +16,7 @@ module.exports = (sequelize, DataTypes) => {
   ticks.init({
     scientific: DataTypes.STRING,
     common: DataTypes.STRING,
+    intro: DataTypes.TEXT,
     colors: DataTypes.STRING,
     shape: DataTypes.STRING, 
     hosts: DataTypes.STRING, 
