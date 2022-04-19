@@ -6,6 +6,7 @@ module.exports = (app) => {
     router
       .post("/", SubmCtl.createSubm)
       .put("/:id", upload.array('photos'),  SubmCtl.uploadPhoto)
+      .get('/:id', SubmCtl.getProgress)
 
       app.use("/api/submission", router);
   };

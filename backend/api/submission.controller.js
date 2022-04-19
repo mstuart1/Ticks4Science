@@ -71,3 +71,18 @@ exports.uploadPhoto = async (req, res, next) => {
     }
   
 }
+exports.getProgress = async (req, res, next) => {
+  console.log(`@@@@---getting progress of ${req.params.id}---@@@@`);
+  try {
+    let {id} = req.params
+    let foundRecord = await Subm.findByPk(id)
+    
+    res.json({record: foundRecord})
+      
+      
+  } catch (err) {
+    console.log(err.message)
+    next(err)
+  }
+}
+
