@@ -10,8 +10,8 @@ class TickDataService {
         return http.post(`/api/ticks`, data)
     }
     getTick(id) {
-        // console.log('getting progress')
-        return http.get(`/api/ticks/${id}`)
+        console.log('getting tick')
+        return http.get(`/api/tick/${id}`)
     }
     
 }
