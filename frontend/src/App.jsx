@@ -25,6 +25,7 @@ import TickCheckMenu from './components/ticks/TickCheckMenu';
 import Survey from './components/survey/Survey';
 import ThankYou from './components/survey/ThankYou';
 import TickProgress from './components/ticks/TickProgress';
+import TickProgressInput from './components/ticks/TickProgressInput';
 
 
 const App = () => {
@@ -39,36 +40,35 @@ const App = () => {
           <Styles.PageContainer>
             <Routes>
               <Route path='/' element={<About />} />
-              <Route path='/steps' element={<Steps/>}/>
-              <Route path='/ticks' element={<Ticks/>}/>
-              <Route path='/checkMenu' element={<TickCheckMenu/>}/>
+              <Route path='/steps' element={<Steps />} />
+              <Route path='/ticks' element={<Ticks />} />
+              <Route path='/checkMenu' element={<TickCheckMenu />} />
 
-              <Route path='/tickOrInsect' element={<TickOrInsect/>}/>
-              <Route path='/photo' element={<Photo/>}/>
-              <Route path='/preSurvey' element={<PreSurvey/>}/>
-              <Route path='/survey' element={<Survey/>}/>
-              <Route path='/thanks' element={<ThankYou/>}/>
-              <Route path='/progress' element={<BasicPage.Text><div><h3>A place for people to enter their ID number</h3> </div>
-        <BasicPage.InnieLink to='/progress/1'><span>Click here for an example progress page</span></BasicPage.InnieLink></BasicPage.Text>}/>
-              <Route path='/progress/:id' element={<TickProgress/>}/>
+              <Route path='/tickOrInsect' element={<TickOrInsect />} />
+              <Route path='/photo' element={<Photo />} />
+              <Route path='/preSurvey' element={<PreSurvey />} />
+              <Route path='/survey' element={<Survey />} />
+              <Route path='/thanks' element={<ThankYou />} />
+              <Route path='/progress' element={<TickProgressInput buttonColors={{text: theme.colors.ruTeal, bg: 'white', shadow: theme.colors.ruTeal}} />} />
 
-              <Route path='/check' element={<TickCheck/>}/>
-              <Route path='/prevention' element={<Prevention/>}/>
-              <Route path='/disease' element={<Diseases/>}/>
+              {/* <Route path='/progress' element={<BasicPage.Text><div><h3>A place for people to enter their ID number</h3> </div> */}
+                {/* <BasicPage.InnieLink to='/progress/1'><span>Click here for an example progress page</span></BasicPage.InnieLink></BasicPage.Text>} /> */}
+              <Route path='/progress/:id' element={<TickProgress />} />
 
-              
-      
-        
-        <Route path='/identify' element={<Identify/>}/>
-        <Route path='/ticks/:id' element={<TickPage/>}/>
-        <Route path='/removal' element={<TickRemoval/>}/>
-        <Route path='/notReady' element={<NotReady/>}/>
-      </Routes>
-      <Routes>
-        <Route path='/admin/login' element={<div style={{height: '100vh'}}><h1>A login element will go here</h1></div>} />
-      
-       
+              <Route path='/check' element={<TickCheck />} />
+              <Route path='/prevention' element={<Prevention />} />
+              <Route path='/disease' element={<Diseases />} />
+
+
+
+
+              <Route path='/identify' element={<Identify />} />
+              <Route path='/ticks/:id' element={<TickPage />} />
+              <Route path='/removal' element={<TickRemoval />} />
+              <Route path='/notReady' element={<NotReady />} />
+              <Route path='/admin/login' element={<div style={{ height: '100vh' }}><h1>A login element will go here</h1></div>} />
             </Routes>
+
           </Styles.PageContainer>
           <RutgersFooter />
         </ScrollToTop>
@@ -85,7 +85,7 @@ const Styles = {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: ${({bgColor}) => bgColor || 'white'};
+  background-color: ${({ bgColor }) => bgColor || 'white'};
   // height: 100vh;
   font-family: 'Poppins', sans-serif;
   `,
