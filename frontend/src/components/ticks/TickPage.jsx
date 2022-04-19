@@ -1,73 +1,68 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { BasicPage } from '../GeneralStyles'
-import { MainTickDiv, ShowMeButton, TickName } from './TickPage.styled'
-import { ticks } from './ticks'
+import { FaStar } from 'react-icons/fa'
+import TickDataService from '../../services/ticks'
+import { theme } from '../../theme'
 
 const TickPage = () => {
   let { id } = useParams()
-  const [togglePhotos, setTogglePhotos] = useState(false)
 
-  const photoList = [];
+  const [data, setData] = useState({})
 
-  const handleToggle = () => {
-    setTogglePhotos(!togglePhotos)
-  }
+  useEffect(() => {
+    let getData = async () =>
+      await TickDataService.getTick(id);
 
-  let tick = ticks.filter(tick => tick.id === parseInt(id))[0]
+    getData().then(response => {
+      console.log(response.data.record)
+      setData(response.data.record)
+    })
+  }, [id])
+  // const [togglePhotos, setTogglePhotos] = useState(false)
+
+  // const photoList = [];
+
+  // const handleToggle = () => {
+  //   setTogglePhotos(!togglePhotos)
+  // }
+
+  // let tick = ticks.filter(tick => tick.id === parseInt(id))[0]
+  let tick = data;
+
+  console.log(data.larvaeFeed)
 
   return (
-    
-        <MainTickDiv>
-          <h1 style={{ textAlign: 'center' }}><TickName>{tick.title}</TickName></h1>
-
-          {tick.common ? (<p>Common name(s): {tick.common}</p>) : null}
-
-          {tick.first || tick.comment ? (
-            <BasicPage.BoxInset>
-
-            {tick.first ? (<span> First reported in {tick.first}.<br /></span>) : null}
-            {tick.second ? (<span> Second report in {tick.second}.<br /></span>) : null}
-            {tick.comment ? (<span>{tick.comment}.<br /></span>) : null}
-          </BasicPage.BoxInset>
-          ) : null}
-          {tick.loc || tick.habitat ? (
-            <BasicPage.BoxInset>
-            {tick.loc ? (<> <h4>Location in New Jersey</h4>
-              {tick.loc}</>) : null}
-
-            {tick.habitat ? (<> <h4>Habitat</h4>
-              {tick.habitat}</>) : null}
-
-          </BasicPage.BoxInset>
-          ) : null}
-          <h3>{tick.info}</h3>
-          <h4>Larvae</h4>
-          {tick.larvae?.photos.length > 0 ? tick.larvae.photos : `No photos available`}<br />
-          {tick.larvae?.active ? (<span>Active from {tick.larvae.active}<br /></span>) : null}
-          {tick.larvae?.feed ? (<span> Primarily feed on {tick.larvae?.feed}<br /></span>) : null}
-          <h4>Nymphs</h4>
-          {tick.nymphs?.photos.length > 0 ? tick.nymphs.photos : `No photos available`}<br />
-          {tick.nymphs?.active ? (<span>Active from {tick.nymphs.active}<br /></span>) : null}
-          {tick.nymphs?.feed ? (<span> Primarily feed on {tick.nymphs?.feed}<br /></span>) : null}
-
-          <h4>Adults</h4>
-          {tick.adults?.photos.length > 0 ? tick.adults.photos : `No photos available`}<br />
-          {tick.adults?.active ? (<span>Active from {tick.adults.active}<br /></span>) : null}
-          {tick.adults?.feed ? (<span> Primarily feed on {tick.adults?.feed}<br /></span>) : null}
-          <h4>Sex Shape Difference</h4>
-          {tick.sexPhotos?.length > 0 ? tick.sexPhotos : `No photos available`}<br />
-          {tick.female ? (<span>Female: {tick.female}<br /></span>) : null}
-          {tick.male ? (<span>Male: {tick.male}<br /></span>) : null}
-          {tick.nymph ? (<span>Nymph: {tick.nymph}<br /></span>) : null}
-          {tick.shape ? (<span>Shape: {tick.shape}<br /></span>) : null}
-          <h4>Engorged Ticks</h4>
-          {tick.engorged?.photos.length > 0 ? tick.engorged.photos : `No photos available`}<br />
-          {tick.engorged?.desc ? tick.engorged.desc : null}
-          {/* <ShowMeButton  onClick={handleToggle}>Show Me Photos of Ticks</ShowMeButton> */}
-          {/* {togglePhotos && photoList.length > 0 ? photoList : <h3>Sorry, no photos for this tick have been submitted, please <Link to='/submit'>submit a tick</Link> to help us share information.</h3>} */}
-        </MainTickDiv>
-      
+    <BasicPage.Text>
+      <BasicPage.Title>
+        Scientific Name:<i>{data.scientific}</i><br />
+        Common: {data.common}
+      </BasicPage.Title>
+      <p>{data.intro}</p>
+      <p>
+        <FaStar color={theme.colors.ruYellow} /> indicates tick stages that seek people as hosts!
+      </p>
+      <BasicPage.SectionTitle>Appearance</BasicPage.SectionTitle>
+      <BasicPage.SectionSubtitle>Colors:</BasicPage.SectionSubtitle>{data.colors}
+      <BasicPage.SectionSubtitle>Shape:</BasicPage.SectionSubtitle>{data.shape}
+      <BasicPage.SectionTitle>Hosts</BasicPage.SectionTitle>
+      {data.hosts}
+      <BasicPage.SectionTitle>{data.larvaeFeed?.includes('people') && <FaStar color={theme.colors.ruYellow} />}Larvae</BasicPage.SectionTitle>
+      {data.larvaeActive}<br />
+      {data.larvaeFeed}
+      <BasicPage.SectionTitle>{data.nymphFeed?.includes('people') && <FaStar color={theme.colors.ruYellow} />}Nymphs</BasicPage.SectionTitle>
+      {data.nymphActive}<br />
+      {data.nymphFeed}
+      <BasicPage.SectionTitle>{data.adultFeed?.includes('people') && <FaStar color={theme.colors.ruYellow} />}Adults</BasicPage.SectionTitle>
+      {data.adultActive}<br />
+      {data.adultFeed}
+      <BasicPage.SectionTitle>Habitat</BasicPage.SectionTitle>
+      {data.habitat}
+      <BasicPage.SectionTitle>Locations in NJ</BasicPage.SectionTitle>
+      {data.njLocations}
+      <BasicPage.SectionTitle>A reminder about engorged ticks</BasicPage.SectionTitle>
+      <p>Blood meals increase the tick's size drastically.  However, nymphs may become engorged and still go unnoticed because of their already hard to detect size.</p>
+    </BasicPage.Text>
   )
 }
 
