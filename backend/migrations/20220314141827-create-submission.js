@@ -24,14 +24,14 @@ module.exports = {
       tickMuni: {type:  Sequelize.STRING},
       tickCounty: {type:  Sequelize.STRING},
       tickZip: {type:  Sequelize.INTEGER},
-      activities: {type:  Sequelize.STRING(1000)},
+      activities: {type:  Sequelize.TEXT},
       personBitten: {type:  Sequelize.STRING},
       submitterBitten: {type:  Sequelize.STRING},
       bittenMuni: {type:  Sequelize.STRING},
       bittenZip: {type:  Sequelize.DOUBLE},
       bittenTraveledDom: {type:  Sequelize.STRING},
       bittenTraveledIntl: {type:  Sequelize.STRING},
-      travelInfo: {type:  Sequelize.STRING(1000)},
+      travelInfo: {type:  Sequelize.TEXT},
       photoFrontUrl: {type:  Sequelize.STRING},
       photoBackUrl: {type:  Sequelize.STRING},
       photoOtherUrl: {type:  Sequelize.STRING},
@@ -40,7 +40,14 @@ module.exports = {
         specimenRequested: {type: Sequelize.DATE},
         specimenReceived: {type: Sequelize.DATE},
         specimenIdentified: {type: Sequelize.DATE},
-        species: {type:  Sequelize.STRING},
+        tickId: {
+          allowNull: false,
+          type: Sequelize.INTEGER,
+          references: {
+            model: "ticks",
+            key: "id",
+          },
+        },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE
