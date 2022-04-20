@@ -41,7 +41,7 @@ module.exports = {
         specimenReceived: {type: Sequelize.DATE},
         specimenIdentified: {type: Sequelize.DATE},
         tickId: {
-          allowNull: false,
+          allowNull: true,
           type: Sequelize.INTEGER,
           references: {
             model: "ticks",
