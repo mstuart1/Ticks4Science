@@ -5,11 +5,18 @@ import styled from 'styled-components'
 const Styles = {
     ScrollingWrapper: styled.div`
     width: 70vw;
+    display: flex;
     overflow-x: scroll;
     overflow-y: hidden;
     white-space: nowrap;
     @media screen and (min-width:${({ theme }) => theme.mobile}) {
       width: 65vw;
+    }
+    @media screen and (min-width: 1300px) {
+      flex-wrap: wrap;
+      overflow: auto;
+      justify-content: center;
+      
     }
     `,
     CardContainer: styled.div`
