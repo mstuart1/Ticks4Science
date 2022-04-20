@@ -28,6 +28,7 @@ module.exports = (sequelize, DataTypes) => {
     nymphFeed: DataTypes.STRING, 
     adultActive: DataTypes.STRING, 
     adultFeed: DataTypes.STRING, 
+    featureImgUrl: DataTypes.STRING, 
   }, {
     sequelize,
     modelName: 'ticks',

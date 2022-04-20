@@ -36,6 +36,7 @@ module.exports = {
       nymphFeed: { type: Sequelize.STRING },
       adultActive: { type: Sequelize.STRING },
       adultFeed: { type: Sequelize.STRING },
+      featureImgUrl: {type:  Sequelize.STRING},
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,
