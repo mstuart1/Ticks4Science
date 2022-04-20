@@ -96,12 +96,14 @@ const Navbar = {
   Logo: styled.h1`
     // border: 1px solid gray;
     padding: 0.5rem 1rem;
+    font-size: 2.5rem;
   `,
   Items: styled.ul`
     display: flex;
     list-style: none;
   `,
   Item: styled.li`
+  font-size: 1.4rem;
     padding: 1rem;
     cursor: pointer;
     border-radius: 3px;
