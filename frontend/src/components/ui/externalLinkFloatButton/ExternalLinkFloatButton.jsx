@@ -12,8 +12,8 @@ const Styles =  {
     align-items: center;
     justify-content: center;
     border-radius: 1rem;
-    box-shadow: 0 3px 15px ${({ colors }) => colors.shadow+20};
-    margin: 1rem;
+    box-shadow: 0 3px 15px ${({ colors }) => colors.shadow+40};
+    margin: 1rem 3rem;
     background-color: ${({ colors }) => colors.bg};
     width: ${({width}) => width};
     height: ${({height}) => height};
