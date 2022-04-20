@@ -18,6 +18,17 @@ exports.getTick = async (req, res, next) => {
     }
   }
 
+exports.getAllTicks = async (req, res, next) => {
+    console.log(`@@@@---getting all ticks---@@@@`);
+    try {
+      let allTicks = await Tick.findAll()
+      res.json({data: allTicks})
+    } catch (err) {
+      console.log(err.message)
+      next(err)
+    }
+  }
+
 exports.createTick = async (req, res, next) => {
     console.log(`@@@@---receiving form from website---@@@@`);
     // console.log(JSON.stringify(req.body, null, 1))

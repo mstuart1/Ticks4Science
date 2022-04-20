@@ -4,6 +4,7 @@ module.exports = (app) => {
   
     router
       .post("/", TickCtl.createTick)
+      .get('/', TickCtl.getAllTicks)
       .get('/:id', TickCtl.getTick)
       .put('/:id', TickCtl.updateTick)
 
