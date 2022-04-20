@@ -24,7 +24,9 @@ const Styles = {
 
 const HoverCard = ({shadowColor = '#000000', bgColor='#ffffff', width = '20rem', height='20rem', children}) => {
   return (
-   <Styles.HoverCard shadowColor={shadowColor} bgColor={bgColor} width={width} height={height}> 
+   <Styles.HoverCard 
+  //  shadowColor={shadowColor} bgColor={bgColor} width={width} height={height}
+   > 
        {children}
    </Styles.HoverCard>
   )

@@ -4,9 +4,13 @@ import styled from 'styled-components'
 
 const Styles = {
     ScrollingWrapper: styled.div`
+    width: 70vw;
     overflow-x: scroll;
     overflow-y: hidden;
     white-space: nowrap;
+    @media screen and (min-width:${({ theme }) => theme.mobile}) {
+      width: 65vw;
+    }
     `,
     CardContainer: styled.div`
     display: inline-block;

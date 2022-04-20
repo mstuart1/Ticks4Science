@@ -7,8 +7,8 @@ export const Button = {
         padding: 1rem;
         cursor: pointer;
         background-color: ${({active, bgColor, activeColors}) => active ?  activeColors.bg : bgColor};
-        width: 55px;
-        height: 55px; // width and height have to be the same if you want it to be circles;
+        width: ${({sizePx}) => sizePx};
+        height: ${({sizePx}) => sizePx}; // width and height have to be the same if you want it to be circles;
         border-radius: 50%;
         // to center the icons in the circles, use the flex
         display: flex;
@@ -27,7 +27,7 @@ export const Button = {
 
 
 
-const CircleButton = ({active = false, colors = {bg: 'black', icon: 'white'}, activeColors = {bg: 'white', icon: 'black'}, icon}) => {
+const CircleButton = ({sizePx = '55px', active = false, colors = {bg: 'black', icon: 'white'}, activeColors = {bg: 'white', icon: 'black'}, icon}) => {
   return (
     <Button.Button active={active} bgColor={colors.bg} activeColors={activeColors} iconColor={colors.icon}
     >

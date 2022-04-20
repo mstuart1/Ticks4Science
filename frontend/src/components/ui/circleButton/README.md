@@ -1,5 +1,5 @@
 The circle button takes the props
-
+- sizePx: the width and height, default is 55px;
 - active: boolean - should be given a state from the parent
 - colors: object
         - bg: the background color of inactive button
