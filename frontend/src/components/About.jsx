@@ -61,7 +61,7 @@ const About = () => {
         </div>
         <BasicPage.ImageCont>
           <figure>
-            <img src={tickIntro} alt='ticks' style={{ maxWidth: '350px', borderRadius: '5px' }} />
+            <img src={tickIntro} alt='ticks' style={{ maxWidth: '350px', borderRadius: '1rem' }} />
             <figcaption>Image provided by Andrea Egizi, PhD
             </figcaption>
           </figure>
