@@ -19,18 +19,6 @@ const TickPage = () => {
       setData(response.data.record)
     })
   }, [id])
-  // const [togglePhotos, setTogglePhotos] = useState(false)
-
-  // const photoList = [];
-
-  // const handleToggle = () => {
-  //   setTogglePhotos(!togglePhotos)
-  // }
-
-  // let tick = ticks.filter(tick => tick.id === parseInt(id))[0]
-  let tick = data;
-
-  console.log(data.larvaeFeed)
 
   return (
     <BasicPage.Text>
@@ -47,6 +35,7 @@ const TickPage = () => {
       <BasicPage.SectionSubtitle>Shape:</BasicPage.SectionSubtitle>{data.shape}
       <BasicPage.SectionTitle>Hosts</BasicPage.SectionTitle>
       {data.hosts}
+
       <BasicPage.SectionTitle>{data.larvaeFeed?.includes('people') && <FaStar color={theme.colors.ruYellow} />}Larvae</BasicPage.SectionTitle>
       {data.larvaeActive}<br />
       {data.larvaeFeed}
@@ -60,6 +49,7 @@ const TickPage = () => {
       {data.habitat}
       <BasicPage.SectionTitle>Locations in NJ</BasicPage.SectionTitle>
       {data.njLocations}
+      <img src={data.mapImgUrl} alt='map of locations' style={{width: '80%'}}/><br/>
       <BasicPage.SectionTitle>A reminder about engorged ticks</BasicPage.SectionTitle>
       <p>Blood meals increase the tick's size drastically.  However, nymphs may become engorged and still go unnoticed because of their already hard to detect size.</p>
     </BasicPage.Text>
