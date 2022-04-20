@@ -11,7 +11,7 @@ export const Button = {
         height: ${({sizePx}) => sizePx}; // width and height have to be the same if you want it to be circles;
         border-radius: 50%;
         // to center the icons in the circles, use the flex
-        display: flex;
+        display: ${({active}) => active ? 'flex' : 'none'};
         justify-content: center;
         align-items: center;
         // make space between icons

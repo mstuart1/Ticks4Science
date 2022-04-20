@@ -33,6 +33,8 @@ HoverCard: styled.div`
     align-items: center;
     justify-content: center;
 
+    
+
     width: ${({width}) => width}; 
     height: ${({height}) => height}; 
 
@@ -54,11 +56,13 @@ HoverCard: styled.div`
 
 const TickCard = ({tick}) => {
     const navigate = useNavigate();
+
+    console.log(tick.peopleTick ? 'flex' : 'none')
   return (
       <Styles.Container onClick={() => navigate(`/ticks/${tick.id}`)} >
           <Styles.HoverCard tickImage={tick.featureImgUrl} width={'20rem'} height={'20rem'}> 
-<Styles.UpperRight className='upper-right'>
-        {tick.peopleTick && (<CircleButton sizePx='20px' colors={{bg: theme.colors.grey0}} icon={<FaStar color={theme.colors.ruYellow}/>} />) }
+<Styles.UpperRight>
+        <CircleButton active={tick.peopleTick} sizePx='20px' colors={{bg: theme.colors.grey0}} icon={<FaStar color={theme.colors.ruYellow}/>} />
         </Styles.UpperRight>
         <Styles.Content >
             <span><i>{tick.scientific}</i></span>
