@@ -37,6 +37,8 @@ module.exports = {
       adultActive: { type: Sequelize.STRING },
       adultFeed: { type: Sequelize.STRING },
       featureImgUrl: {type:  Sequelize.STRING},
+      mapImgUrl: {type:  Sequelize.STRING},
+      refImgArray: {type: Sequelize.TEXT},
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,
