@@ -13,7 +13,9 @@ let corsOptions = {
 
 const app = express();
 app.use(morgan("common"));
-app.use(helmet());
+app.use(helmet({
+  crossOriginResourcePolicy: false,
+}));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use('/public', express.static('public'));
