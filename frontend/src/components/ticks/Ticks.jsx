@@ -97,14 +97,12 @@ const Ticks = () => {
                 
                 <p>Having this insight will allow you to enjoy nature safely and be vigilant for yourself and those around you! If you do happen to find a tick on you, do not panic! <BasicPage.InnieLink to='/removal'><span>Removing a tick</span></BasicPage.InnieLink> is safe and <BasicPage.InnieLink to='/preSurvey'><span>submitting the tick</span></BasicPage.InnieLink> is easy. 
                 </p>
-            {/* <BasicPage.List>
-                //TODO create cards that scroll horizontally, the star should have a circle background
-                {peopleTickElements}
-            </BasicPage.List> */}
+            
             <BasicPage.SectionTitle> Spotlight: Tick commonly found on dogs across the U.S.</BasicPage.SectionTitle>
-            <BasicPage.List>
-                {dogTickElements}
-            </BasicPage.List>
+            
+            <HorizScrollCont cardArray={dogTickElements}/>
+                
+            
             <BasicPage.SectionTitle>Other Ticks of New Jersey</BasicPage.SectionTitle>
             <HorizScrollCont cardArray={briefTickElements}/>
             <BasicPage.SectionTitle>
