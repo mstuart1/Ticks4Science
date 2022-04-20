@@ -19,8 +19,8 @@ const Styles = {
 
 const HorizScrollCont = ({cardArray}) => {
 
-    let cardElements = cardArray.map(card => (
-        <Styles.CardContainer>{card}</Styles.CardContainer>
+    let cardElements = cardArray.map((card, i) => (
+        <Styles.CardContainer key={i}>{card}</Styles.CardContainer>
     ))
 
   return (

@@ -41,7 +41,7 @@ const Ticks = () => {
     let peopleCardElements = data.map(tick => {
         if (peopleTicks.some(item => tick.scientific?.includes(item))) {
             tick.peopleTick = true;
-            return <TickCard tick={tick} />
+            return <TickCard key={tick.id} tick={tick} />
                
         } else {
             return null
@@ -50,7 +50,8 @@ const Ticks = () => {
 
     let dogTickElements = data.map(tick => {
         if (dogTicks.some(item => tick.scientific?.includes(item))) {
-            return <li key={tick.id}><BasicPage.InnieLink to={`/ticks/${tick.id}`}><span><Icon><FaStar/></Icon><i>{tick.scientific}</i>, {tick.common}</span></BasicPage.InnieLink><br /></li>
+            tick.peopleTick = true;
+            return <TickCard key={tick.id} tick={tick} />
         } else {
             return null
         }
@@ -59,9 +60,11 @@ const Ticks = () => {
     let briefTickElements = data.map(tick => {
         if (briefTicks.some(item => tick.scientific?.includes(item))) {
             if (tick.common?.toLowerCase().includes('gulf coast tick') || tick.common?.toLowerCase().includes('groundhog tick')) {
-                return <li key={tick.id}><BasicPage.InnieLink to={`/ticks/${tick.id}`}><span><Icon><FaStar/></Icon><i>{tick.scientific}</i>, {tick.common}</span></BasicPage.InnieLink><br /></li>
+                tick.peopleTick = true;
+            return <TickCard key={tick.id} tick={tick} />
             } else {
-                return <li key={tick.id}><BasicPage.InnieLink to={`/ticks/${tick.id}`}><span><i>{tick.scientific}</i>, {tick.common}</span></BasicPage.InnieLink><br /></li>
+                tick.peopleTick = false;
+                return <TickCard key={tick.id} tick={tick} />
             }
 
         } else {
@@ -76,10 +79,6 @@ const Ticks = () => {
             <BasicPage.Title>
                 Ticks of NJ
             </BasicPage.Title>
-            
-            
-            
-           
            
             <p>As citizen scientists, familiarizing yourselves with the ticks you may come across in your day-to-day in New Jersey is essential. Each tick is unique, and not all are interested in people. However, it is important to recognize their similarities and differences and taking necessary <BasicPage.InnieLink to='/prevention'><span>Tick Preventions</span></BasicPage.InnieLink> when enjoying the outdoors and entering tick habitats.
             </p>
@@ -107,9 +106,7 @@ const Ticks = () => {
                 {dogTickElements}
             </BasicPage.List>
             <BasicPage.SectionTitle>Other Ticks of New Jersey</BasicPage.SectionTitle>
-            <BasicPage.List>
-                {briefTickElements}
-            </BasicPage.List>
+            <HorizScrollCont cardArray={briefTickElements}/>
             <BasicPage.SectionTitle>
                 Literature Highlight
             </BasicPage.SectionTitle>
