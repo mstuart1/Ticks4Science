@@ -21,7 +21,7 @@ const About = () => {
       </p>
       <Styles.CenterCntr>
         <div>
-          <div style={{ margin: '1rem 0' }}>
+          <div style={{ margin: '1rem' }}>
             <BasicPage.SectionTitle>Get Started</BasicPage.SectionTitle>
 
             <InternalLinkFloatButton colors={{ text: theme.colors.ruTeal, shadow: theme.colors.ruTeal }} to='/steps' text='Follow the steps to participate' />
@@ -38,7 +38,7 @@ const About = () => {
        </BasicPage.InnieLink> process!
       </p> */}
           </div>
-          <div style={{ margin: '5rem 0' }}>
+          <div style={{ margin: '5rem 1rem' }}>
             <BasicPage.SectionTitle>If you have already submitted ticks </BasicPage.SectionTitle>
             <InternalLinkFloatButton colors={{ text: theme.colors.ruTeal, shadow: theme.colors.ruTeal }} to='/progress' text='Track your progress' />
           </div>
