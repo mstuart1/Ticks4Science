@@ -1,7 +1,7 @@
 import React from "react";
 import { BasicPage } from "./GeneralStyles";
 // import TickReportLink from "./ticks/TickReportLink";
-import tickCircle from '../images/Image017.jpg'
+// import tickCircle from '../images/Image017.jpg'
 import styled from "styled-components";
 import InternalLinkFloatButton from "./ui/internalLinkFloatButton/InternalLinkFloatButton";
 import ExternalLinkFloatButton from "./ui/externalLinkFloatButton/ExternalLinkFloatButton";
@@ -60,7 +60,7 @@ const About = () => {
         </div>
         <BasicPage.ImageCont>
           <figure>
-            <img src={tickCircle} alt='ticks' style={{ maxWidth: '350px' }} />
+            {/* <img src={tickCircle} alt='ticks' style={{ maxWidth: '350px' }} /> */}
             <figcaption>Image provided by Andrea Egizi, PhD
             </figcaption>
           </figure>

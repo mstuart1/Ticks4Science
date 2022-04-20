@@ -13,8 +13,11 @@ class TickDataService {
         return http.put(`/api/tick/${id}`, data)
     }
     getTick(id) {
-        console.log('getting tick')
         return http.get(`/api/tick/${id}`)
+    }
+    getAllTicks() {
+        // console.log(`getting all ticks`)
+        return http.get(`/api/tick`)
     }
     
 }

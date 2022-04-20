@@ -1,7 +1,7 @@
 import React from 'react'
 import { BasicPage } from '../GeneralStyles'
 import styled from 'styled-components'
-import comp from '../../images/Slide6.jpg'
+// import comp from '../../images/Slide6.jpg'
 import { theme } from '../../theme'
 
 const TickIns = {
@@ -41,7 +41,7 @@ const TickOrInsect = () => {
           </BasicPage.List>
           <BasicPage.ImageCont>
             <figure>
-              <img src={comp} alt='comparison of insect and tick' />
+              {/* <img src={comp} alt='comparison of insect and tick' /> */}
               <figcaption>Image provided by Andrea Egizi, PhD
               </figcaption>
             </figure>
