@@ -22,7 +22,7 @@ module.exports = {
         type: Sequelize.STRING
       },
       hosts: {
-        type: Sequelize.STRING
+        type: Sequelize.TEXT
       },
       habitat: {
         type: Sequelize.STRING

@@ -19,7 +19,7 @@ module.exports = (sequelize, DataTypes) => {
     intro: DataTypes.TEXT,
     colors: DataTypes.STRING,
     shape: DataTypes.STRING, 
-    hosts: DataTypes.STRING, 
+    hosts: DataTypes.TEXT, 
     habitat: DataTypes.STRING, 
     njLocations: DataTypes.TEXT, 
     larvaeActive: DataTypes.STRING, 
