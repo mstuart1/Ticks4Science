@@ -3,9 +3,10 @@ import { BasicPage } from '../GeneralStyles'
 import styled from 'styled-components'
 // import comp from '../../images/Slide6.jpg'
 import { theme } from '../../theme'
+import OutlineCard from '../ui/outlineCard/OutlineCard'
 
 const TickIns = {
-  Card: styled(BasicPage.OutlineCard)`
+  Card: styled(OutlineCard)`
   width: 90%;
   `,
   Subtitle: styled(BasicPage.SectionSubtitle)`

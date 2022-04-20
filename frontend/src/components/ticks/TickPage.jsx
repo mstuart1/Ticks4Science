@@ -24,13 +24,13 @@ console.log(data.refImgArray)
 
 
 let refImgElems = data.refImgArray?.length > 0 && data.refImgArray.map((img, i) => (
-    <BasicPage.ImageCont key={i}>
-          <figure>
+    
+          <figure key={i}>
             <img src={img.source} alt='ticks' style={{ maxWidth: '350px' }} />
             <figcaption>{img.caption}
             </figcaption>
           </figure>
-        </BasicPage.ImageCont>
+    
   ))
 
   
@@ -49,7 +49,9 @@ let refImgElems = data.refImgArray?.length > 0 && data.refImgArray.map((img, i) 
       <BasicPage.SectionSubtitle>Shape:</BasicPage.SectionSubtitle>{data.shape}
       <BasicPage.SectionTitle>Hosts</BasicPage.SectionTitle>
       {data.hosts}
+      <BasicPage.ImageCont >
 {refImgElems}
+</BasicPage.ImageCont>
       <BasicPage.SectionTitle>{data.larvaeFeed?.includes('people') && <FaStar color={theme.colors.ruYellow} />}Larvae</BasicPage.SectionTitle>
       {data.larvaeActive}<br />
       {data.larvaeFeed}

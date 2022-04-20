@@ -42,7 +42,7 @@ HoverCard: styled.div`
     box-shadow: 0 3px 15px ${({ shadowColor }) => shadowColor || '#000000'}20;
     margin: 1rem;
     background-image: 
-    linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.6)), url('${({tickImage}) => tickImage}');
+    linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.8)), url('${({tickImage}) => tickImage}');
     background-repeat: no-repeat;
     background-size: cover;
     color: white;

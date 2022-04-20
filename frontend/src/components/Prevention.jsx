@@ -1,6 +1,7 @@
 import React from 'react'
 import {theme} from '../theme'
 import { BasicPage } from './GeneralStyles'
+import OutlineCard from './ui/outlineCard/OutlineCard'
 // todo split the sections out into separate card containers so that on horizontal mobile view the sections still look ok
 
 // todo change the outline container on non-mobile views, looks weird on big screen but is helpful on mobile.
@@ -15,37 +16,37 @@ const Prevention = () => (
         </p>
         <BasicPage.CardContainer>
             <BasicPage.SectionSubtitle>Tick Repellent</BasicPage.SectionSubtitle>
-            <BasicPage.OutlineCard bgColor={theme.colors.ruTeal}>
+            <OutlineCard bgColor={theme.colors.ruTeal}>
                 <BasicPage.CardSpecial>
                     <div>
                         Reading labels is important when apply types of tick repellent.
                     </div>
                 </BasicPage.CardSpecial>
-            </BasicPage.OutlineCard>
-            <BasicPage.OutlineCard bgColor={theme.colors.ruTeal}>
+            </OutlineCard>
+            <OutlineCard bgColor={theme.colors.ruTeal}>
                 <BasicPage.CardSpecial>
                     <div>
                         Use repellent that contains 20%-30% DEET, 20%picaridin, or IR3535 on exposed skin, regularly apply every 5 hours.
                     </div>
                 </BasicPage.CardSpecial>
-            </BasicPage.OutlineCard>
-            <BasicPage.OutlineCard bgColor={theme.colors.ruTeal}>
+            </OutlineCard>
+            <OutlineCard bgColor={theme.colors.ruTeal}>
                 <BasicPage.CardSpecial>
                     <div>
                         Use 0.5% permethrin to treat clothing and gear.
                     </div>
                 </BasicPage.CardSpecial>
-            </BasicPage.OutlineCard>
+            </OutlineCard>
             <BasicPage.SectionSubtitle>Permethrin-treated clothing</BasicPage.SectionSubtitle>
-            <BasicPage.OutlineCard bgColor={theme.colors.ruTeal}>
+            <OutlineCard bgColor={theme.colors.ruTeal}>
                 <BasicPage.CardSpecial>
                     <div>
                         There is permethrin-treated clothing or ways to wear everyday clothing to prevent tick bites:
 
                     </div>
                 </BasicPage.CardSpecial>
-            </BasicPage.OutlineCard>
-            <BasicPage.OutlineCard bgColor={theme.colors.ruTeal}>
+            </OutlineCard>
+            <OutlineCard bgColor={theme.colors.ruTeal}>
                 <BasicPage.CardSpecial>
                     <div>
 
@@ -53,19 +54,19 @@ const Prevention = () => (
 
                     </div>
                 </BasicPage.CardSpecial>
-            </BasicPage.OutlineCard>
+            </OutlineCard>
             <BasicPage.SectionSubtitle>
                 Don't forget about your pets!
             </BasicPage.SectionSubtitle>
-            <BasicPage.OutlineCard bgColor={theme.colors.ruTeal}>
+            <OutlineCard bgColor={theme.colors.ruTeal}>
                 <BasicPage.CardSpecial>
                     <div>
 
                         Treat dogs and outside cats for ticks. <BasicPage.InnieLink to='/check'><span>Tick checks</span></BasicPage.InnieLink> can be performed on pets and veterinarians can assist you on deciding on the best preventatives for your pets.
                     </div>
                 </BasicPage.CardSpecial>
-            </BasicPage.OutlineCard>
-            <BasicPage.OutlineCard bgColor={theme.colors.ruTeal}>
+            </OutlineCard>
+            <OutlineCard bgColor={theme.colors.ruTeal}>
                 <BasicPage.CardSpecial>
                     
                     <div>
@@ -75,8 +76,8 @@ const Prevention = () => (
                         DEET is a synthetic chemical that blocks the ability for biting bugs to smell us.
                     </div>
                 </BasicPage.CardSpecial>
-            </BasicPage.OutlineCard>
-            <BasicPage.OutlineCard bgColor={theme.colors.ruTeal}>
+            </OutlineCard>
+            <OutlineCard bgColor={theme.colors.ruTeal}>
                 <BasicPage.CardSpecial>
                     
                     <div>
@@ -87,8 +88,8 @@ const Prevention = () => (
                     Picaridin is a synthetic compound that resembles that of the natural compound piperine or black pepper.
                     </div>
                 </BasicPage.CardSpecial>
-            </BasicPage.OutlineCard>
-            <BasicPage.OutlineCard bgColor={theme.colors.ruTeal}>
+            </OutlineCard>
+            <OutlineCard bgColor={theme.colors.ruTeal}>
                 <BasicPage.CardSpecial>
                     
                     <div>
@@ -96,8 +97,8 @@ const Prevention = () => (
                     What is IR3535?
                     </BasicPage.SectionSubtitle>IR3535 is a biopesticide that can be applied to people and pets. </div>
                 </BasicPage.CardSpecial>
-            </BasicPage.OutlineCard>
-            <BasicPage.OutlineCard bgColor={theme.colors.ruTeal}>
+            </OutlineCard>
+            <OutlineCard bgColor={theme.colors.ruTeal}>
                 <BasicPage.CardSpecial>
                     
                     <div>
@@ -107,7 +108,7 @@ const Prevention = () => (
                     Permethrin is an insecticide that can cause biting bugs to have severe reactions when ingested. This product should only be treated on clothes and can be toxic to cats.
                         </div>
                 </BasicPage.CardSpecial>
-            </BasicPage.OutlineCard>
+            </OutlineCard>
 
         </BasicPage.CardContainer>
     </BasicPage.Text>

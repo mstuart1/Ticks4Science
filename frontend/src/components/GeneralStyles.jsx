@@ -146,36 +146,34 @@ color: ${({ theme }) => theme.colors.ruTeal};
       transform: scale(0.98);
   }
     `,
-  OutlineCard: styled.div`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    border-radius: 1rem;
-    border: 2px solid ${({ bgColor }) => bgColor + 30 || 'grey'};
-    background-color: ${({ bgColor }) => bgColor + 20 || 'white'};
-    margin: 1rem;
-    `,
   Indent: styled.p`
     margin-left: 3em;
     `,
   ImageCont: styled.div`
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: center;
   figure {
+    display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
     margin: 2rem;
     img {
       max-width: 300px;
     }
     figcaption {
+      width: 300px;
       margin: 1rem;
       font-size: 1rem;
+      text-align: center;
+      caption-side: bottom;
       
     }
     // @media screen and (min-width: ${({ theme }) => theme.mobile}) {
     //   img {max-width: 600px;}
+    
     // }
   }
   `,

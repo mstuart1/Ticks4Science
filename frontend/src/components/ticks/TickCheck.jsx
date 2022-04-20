@@ -3,6 +3,7 @@ import React from 'react'
 import { BasicPage } from '../GeneralStyles'
 import styled from 'styled-components'
 import {theme} from '../../theme'
+import OutlineCard from '../ui/outlineCard/OutlineCard'
 
 
 const StepStyles = {
@@ -28,30 +29,30 @@ const TickCheck = () => {
            
             <BasicPage.CardContainer>
 
-                <BasicPage.OutlineCard bgColor={theme.colors.ruTeal}>
+                <OutlineCard bgColor={theme.colors.ruTeal}>
                     <StepStyles.CardSpecial>
                         <BasicPage.StepSpan>Inspection #1 - Clothing:</BasicPage.StepSpan>
                         <div>
                         Inspect your clothes before entering your home. Another measure is to tumble dry the clothes that were just being worn for 10-15 minutes.
                             </div>
                     </StepStyles.CardSpecial>
-                </BasicPage.OutlineCard>
-                <BasicPage.OutlineCard bgColor={theme.colors.ruTeal}>
+                </OutlineCard>
+                <OutlineCard bgColor={theme.colors.ruTeal}>
                     <StepStyles.CardSpecial>
                         <BasicPage.StepSpan> Inspection #2 - Skin:</BasicPage.StepSpan>
                         <div>
                         Ticks enjoy finding warm and dark places to hide, so skimming over the surface of your skin isn't enough. Places such as behind the ears, between toes and fingers, behind the knees, around the ankles, the groin, your hair, and even your belly button are important to look over.
                         </div>
                     </StepStyles.CardSpecial>
-                </BasicPage.OutlineCard>
-                <BasicPage.OutlineCard bgColor={theme.colors.ruTeal}>
+                </OutlineCard>
+                <OutlineCard bgColor={theme.colors.ruTeal}>
                     <StepStyles.CardSpecial>
                         <BasicPage.StepSpan>Inspection #3 - In the shower</BasicPage.StepSpan>
                         <div>
                         When you're taking a shower, this will give you another opportunity to thoroughly inspect your body for ticks, and it may even help wash off ticks that haven't attached yet.
                         </div>
                     </StepStyles.CardSpecial>
-                </BasicPage.OutlineCard>
+                </OutlineCard>
                
             </BasicPage.CardContainer>
             
