@@ -9,6 +9,7 @@ const Styles = {
 Container: styled.div`
 display: flex;
 flex-direction: column;
+cursor: pointer;
 `,
 UpperRight: styled.div`
 width: 100%;

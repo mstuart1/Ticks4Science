@@ -20,6 +20,20 @@ const TickPage = () => {
     })
   }, [id])
 
+console.log(data.refImgArray)
+
+
+let refImgElems = data.refImgArray?.length > 0 && data.refImgArray.map((img, i) => (
+    <BasicPage.ImageCont key={i}>
+          <figure>
+            <img src={img.source} alt='ticks' style={{ maxWidth: '350px' }} />
+            <figcaption>{img.caption}
+            </figcaption>
+          </figure>
+        </BasicPage.ImageCont>
+  ))
+
+  
   return (
     <BasicPage.Text>
       <BasicPage.Title>
@@ -35,7 +49,7 @@ const TickPage = () => {
       <BasicPage.SectionSubtitle>Shape:</BasicPage.SectionSubtitle>{data.shape}
       <BasicPage.SectionTitle>Hosts</BasicPage.SectionTitle>
       {data.hosts}
-
+{refImgElems}
       <BasicPage.SectionTitle>{data.larvaeFeed?.includes('people') && <FaStar color={theme.colors.ruYellow} />}Larvae</BasicPage.SectionTitle>
       {data.larvaeActive}<br />
       {data.larvaeFeed}
