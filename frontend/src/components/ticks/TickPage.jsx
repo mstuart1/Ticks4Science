@@ -63,7 +63,10 @@ let refImgElems = data.refImgArray?.length > 0 && data.refImgArray.map((img, i) 
       {data.habitat}
       <BasicPage.SectionTitle>Locations in NJ</BasicPage.SectionTitle>
       {data.njLocations}
-      <img src={data.mapImgUrl} alt='map of locations' style={{width: '80%'}}/><br/>
+      {data.mapImgUrl && (
+      <img src={data.mapImgUrl} alt='map of locations' style={{width: '80%'}}/>  
+      )}
+      <br/>
       <BasicPage.SectionTitle>A reminder about engorged ticks</BasicPage.SectionTitle>
       <p>Blood meals increase the tick's size drastically.  However, nymphs may become engorged and still go unnoticed because of their already hard to detect size.</p>
     </BasicPage.Text>
