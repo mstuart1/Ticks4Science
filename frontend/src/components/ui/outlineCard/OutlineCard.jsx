@@ -10,13 +10,16 @@ const Styles = {
     border-radius: 1rem;
     border: 2px solid ${({ bgColor }) => bgColor + 30 || 'grey'};
     background-color: ${({ bgColor }) => bgColor + 20 || 'white'};
-    margin: 1rem;
+    padding: ${({padding}) => padding}; 
+    margin: ${({margin}) => margin};
+    width: ${({width}) => width};
+    height: ${({height}) => height};
     `,
 }
 
-const OutlineCard = ({bgColor, children}) => {
+const OutlineCard = ({bgColor, width = '', height = '', padding = '2rem', margin='1rem', children}) => {
   return (
-    <Styles.OutlineCard bgColor={bgColor} >{children}</Styles.OutlineCard>
+    <Styles.OutlineCard bgColor={bgColor} width={width} height={height} padding={padding} margin={margin} >{children}</Styles.OutlineCard>
   )
 }
 
