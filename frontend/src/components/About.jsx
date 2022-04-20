@@ -2,6 +2,7 @@ import React from "react";
 import { BasicPage } from "./GeneralStyles";
 // import TickReportLink from "./ticks/TickReportLink";
 // import tickCircle from '../images/Image017.jpg'
+import tickIntro from '../images/slide 2.jpg'
 import styled from "styled-components";
 import InternalLinkFloatButton from "./ui/internalLinkFloatButton/InternalLinkFloatButton";
 import ExternalLinkFloatButton from "./ui/externalLinkFloatButton/ExternalLinkFloatButton";
@@ -60,7 +61,7 @@ const About = () => {
         </div>
         <BasicPage.ImageCont>
           <figure>
-            {/* <img src={tickCircle} alt='ticks' style={{ maxWidth: '350px' }} /> */}
+            <img src={tickIntro} alt='ticks' style={{ maxWidth: '350px', borderRadius: '5px' }} />
             <figcaption>Image provided by Andrea Egizi, PhD
             </figcaption>
           </figure>
@@ -70,7 +71,7 @@ const About = () => {
 
       <ExternalLinkFloatButton colors={{ text: theme.colors.ruTeal, shadow: theme.colors.ruTeal }} to='https://vectorbio.rutgers.edu/contact.php' text='Visit the Center for Vector Biology Website' />
 
-      <ExternalLinkFloatButton colors={{ text: 'black', shadow: '#000000', bg: theme.colors.ruYellow }} to='mailto:cvb@rutgers.edu' text='Contact Us' />
+      <ExternalLinkFloatButton colors={{ text: 'black', shadow: '#000000', bg: theme.colors.ruYellow }} to='mailto:cvb@rutgers.edu' text='Email Us' />
     </BasicPage.Text>
   );
 };
@@ -80,6 +81,7 @@ export default About;
 const Styles = {
   CenterCntr: styled.div`
   display: flex;
+  justify-content: center;
   @media screen and (min-width: 1366px) {
    width: 1000px;
   }
