@@ -1,40 +1,69 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { BasicPage } from '../GeneralStyles'
 import TickReportLink from './TickReportLink'
-import { ticks } from './ticks'
+// import { ticks } from './ticks'
 import {FaStar} from 'react-icons/fa'
 import styled from 'styled-components'
+import TickDataService from '../../services/ticks'
+import HoverCard from '../ui/hoverCard/HoverCard'
+import ImageCard from '../ui/imageCard/ImageCard'
+import scapularis from '../../images/slide 19.tif'
 
 const Icon = styled.span`
     color: ${({theme}) => theme.colors.main};
 `
 
 const Ticks = () => {
-    let peopleTicks = [11, 5, 1, 7]
-    let briefTicks = [2, 3, 4, 6, 8, 9, 10, 12]
 
-    let peopleTickElements = ticks.map(tick => {
-        if (peopleTicks.includes(tick.id)) {
-            return <li key={tick.id}><BasicPage.InnieLink to={tick.path}><span><Icon><FaStar/></Icon><i>{tick.title}</i>, {tick.common}</span></BasicPage.InnieLink><br /></li>
+    const [data, setData] = useState([])
+
+    useEffect(() => {
+        let getData = async () =>
+          await TickDataService.getAllTicks();
+
+        getData().then(response => {
+          console.log(response.data.data)
+          setData(response.data.data)
+        })
+      }, [])
+
+    //   console.log(data)
+
+    let peopleTicks = ['americanum', 'variabilis', 'longicornis', 'scapularis']
+    let dogTicks = ['sanguineus']
+    let briefTicks = ['maculatum', 'kelleyi', 'albipictus', 'leporispalustris', 'brunneus', 'cookei', 'dentatus', 'texanus']
+
+    let peopleTickElements = data.map(tick => {
+        if (peopleTicks.some(item => tick.scientific?.includes(item))) {
+            return <li key={tick.id}><BasicPage.InnieLink to={`/ticks/${tick.id}`}><span><Icon><FaStar/></Icon><i>{tick.scientific}</i>, {tick.common}</span></BasicPage.InnieLink><br /></li>
+        } else {
+            return null
+        }
+    })
+    let peopleCardElements = data.map(tick => {
+        if (peopleTicks.some(item => tick.scientific?.includes(item))) {
+            return <HoverCard>
+                {tick.scientific}
+            </HoverCard>
         } else {
             return null
         }
     })
 
-    let dogTickElements = ticks.map(tick => {
-        if (tick.id === 13) {
-            return <li key={tick.id}><BasicPage.InnieLink to={tick.path}><span><Icon><FaStar/></Icon><i>{tick.title}</i>, {tick.common}</span></BasicPage.InnieLink><br /></li>
+    let dogTickElements = data.map(tick => {
+        if (dogTicks.some(item => tick.scientific?.includes(item))) {
+            return <li key={tick.id}><BasicPage.InnieLink to={`/ticks/${tick.id}`}><span><Icon><FaStar/></Icon><i>{tick.scientific}</i>, {tick.common}</span></BasicPage.InnieLink><br /></li>
         } else {
             return null
         }
     })
 
-    let briefTickElements = ticks.map(tick => {
-        if (briefTicks.includes(tick.id)) {
-            if (tick.common.toLowerCase().includes('gulf coast tick') || tick.common.toLowerCase().includes('groundhog tick')) {
-                return <li key={tick.id}><BasicPage.InnieLink to={tick.path}><span><Icon><FaStar/></Icon><i>{tick.title}</i>, {tick.common}</span></BasicPage.InnieLink><br /></li>
+    let briefTickElements = data.map(tick => {
+        if (briefTicks.some(item => tick.scientific?.includes(item))) {
+            if (tick.common?.toLowerCase().includes('gulf coast tick') || tick.common?.toLowerCase().includes('groundhog tick')) {
+                return <li key={tick.id}><BasicPage.InnieLink to={`/ticks/${tick.id}`}><span><Icon><FaStar/></Icon><i>{tick.scientific}</i>, {tick.common}</span></BasicPage.InnieLink><br /></li>
             } else {
-                return <li key={tick.id}><BasicPage.InnieLink to={tick.path}><span><i>{tick.title}</i>, {tick.common}</span></BasicPage.InnieLink><br /></li>
+                return <li key={tick.id}><BasicPage.InnieLink to={`/ticks/${tick.id}`}><span><i>{tick.scientific}</i>, {tick.common}</span></BasicPage.InnieLink><br /></li>
             }
 
         } else {
@@ -49,6 +78,20 @@ const Ticks = () => {
             <BasicPage.Title>
                 Ticks of NJ
             </BasicPage.Title>
+            <div className="scrolling-wrapper" style={{overflowX: 'scroll',  overflowY: 'hidden', whiteSpace: 'nowrap'}}>
+  <div style={{display: 'inline-block'}} className="card"><h2>Card</h2></div>
+  <div style={{display: 'inline-block'}} className="card"><h2>Card</h2></div>
+  <div style={{display: 'inline-block'}} className="card"><h2>Card</h2></div>
+  <div style={{display: 'inline-block'}} className="card"><h2>Card</h2></div>
+  <div style={{display: 'inline-block'}} className="card"><h2>Card</h2></div>
+  <div style={{display: 'inline-block'}} className="card"><h2>Card</h2></div>
+  <div style={{display: 'inline-block'}} className="card"><h2>Card</h2></div>
+  <div style={{display: 'inline-block'}} className="card"><h2>Card</h2></div>
+  <div style={{display: 'inline-block'}} className="card"><h2>Card</h2></div>
+</div>
+           
+           
+           
             <p>As citizen scientists, familiarizing yourselves with the ticks you may come across in your day-to-day in New Jersey is essential. Each tick is unique, and not all are interested in people. However, it is important to recognize their similarities and differences and taking necessary <BasicPage.InnieLink to='/prevention'><span>Tick Preventions</span></BasicPage.InnieLink> when enjoying the outdoors and entering tick habitats.
             </p>
             <BasicPage.SectionSubtitle>
