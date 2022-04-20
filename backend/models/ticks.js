@@ -30,7 +30,7 @@ module.exports = (sequelize, DataTypes) => {
     adultFeed: DataTypes.STRING, 
     featureImgUrl: DataTypes.STRING, 
     mapImgUrl: DataTypes.STRING, 
-    refImgArray: DataTypes.TEXT, 
+    refImgArray: DataTypes.JSON, 
   }, {
     sequelize,
     modelName: 'ticks',
