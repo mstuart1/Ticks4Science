@@ -86,3 +86,42 @@ exports.getProgress = async (req, res, next) => {
   }
 }
 
+exports.getAllSubs = async (req, res, next) => {
+  console.log(`@@@@---getting all submissions---@@@@`);
+  try {
+    let foundSubs = await Subm.findAll({
+      include: [
+        {
+          model: db.ticks,
+          attributes: ['id', 'scientific', 'common']
+        },
+      
+      ]
+    })
+    res.json({record: foundSubs})
+  } catch (err) {
+    console.log(err.message)
+    next(err)
+  }
+}
+
+exports.updateSubm = async (req, res, next) => {
+
+  
+      console.log(`@@@@---update submission---@@@@`);
+      try {
+        let {id} = req.params
+        let data = req.body
+        console.log(data)
+        await Subm.update(data, {where: {id}})
+        let updatedTick = await Subm.findByPk(id)
+          console.log(updatedTick)
+          return res.json({record: updatedTick})
+      } catch (err) {
+        console.log(err.message)
+          next(err)
+      }
+    
+
+
+}
