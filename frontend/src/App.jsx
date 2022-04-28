@@ -31,6 +31,7 @@ import AddEditTick from './components/admin/AddEditTick';
 import ProcessTick from './components/admin/ProcessTick';
 import AllSubs from './components/admin/AllSubs';
 import AdminMgt from './components/admin/AdminMgt';
+import UpdateAccount from './components/admin/UpdateAccount';
 
 
 const App = () => {
@@ -63,6 +64,7 @@ const App = () => {
               <Route path='/ticks/:id' element={<TickPage />} />
               <Route path='/removal' element={<TickRemoval />} />
               <Route path='/notReady' element={<NotReady />} />
+              <Route path='/createAccount/:token' element={<UpdateAccount/>} />
               <Route path="/admin/*" element={<AdminMgt />} />
             </Routes>
 
