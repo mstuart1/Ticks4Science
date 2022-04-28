@@ -8,7 +8,10 @@ const UpdateAccount = () => {
     let {id, token} = useParams()
     let navigate = useNavigate()
 
+    console.log(token)
+
     const [data, setData] = useState()
+    const [okToGo, setOkToGo] = useState(true)
 
     useEffect (() => {
 
@@ -41,19 +44,23 @@ const UpdateAccount = () => {
         let info = evt.target;
         let value = info.type === "checkbox" ? info.checked : info.value;
         setData({ ...data, [info.name]: value });
+        setOkToGo(true)
     };
 
     const handleSubmit = async (evt) => {
         evt.preventDefault()
         if (token && !data.password) {
             alert('you must set a password')
+            setOkToGo(false)
         }
         if (data.password && data.password !== data.password2){
             alert('passwords do not match')
+            setOkToGo(false)
         }
-        console.log(`data`, data)
-        data.id && await UserDataService.updateUser(data)
-        navigate('/admin/allSubs')
+        console.log(okToGo)
+        let response = okToGo && await UserDataService.updateUser(data)
+        console.log(response)
+        response.status === 200 &&  navigate('/admin/allSubs')
 
 
     }

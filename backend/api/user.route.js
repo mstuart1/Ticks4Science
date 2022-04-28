@@ -6,7 +6,7 @@ module.exports = (app) => {
       .post("/", UserCtl.inviteUser)
     //   .get('/', TickCtl.getAllTicks)
       .get('/:id', UserCtl.getUser)
-      .get('/:token', UserCtl.getByToken)
+      .get('/byToken/:token', UserCtl.getByToken)
       .put('/', UserCtl.updateUser)
 
       app.use("/api/user", router);
