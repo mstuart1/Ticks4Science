@@ -115,10 +115,12 @@ Reminder: you must complete a new tick submission each time a tick is sent to NJ
               NJ Ticks for Science has identified the specimen as not to be a tick in the photo. We encourage you to continue participating in Ticks for Science by looking into <BasicPage.InnieLink><span>How to Identify a Tick</span></BasicPage.InnieLink> and send other Tick Submissions in the future. Thank you!
             </p>
           ) : (
+            <div>
+            <h3> {data.tick.common} - <i>{data.tick.scientific}</i></h3>
             <p>
-              {data.species}
-              {/* // TODO create a way to link to the identified tick */}
+              <BasicPage.InnieLink to={`/ticks/${data.tick.id}`}><span>View more about {data.tick.common} here</span></BasicPage.InnieLink>
             </p>
+            </div>
           )}      
     </div>
    )}
