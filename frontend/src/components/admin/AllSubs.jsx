@@ -75,6 +75,7 @@ const AllSubs = () => {
             <p>Specimen Requested: {item.specimenRequested&& item.specimenRequested.substring(0,10)}</p>
             <p>Specimen Received: {item.specimenReceived&& item.specimenReceived.substring(0,10)}</p>
             <p>Specimen Identified: {item.specimenIdentified&& item.specimenIdentified.substring(0,10)}</p>
+            <p>Species: {item.tickId && item.tick.scientific}</p>
             </div>
         </HoverCard>
         </Styles.Link>
