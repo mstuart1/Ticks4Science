@@ -24,6 +24,14 @@ const Styles = {
     text-decoration: none;
     color: black;
     `,
+    Card: styled.div`
+    margin: 1rem;
+    padding: 1rem ; 
+    width: 80vw;
+    max-width: 900px;
+    border-radius: 1rem;
+    box-shadow: 0 3px 15px ${({ shadowColor }) => shadowColor || '#000000'}20;
+    `,
 }
 // TODO instead of search bar, use filtering buttons to get all, need photo review, waiting to receive tick, waiting for identification, identified - search by species
 
@@ -55,10 +63,20 @@ const AllSubs = () => {
     // setQuery(value)
     // }
 
+    const handleInviteChange = (evt) => {
+      console.log(`invite is changing`)
+      let info = evt.target;
+      let value = info.type === "checkbox" ? info.checked : info.value;
+      setInput({ ...input, [info.name]: value });
+  };
+
     const handleUserInvite = async evt => {
       evt.preventDefault()
-      await UserDataService.inviteUser(input)
-      setInput({})
+      if (!input.email) {
+        alert('Please include an email')
+      }
+      input.email && await UserDataService.inviteUser(input)
+      setInput({})  
     }
 
       let filteredData = data.filter(item => {
@@ -89,7 +107,7 @@ const AllSubs = () => {
         </Styles.Link>
     ))
 
-    // console.log(cardElems)
+    console.log(input)
 
   return   (
     <BasicPage.Text>
@@ -102,13 +120,21 @@ const AllSubs = () => {
         ? (<div>Loading...</div>) 
         : (
         <div>
-          <BasicPage.Form onSubmit={handleUserInvite}>
-            <input type='email' name='email' value={input.email} placeholder='Invite a user' />
-            <label>Can this user invite other users?
-              <input type='checkbox' name='manageUsers' value={input.manageUsers}/>
+          <BasicPage.Form >
+            <Styles.Card>
+              <BasicPage.SectionTitle>Invite an Admin User</BasicPage.SectionTitle>
+              <div style={{display: "flex", flexDirection: 'row', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'center'}}>
+              <input type='email' name='email' value={input.email} placeholder='Email of new user'  style={{width: '80vh', maxWidth: '300px'}} onChange={(evt) => handleInviteChange(evt)} />
+            <label style={{margin: 0}}>Check box if this user can manage other users:
+              <input type='checkbox' name='manageUsers' value={input.manageUsers} onChange={(evt) => handleInviteChange(evt)} />
             </label>
-            <button type='submit'>Invite</button>
-            Check if user can invite users, if so add input field and submit button - submitting sends and email to the user inviting them to create an account.  Send an exipiration time in the email.
+            <button style={{width: '300px', padding: '1rem'}}  onClick={handleUserInvite}>Invite</button>
+              </div>
+            
+            
+            <p>Developers note: Check if user can invite users, if so show this card - submitting sends and email to the user inviting them to create an account.  Send an exipiration time in the email.</p>
+            </Styles.Card>
+            
 
           </BasicPage.Form>
           {cardElems}
