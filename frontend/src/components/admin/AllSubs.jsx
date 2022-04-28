@@ -39,7 +39,7 @@ const AllSubs = () => {
         }
         
         getData().then(response => {
-          console.log(response.data.record)
+          // console.log(response.data.record)
           setData(response.data.record)
           setIsLoading(false)
         })
@@ -70,17 +70,17 @@ const AllSubs = () => {
         <HoverCard >
             <div>
             <p>ID: {item.id}</p>
-            <p>Date Submitted: {item.createdAt.substring(0,10)}</p>
-            <p>Photos Reviewed: {item.photosReviewed}</p>
-            <p>Specimen Requested: {item.specimenRequested}</p>
-            <p>Specimen Received: {item.specimenReceived}</p>
-            <p>Specimen Identified: {item.specimenIdentified}</p>
+            <p>Date Submitted: {item.createdAt&& item.createdAt.substring(0,10)}</p>
+            <p>Photos Reviewed: {item.photosReviewed&& item.photosReviewed.substring(0,10)}</p>
+            <p>Specimen Requested: {item.specimenRequested&& item.specimenRequested.substring(0,10)}</p>
+            <p>Specimen Received: {item.specimenReceived&& item.specimenReceived.substring(0,10)}</p>
+            <p>Specimen Identified: {item.specimenIdentified&& item.specimenIdentified.substring(0,10)}</p>
             </div>
         </HoverCard>
         </Styles.Link>
     ))
 
-    console.log(cardElems)
+    // console.log(cardElems)
 
   return   (
     <BasicPage.Text>
