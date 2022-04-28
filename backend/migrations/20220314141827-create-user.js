@@ -20,6 +20,12 @@ module.exports = {
       password: {
         type: Sequelize.STRING
       },
+      manageUsers: {
+        type: Sequelize.BOOLEAN
+      },
+      resetToken: {
+        type: Sequelize.STRING
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,

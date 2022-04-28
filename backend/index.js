@@ -24,6 +24,7 @@ app.use(cors(corsOptions));
 
 require("./api/submission.route")(app);
 require("./api/tick.route")(app);
+require("./api/user.route")(app);
 
 app.get('/', (req, res) => {
   res.send(`The server is working: ${new Date()}`)
