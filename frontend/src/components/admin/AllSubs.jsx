@@ -4,6 +4,7 @@ import { BasicPage } from "../GeneralStyles";
 import SubmissionDataService from '../../services/submission'
 import HoverCard from '../ui/hoverCard/HoverCard'
 import styled from "styled-components";
+import UserDataService from '../../services/users'
 // import { getOrgDataRequest } from "./actions";
 // import { PageContainer} from '../styles/Common.styled'
 // import { useDispatch, useSelector } from "react-redux";
@@ -31,6 +32,7 @@ const AllSubs = () => {
     const [data, setData] = useState([])
     const [isLoading, setIsLoading] = useState(false);
     const [query, setQuery] = useState('');
+    const [input, setInput] = useState({});
 
     useEffect(() => {
         let getData = async () => {
@@ -52,6 +54,12 @@ const AllSubs = () => {
     // // console.log(value)
     // setQuery(value)
     // }
+
+    const handleUserInvite = async evt => {
+      evt.preventDefault()
+      await UserDataService.inviteUser(input)
+      setInput({})
+    }
 
       let filteredData = data.filter(item => {
       
@@ -93,7 +101,18 @@ const AllSubs = () => {
         {isLoading 
         ? (<div>Loading...</div>) 
         : (
-        <div>{cardElems}</div>
+        <div>
+          <BasicPage.Form onSubmit={handleUserInvite}>
+            <input type='email' name='email' value={input.email} placeholder='Invite a user' />
+            <label>Can this user invite other users?
+              <input type='checkbox' name='manageUsers' value={input.manageUsers}/>
+            </label>
+            <button type='submit'>Invite</button>
+            Check if user can invite users, if so add input field and submit button - submitting sends and email to the user inviting them to create an account.  Send an exipiration time in the email.
+
+          </BasicPage.Form>
+          {cardElems}
+          </div>
             
         
         )}

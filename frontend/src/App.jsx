@@ -30,6 +30,7 @@ import Login from './components/admin/Login';
 import AddEditTick from './components/admin/AddEditTick';
 import ProcessTick from './components/admin/ProcessTick';
 import AllSubs from './components/admin/AllSubs';
+import AdminMgt from './components/admin/AdminMgt';
 
 
 const App = () => {
@@ -47,34 +48,22 @@ const App = () => {
               <Route path='/steps' element={<Steps />} />
               <Route path='/ticks' element={<Ticks />} />
               <Route path='/checkMenu' element={<TickCheckMenu />} />
-
+              
               <Route path='/tickOrInsect' element={<TickOrInsect />} />
               <Route path='/photo' element={<Photo />} />
               <Route path='/preSurvey' element={<PreSurvey />} />
               <Route path='/survey' element={<Survey />} />
               <Route path='/thanks' element={<ThankYou />} />
               <Route path='/progress' element={<TickProgressInput buttonColors={{text: theme.colors.ruTeal, bg: 'white', shadow: theme.colors.ruTeal}} />} />
-
-              {/* <Route path='/progress' element={<BasicPage.Text><div><h3>A place for people to enter their ID number</h3> </div> */}
-                {/* <BasicPage.InnieLink to='/progress/1'><span>Click here for an example progress page</span></BasicPage.InnieLink></BasicPage.Text>} /> */}
               <Route path='/progress/:id' element={<TickProgress />} />
-
               <Route path='/check' element={<TickCheck />} />
               <Route path='/prevention' element={<Prevention />} />
               <Route path='/disease' element={<Diseases />} />
-
-
-
-
               <Route path='/identify' element={<Identify />} />
               <Route path='/ticks/:id' element={<TickPage />} />
               <Route path='/removal' element={<TickRemoval />} />
               <Route path='/notReady' element={<NotReady />} />
-              <Route path='/admin/login' element={<Login/>} />
-              <Route path='/admin/addEditTick' element={<AddEditTick/>} />
-              <Route path='/admin/addEditTick/:id' element={<AddEditTick/>} />
-              <Route path='/admin/processTick/:id' element={<ProcessTick/>} />
-              <Route path='/admin/allSubs' element={<AllSubs/>} />
+              <Route path="/admin/*" element={<AdminMgt />} />
             </Routes>
 
           </Styles.PageContainer>
