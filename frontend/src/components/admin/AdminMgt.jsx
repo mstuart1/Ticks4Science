@@ -4,6 +4,7 @@ import AddEditTick from "./AddEditTick";
 import AllSubs from "./AllSubs";
 import Login from "./Login";
 import ProcessTick from "./ProcessTick";
+import UpdateAccount from "./UpdateAccount";
 
 const AdminMgt = () => {
 
@@ -30,6 +31,10 @@ const AdminMgt = () => {
                 <Route path='/addEditTick/:id' element={<AddEditTick />} />
                 <Route path='/processTick/:id' element={<ProcessTick />} />
                 <Route path='/allSubs' element={<AllSubs />} />
+                <Route path='/account/:id' element={<UpdateAccount/>} />
+                <Route path='/account/:id' element={<UpdateAccount/>} />
+                
+
             </Routes>
     )
 }
