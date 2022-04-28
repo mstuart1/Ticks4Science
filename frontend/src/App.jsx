@@ -28,6 +28,8 @@ import TickProgress from './components/ticks/TickProgress';
 import TickProgressInput from './components/ticks/TickProgressInput';
 import Login from './components/admin/Login';
 import AddEditTick from './components/admin/AddEditTick';
+import ProcessTick from './components/admin/ProcessTick';
+import AllSubs from './components/admin/AllSubs';
 
 
 const App = () => {
@@ -71,6 +73,8 @@ const App = () => {
               <Route path='/admin/login' element={<Login/>} />
               <Route path='/admin/addEditTick' element={<AddEditTick/>} />
               <Route path='/admin/addEditTick/:id' element={<AddEditTick/>} />
+              <Route path='/admin/processTick/:id' element={<ProcessTick/>} />
+              <Route path='/admin/allSubs' element={<AllSubs/>} />
             </Routes>
 
           </Styles.PageContainer>
