@@ -12,13 +12,15 @@ class UserDataService {
     loginUser(data){
         return http.put(`/api/user/login`, data)
     }
-    // getTick(id) {
-    //     return http.get(`/api/tick/${id}`)
-    // }
-    // getAllTicks() {
-    //     // console.log(`getting all ticks`)
-    //     return http.get(`/api/tick`)
-    // }
+    getUser(id) {
+        return http.get(`/api/user/${id}`)
+    }
+    getByToken(token) {
+        return http.get(`/api/user/byToken/${token}`)
+    }
+   updateUser(data){
+       return http.put(`/api/user`, data)
+   }
     
 }
 
