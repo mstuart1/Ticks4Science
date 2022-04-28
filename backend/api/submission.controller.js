@@ -75,7 +75,15 @@ exports.getProgress = async (req, res, next) => {
   console.log(`@@@@---getting progress of ${req.params.id}---@@@@`);
   try {
     let {id} = req.params
-    let foundRecord = await Subm.findByPk(id)
+    let foundRecord = await Subm.findByPk(id, {
+      include: [
+        {
+          model: db.ticks,
+          attributes: ['id', 'scientific', 'common']
+        },
+      
+      ]
+    })
     
     res.json({record: foundRecord})
       
@@ -107,16 +115,24 @@ exports.getAllSubs = async (req, res, next) => {
 }
 
 exports.updateSubm = async (req, res, next) => {
-
-  
-      console.log(`@@@@---update submission---@@@@`);
+  console.log(`@@@@---update submission: ${JSON.stringify(req.body, null, 1)}---@@@@`);
       try {
         let {id} = req.params
         let data = req.body
-        // console.log(data)
+        console.log(id)
         await Subm.update(data, {where: {id}})
-        let updatedTick = await Subm.findByPk(id)
-          // console.log(updatedTick)
+        let updatedTick = await Subm.findByPk(id, {
+          include: [
+            {
+              model: db.ticks,
+              attributes: ['id', 'scientific', 'common']
+            },
+          
+          ]
+        })
+          if (updatedTick === null) {
+            throw new Error(`tick ${id} not found`)
+          }
           return res.json({record: updatedTick})
       } catch (err) {
         console.log(err.message)
