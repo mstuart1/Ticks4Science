@@ -98,6 +98,7 @@ exports.getAllSubs = async (req, res, next) => {
       
       ]
     })
+    // console.log(JSON.stringify(foundSubs, null, 1))
     res.json({record: foundSubs})
   } catch (err) {
     console.log(err.message)
@@ -112,10 +113,10 @@ exports.updateSubm = async (req, res, next) => {
       try {
         let {id} = req.params
         let data = req.body
-        console.log(data)
+        // console.log(data)
         await Subm.update(data, {where: {id}})
         let updatedTick = await Subm.findByPk(id)
-          console.log(updatedTick)
+          // console.log(updatedTick)
           return res.json({record: updatedTick})
       } catch (err) {
         console.log(err.message)
