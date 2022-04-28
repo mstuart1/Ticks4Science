@@ -85,7 +85,7 @@ const ProcessTick = () => {
       // console.log(response.data)
       setTick(prevState => ({...response.data.record}))
     })
-  }, [])
+  }, [id])
 
   // useEffect(()=> {
     // console.log(`identified: `, identified)
