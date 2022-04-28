@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useLocation } from 'react-router-dom'
 import { BasicPage } from '../GeneralStyles';
 import HoverCard from '../ui/hoverCard/HoverCard';
@@ -7,7 +7,7 @@ import SubmissionDataService from '../../services/submission'
 
 // TODO create a way for staff to input photo review info
 // TODO create a way to delete photos
-
+// TODO change checkboxes to buttons
 const Styles = {
   Container: styled.div`
 display: flex;
@@ -61,9 +61,16 @@ font-weight: bold;
 const ProcessTick = () => {
   let location = useLocation();
 
+  
+
   const [photoReview, setPhotoReview] = useState(false);
   const [request, setRequest] = useState(false)
-  const [tick, setTick] = useState(location.state.tick);
+  const [received, setReceived] = useState(false);
+  const [tick, setTick] = useState({});
+
+  useEffect(() => {
+    setTick(location.state.tick)
+  }, [location.state.tick])
 
   
   const handlePhotoReview = async (id, evt) => {
@@ -74,8 +81,8 @@ const ProcessTick = () => {
       
       let updatedTick =  await SubmissionDataService.updateSub(data, id);
       console.log(updatedTick)
-      return setTick(updatedTick.data.record)
-
+       setTick(updatedTick.data.record)
+       return window.location.reload()
     }
     else return
   }
@@ -88,27 +95,46 @@ const ProcessTick = () => {
       
       let updatedTick =  await SubmissionDataService.updateSub(data, id);
       console.log(updatedTick)
-      return setTick(updatedTick.data.record)
+      setTick(updatedTick.data.record)
+       return window.location.reload()
 
     }
     else return
   }
 
-  // console.log(tick)
+  const handleReceived = async (id, evt) => {
+    let {value} = evt.target
+    setReceived(value)
+    if (value){
+      let data = {specimenReceived: new Date()}
+      
+      let updatedTick =  await SubmissionDataService.updateSub(data, id);
+      console.log(updatedTick.data.record)
+      setTick(updatedTick.data.record)
+       return window.location.reload()
 
-  return (
+    }
+    else return
+  }
+
+  console.log(`tick`, tick.specimenReceived)
+
+  return tick.id ?  (
     <BasicPage.Text>
+      <p>Developers Note: based on emails, it looks like Dina plans to request all ticks be sent in, the photo review is to make sure it is a tick, not to identify it.  With this info I made the flow of information follow the path that if the photos have been reviewed, the specimen requested button appears or not a tick button, if the specimen has been requested, the submission received button appears, if the specimen has been recieved, the speicies buttons appear to choose the identification.</p>
       <div style={{ display: 'flex', flexWrap: 'wrap' }}>
         <HoverCard >
           <div style={{ margin: '1rem', padding: '1rem' }}>
             <h2 >Status Info</h2>
             <p>ID: {tick.id}</p>
             <p>Date Submitted: {tick.createdAt.substring(0, 10)}</p>
-            <p>Photos Reviewed: {tick.photosReviewed ? tick.photosReviewed.substring(0, 10) : <input type='checkbox' value={photoReview} onChange={(evt) => handlePhotoReview(tick.id, evt)} />}</p>
-            <p>Specimen Requested: {tick.specimenRequested ? tick.specimenRequested.substring(0, 10) : <input type='checkbox' value={request} onChange={(evt) => handleRequest(tick.id, evt)} />}</p>
-            <p>Specimen Received: {tick.specimenReceived}</p>
+            <p>Photos Reviewed: {tick.photosReviewed ? tick.photosReviewed.substring(0, 10) : <CheckboxInput value={photoReview} handleChange={handlePhotoReview} id={tick.id}  />}</p>
+            {(tick.photosReviewed && !tick.specimenRequested) && <p>Not a tick Button here</p> }
+            {(!tick.tickId && tick.photosReviewed) && <p>Specimen Requested: {tick.specimenRequested ? tick.specimenRequested.substring(0, 10) : <CheckboxInput value={request} handleChange={handleRequest} id={tick.id} />}</p>}
+            {tick.specimenRequested && <p>Specimen Received: {tick.specimenReceived  ? tick.specimenReceived.substring(0, 10) : <CheckboxInput value={received} handleChange={handleReceived} id={tick.id} />}</p>}
             <p>Specimen Identified: {tick.specimenIdentified}</p>
-            <o>Species: {tick.tickId}</o>
+            {tick.photosReviewed && <p>Species: {tick.tickId}</p>}
+            </div>
         </HoverCard>
         <HoverCard >
           <div style={{ margin: '1rem', padding: '1rem' }}>
@@ -156,7 +182,7 @@ const ProcessTick = () => {
         </HoverCard>
       </div>
     </BasicPage.Text>
-  )
+  ) : (<div>Loading...</div>)
 }
 
 export default ProcessTick
@@ -166,4 +192,12 @@ const ImageCard = ({ imageUrl }) => (
     <Styles.HoverCard tickImage={imageUrl} width={'20rem'} height={'20rem'}>
     </Styles.HoverCard>
   </Styles.Container>
+)
+
+const CheckboxInput = ({value, handleChange, id}) => (
+  <input type='checkbox' value={value} onChange={(evt) => handleChange(id, evt)} />
+)
+
+const ButtonInput = () => (
+  <div>Button code goes here</div>
 )
