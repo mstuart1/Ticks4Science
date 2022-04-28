@@ -6,18 +6,18 @@ import { theme } from '../../../theme'
 import { useNavigate } from 'react-router-dom'
 
 const Styles = {
-Container: styled.div`
+    Container: styled.div`
 display: flex;
 flex-direction: column;
 cursor: pointer;
 `,
-UpperRight: styled.div`
+    UpperRight: styled.div`
 width: 100%;
 display: flex;
 justify-content: flex-end;
 margin-right: 1rem;
 `,
-Content: styled.div`
+    Content: styled.div`
 height: 100%;
 width: 100%;
 display: flex;
@@ -27,7 +27,7 @@ justify-content: flex-end;
 white-space: pre-wrap;
 font-weight: bold;
 `,
-HoverCard: styled.div`
+    HoverCard: styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -35,14 +35,14 @@ HoverCard: styled.div`
 
     
 
-    width: ${({width}) => width}; 
-    height: ${({height}) => height}; 
+    width: ${({ width }) => width}; 
+    height: ${({ height }) => height}; 
 
     border-radius: 1rem;
     box-shadow: 0 3px 15px ${({ shadowColor }) => shadowColor || '#000000'}20;
     margin: 1rem;
     background-image: 
-    linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.8)), url('${({tickImage}) => tickImage}');
+    linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.8)), url('${({ tickImage }) => tickImage}');
     background-repeat: no-repeat;
     background-size: cover;
     color: white;
@@ -54,23 +54,23 @@ HoverCard: styled.div`
 
 }
 
-const TickCard = ({tick}) => {
+const TickCard = ({ tick }) => {
     const navigate = useNavigate();
 
-    console.log(tick.peopleTick ? 'flex' : 'none')
-  return (
-      <Styles.Container onClick={() => navigate(`/ticks/${tick.id}`)} >
-          <Styles.HoverCard tickImage={tick.featureImgUrl} width={'20rem'} height={'20rem'}> 
-<Styles.UpperRight>
-        <CircleButton active={tick.peopleTick} sizePx='20px' colors={{bg: theme.colors.grey0}} icon={<FaStar color={theme.colors.ruYellow}/>} />
-        </Styles.UpperRight>
-        <Styles.Content >
-            <span><i>{tick.scientific}</i></span>
-            <span>{tick.common}</span>
-        </Styles.Content>
-        </Styles.HoverCard>
-    </Styles.Container>
-  )
+    // console.log(tick.peopleTick ? 'flex' : 'none')
+    return (
+        <Styles.Container onClick={() => navigate(`/ticks/${tick.id}`)} >
+            <Styles.HoverCard tickImage={tick.featureImgUrl} width={'20rem'} height={'20rem'}>
+                <Styles.UpperRight>
+                    <CircleButton active={tick.peopleTick} sizePx='20px' colors={{ bg: theme.colors.grey0 }} icon={<FaStar color={theme.colors.ruYellow} />} />
+                </Styles.UpperRight>
+                <Styles.Content >
+                    <span><i>{tick.scientific}</i></span>
+                    <span>{tick.common}</span>
+                </Styles.Content>
+            </Styles.HoverCard>
+        </Styles.Container>
+    )
 }
 
 export default TickCard
