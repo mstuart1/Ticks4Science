@@ -4,6 +4,8 @@ import { BasicPage } from '../GeneralStyles';
 import styled from 'styled-components';
 import SubmissionDataService from '../../services/submission'
 import TickDataService from '../../services/ticks'
+import InternalLinkFloatButton from '../ui/internalLinkFloatButton/InternalLinkFloatButton'
+import {theme} from '../../theme'
 
 
 // TODO create a way for staff to input photo review info
@@ -170,6 +172,7 @@ const ProcessTick = () => {
     <BasicPage.Text>
       {/* <p>Developers Note: based on emails, it looks like Dina plans to request all ticks be sent in, the photo review is to make sure it is a tick, not to identify it.  With this info I made the flow of information follow the path that if the photos have been reviewed, the specimen requested button appears or not a tick button, if the specimen has been requested, the submission received button appears, if the specimen has been recieved, the speicies buttons appear to choose the identification.</p> */}
       <div style={{ display: 'flex', flexWrap: 'wrap'}}>
+      <InternalLinkFloatButton colors={{ text: theme.colors.ruTeal, shadow: theme.colors.ruTeal }} to='/admin/allSubs' text='Back to All Submissions' />
         <Styles.CardCont >
           
             <h2 >Status Info</h2>
@@ -268,10 +271,8 @@ const ProcessTick = () => {
             {/* {tick.tickId ? : <p>placeholder</p>} */}
            
           </Styles.CardCont>
-        
-          <Styles.CardCont><p>Click on the photo to view full size</p>
-          {/* <p>Click the X to remove photo from server forever. This is a good idea if it is not a tick to save server space.</p> */}
-        </Styles.CardCont>
+          <p>Click on the photo to view full size</p>
+          
         <a href={tick.photoFrontUrl} target="_blank" rel="noreferrer"> <ImageCard imageUrl={tick.photoFrontUrl} /></a>
         <a href={tick.photoBackUrl} target="_blank" rel="noreferrer"> <ImageCard imageUrl={tick.photoBackUrl} /></a>
         {tick.photoOtherUrl && <a href={tick.photoOtherUrl} target="_blank" rel="noreferrer"> <ImageCard imageUrl={tick.photoOtherUrl} /></a>}
@@ -315,6 +316,7 @@ const ProcessTick = () => {
             <p>Zip Code: {tick.userZip.toString().padStart(5, "0")}</p>
           </div>
         </Styles.CardCont>
+        <InternalLinkFloatButton colors={{ text: theme.colors.ruTeal, shadow: theme.colors.ruTeal }} to='/admin/allSubs' text='Back to All Submissions' />
       </div>
     </BasicPage.Text>
   ) 
