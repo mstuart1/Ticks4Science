@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from 'react'
-import { useLocation } from 'react-router-dom'
+import {  useParams } from 'react-router-dom'
 import { BasicPage } from '../GeneralStyles';
-import HoverCard from '../ui/hoverCard/HoverCard';
 import styled from 'styled-components';
 import SubmissionDataService from '../../services/submission'
+import TickDataService from '../../services/ticks'
+
 
 // TODO create a way for staff to input photo review info
 // TODO create a way to delete photos
-// TODO change checkboxes to buttons
+
 const Styles = {
   Container: styled.div`
 display: flex;
@@ -55,88 +56,227 @@ font-weight: bold;
       transform: scale(0.98);
 }
   `,
-
+CardCont: styled.div`
+margin: 1rem;
+ padding: 1rem ; 
+width: 80vw;
+ max-width: 900px;
+ border-radius: 1rem;
+ box-shadow: 0 3px 15px ${({ shadowColor }) => shadowColor || '#000000'}20;
+`,
 }
 
 const ProcessTick = () => {
-  let location = useLocation();
-
-  
+  let {id} = useParams()
 
   const [photoReview, setPhotoReview] = useState(false);
   const [request, setRequest] = useState(false)
   const [received, setReceived] = useState(false);
   const [tick, setTick] = useState({});
+  const [tickSpp, setTickSpp] = useState([]);
+  const [identified, setIdentified] = useState()
 
   useEffect(() => {
-    setTick(location.state.tick)
-  }, [location.state.tick])
+    let getTick = async () => await SubmissionDataService.getProgress(id)
 
-  
-  const handlePhotoReview = async (id, evt) => {
-    let {value} = evt.target
+    getTick().then(response => {
+      // console.log(response.data)
+      setTick(prevState => ({...response.data.record}))
+    })
+  }, [])
+
+  // useEffect(()=> {
+    // console.log(`identified: `, identified)
+  // }, [identified])
+
+  useEffect(() => {
+    let getData = async () =>
+      await TickDataService.getAllTicks();
+
+    getData().then(response => {
+      // console.log(response.data.data)
+      // adding in the not a tick option - this is not included in the db so it doesn't screw up the tick list on other pages
+      setTickSpp(prevState => [ ...response.data.data])
+
+    })
+  }, [])
+
+  const notATick = tickSpp.filter(tick => tick.scientific === 'Not A Tick')[0]
+
+
+  const handlePhotoReview = (id, evt) => {
+    // console.log(evt)
+    let { value } = evt.target
     setPhotoReview(value)
-    if (value){
-      let data = {photosReviewed: new Date()}
-      
-      let updatedTick =  await SubmissionDataService.updateSub(data, id);
-      console.log(updatedTick)
-       setTick(updatedTick.data.record)
-       return window.location.reload()
+    if (value) {
+      let data = { photosReviewed: new Date() }
+
+      return updateSub(data, id)
+
     }
     else return
   }
 
-  const handleRequest = async (id, evt) => {
-    let {value} = evt.target
+  const handleRequest = (id, evt) => {
+    let { value } = evt.target
     setRequest(value)
-    if (value){
-      let data = {specimenRequested: new Date()}
-      
-      let updatedTick =  await SubmissionDataService.updateSub(data, id);
-      console.log(updatedTick)
-      setTick(updatedTick.data.record)
-       return window.location.reload()
+    if (value) {
+      let data = { specimenRequested: new Date() }
+
+      return updateSub(data, id)
 
     }
     else return
   }
 
-  const handleReceived = async (id, evt) => {
-    let {value} = evt.target
+  const handleReceived = (id, evt) => {
+    let { value } = evt.target
     setReceived(value)
-    if (value){
-      let data = {specimenReceived: new Date()}
-      
-      let updatedTick =  await SubmissionDataService.updateSub(data, id);
-      console.log(updatedTick.data.record)
-      setTick(updatedTick.data.record)
-       return window.location.reload()
+    if (value) {
+      let data = { specimenReceived: new Date() }
+
+      return updateSub(data, id)
 
     }
     else return
   }
 
-  console.log(`tick`, tick.specimenReceived)
+  const handleIdentified = (id, evt) => {
+    let { value } = evt.target
+    setIdentified(value)
+     // asynchronous so identified not updated yet
+    if (value) {
+      let data = { specimenIdentified: new Date(), tickId: value }
 
-  return tick.id ?  (
+      return updateSub(data, id)
+
+    }
+    else return
+  }
+
+  const updateSub = async (data, id) => {
+    let response = await SubmissionDataService.updateSub(data, id);
+    let updatedTick = response.data.record
+
+    setTick(prevState => ({ ...prevState, ...updatedTick }))
+  }
+
+
+  // console.log(`tick`, tick)
+  
+
+  return (tick.id) 
+  ? (
     <BasicPage.Text>
-      <p>Developers Note: based on emails, it looks like Dina plans to request all ticks be sent in, the photo review is to make sure it is a tick, not to identify it.  With this info I made the flow of information follow the path that if the photos have been reviewed, the specimen requested button appears or not a tick button, if the specimen has been requested, the submission received button appears, if the specimen has been recieved, the speicies buttons appear to choose the identification.</p>
-      <div style={{ display: 'flex', flexWrap: 'wrap' }}>
-        <HoverCard >
-          <div style={{ margin: '1rem', padding: '1rem' }}>
+      {/* <p>Developers Note: based on emails, it looks like Dina plans to request all ticks be sent in, the photo review is to make sure it is a tick, not to identify it.  With this info I made the flow of information follow the path that if the photos have been reviewed, the specimen requested button appears or not a tick button, if the specimen has been requested, the submission received button appears, if the specimen has been recieved, the speicies buttons appear to choose the identification.</p> */}
+      <div style={{ display: 'flex', flexWrap: 'wrap'}}>
+        <Styles.CardCont >
+          
             <h2 >Status Info</h2>
             <p>ID: {tick.id}</p>
             <p>Date Submitted: {tick.createdAt.substring(0, 10)}</p>
-            <p>Photos Reviewed: {tick.photosReviewed ? tick.photosReviewed.substring(0, 10) : <CheckboxInput value={photoReview} handleChange={handlePhotoReview} id={tick.id}  />}</p>
-            {(tick.photosReviewed && !tick.specimenRequested) && <p>Not a tick Button here</p> }
-            {(!tick.tickId && tick.photosReviewed) && <p>Specimen Requested: {tick.specimenRequested ? tick.specimenRequested.substring(0, 10) : <CheckboxInput value={request} handleChange={handleRequest} id={tick.id} />}</p>}
-            {tick.specimenRequested && <p>Specimen Received: {tick.specimenReceived  ? tick.specimenReceived.substring(0, 10) : <CheckboxInput value={received} handleChange={handleReceived} id={tick.id} />}</p>}
-            <p>Specimen Identified: {tick.specimenIdentified}</p>
-            {tick.photosReviewed && <p>Species: {tick.tickId}</p>}
-            </div>
-        </HoverCard>
-        <HoverCard >
+
+{/* Photo Review button or status */}
+            {tick.photosReviewed
+              ? <p>Photos Reviewed: {tick.photosReviewed.substring(0, 10)} </p>
+              :
+              ( 
+                <BasicPage.RadioButtons>
+                <input
+                  // key={`not-a-tick-1`}
+                  type='radio'
+                  // name={'tickId'}
+                  value={photoReview}
+                  checked={photoReview === 0}
+                  id={'photoReview'}
+                  onChange={(evt) => handlePhotoReview(tick.id, evt)}
+                />
+                <label htmlFor={`photoReview`}>Photos have been reviewed</label>
+              </BasicPage.RadioButtons>
+              )
+            }
+{/* Speciment request button/status or not a tick */}
+            {tick.photosReviewed && (tick.specimenRequested 
+            ?<p>Specimen Requested: {tick.specimenRequested.substring(0, 10)}</p>
+              
+              : !tick.tickId && ( <BasicPage.RadioButtons>
+                
+              <input
+                // key={`not-a-tick-1`}
+                type='radio'
+                value={notATick.id}
+                checked={identified === notATick.id}
+                id={'tickId'}
+                onChange={(evt) => handleIdentified(tick.id, evt)}
+              />
+              <label htmlFor={`tickId`}>Not A Tick</label>
+
+              <input
+                // key={`not-a-tick-1`}
+                type='radio'
+                name={'request'}
+                value={request}
+                checked={request === 0}
+                id={'request'}
+                onChange={(evt) => handleRequest(tick.id, evt)}
+              />
+              <label htmlFor={`request`}>Request Specimen</label>
+            </BasicPage.RadioButtons> )
+              )}
+              
+           {/* Specimen recieved button or status */}
+           {tick.specimenRequested && (tick.specimenReceived 
+            ?<p>Specimen Received: {tick.specimenReceived.substring(0, 10)}</p>
+              
+              : ( <BasicPage.RadioButtons>
+                <input
+                type='radio'
+                name={'received'}
+                value={received}
+                checked={received === 0}
+                id={'received'}
+                onChange={(evt) => handleReceived(tick.id, evt)}
+              />
+              <label htmlFor={`received`}>Received Specimen</label>
+            </BasicPage.RadioButtons> )
+              )}
+
+{/* Speciment identified button or status */}
+              {tick.tickId 
+            ?  <> <p>Specimen Identified: {tick.specimenIdentified.substring(0,10)}</p> <p>Species: {tick.tick.scientific}</p></>
+              
+              : ((tick.specimenReceived && !tick.tickId) && 
+                tickSpp.map(item => (
+                <BasicPage.RadioButtons key={item.id}>
+
+                <input
+                type='radio'
+                value={item.id}
+                checked={identified == item.id}
+                id={`identified-${item.id}`}
+                onChange={(evt) => handleIdentified(tick.id, evt)}
+                // onChange={(evt) => console.log('clicked button')}
+              />
+              <label htmlFor={`identified-${item.id}`}>{item.scientific}</label>
+            </BasicPage.RadioButtons>
+              ))
+              )
+              }
+
+
+
+            {/* {tick.tickId ? : <p>placeholder</p>} */}
+           
+          </Styles.CardCont>
+        
+          <Styles.CardCont><p>Click on the photo to view full size</p>
+          {/* <p>Click the X to remove photo from server forever. This is a good idea if it is not a tick to save server space.</p> */}
+        </Styles.CardCont>
+        <a href={tick.photoFrontUrl} target="_blank" rel="noreferrer"> <ImageCard imageUrl={tick.photoFrontUrl} /></a>
+        <a href={tick.photoBackUrl} target="_blank" rel="noreferrer"> <ImageCard imageUrl={tick.photoBackUrl} /></a>
+        {tick.photoOtherUrl && <a href={tick.photoOtherUrl} target="_blank" rel="noreferrer"> <ImageCard imageUrl={tick.photoOtherUrl} /></a>}
+
+        <Styles.CardCont >
           <div style={{ margin: '1rem', padding: '1rem' }}>
             <h2>Tick Found</h2>
             <p>Date Tick Found: {tick.dateTickFound}</p>
@@ -146,12 +286,12 @@ const ProcessTick = () => {
             <p>Location Found: {tick.locationDesc} </p>
             {tick.locationDescOther && <p>Found  Other: {tick.locationDescOther}</p>}
             <p>Municipality: {tick.tickMuni}</p>
-            <p>Zip Code: {tick.tickZip}</p>
+            <p>Zip Code: {tick.tickZip.toString().padStart(5, "0")}</p>
             <p>Activities: {tick.activities} </p>
           </div>
-        </HoverCard>
+        </Styles.CardCont>
         {tick.tickAttached && (
-          <HoverCard >
+          <Styles.CardCont >
             <div style={{ margin: '1rem', padding: '1rem' }}>
               <h2>Tick Attached</h2>
               <p>Tick Attached: {tick.tickAttached}</p>
@@ -160,29 +300,25 @@ const ProcessTick = () => {
               <p>Person Bitten: {tick.personBitten}</p>
               <p>Submitter Bitten: {tick.submitterBitten}</p>
               {!tick.submitterBitten && <p>Bitten Municipality: {tick.bittenMuni}</p>}
-              {!tick.submitterBitten && <p>Bitten Zip Code: {tick.bittenZip}</p>}
+              {!tick.submitterBitten && <p>Bitten Zip Code: {tick.bittenZip.toString().padStart(5, "0")}</p>}
               <p>Bitten Traveled: {tick.bittenTraveledDom} </p>
               {tick.bittenTraveledDom && <p>{tick.travelInfo}</p>}
 
             </div>
-          </HoverCard>
+          </Styles.CardCont>
         )}
-        <HoverCard><p>Click on the photo to view full size</p>
-          {/* <p>Click the X to remove photo from server forever. This is a good idea if it is not a tick to save server space.</p> */}
-        </HoverCard>
-        <a href={tick.photoFrontUrl} target="_blank" rel="noreferrer"> <ImageCard imageUrl={tick.photoFrontUrl} /></a>
-        <a href={tick.photoBackUrl} target="_blank" rel="noreferrer"> <ImageCard imageUrl={tick.photoBackUrl} /></a>
-        {tick.photoOtherUrl && <a href={tick.photoOtherUrl} target="_blank" rel="noreferrer"> <ImageCard imageUrl={tick.photoOtherUrl} /></a>}
-        <HoverCard >
+       
+        <Styles.CardCont >
           <div style={{ margin: '1rem', padding: '1rem' }}>
             <h2>Submitter Info</h2>
             <p>Municipality: {tick.userMuni}</p>
-            <p>Zip Code: {tick.userZip}</p>
+            <p>Zip Code: {tick.userZip.toString().padStart(5, "0")}</p>
           </div>
-        </HoverCard>
+        </Styles.CardCont>
       </div>
     </BasicPage.Text>
-  ) : (<div>Loading...</div>)
+  ) 
+  : (<BasicPage.Text>Loading...</BasicPage.Text>)
 }
 
 export default ProcessTick
@@ -192,12 +328,4 @@ const ImageCard = ({ imageUrl }) => (
     <Styles.HoverCard tickImage={imageUrl} width={'20rem'} height={'20rem'}>
     </Styles.HoverCard>
   </Styles.Container>
-)
-
-const CheckboxInput = ({value, handleChange, id}) => (
-  <input type='checkbox' value={value} onChange={(evt) => handleChange(id, evt)} />
-)
-
-const ButtonInput = () => (
-  <div>Button code goes here</div>
 )
