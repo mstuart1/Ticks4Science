@@ -5,6 +5,8 @@ const User = db.users;
 const jwt = require("jsonwebtoken");
 const mailHelper = require('./mailHelper')
 
+//TODO change updateUser to check if password in update and bCrypt it
+
 exports.inviteUser = async (req, res, next) => {
     console.log(`@@@@---invite User ${JSON.stringify(req.body, null, 1)}---@@@@`);
     // console.log(JSON.stringify(req.body, null, 1))
