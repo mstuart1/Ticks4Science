@@ -49,8 +49,8 @@ const App = () => {
               <Route path='/steps' element={<Steps />} />
               <Route path='/tickOrInsect' element={<TickOrInsect />} />
               <Route path='/photo' element={<Photo />} />
+              <Route path='/checkMenu' element={<TickCheckMenu />} />
               {/* <Route path='/ticks' element={<Ticks />} /> */}
-              {/* <Route path='/checkMenu' element={<TickCheckMenu />} /> */}
               
               {/* <Route path='/preSurvey' element={<PreSurvey />} /> */}
               {/* <Route path='/survey' element={<Survey />} /> */}
