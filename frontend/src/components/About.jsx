@@ -3,76 +3,83 @@ import { BasicPage } from "./GeneralStyles";
 // import TickReportLink from "./ticks/TickReportLink";
 // import tickCircle from '../images/Image017.jpg'
 import tickIntro from '../images/slide 2.jpg'
+import logo from '../images/Logo.jpg'
 import styled from "styled-components";
-import InternalLinkFloatButton from "./ui/internalLinkFloatButton/InternalLinkFloatButton";
+// import InternalLinkFloatButton from "./ui/internalLinkFloatButton/InternalLinkFloatButton";
 import ExternalLinkFloatButton from "./ui/externalLinkFloatButton/ExternalLinkFloatButton";
 import { theme } from '../theme'
 
 const About = () => {
   return (
-    <BasicPage.Text >
-      <BasicPage.Title>Welcome to NJ Ticks 4 Science!</BasicPage.Title>
-      <p>
-        Welcome to NJ Ticks for Science! A citizen science project where we are enlisting the people in New Jersey to submit ticks they come across in their everyday lives!
-      </p>
-      <p>
-        The goal is to understand the statewide risk of tick-borne pathogens to NJ communities. With your help, we can learn about the growing tick species and tick-borne pathogens in NJ and their specific locations.
-
-      </p>
-      <Styles.CenterCntr>
-        <div>
-          <div style={{ margin: '1rem' }}>
-            <BasicPage.SectionTitle>Get Started</BasicPage.SectionTitle>
-
-            <InternalLinkFloatButton colors={{ text: theme.colors.ruTeal, shadow: theme.colors.ruTeal }} to='/steps' text='Follow the steps to participate' />
-
-            <InternalLinkFloatButton colors={{ text: theme.colors.ruTeal, shadow: theme.colors.ruTeal }} to='/photo' text='How to take a tick pic' />
-
-            <InternalLinkFloatButton colors={{ text: theme.colors.ruTeal, shadow: theme.colors.ruTeal }} to='/preSurvey' text='Begin a submission' />
-
-            {/* <p> 
-       To begin a tick submission, we encourage you to follow the <BasicPage.InnieLink to='/steps'><span>Steps to Participate</span></BasicPage.InnieLink> in <BasicPage.InnieLink to='/photo'>
-      <span>How to Send a Tick Pic</span>
-      </BasicPage.InnieLink> to begin the <BasicPage.InnieLink to='/preSurvey'>
-         <span>Tick Submission</span>
-       </BasicPage.InnieLink> process!
-      </p> */}
-          </div>
-          <div style={{ margin: '5rem 1rem' }}>
-            <BasicPage.SectionTitle>If you have already submitted ticks </BasicPage.SectionTitle>
-            <InternalLinkFloatButton colors={{ text: theme.colors.ruTeal, shadow: theme.colors.ruTeal }} to='/progress' text='Track your progress' />
-          </div>
-          {/* <div style={{margin: '1rem 0'}}>
-      <BasicPage.SectionTitle>Before sending us your ticks</BasicPage.SectionTitle>
-      <Styles.RptLnkBtn.LinkSpec href='https://vectorbio.rutgers.edu/outreach/Occi2019TickListNJ.pdf' target='_blank' rel='noreferrer'>
-        <BasicPage.HoverCard>
-          <Styles.RptLnkBtn.CardSpecial>
-            <span style={{ fontWeight: "bold", textAlign: "center" }}> View a report of the 11 ticks found throughout New Jersey</span>
-          </Styles.RptLnkBtn.CardSpecial>
-
-        </BasicPage.HoverCard>
-      </Styles.RptLnkBtn.LinkSpec>
-
+    <Styles.CenterCntr style={{flexDirection: 'column'}}>
+    <BasicPage.Title>Welcome to NJ Ticks 4 Science!</BasicPage.Title>
+    <BasicPage.ImageCont>
+          <figure>
+            <img src={logo} alt='logo' style={{ maxWidth: '350px', borderRadius: '1rem' }} />
+          </figure>
+        </BasicPage.ImageCont>
+    <Styles.LeftAlignCont>
       
-      <p>
-        Since this report, two more ticks have been discovered in NJ, which we review in <BasicPage.InnieLink to='/ticks'><span>Ticks of NJ</span></BasicPage.InnieLink>
-      </p>
-      </div> */}
-        </div>
+      <Styles.Para>
+      This is a citizen science project where we enlist people to submit ticks they come across in their everyday lives while living, working, and visiting New Jersey!
+      
+      </Styles.Para>
+     
+      <Styles.Para>
+      The goal is to understand the statewide risk of tick-borne pathogens to New Jersey communities. With your help, we can learn about the changing tick species and tick-borne pathogens in New Jersey and their specific locations.
+      </Styles.Para>
+      
+      
+      <Styles.Para>
+      You don't have to be a trained scientist to help with our quest to participate in this project!
+      </Styles.Para>
+      <Styles.Para>
+      If you love nature and exploring the outdoors…<br/>
+If you are a hunter and spend time in tick habitat…<br/>
+If you are a farmer or someone who handles animals routinely…<br/>
+If you have a dog or cat…<br/>
+      </Styles.Para>
+
+      <Styles.Para>
+      We encourage you to check out our website, which has resources on <BasicPage.InnieLink to='/prevention'><span>tick prevention</span></BasicPage.InnieLink>! If you happen to find a tick on you or your pet, we also provide resources on how to <BasicPage.InnieLink to='/removal'><span>remove the tick</span></BasicPage.InnieLink>. 
+      </Styles.Para>
+
+      <Styles.Para>
+      Since you are here, we hope you are inspired to send us your ticks! <BasicPage.InnieLink to='/steps'><span>Start here</span></BasicPage.InnieLink> to begin a <BasicPage.InnieLink to='/preSurvey'><span>tick submission</span></BasicPage.InnieLink> and help all of us across New Jersey assess our risk from ticks and tick-borne diseases.
+
+      </Styles.Para>
+      <Styles.Para>
+      If you have already submitted ticks, we thank you for your participation, and <BasicPage.InnieLink to='/progress'><span>click here to track your submission</span></BasicPage.InnieLink>. 
+
+      </Styles.Para>
+
+      <Styles.CenterCntr>
+        
+        
         <BasicPage.ImageCont>
           <figure>
             <img src={tickIntro} alt='ticks' style={{ maxWidth: '350px', borderRadius: '1rem' }} />
-            <figcaption>Image provided by Andrea Egizi, PhD
+            <figcaption>Photo credit Jim Occi
             </figcaption>
           </figure>
         </BasicPage.ImageCont>
       </Styles.CenterCntr>
+   
+      
+    </Styles.LeftAlignCont>
+    <Styles.CenterCol>
+      <Styles.Para>
+      Want to learn more about New Jersey's tick species?
+        </Styles.Para>
+      <Styles.Para>
+      View a list here at <BasicPage.InnieLink to='/ticks'><span>Ticks of NJ</span></BasicPage.InnieLink>
+      </Styles.Para>
+    
+    {/* not a valid email address */}
+{/* <ExternalLinkFloatButton colors={{ text: 'black', shadow: '#000000', bg: theme.colors.ruYellow }} to='mailto:njsciticks@rutgers.edu' text='Questions?  Contact Us' /> */}
+    </Styles.CenterCol>
 
-
-      <ExternalLinkFloatButton colors={{ text: theme.colors.ruTeal, shadow: theme.colors.ruTeal }} to='https://vectorbio.rutgers.edu/contact.php' text='Visit the Center for Vector Biology Website' />
-
-      <ExternalLinkFloatButton colors={{ text: 'black', shadow: '#000000', bg: theme.colors.ruYellow }} to='mailto:cvb@rutgers.edu' text='Email Us' />
-    </BasicPage.Text>
+    </Styles.CenterCntr>
   );
 };
 
@@ -91,6 +98,14 @@ const Styles = {
     margin: 1rem;
    }
   `,
+
+  CenterCol: styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 1rem;
+  `,
   RptLnkBtn: {
     LinkSpec: styled.a`
     text-decoration: none;
@@ -107,5 +122,20 @@ const Styles = {
       padding: 1.6rem;
     }
   `,
+ 
+  
   },
+  LeftAlignCont: styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+
+  min-height: 80vh;
+  max-width: 900px;
+  `,
+  Para: styled.p`
+  font-size: 1.6rem;
+  margin: 1rem;
+  `
 }
