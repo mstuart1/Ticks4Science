@@ -47,11 +47,11 @@ const App = () => {
             <Routes>
               <Route path='/' element={<About />} />
               <Route path='/steps' element={<Steps />} />
+              <Route path='/tickOrInsect' element={<TickOrInsect />} />
+              <Route path='/photo' element={<Photo />} />
               {/* <Route path='/ticks' element={<Ticks />} /> */}
               {/* <Route path='/checkMenu' element={<TickCheckMenu />} /> */}
               
-              <Route path='/tickOrInsect' element={<TickOrInsect />} />
-              {/* <Route path='/photo' element={<Photo />} /> */}
               {/* <Route path='/preSurvey' element={<PreSurvey />} /> */}
               {/* <Route path='/survey' element={<Survey />} /> */}
               {/* <Route path='/thanks' element={<ThankYou />} /> */}
