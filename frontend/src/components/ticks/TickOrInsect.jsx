@@ -1,7 +1,8 @@
 import React from 'react'
 import { BasicPage } from '../GeneralStyles'
 import styled from 'styled-components'
-// import comp from '../../images/Slide6.jpg'
+import mouth from '../../images/slide 6.png'
+import scutum from '../../images/slide 5.png'
 import { theme } from '../../theme'
 import OutlineCard from '../ui/outlineCard/OutlineCard'
 
@@ -18,64 +19,47 @@ const TickIns = {
 const TickOrInsect = () => {
   return (
     <BasicPage.Text>
-      <BasicPage.Title>Tick or Not
-        a Tick?
+      <BasicPage.Title>Are You Sure It's A Tick?
       </BasicPage.Title>
       <p>
-        As humans, we like to categorize things, so naturally ticks are grouped with insects that suck blood such as fleas and mosquitos.
+      Ticks are arachnids like spiders. Below, we list some of the main features of a tick to help you identify what may be a tick before moving forward with a <BasicPage.InnieLink to='/preSurvey'><span>tick submission</span></BasicPage.InnieLink>. 
       </p>
       <p>
-        But, ticks are arachnids like spiders and scorpions. In New Jersey, spiders are the most likely arachnids to be confused with ticks. Below, we classify some differences between insects, spiders, and ticks to visually identify before moving forward with a <BasicPage.InnieLink to='/preSurvey'><span>Tick Submission</span></BasicPage.InnieLink>.
+      The scutum is a hardened plate on the back of the tick. It can have patterns or colors that are useful when identifying different species of ticks.
       </p>
-      <BasicPage.CardContainer>
-        <TickIns.Card bgColor={theme.colors.ruTeal}>
-          <BasicPage.SectionTitle>
-            Tick Anatomy 101
-          </BasicPage.SectionTitle>
-          <TickIns.Subtitle>Adult Ticks</TickIns.Subtitle>
-          <BasicPage.List>
-            <li>8 legs</li>
-            <li>The body is composed of 2 segments: the cephalothorax and the abdomen
-            </li>
-            <li>The mouthpart is what burrows into the skin</li>
-            <li>Nymph ticks will have 6 legs</li>
-          </BasicPage.List>
-          <BasicPage.ImageCont>
+      <BasicPage.ImageCont>
             <figure>
-              {/* <img src={comp} alt='comparison of insect and tick' /> */}
-              <figcaption>Image provided by Andrea Egizi, PhD
+              <img src={scutum} alt='scutum' />
+              <figcaption style={{fontSize: '1.6rem'}}>A male tick (right) will have a scutum that takes up nearly the entire body, while in the female (as well as nymphs and larvae) the scutum will cover only the anterior part of the tick (left). The part of the abdomen not covered by the scutum is what expands when the tick fills with blood. Rhipicephalus sanguineus (photo credit Andrea Egizi, PhD)
               </figcaption>
             </figure>
 
           </BasicPage.ImageCont>
-
-        </TickIns.Card>
-        {/* // TODO need photos in order to make this card active */}
-        {/* <TickIns.Card>
-          <BasicPage.SectionTitle>
-            Common "Not Ticks"
-          </BasicPage.SectionTitle>
-          <TickIns.Subtitle>Insects such as beetles</TickIns.Subtitle>
-          <BasicPage.List>
-            <li>6 legs</li>
-            <li>The body is composed of three segments: the head, the thorax, and the abdomen</li>
-            <li>May even have wings or antennae</li>
-          </BasicPage.List>
+          <p>
+          The mouthparts of the tick (their size and shape) can also be useful for identifying tick species.
+          </p>
+          <p>
+          Close-up of tick mouthparts
+          </p>
           <BasicPage.ImageCont>
-            <img src={''} alt='insect' />
+            <figure>
+              <img src={mouth} alt='mouth parts' />
+              <figcaption style={{fontSize: '1.6rem'}}>The tick’s mouthparts include the hypostome and palps. The hypostome enters the skin and draws up the blood. The palps do not enter the body when feeding, splaying out to the side while attached to its host. Ixodes scapularis (photo credit Andrea Egizi, PhD).
+              </figcaption>
+            </figure>
           </BasicPage.ImageCont>
 
-          <TickIns.Subtitle>Spiders</TickIns.Subtitle>
-          <BasicPage.List>
-            <li>8 legs</li>
-            <li>Their body has two segments: the cephalothorax and the abdomen</li>
-          </BasicPage.List>
-          <BasicPage.ImageCont>
-            <img src='' alt='spider' />
-          </BasicPage.ImageCont>
-
-        </TickIns.Card> */}
-      </BasicPage.CardContainer>
+{/* <BasicPage.SectionTitle>Common non-ticks often mistaken for ticks! <i>This is not a comprehensive list</i></BasicPage.SectionTitle>
+<BasicPage.SectionSubtitle>
+  Arachnids
+</BasicPage.SectionSubtitle>
+<BasicPage.ImageCont>
+            <figure>
+              <img src={mouth} alt='mouth parts' />
+              <figcaption style={{fontSize: '1.6rem'}}>The tick’s mouthparts include the hypostome and palps. The hypostome enters the skin and draws up the blood. The palps do not enter the body when feeding, splaying out to the side while attached to its host. Ixodes scapularis (photo credit Andrea Egizi, PhD).
+              </figcaption>
+            </figure>
+          </BasicPage.ImageCont> */}
       <BasicPage.LinkButton.LinkSpec to={'/steps'}>
         <BasicPage.HoverCard>
           <BasicPage.LinkButton.CardSpecial>
