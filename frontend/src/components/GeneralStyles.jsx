@@ -171,10 +171,10 @@ color: ${({ theme }) => theme.colors.ruTeal};
       caption-side: bottom;
       
     }
-    // @media screen and (min-width: ${({ theme }) => theme.mobile}) {
-    //   img {max-width: 600px;}
+    @media screen and (min-width: ${({ theme }) => theme.mobile}) {
+      img {max-width: 600px;}
     
-    // }
+    }
   }
   `,
   List: styled.ul`
