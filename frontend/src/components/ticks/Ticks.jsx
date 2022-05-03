@@ -27,8 +27,9 @@ const Ticks = () => {
 
     //   console.log(data)
 
-    let peopleTicks = ['americanum', 'variabilis', 'longicornis', 'scapularis']
+    let peopleTicks = ['americanum', 'variabilis', 'scapularis']
     let dogTicks = ['sanguineus']
+    let otherTicks = ['longicornis']
     let briefTicks = ['maculatum', 'kelleyi', 'albipictus', 'leporispalustris', 'brunneus', 'cookei', 'dentatus', 'texanus']
 
     // let peopleTickElements = data.map(tick => {
@@ -80,7 +81,11 @@ const Ticks = () => {
                 Ticks of NJ
             </BasicPage.Title>
            
-            <p>As citizen scientists, familiarizing yourselves with the ticks you may come across in your day-to-day in New Jersey is essential. Each tick is unique, and not all are interested in people. However, it is important to recognize their similarities and differences and taking necessary <BasicPage.InnieLink to='/prevention'><span>Tick Preventions</span></BasicPage.InnieLink> when enjoying the outdoors and entering tick habitats.
+            <p>As citizen scientists, familiarizing yourselves with the ticks you may come across in New Jersey is essential. Each tick species is unique, and not all are interested in people. However, it is crucial to recognize their similarities and differences and take necessary <BasicPage.InnieLink to='/prevention'><span>tick preventions</span></BasicPage.InnieLink> when enjoying the outdoors and entering tick habitats.
+            </p>
+            <p>
+            Listed below are the 4 most common ticks you may encounter in New Jersey. While there are currently at least 12 tick species in New Jersey, not all are found on people. As citizen scientists, familiarizing yourself with as many tick species as possible is essential. Understanding what you may encounter most frequently will also help you know what <BasicPage.InnieLink to='/disease'><span>tick-borne diseases</span></BasicPage.InnieLink> you may contract if infected. This insight will allow you to enjoy nature safely and be vigilant for yourself and those around you! If you do happen to find a tick on you, do not panic! <BasicPage.InnieLink to='/removal'><span>Removing a tick</span></BasicPage.InnieLink> is easy and <BasicPage.InnieLink><span>submitting the tick</span></BasicPage.InnieLink> is easier. 
+
             </p>
             <BasicPage.SectionSubtitle>
                 <Icon><FaStar/></Icon> Indicates ticks that seek people as hosts!
