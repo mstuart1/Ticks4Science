@@ -35,7 +35,7 @@ const Diseases = () => {
             <span style={{fontWeight: 'bold'}}>{dis.title}</span><br/>
             <span>{dis.assoc}</span>
             <br/>
-            <span>Summarized <BasicPage.OutieLink to={dis.link}><span>here</span></BasicPage.OutieLink></span>
+            <span>Summarized <BasicPage.OutieLink href={dis.link} target="_blank"><span>here</span></BasicPage.OutieLink></span>
 
         </OutlineCard>
     ))
@@ -90,10 +90,10 @@ const Diseases = () => {
                 </figure>
             </BasicPage.ImageCont>
             <p>
-                For the New Jersey list of communicable diseases spread by ticks (and mosquitoes), visit the New Jersey Department of Health’s website <BasicPage.OutieLink to='https://www.nj.gov/health/cd/topics/vectorborne.shtml'><span>Fight the Bite, NJ!</span></BasicPage.OutieLink>.
+                For the New Jersey list of communicable diseases spread by ticks (and mosquitoes), visit the New Jersey Department of Health’s website <BasicPage.OutieLink target='_blank' href='https://www.nj.gov/health/cd/topics/vectorborne.shtml'><span>Fight the Bite, NJ!</span></BasicPage.OutieLink>.
             </p>
             <p>
-                For a further list of the tick-borne diseases in the United States and specific descriptions of each condition, visit the Centers for Disease Control and Prevention website on <BasicPage.OutieLink to='https://www.cdc.gov/ticks/diseases/index.html'><span>Diseases Transmitted by Ticks</span></BasicPage.OutieLink>.
+                For a further list of the tick-borne diseases in the United States and specific descriptions of each condition, visit the Centers for Disease Control and Prevention website on <BasicPage.OutieLink target='_blank' href='https://www.cdc.gov/ticks/diseases/index.html'><span>Diseases Transmitted by Ticks</span></BasicPage.OutieLink>.
             </p>
             <BasicPage.SectionTitle>Emerging Tick-Borne Diseases in Domesticated Animals</BasicPage.SectionTitle>
 

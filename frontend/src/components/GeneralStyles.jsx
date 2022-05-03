@@ -162,6 +162,7 @@ color: ${({ theme }) => theme.colors.ruTeal};
     margin: 2rem;
     img {
       max-width: 300px;
+      border-radius: 1rem;
     }
     figcaption {
       width: 300px;

@@ -37,7 +37,7 @@ If you have a dog or cat…<br/>
       </Styles.Para>
 
       <Styles.Para>
-      We encourage you to check out our website, which has resources on <BasicPage.InnieLink to='/prevention'><span>tick prevention</span></BasicPage.InnieLink>! If you happen to find a tick on you or your pet, we also provide resources on how to <BasicPage.InnieLink to='/removal'><span>remove the tick</span></BasicPage.InnieLink>. 
+      We encourage you to check out our website, which has resources on <BasicPage.InnieLink to='/checkMenu'><span>tick prevention</span></BasicPage.InnieLink>! If you happen to find a tick on you or your pet, we also provide resources on how to <BasicPage.InnieLink to='/removal'><span>remove the tick</span></BasicPage.InnieLink>. 
       </Styles.Para>
 
       <Styles.Para>
@@ -54,7 +54,7 @@ If you have a dog or cat…<br/>
         
         <BasicPage.ImageCont>
           <figure>
-            <img src={tickIntro} alt='ticks' style={{ maxWidth: '350px', borderRadius: '1rem' }} />
+            <img src={tickIntro} alt='ticks'  />
             <figcaption>Photo credit Jim Occi
             </figcaption>
           </figure>
