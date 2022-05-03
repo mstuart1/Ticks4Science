@@ -1,17 +1,13 @@
 import React from "react";
 import { BasicPage } from "./GeneralStyles";
-// import TickReportLink from "./ticks/TickReportLink";
-// import tickCircle from '../images/Image017.jpg'
 import tickIntro from '../images/slide 2.jpg'
 import logo from '../images/Logo.jpg'
 import styled from "styled-components";
-// import InternalLinkFloatButton from "./ui/internalLinkFloatButton/InternalLinkFloatButton";
-import ExternalLinkFloatButton from "./ui/externalLinkFloatButton/ExternalLinkFloatButton";
-import { theme } from '../theme'
+
 
 const About = () => {
   return (
-    <Styles.CenterCntr style={{flexDirection: 'column'}}>
+    <Styles.CenterCol >
     <BasicPage.Title>Welcome to NJ Ticks 4 Science!</BasicPage.Title>
     <BasicPage.ImageCont>
           <figure>
@@ -79,7 +75,7 @@ If you have a dog or cat…<br/>
 {/* <ExternalLinkFloatButton colors={{ text: 'black', shadow: '#000000', bg: theme.colors.ruYellow }} to='mailto:njsciticks@rutgers.edu' text='Questions?  Contact Us' /> */}
     </Styles.CenterCol>
 
-    </Styles.CenterCntr>
+    </Styles.CenterCol>
   );
 };
 
@@ -104,7 +100,7 @@ const Styles = {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-bottom: 1rem;
+  
   `,
   RptLnkBtn: {
     LinkSpec: styled.a`
@@ -136,6 +132,6 @@ const Styles = {
   `,
   Para: styled.p`
   font-size: 1.6rem;
-  margin: 1rem;
+  margin: 2rem;
   `
 }
