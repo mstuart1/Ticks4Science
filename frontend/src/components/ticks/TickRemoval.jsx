@@ -1,53 +1,61 @@
 import React from 'react'
 import { BasicPage } from '../GeneralStyles'
-import {theme} from '../../theme'
+import { theme } from '../../theme'
 import OutlineCard from '../ui/outlineCard/OutlineCard'
 
-const TickRemoval = ()=> {
+const TickRemoval = () => {
     return (
         <BasicPage.Text>
             <BasicPage.Title>Tick Removal</BasicPage.Title>
-            <p>As citizen scientists, when encountering ticks, one of the tools you may have readily available to remove a tick are tweezers.</p>
+            <p>When encountering ticks, the best way to remove them is with fine-tipped tweezers.</p>
             <BasicPage.SectionSubtitle>
-            To properly remove a tick so it is removed intact:
+                To properly remove a tick:
             </BasicPage.SectionSubtitle>
             <BasicPage.CardContainer>
                 <OutlineCard bgColor={theme.colors.main}>
-                <BasicPage.CardSpecial>
-                    
+                    <BasicPage.CardSpecial>
+
                         <div>
-                        Place the tweezers as close to the skin as possible and grasp the tick
-                            </div>
+                            Place the tweezers as close to the skin as possible and grasp the tick
+                        </div>
                     </BasicPage.CardSpecial>
                 </OutlineCard>
                 <OutlineCard bgColor={theme.colors.main}>
-                <BasicPage.CardSpecial>
-                    
+                    <BasicPage.CardSpecial>
+
                         <div>
-                        <p>Pull upwards making sure not to use any other motion than a steady pull. Doing something such as a jerk can cause the tick to separate and remain in the wound</p><p>
-                        The key is to BE PATIENT! The mouthpart is what you want to remove from the bite area, which the tick firmly secured itself into place there. If the mouthpart does stay in the wound when you remove the tick's body, be sure to go back to remove the mouthpart or seek medical assistance if necessary. You will know if the mouthpart is still in the wound if you see black lines after removing the tick.</p>
-                            </div>
+                            <p>Pull upwards, making sure not to use any other motion than a steady pull. Doing fast hand movements such as a jerk can cause the tick mouthparts to break off and remain in the wound.</p><p>
+                                The key is to BE PATIENT! The mouthpart has backwards facing barbs that make it harder to remove. If the mouthpart does stay in the wound when you remove the tick’s body, sterilize the area and do not worry - your skin will push it out as it heals, as with a splinter.</p>
+                        </div>
                     </BasicPage.CardSpecial>
                 </OutlineCard>
                 <OutlineCard bgColor={theme.colors.main}>
-                <BasicPage.CardSpecial>
-                    
+                    <BasicPage.CardSpecial>
+
                         <div>
-                        Once the tick is removed, place the tick in a crush proof container and follow the <BasicPage.InnieLink to='/steps'><span>Steps to Participate</span></BasicPage.InnieLink> in NJ Ticks 4 Science!
-                            </div>
+                            Once the tick is removed, place the tick in a sealed plastic bag and <BasicPage.InnieLink to='/preSurvey'><span>submit</span></BasicPage.InnieLink>  it to NJ Ticks 4 Science!
+
+                        </div>
                     </BasicPage.CardSpecial>
                 </OutlineCard>
                 <OutlineCard bgColor={theme.colors.main}>
-                <BasicPage.CardSpecial>
-                    
+                    <BasicPage.CardSpecial>
+
                         <div>
-                        Importantly, clean the bite wound with rubbing alcohol and wash your hands and tweezers with soap and water once you have removing all the ticks you have found and completing your <BasicPage.InnieLink to='/check'><span>Tick Check</span></BasicPage.InnieLink>.
-                            </div>
+                            Importantly, clean the bite wound with rubbing alcohol. Wash your hands and tweezers with soap and water after removing all the ticks you have found after completing your thorough <BasicPage.InnieLink to='/check'><span>tick check</span></BasicPage.InnieLink>.
+                        </div>
                     </BasicPage.CardSpecial>
                 </OutlineCard>
             </BasicPage.CardContainer>
-            
-            <p>If you experience any symptoms such as a rash, fever, headache, or flu-like symptoms after the tick bite or cannot remove the whole tick, seek medical attention.
+            <BasicPage.ImageCont>
+                <figure>
+                    <img src='https://www.cdc.gov/ticks/images/gallery/Tickremovalrectangle2.jpg?_=84771' alt='infographic dog tick check' />
+                    <figcaption>CDC -Ticks Image Gallery - This diagram demonstrates all four steps of the tick removal process.
+                    </figcaption>
+                </figure>
+            </BasicPage.ImageCont>
+
+            <p>If you experience nonspecific flu-like symptoms with or without a fever after the tick bite, seek medical attention. There are ticks in New Jersey that can be infected with tick-borne pathogens. Preventing tick bites is essential to keeping you, your family, and your peers safe when enjoying the outdoors!
             </p>
         </BasicPage.Text>
     )
