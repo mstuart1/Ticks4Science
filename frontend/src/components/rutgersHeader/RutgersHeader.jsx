@@ -1,5 +1,5 @@
 import React from "react";
-import headerLogo from "./RutgersHeaderLogo.svg";
+import headerLogo from "./RU_SIG_NJAES_PMS186_100K.svg";
 import styled from 'styled-components'
 
 const RutgersHeader = () => (
@@ -66,6 +66,7 @@ const Styles = {
 img {
     width: 17em;  
     max-width: 464px; 
+    margin: 1rem 0 -3rem 0;
 }
 `,
 Menu: styled.div`
