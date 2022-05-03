@@ -47,25 +47,25 @@ const App = () => {
             <Routes>
               <Route path='/' element={<About />} />
               <Route path='/steps' element={<Steps />} />
-              <Route path='/ticks' element={<Ticks />} />
-              <Route path='/checkMenu' element={<TickCheckMenu />} />
+              {/* <Route path='/ticks' element={<Ticks />} /> */}
+              {/* <Route path='/checkMenu' element={<TickCheckMenu />} /> */}
               
               <Route path='/tickOrInsect' element={<TickOrInsect />} />
-              <Route path='/photo' element={<Photo />} />
-              <Route path='/preSurvey' element={<PreSurvey />} />
-              <Route path='/survey' element={<Survey />} />
-              <Route path='/thanks' element={<ThankYou />} />
-              <Route path='/progress' element={<TickProgressInput buttonColors={{text: theme.colors.ruTeal, bg: 'white', shadow: theme.colors.ruTeal}} />} />
-              <Route path='/progress/:id' element={<TickProgress />} />
-              <Route path='/check' element={<TickCheck />} />
-              <Route path='/prevention' element={<Prevention />} />
-              <Route path='/disease' element={<Diseases />} />
-              <Route path='/identify' element={<Identify />} />
-              <Route path='/ticks/:id' element={<TickPage />} />
-              <Route path='/removal' element={<TickRemoval />} />
-              <Route path='/notReady' element={<NotReady />} />
-              <Route path='/createAccount/:token' element={<UpdateAccount/>} />
-              <Route path="/admin/*" element={<AdminMgt />} />
+              {/* <Route path='/photo' element={<Photo />} /> */}
+              {/* <Route path='/preSurvey' element={<PreSurvey />} /> */}
+              {/* <Route path='/survey' element={<Survey />} /> */}
+              {/* <Route path='/thanks' element={<ThankYou />} /> */}
+              {/* <Route path='/progress' element={<TickProgressInput buttonColors={{text: theme.colors.ruTeal, bg: 'white', shadow: theme.colors.ruTeal}} />} /> */}
+              {/* <Route path='/progress/:id' element={<TickProgress />} /> */}
+              {/* <Route path='/check' element={<TickCheck />} /> */}
+              {/* <Route path='/prevention' element={<Prevention />} /> */}
+              {/* <Route path='/disease' element={<Diseases />} /> */}
+              {/* <Route path='/identify' element={<Identify />} /> */}
+              {/* <Route path='/ticks/:id' element={<TickPage />} /> */}
+              {/* <Route path='/removal' element={<TickRemoval />} /> */}
+              {/* <Route path='/notReady' element={<NotReady />} /> */}
+              {/* <Route path='/createAccount/:token' element={<UpdateAccount/>} /> */}
+              {/* <Route path="/admin/*" element={<AdminMgt />} /> */}
             </Routes>
 
           </Styles.PageContainer>
