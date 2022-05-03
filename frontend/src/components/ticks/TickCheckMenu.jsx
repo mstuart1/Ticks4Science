@@ -48,7 +48,7 @@ const TickCheckMenu = () => {
         </p>
         <BasicPage.ImageCont>
           <figure>
-            <img src='https://www.cdc.gov/ticks/images/gallery/Permethrininstructions.jpg?_=03722' alt='engorged tick' style={{ maxHeight: '400px' }} />
+            <img src='https://www.cdc.gov/ticks/images/gallery/Permethrininstructions.jpg?_=03722' alt='preparing clothing with tick spray'  />
             <figcaption>This woman is carefully reading instructions before applying her repellent.</figcaption>
           </figure>
         </BasicPage.ImageCont>
