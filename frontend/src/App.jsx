@@ -52,6 +52,7 @@ const App = () => {
               <Route path='/checkMenu' element={<TickCheckMenu />} />
               <Route path='/check' element={<TickCheck />} />
               <Route path='/removal' element={<TickRemoval />} />
+              <Route path='/disease' element={<Diseases />} />
               
               {/* <Route path='/ticks' element={<Ticks />} /> */}
               {/* <Route path='/preSurvey' element={<PreSurvey />} /> */}
@@ -60,7 +61,6 @@ const App = () => {
               {/* <Route path='/progress' element={<TickProgressInput buttonColors={{text: theme.colors.ruTeal, bg: 'white', shadow: theme.colors.ruTeal}} />} /> */}
               {/* <Route path='/progress/:id' element={<TickProgress />} /> */}
               {/* <Route path='/prevention' element={<Prevention />} /> */}
-              {/* <Route path='/disease' element={<Diseases />} /> */}
               {/* <Route path='/identify' element={<Identify />} /> */}
               {/* <Route path='/ticks/:id' element={<TickPage />} /> */}
               {/* <Route path='/notReady' element={<NotReady />} /> */}
