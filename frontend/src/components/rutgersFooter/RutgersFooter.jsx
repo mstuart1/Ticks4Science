@@ -1,13 +1,9 @@
 import styled from "styled-components";
 import React from "react";
-// import FooterMenu from "./FooterMenu";
 import footerLogo from "./RutgersFooterLogo.svg";
-// import { footerMenus } from "./footerMenus";
+
 
 const RutgersFooter = () => {
-  // let footerMenuElements = footerMenus.map((menu, i) => (
-  //   <FooterMenu key={i} menu={menu} />
-  // ));
 
   return (
     
@@ -20,7 +16,6 @@ const RutgersFooter = () => {
             </a>
           </Styles.Logo>
           <Styles.Menu>
-          {/* {footerMenuElements} */}
             <ul>
               <li>
                 <a href="https://newbrunswick.rutgers.edu/">New Brunswick</a>
@@ -50,22 +45,6 @@ const RutgersFooter = () => {
 };
 
 export default RutgersFooter;
-
-// const FooterMenu = ({menu}) => {
-
-//   let linkElements = menu.links.map((link, i) => (
-//       <a key={i} href={link.path}>{link.text}</a>
-//   ))
-// // console.log(menu.title)
-// return (
-  
-//   <Styles.SingleMenu>
-//       <h3>{menu.title}</h3>
-//       {linkElements}
-//   </Styles.SingleMenu>
-  
-// )
-// }
 
 
 const Styles = {
