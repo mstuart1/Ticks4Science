@@ -33,7 +33,7 @@ const TickCheck = () => {
                     <StepStyles.CardSpecial>
                         <BasicPage.StepSpan>Inspection #1 - Clothing:</BasicPage.StepSpan>
                         <div>
-                            Inspect your clothes before entering your home. After you take off dry outdoor clothing, tumble dry for 10-15 minutes on high heat. It is recommended that damp or wet clothing be dried for 90 minutes on low heat/60 minutes on high heat.
+                            Inspect your clothes for crawling ticks before entering your home. After you take off dry outdoor clothing, tumble dry for 10-15 minutes on high heat. It is recommended that damp or wet clothing be dried for 90 minutes on low heat/60 minutes on high heat.
                         </div>
                     </StepStyles.CardSpecial>
                 </OutlineCard>

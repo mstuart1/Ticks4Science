@@ -1,7 +1,7 @@
 import React from 'react'
-// import { theme } from '../../theme'
+import { theme } from '../../theme'
 import { BasicPage } from '../GeneralStyles'
-// import OutlineCard from '../ui/outlineCard/OutlineCard'
+import OutlineCard from '../ui/outlineCard/OutlineCard'
 
 let menuArray = [
     // {
@@ -79,7 +79,7 @@ const TickCheckMenu = () => {
           <p>
           Treat dogs, outdoor cats, and even indoor cats for ticks. Veterinarians can assist you in deciding on the best preventatives to use. You can also perform <BasicPage.InnieLink to='/check' ><span>tick checks</span></BasicPage.InnieLink> on your pets after spending time outdoors.
           </p>
-          {/* <BasicPage.SectionTitle>Preven-tionary</BasicPage.SectionTitle>
+           <BasicPage.SectionTitle>Preven-tionary</BasicPage.SectionTitle>
           <OutlineCard bgColor={theme.colors.ruYellow}>
                 <BasicPage.CardSpecial>
                     
@@ -140,7 +140,7 @@ For more information, visit the U.S. Environmental Protection Agency's website a
                     Permethrin is an insecticide that can cause biting bugs to have severe reactions when ingested. This product should only be treated on clothes and can be toxic to cats.<br/>For more information, visit the U.S. Environmental Protection Agency’s website about <BasicPage.OutieLink to='https://www.epa.gov/insect-repellents/repellent-treated-clothing'><span>permethrin</span></BasicPage.OutieLink>.
                         </div>
                 </BasicPage.CardSpecial>
-            </OutlineCard> */}
+            </OutlineCard> 
     </BasicPage.Text>
   )
 }
