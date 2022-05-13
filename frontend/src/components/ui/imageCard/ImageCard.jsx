@@ -1,9 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import CircleButton from '../circleButton/CircleButton'
-import { FaStar } from 'react-icons/fa'
-import { theme } from '../../../theme'
-import { useNavigate } from 'react-router-dom'
+
 
 const Styles = {
     Container: styled.div`
@@ -42,7 +39,7 @@ font-weight: bold;
     box-shadow: 0 3px 15px ${({ shadowColor }) => shadowColor || '#000000'}20;
     margin: 1rem;
     background-image: 
-    linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.8)), url('${({ tickImage }) => tickImage}');
+    linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.7)), url('${({ image }) => image}');
     background-repeat: no-repeat;
     background-size: cover;
     color: white;
@@ -54,20 +51,20 @@ font-weight: bold;
 
 }
 
-const ImageCard = ({ tick }) => {
-    const navigate = useNavigate();
+const ImageCard = ({ imgUrl, title = 'Enter a title', subTitle='' }) => {
+ 
+    
     return (
-        <Styles.Container onClick={() => navigate(`/ticks/${tick.id}`)} >
-            <Styles.HoverCard tickImage={tick.featureImgUrl} width={'20rem'} height={'20rem'}>
-                <Styles.UpperRight>
-                    <CircleButton active={tick.peopleTick} sizePx='20px' colors={{ bg: theme.colors.grey0 }} icon={<FaStar color={theme.colors.ruYellow} />} />
-                </Styles.UpperRight>
+       <a href={imgUrl} target='_blank' rel='noreferrer'>
+            <Styles.Container >
+            <Styles.HoverCard image={imgUrl} width={'20rem'} height={'20rem'}>
                 <Styles.Content >
-                    <span><i>{tick.scientific}</i></span>
-                    <span>{tick.common}</span>
+                    <span>{title}</span>
+                    <span>{subTitle}</span>
                 </Styles.Content>
             </Styles.HoverCard>
         </Styles.Container>
+        </a>
     )
 }
 
