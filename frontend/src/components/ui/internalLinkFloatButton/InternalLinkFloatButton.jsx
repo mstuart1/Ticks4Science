@@ -24,7 +24,8 @@ const Styles =  {
     }
     span {
         font-weight: bold;
-        text-align: center
+        text-align: center;
+        font-size: 1.8rem;
     }
     `,
 }
