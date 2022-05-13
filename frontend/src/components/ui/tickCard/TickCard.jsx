@@ -42,7 +42,7 @@ font-weight: bold;
     box-shadow: 0 3px 15px ${({ shadowColor }) => shadowColor || '#000000'}20;
     margin: 1rem;
     background-image: 
-    linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.8)), url('${({ tickImage }) => tickImage}');
+    linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.7)), url('${({ tickImage }) => tickImage}');
     background-repeat: no-repeat;
     background-size: cover;
     color: white;
@@ -59,7 +59,8 @@ const TickCard = ({ tick }) => {
 
     // console.log(tick.peopleTick ? 'flex' : 'none')
     return (
-        <Styles.Container onClick={() => navigate(`/ticks/${tick.id}`)} >
+        <a href={tick.featureImgUrl} target='_blank' rel='noreferrer' ><Styles.Container>
+        {/* <Styles.Container onClick={() => navigate(`/ticks/${tick.id}`)} > */}
             <Styles.HoverCard tickImage={tick.featureImgUrl} width={'20rem'} height={'20rem'}>
                 <Styles.UpperRight>
                     <CircleButton active={tick.peopleTick} sizePx='20px' colors={{ bg: theme.colors.grey0 }} icon={<FaStar color={theme.colors.ruYellow} />} />
@@ -69,7 +70,7 @@ const TickCard = ({ tick }) => {
                     <span>{tick.common}</span>
                 </Styles.Content>
             </Styles.HoverCard>
-        </Styles.Container>
+        </Styles.Container></a>
     )
 }
 

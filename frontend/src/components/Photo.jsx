@@ -38,7 +38,8 @@ const Photo = () => {
         How to Take Tick Pics
       </BasicPage.Title>
       <p>
-        <strong>Reminder</strong>: Keep the tick in a plastic container after submission and place in the refrigerator to preserve. Once you submit your ticks, you can use your personalized Tick ID to conveniently track the status of your submission <BasicPage.InnieLink to='/progress'><span>here</span></BasicPage.InnieLink>.
+        <strong>Reminder</strong>: Keep the tick in a plastic container after submission and place in the refrigerator to preserve. 
+        {/* Once you submit your ticks, you can use your personalized Tick ID to conveniently track the status of your submission <BasicPage.InnieLink to='/progress'><span>here...</span></BasicPage.InnieLink>. */}
       </p>
       <BasicPage.SectionSubtitle>Submit a focused .JPG of the <PhotoStyles.ULText>top side</PhotoStyles.ULText> and <PhotoStyles.ULText>head</PhotoStyles.ULText> of the tick.
       </BasicPage.SectionSubtitle>

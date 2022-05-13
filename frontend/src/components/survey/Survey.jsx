@@ -204,8 +204,8 @@ const Survey = () => {
               <input type='file' accept='image/*' onChange={handleFront} required id='front' /><br />
               <label htmlFor='back'>Photo of head</label>
               <input type='file' accept='image/*' onChange={handleBack} required id='back' /><br />
-              <label htmlFor='other'>Any additional photo of tick</label>
-              <input type='file' accept='image/*' onChange={handleOther} required id='other' />
+              {/* <label htmlFor='other'>Any additional photo of tick</label>
+              <input type='file' accept='image/*' onChange={handleOther} required id='other' /> */}
               {/* {imageUrls.map((imageSrc, i) => <img key={i} src={imageSrc} style={{ maxWidth: '300px', margin: '1rem' }} />)} */}
 
 
