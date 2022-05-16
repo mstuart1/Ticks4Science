@@ -5,7 +5,7 @@ import { theme } from '../../theme'
 import { createInputElems, createRadioElems } from '../../tools/createElemFunc'
 import { BasicPage } from '../GeneralStyles'
 import { attachedOptions, bittenInfoArray, foundOptions, inputElemArray1, inputElemArray2, locationOptions, yesNo } from './surveyFormData'
-// import UploadImages from './UploadImages'
+
 
 
 const Survey = () => {
@@ -15,20 +15,6 @@ const Survey = () => {
   const [input, setInput] = useState({})
   const [imageFront, setImageFront] = useState([])
   const [imageBack, setImageBack] = useState([])
-  const [imageOther, setImageOther] = useState([])
-  // const [imageUrls, setImageUrls] = useState([])
-
-  console.log(imageFront)
-  // useEffect(() => {
-  //   const newImageUrls = [];
-  //   newImageUrls.push(URL.createObjectURL(imageFront));
-  //   newImageUrls.push(URL.createObjectURL(imageBack));
-  //   newImageUrls.push(URL.createObjectURL(imageOther));
-  //   imageBack.forEach(image => newImageUrls.push(URL.createObjectURL(image)));
-  //   imageOther.forEach(image => newImageUrls.push(URL.createObjectURL(image)));
-  //   setImageUrls(newImageUrls)
-
-  // }, [imageFront, imageBack, imageOther]);
 
   const handleChange = (evt) => {
     const { name, value, type, checked } = evt.target;
