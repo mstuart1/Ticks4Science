@@ -40,7 +40,7 @@ exports.uploadPhoto = async (req, res, next) => {
     console.log(`@@@@---receiving image from website---@@@@`);
     try {
       let {id} = req.params
-      const url = `${req.protocol}://${req.get('host')}`
+      const url = `${req.protocol}://${req.get('host')}/tick-backend/backend`
       console.log(`url: `, url)
       const filesArray = req.files
       
