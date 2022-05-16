@@ -46,9 +46,9 @@ const Survey = () => {
   const handleBack = evt => {
     setImageBack(evt.target.files[0])
   }
-  const handleOther = evt => {
-    setImageOther(evt.target.files[0])
-  }
+  // const handleOther = evt => {
+  //   setImageOther(evt.target.files[0])
+  // }
   
   const handleSubmit = async (evt) => {
     try {
@@ -57,7 +57,7 @@ const Survey = () => {
       const formData = new FormData();
       formData.append('photos', imageFront)
       formData.append('photos', imageBack)
-      formData.append('photos', imageOther)
+      // formData.append('photos', imageOther)
       const config = {
         headers: {
           'content-type': 'multipart/form-data'
@@ -66,7 +66,7 @@ const Survey = () => {
 
       let response = await SubmissionDataService.submitForm(data);
       let id = response.data.data.id
-     
+     console.log('sent form, now seding photos')
       response = await SubmissionDataService.submitImage(id, formData, config)
       // alert(JSON.stringify(response.data))
       setInput({});
