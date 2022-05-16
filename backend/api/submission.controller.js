@@ -41,6 +41,7 @@ exports.uploadPhoto = async (req, res, next) => {
     try {
       let {id} = req.params
       const url = `${req.protocol}://${req.get('host')}`
+      console.log(`url: `, url)
       const filesArray = req.files
       
         // const imagePath = path.join(__dirname, '/public/tickImages');
@@ -50,6 +51,7 @@ exports.uploadPhoto = async (req, res, next) => {
         }
         let record = await Subm.findByPk(id)
         filesArray.forEach((file, i) => {
+          console.log(`path`, file.path)
           if (i === 0){
             record.photoFrontUrl = `${url}/${file.path}`;
           }
