@@ -36,7 +36,7 @@ exports.createSubm = async (req, res, next) => {
   
 }
 exports.uploadPhoto = async (req, res, next) => {
-  // TODO need to return the storage path so that can send it the db with the rest of the form info
+  
     console.log(`@@@@---receiving image from website---@@@@`);
     try {
       let {id} = req.params
