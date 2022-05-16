@@ -2,7 +2,7 @@
   "name": "frontend",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://mosaic.njaes.rutgers.edu/tick-map",
+  "homepage": "https://mosaic.njaes.rutgers.edu/tick-frontend",
   "dependencies": {
     "@arcgis/core": "^4.22.2",
     "axios": "^0.25.0",

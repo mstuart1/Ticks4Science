@@ -11,11 +11,7 @@ const About = () => {
   return (
     <Styles.CenterCol >
     <Styles.CenterCntr>
-    <BasicPage.ImageCont>
-          <figure>
-            <img src={logo} alt='logo' style={{ maxWidth: '350px', borderRadius: '1rem' }} />
-          </figure>
-        </BasicPage.ImageCont>
+
         <Styles.LeftAlignCont>
           <BasicPage.Title>Welcome to NJ Ticks 4 Science!</BasicPage.Title>
           {/* <Styles.LeftAlignCont> */}
@@ -134,9 +130,9 @@ const Styles = {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  justify-content: space-between;
+  // justify-content: space-between;
 
-  min-height: 80vh;
+  // min-height: 80vh;
   max-width: 900px;
   @media screen and (max-width: ${({ theme }) => theme.mobile}) {
     width: 100vw;

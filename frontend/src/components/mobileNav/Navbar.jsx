@@ -3,6 +3,8 @@ import styled from 'styled-components'
 import navMenuItems from "./navMenuItems";
 import { Link } from "react-router-dom";
 import { theme } from "../../theme";
+import logo from '../../images/Logo.jpg'
+
 
 const NavbarComp = () => {
   const [windowDimension, setWindowDimension] = useState(null)
@@ -40,28 +42,34 @@ const NavbarComp = () => {
     </Navbar.Item>
   ))
 
-  let logoElement = (<Navbar.Logo>Ticks 4 Science!</Navbar.Logo>)
+  let logoElement = (
+    <Navbar.LogoDiv >
+      <Link to='/'>
+        <img src={logo} alt='logo' />
+        <Navbar.Logo>Ticks 4 Science!</Navbar.Logo>
+      </Link>
+    </Navbar.LogoDiv>)
 
   return (
 
     <>
 
       {isMobile ? (
-        
-          <MobileNavbar.Wrapper>
-            <MobileNavbar.Items>
-              {mobileElements}
-            </MobileNavbar.Items>
-          </MobileNavbar.Wrapper>
-        
+
+        <MobileNavbar.Wrapper>
+          <MobileNavbar.Items>
+            {mobileElements}
+          </MobileNavbar.Items>
+        </MobileNavbar.Wrapper>
+
       ) : (
         <Navbar.Wrapper>
-         <Navbar.WidthCnt>
-         {logoElement}
-          <Navbar.Items>
-            {deskElements}
-          </Navbar.Items>
-         </Navbar.WidthCnt>
+          <Navbar.WidthCnt>
+            {logoElement}
+            <Navbar.Items>
+              {deskElements}
+            </Navbar.Items>
+          </Navbar.WidthCnt>
         </Navbar.Wrapper>
       )}
 
@@ -91,10 +99,27 @@ const Navbar = {
   WidthCnt: styled.div`
   display: flex;
   justify-content: space-between;
+  align-items: center;
   width: 1366px;
   `,
+  LogoDiv: styled.div`
+  
+  
+  img { 
+    max-width: 50px; 
+    border-radius: 1rem;
+  }
+  a {
+    display: flex;
+  
+  align-items: center;
+    text-decoration: none;
+    &:link, &:visited, &:hover, &:active {
+        color: black;
+    };
+  }
+  `,
   Logo: styled.h1`
-    // border: 1px solid gray;
     padding: 0.5rem 1rem;
     font-size: 2.5rem;
   `,
@@ -114,7 +139,7 @@ const Navbar = {
 
     a {
         text-decoration: none;
-        &:visited, &:hover, &:active {
+        &:link, &:visited, &:hover, &:active {
             color: black;
         };
        
@@ -126,7 +151,7 @@ const Navbar = {
 }
 
 const MobileNavbar = {
- 
+
   Wrapper: styled(Navbar.Wrapper)`
   background-color: ${({ theme }) => theme.colors.main};
     position: fixed;
