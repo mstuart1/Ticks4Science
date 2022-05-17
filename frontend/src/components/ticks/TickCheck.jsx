@@ -85,6 +85,13 @@ const TickCheck = () => {
                 Even though we can check ourselves and our pets for ticks after adventures, we should also take <BasicPage.InnieLink to='/checkMenu'><span>tick prevention</span></BasicPage.InnieLink>  steps before going out to ensure our safety from common <BasicPage.InnieLink to='/disease'><span>tick-borne pathogens</span></BasicPage.InnieLink> in New Jersey.
             </p>
 
+        <BasicPage.LinkButton.LinkSpec to={'/checkMenu'}>
+        <BasicPage.HoverCard>
+          <BasicPage.LinkButton.CardSpecial>
+            <span>Back to Prevention</span>
+          </BasicPage.LinkButton.CardSpecial>
+        </BasicPage.HoverCard>
+      </BasicPage.LinkButton.LinkSpec>
         </BasicPage.Text>
     )
 }

@@ -107,7 +107,13 @@ const Diseases = () => {
         </figcaption>
     </figure>
 </BasicPage.ImageCont>
-
+<BasicPage.LinkButton.LinkSpec to={'/checkMenu'}>
+        <BasicPage.HoverCard>
+          <BasicPage.LinkButton.CardSpecial>
+            <span>Back to Prevention</span>
+          </BasicPage.LinkButton.CardSpecial>
+        </BasicPage.HoverCard>
+      </BasicPage.LinkButton.LinkSpec>
         </BasicPage.Text>
     )
 }

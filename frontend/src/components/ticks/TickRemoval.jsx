@@ -57,6 +57,13 @@ const TickRemoval = () => {
 
             <p>If you experience nonspecific flu-like symptoms with or without a fever after the tick bite, seek medical attention. There are ticks in New Jersey that can be infected with tick-borne pathogens. Preventing tick bites is essential to keeping you, your family, and your peers safe when enjoying the outdoors!
             </p>
+            <BasicPage.LinkButton.LinkSpec to={'/checkMenu'}>
+        <BasicPage.HoverCard>
+          <BasicPage.LinkButton.CardSpecial>
+            <span>Back to Prevention</span>
+          </BasicPage.LinkButton.CardSpecial>
+        </BasicPage.HoverCard>
+      </BasicPage.LinkButton.LinkSpec>
         </BasicPage.Text>
     )
 }
