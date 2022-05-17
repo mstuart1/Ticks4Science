@@ -9,6 +9,7 @@ import OutlineCard from '../ui/outlineCard/OutlineCard'
 const StepStyles = {
     CardSpecial: styled.div`
     display: flex;
+    flex-direction: column;
     gap: 1rem;
     div {
       margin: 1rem;
@@ -16,7 +17,7 @@ const StepStyles = {
     }
     `,
     StepSpan: styled.span`
-    display: inline-block;
+    // display: inline-block;
     margin: 1rem;
     `
 }
@@ -29,34 +30,35 @@ const TickCheck = () => {
 
             <BasicPage.CardContainer>
 
-                <OutlineCard bgColor={theme.colors.ruTeal}>
+                <OutlineCard bgColor={theme.colors.ruTeal} width='90%'>
                     <StepStyles.CardSpecial>
                         <BasicPage.StepSpan>Inspection #1 - Clothing:</BasicPage.StepSpan>
-                        <div>
+                        <p>
                             Inspect your clothes for crawling ticks before entering your home. After you take off dry outdoor clothing, tumble dry for 10-15 minutes on high heat. It is recommended that damp or wet clothing be dried for 90 minutes on low heat/60 minutes on high heat.
-                        </div>
+                        </p>
                     </StepStyles.CardSpecial>
                 </OutlineCard>
-                <OutlineCard bgColor={theme.colors.ruTeal}>
+                <OutlineCard bgColor={theme.colors.ruTeal} width='90%'>
                     <StepStyles.CardSpecial>
                         <BasicPage.StepSpan> Inspection #2 - Skin:</BasicPage.StepSpan>
-                        <div style={{ display: 'flex' }}>
-                            <p>Ticks enjoy finding warm and dark places to hide, so glancing over the surface of your skin isn’t enough. Places such as behind the ears, between toes and fingers, behind the knees, around the ankles, the groin, your hair, and even your belly button are important to look over.</p>
-                            <BasicPage.ImageCont>
+                        
+                            <p>Ticks enjoy finding warm and dark places to hide, so glancing over the surface of your skin isn't enough. Places such as behind the ears, between toes and fingers, behind the knees, around the ankles, the groin, your hair, and even your belly button are important to look over.</p>
+                           
+                        
+                    </StepStyles.CardSpecial>
+                </OutlineCard>
+                <BasicPage.ImageCont>
                                 <figure>
-                                    <img src='https://www.cdc.gov/ticks/images/gallery/Still-Web-Graphic-Checking-for-ticks_FINAL-2.jpg?_=63048' alt='infographic woman tick check' />
+                                    <img style={{maxWidth: '80%'}} src='https://www.cdc.gov/ticks/images/gallery/Still-Web-Graphic-Checking-for-ticks_FINAL-2.jpg?_=63048' alt='infographic woman tick check' />
                                     <figcaption>CDC -Ticks Image Gallery</figcaption>
                                 </figure>
                             </BasicPage.ImageCont>
-                        </div>
-                    </StepStyles.CardSpecial>
-                </OutlineCard>
-                <OutlineCard bgColor={theme.colors.ruTeal}>
+                            <OutlineCard bgColor={theme.colors.ruTeal} width='90%'>
                     <StepStyles.CardSpecial>
                         <BasicPage.StepSpan>Extra Inspection - In the shower</BasicPage.StepSpan>
-                        <div>
+                        <p>
                             When you're taking a shower, this will give you another opportunity to thoroughly inspect your body for ticks, and it may even help wash off ticks that haven't attached yet.
-                        </div>
+                        </p>
                     </StepStyles.CardSpecial>
                 </OutlineCard>
 
