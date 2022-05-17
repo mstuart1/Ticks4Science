@@ -1,15 +1,20 @@
 import React from "react";
 import headerLogo from "./RU_SIG_NJAES_PMS186_100K.svg";
 import styled from 'styled-components'
+import logo from '../../images/Logo.jpg'
 
 const RutgersHeader = () => (
     <Styles.Header>
       <Styles.WidthContainer>
       <Styles.Logo>
         <a href="https://www.rutgers.edu">
-          <img src={headerLogo} alt="Rutgers Logo"  />
+          <Styles.RULogo src={headerLogo} alt="Rutgers Logo"  />
         </a>
+        <Styles.OtherLogo src={logo} alt="Rutgers Logo"  />
+        
+        
       </Styles.Logo>
+     
       <Styles.Menu>
         <ul>
           <li>
@@ -62,21 +67,37 @@ const Styles = {
       max-width: 1366px;
   }
   `,
+  RULogo: styled.img`
+  width: 18rem;  
+  max-width: 464px; 
+  margin: 1rem 0 -3rem 1rem;
+  `,
   Logo: styled.div`
-img {
-    width: 17em;  
-    max-width: 464px; 
-    margin: 1rem 0 -3rem 0;
-}
+  display: flex;
+  width: 100%;
+  align-items: center;
+  @media screen and (max-width:${({theme}) => theme.mobile}) {
+    justify-content: space-between;
+   }
 `,
 Menu: styled.div`
+width: 100%;
+display: flex;
+justify-content: flex-end;
 li {
     display: inline;
-    margin-right: 2em;
-    font-size: 0.75em;
+    margin-right: 2rem;
+    font-size: 1rem;
 }
 @media screen and (max-width:${({theme}) => theme.mobile}) {
  display: none;
 }
-`
+`,
+OtherLogo: styled.img`
+display: none;
+@media screen and (max-width:${({theme}) => theme.mobile}) {
+  display: flex;
+  max-width: 10rem;
+ }
+`,
 }
