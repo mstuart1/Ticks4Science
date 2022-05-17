@@ -130,13 +130,13 @@ const Ticks = () => {
             <p><TickReportLink /></p>
                </Styles.CenterCol>
                
-               <BasicPage.ImageCont style={{flex: 1}}>
+               {/* <BasicPage.ImageCont style={{flex: 1}}>
         <figure>
           <img src={'https://www.cdc.gov/ticks/images/gallery/Lifeseriesillustration.jpg?_=03668?noicon'} alt='ticks' />
-          {/* <figcaption>Image provided by Andrea Egizi, PhD
-              </figcaption> */}
+          <figcaption>Image provided by Andrea Egizi, PhD
+              </figcaption> 
         </figure>
-      </BasicPage.ImageCont>
+      </BasicPage.ImageCont> */}
                
            </Styles.CenterCntr><Styles.CenterCntr>
            
