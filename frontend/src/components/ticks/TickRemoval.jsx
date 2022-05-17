@@ -7,6 +7,13 @@ const TickRemoval = () => {
     return (
         <BasicPage.Text>
             <BasicPage.Title>Tick Removal</BasicPage.Title>
+            <BasicPage.ImageCont>
+                <figure>
+                    <img src='https://www.cdc.gov/ticks/images/gallery/Tickremovalrectangle2.jpg?_=84771' alt='infographic dog tick check' />
+                    <figcaption>CDC -Ticks Image Gallery - This diagram demonstrates all four steps of the tick removal process.
+                    </figcaption>
+                </figure>
+            </BasicPage.ImageCont>
             <p>When encountering ticks, the best way to remove them is with fine-tipped tweezers.</p>
             <BasicPage.SectionSubtitle>
                 To properly remove a tick:
@@ -47,13 +54,7 @@ const TickRemoval = () => {
                     </BasicPage.CardSpecial>
                 </OutlineCard>
             </BasicPage.CardContainer>
-            <BasicPage.ImageCont>
-                <figure>
-                    <img src='https://www.cdc.gov/ticks/images/gallery/Tickremovalrectangle2.jpg?_=84771' alt='infographic dog tick check' />
-                    <figcaption>CDC -Ticks Image Gallery - This diagram demonstrates all four steps of the tick removal process.
-                    </figcaption>
-                </figure>
-            </BasicPage.ImageCont>
+           
 
             <p>If you experience nonspecific flu-like symptoms with or without a fever after the tick bite, seek medical attention. There are ticks in New Jersey that can be infected with tick-borne pathogens. Preventing tick bites is essential to keeping you, your family, and your peers safe when enjoying the outdoors!
             </p>
