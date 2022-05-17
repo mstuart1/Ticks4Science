@@ -88,7 +88,7 @@ const TickCheckMenu = () => {
                         What is DEET?
                     </BasicPage.SectionSubtitle>
                         DEET is a synthetic chemical that blocks the ability for biting bugs to smell us.<br/>
-                        For more information, visit the U.S. Environmental Protection Agency's website about <BasicPage.OutieLink to='https://www.epa.gov/insect-repellents/deet' ><span>DEET</span></BasicPage.OutieLink>.
+                        For more information, visit the U.S. Environmental Protection Agency's website about <BasicPage.OutieLink href='https://www.epa.gov/insect-repellents/deet' ><span>DEET</span></BasicPage.OutieLink>.
                     </div>
                 </BasicPage.CardSpecial>
             </OutlineCard>
@@ -101,7 +101,7 @@ const TickCheckMenu = () => {
                     </BasicPage.SectionSubtitle>
 
                     Picaridin is a synthetic compound that resembles that of the natural compound piperine or black pepper.<br/>
-                    For more information, visit the fact sheet provided by the National Pesticide Information Center on <BasicPage.OutieLink to='https://www.cmmcp.org/sites/g/files/vyhlif2966/f/uploads/national_pesticide_information_center_picaridin_general_fact_sheet.pdf'><span>picaridin</span></BasicPage.OutieLink>.
+                    For more information, visit the fact sheet provided by the National Pesticide Information Center on <BasicPage.OutieLink href='https://www.cmmcp.org/sites/g/files/vyhlif2966/f/uploads/national_pesticide_information_center_picaridin_general_fact_sheet.pdf'><span>picaridin</span></BasicPage.OutieLink>.
                     </div>
                 </BasicPage.CardSpecial>
             </OutlineCard>
@@ -112,7 +112,7 @@ const TickCheckMenu = () => {
                         <BasicPage.SectionSubtitle>
                     What is IR3535?
                     </BasicPage.SectionSubtitle>IR3535 is a biopesticide that can be applied to people and pets.<br/>
-                    For more information, visit the technical document provided by the U.S. Environmental Protection Agency on <BasicPage.OutieLink to='https://www3.epa.gov/pesticides/chem_search/reg_actions/registration/related_PC-113509_1-Feb-99.pdf'><span>IR3535</span></BasicPage.OutieLink>.
+                    For more information, visit the technical document provided by the U.S. Environmental Protection Agency on <BasicPage.OutieLink href='https://www3.epa.gov/pesticides/chem_search/reg_actions/registration/related_PC-113509_1-Feb-99.pdf'><span>IR3535</span></BasicPage.OutieLink>.
 
                      </div>
                 </BasicPage.CardSpecial>
@@ -125,7 +125,7 @@ const TickCheckMenu = () => {
                     What is Oil of Lemon Eucalyptus?
                     </BasicPage.SectionSubtitle>
                     Oil of lemon eucalyptus is a refined extract from the leaves of lemon eucalyptus trees. Effective products contain more than 60% P-menthane-3,8-diol (PMD).<br/>
-For more information, visit the U.S. Environmental Protection Agency's website about <BasicPage.OutieLink to='https://www3.epa.gov/pesticides/chem_search/reg_actions/registration/fs_PC-011550_01-Apr-00.pdf'><span>oil of lemon eucalyptus</span></BasicPage.OutieLink>.
+For more information, visit the U.S. Environmental Protection Agency's website about <BasicPage.OutieLink href='https://www3.epa.gov/pesticides/chem_search/reg_actions/registration/fs_PC-011550_01-Apr-00.pdf'><span>oil of lemon eucalyptus</span></BasicPage.OutieLink>.
 
                         </div>
                 </BasicPage.CardSpecial>
@@ -137,7 +137,7 @@ For more information, visit the U.S. Environmental Protection Agency's website a
                         <BasicPage.SectionSubtitle>
                     What is permethrin?
                     </BasicPage.SectionSubtitle>
-                    Permethrin is an insecticide that can cause biting bugs to have severe reactions when ingested. This product should only be treated on clothes and can be toxic to cats.<br/>For more information, visit the U.S. Environmental Protection Agency’s website about <BasicPage.OutieLink to='https://www.epa.gov/insect-repellents/repellent-treated-clothing'><span>permethrin</span></BasicPage.OutieLink>.
+                    Permethrin is an insecticide that can cause biting bugs to have severe reactions when ingested. This product should only be treated on clothes and can be toxic to cats.<br/>For more information, visit the U.S. Environmental Protection Agency's website about <BasicPage.OutieLink href='https://www.epa.gov/insect-repellents/repellent-treated-clothing'><span>permethrin</span></BasicPage.OutieLink>.
                         </div>
                 </BasicPage.CardSpecial>
             </OutlineCard> 
