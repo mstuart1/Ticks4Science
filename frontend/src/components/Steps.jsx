@@ -62,7 +62,7 @@ const Steps = () => (
               <StepStyles.CardSpecial>
                 <BasicPage.StepSpan>Step 2:</BasicPage.StepSpan>
                 <div>
-                Take a picture (for tips on how to take good tick pics, ) <BasicPage.InnieLink to='/photo'><span>click here</span></BasicPage.InnieLink>.
+                Take a picture (for tips on how to take good tick pics,  <BasicPage.InnieLink to='/photo'><span>click here</span></BasicPage.InnieLink>).
                 </div>
               </StepStyles.CardSpecial>
               </OutlineCard>
