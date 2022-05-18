@@ -5,6 +5,8 @@ import SubmissionDataService from '../../services/submission'
 import HoverCard from '../ui/hoverCard/HoverCard'
 import styled from "styled-components";
 import UserDataService from '../../services/users'
+import InternalLinkFloatButton from "../ui/internalLinkFloatButton/InternalLinkFloatButton";
+import { theme } from "../../theme";
 // import { getOrgDataRequest } from "./actions";
 // import { PageContainer} from '../styles/Common.styled'
 // import { useDispatch, useSelector } from "react-redux";
@@ -13,12 +15,19 @@ import UserDataService from '../../services/users'
 // import OrgTable from "./OrgTable"
 
 const Styles = {
+  PageCont: styled.div`
+  display: flex;
+  `,
+  SideCont: styled.div`
+  display: flex;
+  flex-direction: column;
+  `,
     Input: styled.input`
-    width: 80vw;
+    // width: 80vw;
 
-    @media screen and (min-width:${({ theme }) => theme.mobile}) {
-        max-width: 800px;
-      }
+    // @media screen and (min-width:${({ theme }) => theme.mobile}) {
+    //     max-width: 800px;
+    //   }
     `,
     Link: styled(Link)`
     text-decoration: none;
@@ -27,15 +36,15 @@ const Styles = {
     Card: styled.div`
     margin: 1rem;
     padding: 1rem ; 
-    width: 80vw;
-    max-width: 900px;
+    // width: 80vw;
+    // max-width: 900px;
     border-radius: 1rem;
-    box-shadow: 0 3px 15px ${({ shadowColor }) => shadowColor || '#000000'}20;
+    box-shadow: 1px 1px 5px ${({ shadowColor }) => shadowColor || '#000000'}70;
     `,
 }
 // TODO instead of search bar, use filtering buttons to get all, need photo review, waiting to receive tick, waiting for identification, identified - search by species
 
-const AllSubs = () => {
+const AllSubs = ({token}) => {
 
     const [data, setData] = useState([])
     const [isLoading, setIsLoading] = useState(false);
@@ -93,7 +102,7 @@ const AllSubs = () => {
 
   let cardElems = filteredData.map(item => (
         <Styles.Link key={item.id} to={`/admin/processTick/${item.id}`} state={{tick: item}}>
-        <HoverCard >
+        <Styles.Card >
             <div>
             <p>ID: {item.id}</p>
             <p>Date Submitted: {item.createdAt&& item.createdAt.substring(0,10)}</p>
@@ -103,7 +112,7 @@ const AllSubs = () => {
             <p>Specimen Identified: {item.specimenIdentified&& item.specimenIdentified.substring(0,10)}</p>
             <p>Species: {item.tickId && item.tick.scientific}</p>
             </div>
-        </HoverCard>
+        </Styles.Card>
         </Styles.Link>
     ))
 
@@ -119,8 +128,10 @@ const AllSubs = () => {
         {isLoading 
         ? (<div>Loading...</div>) 
         : (
-        <div>
-          <BasicPage.Form >
+        <Styles.PageCont>
+          <Styles.SideCont>
+          <InternalLinkFloatButton colors={{ text: theme.colors.ruTeal, shadow: theme.colors.ruTeal }} to='/admin/logout' text='Logout' />
+         {token.manageUsers && ( <BasicPage.Form >
             <Styles.Card>
               <BasicPage.SectionTitle>Invite an Admin User</BasicPage.SectionTitle>
               <div style={{display: "flex", flexDirection: 'row', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'center'}}>
@@ -136,9 +147,15 @@ const AllSubs = () => {
             </Styles.Card>
             
 
-          </BasicPage.Form>
+          </BasicPage.Form>)}
+          
+          </Styles.SideCont>
+          <Styles.SideCont>
+            <p>Click on a card to view the submission</p>
           {cardElems}
-          </div>
+          </Styles.SideCont>
+          
+          </Styles.PageCont>
             
         
         )}
