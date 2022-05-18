@@ -1,13 +1,7 @@
 import React, { useState } from "react";
+import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
-import {  forgotPassReq } from "./actions";
-import {
-  LoginBackground,
-  LoginForm,
-  LoginButton,
-  LoginInput,
-  ForgotText,
-} from "./Login.styled";
+// import {  forgotPassReq } from "./actions";
 import { theme } from "../../theme";
 import UserDataService from '../../services/users'
 
@@ -16,10 +10,9 @@ const initialState = {
   password: "",
 };
 
-const Login = ({ logout, token, setToken }) => {
+const Login = ({ logout, setToken }) => {
 
   const navigate = useNavigate()
-  // const dispatch = useDispatch();
   logout && setToken(null)
 
   const [inputValue, setInputValue] = useState(initialState);
@@ -41,34 +34,37 @@ const Login = ({ logout, token, setToken }) => {
   const submitLogin = async (evt) => {
     evt.preventDefault();
     let response = await UserDataService.loginUser(inputValue);
-    console.log(response.data)
-
-    // let token = response.data.payload.token
-    // let data = response.data.payload.profile
-    setInputValue(initialState);
-    if (token.code === 'LOGIN_SUCCESS_FORCE_PW_CHANGE') {
-      navigate('/login/reset')
-    } else if (token.code === 'LOGIN_SUCCESS'){
+    let {message, token: newToken} = response.data    
+    if (message === 'BAD_USER'){
+      alert('Please contact Dina Fonseca regarding using this system.')
+    } else if (message === 'BAD_PASSWORD'){
+      alert('Your password is incorrect. Please try again or click "Forgot Password" to reset your password.')
+    } else if (newToken) {
+      setToken(newToken)
       navigate('/admin/allSubs')
-    } 
+    } else {
+      alert ('no access token was generated, please contact Dina Fonseca for help')
+    }
+  setInputValue(initialState);
+   
   };
 
-  const submitForgot = (evt) => {
-    evt.preventDefault();
-    let response 
-        // = await LoginDataService.forgot(email);
-        if (response.data.code === 'TOKEN_CREATED') {
-            alert(`You will be receiving an email soon.`);
-        } else {
-            alert(`A reset token has been sent to your email.`);
-        }
-    setForgotEmail("");
-  };
+  // const submitForgot = (evt) => {
+  //   evt.preventDefault();
+  //   let response 
+  //       // = await LoginDataService.forgot(email);
+  //       if (response.data.code === 'TOKEN_CREATED') {
+  //           alert(`You will be receiving an email soon.`);
+  //       } else {
+  //           alert(`A reset token has been sent to your email.`);
+  //       }
+  //   setForgotEmail("");
+  // };
 
   return (
-    <LoginBackground backgroundColor={theme.colors.main}>
-      <LoginForm onSubmit={submitLogin}>
-        <LoginInput
+    <Styles.LoginBackground backgroundColor={theme.colors.main}>
+      <Styles.LoginForm onSubmit={submitLogin}>
+        <Styles.LoginInput
           type="text"
           name="email"
           value={inputValue.email}
@@ -76,33 +72,90 @@ const Login = ({ logout, token, setToken }) => {
           placeholder="Email"
         />
 
-        <LoginInput
+        <Styles.LoginInput
           type="password"
           name="password"
           value={inputValue.password}
           onChange={processInput}
           placeholder="Password"
         />
-        <LoginButton>Login</LoginButton>
-        <ForgotText onClick={toggleForgot}>
+        <Styles.LoginButton>Login</Styles.LoginButton>
+        <Styles.ForgotText onClick={toggleForgot}>
           Forgot password?
-        </ForgotText>
-      </LoginForm>
+        </Styles.ForgotText>
+      </Styles.LoginForm>
 
       {forgot && (
-        <LoginForm onSubmit={submitForgot}>
-          <LoginInput
+        <Styles.LoginForm 
+        // onSubmit={submitForgot}
+        >
+          <Styles.LoginInput
             type="text"
             name="email"
             value={forgotEmail}
             onChange={processForgot}
             placeholder="Email"
           />
-          <LoginButton>Send reset email</LoginButton>
-        </LoginForm>
+          <Styles.LoginButton>Send reset email</Styles.LoginButton>
+        </Styles.LoginForm>
       )}
-    </LoginBackground>
+    </Styles.LoginBackground>
   );
 };
 
 export default Login;
+
+const Styles = {
+  
+LoginBackground: styled.div`
+width: 100vw;
+height: 100vh;
+display: flex;
+flex-direction: column; // want forgot form to show up beneath login form
+justify-content: flex-start;
+align-items: center;
+background-color: ${({backgroundColor}) => backgroundColor}
+`
+,
+LoginForm: styled.form`
+background-color: #f8f8f8;
+border-radius: 5px;
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+padding: 1rem;
+text-align: left;
+margin: 5px;
+`
+,
+LoginInput: styled.input`
+font-size: 1rem;
+margin: 0.5rem;
+    padding: 0.5rem;
+    border: none;
+    border-radius: 3.1px;
+    box-shadow: ${({theme}) => theme.boxShadow};
+    width: 300px;
+    outline: none;
+`,
+LoginButton: styled.button`
+font-size: 1rem;
+margin: 0.5rem;
+    padding: 0.5rem;
+    border: none;
+    border-radius: 3.1px;
+    outline: none;
+    cursor: pointer;
+    width: 150px;
+    color: white;
+    background-color: ${({theme}) => theme.colors.main};
+`
+,
+ForgotText: styled.h4`
+margin: 1rem 0;
+text-decoration: none;
+color: ${({theme}) => theme.colors.main};
+`
+
+}
