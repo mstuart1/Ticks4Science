@@ -10,7 +10,7 @@ class UserDataService {
         return http.post(`/api/user`, data)
     }
     loginUser(data){
-        return http.put(`/api/user/login`, data)
+        return http.post(`/api/user/login`, data)
     }
     getUser(id) {
         return http.get(`/api/user/${id}`)
