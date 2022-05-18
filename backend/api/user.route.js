@@ -4,11 +4,11 @@ module.exports = (app) => {
   
     router
       .post("/", UserCtl.inviteUser)
-    //   .get('/', TickCtl.getAllTicks)
       .get('/:id', UserCtl.getUser)
       .get('/byToken/:token', UserCtl.getByToken)
       .put('/', UserCtl.updateUser)
       .post('/login', UserCtl.login)
+      .put('/forgot', UserCtl.forgot)
 
       app.use("/api/user", router);
   };
