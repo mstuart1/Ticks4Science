@@ -32,7 +32,6 @@ const AdminMgt = () => {
                 <Route path='/processTick/:id' element={<ProcessTick />} />
                 <Route path='/allSubs' element={<AllSubs token={token}/>} />
                 <Route path='/account/:id' element={<UpdateAccount/>} />
-                <Route path='/account/:id' element={<UpdateAccount/>} />
                 <Route path='/logout' element={<Login handleLogin={handleLogin} />}/>
             </Routes>
     )
