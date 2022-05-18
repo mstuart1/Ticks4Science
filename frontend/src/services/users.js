@@ -21,6 +21,10 @@ class UserDataService {
    updateUser(data){
        return http.put(`/api/user`, data)
    }
+   forgotPassword(data){
+       console.log('contacting api')
+       return http.put(`/api/user/forgot`, data)
+   }
     
 }
 
