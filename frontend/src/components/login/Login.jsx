@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 // import {  forgotPassReq } from "./actions";
-import { theme } from "../../theme";
+
 import UserDataService from '../../services/users'
 
 const initialState = {
@@ -10,10 +10,10 @@ const initialState = {
   password: "",
 };
 
-const Login = ({ logout, setToken }) => {
+const Login = ({ logout, handleLogin }) => {
 
   const navigate = useNavigate()
-  logout && setToken(null)
+  logout && handleLogin(null)
 
   const [inputValue, setInputValue] = useState(initialState);
   const [forgotEmail, setForgotEmail] = useState("");
@@ -40,7 +40,7 @@ const Login = ({ logout, setToken }) => {
     } else if (message === 'BAD_PASSWORD'){
       alert('Your password is incorrect. Please try again or click "Forgot Password" to reset your password.')
     } else if (newToken) {
-      setToken(newToken)
+      handleLogin(newToken)
       navigate('/admin/allSubs')
     } else {
       alert ('no access token was generated, please contact Dina Fonseca for help')
@@ -49,20 +49,20 @@ const Login = ({ logout, setToken }) => {
    
   };
 
-  // const submitForgot = (evt) => {
-  //   evt.preventDefault();
-  //   let response 
-  //       // = await LoginDataService.forgot(email);
-  //       if (response.data.code === 'TOKEN_CREATED') {
-  //           alert(`You will be receiving an email soon.`);
-  //       } else {
-  //           alert(`A reset token has been sent to your email.`);
-  //       }
-  //   setForgotEmail("");
-  // };
+  const submitForgot = (evt) => {
+    evt.preventDefault();
+    let response 
+        // = await LoginDataService.forgot(email);
+        if (response.data.code === 'TOKEN_CREATED') {
+            alert(`You will be receiving an email soon.`);
+        } else {
+            alert(`A reset token has been sent to your email.`);
+        }
+    setForgotEmail("");
+  };
 
   return (
-    <Styles.LoginBackground backgroundColor={theme.colors.main}>
+    <Styles.LoginBackground backgroundColor={'#f8f8f8'}>
       <Styles.LoginForm onSubmit={submitLogin}>
         <Styles.LoginInput
           type="text"
@@ -87,7 +87,7 @@ const Login = ({ logout, setToken }) => {
 
       {forgot && (
         <Styles.LoginForm 
-        // onSubmit={submitForgot}
+        onSubmit={submitForgot}
         >
           <Styles.LoginInput
             type="text"
@@ -99,6 +99,7 @@ const Login = ({ logout, setToken }) => {
           <Styles.LoginButton>Send reset email</Styles.LoginButton>
         </Styles.LoginForm>
       )}
+      <Styles.ForgotText>If you click inside the form and nothing happens, please refresh the page.</Styles.ForgotText>
     </Styles.LoginBackground>
   );
 };
@@ -108,7 +109,7 @@ export default Login;
 const Styles = {
   
 LoginBackground: styled.div`
-width: 100vw;
+// width: 100vw;
 height: 100vh;
 display: flex;
 flex-direction: column; // want forgot form to show up beneath login form
@@ -130,7 +131,7 @@ margin: 5px;
 `
 ,
 LoginInput: styled.input`
-font-size: 1rem;
+
 margin: 0.5rem;
     padding: 0.5rem;
     border: none;
@@ -140,7 +141,7 @@ margin: 0.5rem;
     outline: none;
 `,
 LoginButton: styled.button`
-font-size: 1rem;
+
 margin: 0.5rem;
     padding: 0.5rem;
     border: none;
@@ -153,7 +154,7 @@ margin: 0.5rem;
 `
 ,
 ForgotText: styled.h4`
-margin: 1rem 0;
+margin: 1rem;
 text-decoration: none;
 color: ${({theme}) => theme.colors.main};
 `
