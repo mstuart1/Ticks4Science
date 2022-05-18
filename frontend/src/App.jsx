@@ -32,6 +32,7 @@ import ProcessTick from './components/admin/ProcessTick';
 import AllSubs from './components/admin/AllSubs';
 import AdminMgt from './components/admin/AdminMgt';
 import UpdateAccount from './components/admin/UpdateAccount';
+import ResetPassword from './components/login/ResetPassword';
 
 
 const App = () => {
@@ -59,12 +60,13 @@ const App = () => {
               <Route path='/thanks' element={<ThankYou />} />
               <Route path='/progress' element={<TickProgressInput buttonColors={{text: theme.colors.ruTeal, bg: 'white', shadow: theme.colors.ruTeal}} />} />
               <Route path='/progress/:id' element={<TickProgress />} />
+              <Route path="/admin/*" element={<AdminMgt />} />
+              <Route path='/reset/:token' element={<ResetPassword/>} />
               {/* <Route path='/prevention' element={<Prevention />} /> */}
               {/* <Route path='/identify' element={<Identify />} /> */}
               {/* <Route path='/ticks/:id' element={<TickPage />} /> */}
               {/* <Route path='/notReady' element={<NotReady />} /> */}
               {/* <Route path='/createAccount/:token' element={<UpdateAccount/>} /> */}
-              <Route path="/admin/*" element={<AdminMgt />} />
             </Routes>
 
           </Styles.PageContainer>
