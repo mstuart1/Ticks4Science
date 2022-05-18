@@ -52,9 +52,9 @@ If you have a dog or cat…<br/>
 
 
             <BasicPage.SectionTitle>If you have already submitted ticks </BasicPage.SectionTitle>
-            <InternalLinkFloatButton width="25rem" colors={{ text: theme.colors.ruTeal, shadow: theme.colors.ruTeal }} to='/' 
-            // text='Track your progress'
-            text='under construction'
+            <InternalLinkFloatButton width="25rem" colors={{ text: theme.colors.ruTeal, shadow: theme.colors.ruTeal }} to='/progress' 
+            text='Track your progress'
+            // text='under construction'
              />
             </Styles.CenterCol>
 

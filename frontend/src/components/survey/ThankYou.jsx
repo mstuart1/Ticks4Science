@@ -11,8 +11,8 @@ const ThankYou = () => {
             <BasicPage.Title>Thank you for your submission!</BasicPage.Title>
             <BasicPage.SectionTitle>Your personalized tick id number is {id}.<br /><br />
                 Bookmark or write down this website to access your tick progress: <BasicPage.InnieLink 
-                to={`/`}
-                // to={`/progress/${id}`}
+                // to={`/`}
+                to={`/progress/${id}`}
                 ><span>https://ticks.rutgers.edu/progress/{id}</span></BasicPage.InnieLink></BasicPage.SectionTitle>
             <p>
                 One of our tick experts will be examining the submitted photos and information about your tick! Be sure to save your personalized Tick ID number from your Tick Submission Form! You will use this number to access the website to check your progress.

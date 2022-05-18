@@ -86,8 +86,8 @@ const Steps = () => (
               <StepStyles.CardSpecial>
                 <BasicPage.StepSpan>Step 5:</BasicPage.StepSpan>
                 <div>
-                  We are currently building a web page for you to check back on the progress of any submitted ticks.
-                {/* Check back at your convenience <BasicPage.InnieLink to='/progress'><span>here</span></BasicPage.InnieLink> to track the status of any submitted ticks. You will receive instructions describing next steps on how to continue your participation with NJ Ticks 4 Science! */}
+                  {/* We are currently building a web page for you to check back on the progress of any submitted ticks. */}
+                Check back at your convenience <BasicPage.InnieLink to='/progress'><span>here</span></BasicPage.InnieLink> to track the status of any submitted ticks. You will receive instructions describing next steps on how to continue your participation with NJ Ticks 4 Science!
                 </div>
               </StepStyles.CardSpecial>
               </OutlineCard>
