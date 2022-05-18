@@ -8,6 +8,7 @@ module.exports = (app) => {
       .get('/:id', UserCtl.getUser)
       .get('/byToken/:token', UserCtl.getByToken)
       .put('/', UserCtl.updateUser)
+      .post('/login', UserCtl.login)
 
       app.use("/api/user", router);
   };

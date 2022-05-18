@@ -4,6 +4,7 @@ const db = require("../models");
 const User = db.users;
 const jwt = require("jsonwebtoken");
 const mailHelper = require('./mailHelper')
+const bcrypt = require('bcrypt')
 
 //TODO change updateUser to check if password in update and bCrypt it
 
@@ -120,14 +121,7 @@ exports.updateUser = async (req, res, next) => {
         .transaction(async (t) => {
             
             await User.update(data, {where: {id}}, {transaction: t})
-
-
-
         })
-        
-        
-
-
         return res.json({message: 'ok'})
 
     } catch (err) {
@@ -136,6 +130,34 @@ exports.updateUser = async (req, res, next) => {
     }
 }
 
+exports.login = async (req, res, next) => {
+    console.log(`@@@@---login user ${JSON.stringify(req.body, null, 1)}---@@@@`)  
+    try {
+        let {email, password} = req.body
+        let foundUser, accessToken
+        await db.sequelize.transaction(async (t) => {
+            foundUser = await User.findOne({where: {
+                email
+            }},{transaction: t})
+        })
+        if (foundUser === null) {
+           return res.json({message: 'BAD_USER'})
+          }
 
-
+        if (!bcrypt.compareSync(password, foundUser.password)){
+            return res.json({message: 'BAD_PASSWORD'})
+        } else {
+            accessToken = jwt.sign(
+                { id: foundUser.id, grant: foundUser.manageUsers},
+                process.env.SECRET_KEY,
+                { expiresIn: "2h" }
+              );
+        }
+        res.header("Authorization", "Bearer " + accessToken);
+        res.json({token: accessToken})
+    } catch(err) {
+        console.log(err.message)
+        next(err)
+    }
+}
 
