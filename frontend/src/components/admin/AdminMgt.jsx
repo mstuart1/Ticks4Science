@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Routes, Route } from "react-router";
 import AddEditTick from "./AddEditTick";
 import AllSubs from "./AllSubs";
-import Login from "./Login";
+import Login from "../login/Login";
 import ProcessTick from "./ProcessTick";
 import UpdateAccount from "./UpdateAccount";
 

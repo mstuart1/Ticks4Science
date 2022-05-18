@@ -26,7 +26,7 @@ import Survey from './components/survey/Survey';
 import ThankYou from './components/survey/ThankYou';
 import TickProgress from './components/ticks/TickProgress';
 import TickProgressInput from './components/ticks/TickProgressInput';
-import Login from './components/admin/Login';
+import Login from './components/login/Login';
 import AddEditTick from './components/admin/AddEditTick';
 import ProcessTick from './components/admin/ProcessTick';
 import AllSubs from './components/admin/AllSubs';
