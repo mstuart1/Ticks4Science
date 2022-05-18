@@ -49,14 +49,17 @@ const Login = ({ logout, handleLogin }) => {
    
   };
 
-  const submitForgot = (evt) => {
+  const submitForgot = async (evt) => {
+    console.log('clicked')
     evt.preventDefault();
-    let response 
-        // = await LoginDataService.forgot(email);
-        if (response.data.code === 'TOKEN_CREATED') {
-            alert(`You will be receiving an email soon.`);
-        } else {
-            alert(`A reset token has been sent to your email.`);
+    let response = await UserDataService.forgotPassword(forgotEmail);
+    let {message } = response.data    
+        if (message === 'BAD_USER') {
+          alert('Please contact Dina Fonseca regarding using this system.')
+        } else if (message === 'EMAIL_SENT') {
+          alert (`A reset link was sent to your email`)
+        }else {
+          alert ('no reset email sent, please contact Dina Fonseca for help')
         }
     setForgotEmail("");
   };
@@ -86,9 +89,7 @@ const Login = ({ logout, handleLogin }) => {
       </Styles.LoginForm>
 
       {forgot && (
-        <Styles.LoginForm 
-        onSubmit={submitForgot}
-        >
+       <>
           <Styles.LoginInput
             type="text"
             name="email"
@@ -96,10 +97,10 @@ const Login = ({ logout, handleLogin }) => {
             onChange={processForgot}
             placeholder="Email"
           />
-          <Styles.LoginButton>Send reset email</Styles.LoginButton>
-        </Styles.LoginForm>
+          <Styles.LoginButton onClick={submitForgot}>Send reset email</Styles.LoginButton>
+          </>
       )}
-      <Styles.ForgotText>If you click inside the form and nothing happens, please refresh the page.</Styles.ForgotText>
+      <Styles.ForgotText >If you click inside the form and nothing happens, please refresh the page.</Styles.ForgotText>
     </Styles.LoginBackground>
   );
 };
