@@ -11,8 +11,8 @@ const AdminMgt = () => {
     const [token, setToken] = useState(null)
     const [user, setUser] = useState({})
 
-    const handleLogin = async () => {
-        setToken('token exists')
+    const handleLogin = async (newToken) => {
+        setToken(newToken)
 
         // let response = await SubmissionDataService.getAllSubm();
 
@@ -30,11 +30,10 @@ const AdminMgt = () => {
                 <Route path='/addEditTick' element={<AddEditTick />} />
                 <Route path='/addEditTick/:id' element={<AddEditTick />} />
                 <Route path='/processTick/:id' element={<ProcessTick />} />
-                <Route path='/allSubs' element={<AllSubs />} />
+                <Route path='/allSubs' element={<AllSubs token={token}/>} />
                 <Route path='/account/:id' element={<UpdateAccount/>} />
                 <Route path='/account/:id' element={<UpdateAccount/>} />
-                
-
+                <Route path='/logout' element={<Login handleLogin={handleLogin} />}/>
             </Routes>
     )
 }
