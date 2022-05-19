@@ -1,9 +1,7 @@
 /* inspired by https://appdividend.com/2022/03/03/node-express-image-upload-and-resize/ and https://www.positronx.io/react-file-upload-tutorial-with-node-express-and-multer/ and https://www.youtube.com/watch?v=SqbrovwhZ_o */
 require("dotenv").config();
 const multer = require('multer');
-const DIR = process.env.IMAGE_PATH
-
-console.log(`running upload`)
+const DIR = './public/tickImages'
 
 const multerConfig = multer.diskStorage({
   destination: (req, file, cb) => {
