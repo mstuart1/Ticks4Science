@@ -2,8 +2,9 @@ import React from 'react'
 import { BasicPage } from './GeneralStyles'
 import {theme} from '../theme'
 import styled from 'styled-components'
-import OutlineCard from './ui/outlineCard/OutlineCard'
+// import OutlineCard from './ui/outlineCard/OutlineCard'
 import circle from '../images/slide 4.jpg'
+import InternalLinkFloatButton from './ui/internalLinkFloatButton/InternalLinkFloatButton'
 
 const StepStyles = {
   CardSpecial: styled.div`
@@ -45,52 +46,22 @@ const Steps = () => (
           <StepStyles.CenterCntr >
 
           <div >
-          <p>Heres what to do:</p>
+          <p>Here's what to do:</p>
           <BasicPage.CardContainer >
-
-            <OutlineCard bgColor={theme.colors.ruTeal}>
-              <StepStyles.CardSpecial  >
-                <BasicPage.StepSpan>Step 1:</BasicPage.StepSpan>
-                <div>
-                  Are you sure it's a tick? 
-                <BasicPage.InnieLink to='/tickOrInsect'><span>  Check here</span></BasicPage.InnieLink>.
-                
-                </div>
-              </StepStyles.CardSpecial >
-              </OutlineCard>
-            <OutlineCard bgColor={theme.colors.ruTeal}>
-              <StepStyles.CardSpecial>
-                <BasicPage.StepSpan>Step 2:</BasicPage.StepSpan>
-                <div>
-                Take a picture (for tips on how to take good tick pics,  <BasicPage.InnieLink to='/photo'><span>click here</span></BasicPage.InnieLink>).
-                </div>
-              </StepStyles.CardSpecial>
-              </OutlineCard>
-            <OutlineCard bgColor={theme.colors.ruTeal}>
-              <StepStyles.CardSpecial>
-                <BasicPage.StepSpan>Step 3:</BasicPage.StepSpan>
-                <div>
-                Enter information and submit photos in <BasicPage.InnieLink to='/preSurvey'><span>tick submission</span></BasicPage.InnieLink>.               
-                </div>
-              </StepStyles.CardSpecial>
-              </OutlineCard>
-            <OutlineCard bgColor={theme.colors.ruTeal}>
+          <InternalLinkFloatButton width="30rem" colors={{ text: theme.colors.ruTeal, shadow: theme.colors.ruTeal }} to='/tickOrInsect' text='Step 1 - Is it a tick?' />
+          <InternalLinkFloatButton width="30rem" colors={{ text: theme.colors.ruTeal, shadow: theme.colors.ruTeal }} to='/photo' text='Step 2 - Learn to take tick pics' />
+          <InternalLinkFloatButton width="30rem" colors={{ text: theme.colors.ruTeal, shadow: theme.colors.ruTeal }} to='/preSurvey' text='Step 3 - Fill out the form and upload your pics' />
+          <InternalLinkFloatButton width="30rem" colors={{ text: theme.colors.ruTeal, shadow: theme.colors.ruTeal }} to='/progress' text='Step 4 - Check your progress' />
+            
+            {/* <OutlineCard bgColor={theme.colors.ruTeal}>
               <StepStyles.CardSpecial>
                 <BasicPage.StepSpan>Step 4:</BasicPage.StepSpan>
                 <div>
                 After submitting the form, keep the tick in a sealed plastic bag. Safely place the tick in the refrigerator or freezer to preserve it. You will receive a personalized ID number based on your tick submission. Save that number for future reference!            
                 </div>
               </StepStyles.CardSpecial>
-              </OutlineCard>
-            <OutlineCard bgColor={theme.colors.ruTeal}>
-              <StepStyles.CardSpecial>
-                <BasicPage.StepSpan>Step 5:</BasicPage.StepSpan>
-                <div>
-                  {/* We are currently building a web page for you to check back on the progress of any submitted ticks. */}
-                Check back at your convenience <BasicPage.InnieLink to='/progress'><span>here</span></BasicPage.InnieLink> to track the status of any submitted ticks. You will receive instructions describing next steps on how to continue your participation with NJ Ticks 4 Science!
-                </div>
-              </StepStyles.CardSpecial>
-              </OutlineCard>
+              </OutlineCard> */}
+           
               </BasicPage.CardContainer>
               </div>
               <BasicPage.ImageCont>
