@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link, useSearchParams } from 'react-router-dom'
+import { useSearchParams } from 'react-router-dom'
 import { BasicPage } from '../GeneralStyles'
 
 const ThankYou = () => {
@@ -21,8 +21,8 @@ const ThankYou = () => {
             </p><p>
                 Remember to keep the tick in a sealed plastic bag and place it in the refrigerator or freezer for preservation.
             </p><p>
-                We are currently building a website for you to check back for messages regarding your tick.
-                {/* Once your photo has been processed, you will see a message on the website with instructions to continue your participation with NJ Ticks 4 Science by sending your tick to the Center for Vector Biology at Rutgers University! */}
+                {/* We are currently building a website for you to check back for messages regarding your tick. */}
+                Once your photo has been processed, you will see a message on the website with instructions to continue your participation with NJ Ticks 4 Science by sending your tick to the Center for Vector Biology at Rutgers University!
             </p><p>
                 Thank you again for your submission and your support of this program!
             </p>

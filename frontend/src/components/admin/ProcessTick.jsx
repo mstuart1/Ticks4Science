@@ -255,7 +255,7 @@ const ProcessTick = () => {
                 <input
                 type='radio'
                 value={item.id}
-                checked={identified == item.id}
+                checked={identified === item.id}
                 id={`identified-${item.id}`}
                 onChange={(evt) => handleIdentified(tick.id, evt)}
                 // onChange={(evt) => console.log('clicked button')}

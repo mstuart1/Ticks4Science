@@ -1,23 +1,23 @@
 import React from 'react'
 import { BasicPage } from '../GeneralStyles'
-import styled from 'styled-components'
 import mouth from '../../images/slide 6.png'
 import scutum from '../../images/slide 5.png'
 import stage from '../../images/slide 7.jpg'
-// import { theme } from '../../theme'
-import OutlineCard from '../ui/outlineCard/OutlineCard'
 import HorizScrollCont from '../ui/horizontalScrollingContainer/HorizScrollCont'
 import ImageCard from '../ui/imageCard/ImageCard'
+// import styled from 'styled-components'
+// import { theme } from '../../theme'
+// import OutlineCard from '../ui/outlineCard/OutlineCard'
 
-const Styles = {
-  Card: styled(OutlineCard)`
-  width: 90%;
-  `,
-  Subtitle: styled(BasicPage.SectionSubtitle)`
-  padding: 1rem;
-  border-top: 0.5px solid ${({ theme }) => theme.colors.greyBG};
-  `,
-}
+// const Styles = {
+//   Card: styled(OutlineCard)`
+//   width: 90%;
+//   `,
+//   Subtitle: styled(BasicPage.SectionSubtitle)`
+//   padding: 1rem;
+//   border-top: 0.5px solid ${({ theme }) => theme.colors.greyBG};
+//   `,
+// }
 
 const TickOrInsect = () => {
 

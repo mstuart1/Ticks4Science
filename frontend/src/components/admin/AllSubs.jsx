@@ -57,11 +57,11 @@ const AllSubs = () => {
         
       }, [])
 
-    // const handleInputChange = evt => {
-    // let {value} = evt.target
-    // // console.log(value)
-    // setQuery(value)
-    // }
+    const handleInputChange = evt => {
+    let {value} = evt.target
+    // console.log(value)
+    setQuery(value)
+    }
 
     const handleInviteChange = (evt) => {
       console.log(`invite is changing`)
@@ -111,10 +111,10 @@ const AllSubs = () => {
 
   return   (
     <BasicPage.Text>
-        {/* <BasicPage.Form> */}
+        <BasicPage.Form>
             
-        {/* <Styles.Input style={{width: '80vw'}} placeholder="Find a specific tick number" type='search' onChange={handleInputChange}/>
-        </BasicPage.Form> */}
+         <Styles.Input style={{width: '80vw'}} placeholder="Find a specific tick number" type='search' onChange={handleInputChange}/>
+        </BasicPage.Form> 
          
         {isLoading 
         ? (<div>Loading...</div>) 

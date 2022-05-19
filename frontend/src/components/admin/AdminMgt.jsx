@@ -9,7 +9,7 @@ import UpdateAccount from "./UpdateAccount";
 const AdminMgt = () => {
 
     const [token, setToken] = useState(null)
-    const [user, setUser] = useState({})
+    // const [user, setUser] = useState({})
 
     const handleLogin = async () => {
         setToken('token exists')

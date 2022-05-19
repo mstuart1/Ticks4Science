@@ -2,23 +2,18 @@ import React from 'react';
 import { Route, Routes, } from 'react-router-dom';
 import About from './components/About';
 import ScrollToTop from './components/ScrollToTop';
-import TickPage from './components/ticks/TickPage';
 import { ThemeProvider } from "styled-components";
 import { theme } from './theme'
 import PreSurvey from './components/survey/PreSurvey';
 import Steps from './components/Steps';
-import Identify from './components/Identify';
 import Photo from './components/Photo';
 import RutgersFooter from './components/rutgersFooter/RutgersFooter';
 import RutgersHeader from './components/rutgersHeader/RutgersHeader';
 import NavbarComp from './components/mobileNav/Navbar';
-import NotReady from './components/NotReady';
 import styled, { createGlobalStyle } from 'styled-components'
 import Ticks from './components/ticks/Ticks';
-// import { BasicPage } from "./components/GeneralStyles";
 import TickRemoval from './components/ticks/TickRemoval';
 import TickCheck from './components/ticks/TickCheck';
-import Prevention from './components/Prevention';
 import Diseases from './components/Diseases';
 import TickOrInsect from './components/ticks/TickOrInsect';
 import TickCheckMenu from './components/ticks/TickCheckMenu';
@@ -26,12 +21,17 @@ import Survey from './components/survey/Survey';
 import ThankYou from './components/survey/ThankYou';
 import TickProgress from './components/ticks/TickProgress';
 import TickProgressInput from './components/ticks/TickProgressInput';
-import Login from './components/admin/Login';
-import AddEditTick from './components/admin/AddEditTick';
-import ProcessTick from './components/admin/ProcessTick';
-import AllSubs from './components/admin/AllSubs';
 import AdminMgt from './components/admin/AdminMgt';
-import UpdateAccount from './components/admin/UpdateAccount';
+// import TickPage from './components/ticks/TickPage';
+// import Identify from './components/Identify';
+// import NotReady from './components/NotReady';
+// import { BasicPage } from "./components/GeneralStyles";
+// import Prevention from './components/Prevention';
+// import Login from './components/admin/Login';
+// import AddEditTick from './components/admin/AddEditTick';
+// import ProcessTick from './components/admin/ProcessTick';
+// import AllSubs from './components/admin/AllSubs';
+// import UpdateAccount from './components/admin/UpdateAccount';
 
 
 const App = () => {

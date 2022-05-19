@@ -1,11 +1,11 @@
 import React from "react";
 import { BasicPage } from "./GeneralStyles";
 import tickIntro from '../images/scap2.jpg'
-import logo from '../images/Logo.jpg'
 import styled from "styled-components";
 import InternalLinkFloatButton from './ui/internalLinkFloatButton/InternalLinkFloatButton'
 import ExternalLinkFloatButton from './ui/externalLinkFloatButton/ExternalLinkFloatButton'
 import {theme} from '../theme'
+// import logo from '../images/Logo.jpg'
 
 const About = () => {
   return (

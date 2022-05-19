@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import CircleButton from '../circleButton/CircleButton'
 import { FaStar } from 'react-icons/fa'
 import { theme } from '../../../theme'
-import { useNavigate } from 'react-router-dom'
+// import { useNavigate } from 'react-router-dom'
 
 const Styles = {
     Container: styled.div`
@@ -55,7 +55,7 @@ font-weight: bold;
 }
 
 const TickCard = ({ tick }) => {
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
 
     // console.log(tick.peopleTick ? 'flex' : 'none')
     return (
