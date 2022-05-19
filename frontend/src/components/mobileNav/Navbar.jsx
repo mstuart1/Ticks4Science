@@ -46,7 +46,7 @@ const NavbarComp = () => {
     <Navbar.LogoDiv >
       <Link to='/'>
         <img src={logo} alt='logo' />
-        <Navbar.Logo>Ticks 4 Science!</Navbar.Logo>
+        <Navbar.Logo>NJ Ticks 4 Science!</Navbar.Logo>
       </Link>
     </Navbar.LogoDiv>)
 

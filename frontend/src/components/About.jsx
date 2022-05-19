@@ -5,7 +5,7 @@ import styled from "styled-components";
 import InternalLinkFloatButton from './ui/internalLinkFloatButton/InternalLinkFloatButton'
 import ExternalLinkFloatButton from './ui/externalLinkFloatButton/ExternalLinkFloatButton'
 import {theme} from '../theme'
-// import logo from '../images/Logo.jpg'
+import logo from '../images/Logo.jpg'
 
 const About = () => {
   return (
@@ -13,7 +13,9 @@ const About = () => {
     <Styles.CenterCntr>
 
         <Styles.LeftAlignCont>
-          <BasicPage.Title>Welcome to NJ Ticks 4 Science!</BasicPage.Title>
+         
+          <Styles.Title>  <Styles.Logo> <img src={logo} alt='NJ ticks for science logo'/></Styles.Logo>
+          <h1>Welcome to NJ Ticks 4 Science!</h1></Styles.Title>
           {/* <Styles.LeftAlignCont> */}
         <Styles.Para>
       This is a citizen science project where we enlist people to submit ticks they come across in their everyday lives while living, working, and visiting New Jersey!
@@ -142,5 +144,22 @@ const Styles = {
   Para: styled.p`
   font-size: 1.6rem;
   margin: 2rem;
-  `
+  `,
+  Logo: styled.span`
+  img {
+    display: inline;
+    max-width: 10rem;
+    margin: 1rem;
+  }
+  @media screen and (max-width: ${({ theme }) => theme.mobile}) {
+    display: none;
+    
+   }
+  `,
+  Title: styled.div`
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  `,
 }
