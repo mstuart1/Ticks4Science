@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import navMenuItems from "./navMenuItems";
 import { Link } from "react-router-dom";
 import { theme } from "../../theme";
-import logo from '../../images/Logo.jpg'
+import logo from '../../images/Logo.svg'
 
 
 const NavbarComp = () => {

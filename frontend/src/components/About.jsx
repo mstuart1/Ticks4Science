@@ -5,7 +5,7 @@ import styled from "styled-components";
 import InternalLinkFloatButton from './ui/internalLinkFloatButton/InternalLinkFloatButton'
 import ExternalLinkFloatButton from './ui/externalLinkFloatButton/ExternalLinkFloatButton'
 import {theme} from '../theme'
-import logo from '../images/Logo.jpg'
+import logo from '../images/Logo.svg'
 
 const About = () => {
   return (
