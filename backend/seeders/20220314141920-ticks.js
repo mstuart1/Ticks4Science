@@ -93,7 +93,7 @@ module.exports = {
       },
       {
         "id": 5,
-        "scientific": "Dermacenter albipictus",
+        "scientific": "Dermacentor albipictus",
         "common": "Moose Tick",
         "intro": "This tick is a one-host tick, meaning they will try to spend their whole life cycle on the first host they latch onto. Their primary hosts are moose, distributed in the U.S. between Maine, Washington, and Alaska. New Jersey’s relationship with Dermacentor albipictus is with the host white-tailed deer. White-tailed deer are more common than moose in New Jersey.",
         "colors": null,
@@ -115,7 +115,7 @@ module.exports = {
       },
       {
         "id": 6,
-        "scientific": "Dermacenter variabilis",
+        "scientific": "Dermacentor variabilis",
         "common": "American Dog Tick, Wood Tick",
         "intro": "The American Dog Tick, also known as the Wood Tick is commonly found in overgrown fields rather than in wooded, forestry areas. Pasteurizing cattle and horses are found to host these ticks, along with other types of mammals that roam fields including white-footed mice, meadow voles, and rats.",
         "colors": null,

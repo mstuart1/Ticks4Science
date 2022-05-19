@@ -52,7 +52,7 @@ export const ticks = [
     habitat: 'Where bats roost, which may be places like older homes, barns or cabins.  Other environments include grasslands or vegetation along forest edges.',
     engorged: {photos: [], desc: 'Prefers bats however these ticks are opportunistic and can feed on people, pets, and other mammals if bats are not present'}
 },
-    { id: 4, title: 'Dermacenter albipictus', path: `/ticks/4`, 
+    { id: 4, title: 'Dermacentor albipictus', path: `/ticks/4`, 
 common: 'Moose Tick',
 first: 'Monmouth County',
 habitat: 'forested areas',
@@ -60,7 +60,7 @@ engorged: {photos: [], desc: 'Prefers moose or other ungulates such as deer, elk
 },
     {
         id: 5,
-        title: 'Dermacenter variabilis',
+        title: 'Dermacentor variabilis',
         path: `/ticks/5`,
         common: 'American Dog Tick, Wood Tick', first: 'Ocean County',
          second: 'Burlington County',
