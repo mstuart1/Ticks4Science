@@ -9,6 +9,6 @@ module.exports = (app) => {
       .get('/byToken/:token', UserCtl.getByToken)
       .put('/', UserCtl.updateUser)
 
-      app.use("/api/user", router);
+      app.use("/user", router);
   };
   
