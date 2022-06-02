@@ -21,7 +21,7 @@ import Survey from './components/survey/Survey';
 import ThankYou from './components/survey/ThankYou';
 import TickProgress from './components/ticks/TickProgress';
 import TickProgressInput from './components/ticks/TickProgressInput';
-import AdminMgt from './components/admin/AdminMgt';
+// import AdminMgt from './components/admin/AdminMgt';
 // import TickPage from './components/ticks/TickPage';
 // import Identify from './components/Identify';
 // import NotReady from './components/NotReady';
@@ -64,7 +64,7 @@ const App = () => {
               {/* <Route path='/ticks/:id' element={<TickPage />} /> */}
               {/* <Route path='/notReady' element={<NotReady />} /> */}
               {/* <Route path='/createAccount/:token' element={<UpdateAccount/>} /> */}
-              <Route path="/admin/*" element={<AdminMgt />} />
+              {/* <Route path="/admin/*" element={<AdminMgt />} /> */}
             </Routes>
 
           </Styles.PageContainer>
