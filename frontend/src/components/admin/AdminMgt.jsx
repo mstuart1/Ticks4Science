@@ -22,7 +22,20 @@ const AdminMgt = () => {
 
 
     return (
-        <Login handleLogin={handleLogin} />
+        !token ? (
+            <Login handleLogin={handleLogin} />
+        ) :
+            <Routes>
+
+                <Route path='/addEditTick' element={<AddEditTick />} />
+                <Route path='/addEditTick/:id' element={<AddEditTick />} />
+                <Route path='/processTick/:id' element={<ProcessTick />} />
+                <Route path='/allSubs' element={<AllSubs />} />
+                <Route path='/account/:id' element={<UpdateAccount/>} />
+                <Route path='/account/:id' element={<UpdateAccount/>} />
+                
+
+            </Routes>
     )
 }
 
