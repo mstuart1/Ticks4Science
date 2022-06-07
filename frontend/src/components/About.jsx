@@ -18,7 +18,7 @@ const About = () => {
           <h1>Welcome to NJ Ticks 4 Science!</h1></Styles.Title>
           {/* <Styles.LeftAlignCont> */}
         <Styles.Para>
-      This is a citizen science project where we enlist people to submit ticks they come across in their everyday lives while living, working, and visiting New Jersey!
+      This is a citizen science project where we enlist people to submit ticks they come across in their everyday lives while living, working, and visiting New Jersey or as part of a Tick Blitz!
       
       </Styles.Para>
      
@@ -36,6 +36,7 @@ const About = () => {
 If you are a hunter and spend time in tick habitat…<br/>
 If you are a farmer or someone who handles animals routinely…<br/>
 If you have a dog or cat…<br/>
+If you have participated in one of our Tick Blitzes…<br/>
       </Styles.Para>
         {/* </Styles.LeftAlignCont> */}
         </Styles.LeftAlignCont>
