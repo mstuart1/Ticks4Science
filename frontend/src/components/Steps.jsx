@@ -2,13 +2,14 @@ import React from 'react'
 import { BasicPage } from './GeneralStyles'
 import {theme} from '../theme'
 import styled from 'styled-components'
-// import OutlineCard from './ui/outlineCard/OutlineCard'
+import OutlineCard from './ui/outlineCard/OutlineCard'
 import circle from '../images/slide 4.jpg'
-import InternalLinkFloatButton from './ui/internalLinkFloatButton/InternalLinkFloatButton'
+
 
 const StepStyles = {
   CardSpecial: styled.div`
   display: flex;
+  flex-direction: column;
   gap: 1rem;
   div {
     margin: 1rem;
@@ -23,6 +24,7 @@ const StepStyles = {
   StepSpan: styled.span`
   display: inline-block;
   margin: 1rem;
+  font-weight: bold;
   `,
   
     CenterCntr: styled.div`
@@ -41,38 +43,68 @@ const StepStyles = {
 
 const Steps = () => (
 
-        <BasicPage.Text>
-          <BasicPage.Title>Join NJ Ticks 4 Science!</BasicPage.Title>
-          <StepStyles.CenterCntr >
+  <BasicPage.Text>
+  <BasicPage.Title>Join NJ Ticks 4 Science!</BasicPage.Title>
+  <StepStyles.CenterCntr >
 
-          <div >
-          <p>Here's what to do:</p>
-          <BasicPage.CardContainer >
-          <InternalLinkFloatButton width="30rem" colors={{ text: theme.colors.ruTeal, shadow: theme.colors.ruTeal }} to='/tickOrInsect' text='Step 1 - Make sure it is a tick' />
-          <InternalLinkFloatButton width="30rem" colors={{ text: theme.colors.ruTeal, shadow: theme.colors.ruTeal }} to='/photo' text='Step 2 - Learn to take tick pics' />
-          <InternalLinkFloatButton width="30rem" colors={{ text: theme.colors.ruTeal, shadow: theme.colors.ruTeal }} to='/preSurvey' text='Step 3 - Fill out the form and upload your pics' />
-          <InternalLinkFloatButton width="30rem" colors={{ text: theme.colors.ruTeal, shadow: theme.colors.ruTeal }} to='/progress' text='Step 4 - Check your progress' />
-            
-            {/* <OutlineCard bgColor={theme.colors.ruTeal}>
-              <StepStyles.CardSpecial>
-                <BasicPage.StepSpan>Step 4:</BasicPage.StepSpan>
-                <div>
-                After submitting the form, keep the tick in a sealed plastic bag. Safely place the tick in the refrigerator or freezer to preserve it. You will receive a personalized ID number based on your tick submission. Save that number for future reference!            
-                </div>
-              </StepStyles.CardSpecial>
-              </OutlineCard> */}
-           
-              </BasicPage.CardContainer>
-              </div>
-              <BasicPage.ImageCont>
-            <figure>
-              <img src={circle} alt='circle of ticks' />
-              <figcaption>Photo credit Andrea Egizi, PhD.
-              </figcaption>
-            </figure>
-          </BasicPage.ImageCont>
-              </StepStyles.CenterCntr>
-          </BasicPage.Text>
+  <div >
+  <p>Heres what to do:</p>
+  <BasicPage.CardContainer >
+
+    <OutlineCard bgColor={theme.colors.grey3}>
+      <StepStyles.CardSpecial  >
+        <StepStyles.StepSpan>Step 1</StepStyles.StepSpan>
+        <div>
+          Are you sure it's a tick? 
+        <BasicPage.InnieLink to='/tickOrInsect'><span>  Check here</span></BasicPage.InnieLink>.
+        
+        </div>
+      </StepStyles.CardSpecial >
+      </OutlineCard>
+    <OutlineCard bgColor={theme.colors.grey3}>
+      <StepStyles.CardSpecial>
+        <StepStyles.StepSpan>Step 2</StepStyles.StepSpan>
+        <div>
+        Take a picture (for tips on how to take good tick pics,  <BasicPage.InnieLink to='/photo'><span>click here</span></BasicPage.InnieLink>).
+        </div>
+      </StepStyles.CardSpecial>
+      </OutlineCard>
+    <OutlineCard bgColor={theme.colors.grey3}>
+      <StepStyles.CardSpecial>
+        <StepStyles.StepSpan>Step 3</StepStyles.StepSpan>
+        <div>
+        Enter information and submit photos in <BasicPage.InnieLink to='/preSurvey'><span>tick submission</span></BasicPage.InnieLink>.               
+        </div>
+      </StepStyles.CardSpecial>
+      </OutlineCard>
+    <OutlineCard bgColor={theme.colors.grey3}>
+      <StepStyles.CardSpecial>
+        <StepStyles.StepSpan>Step 4</StepStyles.StepSpan>
+        <div>
+        After submitting the form, keep the tick in a sealed plastic bag. Safely place the tick in the refrigerator or freezer to preserve it. You will receive a personalized ID number based on your tick submission. Save that number for future reference!            
+        </div>
+      </StepStyles.CardSpecial>
+      </OutlineCard>
+    <OutlineCard bgColor={theme.colors.grey3}>
+      <StepStyles.CardSpecial>
+        <StepStyles.StepSpan>Step 5</StepStyles.StepSpan>
+        <div>
+          {/* We are currently building a web page for you to check back on the progress of any submitted ticks. */}
+        Check back at your convenience <BasicPage.InnieLink to='/progress'><span>  to track the progress</span></BasicPage.InnieLink>  of any submitted ticks. You will receive instructions describing next steps on how to continue your participation with NJ Ticks 4 Science!
+        </div>
+      </StepStyles.CardSpecial>
+      </OutlineCard>
+      </BasicPage.CardContainer>
+      </div>
+      <BasicPage.ImageCont>
+    <figure>
+      <img src={circle} alt='circle of ticks' />
+      <figcaption>Multiple life stages of common ticks of New Jersey (photo credit Andrea Egizi, PhD).</figcaption>
+    </figure>
+  </BasicPage.ImageCont>
+      </StepStyles.CenterCntr>
+  </BasicPage.Text>
+
 
   )
 
