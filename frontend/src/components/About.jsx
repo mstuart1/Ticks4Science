@@ -79,7 +79,7 @@ If you have a dog or cat…<br/>
       View a list here at <BasicPage.InnieLink to='/ticks'><span>Ticks of NJ</span></BasicPage.InnieLink>
       </Styles.Para>
       
-<ExternalLinkFloatButton colors={{ text: 'black', shadow: '#000000', bg: theme.colors.ruYellow }} to='mailto:cvbquestions@rutgers.edu' text='Questions?  Contact Us' />
+<ExternalLinkFloatButton colors={{ text: 'black', shadow: '#000000', bg: theme.colors.ruYellow }} to='mailto:cvbquestions@njaes.rutgers.edu' text='Questions?  Contact Us' />
       </Styles.CenterCol>
 
     </Styles.CenterCol> 
