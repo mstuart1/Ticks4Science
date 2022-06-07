@@ -1,6 +1,6 @@
 import React from "react";
 import { BasicPage } from "./GeneralStyles";
-import tickIntro from '../images/scap2.jpg'
+import tickIntro from '../images/scap1.jpeg'
 import styled from "styled-components";
 import InternalLinkFloatButton from './ui/internalLinkFloatButton/InternalLinkFloatButton'
 import ExternalLinkFloatButton from './ui/externalLinkFloatButton/ExternalLinkFloatButton'
