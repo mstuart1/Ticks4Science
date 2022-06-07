@@ -105,7 +105,7 @@ const TickOrInsect = () => {
       <BasicPage.ImageCont>
         <figure>
           <img src={stage} alt='ticks at different life stages' />
-          <figcaption style={{ fontSize: '1.6rem' }}>This photo is of a female blacklegged tick (left) next to a sesame seed. On top of the sesame seed is a blacklegged tick as a nymph (photo credit Jim Occi).
+          <figcaption style={{ fontSize: '1.6rem' }}>Photo of a female blacklegged tick, <i>Ixodes scapularis</i> (left) next to a sesame seed. On top of the sesame seed is a blacklegged tick nymph (photo credit Jim Occi).
           </figcaption>
         </figure>
       </BasicPage.ImageCont>
