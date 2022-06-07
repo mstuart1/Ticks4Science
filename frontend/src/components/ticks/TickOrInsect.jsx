@@ -81,7 +81,7 @@ const TickOrInsect = () => {
       <BasicPage.ImageCont>
         <figure>
           <img src={scutum} alt='scutum' />
-          <figcaption style={{ fontSize: '1.6rem' }}>A male tick (right) has a scutum (a.k.a. shield) that takes up most of the body, while in a female (left), as well as in nymphs and larvae, the scutum covers only part of the tick. Nymphs and adults have 4 pairs of legs (8 total) but the tiny larvae only have 3 pairs (6 legs total). The pictures are of <i>Rhipicephalus sanguineus</i> (photo credit Andrea Egizi, PhD).
+          <figcaption >A male tick (right) has a scutum (a.k.a. shield) that takes up most of the body, while in a female (left), as well as in nymphs and larvae, the scutum covers only part of the tick. Nymphs and adults have 4 pairs of legs (8 total) but the tiny larvae only have 3 pairs (6 legs total). The pictures are of <i>Rhipicephalus sanguineus</i> (photo credit Andrea Egizi, PhD).
           </figcaption>
         </figure>
 
@@ -95,7 +95,7 @@ const TickOrInsect = () => {
       <BasicPage.ImageCont>
         <figure>
           <img src={mouth} alt='mouth parts' />
-          <figcaption style={{ fontSize: '1.6rem' }}>The tick’s mouthparts include the hypostome and palps. The hypostome enters the skin and draws up the blood. The palps do not enter the body when feeding, splaying out to the side while attached to its host. Ixodes scapularis (photo credit Andrea Egizi, PhD).
+          <figcaption style={{ fontSize: '1.6rem' }}>The tick’s mouthparts include the hypostome and palps. The hypostome enters the skin and draws up the blood. The palps do not enter the body when feeding, splaying out to the side while attached to its host. <i>Ixodes scapularis</i> (photo credit Andrea Egizi, PhD).
           </figcaption>
         </figure>
       </BasicPage.ImageCont>
