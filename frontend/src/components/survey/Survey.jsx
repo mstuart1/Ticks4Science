@@ -26,11 +26,22 @@ const Survey = () => {
   };
 
   const handleFront = evt => {
-    setImageFront(evt.target.files[0])
-    // console.log(imageFront)
+    let file = evt.target.files[0]
+    if(file.size > 4000000) {
+      alert(`Please reduce file size before uploading`)
+      return
+    }
+    setImageFront(file)
+    
+    
   }
   const handleBack = evt => {
-    setImageBack(evt.target.files[0])
+    let file = evt.target.files[0]
+    if(file.size > 4000000) {
+      alert(`Please reduce file size before uploading`)
+      return
+    }
+    setImageBack(file)
   }
   // const handleOther = evt => {
   //   setImageOther(evt.target.files[0])
