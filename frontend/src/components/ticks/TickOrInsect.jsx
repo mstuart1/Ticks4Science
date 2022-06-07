@@ -81,7 +81,7 @@ const TickOrInsect = () => {
       <BasicPage.ImageCont>
         <figure>
           <img src={scutum} alt='scutum' />
-          <figcaption style={{ fontSize: '1.6rem' }}>A male tick (right) will have a scutum that takes up nearly the entire body, while in the female (as well as nymphs and larvae) the scutum will cover only the anterior part of the tick (left). The part of the abdomen not covered by the scutum is what expands when the tick fills with blood. Rhipicephalus sanguineus (photo credit Andrea Egizi, PhD)
+          <figcaption style={{ fontSize: '1.6rem' }}>A male tick (right) has a scutum (a.k.a. shield) that takes up most of the body, while in a female (left), as well as in nymphs and larvae, the scutum covers only part of the tick. Nymphs and adults have 4 pairs of legs (8 total) but the tiny larvae only have 3 pairs (6 legs total). The pictures are of <i>Rhipicephalus sanguineus</i> (photo credit Andrea Egizi, PhD).
           </figcaption>
         </figure>
 
