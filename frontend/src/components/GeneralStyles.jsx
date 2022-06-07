@@ -165,9 +165,9 @@ color: ${({ theme }) => theme.colors.ruTeal};
       border-radius: 1rem;
     }
     figcaption {
-      width: 300px;
+      width: 100%;
       margin: 1rem;
-      font-size: 1rem;
+      font-size: 1.4rem;
       text-align: center;
       caption-side: bottom;
       
