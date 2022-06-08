@@ -34,13 +34,14 @@ const Login = ({ logout, handleLogin }) => {
   const submitLogin = async (evt) => {
     evt.preventDefault();
     let response = await UserDataService.loginUser(inputValue);
-    let {message, token: newToken} = response.data    
+    console.log(response)
+    let {message, token: newToken, data} = response.data    
     if (message === 'BAD_USER'){
       alert('Please contact Dina Fonseca regarding using this system.')
     } else if (message === 'BAD_PASSWORD'){
       alert('Your password is incorrect. Please try again or click "Forgot Password" to reset your password.')
     } else if (newToken) {
-      handleLogin(newToken)
+      handleLogin(newToken, data)
       navigate('/admin/allSubs')
     } else {
       alert ('no access token was generated, please contact Dina Fonseca for help')

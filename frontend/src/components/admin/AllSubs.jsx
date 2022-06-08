@@ -44,7 +44,8 @@ const Styles = {
 }
 // TODO instead of search bar, use filtering buttons to get all, need photo review, waiting to receive tick, waiting for identification, identified - search by species
 
-const AllSubs = ({token}) => {
+const AllSubs = ({token, user}) => {
+  console.log(user)
 
     const [data, setData] = useState([])
     const [isLoading, setIsLoading] = useState(false);
@@ -116,7 +117,7 @@ const AllSubs = ({token}) => {
         </Styles.Link>
     ))
 
-    console.log(input)
+    console.log(token)
 
   return   (
     <BasicPage.Text>

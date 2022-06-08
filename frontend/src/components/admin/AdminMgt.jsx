@@ -11,10 +11,11 @@ import UserDataService from '../../services/users'
 const AdminMgt = () => {
 
     const [token, setToken] = useState(null)
-    // const [user, setUser] = useState({})
+    const [user, setUser] = useState({})
 
-    const handleLogin = async (newToken) => {
+    const handleLogin = async (newToken, data) => {
         setToken(newToken)
+        setUser(data)
 
     
     }
@@ -32,7 +33,7 @@ const AdminMgt = () => {
                 <Route path='/addEditTick' element={<AddEditTick />} />
                 <Route path='/addEditTick/:id' element={<AddEditTick />} />
                 <Route path='/processTick/:id' element={<ProcessTick />} />
-                <Route path='/allSubs' element={<AllSubs token={token}/>} />
+                <Route path='/allSubs' element={<AllSubs token={token} user={user}/>} />
                 <Route path='/account/:id' element={<UpdateAccount/>} />
                 <Route path='/logout' element={<Login handleLogin={handleLogin} />}/>
                 

@@ -154,7 +154,7 @@ exports.login = async (req, res, next) => {
               );
         }
         res.header("Authorization", "Bearer " + accessToken);
-        res.json({token: accessToken})
+        res.json({token: accessToken, data: foundUser})
     } catch(err) {
         console.log(err.message)
         next(err)

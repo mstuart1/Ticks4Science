@@ -6,22 +6,22 @@ import http from "../http-common";
 class SubmissionDataService {
 
     submitForm(data) {
-        return http.post(`/api/submission`, data)
+        return http.post(`/submission`, data)
     }
     submitImage(id, formData, config) {
-        return http.put(`/api/submission/photos/${id}`, formData, config)
+        return http.put(`/submission/photos/${id}`, formData, config)
     }
     getProgress(id) {
         // console.log('getting progress')
-        return http.get(`/api/submission/${id}`)
+        return http.get(`/submission/${id}`)
     }
 
     getAllSubm() {
-        return http.get(`/api/submission`)
+        return http.get(`/submission`)
     }
     updateSub(data, id) {
         console.log(data)
-        return http.put(`/api/submission/${id}`, data)
+        return http.put(`/submission/${id}`, data)
     }
 }
 
