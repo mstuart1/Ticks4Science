@@ -36,10 +36,10 @@ const Styles = {
     Card: styled.div`
     margin: 1rem;
     padding: 1rem ; 
-    // width: 80vw;
-    // max-width: 900px;
-    border-radius: 1rem;
-    box-shadow: 1px 1px 5px ${({ shadowColor }) => shadowColor || '#000000'}70;
+    width: 80vw;
+    max-width: 900px;
+    border-radius: ${({theme}) => theme.borderRadius};
+    box-shadow: 0 3px 15px ${({ shadowColor }) => shadowColor || '#000000'}20;
     `,
 }
 // TODO instead of search bar, use filtering buttons to get all, need photo review, waiting to receive tick, waiting for identification, identified - search by species
@@ -66,11 +66,11 @@ const AllSubs = ({token}) => {
         
       }, [])
 
-    // const handleInputChange = evt => {
-    // let {value} = evt.target
-    // // console.log(value)
-    // setQuery(value)
-    // }
+    const handleInputChange = evt => {
+    let {value} = evt.target
+    // console.log(value)
+    setQuery(value)
+    }
 
     const handleInviteChange = (evt) => {
       console.log(`invite is changing`)
@@ -120,10 +120,10 @@ const AllSubs = ({token}) => {
 
   return   (
     <BasicPage.Text>
-        {/* <BasicPage.Form> */}
+        <BasicPage.Form>
             
-        {/* <Styles.Input style={{width: '80vw'}} placeholder="Find a specific tick number" type='search' onChange={handleInputChange}/>
-        </BasicPage.Form> */}
+         <Styles.Input style={{width: '80vw'}} placeholder="Find a specific tick number" type='search' onChange={handleInputChange}/>
+        </BasicPage.Form> 
          
         {isLoading 
         ? (<div>Loading...</div>) 

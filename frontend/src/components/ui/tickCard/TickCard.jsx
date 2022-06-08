@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import CircleButton from '../circleButton/CircleButton'
 import { FaStar } from 'react-icons/fa'
 import { theme } from '../../../theme'
-import { useNavigate } from 'react-router-dom'
+// import { useNavigate } from 'react-router-dom'
 
 const Styles = {
     Container: styled.div`
@@ -38,7 +38,7 @@ font-weight: bold;
     width: ${({ width }) => width}; 
     height: ${({ height }) => height}; 
 
-    border-radius: 1rem;
+    border-radius: ${({theme}) => theme.borderRadius};
     box-shadow: 0 3px 15px ${({ shadowColor }) => shadowColor || '#000000'}20;
     margin: 1rem;
     background-image: 
@@ -55,11 +55,11 @@ font-weight: bold;
 }
 
 const TickCard = ({ tick }) => {
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
 
     // console.log(tick.peopleTick ? 'flex' : 'none')
     return (
-        <a href={tick.featureImgUrl} target='_blank' rel='noreferrer' ><Styles.Container>
+        <a href={`/ticks/${tick.id}`} target='_blank' rel='noreferrer' ><Styles.Container>
         {/* <Styles.Container onClick={() => navigate(`/ticks/${tick.id}`)} > */}
             <Styles.HoverCard tickImage={tick.featureImgUrl} width={'20rem'} height={'20rem'}>
                 <Styles.UpperRight>

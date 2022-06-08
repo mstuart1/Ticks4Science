@@ -41,7 +41,7 @@ const Photo = () => {
         <strong>Reminder</strong>: Keep the tick in a plastic container after submission and place in the refrigerator to preserve. 
         Once you submit your ticks, you can use your personalized Tick ID to conveniently track the status of your submission <BasicPage.InnieLink to='/progress'><span>here...</span></BasicPage.InnieLink>.
       </p>
-      <BasicPage.SectionSubtitle>Submit a focused .JPG of the <PhotoStyles.ULText>top side</PhotoStyles.ULText> and <PhotoStyles.ULText>head</PhotoStyles.ULText> of the tick.
+      <BasicPage.SectionSubtitle>Submit one or two pictures of the tick - try to get a close-up and focused picture.
       </BasicPage.SectionSubtitle>
       <BasicPage.SectionSubtitle>
         Place the tick on a light colored background.

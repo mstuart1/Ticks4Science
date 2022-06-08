@@ -31,6 +31,8 @@ const TickProgressInput = ({inputColors = {bg: '#f2f2f2', text: 'black'}, button
     <BasicPage.Text>
         <Styles.Input type={'number'} placeholder='your id number here' value={input} onChange={handleChange} colors={inputColors}/>
         <InternalLinkFloatButton to={`/progress/${input}`} text='Check my progress' colors={buttonColors} />
+        <p>Your id number was given to you when you submitted your photos.  If you have not yet submitted photos, please <BasicPage.InnieLink to='/preSurvey'><span>submit the form </span></BasicPage.InnieLink> before checking your progress.
+        </p>
     </BasicPage.Text>
   )
 }

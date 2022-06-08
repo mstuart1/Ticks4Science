@@ -44,7 +44,7 @@ font-weight: bold;
   width: ${({ width }) => width}; 
   height: ${({ height }) => height}; 
 
-  border-radius: 1rem;
+  border-radius: ${({theme}) => theme.borderRadius};
   box-shadow: 0 3px 15px ${({ shadowColor }) => shadowColor || '#000000'}20;
   margin: 1rem;
   background-image: 
@@ -63,7 +63,7 @@ margin: 1rem;
  padding: 1rem ; 
 width: 80vw;
  max-width: 900px;
- border-radius: 1rem;
+ border-radius: ${({theme}) => theme.borderRadius};
  box-shadow: 0 3px 15px ${({ shadowColor }) => shadowColor || '#000000'}20;
 `,
 }
@@ -255,7 +255,7 @@ const ProcessTick = () => {
                 <input
                 type='radio'
                 value={item.id}
-                checked={identified == item.id}
+                checked={identified === item.id}
                 id={`identified-${item.id}`}
                 onChange={(evt) => handleIdentified(tick.id, evt)}
                 // onChange={(evt) => console.log('clicked button')}

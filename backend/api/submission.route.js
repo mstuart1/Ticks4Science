@@ -10,6 +10,6 @@ module.exports = (app) => {
       .get('/:id', SubmCtl.getProgress)
       .put('/:id', SubmCtl.updateSubm)
 
-      app.use("/api/submission", router);
+      app.use("/submission", router);
   };
   

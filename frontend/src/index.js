@@ -4,7 +4,7 @@ import {BrowserRouter} from 'react-router-dom'
 import App from './App';
 
 const rootElement = document.getElementById('root')
-const basename = process.env.REACT_APP_BASENAME || '/basename-not-working'
+const basename = process.env.REACT_APP_BASENAME;
 
 ReactDOM.render(
     <React.StrictMode>

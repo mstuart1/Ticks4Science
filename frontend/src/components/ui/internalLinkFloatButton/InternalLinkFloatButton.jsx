@@ -11,7 +11,7 @@ const Styles =  {
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 1rem;
+    border-radius: ${({theme}) => theme.borderRadius};
     box-shadow: 0 3px 15px ${({ colors }) => colors.shadow+40};
     margin: 1rem;
     background-color: ${({ colors }) => colors.bg};

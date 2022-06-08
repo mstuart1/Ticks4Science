@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import navMenuItems from "./navMenuItems";
 import { Link } from "react-router-dom";
 import { theme } from "../../theme";
-import logo from '../../images/Logo.jpg'
+import logo from '../../images/Logo.svg'
 
 
 const NavbarComp = () => {
@@ -46,7 +46,7 @@ const NavbarComp = () => {
     <Navbar.LogoDiv >
       <Link to='/'>
         <img src={logo} alt='logo' />
-        <Navbar.Logo>Ticks 4 Science!</Navbar.Logo>
+        <Navbar.Logo>NJ Ticks 4 Science!</Navbar.Logo>
       </Link>
     </Navbar.LogoDiv>)
 
@@ -107,7 +107,7 @@ const Navbar = {
   
   img { 
     max-width: 50px; 
-    border-radius: 1rem;
+    border-radius: ${({theme}) => theme.borderRadius};
   }
   a {
     display: flex;

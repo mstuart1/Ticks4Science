@@ -1,11 +1,11 @@
 import React from "react";
 import { BasicPage } from "./GeneralStyles";
-import tickIntro from '../images/scap2.jpg'
-import logo from '../images/Logo.jpg'
+import tickIntro from '../images/scap1.jpeg'
 import styled from "styled-components";
 import InternalLinkFloatButton from './ui/internalLinkFloatButton/InternalLinkFloatButton'
 import ExternalLinkFloatButton from './ui/externalLinkFloatButton/ExternalLinkFloatButton'
 import {theme} from '../theme'
+import logo from '../images/Logo.svg'
 
 const About = () => {
   return (
@@ -13,10 +13,12 @@ const About = () => {
     <Styles.CenterCntr>
 
         <Styles.LeftAlignCont>
-          <BasicPage.Title>Welcome to NJ Ticks 4 Science!</BasicPage.Title>
+         
+          <Styles.Title>  <Styles.Logo> <img src={logo} alt='NJ ticks for science logo'/></Styles.Logo>
+          <h1>Welcome to NJ Ticks 4 Science!</h1></Styles.Title>
           {/* <Styles.LeftAlignCont> */}
         <Styles.Para>
-      This is a citizen science project where we enlist people to submit ticks they come across in their everyday lives while living, working, and visiting New Jersey!
+      This is a citizen science project where we enlist people to submit ticks they come across in their everyday lives while living, working, and visiting New Jersey or as part of a Tick Blitz!
       
       </Styles.Para>
      
@@ -34,6 +36,7 @@ const About = () => {
 If you are a hunter and spend time in tick habitat…<br/>
 If you are a farmer or someone who handles animals routinely…<br/>
 If you have a dog or cat…<br/>
+If you have participated in one of our Tick Blitzes…<br/>
       </Styles.Para>
         {/* </Styles.LeftAlignCont> */}
         </Styles.LeftAlignCont>
@@ -77,7 +80,7 @@ If you have a dog or cat…<br/>
       View a list here at <BasicPage.InnieLink to='/ticks'><span>Ticks of NJ</span></BasicPage.InnieLink>
       </Styles.Para>
       
-<ExternalLinkFloatButton colors={{ text: 'black', shadow: '#000000', bg: theme.colors.ruYellow }} to='mailto:cvbquestions@rutgers.edu' text='Questions?  Contact Us' />
+<ExternalLinkFloatButton colors={{ text: 'black', shadow: '#000000', bg: theme.colors.ruYellow }} to='mailto:cvbquestions@njaes.rutgers.edu' text='Questions?  Contact Us' />
       </Styles.CenterCol>
 
     </Styles.CenterCol> 
@@ -142,5 +145,22 @@ const Styles = {
   Para: styled.p`
   font-size: 1.6rem;
   margin: 2rem;
-  `
+  `,
+  Logo: styled.span`
+  img {
+    display: inline;
+    max-width: 10rem;
+    margin: 1rem;
+  }
+  @media screen and (max-width: ${({ theme }) => theme.mobile}) {
+    display: none;
+    
+   }
+  `,
+  Title: styled.div`
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  `,
 }

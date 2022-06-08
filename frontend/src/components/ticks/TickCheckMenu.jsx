@@ -1,6 +1,7 @@
 import React from 'react'
 import { theme } from '../../theme'
 import { BasicPage } from '../GeneralStyles'
+import InternalLinkFloatButton from '../ui/internalLinkFloatButton/InternalLinkFloatButton'
 import OutlineCard from '../ui/outlineCard/OutlineCard'
 
 let menuArray = [
@@ -18,15 +19,7 @@ let menuArray = [
     {id: 3, title:'Tick-Borne Disease',path: '/disease'},
 ]
 let menuElements = menuArray.map(item => (
-    <BasicPage.LinkButton.LinkSpec key={item.id} to={item.path}>
-<BasicPage.HoverCard>
-<BasicPage.LinkButton.CardSpecial>
-                <span> {item.title}</span>
-               
-              </BasicPage.LinkButton.CardSpecial>
-               
-            </BasicPage.HoverCard>
-    </BasicPage.LinkButton.LinkSpec>
+  <InternalLinkFloatButton key={item.id} width="30rem" colors={{ text: theme.colors.ruTeal, shadow: theme.colors.ruTeal }} to={item.path} text={item.title} />
 ))
 
 const TickCheckMenu = () => {

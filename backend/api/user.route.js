@@ -10,6 +10,6 @@ module.exports = (app) => {
       .post('/login', UserCtl.login)
       .put('/forgot', UserCtl.forgot)
 
-      app.use("/api/user", router);
+      app.use("/user", router);
   };
   

@@ -7,19 +7,19 @@ import http from "../http-common";
 class UserDataService {
 
     inviteUser(data) {
-        return http.post(`/api/user`, data)
+        return http.post(`/user`, data)
     }
     loginUser(data){
-        return http.post(`/api/user/login`, data)
+        return http.put(`/user/login`, data)
     }
     getUser(id) {
-        return http.get(`/api/user/${id}`)
+        return http.get(`/user/${id}`)
     }
     getByToken(token) {
-        return http.get(`/api/user/byToken/${token}`)
+        return http.get(`/user/byToken/${token}`)
     }
    updateUser(data){
-       return http.put(`/api/user`, data)
+       return http.put(`/user`, data)
    }
    forgotPassword(data){
        console.log('contacting api')

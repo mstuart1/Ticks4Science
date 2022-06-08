@@ -26,11 +26,22 @@ const Survey = () => {
   };
 
   const handleFront = evt => {
-    setImageFront(evt.target.files[0])
-    // console.log(imageFront)
+    let file = evt.target.files[0]
+    if(file.size > 4000000) {
+      alert(`Please reduce file size before uploading`)
+      return
+    }
+    setImageFront(file)
+    
+    
   }
   const handleBack = evt => {
-    setImageBack(evt.target.files[0])
+    let file = evt.target.files[0]
+    if(file.size > 4000000) {
+      alert(`Please reduce file size before uploading`)
+      return
+    }
+    setImageBack(file)
   }
   // const handleOther = evt => {
   //   setImageOther(evt.target.files[0])
@@ -184,11 +195,11 @@ const Survey = () => {
             <textarea id='activities' name='activities' value={input.activities || ''} onChange={handleChange}></textarea>
           </div>
           <div>
-            <p>Please include a photo of the top side of the tick and a photo of the head of the tick.  You may include one additional photo.</p>
+            <p>Please include a photo of the top side of the tick and a photo of the head of the tick. </p>
             <div>
-              <label htmlFor='front'>Photo of top side</label>
+              <label htmlFor='front'>Photo 1</label>
               <input type='file' accept='image/*' onChange={handleFront} required id='front' /><br />
-              <label htmlFor='back'>Photo of head</label>
+              <label htmlFor='back'>Photo 2</label>
               <input type='file' accept='image/*' onChange={handleBack} required id='back' /><br />
               {/* <label htmlFor='other'>Any additional photo of tick</label>
               <input type='file' accept='image/*' onChange={handleOther} required id='other' /> */}

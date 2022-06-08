@@ -7,7 +7,7 @@ const Styles = {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    border-radius: 1rem;
+    border-radius: ${({theme}) => theme.borderRadius};
     border: 2px solid ${({ bgColor }) => bgColor + 30 || 'grey'};
     background-color: ${({ bgColor }) => bgColor + 20 || 'white'};
     padding: ${({padding}) => padding}; 

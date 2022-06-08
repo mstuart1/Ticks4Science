@@ -8,6 +8,6 @@ module.exports = (app) => {
       .get('/:id', TickCtl.getTick)
       .put('/:id', TickCtl.updateTick)
 
-      app.use("/api/tick", router);
+      app.use("/tick", router);
   };
   

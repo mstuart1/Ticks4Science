@@ -1,5 +1,5 @@
 /* inspired by https://appdividend.com/2022/03/03/node-express-image-upload-and-resize/ and https://www.positronx.io/react-file-upload-tutorial-with-node-express-and-multer/ and https://www.youtube.com/watch?v=SqbrovwhZ_o */
-
+require("dotenv").config();
 const multer = require('multer');
 const DIR = './public/tickImages'
 

@@ -69,7 +69,7 @@ const BorderlessInput = ({ colors = { bg: '#f2f2f2', text: 'black', ph: '#aaa', 
         <Styles.CustomField colors={colors}>
             {children}
             <span className='placeholder'>{placeholder}</span>
-            <span class="error-message" aria-live="polite">{errorText}</span>
+            <span className="error-message" aria-live="polite">{errorText}</span>
         </Styles.CustomField>
     )
 }
