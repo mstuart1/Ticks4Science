@@ -4,6 +4,7 @@ const db = require("../models");
 const User = db.users;
 const jwt = require("jsonwebtoken");
 const mailHelper = require('./mailHelper')
+const bcrypt = require("bcrypt");
 
 //TODO change updateUser to check if password in update and bCrypt it
 
@@ -132,6 +133,44 @@ exports.updateUser = async (req, res, next) => {
 
     } catch (err) {
         console.log(err.message)
+        next(err)
+    }
+}
+
+exports.login = async(req, res, next) => {
+    console.log(`@@@@---Logging in user---@@@@`)
+    try{
+        console.log(req.body)
+        let {email, password} = req.body
+        let user, token;
+        await db.sequelize
+        .transaction(async (t) => {
+            
+            user = await User.findOne({where: {email}}, {transaction: t})
+        })
+        if (!user) {
+            throw Error (`user ${email} not found`)
+        } else {
+            
+            if (bcrypt.compareSync(password, user.password)) {
+                
+                token  = jwt.sign(
+                    { id: user.id },
+                    process.env.SECRET_KEY,
+                    { expiresIn: "2h" }
+                  );
+             
+              } else {
+                  throw Error('password does not match')
+              }
+        }       
+        
+
+        res.header("Authorization", "Bearer " + token)
+        return res.json({data: token})
+
+    } catch (err) {
+        console.log(`!!!! ---- Error----!!!!`, err.message)
         next(err)
     }
 }
