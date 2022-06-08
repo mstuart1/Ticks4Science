@@ -137,7 +137,7 @@ color: ${({ theme }) => theme.colors.ruTeal};
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    border-radius: 1rem;
+    border-radius: ${({theme}) => theme.borderRadius};
     box-shadow: 0 3px 15px ${({ shadowColor }) => shadowColor || '#000000'}20;
     margin: 1rem;
     background-color: ${({ bgColor }) => bgColor || 'white'};
@@ -162,7 +162,7 @@ color: ${({ theme }) => theme.colors.ruTeal};
     margin: 2rem;
     img {
       max-width: 300px;
-      border-radius: 1rem;
+      border-radius: ${({theme}) => theme.borderRadius};
     }
     figcaption {
       width: 100%;

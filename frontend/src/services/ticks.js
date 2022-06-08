@@ -7,17 +7,17 @@ import http from "../http-common";
 class TickDataService {
 
     submitForm(data) {
-        return http.post(`/api/tick`, data)
+        return http.post(`/tick`, data)
     }
     updateForm(data, id){
-        return http.put(`/api/tick/${id}`, data)
+        return http.put(`/tick/${id}`, data)
     }
     getTick(id) {
-        return http.get(`/api/tick/${id}`)
+        return http.get(`/tick/${id}`)
     }
     getAllTicks() {
         // console.log(`getting all ticks`)
-        return http.get(`/api/tick`)
+        return http.get(`/tick`)
     }
     
 }

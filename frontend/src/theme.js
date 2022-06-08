@@ -28,4 +28,5 @@ export const theme = {
     mobile: "768px",
     siteWidth: "1366px",
     boxShadow: '0 0 4px rgba(0,0,0,.16)',
+    borderRadius: "1rem",
   };

@@ -6,54 +6,78 @@ import TickDataService from '../../services/ticks'
 import { theme } from '../../theme'
 import OutlineCard from '../ui/outlineCard/OutlineCard'
 import styled from 'styled-components'
+import {scapularis} from './tickFiles/scapularis'
+import scap3 from '../../images/scap3.jpeg'
 
 const Styles = {
   CardCont: styled.div`
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
+  
   align-items: center;
   justify-content: center;
   margin: 2rem;
-
-  @media screen and (min-width: 1000px) {
-    width: 1000px;
-    & > div {
-      width: 30rem;
-      height: 37rem;
-    }
-  }
+  background-color: ${({theme}) => theme.colors.grey1};
+  border-radius: ${({theme}) => theme.borderRadius};
+  width: 800px;
   `,
-  HorizFlex: styled.div`
-  margin: 1rem;
+  
+  TopCont: styled.div`
   display: flex;
-  flex-wrap: wrap;
   align-items: center;
   justify-content: center;
-  @media screen and (min-width: 1000px) {
-    width: 1000px;
-    flex-wrap: nowrap;
-  }
-  `,
-  VertFlex: styled.div`
-  margin: 1rem;
-  display: flex;
-  flex: 1 1 100;
-  flex-direction: column;
-  `,
+  width: 100%;
 
-  MapCont: styled.div`
-  flex: 2;
-  justify-content: center;
-  align-items: center;
+  @media screen and (max-width:${({ theme }) => theme.mobile}) {
+    flex-wrap: wrap;
+  }
+  
+  `,
+  TopImgCont: styled.div`
+  margin: 2rem;
   img {
-    margin-left: 1rem;
-    max-width: 350px;
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
   }
-  @media screen and (min-width: 1000px) {
-    img {
-      max-width: 600px;
-    }
+  `,
+  TopInfoCont: styled.div`
+  margin: 2rem;
+  display: flex;
+  flex-direction: column;
+  // flex: 1;
+  h1 {
+    font-size: 2rem;
   }
+  div {
+    font-size: 1.6rem;
+  }
+  `,
+  MiddleCont: styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  @media screen and (max-width:${({ theme }) => theme.mobile}) {
+    flex-wrap: wrap;
+  }
+  `,
+  MiddleInfo: styled.div`
+  display: flex;
+  flex-direction: column;
+  // align-items: center;
+  `,
+  InfoItem: styled.div`
+  margin: 1rem;
+  `,
+  LifeCont: styled.div`
+  display: flex;
+  flex-direction: column;
+  margin: 2rem;
+  `,
+  PhotoGallery: styled.div`
+  display: flex;
+  flex-wrap: wrap
   `,
 }
 
@@ -61,105 +85,44 @@ const Styles = {
 const TickPage = () => {
   let { id } = useParams()
 
-  const [data, setData] = useState({})
-
-  useEffect(() => {
-    let getData = async () =>
-      await TickDataService.getTick(id);
-
-    getData().then(response => {
-      console.log(response.data.record)
-      setData(response.data.record)
-    })
-  }, [id])
-
-  console.log(data.refImgArray)
-
-
-  let refImgElems = data.refImgArray?.length > 0 && data.refImgArray.map((img, i) => (
-
-    <figure key={i}>
-      <img src={img.source} alt='ticks' style={{ maxWidth: '350px', borderRadius: '5px' }} />
-      <figcaption>{img.caption}
-      </figcaption>
-    </figure>
-
-  ))
 
 
   return (
-    <BasicPage.Text>
-      <BasicPage.Title>
-        Scientific Name: <i>{data.scientific}</i></BasicPage.Title>
-      <BasicPage.Title>Common: {data.common}</BasicPage.Title>
-      <p>{data.intro}</p>
-      <Styles.CardCont>
-      <OutlineCard bgColor={theme.colors.ruBlue} width='25rem' >
-            <BasicPage.SectionTitle>Appearance</BasicPage.SectionTitle>
-            <BasicPage.SectionSubtitle>Colors: </BasicPage.SectionSubtitle> {data.colors}
-            <BasicPage.SectionSubtitle>Shape: </BasicPage.SectionSubtitle>{data.shape}
-          </OutlineCard>
-          <OutlineCard bgColor={theme.colors.ruBlue} width='25rem' >
-            <BasicPage.SectionTitle>Hosts</BasicPage.SectionTitle>
-            {data.hosts}
-          </OutlineCard>
-      </Styles.CardCont>
-      <Styles.HorizFlex>
-      
-          <BasicPage.ImageCont >
-            {refImgElems}
-          </BasicPage.ImageCont>
-      </Styles.HorizFlex>
-      {(data.larvaeFeed || data.larvaeActive) && (
-        <>
-          <p>
-            <FaStar color={theme.colors.ruYellow} /> indicates tick stages that seek people as hosts!
-          </p>
-          <Styles.CardCont>
+    
+   <Styles.CardCont>
+     <Styles.TopCont className='topCont'>
+     <Styles.TopImgCont className='imgCont'>
+     <img src={scapularis.keyImg} alt='tick'/>
+     <p>{scapularis.keyImgCap}</p>
+     </Styles.TopImgCont>
+     <Styles.TopInfoCont className = 'InfoCont'>
+       <h1>Common Name: {scapularis.common}</h1>
+       <h1>Scientific Name: <i>{scapularis.scientific}</i></h1>
+       <h3>{scapularis.people}</h3><br/>
+       {scapularis.info}
+     </Styles.TopInfoCont>
+     </Styles.TopCont>
+     <Styles.MiddleCont>
+       <Styles.MiddleInfo>
 
-            <OutlineCard bgColor={theme.colors.ruYellow}  >
-              <BasicPage.SectionTitle>{data.larvaeFeed?.includes('people') && <FaStar color={theme.colors.ruYellow} />} Larvae</BasicPage.SectionTitle>
-              <p>{data.larvaeActive}</p>
-              <p>{data.larvaeFeed}</p>
-            </OutlineCard>
-            <OutlineCard bgColor={theme.colors.ruYellow} >
-              <BasicPage.SectionTitle>{data.nymphFeed?.includes('people') && <FaStar color={theme.colors.ruYellow} />} Nymphs</BasicPage.SectionTitle>
-              <p>{data.nymphActive}</p>
-              <p>{data.nymphFeed}</p>
-            </OutlineCard>
-            <OutlineCard bgColor={theme.colors.ruYellow} >
-              <BasicPage.SectionTitle>{data.adultFeed?.includes('people') && <FaStar color={theme.colors.ruYellow} />} Adults</BasicPage.SectionTitle>
-              <p>{data.adultActive}</p>
-              <p>{data.adultFeed}</p>
-            </OutlineCard>
-          </Styles.CardCont>
-        </>
-      )}
-      <Styles.HorizFlex>
-        <Styles.VertFlex>
-          <OutlineCard bgColor={theme.colors.ruTeal}>
-            <BasicPage.SectionTitle>Habitat</BasicPage.SectionTitle>
-            <p>{data.habitat}</p>
-          </OutlineCard>
-          <OutlineCard bgColor={theme.colors.ruTeal}>
-            <BasicPage.SectionTitle>Locations in NJ</BasicPage.SectionTitle>
-            <p>{data.njLocations}</p>
-          </OutlineCard>
-
-        </Styles.VertFlex>
-        <Styles.MapCont>
-          {data.mapImgUrl && (
-            <img src={data.mapImgUrl} alt='map of locations' />
-          )}
-        </Styles.MapCont>
-      </Styles.HorizFlex>
-
-
-
-
-      <BasicPage.SectionTitle>A reminder about engorged ticks</BasicPage.SectionTitle>
-      <p>Blood meals increase the tick's size drastically.  However, nymphs may become engorged and still go unnoticed because of their already hard to detect size.</p>
-    </BasicPage.Text>
+       <Styles.InfoItem><h2>Hosts</h2>{scapularis.hosts}</Styles.InfoItem>
+       <Styles.InfoItem><h2>Habitat</h2>{scapularis.habitat}</Styles.InfoItem>
+       <Styles.InfoItem><h2>Locations in NJ</h2>{scapularis.njLoc}</Styles.InfoItem>
+       </Styles.MiddleInfo>
+     </Styles.MiddleCont>
+     <Styles.LifeCont>
+       <h2>Life Stages</h2>
+       <i>Tick Larvae</i>
+       {scapularis.larva}
+       <i>Tick Nymphs</i>
+       {scapularis.nymph}
+       <i>Tick Adults</i>
+       {scapularis.adult}
+     </Styles.LifeCont>
+     <h3>A Reminder About Engorged Ticks</h3>
+     <p>Blood feeding increases the <BasicPage.InnieLink to='/tickOrInsect'><span>ticks's size drastically</span></BasicPage.InnieLink> and can increase the chances of them passing on a <BasicPage.InnieLink to='/disease'><span>pathogen</span></BasicPage.InnieLink></p>
+   </Styles.CardCont>
+  
   )
 }
 
