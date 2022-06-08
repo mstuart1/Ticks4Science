@@ -132,7 +132,7 @@ const AllSubs = ({token, user}) => {
         <Styles.PageCont>
           <Styles.SideCont>
           <InternalLinkFloatButton colors={{ text: theme.colors.ruTeal, shadow: theme.colors.ruTeal }} to='/admin/logout' text='Logout' />
-         {token.manageUsers && ( <BasicPage.Form >
+         {user.manageUsers && ( <BasicPage.Form >
             <Styles.Card>
               <BasicPage.SectionTitle>Invite an Admin User</BasicPage.SectionTitle>
               <div style={{display: "flex", flexDirection: 'row', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'center'}}>
@@ -142,9 +142,7 @@ const AllSubs = ({token, user}) => {
             </label>
             <button style={{width: '300px', padding: '1rem'}}  onClick={handleUserInvite}>Invite</button>
               </div>
-            
-            
-            <p>Developers note: Check if user can invite users, if so show this card - submitting sends and email to the user inviting them to create an account.  Send an exipiration time in the email.</p>
+           
             </Styles.Card>
             
 

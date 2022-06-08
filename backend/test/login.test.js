@@ -13,15 +13,15 @@ const password = 'letmein'
 
 describe("Login", () => {
     // test POST login CFA or Admin
-  describe("POST /api/user/login", () => {
-    it("should create a login session for this user", (done) => {
+  describe("post /api/user/login", () => {
+    it.only("should create a login session for this user", (done) => {
       const login_info = {
         email: existEmail,
         password: password
       };
       chai
         .request(server)
-        .post("/api/user/login")
+        .post("/user/login")
         .send(login_info)
         .end((err, res) => {
           console.log(res.body)

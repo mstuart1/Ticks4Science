@@ -32,6 +32,7 @@ const Login = ({ logout, handleLogin }) => {
   const toggleForgot = () => setForgot(!forgot);
 
   const submitLogin = async (evt) => {
+    console.log('clicked')
     evt.preventDefault();
     let response = await UserDataService.loginUser(inputValue);
     console.log(response)
