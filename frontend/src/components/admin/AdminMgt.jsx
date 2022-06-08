@@ -5,25 +5,31 @@ import AllSubs from "./AllSubs";
 import Login from "./Login";
 import ProcessTick from "./ProcessTick";
 import UpdateAccount from "./UpdateAccount";
+import Dashboard from './Dashboard';
+import UserDataService from '../../services/users'
 
 const AdminMgt = () => {
 
     const [token, setToken] = useState(null)
     // const [user, setUser] = useState({})
 
-    const handleLogin = async () => {
-        setToken('token exists')
+    const handleLogin = async (credentials) => {
+        
+        let response = await UserDataService.loginUser(credentials);
+        console.log(response.data)
 
-        // let response = await SubmissionDataService.getAllSubm();
-
-        // console.log(response.data.record)
-        // setUser(response.data.record)
+        let token = response.data
+        
+        setToken(token)
+    }
+    const removeToken = () => {
+        setToken(null)
     }
 
 
     return (
         !token ? (
-            <Login handleLogin={handleLogin} />
+            <Login handleLogin={handleLogin} removeToken={removeToken} />
         ) :
             <Routes>
 
@@ -33,6 +39,7 @@ const AdminMgt = () => {
                 <Route path='/allSubs' element={<AllSubs />} />
                 <Route path='/account/:id' element={<UpdateAccount/>} />
                 <Route path='/account/:id' element={<UpdateAccount/>} />
+                <Route path='/' element={<Dashboard/>}/>
                 
 
             </Routes>
