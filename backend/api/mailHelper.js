@@ -1,5 +1,11 @@
 // require("dotenv").config();
+const cron = require('node-cron')
 const nodemailer = require("nodemailer");
+const db = require("../models");
+const Subm = db.submission;
+const Users = db.users;
+// const { Op } = require("sequelize");
+
 let transporter = nodemailer.createTransport({
   host: "127.0.0.1",
   port: 25,
@@ -11,21 +17,57 @@ let transporter = nodemailer.createTransport({
   // },
 });
 
-exports.sendMail = async (email, message) => {
+// send an email every day at noon if pending subs
+cron.schedule("12 0 * * *", async () => {
+  
+  let pending = await Subm.findAll({
+    where: {
+      specimenIdentified: null
+    }
+  })
+  if (pending.length > 0) {
+    let recipients = await Users.findAll({where: { emailAlerts: true}, attributes: ["email"]})
+    let emails = recipients.map(email => email.email)
+    let message = `There are tick submissions waiting for review at <a href='https://${process.env.CORS_ORIGIN}/admin'>Ticks4Science!</a>`
+
     let mailOptions = {
-    //   from: process.env.MAIL_USER,
-      to: email,
+      to: emails,
       subject: "Tick System Message",
       html: `<p>${message}</p>`,
     };
-  
-    await transporter
+    // Send email
+    transporter
       .sendMail(mailOptions)
       .then((info) => {
-        // console.log(mailOptions)
+        console.log(`@@@@---Email sent to ${emails}---@@@@`)
         return console.log(`Email sent: ${info.response}`);
       })
-      .catch((error) => {
-        return console.log(error);
+      .catch((err) => {
+        console.log(`@@@@@Email errors!!!@@@@@@`);
+        return console.log(err.message);
       });
+  
+  }
+ 
+  
+})
+
+
+exports.sendMail = async (email, message) => {
+  let mailOptions = {
+    //   from: process.env.MAIL_USER,
+    to: email,
+    subject: "Tick System Message",
+    html: `<p>${message}</p>`,
   };
+
+  await transporter
+    .sendMail(mailOptions)
+    .then((info) => {
+      // console.log(mailOptions)
+      return console.log(`Email sent: ${info.response}`);
+    })
+    .catch((error) => {
+      return console.log(error);
+    });
+};
