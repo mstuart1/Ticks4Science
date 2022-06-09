@@ -5,9 +5,9 @@ import SubmissionDataService from '../../services/submission'
 import HoverCard from '../ui/hoverCard/HoverCard'
 import styled from "styled-components";
 import UserDataService from '../../services/users'
-// import InternalLinkFloatButton from "../ui/internalLinkFloatButton/InternalLinkFloatButton";
+import InternalLinkFloatButton from "../ui/internalLinkFloatButton/InternalLinkFloatButton";
 import { theme } from "../../theme";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { removeToken } from "./actions";
 
 // import { getOrgDataRequest } from "./actions";
@@ -50,6 +50,7 @@ const Dashboard = () => {
     const [query, setQuery] = useState('');
     const [input, setInput] = useState({});
     
+    const user = useSelector(state => state.user)
     
     useEffect(() => {
         let getData = async () => {
@@ -93,36 +94,10 @@ const Dashboard = () => {
       navigate('/')
     }
 
-      let filteredData = data.filter(item => {
-      
-    if (query === "") {
-      return item
-    } else if (item.toLowerCase().includes(query.toLowerCase())) {
-      // returns filtered array
-      return item;
-    } else {
-        return item
-    }
-  });
-
-  let cardElems = filteredData.map(item => (
-        <Styles.Link key={item.id} to={`/admin/processTick/${item.id}`} state={{tick: item}}>
-        <HoverCard >
-            <div>
-            <p>ID: {item.id}</p>
-            <p>Date Submitted: {item.createdAt&& item.createdAt.substring(0,10)}</p>
-            <p>Photos Reviewed: {item.photosReviewed&& item.photosReviewed.substring(0,10)}</p>
-            <p>Specimen Requested: {item.specimenRequested&& item.specimenRequested.substring(0,10)}</p>
-            <p>Specimen Received: {item.specimenReceived&& item.specimenReceived.substring(0,10)}</p>
-            <p>Specimen Identified: {item.specimenIdentified&& item.specimenIdentified.substring(0,10)}</p>
-            <p>Species: {item.tickId && item.tick.scientific}</p>
-            </div>
-        </HoverCard>
-        </Styles.Link>
-    ))
 
     console.log(isLoading)
-    console.log(process.env.REACT_APP_SERVER_URL)
+    // console.log('user', user)
+    // console.log(process.env.REACT_APP_SERVER_URL)
 
   return   (
     <BasicPage.Text>
@@ -141,25 +116,25 @@ const Dashboard = () => {
            >Logout</HoverCard>
            </div>
           <BasicPage.Form >
-            <Styles.Card>
-              <BasicPage.SectionTitle>Invite an Admin User</BasicPage.SectionTitle>
-              <div style={{display: "flex", flexDirection: 'row', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'center'}}>
-              <input type='email' name='email' value={input.email} placeholder='Email of new user'  style={{width: '80vh', maxWidth: '300px'}} onChange={(evt) => handleInviteChange(evt)} />
-            <label style={{margin: 0}}>Check box if this user can manage other users:
-              <input type='checkbox' name='manageUsers' value={input.manageUsers} onChange={(evt) => handleInviteChange(evt)} />
-            </label>
-            <button style={{width: '300px', padding: '1rem'}}  onClick={handleUserInvite}>Invite</button>
-              </div>
-            
-            
-            <p>Developers note: Check if user can invite users, if so show this card - submitting sends and email to the user inviting them to create an account.  Send an exipiration time in the email.</p>
-            </Styles.Card>
+
+           {user.manageUsers && (
+             <Styles.Card>
+             <BasicPage.SectionTitle>Invite an Admin User</BasicPage.SectionTitle>
+             <div style={{display: "flex", flexDirection: 'row', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'center'}}>
+             <input type='email' name='email' value={input.email} placeholder='Email of new user'  style={{width: '80vh', maxWidth: '300px'}} onChange={(evt) => handleInviteChange(evt)} />
+           <label style={{margin: 0}}>Check box if this user can manage other users:
+             <input type='checkbox' name='manageUsers' value={input.manageUsers} onChange={(evt) => handleInviteChange(evt)} />
+           </label>
+           <button style={{width: '300px', padding: '1rem'}}  onClick={handleUserInvite}>Invite</button>
+             </div>
+              </Styles.Card>
+           )}
             
 
           </BasicPage.Form>
-          {cardElems}
+          
           </div>
-            
+            <InternalLinkFloatButton padding="1rem 2rem" text="View Submissions" to='/admin/allSubs'/>
         
         
     </BasicPage.Text>
@@ -170,22 +145,5 @@ export default Dashboard
 
 
 
-
-//   const navigate= useNavigate();
-  
-
-
-//   return (
-//     <PageContainer>
-//       <CreateButton onClick={() => navigate('/orgs/create')}>
-//           New Org
-//       </CreateButton>
-//     <Instructions>
-//     <p><strong>To create a new datasource request</strong>, first find the organization and click on the id number to select it.</p>
-//     </Instructions>
-
-//     </PageContainer>
-//   );
-// };
 
 

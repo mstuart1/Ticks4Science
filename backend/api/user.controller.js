@@ -6,7 +6,6 @@ const jwt = require("jsonwebtoken");
 const mailHelper = require('./mailHelper')
 const bcrypt = require('bcrypt')
 
-//TODO change updateUser to check if password in update and bCrypt it
 
 exports.inviteUser = async (req, res, next) => {
     console.log(`@@@@---invite User ${JSON.stringify(req.body, null, 1)}---@@@@`);
@@ -116,6 +115,13 @@ exports.updateUser = async (req, res, next) => {
     try {
         let data = req.body
         let {id} = data
+
+        
+  
+        if (data.password) {
+            const salt = await bcrypt.genSalt(10);
+            data.password = await bcrypt.hash(data.password, salt);
+        }
 
         await db.sequelize
         .transaction(async (t) => {

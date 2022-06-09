@@ -6,7 +6,7 @@ import { BasicPage } from "../GeneralStyles";
 import SubmissionDataService from '../../services/submission'
 import OutlineCard from '../ui/outlineCard/OutlineCard'
 import styled from "styled-components";
-// import InternalLinkFloatButton from "../ui/internalLinkFloatButton/InternalLinkFloatButton";
+import InternalLinkFloatButton from "../ui/internalLinkFloatButton/InternalLinkFloatButton";
 // import { theme } from "../../theme";
 // import { useDispatch } from "react-redux";
 
@@ -125,6 +125,7 @@ const AllSubs = () => {
         <BasicPage.Form>
          <Styles.Input style={{width: '80vw'}} placeholder="Find a specific tick number" type='search' onChange={handleInputChange}/>
         </BasicPage.Form> 
+        <InternalLinkFloatButton padding="1rem 2rem" text='Back to Dashboard' to='/admin' />
          <Styles.Waiting>
          <Styles.WaitingGroup>
           <h2>Waiting for Photo Review</h2>
