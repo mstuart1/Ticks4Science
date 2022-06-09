@@ -2,18 +2,22 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 // import {  forgotPassReq } from "./actions";
-
 import UserDataService from '../../services/users'
+import { useDispatch } from "react-redux";
+import { loadToken, removeToken } from "../admin/actions";
+
 
 const initialState = {
   email: "",
   password: "",
 };
 
-const Login = ({ logout, handleLogin }) => {
+const Login = () => {
 
   const navigate = useNavigate()
-  logout && handleLogin(null)
+  const dispatch = useDispatch()
+
+  
 
   const [inputValue, setInputValue] = useState(initialState);
   const [forgotEmail, setForgotEmail] = useState("");
@@ -31,38 +35,24 @@ const Login = ({ logout, handleLogin }) => {
 
   const toggleForgot = () => setForgot(!forgot);
 
-  const submitLogin = async (evt) => {
-    console.log('clicked')
+  const submitLogin = evt => {
     evt.preventDefault();
-    let response = await UserDataService.loginUser(inputValue);
-    console.log(response)
-    let {message, token: newToken, data} = response.data    
-    if (message === 'BAD_USER'){
-      alert('Please contact Dina Fonseca regarding using this system.')
-    } else if (message === 'BAD_PASSWORD'){
-      alert('Your password is incorrect. Please try again or click "Forgot Password" to reset your password.')
-    } else if (newToken) {
-      handleLogin(newToken, data)
-      navigate('/admin/allSubs')
-    } else {
-      alert ('no access token was generated, please contact Dina Fonseca for help')
-    }
-  setInputValue(initialState);
-   
+    dispatch(loadToken(inputValue))
+    setInputValue(initialState);
+
   };
 
   const submitForgot = async (evt) => {
-    console.log('clicked')
     evt.preventDefault();
     let response = await UserDataService.forgotPassword(forgotEmail);
-    let {message } = response.data    
-        if (message === 'BAD_USER') {
-          alert('Please contact Dina Fonseca regarding using this system.')
-        } else if (message === 'EMAIL_SENT') {
-          alert (`A reset link was sent to your email`)
-        }else {
-          alert ('no reset email sent, please contact Dina Fonseca for help')
-        }
+    let { message } = response.data
+    if (message === 'BAD_USER') {
+      alert('Please contact Dina Fonseca regarding using this system.')
+    } else if (message === 'EMAIL_SENT') {
+      alert(`A reset link was sent to your email`)
+    } else {
+      alert('no reset email sent, please contact Dina Fonseca for help')
+    }
     setForgotEmail("");
   };
 
@@ -91,7 +81,7 @@ const Login = ({ logout, handleLogin }) => {
       </Styles.LoginForm>
 
       {forgot && (
-       <>
+        <>
           <Styles.LoginInput
             type="text"
             name="email"
@@ -100,7 +90,7 @@ const Login = ({ logout, handleLogin }) => {
             placeholder="Email"
           />
           <Styles.LoginButton onClick={submitForgot}>Send reset email</Styles.LoginButton>
-          </>
+        </>
       )}
       <Styles.ForgotText >If you click inside the form and nothing happens, please refresh the page.</Styles.ForgotText>
     </Styles.LoginBackground>
@@ -110,18 +100,18 @@ const Login = ({ logout, handleLogin }) => {
 export default Login;
 
 const Styles = {
-  
-LoginBackground: styled.div`
+
+  LoginBackground: styled.div`
 // width: 100vw;
 height: 100vh;
 display: flex;
 flex-direction: column; // want forgot form to show up beneath login form
 justify-content: flex-start;
 align-items: center;
-background-color: ${({backgroundColor}) => backgroundColor}
+background-color: ${({ backgroundColor }) => backgroundColor}
 `
-,
-LoginForm: styled.form`
+  ,
+  LoginForm: styled.form`
 background-color: #f8f8f8;
 border-radius: 5px;
 display: flex;
@@ -132,18 +122,18 @@ padding: 1rem;
 text-align: left;
 margin: 5px;
 `
-,
-LoginInput: styled.input`
+  ,
+  LoginInput: styled.input`
 
 margin: 0.5rem;
     padding: 0.5rem;
     border: none;
     border-radius: 3.1px;
-    box-shadow: ${({theme}) => theme.boxShadow};
+    box-shadow: ${({ theme }) => theme.boxShadow};
     width: 300px;
     outline: none;
 `,
-LoginButton: styled.button`
+  LoginButton: styled.button`
 
 margin: 0.5rem;
     padding: 0.5rem;
@@ -153,13 +143,13 @@ margin: 0.5rem;
     cursor: pointer;
     width: 150px;
     color: white;
-    background-color: ${({theme}) => theme.colors.main};
+    background-color: ${({ theme }) => theme.colors.main};
 `
-,
-ForgotText: styled.h4`
+  ,
+  ForgotText: styled.h4`
 margin: 1rem;
 text-decoration: none;
-color: ${({theme}) => theme.colors.main};
+color: ${({ theme }) => theme.colors.main};
 `
 
 }
