@@ -30,6 +30,7 @@ export const loadToken = credentials => async dispatch => {
         dispatch(createToken(token));
 
     } catch (err) {
+        console.log(`!!@@@@---Error---@@@@!! ${err.message}`)
         dispatch(displayAlert(JSON.stringify(err.response)));
     }
 }
