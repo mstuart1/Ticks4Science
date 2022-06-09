@@ -6,6 +6,7 @@ import SubmissionDataService from '../../services/submission'
 import TickDataService from '../../services/ticks'
 import InternalLinkFloatButton from '../ui/internalLinkFloatButton/InternalLinkFloatButton'
 import {theme} from '../../theme'
+import OutlineCard from '../ui/outlineCard/OutlineCard'
 
 
 // TODO create a way for staff to input photo review info
@@ -58,6 +59,12 @@ font-weight: bold;
       transform: scale(0.98);
 }
   `,
+  PageCont: styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items; center;
+  `,
 CardCont: styled.div`
 margin: 1rem;
  padding: 1rem ; 
@@ -78,6 +85,7 @@ const ProcessTick = () => {
   const [tickSpp, setTickSpp] = useState([]);
   const [identified, setIdentified] = useState()
 
+  // get the tick info from db
   useEffect(() => {
     let getTick = async () => await SubmissionDataService.getProgress(id)
 
@@ -91,6 +99,7 @@ const ProcessTick = () => {
     // console.log(`identified: `, identified)
   // }, [identified])
 
+  // get all the tick options
   useEffect(() => {
     let getData = async () =>
       await TickDataService.getAllTicks();
@@ -167,17 +176,16 @@ const ProcessTick = () => {
   // console.log(`tick`, tick)
   
 
-  return (tick.id) 
-  ? (
+  return (
     <BasicPage.Text>
       {/* <p>Developers Note: based on emails, it looks like Dina plans to request all ticks be sent in, the photo review is to make sure it is a tick, not to identify it.  With this info I made the flow of information follow the path that if the photos have been reviewed, the specimen requested button appears or not a tick button, if the specimen has been requested, the submission received button appears, if the specimen has been recieved, the speicies buttons appear to choose the identification.</p> */}
-      <div style={{ display: 'flex', flexWrap: 'wrap'}}>
+      <Styles.PageCont>
       <InternalLinkFloatButton colors={{ text: theme.colors.ruTeal, shadow: theme.colors.ruTeal }} to='/admin/allSubs' text='Back to All Submissions' />
-        <Styles.CardCont >
+        <OutlineCard >
           
             <h2 >Status Info</h2>
-            <p>ID: {tick.id}</p>
-            <p>Date Submitted: {tick.createdAt.substring(0, 10)}</p>
+            <p>ID: {tick?.id}</p>
+            <p>Date Submitted: {tick?.createdAt?.substring(0, 10)}</p>
 
 {/* Photo Review button or status */}
             {tick.photosReviewed
@@ -192,7 +200,7 @@ const ProcessTick = () => {
                   value={photoReview}
                   checked={photoReview === 0}
                   id={'photoReview'}
-                  onChange={(evt) => handlePhotoReview(tick.id, evt)}
+                  onChange={(evt) => handlePhotoReview(tick?.id, evt)}
                 />
                 <label htmlFor={`photoReview`}>Photos have been reviewed</label>
               </BasicPage.RadioButtons>
@@ -207,10 +215,10 @@ const ProcessTick = () => {
               <input
                 // key={`not-a-tick-1`}
                 type='radio'
-                value={notATick.id}
-                checked={identified === notATick.id}
+                value={notATick?.id}
+                checked={identified === notATick?.id}
                 id={'tickId'}
-                onChange={(evt) => handleIdentified(tick.id, evt)}
+                onChange={(evt) => handleIdentified(tick?.id, evt)}
               />
               <label htmlFor={`tickId`}>Not A Tick</label>
 
@@ -221,7 +229,7 @@ const ProcessTick = () => {
                 value={request}
                 checked={request === 0}
                 id={'request'}
-                onChange={(evt) => handleRequest(tick.id, evt)}
+                onChange={(evt) => handleRequest(tick?.id, evt)}
               />
               <label htmlFor={`request`}>Request Specimen</label>
             </BasicPage.RadioButtons> )
@@ -270,7 +278,7 @@ const ProcessTick = () => {
 
             {/* {tick.tickId ? : <p>placeholder</p>} */}
            
-          </Styles.CardCont>
+          </OutlineCard>
           <p>Click on the photo to view full size</p>
           
         <a href={tick.photoFrontUrl} target="_blank" rel="noreferrer"> <ImageCard imageUrl={tick.photoFrontUrl} /></a>
@@ -287,7 +295,7 @@ const ProcessTick = () => {
             <p>Location Found: {tick.locationDesc} </p>
             {tick.locationDescOther && <p>Found  Other: {tick.locationDescOther}</p>}
             <p>Municipality: {tick.tickMuni}</p>
-            <p>Zip Code: {tick.tickZip.toString().padStart(5, "0")}</p>
+            <p>Zip Code: {tick.tickZip?.toString().padStart(5, "0")}</p>
             <p>Activities: {tick.activities} </p>
           </div>
         </Styles.CardCont>
@@ -301,7 +309,7 @@ const ProcessTick = () => {
               <p>Person Bitten: {tick.personBitten}</p>
               <p>Submitter Bitten: {tick.submitterBitten}</p>
               {!tick.submitterBitten && <p>Bitten Municipality: {tick.bittenMuni}</p>}
-              {!tick.submitterBitten && <p>Bitten Zip Code: {tick.bittenZip.toString().padStart(5, "0")}</p>}
+              {!tick.submitterBitten && <p>Bitten Zip Code: {tick.bittenZip?.toString().padStart(5, "0")}</p>}
               <p>Bitten Traveled: {tick.bittenTraveledDom} </p>
               {tick.bittenTraveledDom && <p>{tick.travelInfo}</p>}
 
@@ -313,14 +321,14 @@ const ProcessTick = () => {
           <div style={{ margin: '1rem', padding: '1rem' }}>
             <h2>Submitter Info</h2>
             <p>Municipality: {tick.userMuni}</p>
-            <p>Zip Code: {tick.userZip.toString().padStart(5, "0")}</p>
+            <p>Zip Code: {tick.userZip?.toString().padStart(5, "0")}</p>
           </div>
         </Styles.CardCont>
         <InternalLinkFloatButton colors={{ text: theme.colors.ruTeal, shadow: theme.colors.ruTeal }} to='/admin/allSubs' text='Back to All Submissions' />
-      </div>
+      </Styles.PageCont>
     </BasicPage.Text>
   ) 
-  : (<BasicPage.Text>Loading...</BasicPage.Text>)
+
 }
 
 export default ProcessTick

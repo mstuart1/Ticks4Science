@@ -106,7 +106,7 @@ const Navbar = {
   
   
   img { 
-    max-width: 50px; 
+    max-width: 75px; 
     border-radius: ${({theme}) => theme.borderRadius};
   }
   a {
