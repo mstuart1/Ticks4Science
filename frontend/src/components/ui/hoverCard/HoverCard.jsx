@@ -8,11 +8,10 @@ const Styles = {
     align-items: center;
     justify-content: center;
 
-    width: ${({width}) => width}; 
-    height: ${({height}) => height}; 
-
+    padding: ${({padding}) => padding}; 
+    
     border-radius: ${({theme}) => theme.borderRadius};
-    box-shadow: 0 3px 15px ${({ shadowColor }) => shadowColor || '#000000'}20;
+    box-shadow: 0 3px 15px ${({ shadowColor }) => shadowColor || '#000000'}40;
     margin: 1rem;
     background-color: ${({ bgColor }) => bgColor || 'white'};
     &:hover {
@@ -22,10 +21,9 @@ const Styles = {
     `,
 }
 
-const HoverCard = ({shadowColor = '#000000', bgColor='#ffffff', width = '20rem', height='20rem', children}) => {
+const HoverCard = ({shadowColor = '#000000', bgColor='#ffffff',padding='1rem 2rem', children}) => {
   return (
-   <Styles.HoverCard 
-  //  shadowColor={shadowColor} bgColor={bgColor} width={width} height={height}
+   <Styles.HoverCard shadowColor={shadowColor} bgColor={bgColor} padding={padding}
    > 
        {children}
    </Styles.HoverCard>
