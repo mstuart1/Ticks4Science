@@ -26,7 +26,7 @@ exports.inviteUser = async (req, res, next) => {
         data.resetToken = token;
 
         let message = ` <p>Dr. Dina Fonseca is inviting you to participate in the administration of the tick survey system, Ticks for Science. Please follow the link to create an account.  The link will expire in ${expiration} so please follow the link as soon as possible.
-        <a href="${process.env.CORS_ORIGIN}/tick-map/admin/createAccount/${token}">Create Account</a> to setup your account.</p>`
+        <a href="${process.env.CORS_ORIGIN}/createAccount/${token}">Create Account</a> to setup your account.</p>`
 
 
         await db.sequelize

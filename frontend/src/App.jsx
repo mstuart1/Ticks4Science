@@ -69,7 +69,8 @@ const App = () => {
               <Route path='/progress' element={<TickProgressInput buttonColors={{text: theme.colors.ruTeal, bg: 'white', shadow: theme.colors.ruTeal}} />} />
               <Route path='/progress/:id' element={<TickProgress />} />
               <Route path="/admin/*" element={<AdminMgt />} />
-              <Route path='/reset/:token' element={<ResetPassword/>} />
+              <Route path='/reset/:token' element={<ResetPassword reset={true}/>} />
+              <Route path='/createAccount/:token' element={<ResetPassword create={true}/>} />
               <Route path='/ticks/:id' element={<TickPage />} />
               {/* <Route path='/prevention' element={<Prevention />} /> */}
               {/* <Route path='/identify' element={<Identify />} /> */}

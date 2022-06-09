@@ -1,13 +1,16 @@
-import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import React
+// , 
+// { useEffect, useState } 
+from 'react'
+// import { useParams } from 'react-router-dom'
 import { BasicPage } from '../GeneralStyles'
-import { FaStar } from 'react-icons/fa'
-import TickDataService from '../../services/ticks'
-import { theme } from '../../theme'
-import OutlineCard from '../ui/outlineCard/OutlineCard'
+// import { FaStar } from 'react-icons/fa'
+// import TickDataService from '../../services/ticks'
+// import { theme } from '../../theme'
+// import OutlineCard from '../ui/outlineCard/OutlineCard'
 import styled from 'styled-components'
 import {scapularis} from './tickFiles/scapularis'
-import scap3 from '../../images/scap3.jpeg'
+// import scap3 from '../../images/scap3.jpeg'
 
 const Styles = {
   CardCont: styled.div`
@@ -83,7 +86,7 @@ const Styles = {
 
 
 const TickPage = () => {
-  let { id } = useParams()
+  // let { id } = useParams()
 
 
 
