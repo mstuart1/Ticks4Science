@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { BasicPage } from "../GeneralStyles";
 import SubmissionDataService from '../../services/submission'
-import HoverCard from '../ui/hoverCard/HoverCard'
+import OutlineCard from '../ui/outlineCard/OutlineCard'
 import styled from "styled-components";
-import UserDataService from '../../services/users'
 import InternalLinkFloatButton from "../ui/internalLinkFloatButton/InternalLinkFloatButton";
 import { theme } from "../../theme";
+import { useDispatch } from "react-redux";
+
 // import { getOrgDataRequest } from "./actions";
 // import { PageContainer} from '../styles/Common.styled'
 // import { useDispatch, useSelector } from "react-redux";
@@ -15,19 +16,12 @@ import { theme } from "../../theme";
 // import OrgTable from "./OrgTable"
 
 const Styles = {
-  PageCont: styled.div`
-  display: flex;
-  `,
-  SideCont: styled.div`
-  display: flex;
-  flex-direction: column;
-  `,
     Input: styled.input`
-    // width: 80vw;
+    width: 80vw;
 
-    // @media screen and (min-width:${({ theme }) => theme.mobile}) {
-    //     max-width: 800px;
-    //   }
+    @media screen and (min-width:${({ theme }) => theme.mobile}) {
+        max-width: 800px;
+      }
     `,
     Link: styled(Link)`
     text-decoration: none;
@@ -41,11 +35,23 @@ const Styles = {
     border-radius: ${({theme}) => theme.borderRadius};
     box-shadow: 0 3px 15px ${({ shadowColor }) => shadowColor || '#000000'}20;
     `,
+    Waiting: styled.div`
+    display: flex;
+    justify-content: space-between;
+    `,
+    WaitingGroup: styled.div`
+    margin: 2rem;
+    padding: 2rem;
+    background-color: #dfdfdf;
+    border-radius: 1rem;
+    `,
 }
 // TODO instead of search bar, use filtering buttons to get all, need photo review, waiting to receive tick, waiting for identification, identified - search by species
 
-const AllSubs = ({token, user}) => {
-  console.log(user)
+const AllSubs = () => {
+
+  const dispatch = useDispatch()
+  const navigate = useNavigate();
 
     const [data, setData] = useState([])
     const [isLoading, setIsLoading] = useState(false);
@@ -73,22 +79,6 @@ const AllSubs = ({token, user}) => {
     setQuery(value)
     }
 
-    const handleInviteChange = (evt) => {
-      console.log(`invite is changing`)
-      let info = evt.target;
-      let value = info.type === "checkbox" ? info.checked : info.value;
-      setInput({ ...input, [info.name]: value });
-  };
-
-    const handleUserInvite = async evt => {
-      evt.preventDefault()
-      if (!input.email) {
-        alert('Please include an email')
-      }
-      input.email && await UserDataService.inviteUser(input)
-      setInput({})  
-    }
-
       let filteredData = data.filter(item => {
       
     if (query === "") {
@@ -101,87 +91,52 @@ const AllSubs = ({token, user}) => {
     }
   });
 
-  let cardElems = filteredData.map(item => (
-        <Styles.Link key={item.id} to={`/admin/processTick/${item.id}`} state={{tick: item}}>
-        <Styles.Card >
-            <div>
-            <p>ID: {item.id}</p>
-            <p>Date Submitted: {item.createdAt&& item.createdAt.substring(0,10)}</p>
-            <p>Photos Reviewed: {item.photosReviewed&& item.photosReviewed.substring(0,10)}</p>
-            <p>Specimen Requested: {item.specimenRequested&& item.specimenRequested.substring(0,10)}</p>
-            <p>Specimen Received: {item.specimenReceived&& item.specimenReceived.substring(0,10)}</p>
-            <p>Specimen Identified: {item.specimenIdentified&& item.specimenIdentified.substring(0,10)}</p>
-            <p>Species: {item.tickId && item.tick.scientific}</p>
-            </div>
-        </Styles.Card>
-        </Styles.Link>
-    ))
+  let pendingPhotos = data.filter(item => item.photosReviewed === null)
+  let pendingSpecimens = data.filter(item => item.specimenReceived !== null && item.specimenIdentified === null)
 
-    console.log(token)
+  const createCardElems = data => {
+    let cards = data.map(item => (
+      <Styles.Link key={item.id} to={`/admin/processTick/${item.id}`} state={{tick: item}}>
+      <OutlineCard >
+          <div>
+          ID: {item.id}<br/>
+          Date Submitted: {item.createdAt&& item.createdAt.substring(0,10)}<br/>
+          Photos Reviewed: {item.photosReviewed && item.photosReviewed.substring(0,10)}<br/>
+          Specimen Requested: {item.specimenRequested && item.specimenRequested.substring(0,10)}<br/>
+          Specimen Received: {item.specimenReceived && item.specimenReceived.substring(0,10)}<br/>
+          Specimen Identified: {item.specimenIdentified && item.specimenIdentified.substring(0,10)}<br/>
+          Species: {item.tickId && item.tick.scientific}<br/>
+          </div>
+      </OutlineCard>
+      </Styles.Link>
+  ))
+  return cards
+  }
 
+
+  let photoCards = createCardElems(pendingPhotos)
+  let specimenCards = createCardElems(pendingSpecimens)
+  
   return   (
     <BasicPage.Text>
         <BasicPage.Form>
-            
          <Styles.Input style={{width: '80vw'}} placeholder="Find a specific tick number" type='search' onChange={handleInputChange}/>
         </BasicPage.Form> 
-         
-        {isLoading 
-        ? (<div>Loading...</div>) 
-        : (
-        <Styles.PageCont>
-          <Styles.SideCont>
-          <InternalLinkFloatButton colors={{ text: theme.colors.ruTeal, shadow: theme.colors.ruTeal }} to='/admin/logout' text='Logout' />
-         {user.manageUsers && ( <BasicPage.Form >
-            <Styles.Card>
-              <BasicPage.SectionTitle>Invite an Admin User</BasicPage.SectionTitle>
-              <div style={{display: "flex", flexDirection: 'row', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'center'}}>
-              <input type='email' name='email' value={input.email} placeholder='Email of new user'  style={{width: '80vh', maxWidth: '300px'}} onChange={(evt) => handleInviteChange(evt)} />
-            <label style={{margin: 0}}>Check box if this user can manage other users:
-              <input type='checkbox' name='manageUsers' value={input.manageUsers} onChange={(evt) => handleInviteChange(evt)} />
-            </label>
-            <button style={{width: '300px', padding: '1rem'}}  onClick={handleUserInvite}>Invite</button>
-              </div>
-           
-            </Styles.Card>
-            
-
-          </BasicPage.Form>)}
-          
-          </Styles.SideCont>
-          <Styles.SideCont>
-            <p>Click on a card to view the submission</p>
-          {cardElems}
-          </Styles.SideCont>
-          
-          </Styles.PageCont>
-            
-        
-        )}
+         <Styles.Waiting>
+         <Styles.WaitingGroup>
+          <h2>Waiting for Photo Review</h2>
+          {photoCards}
+        </Styles.WaitingGroup>
+        <Styles.WaitingGroup>
+          <h2>Waiting for Specimen Review</h2>
+          {specimenCards}
+        </Styles.WaitingGroup>
+         </Styles.Waiting>
     </BasicPage.Text>
   )
 }
 
 export default AllSubs
 
-
-
-
-//   const navigate= useNavigate();
-  
-
-
-//   return (
-//     <PageContainer>
-//       <CreateButton onClick={() => navigate('/orgs/create')}>
-//           New Org
-//       </CreateButton>
-//     <Instructions>
-//     <p><strong>To create a new datasource request</strong>, first find the organization and click on the id number to select it.</p>
-//     </Instructions>
-
-//     </PageContainer>
-//   );
-// };
 
 
