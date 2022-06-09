@@ -10,7 +10,7 @@ const basename = process.env.REACT_APP_BASENAME;
 
 ReactDOM.render(
     <React.StrictMode>
-        <Provider>
+        <Provider store={configureStore}>
         <BrowserRouter 
         basename={basename}
         >
