@@ -49,7 +49,8 @@ const Dashboard = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [query, setQuery] = useState('');
     const [input, setInput] = useState({});
-
+    
+    
     useEffect(() => {
         let getData = async () => {
             setIsLoading(true)
@@ -57,7 +58,7 @@ const Dashboard = () => {
         }
         
         getData().then(response => {
-          // console.log(response.data.record)
+          console.log(response.data.record)
           setData(response.data.record)
           setIsLoading(false)
         })
@@ -120,7 +121,8 @@ const Dashboard = () => {
         </Styles.Link>
     ))
 
-    console.log(input)
+    console.log(isLoading)
+    console.log(process.env.REACT_APP_SERVER_URL)
 
   return   (
     <BasicPage.Text>
@@ -129,9 +131,7 @@ const Dashboard = () => {
          <Styles.Input style={{width: '80vw'}} placeholder="Find a specific tick number" type='search' onChange={handleInputChange}/>
         </BasicPage.Form> 
          
-        {isLoading 
-        ? (<div>Loading...</div>) 
-        : (
+       
         <div>
           <div onClick={handleLogout}>
            <HoverCard 
@@ -161,7 +161,7 @@ const Dashboard = () => {
           </div>
             
         
-        )}
+        
     </BasicPage.Text>
   )
 }
