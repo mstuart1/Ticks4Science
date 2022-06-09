@@ -10,7 +10,6 @@ module.exports = (sequelize, DataTypes) => {
     }
     submission.init({
         dateSubmitted: DataTypes.DATE,
-        tickId: DataTypes.STRING,
         userMuni: DataTypes.STRING,
         userZip: DataTypes.DOUBLE,
         dateTickFound: DataTypes.DATE,
@@ -41,6 +40,9 @@ module.exports = (sequelize, DataTypes) => {
         specimenRequested: DataTypes.DATE,
         specimenReceived: DataTypes.DATE,
         specimenIdentified: DataTypes.DATE,
+        notATick: DataTypes.BOOLEAN,
+        tickId: DataTypes.STRING,
+        
 
     }, {
         sequelize,
