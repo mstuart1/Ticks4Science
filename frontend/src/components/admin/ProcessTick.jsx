@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react'
-import {  useParams } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import { BasicPage } from '../GeneralStyles';
 import styled from 'styled-components';
 import SubmissionDataService from '../../services/submission'
 import TickDataService from '../../services/ticks'
 import InternalLinkFloatButton from '../ui/internalLinkFloatButton/InternalLinkFloatButton'
-import {theme} from '../../theme'
+import { theme } from '../../theme'
 import OutlineCard from '../ui/outlineCard/OutlineCard'
+import HoverCard from '../ui/hoverCard/HoverCard'
 
 
 // TODO create a way for staff to input photo review info
@@ -45,7 +46,7 @@ font-weight: bold;
   width: ${({ width }) => width}; 
   height: ${({ height }) => height}; 
 
-  border-radius: ${({theme}) => theme.borderRadius};
+  border-radius: ${({ theme }) => theme.borderRadius};
   box-shadow: 0 3px 15px ${({ shadowColor }) => shadowColor || '#000000'}20;
   margin: 1rem;
   background-image: 
@@ -61,25 +62,36 @@ font-weight: bold;
   `,
   PageCont: styled.div`
   display: flex;
+  // flex-direction: column;
   flex-wrap: wrap;
   justify-content: center;
   align-items; center;
   `,
-CardCont: styled.div`
+  CardCont: styled.div`
 margin: 1rem;
  padding: 1rem ; 
 width: 80vw;
  max-width: 900px;
- border-radius: ${({theme}) => theme.borderRadius};
+ border-radius: ${({ theme }) => theme.borderRadius};
  box-shadow: 0 3px 15px ${({ shadowColor }) => shadowColor || '#000000'}20;
+`,
+CardInsides: styled.div`
+margin: 1rem;
+padding: 1rem;
+display: flex;
+flex-direction: column;
+h2 {
+  margin: 1rem 0;
+  align-self: center;
+}
 `,
 }
 
 const ProcessTick = () => {
-  let {id} = useParams()
+  let { id } = useParams()
 
-  const [photoReview, setPhotoReview] = useState(false);
-  const [request, setRequest] = useState(false)
+
+  
   const [received, setReceived] = useState(false);
   const [tick, setTick] = useState({});
   const [tickSpp, setTickSpp] = useState([]);
@@ -91,12 +103,12 @@ const ProcessTick = () => {
 
     getTick().then(response => {
       // console.log(response.data)
-      setTick(prevState => ({...response.data.record}))
+      setTick(prevState => ({ ...response.data.record }))
     })
   }, [id])
 
   // useEffect(()=> {
-    // console.log(`identified: `, identified)
+  // console.log(`identified: `, identified)
   // }, [identified])
 
   // get all the tick options
@@ -107,62 +119,35 @@ const ProcessTick = () => {
     getData().then(response => {
       // console.log(response.data.data)
       // adding in the not a tick option - this is not included in the db so it doesn't screw up the tick list on other pages
-      setTickSpp(prevState => [ ...response.data.data])
+      setTickSpp(prevState => [...response.data.data])
 
     })
   }, [])
 
-  const notATick = tickSpp.filter(tick => tick.scientific === 'Not A Tick')[0]
-
-
-  const handlePhotoReview = (id, evt) => {
-    // console.log(evt)
-    let { value } = evt.target
-    setPhotoReview(value)
-    if (value) {
-      let data = { photosReviewed: new Date() }
-
-      return updateSub(data, id)
-
-    }
-    else return
+  
+  const handlePhotoReview = (id) => {
+    let data = { photosReviewed: new Date() }
+    return updateSub(data, id)
   }
 
-  const handleRequest = (id, evt) => {
-    let { value } = evt.target
-    setRequest(value)
-    if (value) {
-      let data = { specimenRequested: new Date() }
-
-      return updateSub(data, id)
-
-    }
-    else return
+  const handleNotATick = (id) => {
+    let data = { notATick: true, specimenIdentified: new Date() }
+    return updateSub(data, id)
   }
 
-  const handleReceived = (id, evt) => {
-    let { value } = evt.target
-    setReceived(value)
-    if (value) {
-      let data = { specimenReceived: new Date() }
-
-      return updateSub(data, id)
-
-    }
-    else return
+  const handleRequest = (id) => {
+    let data = { specimenRequested: new Date() }
+    return updateSub(data, id)
   }
 
-  const handleIdentified = (id, evt) => {
-    let { value } = evt.target
-    setIdentified(value)
-     // asynchronous so identified not updated yet
-    if (value) {
-      let data = { specimenIdentified: new Date(), tickId: value }
+  const handleReceived = (id) => {
+    let data = { specimenReceived: new Date() }
+    return updateSub(data, id)
+  }
 
+  const handleIdentified = (id, tickId) => {
+      let data = { specimenIdentified: new Date(), tickId: tickId }
       return updateSub(data, id)
-
-    }
-    else return
   }
 
   const updateSub = async (data, id) => {
@@ -174,133 +159,118 @@ const ProcessTick = () => {
 
 
   // console.log(`tick`, tick)
-  
+
 
   return (
     <BasicPage.Text>
       {/* <p>Developers Note: based on emails, it looks like Dina plans to request all ticks be sent in, the photo review is to make sure it is a tick, not to identify it.  With this info I made the flow of information follow the path that if the photos have been reviewed, the specimen requested button appears or not a tick button, if the specimen has been requested, the submission received button appears, if the specimen has been recieved, the speicies buttons appear to choose the identification.</p> */}
-      <Styles.PageCont>
       <InternalLinkFloatButton colors={{ text: theme.colors.ruTeal, shadow: theme.colors.ruTeal }} to='/admin/allSubs' text='Back to All Submissions' />
+      <Styles.PageCont>
+       
         <OutlineCard >
-          
-            <h2 >Status Info</h2>
-            <p>ID: {tick?.id}</p>
-            <p>Date Submitted: {tick?.createdAt?.substring(0, 10)}</p>
+          <Styles.CardInsides>
 
-{/* Photo Review button or status */}
-            {tick.photosReviewed
-              ? <p>Photos Reviewed: {tick.photosReviewed.substring(0, 10)} </p>
-              :
-              ( 
-                <BasicPage.RadioButtons>
-                <input
-                  // key={`not-a-tick-1`}
-                  type='radio'
-                  // name={'tickId'}
-                  value={photoReview}
-                  checked={photoReview === 0}
-                  id={'photoReview'}
-                  onChange={(evt) => handlePhotoReview(tick?.id, evt)}
-                />
-                <label htmlFor={`photoReview`}>Photos have been reviewed</label>
-              </BasicPage.RadioButtons>
+      
+          <h2>Status Info</h2>
+          ID: {tick?.id}<br />
+          Date Submitted: {tick?.createdAt?.substring(0, 10)}<br />
+
+          {/* Photo Review button or status */}
+          {tick.photosReviewed
+            ? <span>Photos Reviewed: {tick.photosReviewed.substring(0, 10)} <br /></span>
+            :
+            (<div onClick={() => handlePhotoReview(tick.id)}>
+              <HoverCard shadowColor={theme.colors.ruTeal}>
+                Click here when photos have been reviewed
+              </HoverCard>
+            </div>
+            )
+          }
+          {/* Specimen request button/status or not a tick */}
+          {tick.photosReviewed && (tick.specimenRequested
+            ? <span>Specimen Requested: {tick.specimenRequested.substring(0, 10)}<br/></span>
+
+            : !tick.tickId && (
+            <>
+            {console.log(tick.notATick)}
+            {!tick.notATick 
+            ? (<div onClick={() => handleNotATick(tick.id)}>
+              <HoverCard shadowColor={theme.colors.ruTeal}>
+                Click if it is not a tick
+              </HoverCard>
+            </div>) 
+            : <OutlineCard padding='1rem 2rem'>Not A Tick</OutlineCard>}
+              {!tick.notATick && (<div onClick={() => handleRequest(tick.id)}>
+                <HoverCard shadowColor={theme.colors.ruTeal}>
+                  Click here to request a specimen
+                </HoverCard>
+              </div>)}
+              </>
+
+            ))
+          }
+
+
+
+          {/* Specimen recieved button or status */}
+          {tick.specimenRequested && (tick.specimenReceived
+            ? <span>
+              Specimen Received: {tick.specimenReceived.substring(0, 10)}<br/>
+            </span>
+            : (
+              (<div onClick={() => handleReceived(tick.id)}>
+              <HoverCard shadowColor={theme.colors.ruTeal}>
+                Click if you've received tick
+              </HoverCard>
+            </div>) 
               )
-            }
-{/* Speciment request button/status or not a tick */}
-            {tick.photosReviewed && (tick.specimenRequested 
-            ?<p>Specimen Requested: {tick.specimenRequested.substring(0, 10)}</p>
-              
-              : !tick.tickId && ( <BasicPage.RadioButtons>
+          )}
+
+          {/* Speciment identified button or status */}
+          {tick.tickId
+            ? <> Specimen Identified: {tick.specimenIdentified.substring(0, 10)}<br/> Species: {tick.tick.scientific}<br/></>
+
+            : ((tick.specimenReceived && !tick.tickId) &&
+              tickSpp.map(item => (<div onClick={() => handleIdentified(tick.id, item.id)}>
                 
-              <input
-                // key={`not-a-tick-1`}
-                type='radio'
-                value={notATick?.id}
-                checked={identified === notATick?.id}
-                id={'tickId'}
-                onChange={(evt) => handleIdentified(tick?.id, evt)}
-              />
-              <label htmlFor={`tickId`}>Not A Tick</label>
-
-              <input
-                // key={`not-a-tick-1`}
-                type='radio'
-                name={'request'}
-                value={request}
-                checked={request === 0}
-                id={'request'}
-                onChange={(evt) => handleRequest(tick?.id, evt)}
-              />
-              <label htmlFor={`request`}>Request Specimen</label>
-            </BasicPage.RadioButtons> )
-              )}
-              
-           {/* Specimen recieved button or status */}
-           {tick.specimenRequested && (tick.specimenReceived 
-            ?<p>Specimen Received: {tick.specimenReceived.substring(0, 10)}</p>
-              
-              : ( <BasicPage.RadioButtons>
-                <input
-                type='radio'
-                name={'received'}
-                value={received}
-                checked={received === 0}
-                id={'received'}
-                onChange={(evt) => handleReceived(tick.id, evt)}
-              />
-              <label htmlFor={`received`}>Received Specimen</label>
-            </BasicPage.RadioButtons> )
-              )}
-
-{/* Speciment identified button or status */}
-              {tick.tickId 
-            ?  <> <p>Specimen Identified: {tick.specimenIdentified.substring(0,10)}</p> <p>Species: {tick.tick.scientific}</p></>
-              
-              : ((tick.specimenReceived && !tick.tickId) && 
-                tickSpp.map(item => (
-                <BasicPage.RadioButtons key={item.id}>
-
-                <input
-                type='radio'
-                value={item.id}
-                checked={identified === item.id}
-                id={`identified-${item.id}`}
-                onChange={(evt) => handleIdentified(tick.id, evt)}
-                // onChange={(evt) => console.log('clicked button')}
-              />
-              <label htmlFor={`identified-${item.id}`}>{item.scientific}</label>
-            </BasicPage.RadioButtons>
+              <HoverCard shadowColor={theme.colors.ruTeal}>
+                {item.scientific}
+              </HoverCard>
+            </div>)
+               
               ))
-              )
-              }
+            
+          }
 
 
 
-            {/* {tick.tickId ? : <p>placeholder</p>} */}
-           
-          </OutlineCard>
-          <p>Click on the photo to view full size</p>
-          
+          {/* {tick.tickId ? : <p>placeholder</p>} */}
+
+       
+          </Styles.CardInsides>
+           </OutlineCard>
+        {/* <p>Click on the photo to view full size</p> */}
+
         <a href={tick.photoFrontUrl} target="_blank" rel="noreferrer"> <ImageCard imageUrl={tick.photoFrontUrl} /></a>
         <a href={tick.photoBackUrl} target="_blank" rel="noreferrer"> <ImageCard imageUrl={tick.photoBackUrl} /></a>
         {tick.photoOtherUrl && <a href={tick.photoOtherUrl} target="_blank" rel="noreferrer"> <ImageCard imageUrl={tick.photoOtherUrl} /></a>}
 
-        <Styles.CardCont >
+        <OutlineCard >
           <div style={{ margin: '1rem', padding: '1rem' }}>
-            <h2>Tick Found</h2>
-            <p>Date Tick Found: {tick.dateTickFound}</p>
-            <p>Found On: {tick.foundOn}</p>
-            {tick.foundOnOther && <p>Found On Other: {tick.foundOnOther}</p>}
-            {!tick.tickAttached && <p>Tick Attached: No</p>}
-            <p>Location Found: {tick.locationDesc} </p>
-            {tick.locationDescOther && <p>Found  Other: {tick.locationDescOther}</p>}
-            <p>Municipality: {tick.tickMuni}</p>
-            <p>Zip Code: {tick.tickZip?.toString().padStart(5, "0")}</p>
-            <p>Activities: {tick.activities} </p>
+            <h2>Tick Info</h2>
+            Date Tick Found: {tick.dateTickFound}<br/>
+            Found On: {tick.foundOn}<br/>
+            {tick.foundOnOther && <span>Found On Other: {tick.foundOnOther}<br/></span>}
+            {!tick.tickAttached && <span>Tick Attached: No<br/></span>}
+            Location Found: {tick.locationDesc} <br/>
+            {tick.locationDescOther && <span>Found  Other: {tick.locationDescOther}<br/></span>}
+            Municipality: {tick.tickMuni}<br/>
+            Zip Code: {tick.tickZip?.toString().padStart(5, "0")}<br/>
+            Activities: {tick.activities ? <span>{tick.activities}</span> : <span>None reported</span> }
           </div>
-        </Styles.CardCont>
+        </OutlineCard>
         {tick.tickAttached && (
-          <Styles.CardCont >
+          <OutlineCard >
             <div style={{ margin: '1rem', padding: '1rem' }}>
               <h2>Tick Attached</h2>
               <p>Tick Attached: {tick.tickAttached}</p>
@@ -314,20 +284,20 @@ const ProcessTick = () => {
               {tick.bittenTraveledDom && <p>{tick.travelInfo}</p>}
 
             </div>
-          </Styles.CardCont>
+          </OutlineCard>
         )}
-       
-        <Styles.CardCont >
+
+        <OutlineCard >
           <div style={{ margin: '1rem', padding: '1rem' }}>
             <h2>Submitter Info</h2>
             <p>Municipality: {tick.userMuni}</p>
             <p>Zip Code: {tick.userZip?.toString().padStart(5, "0")}</p>
           </div>
-        </Styles.CardCont>
+        </OutlineCard>
         <InternalLinkFloatButton colors={{ text: theme.colors.ruTeal, shadow: theme.colors.ruTeal }} to='/admin/allSubs' text='Back to All Submissions' />
       </Styles.PageCont>
     </BasicPage.Text>
-  ) 
+  )
 
 }
 
