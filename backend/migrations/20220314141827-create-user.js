@@ -26,6 +26,7 @@ module.exports = {
       resetToken: {
         type: Sequelize.STRING
       },
+      emailAlerts: {type: Sequelize.BOOLEAN},
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,
