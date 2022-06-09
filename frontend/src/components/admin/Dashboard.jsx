@@ -1,10 +1,15 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { BasicPage } from "../GeneralStyles";
 import SubmissionDataService from '../../services/submission'
 import HoverCard from '../ui/hoverCard/HoverCard'
 import styled from "styled-components";
 import UserDataService from '../../services/users'
+import InternalLinkFloatButton from "../ui/internalLinkFloatButton/InternalLinkFloatButton";
+import { theme } from "../../theme";
+import { useDispatch } from "react-redux";
+import { removeToken } from "./actions";
+
 // import { getOrgDataRequest } from "./actions";
 // import { PageContainer} from '../styles/Common.styled'
 // import { useDispatch, useSelector } from "react-redux";
@@ -36,6 +41,9 @@ const Styles = {
 // TODO instead of search bar, use filtering buttons to get all, need photo review, waiting to receive tick, waiting for identification, identified - search by species
 
 const Dashboard = () => {
+
+  const dispatch = useDispatch()
+  const navigate = useNavigate();
 
     const [data, setData] = useState([])
     const [isLoading, setIsLoading] = useState(false);
@@ -79,6 +87,11 @@ const Dashboard = () => {
       setInput({})  
     }
 
+    const handleLogout = () => {
+      dispatch(removeToken())
+      navigate('/')
+    }
+
       let filteredData = data.filter(item => {
       
     if (query === "") {
@@ -120,6 +133,13 @@ const Dashboard = () => {
         ? (<div>Loading...</div>) 
         : (
         <div>
+          <div onClick={handleLogout}>
+           <HoverCard 
+           shadowColor={theme.colors.ruTeal}
+           width='3rem'
+           height='2rem'
+           >Logout</HoverCard>
+           </div>
           <BasicPage.Form >
             <Styles.Card>
               <BasicPage.SectionTitle>Invite an Admin User</BasicPage.SectionTitle>
