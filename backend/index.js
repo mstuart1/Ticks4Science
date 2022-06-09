@@ -26,6 +26,12 @@ require("./api/submission.route")(app);
 require("./api/tick.route")(app);
 require("./api/user.route")(app);
 
+// For sending emails in dev
+if ("development" == app.get("env")) {
+  console.log("Rejecting node tls");
+  process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
+}
+
 app.get('/', (req, res) => {
   res.send(`The server is working: ${new Date()}`)
 })
