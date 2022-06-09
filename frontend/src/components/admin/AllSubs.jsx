@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link
+  // , useNavigate
+ } from "react-router-dom";
 import { BasicPage } from "../GeneralStyles";
 import SubmissionDataService from '../../services/submission'
 import OutlineCard from '../ui/outlineCard/OutlineCard'
 import styled from "styled-components";
-import InternalLinkFloatButton from "../ui/internalLinkFloatButton/InternalLinkFloatButton";
-import { theme } from "../../theme";
-import { useDispatch } from "react-redux";
+// import InternalLinkFloatButton from "../ui/internalLinkFloatButton/InternalLinkFloatButton";
+// import { theme } from "../../theme";
+// import { useDispatch } from "react-redux";
 
 // import { getOrgDataRequest } from "./actions";
 // import { PageContainer} from '../styles/Common.styled'
@@ -50,14 +52,15 @@ const Styles = {
 
 const AllSubs = () => {
 
-  const dispatch = useDispatch()
-  const navigate = useNavigate();
+  // const dispatch = useDispatch()
+  // const navigate = useNavigate();
 
     const [data, setData] = useState([])
     const [isLoading, setIsLoading] = useState(false);
     const [query, setQuery] = useState('');
-    const [input, setInput] = useState({});
+    // const [input, setInput] = useState({});
 
+    console.log(isLoading, query)
     useEffect(() => {
         let getData = async () => {
             setIsLoading(true)
@@ -79,17 +82,17 @@ const AllSubs = () => {
     setQuery(value)
     }
 
-      let filteredData = data.filter(item => {
+  //     let filteredData = data.filter(item => {
       
-    if (query === "") {
-      return item
-    } else if (item.toLowerCase().includes(query.toLowerCase())) {
-      // returns filtered array
-      return item;
-    } else {
-        return item
-    }
-  });
+  //   if (query === "") {
+  //     return item
+  //   } else if (item.toLowerCase().includes(query.toLowerCase())) {
+  //     // returns filtered array
+  //     return item;
+  //   } else {
+  //       return item
+  //   }
+  // });
 
   let pendingPhotos = data.filter(item => item.photosReviewed === null)
   let pendingSpecimens = data.filter(item => item.specimenReceived !== null && item.specimenIdentified === null)

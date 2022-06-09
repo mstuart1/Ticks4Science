@@ -90,13 +90,9 @@ h2 {
 const ProcessTick = () => {
   let { id } = useParams()
 
-
-  
-  const [received, setReceived] = useState(false);
   const [tick, setTick] = useState({});
   const [tickSpp, setTickSpp] = useState([]);
-  const [identified, setIdentified] = useState()
-
+  
   // get the tick info from db
   useEffect(() => {
     let getTick = async () => await SubmissionDataService.getProgress(id)

@@ -5,7 +5,7 @@ import SubmissionDataService from '../../services/submission'
 import HoverCard from '../ui/hoverCard/HoverCard'
 import styled from "styled-components";
 import UserDataService from '../../services/users'
-import InternalLinkFloatButton from "../ui/internalLinkFloatButton/InternalLinkFloatButton";
+// import InternalLinkFloatButton from "../ui/internalLinkFloatButton/InternalLinkFloatButton";
 import { theme } from "../../theme";
 import { useDispatch } from "react-redux";
 import { removeToken } from "./actions";

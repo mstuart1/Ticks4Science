@@ -20,6 +20,14 @@ const ResetPassword = ({reset = false, create = false}) => {
     setUser(data)
   }, [getData])
 
+  const handleInputChange = evt => {
+    let {name, value} = evt.target
+    setInput((prevState) => ({
+      ...prevState,
+      [name]: value,
+  }));
+  }
+
 console.log('user', user)
 
   return (
@@ -31,7 +39,7 @@ console.log('user', user)
       <div>
         <h1>Welcome to the administration side of Ticks 4 Science!</h1>
         <p>Please create a strong password to access the site and help us keep it secure.</p>
-        <input type='password' name='password1' value={input.password1 || ''}/>
+        <input type='password' name='password1' value={input.password1 || ''} onChange={handleInputChange}/>
       </div>
       )}
 
