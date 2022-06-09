@@ -6,40 +6,29 @@ import Login from "../login/Login";
 import ProcessTick from "./ProcessTick";
 import UpdateAccount from "./UpdateAccount";
 import Dashboard from './Dashboard';
-import UserDataService from '../../services/users'
+import {
+    // useDispatch, 
+    useSelector} from 'react-redux'
+// import UserDataService from '../../services/users'
 
 const AdminMgt = () => {
-
-    const [token, setToken] = useState(null)
-    const [user, setUser] = useState({})
-
-    const handleLogin = async (newToken, data) => {
-        setToken(newToken)
-        setUser(data)
-
+    // const dispatch = useDispatch();
     
-    }
-    const removeToken = () => {
-        setToken(null)
-    }
-
-
+    // const [user, setUser] = useState({})
+    const token = useSelector(state => state.token)
+    console.log('Token', token)
+    
     return (
-        !token ? (
-            <Login handleLogin={handleLogin} removeToken={removeToken} />
+        !Object.keys(token).length > 0 ? (
+            <Login/>
         ) :
             <Routes>
-
                 <Route path='/addEditTick' element={<AddEditTick />} />
                 <Route path='/addEditTick/:id' element={<AddEditTick />} />
                 <Route path='/processTick/:id' element={<ProcessTick />} />
-                <Route path='/allSubs' element={<AllSubs token={token} user={user}/>} />
+                <Route path='/allSubs' element={<AllSubs token={token} />} />
                 <Route path='/account/:id' element={<UpdateAccount/>} />
-                <Route path='/logout' element={<Login handleLogin={handleLogin} />}/>
-                
                 <Route path='/' element={<Dashboard/>}/>
-                
-
             </Routes>
     )
 }
