@@ -16,7 +16,7 @@ const AdminMgt = () => {
     
     // const [user, setUser] = useState({})
     const token = useSelector(state => state.token)
-    console.log('Token', token)
+    // console.log('Token', token)
     
     return (
         !Object.keys(token).length > 0 ? (
