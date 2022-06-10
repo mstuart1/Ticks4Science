@@ -9,6 +9,7 @@ import InternalLinkFloatButton from "../ui/internalLinkFloatButton/InternalLinkF
 import { theme } from "../../theme";
 import { useDispatch, useSelector } from "react-redux";
 import { removeToken } from "./actions";
+import UserMgt from "./UserMgt";
 
 // import { getOrgDataRequest } from "./actions";
 // import { PageContainer} from '../styles/Common.styled'
@@ -102,11 +103,15 @@ const Dashboard = () => {
 
 
     // console.log(isLoading)
-    // console.log('user', user)
+    console.log('user', user)
     // console.log(process.env.REACT_APP_SERVER_URL)
 
   return   (
     <BasicPage.Text>
+      <div>Hi, {user.firstName ? user.firstName :  (
+        `you haven't set up your profile yet`
+      )}</div>
+     
         <BasicPage.Form>
             
          <Styles.Input style={{width: '80vw'}} placeholder="Find a specific tick number" type='search' onChange={handleInputChange}/>
@@ -135,7 +140,7 @@ const Dashboard = () => {
              </div>
               </Styles.Card>
            )}
-            
+            <UserMgt/>
 
           </BasicPage.Form>
           
