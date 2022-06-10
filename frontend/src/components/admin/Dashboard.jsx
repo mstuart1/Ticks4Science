@@ -134,14 +134,9 @@ const Dashboard = () => {
          
        
         <div>
-          <div onClick={handleLogout}>
-           <HoverCard 
-           shadowColor={theme.colors.ruTeal}
-           width='3rem'
-           height='2rem'
-           >Logout</HoverCard>
-           </div>
-          <BasicPage.Form >
+         
+           <InternalLinkFloatButton colors={{text: 'white', bg: theme.colors.ruTeal }} padding="1rem 2rem" text="View Submissions" to='/admin/allSubs'/>
+          
 
            {user.manageUsers && (
              <OutlineCard>
@@ -158,10 +153,16 @@ const Dashboard = () => {
            )}
             <UserMgt/>
 
-          </BasicPage.Form>
+          
           
           </div>
-            <InternalLinkFloatButton padding="1rem 2rem" text="View Submissions" to='/admin/allSubs'/>
+          <div onClick={handleLogout}>
+           <HoverCard 
+           shadowColor={theme.colors.ruTeal}
+           width='3rem'
+           height='2rem'
+           >Logout</HoverCard>
+           </div>
         
         
     </BasicPage.Text>
