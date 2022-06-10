@@ -10,6 +10,7 @@ import { theme } from "../../theme";
 import { useDispatch, useSelector } from "react-redux";
 import { removeToken } from "./actions";
 import UserMgt from "./UserMgt";
+import OutlineCard from "../ui/outlineCard/OutlineCard";
 
 // import { getOrgDataRequest } from "./actions";
 // import { PageContainer} from '../styles/Common.styled'
@@ -21,11 +22,11 @@ import UserMgt from "./UserMgt";
 const Styles = {
     Input: styled.input`
     width: 80vw;
-
     @media screen and (min-width:${({ theme }) => theme.mobile}) {
         max-width: 800px;
       }
     `,
+    
     Link: styled(Link)`
     text-decoration: none;
     color: black;
@@ -37,6 +38,20 @@ const Styles = {
     max-width: 900px;
     border-radius: ${({theme}) => theme.borderRadius};
     box-shadow: 0 3px 15px ${({ shadowColor }) => shadowColor || '#000000'}20;
+    `,
+    InviteButton: styled.button `
+    width: 300px; 
+    padding: 1rem;
+    font-size: 1.6rem;
+    border-radius: 0.5rem;
+    `,
+    InputCont: styled.div`
+      height: 200px;
+      display: flex;
+      flex-direction: column;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
     `,
 }
 // TODO instead of search bar, use filtering buttons to get all, need photo review, waiting to receive tick, waiting for identification, identified - search by species
@@ -114,7 +129,7 @@ const Dashboard = () => {
      
         <BasicPage.Form>
             
-         <Styles.Input style={{width: '80vw'}} placeholder="Find a specific tick number" type='search' onChange={handleInputChange}/>
+         <Styles.Input placeholder="Find a specific tick number" type='search' onChange={handleInputChange}/>
         </BasicPage.Form> 
          
        
@@ -129,16 +144,17 @@ const Dashboard = () => {
           <BasicPage.Form >
 
            {user.manageUsers && (
-             <Styles.Card>
+             <OutlineCard>
              <BasicPage.SectionTitle>Invite an Admin User</BasicPage.SectionTitle>
-             <div style={{display: "flex", flexDirection: 'row', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'center'}}>
-             <input type='email' name='email' value={input.email || ''} placeholder='Email of new user'  style={{width: '80vh', maxWidth: '300px'}} onChange={(evt) => handleInviteChange(evt)} />
+             <Styles.InputCont>
+             <Styles.Input type='email' name='email' value={input.email || ''} placeholder='Email of new user' onChange={(evt) => handleInviteChange(evt)} />
            <label style={{margin: 0}}>Check box if this user can manage other users:
              <input type='checkbox' name='manageUsers' value={input.manageUsers} onChange={(evt) => handleInviteChange(evt)} />
            </label>
-           <button style={{width: '300px', padding: '1rem'}}  onClick={handleUserInvite}>Invite</button>
-             </div>
-              </Styles.Card>
+           <Styles.InviteButton   onClick={handleUserInvite}>Invite</Styles.InviteButton>
+           </Styles.InputCont>
+             
+              </OutlineCard>
            )}
             <UserMgt/>
 
