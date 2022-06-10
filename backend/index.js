@@ -8,7 +8,7 @@ const { notFound, errorHandler } = require('./error');
 const port = process.env.SERVER_PORT || 3003;
 
 let corsOptions = {
-  origin: '*',
+  origin: process.env.CORS_ORIGIN,
 }
 
 const app = express();
