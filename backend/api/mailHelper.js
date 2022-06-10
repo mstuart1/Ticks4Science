@@ -1,4 +1,4 @@
-// require("dotenv").config();
+require("dotenv").config();
 const cron = require('node-cron')
 const nodemailer = require("nodemailer");
 const db = require("../models");
@@ -32,6 +32,7 @@ cron.schedule("12 0 * * *", async () => {
 
     let mailOptions = {
       to: emails,
+      from: process.env.MAIL_USER,
       subject: "Tick System Message",
       html: `<p>${message}</p>`,
     };
