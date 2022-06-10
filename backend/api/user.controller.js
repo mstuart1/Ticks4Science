@@ -42,7 +42,7 @@ exports.inviteUser = async (req, res, next) => {
                             id: newUser[0].id 
                         }
                     } ,{transaction: t})
-                    return res.json({ data: newUser[0] })
+                    return res.json({ data: 'ALREADY_EXISTED' })
                 } else {
                     // create new user
                     newUser = await User.create(data, { transaction: t })
