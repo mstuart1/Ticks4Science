@@ -40,8 +40,8 @@ exports.uploadPhoto = async (req, res, next) => {
     console.log(`@@@@---receiving image from website---@@@@`);
     try {
       let {id} = req.params
-      const url = `https://${req.get('host')}/${process.env.PHOTO_URL}`
-      console.log(`url: `, url)
+      const url = process.env.PHOTO_URL
+      console.log(`@@@@---photo url: ${url}---@@@@`);
       const filesArray = req.files
       
         // const imagePath = path.join(__dirname, '/public/tickImages');
