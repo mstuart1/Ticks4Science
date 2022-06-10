@@ -18,7 +18,7 @@ let transporter = nodemailer.createTransport({
 });
 
 // send an email every day at noon if pending subs
-cron.schedule("03 14 * * *", async () => {
+cron.schedule("09 15 * * *", async () => {
   
   let pending = await Subm.findAll({
     where: {
