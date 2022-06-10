@@ -86,7 +86,8 @@ const Dashboard = () => {
         alert('Please include an email')
       }
       input.email && await UserDataService.inviteUser(input)
-      setInput({})  
+      setInput({})
+      alert('User has been invited')  
     }
 
     const handleLogout = () => {
