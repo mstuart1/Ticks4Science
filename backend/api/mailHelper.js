@@ -28,7 +28,7 @@ cron.schedule("03 14 * * *", async () => {
   if (pending.length > 0) {
     let recipients = await Users.findAll({where: { emailAlerts: true}, attributes: ["email"]})
     let emails = recipients.map(email => email.email)
-    let message = `There are tick submissions waiting for review at <a href='https://${process.env.CORS_ORIGIN}/admin'>Ticks4Science!</a>`
+    let message = `There are tick submissions waiting for review at <a href='${process.env.CORS_ORIGIN}/admin'>Ticks4Science!</a>`
 
     let mailOptions = {
       to: emails,
