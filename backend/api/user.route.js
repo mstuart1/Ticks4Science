@@ -4,6 +4,7 @@ module.exports = (app) => {
   
     router
       .post("/", UserCtl.inviteUser)
+      .get("/", UserCtl.getAllUsers)
       .get('/:id', UserCtl.getUser)
       .get('/byToken/:token', UserCtl.getByToken)
       .put('/', UserCtl.updateUser)

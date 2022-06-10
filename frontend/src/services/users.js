@@ -25,6 +25,9 @@ class UserDataService {
    forgotPassword(data){
        return http.put(`/user/forgot`, data)
    }
+   getAllUsers() {
+    return http.get(`/user`)
+   }
     
 }
 

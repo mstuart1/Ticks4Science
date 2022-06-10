@@ -37,11 +37,11 @@ exports.inviteUser = async (req, res, next) => {
                     }
                 })
                 if (newUser.length > 0) {
-                    await User.update(data,{
+                    await User.update(data, {
                         where: {
-                            id: newUser[0].id 
+                            id: newUser[0].id
                         }
-                    } ,{transaction: t})
+                    }, { transaction: t })
                     return res.json({ data: 'ALREADY_EXISTED' })
                 } else {
                     // create new user
@@ -65,17 +65,17 @@ exports.getUser = async (req, res, next) => {
 
         // console.log(JSON.stringify(req.body, null, 1))
         let user;
-        let {id} = req.params; 
+        let { id } = req.params;
 
         await db.sequelize
             .transaction(async (t) => {
-                
-                user = await User.findByPk(id, {attributes: {exclude: ["password"]}}, {transaction: t})
-                
-                    
-                 })
-                 return res.json({ data: user })
-            
+
+                user = await User.findByPk(id, { attributes: { exclude: ["password"] } }, { transaction: t })
+
+
+            })
+        return res.json({ data: user })
+
     } catch (err) {
         console.log(err.message)
         next({ status: 500, message: err.message })
@@ -90,19 +90,21 @@ exports.getByToken = async (req, res, next) => {
 
         // console.log(JSON.stringify(req.body, null, 1))
         let user;
-        let {token} = req.params; 
+        let { token } = req.params;
 
         await db.sequelize
             .transaction(async (t) => {
-                
-                user = await User.findOne({where: {
-                    resetToken: token
-                }, attributes: {exclude: ["password"]}},{transaction: t})
-                
-                   
-                 })
-                 return res.json({ user })
-            
+
+                user = await User.findOne({
+                    where: {
+                        resetToken: token
+                    }, attributes: { exclude: ["password"] }
+                }, { transaction: t })
+
+
+            })
+        return res.json({ user })
+
     } catch (err) {
         console.log(err.message)
         next({ status: 500, message: err.message })
@@ -114,21 +116,21 @@ exports.updateUser = async (req, res, next) => {
     console.log(`@@@@---updating user ${JSON.stringify(req.body, null, 1)}---@@@@`)
     try {
         let data = req.body
-        let {id} = data
+        let { id } = data
 
-        
-  
+
+
         if (data.password) {
             const salt = await bcrypt.genSalt(10);
             data.password = await bcrypt.hash(data.password, salt);
         }
 
         await db.sequelize
-        .transaction(async (t) => {
-            
-            await User.update(data, {where: {id}}, {transaction: t})
-        })
-        return res.json({message: 'ok'})
+            .transaction(async (t) => {
+
+                await User.update(data, { where: { id } }, { transaction: t })
+            })
+        return res.json({ message: 'ok' })
 
     } catch (err) {
         console.log(err.message)
@@ -137,65 +139,89 @@ exports.updateUser = async (req, res, next) => {
 }
 
 exports.login = async (req, res, next) => {
-    console.log(`@@@@---login user ${JSON.stringify(req.body, null, 1)}---@@@@`)  
+    console.log(`@@@@---login user ${JSON.stringify(req.body, null, 1)}---@@@@`)
     try {
-        let {email, password} = req.body
+        let { email, password } = req.body
         let foundUser, accessToken
         await db.sequelize.transaction(async (t) => {
-            foundUser = await User.findOne({where: {
-                email
-            }},{transaction: t})
+            foundUser = await User.findOne({
+                where: {
+                    email
+                }
+            }, { transaction: t })
         })
         if (foundUser === null) {
-           return res.json({message: 'BAD_USER'})
-          }
+            return res.json({ message: 'BAD_USER' })
+        }
 
-        if (!bcrypt.compareSync(password, foundUser.password)){
-            return res.json({message: 'BAD_PASSWORD'})
+        if (!bcrypt.compareSync(password, foundUser.password)) {
+            return res.json({ message: 'BAD_PASSWORD' })
         } else {
             accessToken = jwt.sign(
-                { id: foundUser.id, grant: foundUser.manageUsers},
+                { id: foundUser.id, grant: foundUser.manageUsers },
                 process.env.SECRET_KEY,
                 { expiresIn: "2h" }
-              );
+            );
         }
         res.header("Authorization", "Bearer " + accessToken);
-        res.json({token: accessToken, data: foundUser})
-    } catch(err) {
+        res.json({ token: accessToken, data: foundUser })
+    } catch (err) {
         console.log(err.message)
         next(err)
     }
 }
 
-exports.forgot = async(req, res, next) => {
+exports.forgot = async (req, res, next) => {
     console.log(`@@@@----someone forgot their password ${req.body}---@@@@`)
     try {
-        let {email} = req.body
+        let { email } = req.body
         let foundUser
         await db.sequelize.transaction(async (t) => {
-            foundUser = await User.findOne({where: {
-                email
-            }},{transaction: t})
-        
-        if (foundUser === null) {
-           return res.json({message: 'BAD_USER'})
-          }
-          else {
-            accessToken = jwt.sign(
-                { id: foundUser.id, grant: foundUser.manageUsers},
-                process.env.SECRET_KEY,
-                { expiresIn: "24h" }
-              );
-              let message = `This email has been sent to you because the "forgot password" form was filled out.  If you did not fill out the "forgot password" form, please disregard this email.  If you did indeed forget your password, please click the link to reset it.  This link will expire 24 hours from when this email was sent.<a href='${process.env.CORS_ORIGIN}/admin/reset/${accessToken}'>Click this link</a>`
-              await mailHelper.sendMail(foundUser.email, message)
-              await User.update({resetToken: accessToken}, {where: {
-                  id: foundUser.id
-              }}, {transaction: t})
-          }
+            foundUser = await User.findOne({
+                where: {
+                    email
+                }
+            }, { transaction: t })
+
+            if (foundUser === null) {
+                return res.json({ message: 'BAD_USER' })
+            }
+            else {
+                accessToken = jwt.sign(
+                    { id: foundUser.id, grant: foundUser.manageUsers },
+                    process.env.SECRET_KEY,
+                    { expiresIn: "24h" }
+                );
+                let message = `This email has been sent to you because the "forgot password" form was filled out.  If you did not fill out the "forgot password" form, please disregard this email.  If you did indeed forget your password, please click the link to reset it.  This link will expire 24 hours from when this email was sent.<a href='${process.env.CORS_ORIGIN}/admin/reset/${accessToken}'>Click this link</a>`
+                await mailHelper.sendMail(foundUser.email, message)
+                await User.update({ resetToken: accessToken }, {
+                    where: {
+                        id: foundUser.id
+                    }
+                }, { transaction: t })
+            }
         })
-        res.json({message: 'EMAIL_SENT'})
-    } catch(err) {
+        res.json({ message: 'EMAIL_SENT' })
+    } catch (err) {
         console.log(err.message)
+        next(err)
+    }
+}
+
+exports.getAllUsers = async (req, res, next) => {
+    console.log(`@@@@---getting all users---@@@@`)
+    try {
+        // console.log(JSON.stringify(req.body, null, 1))
+        let users;
+
+        await db.sequelize
+            .transaction(async (t) => {
+
+                users = await User.findAll({ transaction: t })
+            })
+        return res.json({ users })
+    } catch (err) {
+        console.log(`!!!! Error !!!!`, err.message)
         next(err)
     }
 }
