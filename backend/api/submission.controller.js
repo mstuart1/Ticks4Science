@@ -40,8 +40,8 @@ exports.uploadPhoto = async (req, res, next) => {
     console.log(`@@@@---receiving image from website---@@@@`);
     try {
       let {id} = req.params
-      const url = `https://${req.get('host')}/${process.env.PHOTO_URL}`
-      console.log(`url: `, url)
+      const url = process.env.PHOTO_URL
+      console.log(`@@@@---photo url: ${url}---@@@@`);
       const filesArray = req.files
       
         // const imagePath = path.join(__dirname, '/public/tickImages');
@@ -51,7 +51,7 @@ exports.uploadPhoto = async (req, res, next) => {
         }
         let record = await Subm.findByPk(id)
         filesArray.forEach((file, i) => {
-          console.log(`path`, file.path)
+          console.log(`@@@@@---path---@@@@@`, file.path)
           if (i === 0){
             record.photoFrontUrl = `${url}/${file.path}`;
           }
@@ -65,6 +65,7 @@ exports.uploadPhoto = async (req, res, next) => {
         })
         
         await record.save();
+        console.log(`@@@@---photo url example---@@@@`, record.photoFrontUrl)
         
         return res.json({newUrls: [record.photoFrontUrl, record.photoBackUrl, record.photoOtherUrl]})
     } catch (err) {
