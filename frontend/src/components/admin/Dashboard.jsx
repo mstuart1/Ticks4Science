@@ -85,9 +85,14 @@ const Dashboard = () => {
       if (!input.email) {
         alert('Please include an email')
       }
-      input.email && await UserDataService.inviteUser(input)
+      let response = input.email && await UserDataService.inviteUser(input)
       setInput({})
-      alert('User has been invited')  
+      console.log(response.data)
+      if (response.data.data === 'ALREADY_EXISTED') {
+        alert('User was already in the system, no email sent')
+      } else {
+        alert('User has been invited')  
+      }
     }
 
     const handleLogout = () => {
@@ -96,7 +101,7 @@ const Dashboard = () => {
     }
 
 
-    console.log(isLoading)
+    // console.log(isLoading)
     // console.log('user', user)
     // console.log(process.env.REACT_APP_SERVER_URL)
 
@@ -122,7 +127,7 @@ const Dashboard = () => {
              <Styles.Card>
              <BasicPage.SectionTitle>Invite an Admin User</BasicPage.SectionTitle>
              <div style={{display: "flex", flexDirection: 'row', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'center'}}>
-             <input type='email' name='email' value={input.email} placeholder='Email of new user'  style={{width: '80vh', maxWidth: '300px'}} onChange={(evt) => handleInviteChange(evt)} />
+             <input type='email' name='email' value={input.email || ''} placeholder='Email of new user'  style={{width: '80vh', maxWidth: '300px'}} onChange={(evt) => handleInviteChange(evt)} />
            <label style={{margin: 0}}>Check box if this user can manage other users:
              <input type='checkbox' name='manageUsers' value={input.manageUsers} onChange={(evt) => handleInviteChange(evt)} />
            </label>
