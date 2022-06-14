@@ -17,6 +17,7 @@ class SubmissionDataService {
     }
 
     getAllSubm(token) {
+        // console.log(token)
         return http.get(`/submission`, {  headers: {
             'Authorization': `Basic ${token}` 
           }})
