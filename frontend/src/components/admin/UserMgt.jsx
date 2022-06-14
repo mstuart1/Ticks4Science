@@ -1,18 +1,20 @@
 import React, { useEffect, useState } from 'react'
 import UserDataService from '../../services/users'
 import OutlineCard from '../ui/outlineCard/OutlineCard'
+import {useSelector} from 'react-redux'
 
 const UserMgt = () => {
     const [data, setData] = useState([])
+    const token = useSelector(state => state.token)
 
     useEffect(() => {
-        let getData = async () => {
-            return await UserDataService.getAllUsers();
+        let getData = async (token) => {
+            return await UserDataService.getAllUsers(token);
         }
-        getData().then(response => {
+        getData(token).then(response => {
           setData(response.data.users)
         })
-    }, [])
+    }, [token])
 
    const handleChange = async (id, evt) => {
     
