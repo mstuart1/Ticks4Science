@@ -1,10 +1,12 @@
+const auth = require("./authHelper");
+
 module.exports = (app) => {
     const UserCtl  = require("./user.controller");
     const router = require("express").Router();
   
     router
       .post("/", UserCtl.inviteUser)
-      .get("/", UserCtl.getAllUsers)
+      .get("/", auth.verifyToken, UserCtl.getAllUsers)
       .get('/:id', UserCtl.getUser)
       .get('/byToken/:token', UserCtl.getByToken)
       .put('/', UserCtl.updateUser)

@@ -1,10 +1,12 @@
+const auth = require("./authHelper");
+
 module.exports = (app) => {
     const SubmCtl  = require("./submission.controller");
     const router = require("express").Router();
     const upload = require('./upload');
   
     router
-      .get("/", SubmCtl.getAllSubs)
+      .get("/", auth.verifyToken, SubmCtl.getAllSubs)
       .post("/", SubmCtl.createSubm)
       .put("/photos/:id", upload.array('photos'),  SubmCtl.uploadPhoto)
       .get('/:id', SubmCtl.getProgress)
