@@ -8,6 +8,12 @@ export const createToken = token => ({
     payload: { token }
 });
 
+export const CHANGE_TOKEN = 'CHANGE_TOKEN'
+export const changeToken = token => ({
+    type: CHANGE_TOKEN,
+    payload: { token }
+})
+
 export const REMOVE_TOKEN = 'REMOVE_TOKEN';
 export const removeToken = () => ({
     type: REMOVE_TOKEN
