@@ -78,23 +78,24 @@ const Dashboard = () => {
   const navigate = useNavigate();
 
     const [data, setData] = useState([])
-    const [isLoading, setIsLoading] = useState(false);
     const [query, setQuery] = useState('');
     const [input, setInput] = useState({});
     
     
     const user = useSelector(state => state.user)
+    const token = useSelector(state => state.token)
+    
     
     useEffect(() => {
         let getData = async () => {
-            setIsLoading(true)
-         return await SubmissionDataService.getAllSubm();
+            
+         return await SubmissionDataService.getAllSubm(token);
         }
         
         getData().then(response => {
           // console.log(response.data.record)
           setData(response.data.record)
-          setIsLoading(false)
+          
         })
         
         
