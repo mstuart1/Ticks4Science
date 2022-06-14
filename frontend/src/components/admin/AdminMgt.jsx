@@ -14,14 +14,11 @@ import {
 // import UserDataService from '../../services/users'
 
 const AdminMgt = () => {
-    // const dispatch = useDispatch();
     
-    // const [user, setUser] = useState({})
     const token = useSelector(state => state.token)
-    // console.log('Token', token)
     
     return (
-        !Object.keys(token).length > 0 ? (
+        token.length < 0 ? (
             <Login/>
         ) :
             <Routes>
