@@ -90,8 +90,13 @@ const Survey = () => {
       <BasicPage.Title>Tick Submission Form</BasicPage.Title>
       <form onSubmit={handleSubmit}>
         <BasicPage.Form >
+          <div style={{backgroundColor: '#f2f2f2', borderRadius: '1rem'}}>
+            <h4 style={{padding: '1rem'}}>Submitter Information</h4>
           {inputElem1}
-          <div>
+          </div>
+          <div style={{backgroundColor: '#f2f2f2', borderRadius: '1rem'}}>
+            <div>
+            <h4>Tick Information</h4>
             <label htmlFor='foundOn'>Indicate who/what tick(s) were found on:</label>
             <BasicPage.RadioButtons>
               {foundRadioElements}
@@ -213,7 +218,7 @@ const Survey = () => {
             <label htmlFor='additionalInfo'>Any additional information about the environment, tick(s), and or person/pet:</label>
             <textarea id='additionalInfo' name='additionalInfo' value={input.additionalInfo || ''} onChange={handleChange}></textarea>
           </div>
-
+          </div>
 
           <BasicPage.HoverCard bgColor={theme.colors.main} onClick={handleSubmit}>
             <BasicPage.LinkButton.CardSpecial >
