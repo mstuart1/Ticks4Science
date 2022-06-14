@@ -17,7 +17,7 @@ exports.verifyToken = (req, res, next) => {
           user.expiresIn = "2h";
           req.user = user;
           let accessToken = jwt.sign(
-            { id: user.id, admin: user.admin },
+            { id: user.id, grant: user.grant },
             process.env.SECRET_KEY,
             { expiresIn: user.expiresIn }
           );

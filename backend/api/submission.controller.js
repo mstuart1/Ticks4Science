@@ -100,6 +100,7 @@ exports.getProgress = async (req, res, next) => {
 exports.getAllSubs = async (req, res, next) => {
   console.log(`@@@@---getting all submissions---@@@@`);
   try {
+    console.log(req.user)
     let foundSubs = await Subm.findAll({
       include: [
         {
