@@ -53,6 +53,22 @@ const Styles = {
       align-items: center;
       justify-content: space-between;
     `,
+    BlockCont: styled.div`
+    display: flex;
+    flex-wrap: wrap;
+    
+    justify-content: center;
+    `,
+    BlockDetail: styled.div`
+    width: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    h3 {
+      color: ${({theme}) => theme.colors.grey3};
+    }
+    `,
+
 }
 // TODO instead of search bar, use filtering buttons to get all, need photo review, waiting to receive tick, waiting for identification, identified - search by species
 
@@ -125,8 +141,33 @@ const Dashboard = () => {
     } else {
       return null
     }
-
   })
+
+  let totalSubs = data.length;
+  let pendPhotos = data.filter(sub => sub.photosReviewed === null)
+  let pendReceived = data.filter(sub => sub.specimenReceived === null && sub.specimenRequested !== null)
+  let pendIdentified = data.filter(sub => sub.specimenReceived && sub.specimenIdentified === null);
+
+  
+
+  let blockArray = [
+    {text: 'Total Submissions', number: totalSubs},
+    {text: 'Waiting for Photo Review', number: pendPhotos.length},
+    {text: 'Waiting for User to Mail Tick In', number: pendReceived.length},
+    {text: 'Waiting for Team to Identify Mailed-In Tick', number: pendIdentified.length},
+  ]
+
+
+  console.log(blockArray)
+  let blockElems = blockArray.map(block => (
+    <OutlineCard>
+      <Styles.BlockDetail>
+      <h3>{block.text}</h3>
+      <h1>{block.number}</h1>
+      </Styles.BlockDetail>
+    </OutlineCard>
+  ))
+
    
    let subElem = filteredData.map(sub => (
     <Styles.Link key={sub.id} to={`/admin/processTick/${sub.id}`} state={{tick: sub}}>
@@ -160,6 +201,9 @@ const Dashboard = () => {
         <div>
          
            <InternalLinkFloatButton colors={{text: 'white', bg: theme.colors.ruTeal }} padding="1rem 2rem" text="View Submissions" to='/admin/allSubs'/>
+           <Styles.BlockCont>
+           {blockElems}
+           </Styles.BlockCont>
           
 
            {user.manageUsers && (
