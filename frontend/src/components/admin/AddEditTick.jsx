@@ -15,7 +15,7 @@ const AddEditTick = () => {
           await TickDataService.getTick(id);
     
         getData().then(response => {
-          console.log(response.data.record)
+        //   console.log(response.data.record)
           setInput(response.data.record)
         })
       }, [id])
@@ -36,7 +36,7 @@ const AddEditTick = () => {
             evt.preventDefault()
             if (id) {
             let response = await TickDataService.updateForm(input, id)
-            console.log(response.data)
+            // console.log(response.data)
             } else {
                 
             let response = await TickDataService.submitForm(input);

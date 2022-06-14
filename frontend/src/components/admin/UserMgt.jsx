@@ -35,7 +35,7 @@ const UserMgt = () => {
 
     }
 
-    console.log(data)
+    // console.log(data)
   return (
     <OutlineCard>
         <h2>Users who should receive email alerts</h2>

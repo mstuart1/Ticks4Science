@@ -42,8 +42,8 @@ import TickPage from './components/ticks/TickPage';
 
 const App = () => {
 
-  console.log('basename', process.env.REACT_APP_BASENAME)
-  console.log('server', process.env.REACT_APP_SERVER_URL)
+  // console.log('basename', process.env.REACT_APP_BASENAME)
+  // console.log('server', process.env.REACT_APP_SERVER_URL)
 
   return (
     <ThemeProvider theme={theme}>

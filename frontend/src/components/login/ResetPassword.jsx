@@ -40,12 +40,12 @@ const ResetPassword = ({reset = false, create = false}) => {
     } else {
       user.password = input.password1;
       let response = await UserDataService.updateUser(user)
-      console.log(response)
+      // console.log(response)
         response.status === 200 &&  navigate('/admin')
     }
   }
 
-console.log('user', user)
+// console.log('user', user)
 // console.log(token)
 
   return (

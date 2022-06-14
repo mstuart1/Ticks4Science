@@ -29,8 +29,8 @@ const UploadImages = () => {
         const file = evt.target.files[0]
         setImageOther([file])
     }
-    console.log(`imageFront: ${JSON.stringify(imageFront)}`)
-console.log(`imageUrls: ${JSON.stringify(imageUrls)}`)
+    // console.log(`imageFront: ${JSON.stringify(imageFront)}`)
+// console.log(`imageUrls: ${JSON.stringify(imageUrls)}`)
   return (
     <div>
             <label htmlFor='front'>Photo of top side</label>

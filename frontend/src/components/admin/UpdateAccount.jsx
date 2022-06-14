@@ -8,7 +8,7 @@ const UpdateAccount = () => {
     let {id, token} = useParams()
     let navigate = useNavigate()
 
-    console.log(token)
+    // console.log(token)
 
     const [data, setData] = useState()
     const [okToGo, setOkToGo] = useState(true)
@@ -57,15 +57,15 @@ const UpdateAccount = () => {
             alert('passwords do not match')
             setOkToGo(false)
         }
-        console.log(okToGo)
+        // console.log(okToGo)
         let response = okToGo && await UserDataService.updateUser(data)
-        console.log(response)
+        // console.log(response)
         response.status === 200 &&  navigate('/admin/allSubs')
 
 
     }
 
-    console.log(data)
+    // console.log(data)
 
   return (
     <BasicPage.Text>

@@ -66,6 +66,7 @@ const Dashboard = () => {
     const [query, setQuery] = useState('');
     const [input, setInput] = useState({});
     
+    
     const user = useSelector(state => state.user)
     
     useEffect(() => {
@@ -75,7 +76,7 @@ const Dashboard = () => {
         }
         
         getData().then(response => {
-          console.log(response.data.record)
+          // console.log(response.data.record)
           setData(response.data.record)
           setIsLoading(false)
         })
@@ -86,11 +87,11 @@ const Dashboard = () => {
     const handleInputChange = evt => {
     let {value} = evt.target
     // console.log(value)
-    setQuery(value)
+    setQuery(value)    
     }
 
     const handleInviteChange = (evt) => {
-      console.log(`invite is changing`)
+      // console.log(`invite is changing`)
       let info = evt.target;
       let value = info.type === "checkbox" ? info.checked : info.value;
       setInput({ ...input, [info.name]: value });
@@ -103,7 +104,7 @@ const Dashboard = () => {
       }
       let response = input.email && await UserDataService.inviteUser(input)
       setInput({})
-      console.log(response.data)
+      // console.log(response.data)
       if (response.data.data === 'ALREADY_EXISTED') {
         alert('User was already in the system, no email sent')
       } else {
@@ -116,11 +117,23 @@ const Dashboard = () => {
       navigate('/')
     }
 
-
-    // console.log(isLoading)
-    console.log('user', user)
-    // console.log(process.env.REACT_APP_SERVER_URL)
-
+   let  filteredData =  data.filter(sub => sub.id === query)
+   let  subElem = filteredData.length > 0 && filteredData.map(item => (
+      <Styles.Link key={item.id} to={`/admin/processTick/${item.id}`} state={{tick: item}}>
+      <OutlineCard >
+          <div>
+          ID: {item.id}<br/>
+          Date Submitted: {item.createdAt&& item.createdAt.substring(0,10)}<br/>
+          Photos Reviewed: {item.photosReviewed && item.photosReviewed.substring(0,10)}<br/>
+          Specimen Requested: {item.specimenRequested && item.specimenRequested.substring(0,10)}<br/>
+          Specimen Received: {item.specimenReceived && item.specimenReceived.substring(0,10)}<br/>
+          Specimen Identified: {item.specimenIdentified && item.specimenIdentified.substring(0,10)}<br/>
+          Species: {item.tickId && item.tick.scientific}<br/>
+          </div>
+      </OutlineCard>
+      </Styles.Link>
+  ))
+    console.log(filteredData)
   return   (
     <BasicPage.Text>
       <div>Hi, {user.firstName ? user.firstName :  (
@@ -130,9 +143,10 @@ const Dashboard = () => {
         <BasicPage.Form>
             
          <Styles.Input placeholder="Find a specific tick number" type='search' onChange={handleInputChange}/>
+         {query.length > 0 && subElem}
         </BasicPage.Form> 
          
-       
+        
         <div>
          
            <InternalLinkFloatButton colors={{text: 'white', bg: theme.colors.ruTeal }} padding="1rem 2rem" text="View Submissions" to='/admin/allSubs'/>
