@@ -117,22 +117,32 @@ const Dashboard = () => {
       navigate('/')
     }
 
-   let  filteredData =  data.filter(sub => sub.id === query)
-   let  subElem = filteredData.length > 0 && filteredData.map(item => (
-      <Styles.Link key={item.id} to={`/admin/processTick/${item.id}`} state={{tick: item}}>
-      <OutlineCard >
-          <div>
-          ID: {item.id}<br/>
-          Date Submitted: {item.createdAt&& item.createdAt.substring(0,10)}<br/>
-          Photos Reviewed: {item.photosReviewed && item.photosReviewed.substring(0,10)}<br/>
-          Specimen Requested: {item.specimenRequested && item.specimenRequested.substring(0,10)}<br/>
-          Specimen Received: {item.specimenReceived && item.specimenReceived.substring(0,10)}<br/>
-          Specimen Identified: {item.specimenIdentified && item.specimenIdentified.substring(0,10)}<br/>
-          Species: {item.tickId && item.tick.scientific}<br/>
-          </div>
-      </OutlineCard>
-      </Styles.Link>
-  ))
+   let  filteredData =  data.filter(sub => {
+    if (query === "") {
+      return null
+    } else if (parseInt(sub.id) === parseInt(query)) {
+      return sub
+    } else {
+      return null
+    }
+
+  })
+   
+   let subElem = filteredData.map(sub => (
+    <Styles.Link key={sub.id} to={`/admin/processTick/${sub.id}`} state={{tick: sub}}>
+    <OutlineCard >
+        <div>
+        ID: {sub.id}<br/>
+        Date Submitted: {sub.createdAt&& sub.createdAt.substring(0,10)}<br/>
+        Photos Reviewed: {sub.photosReviewed && sub.photosReviewed.substring(0,10)}<br/>
+        Specimen Requested: {sub.specimenRequested && sub.specimenRequested.substring(0,10)}<br/>
+        Specimen Received: {sub.specimenReceived && sub.specimenReceived.substring(0,10)}<br/>
+        Specimen Identified: {sub.specimenIdentified && sub.specimenIdentified.substring(0,10)}<br/>
+        Species: {sub.tickId && sub.tick.scientific}<br/>
+        </div>
+    </OutlineCard>
+    </Styles.Link>
+   ))
     console.log(filteredData)
   return   (
     <BasicPage.Text>
@@ -143,7 +153,7 @@ const Dashboard = () => {
         <BasicPage.Form>
             
          <Styles.Input placeholder="Find a specific tick number" type='search' onChange={handleInputChange}/>
-         {query.length > 0 && subElem}
+         {subElem}
         </BasicPage.Form> 
          
         
