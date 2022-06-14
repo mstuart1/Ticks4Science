@@ -16,8 +16,10 @@ class SubmissionDataService {
         return http.get(`/submission/${id}`)
     }
 
-    getAllSubm() {
-        return http.get(`/submission`)
+    getAllSubm(token) {
+        return http.get(`/submission`, {  headers: {
+            'Authorization': `Basic ${token}` 
+          }})
     }
     updateSub(data, id) {
         console.log(data)

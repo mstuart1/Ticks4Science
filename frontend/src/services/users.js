@@ -25,8 +25,11 @@ class UserDataService {
    forgotPassword(data){
        return http.put(`/user/forgot`, data)
    }
-   getAllUsers() {
-    return http.get(`/user`)
+   getAllUsers(token) {
+    console.log(token)
+    return http.get(`/user`, {  headers: {
+        'Authorization': `Basic ${token}` 
+      }})
    }
     
 }
