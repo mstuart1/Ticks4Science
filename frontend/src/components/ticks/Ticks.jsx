@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from 'react'
 import { BasicPage } from '../GeneralStyles'
 import TickReportLink from './TickReportLink'
-import {FaStar} from 'react-icons/fa'
+import { FaStar } from 'react-icons/fa'
 import styled from 'styled-components'
 import TickDataService from '../../services/ticks'
 import HorizScrollCont from '../ui/horizontalScrollingContainer/HorizScrollCont'
 import TickCard from '../ui/tickCard/TickCard'
+import { theme } from '../../theme'
 
 const Icon = styled.span`
-    color: ${({theme}) => theme.colors.main};
+    color: ${({ theme }) => theme.colors.main};
 `
 
 const Ticks = () => {
@@ -17,19 +18,19 @@ const Ticks = () => {
 
     useEffect(() => {
         let getData = async () =>
-          await TickDataService.getAllTicks();
+            await TickDataService.getAllTicks();
 
         getData().then(response => {
-        //   console.log(response.data.data)
-          setData(response.data.data)
+            //   console.log(response.data.data)
+            setData(response.data.data)
         })
-      }, [])
+    }, [])
 
     //   console.log(data)
 
     let peopleTicks = ['americanum', 'variabilis', 'scapularis']
     let invasiveTicks = ['longicornis']
-    let otherTicks = ['kelleyi', 'albipictus', 'leporispalustris', 'brunneus', 'cookei', 'dentatus', 'texanus', 'marxi', 'texanus','sanguineus' ]
+    let otherTicks = ['kelleyi', 'albipictus', 'leporispalustris', 'brunneus', 'cookei', 'dentatus', 'texanus', 'marxi', 'texanus', 'sanguineus']
     let newTick = ['maculatum']
 
     // let peopleTickElements = data.map(tick => {
@@ -43,7 +44,7 @@ const Ticks = () => {
         if (peopleTicks.some(item => tick.scientific?.includes(item))) {
             tick.peopleTick = true;
             return <TickCard key={tick.id} tick={tick} />
-               
+
         } else {
             return null
         }
@@ -62,7 +63,7 @@ const Ticks = () => {
         if (otherTicks.some(item => tick.scientific?.includes(item))) {
             if (tick.common?.toLowerCase().includes('brown dog tick') || tick.common?.toLowerCase().includes('groundhog tick')) {
                 tick.peopleTick = true;
-            return <TickCard key={tick.id} tick={tick} />
+                return <TickCard key={tick.id} tick={tick} />
             } else {
                 tick.peopleTick = false;
                 return <TickCard key={tick.id} tick={tick} />
@@ -76,17 +77,17 @@ const Ticks = () => {
 
     let newTickElem = data.map(tick => {
         if (newTick.some(item => tick.scientific?.includes(item))) {
-           
+
             tick.peopleTick = true;
             return <TickCard key={tick.id} tick={tick} />
-            
+
 
         } else {
             return null
         }
     })
 
-    
+
 
 
     return (
@@ -99,64 +100,66 @@ const Ticks = () => {
                 As citizen scientists, familiarizing yourselves with the ticks you may come across in New Jersey is essential. Each tick species is unique, living in different habitats and feeding on different hosts. But in New Jersey, ticks are found nearly everywhere, so it is important to take necessary <BasicPage.InnieLink to='/checkMenu'><span>tick preventions</span></BasicPage.InnieLink> when enjoying the outdoors and entering tick habitats.
             </p>
             <p>
-            Listed below are the 4 most common ticks you may encounter in New Jersey. While there are currently at least 12 tick species in New Jersey, not all are found on people. Understanding what you may encounter most frequently will also help you know what <BasicPage.InnieLink to='/disease'><span>tick-borne diseases</span></BasicPage.InnieLink> you may contract if infected. This insight will allow you to enjoy nature safely and be vigilant for yourself and those around you! If you do happen to find a tick on you, do not panic! <BasicPage.InnieLink to='/removal'><span>Removing a tick</span></BasicPage.InnieLink> is easy and <BasicPage.InnieLink to='/preSurvey'><span>submitting the tick</span></BasicPage.InnieLink> is easier. 
+                Listed below are the 4 most common ticks you may encounter in New Jersey. While there are currently at least 12 tick species in New Jersey, not all are found on people. Understanding what you may encounter most frequently will also help you know what <BasicPage.InnieLink to='/disease'><span>tick-borne diseases</span></BasicPage.InnieLink> you may contract if infected. This insight will allow you to enjoy nature safely and be vigilant for yourself and those around you! If you do happen to find a tick on you, do not panic! <BasicPage.InnieLink to='/removal'><span>Removing a tick</span></BasicPage.InnieLink> is easy and <BasicPage.InnieLink to='/preSurvey'><span>submitting the tick</span></BasicPage.InnieLink> is easier.
 
             </p>
 
-           <Styles.CenterCntr>
-               <Styles.CenterCol style={{flex: 1}}>
-               <BasicPage.SectionTitle>
-                <Icon><FaStar/></Icon> Indicates ticks that seek people as hosts!
-            </BasicPage.SectionTitle>
-            <BasicPage.SectionTitle>
-                Common Ticks of New Jersey
-            </BasicPage.SectionTitle>
-              
-                <HorizScrollCont cardArray={peopleCardElements}/>
-                
-               
-            
-            <BasicPage.SectionTitle> Spotlight: Recent invasive tick, very abundant in some areas.</BasicPage.SectionTitle>
-            
-            <HorizScrollCont cardArray={invTickElem}/>
-                
-            
-            {/* <BasicPage.SectionTitle>Other Ticks of New Jersey</BasicPage.SectionTitle>
+            <Styles.CenterCntr style={{ backgroundColor: '#f2f2f2', borderRadius: '1rem' }}>
+                <Styles.CenterCol style={{ flex: 1 }}>
+                    <BasicPage.SectionTitle>
+                        <Icon><FaStar /></Icon> Indicates ticks that seek people as hosts!
+                    </BasicPage.SectionTitle>
+                    <BasicPage.SectionTitle>
+                        Common Ticks of New Jersey
+                    </BasicPage.SectionTitle>
+
+                    <HorizScrollCont cardArray={peopleCardElements} />
+
+
+
+                    <BasicPage.SectionTitle> Spotlight: Recent invasive tick, very abundant in some areas.</BasicPage.SectionTitle>
+
+                    <HorizScrollCont cardArray={invTickElem} />
+
+
+                    {/* <BasicPage.SectionTitle>Other Ticks of New Jersey</BasicPage.SectionTitle>
             <HorizScrollCont cardArray={briefTickElements}/> */}
-            <BasicPage.SectionTitle>
-                Here we provide a published scientific paper on the ticks of New Jersey by Rutgers scientists!
-            </BasicPage.SectionTitle>
-           
-            <p><TickReportLink /></p>
-               </Styles.CenterCol>
-               
-               {/* <BasicPage.ImageCont style={{flex: 1}}>
+                    <BasicPage.SectionTitle>
+                        Here we provide a published scientific paper on the ticks of New Jersey by Rutgers scientists!
+                    </BasicPage.SectionTitle>
+
+                    <p><TickReportLink /></p>
+                </Styles.CenterCol>
+
+                {/* <BasicPage.ImageCont style={{flex: 1}}>
         <figure>
           <img src={'https://www.cdc.gov/ticks/images/gallery/Lifeseriesillustration.jpg?_=03668?noicon'} alt='ticks' />
           <figcaption>Image provided by Andrea Egizi, PhD
               </figcaption> 
         </figure>
       </BasicPage.ImageCont> */}
-               
-           </Styles.CenterCntr><Styles.CenterCntr>
-           
-          <p> Here, we list other ticks you may come across in New Jersey. While not all of these ticks feed on people, it's important to be aware of your surroundings and know what you may encounter in nature! The types of tick species you may find depends on the animals you encounter or handle. Whether you're a hunter coming across all types of wildlife, a farmer taking care of the same animals every day, or someone who enjoys going on nature hiking, we encourage you to be aware of your surrounding and practice tick prevention. But, especially if you are someone who handles animals and comes across a tick, we encourage you to submit your tick to help grow our understanding of what ticks are in New Jersey and where!</p>
 
-         
+            </Styles.CenterCntr>
+            <Styles.CenterCntr>
 
-           </Styles.CenterCntr>
-           <BasicPage.SectionTitle>
-                Other Ticks of New Jersey
-            </BasicPage.SectionTitle>
-              
-                <HorizScrollCont cardArray={otherTickElem}/>
+                <p> Here, we list other ticks you may come across in New Jersey. While not all of these ticks feed on people, it's important to be aware of your surroundings and know what you may encounter in nature! The types of tick species you may find depends on the animals you encounter or handle. Whether you're a hunter coming across all types of wildlife, a farmer taking care of the same animals every day, or someone who enjoys going on nature hiking, we encourage you to be aware of your surrounding and practice tick prevention. But, especially if you are someone who handles animals and comes across a tick, we encourage you to submit your tick to help grow our understanding of what ticks are in New Jersey and where!</p>
+
+
+
+            </Styles.CenterCntr>
+            <div style={{ backgroundColor: '#f2f2f2', borderRadius: '1rem' }}>
+                <BasicPage.SectionTitle>
+                    Other Ticks of New Jersey
+                </BasicPage.SectionTitle>
+
+                <HorizScrollCont cardArray={otherTickElem} />
 
                 <BasicPage.SectionTitle>
-                Spotlight: Potential new tick in New Jersey
-            </BasicPage.SectionTitle>
-              
-                <HorizScrollCont cardArray={newTickElem}/>
+                    Spotlight: Potential new tick in New Jersey
+                </BasicPage.SectionTitle>
 
+                <HorizScrollCont cardArray={newTickElem} />
+            </div>
         </BasicPage.Text>
 
     )
@@ -178,7 +181,7 @@ const Styles = {
       margin: 1rem;
      }
     `,
-  
+
     CenterCol: styled.div`
     display: flex;
     flex-direction: column;
@@ -187,12 +190,12 @@ const Styles = {
     
     `,
     RptLnkBtn: {
-      LinkSpec: styled.a`
+        LinkSpec: styled.a`
       text-decoration: none;
       color: ${({ theme }) => theme.colors.ruTeal};
       
       `,
-      CardSpecial: styled.div`
+        CardSpecial: styled.div`
       display: flex;
       align-items: center;
       justify-content: center;
@@ -202,8 +205,8 @@ const Styles = {
         padding: 1.6rem;
       }
     `,
-   
-    
+
+
     },
     LeftAlignCont: styled.div`
     display: flex;
@@ -222,5 +225,5 @@ const Styles = {
     font-size: 1.6rem;
     margin: 2rem;
     `
-  }
+}
 
