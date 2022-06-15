@@ -32,7 +32,7 @@ export const loadToken = credentials => async dispatch => {
 
         let response = await UserDataService.loginUser(credentials);
         if (response.data.message === 'token expired') {
-            dispatch(dispatch(loadTokenSuccess('expired')))
+            dispatch(loadTokenSuccess('expired'))
         } else {
             let token = response.data.token
             let user = response.data.data

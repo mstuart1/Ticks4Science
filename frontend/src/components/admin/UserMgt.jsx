@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import UserDataService from '../../services/users'
 import OutlineCard from '../ui/outlineCard/OutlineCard'
-import {useSelector} from 'react-redux'
+import {useDispatch, useSelector} from 'react-redux'
+import { loadTokenSuccess } from './actions'
 
 const UserMgt = () => {
+    const dispatch = useDispatch()
+    
     const [data, setData] = useState([])
     const token = useSelector(state => state.token.data)
 
@@ -12,9 +15,12 @@ const UserMgt = () => {
             return await UserDataService.getAllUsers(token);
         }
         getData(token).then(response => {
+            if (response.data.message === 'token expired'){
+                dispatch(loadTokenSuccess('expired'))
+            }
           setData(response.data.users)
         })
-    }, [token])
+    }, [token, dispatch])
 
    const handleChange = async (id, evt) => {
     
