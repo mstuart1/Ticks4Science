@@ -70,8 +70,6 @@ const Styles = {
     `,
 
 }
-// TODO instead of search bar, use filtering buttons to get all, need photo review, waiting to receive tick, waiting for identification, identified - search by species
-
 const Dashboard = () => {
 
   const dispatch = useDispatch()
@@ -83,23 +81,23 @@ const Dashboard = () => {
     
     
     const user = useSelector(state => state.user)
-    const token = useSelector(state => state.token)
+    const token = useSelector(state => state.token.data)
     
     
     useEffect(() => {
-        let getData = async () => {
+        let getData = async (token) => {
             
          return await SubmissionDataService.getAllSubm(token);
         }
         
-        getData().then(response => {
+        getData(token).then(response => {
           // console.log(response.data.record)
           setData(response.data.record)
           
         })
         
         
-      }, [])
+      }, [token])
 
     const handleInputChange = evt => {
     let {value} = evt.target
@@ -158,10 +156,8 @@ const Dashboard = () => {
     {text: 'Waiting for Team to Identify Mailed-In Tick', number: pendIdentified.length},
   ]
 
-
-  console.log(blockArray)
-  let blockElems = blockArray.map(block => (
-    <OutlineCard>
+  let blockElems = blockArray.map((block, i) => (
+    <OutlineCard key={i}>
       <Styles.BlockDetail>
       <h3>{block.text}</h3>
       <h1>{block.number}</h1>
@@ -170,7 +166,7 @@ const Dashboard = () => {
   ))
 
    
-   let subElem = filteredData.map(sub => (
+   let subElem = filteredData && filteredData.map(sub => (
     <Styles.Link key={sub.id} to={`/admin/processTick/${sub.id}`} state={{tick: sub}}>
     <OutlineCard >
         <div>
@@ -185,7 +181,7 @@ const Dashboard = () => {
     </OutlineCard>
     </Styles.Link>
    ))
-    console.log(filteredData)
+    
   return   (
     <BasicPage.Text>
       <div>Hi, {user.firstName ? user.firstName :  (

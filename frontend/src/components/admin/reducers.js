@@ -1,20 +1,26 @@
-import { CREATE_TOKEN, REMOVE_TOKEN, SET_ACTIVE_USER } from "./actions"
+import { LOADING_TOKEN, LOAD_TOKEN_FAIL, LOAD_TOKEN_SUCESS, REMOVE_TOKEN, SET_ACTIVE_USER } from "./actions"
 
-// provide state to default to avoid errors
-export const token = (state = '', action) => {
-    // get the type and payload from the given action
+const initialState = {
+    isLoading: false,
+    data: []
+}
+
+export const token = (state = initialState, action) => {
+
     const { type, payload } = action;
 
     switch (type) {
-        // create cases for all of the possible actions
-        case CREATE_TOKEN: {
-            // get the text defined in the payload (see actions if you are confused)
-            const { token } = payload;
-            
-            return token;
+
+        case LOAD_TOKEN_SUCESS: {
+            const { token: newToken } = payload;
+            return { ...state, isLoading: false, data: newToken };
         }
+        case LOADING_TOKEN: { return { ...state, isLoading: true }; }
+
+        case LOAD_TOKEN_FAIL: { return { ...state, isLoading: false }; }
+
         case REMOVE_TOKEN: {
-            return {};
+            return {...state, isLoading: false, data: []}
         }
         default:
             return state;

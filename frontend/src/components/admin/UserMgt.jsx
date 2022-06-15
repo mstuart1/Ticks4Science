@@ -5,7 +5,7 @@ import {useSelector} from 'react-redux'
 
 const UserMgt = () => {
     const [data, setData] = useState([])
-    const token = useSelector(state => state.token)
+    const token = useSelector(state => state.token.data)
 
     useEffect(() => {
         let getData = async (token) => {

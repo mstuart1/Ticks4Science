@@ -11,8 +11,8 @@ exports.verifyToken = (req, res, next) => {
       jwt.verify(token, process.env.SECRET_KEY, (err, user) => {
         if (err) {
           return res
-            .status(403)
-            .send({ code: "AUTH_ERROR", message: "Error authenticating token" });
+            .status(200)
+            .send({ message: "token expired" });
         } else {
           user.expiresIn = "2h";
           req.user = user;

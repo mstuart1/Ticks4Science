@@ -4,7 +4,7 @@ import styled from "styled-components";
 // import {  forgotPassReq } from "./actions";
 import UserDataService from '../../services/users'
 import { useDispatch } from "react-redux";
-import { loadToken
+import { loadToken, removeToken
   // ,removeToken 
 } from "../admin/actions";
 
@@ -14,10 +14,11 @@ const initialState = {
   password: "",
 };
 
-const Login = () => {
+const Login = ({logout}) => {
 
   // const navigate = useNavigate()
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
+  logout && dispatch(removeToken());
 
   
 

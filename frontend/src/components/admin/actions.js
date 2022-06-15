@@ -1,16 +1,18 @@
 import UserDataService from '../../services/users'
 
+export const LOADING_TOKEN = 'LOADING_TOKEN'
+export const loadingToken = () => ({
+    type: LOADING_TOKEN,
+})
 
-export const CREATE_TOKEN = 'CREATE_TOKEN';
+export const LOAD_TOKEN_FAIL = 'LOAD_TOKEN_FAIL'
+export const loadTokenFail = () => ({
+    type: LOAD_TOKEN_FAIL,
+})
 
-export const createToken = token => ({
-    type: CREATE_TOKEN,
-    payload: { token }
-});
-
-export const CHANGE_TOKEN = 'CHANGE_TOKEN'
-export const changeToken = token => ({
-    type: CHANGE_TOKEN,
+export const LOAD_TOKEN_SUCESS = 'LOAD_TOKEN_SUCESS'
+export const loadTokenSuccess = token => ({
+    type: LOAD_TOKEN_SUCESS,
     payload: { token }
 })
 
@@ -29,12 +31,14 @@ export const loadToken = credentials => async dispatch => {
     try {
 
         let response = await UserDataService.loginUser(credentials);
-
-        let token = response.data.token
-        let user = response.data.data
-        dispatch(setActiveUser(user))
-        dispatch(createToken(token));
-
+        if (response.data.message === 'token expired') {
+            dispatch(dispatch(loadTokenSuccess('expired')))
+        } else {
+            let token = response.data.token
+            let user = response.data.data
+            dispatch(setActiveUser(user))
+            dispatch(loadTokenSuccess(token));
+        }
     } catch (err) {
         console.log(`!!@@@@---Error---@@@@!! ${err.message}`)
         dispatch(displayAlert(JSON.stringify(err.response)));
