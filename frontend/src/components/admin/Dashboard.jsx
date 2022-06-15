@@ -146,6 +146,7 @@ const Dashboard = () => {
   let pendPhotos = data.filter(sub => sub.photosReviewed === null)
   let pendReceived = data.filter(sub => sub.specimenReceived === null && sub.specimenRequested !== null)
   let pendIdentified = data.filter(sub => sub.specimenReceived && sub.specimenIdentified === null);
+  let totalIdent = data.filter(sub => sub.specimenIdentified)
 
   
 
@@ -154,6 +155,7 @@ const Dashboard = () => {
     {text: 'Waiting for Photo Review', number: pendPhotos.length},
     {text: 'Waiting for User to Mail Tick In', number: pendReceived.length},
     {text: 'Waiting for Team to Identify Mailed-In Tick', number: pendIdentified.length},
+    {text: 'Total Identified', number:totalIdent.length},
   ]
 
   let blockElems = blockArray.map((block, i) => (
