@@ -75,7 +75,7 @@ width: 80vw;
  border-radius: ${({ theme }) => theme.borderRadius};
  box-shadow: 0 3px 15px ${({ shadowColor }) => shadowColor || '#000000'}20;
 `,
-CardInsides: styled.div`
+  CardInsides: styled.div`
 margin: 1rem;
 padding: 1rem;
 display: flex;
@@ -92,7 +92,8 @@ const ProcessTick = () => {
 
   const [tick, setTick] = useState({});
   const [tickSpp, setTickSpp] = useState([]);
-  
+  const [idByPhoto, setIdByPhoto] = useState(false)
+
   // get the tick info from db
   useEffect(() => {
     let getTick = async () => await SubmissionDataService.getProgress(id)
@@ -120,7 +121,7 @@ const ProcessTick = () => {
     })
   }, [])
 
-  
+
   const handlePhotoReview = (id) => {
     let data = { photosReviewed: new Date() }
     return updateSub(data, id)
@@ -128,6 +129,17 @@ const ProcessTick = () => {
 
   const handleNotATick = (id) => {
     let data = { notATick: true, specimenIdentified: new Date() }
+    return updateSub(data, id)
+  }
+
+  const handleIdByPhoto = () => {
+    console.log('clicked')
+    setIdByPhoto(true)
+  }
+
+  const handlePhotoId = (id, tickId) => {
+    setIdByPhoto(false)
+    let data = { photoId: tickId }
     return updateSub(data, id)
   }
 
@@ -142,8 +154,8 @@ const ProcessTick = () => {
   }
 
   const handleIdentified = (id, tickId) => {
-      let data = { specimenIdentified: new Date(), tickId: tickId }
-      return updateSub(data, id)
+    let data = { specimenIdentified: new Date(), specimenId: tickId }
+    return updateSub(data, id)
   }
 
   const updateSub = async (data, id) => {
@@ -162,89 +174,108 @@ const ProcessTick = () => {
       {/* <p>Developers Note: based on emails, it looks like Dina plans to request all ticks be sent in, the photo review is to make sure it is a tick, not to identify it.  With this info I made the flow of information follow the path that if the photos have been reviewed, the specimen requested button appears or not a tick button, if the specimen has been requested, the submission received button appears, if the specimen has been recieved, the speicies buttons appear to choose the identification.</p> */}
       <InternalLinkFloatButton colors={{ text: theme.colors.ruTeal, shadow: theme.colors.ruTeal }} to='/admin/allSubs' text='Back to All Submissions' />
       <Styles.PageCont>
-       
+
         <OutlineCard >
           <Styles.CardInsides>
 
-      
-          <h2>Status Info</h2>
-          ID: {tick?.id}<br />
-          Date Submitted: {tick?.createdAt?.substring(0, 10)}<br />
 
-          {/* Photo Review button or status */}
-          {tick.photosReviewed
-            ? <span>Photos Reviewed: {tick.photosReviewed.substring(0, 10)} <br /></span>
-            :
-            (<div onClick={() => handlePhotoReview(tick.id)}>
-              <HoverCard shadowColor={theme.colors.ruTeal}>
-                Click here when photos have been reviewed
-              </HoverCard>
-            </div>
-            )
-          }
-          {/* Specimen request button/status or not a tick */}
-          {tick.photosReviewed && (tick.specimenRequested
-            ? <span>Specimen Requested: {tick.specimenRequested.substring(0, 10)}<br/></span>
+            <h2>Status Info</h2>
+            ID: {tick?.id}<br />
+            Date Submitted: {tick?.createdAt?.substring(0, 10)}<br />
 
-            : !tick.tickId && (
-            <>
-            {console.log(tick.notATick)}
-            {!tick.notATick 
-            ? (<div onClick={() => handleNotATick(tick.id)}>
-              <HoverCard shadowColor={theme.colors.ruTeal}>
-                Click if it is not a tick
-              </HoverCard>
-            </div>) 
-            : <OutlineCard padding='1rem 2rem'>Not A Tick</OutlineCard>}
-              {!tick.notATick && (<div onClick={() => handleRequest(tick.id)}>
+            {/* Photo Review button or status */}
+            {tick.photosReviewed
+              ? <span>Photos Reviewed: {tick.photosReviewed.substring(0, 10)} <br /></span>
+              :
+              (<div onClick={() => handlePhotoReview(tick.id)}>
                 <HoverCard shadowColor={theme.colors.ruTeal}>
-                  Click here to request a specimen
+                  Click here when photos have been reviewed
                 </HoverCard>
-              </div>)}
-              </>
-
-            ))
-          }
-
-
-
-          {/* Specimen recieved button or status */}
-          {tick.specimenRequested && (tick.specimenReceived
-            ? <span>
-              Specimen Received: {tick.specimenReceived.substring(0, 10)}<br/>
-            </span>
-            : (
-              (<div onClick={() => handleReceived(tick.id)}>
-              <HoverCard shadowColor={theme.colors.ruTeal}>
-                Click if you've received tick
-              </HoverCard>
-            </div>) 
+              </div>
               )
-          )}
+            }
+            {/* Specimen request button/status or not a tick */}
+            {tick.photosReviewed && (tick.specimenRequested
+              ? <span>Specimen Requested: {tick.specimenRequested.substring(0, 10)}<br /></span>
 
-          {/* Speciment identified button or status */}
-          {tick.tickId
-            ? <> Specimen Identified: {tick.specimenIdentified.substring(0, 10)}<br/> Species: {tick.tick.scientific}<br/></>
+              : !tick.tickId && (
+                <>
+                  {console.log(tick.notATick)}
+                  {!tick.notATick
+                    ? (<div onClick={() => handleNotATick(tick.id)}>
+                      <HoverCard shadowColor={theme.colors.ruTeal}>
+                        Click if it is not a tick
+                      </HoverCard>
+                    </div>)
+                    : <OutlineCard padding='1rem 2rem'>Not A Tick</OutlineCard>}
+                  {!tick.notATick && (
+                    <>
+                      {!idByPhoto && <div onClick={() => handleIdByPhoto()}>
+                        <HoverCard shadowColor={theme.colors.ruTeal}>
+                          Click here to id tick by photo
+                        </HoverCard>
+                      </div>}
+                      <div onClick={() => handleRequest(tick.id)}>
+                        <HoverCard shadowColor={theme.colors.ruTeal}>
+                          Click here to request a specimen
+                        </HoverCard>
+                      </div>
+                      {
+                        idByPhoto && tickSpp.map(
+                          item => (
+                            <div onClick={() => handlePhotoId(tick.id, item.id)}>
+                              <HoverCard shadowColor={theme.colors.ruTeal}>
+                                {item.scientific}
+                              </HoverCard>
+                            </div>
+                          ))
+                      }
 
-            : ((tick.specimenReceived && !tick.tickId) &&
-              tickSpp.map(item => (<div onClick={() => handleIdentified(tick.id, item.id)}>
-                
-              <HoverCard shadowColor={theme.colors.ruTeal}>
-                {item.scientific}
-              </HoverCard>
-            </div>)
-               
+                    </>
+                  )}
+                </>
+
               ))
-            
-          }
+            }
+            {tick.photoId && <span>Photo ID: {tick.photo.scientific}</span>}
+
+
+            {/* Specimen recieved button or status */}
+            {tick.specimenRequested && (tick.specimenReceived
+              ? <span>
+                Specimen Received: {tick.specimenReceived.substring(0, 10)}<br />
+              </span>
+              : (
+                (<div onClick={() => handleReceived(tick.id)}>
+                  <HoverCard shadowColor={theme.colors.ruTeal}>
+                    Click if you've received tick
+                  </HoverCard>
+                </div>)
+              )
+            )}
+{console.log(tick)}
+            {/* Speciment identified button or status */}
+            {tick.specimenId
+              ? <> Specimen Identified: {tick.specimenIdentified.substring(0, 10)}<br /> Species: {tick.specimen.scientific}<br /></>
+
+              : ((tick.specimenReceived && !tick.tickId) &&
+                tickSpp.map(item => (<div onClick={() => handleIdentified(tick.id, item.id)}>
+
+                  <HoverCard shadowColor={theme.colors.ruTeal}>
+                    {item.scientific}
+                  </HoverCard>
+                </div>)
+                ))
+
+            }
 
 
 
-          {/* {tick.tickId ? : <p>placeholder</p>} */}
+            {/* {tick.tickId ? : <p>placeholder</p>} */}
 
-       
+
           </Styles.CardInsides>
-           </OutlineCard>
+        </OutlineCard>
         {/* <p>Click on the photo to view full size</p> */}
 
         <a href={tick.photoFrontUrl} target="_blank" rel="noreferrer"> <ImageCard imageUrl={tick.photoFrontUrl} /></a>
@@ -254,15 +285,15 @@ const ProcessTick = () => {
         <OutlineCard >
           <div style={{ margin: '1rem', padding: '1rem' }}>
             <h2>Tick Info</h2>
-            Date Tick Found: {tick.dateTickFound}<br/>
-            Found On: {tick.foundOn}<br/>
-            {tick.foundOnOther && <span>Found On Other: {tick.foundOnOther}<br/></span>}
-            {!tick.tickAttached && <span>Tick Attached: No<br/></span>}
-            Location Found: {tick.locationDesc} <br/>
-            {tick.locationDescOther && <span>Found  Other: {tick.locationDescOther}<br/></span>}
-            Municipality: {tick.tickMuni}<br/>
-            Zip Code: {tick.tickZip?.toString().padStart(5, "0")}<br/>
-            Activities: {tick.activities ? <span>{tick.activities}</span> : <span>None reported</span> }
+            Date Tick Found: {tick.dateTickFound}<br />
+            Found On: {tick.foundOn}<br />
+            {tick.foundOnOther && <span>Found On Other: {tick.foundOnOther}<br /></span>}
+            {!tick.tickAttached && <span>Tick Attached: No<br /></span>}
+            Location Found: {tick.locationDesc} <br />
+            {tick.locationDescOther && <span>Found  Other: {tick.locationDescOther}<br /></span>}
+            Municipality: {tick.tickMuni}<br />
+            Zip Code: {tick.tickZip?.toString().padStart(5, "0")}<br />
+            Activities: {tick.activities ? <span>{tick.activities}</span> : <span>None reported</span>}
           </div>
         </OutlineCard>
         {tick.tickAttached && (

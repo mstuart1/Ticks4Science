@@ -11,6 +11,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { removeToken } from "./actions";
 import UserMgt from "./UserMgt";
 import OutlineCard from "../ui/outlineCard/OutlineCard";
+import SubCard from "./SubCard";
 
 // import { getOrgDataRequest } from "./actions";
 // import { PageContainer} from '../styles/Common.styled'
@@ -169,19 +170,7 @@ const Dashboard = () => {
 
 
   let subElem = filteredData && filteredData.map(sub => (
-    <Styles.Link key={sub.id} to={`/admin/processTick/${sub.id}`} state={{ tick: sub }}>
-      <OutlineCard >
-        <div>
-          ID: {sub.id}<br />
-          Date Submitted: {sub.createdAt && sub.createdAt.substring(0, 10)}<br />
-          Photos Reviewed: {sub.photosReviewed && sub.photosReviewed.substring(0, 10)}<br />
-          Specimen Requested: {sub.specimenRequested && sub.specimenRequested.substring(0, 10)}<br />
-          Specimen Received: {sub.specimenReceived && sub.specimenReceived.substring(0, 10)}<br />
-          Specimen Identified: {sub.specimenIdentified && sub.specimenIdentified.substring(0, 10)}<br />
-          Species: {sub.tickId && sub.tick.scientific}<br />
-        </div>
-      </OutlineCard>
-    </Styles.Link>
+    <SubCard item={sub} key={sub.id}/>
   ))
 
   return (

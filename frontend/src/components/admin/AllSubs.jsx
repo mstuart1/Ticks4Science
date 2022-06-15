@@ -5,7 +5,7 @@ import { Link
  } from "react-router-dom";
 import { BasicPage } from "../GeneralStyles";
 import SubmissionDataService from '../../services/submission'
-import OutlineCard from '../ui/outlineCard/OutlineCard'
+import SubCard from './SubCard'
 import styled from "styled-components";
 import InternalLinkFloatButton from "../ui/internalLinkFloatButton/InternalLinkFloatButton";
 // import { theme } from "../../theme";
@@ -98,21 +98,8 @@ const AllSubs = () => {
   let pendingSpecimens = data.filter(item => item.specimenReceived !== null && item.specimenIdentified === null)
 
   const createCardElems = data => {
-    let cards = data.map(item => (
-      <Styles.Link key={item.id} to={`/admin/processTick/${item.id}`} state={{tick: item}}>
-      <OutlineCard >
-          <div>
-          ID: {item.id}<br/>
-          Date Submitted: {item.createdAt&& item.createdAt.substring(0,10)}<br/>
-          Photos Reviewed: {item.photosReviewed && item.photosReviewed.substring(0,10)}<br/>
-          Photo ID: {item.photoId && item.tick.scientific}<br/>
-          Specimen Requested: {item.specimenRequested && item.specimenRequested.substring(0,10)}<br/>
-          Specimen Received: {item.specimenReceived && item.specimenReceived.substring(0,10)}<br/>
-          Specimen Identified: {item.specimenIdentified && item.specimenIdentified.substring(0,10)}<br/>
-          Species: {item.specimenId && item.tick.scientific}<br/>
-          </div>
-      </OutlineCard>
-      </Styles.Link>
+    let cards = data.map(sub => (
+      <SubCard item={sub} key={sub.id}/>
   ))
   return cards
   }
