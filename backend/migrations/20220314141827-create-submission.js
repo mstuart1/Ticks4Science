@@ -8,6 +8,20 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
+      photoId: {
+        type: Sequelize.INTEGER,
+        references: {
+          model: "ticks",
+          key: "id",
+        },
+      },
+      specimenId: {
+        type: Sequelize.INTEGER,
+        references: {
+          model: "ticks",
+          key: "id",
+        },
+      },
       dateSubmitted: {type: Sequelize.DATE},
       userMuni: {type: Sequelize.STRING},
       userZip: {type: Sequelize.DOUBLE},
@@ -40,14 +54,6 @@ module.exports = {
       specimenReceived: {type: Sequelize.DATE},
       specimenIdentified: {type: Sequelize.DATE},
       notATick: {type: Sequelize.BOOLEAN},
-        tickId: {
-          allowNull: true,
-          type: Sequelize.INTEGER,
-          references: {
-            model: "ticks",
-            key: "id",
-          },
-        },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,

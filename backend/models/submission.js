@@ -5,7 +5,12 @@ const {
 module.exports = (sequelize, DataTypes) => {
     class submission extends Model {
         static associate(models) {
-            submission.belongsTo(models.ticks);
+            submission.belongsTo(models.ticks, {
+                as: "photoId",
+              });
+            submission.belongsTo(models.ticks, {
+                as: "specimenId",
+              });
         }
     }
     submission.init({
@@ -41,9 +46,6 @@ module.exports = (sequelize, DataTypes) => {
         specimenReceived: DataTypes.DATE,
         specimenIdentified: DataTypes.DATE,
         notATick: DataTypes.BOOLEAN,
-        tickId: DataTypes.STRING,
-        
-
     }, {
         sequelize,
         modelName: 'submission',
