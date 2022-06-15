@@ -1,0 +1,88 @@
+'use strict';
+
+module.exports = {
+  async up (queryInterface, Sequelize) {
+    return queryInterface.bulkInsert('submission', [
+      {
+        "id": 3,
+        "dateSubmitted": null,
+        "userMuni": "New Brusnwick",
+        "userZip": 8901,
+        "dateTickFound": "2022-06-10 00:00:00",
+        "foundOn": "Environment/Outside",
+        "foundOnOther": null,
+        "tickAttached": null,
+        "animal": null,
+        "dateRemoved": null,
+        "tickLocation": null,
+        "locationDesc": "Park/Playground",
+        "locationDescOther": null,
+        "tickMuni": "New Brunswick",
+        "tickCounty": "Middlesex",
+        "tickZip": 8901,
+        "activities": null,
+        "personBitten": null,
+        "submitterBitten": null,
+        "bittenMuni": null,
+        "bittenZip": null,
+        "bittenTraveledDom": null,
+        "bittenTraveledIntl": null,
+        "travelInfo": null,
+        "photoFrontUrl": "https://ticks.rutgers.edu//api/public/tickImages/image-1654882101523.jpeg",
+        "photoBackUrl": null,
+        "photoOtherUrl": null,
+        "additionalInfo": null,
+        "photosReviewed": "2022-06-10 17:29:15",
+        "specimenRequested": "2022-06-10 17:29:18",
+        "specimenReceived": null,
+        "specimenIdentified": null,
+        "notATick": null,
+        "tickId": null,
+        "createdAt": "2022-06-10 17:28:21",
+        "updatedAt": "2022-06-10 17:29:18"
+      },
+      {
+        "id": 5,
+        "dateSubmitted": null,
+        "userMuni": "new B",
+        "userZip": 8901,
+        "dateTickFound": "2021-06-14 00:00:00",
+        "foundOn": "Person",
+        "foundOnOther": null,
+        "tickAttached": "No",
+        "animal": "dog",
+        "dateRemoved": null,
+        "tickLocation": null,
+        "locationDesc": "Forest/Wooded area",
+        "locationDescOther": null,
+        "tickMuni": "Ecopreserve",
+        "tickCounty": "Middllesex",
+        "tickZip": 8901,
+        "activities": null,
+        "personBitten": null,
+        "submitterBitten": null,
+        "bittenMuni": null,
+        "bittenZip": null,
+        "bittenTraveledDom": null,
+        "bittenTraveledIntl": null,
+        "travelInfo": null,
+        "photoFrontUrl": "/api/public/tickImages/image-1655237496556.jpeg",
+        "photoBackUrl": "/api/public/tickImages/image-1655237496744.jpeg",
+        "photoOtherUrl": null,
+        "additionalInfo": "this is just a trial photo.",
+        "photosReviewed": "2022-06-14 20:12:20",
+        "specimenRequested": null,
+        "specimenReceived": null,
+        "specimenIdentified": "2022-06-14 20:12:22",
+        "notATick": 1,
+        "tickId": null,
+        "createdAt": "2022-06-14 20:11:36",
+        "updatedAt": "2022-06-14 20:12:22"
+      }
+    ], {});
+  },
+
+  async down (queryInterface, Sequelize) {
+    return queryInterface.bulkDelete('submission', null, {});
+  }
+};
