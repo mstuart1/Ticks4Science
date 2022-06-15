@@ -110,9 +110,7 @@ const AllSubs = () => {
   
   return   (
     <BasicPage.Text>
-        <BasicPage.Form>
-         <Styles.Input style={{width: '80vw'}} placeholder="Find a specific tick number" type='search' onChange={handleInputChange}/>
-        </BasicPage.Form> 
+       
         <InternalLinkFloatButton padding="1rem 2rem" text='Back to Dashboard' to='/admin' />
          <Styles.Waiting>
          <Styles.WaitingGroup>
