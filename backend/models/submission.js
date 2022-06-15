@@ -6,10 +6,10 @@ module.exports = (sequelize, DataTypes) => {
     class submission extends Model {
         static associate(models) {
             submission.belongsTo(models.ticks, {
-                as: "photoId",
+                as: "photo",
               });
             submission.belongsTo(models.ticks, {
-                as: "specimenId",
+                as: "specimen",
               });
         }
     }

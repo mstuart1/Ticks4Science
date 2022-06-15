@@ -82,6 +82,12 @@ exports.getProgress = async (req, res, next) => {
       include: [
         {
           model: db.ticks,
+          as: 'photo',
+          attributes: ['id', 'scientific', 'common']
+        },
+        {
+          model: db.ticks,
+          as: 'specimen',
           attributes: ['id', 'scientific', 'common']
         },
       
@@ -100,11 +106,17 @@ exports.getProgress = async (req, res, next) => {
 exports.getAllSubs = async (req, res, next) => {
   console.log(`@@@@---getting all submissions---@@@@`);
   try {
-    console.log(req.user)
+    // console.log(req.user)
     let foundSubs = await Subm.findAll({
       include: [
         {
           model: db.ticks,
+          as: 'photo',
+          attributes: ['id', 'scientific', 'common']
+        },
+        {
+          model: db.ticks,
+          as: 'specimen',
           attributes: ['id', 'scientific', 'common']
         },
       
@@ -129,6 +141,12 @@ exports.updateSubm = async (req, res, next) => {
           include: [
             {
               model: db.ticks,
+              as: 'photo',
+              attributes: ['id', 'scientific', 'common']
+            },
+            {
+              model: db.ticks,
+              as: 'specimen',
               attributes: ['id', 'scientific', 'common']
             },
           
