@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useSelector } from 'react-redux'
 import { Link
   // , useNavigate
  } from "react-router-dom";
@@ -52,29 +53,28 @@ const Styles = {
 
 const AllSubs = () => {
 
-  // const dispatch = useDispatch()
-  // const navigate = useNavigate();
-
+  
     const [data, setData] = useState([])
-    const [isLoading, setIsLoading] = useState(false);
     const [query, setQuery] = useState('');
-    // const [input, setInput] = useState({});
 
-    console.log(isLoading, query)
+    const token = useSelector(state => state.token.data)
+    
+
+    
     useEffect(() => {
-        let getData = async () => {
-            setIsLoading(true)
-         return await SubmissionDataService.getAllSubm();
+        let getData = async (token) => {
+            
+         return await SubmissionDataService.getAllSubm(token);
         }
         
-        getData().then(response => {
+        getData(token).then(response => {
           // console.log(response.data.record)
           setData(response.data.record)
-          setIsLoading(false)
+          
         })
         
         
-      }, [])
+      }, [token])
 
     const handleInputChange = evt => {
     let {value} = evt.target
