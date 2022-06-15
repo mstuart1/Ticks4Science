@@ -37,7 +37,6 @@ module.exports = {
         "specimenReceived": null,
         "specimenIdentified": null,
         "notATick": null,
-        "tickId": null,
         "createdAt": "2022-06-10 17:28:21",
         "updatedAt": "2022-06-10 17:29:18"
       },
@@ -75,7 +74,6 @@ module.exports = {
         "specimenReceived": null,
         "specimenIdentified": "2022-06-14 20:12:22",
         "notATick": 1,
-        "tickId": null,
         "createdAt": "2022-06-14 20:11:36",
         "updatedAt": "2022-06-14 20:12:22"
       }
