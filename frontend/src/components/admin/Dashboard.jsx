@@ -20,32 +20,32 @@ import OutlineCard from "../ui/outlineCard/OutlineCard";
 // import OrgTable from "./OrgTable"
 
 const Styles = {
-    Input: styled.input`
+  Input: styled.input`
     width: 80vw;
     @media screen and (min-width:${({ theme }) => theme.mobile}) {
         max-width: 800px;
       }
     `,
-    
-    Link: styled(Link)`
+
+  Link: styled(Link)`
     text-decoration: none;
     color: black;
     `,
-    Card: styled.div`
+  Card: styled.div`
     margin: 1rem;
     padding: 1rem ; 
     width: 80vw;
     max-width: 900px;
-    border-radius: ${({theme}) => theme.borderRadius};
+    border-radius: ${({ theme }) => theme.borderRadius};
     box-shadow: 0 3px 15px ${({ shadowColor }) => shadowColor || '#000000'}20;
     `,
-    InviteButton: styled.button `
+  InviteButton: styled.button`
     width: 300px; 
     padding: 1rem;
     font-size: 1.6rem;
     border-radius: 0.5rem;
     `,
-    InputCont: styled.div`
+  InputCont: styled.div`
       height: 200px;
       display: flex;
       flex-direction: column;
@@ -53,19 +53,19 @@ const Styles = {
       align-items: center;
       justify-content: space-between;
     `,
-    BlockCont: styled.div`
+  BlockCont: styled.div`
     display: flex;
     flex-wrap: wrap;
     
     justify-content: center;
     `,
-    BlockDetail: styled.div`
+  BlockDetail: styled.div`
     width: 200px;
     display: flex;
     justify-content: center;
     align-items: center;
     h3 {
-      color: ${({theme}) => theme.colors.grey3};
+      color: ${({ theme }) => theme.colors.grey3};
     }
     `,
 
@@ -75,64 +75,64 @@ const Dashboard = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate();
 
-    const [data, setData] = useState([])
-    const [query, setQuery] = useState('');
-    const [input, setInput] = useState({});
-    
-    
-    const user = useSelector(state => state.user)
-    const token = useSelector(state => state.token.data)
-    
-    
-    useEffect(() => {
-        let getData = async (token) => {
-            
-         return await SubmissionDataService.getAllSubm(token);
-        }
-        
-        getData(token).then(response => {
-          // console.log(response.data.record)
-          setData(response.data.record)
-          
-        })
-        
-        
-      }, [token])
+  const [data, setData] = useState([])
+  const [query, setQuery] = useState('');
+  const [input, setInput] = useState({});
 
-    const handleInputChange = evt => {
-    let {value} = evt.target
-    // console.log(value)
-    setQuery(value)    
+
+  const user = useSelector(state => state.user)
+  const token = useSelector(state => state.token.data)
+
+
+  useEffect(() => {
+    let getData = async (token) => {
+
+      return await SubmissionDataService.getAllSubm(token);
     }
 
-    const handleInviteChange = (evt) => {
-      // console.log(`invite is changing`)
-      let info = evt.target;
-      let value = info.type === "checkbox" ? info.checked : info.value;
-      setInput({ ...input, [info.name]: value });
+    getData(token).then(response => {
+      // console.log(response.data.record)
+      setData(response.data.record)
+
+    })
+
+
+  }, [token])
+
+  const handleInputChange = evt => {
+    let { value } = evt.target
+    // console.log(value)
+    setQuery(value)
+  }
+
+  const handleInviteChange = (evt) => {
+    // console.log(`invite is changing`)
+    let info = evt.target;
+    let value = info.type === "checkbox" ? info.checked : info.value;
+    setInput({ ...input, [info.name]: value });
   };
 
-    const handleUserInvite = async evt => {
-      evt.preventDefault()
-      if (!input.email) {
-        alert('Please include an email')
-      }
-      let response = input.email && await UserDataService.inviteUser(input)
-      setInput({})
-      // console.log(response.data)
-      if (response.data.data === 'ALREADY_EXISTED') {
-        alert('User was already in the system, no email sent')
-      } else {
-        alert('User has been invited')  
-      }
+  const handleUserInvite = async evt => {
+    evt.preventDefault()
+    if (!input.email) {
+      alert('Please include an email')
     }
-
-    const handleLogout = () => {
-      dispatch(removeToken())
-      navigate('/')
+    let response = input.email && await UserDataService.inviteUser(input)
+    setInput({})
+    // console.log(response.data)
+    if (response.data.data === 'ALREADY_EXISTED') {
+      alert('User was already in the system, no email sent')
+    } else {
+      alert('User has been invited')
     }
+  }
 
-   let  filteredData =  data.filter(sub => {
+  const handleLogout = () => {
+    dispatch(removeToken())
+    navigate('/')
+  }
+
+  let filteredData = data.filter(sub => {
     if (query === "") {
       return null
     } else if (parseInt(sub.id) === parseInt(query)) {
@@ -148,90 +148,90 @@ const Dashboard = () => {
   let pendIdentified = data.filter(sub => sub.specimenReceived && sub.specimenIdentified === null);
   let totalIdent = data.filter(sub => sub.specimenIdentified)
 
-  
+
 
   let blockArray = [
-    {text: 'Total Submissions', number: totalSubs},
-    {text: 'Waiting for Photo Review', number: pendPhotos.length},
-    {text: 'Waiting for User to Mail Tick In', number: pendReceived.length},
-    {text: 'Waiting for Team to Identify Mailed-In Tick', number: pendIdentified.length},
-    {text: 'Total Identified', number:totalIdent.length},
+    { text: 'Total Submissions', number: totalSubs },
+    { text: 'Waiting for Photo Review', number: pendPhotos.length },
+    { text: 'Waiting for User to Mail Tick In', number: pendReceived.length },
+    { text: 'Waiting for Team to Identify Mailed-In Tick', number: pendIdentified.length },
+    { text: 'Total Identified', number: totalIdent.length },
   ]
 
   let blockElems = blockArray.map((block, i) => (
     <OutlineCard key={i}>
       <Styles.BlockDetail>
-      <h3>{block.text}</h3>
-      <h1>{block.number}</h1>
+        <h3>{block.text}</h3>
+        <h1>{block.number}</h1>
       </Styles.BlockDetail>
     </OutlineCard>
   ))
 
-   
-   let subElem = filteredData && filteredData.map(sub => (
-    <Styles.Link key={sub.id} to={`/admin/processTick/${sub.id}`} state={{tick: sub}}>
-    <OutlineCard >
+
+  let subElem = filteredData && filteredData.map(sub => (
+    <Styles.Link key={sub.id} to={`/admin/processTick/${sub.id}`} state={{ tick: sub }}>
+      <OutlineCard >
         <div>
-        ID: {sub.id}<br/>
-        Date Submitted: {sub.createdAt&& sub.createdAt.substring(0,10)}<br/>
-        Photos Reviewed: {sub.photosReviewed && sub.photosReviewed.substring(0,10)}<br/>
-        Specimen Requested: {sub.specimenRequested && sub.specimenRequested.substring(0,10)}<br/>
-        Specimen Received: {sub.specimenReceived && sub.specimenReceived.substring(0,10)}<br/>
-        Specimen Identified: {sub.specimenIdentified && sub.specimenIdentified.substring(0,10)}<br/>
-        Species: {sub.tickId && sub.tick.scientific}<br/>
+          ID: {sub.id}<br />
+          Date Submitted: {sub.createdAt && sub.createdAt.substring(0, 10)}<br />
+          Photos Reviewed: {sub.photosReviewed && sub.photosReviewed.substring(0, 10)}<br />
+          Specimen Requested: {sub.specimenRequested && sub.specimenRequested.substring(0, 10)}<br />
+          Specimen Received: {sub.specimenReceived && sub.specimenReceived.substring(0, 10)}<br />
+          Specimen Identified: {sub.specimenIdentified && sub.specimenIdentified.substring(0, 10)}<br />
+          Species: {sub.tickId && sub.tick.scientific}<br />
         </div>
-    </OutlineCard>
+      </OutlineCard>
     </Styles.Link>
-   ))
-    
-  return   (
+  ))
+
+  return (
     <BasicPage.Text>
-      <div>Hi, {user.firstName ? user.firstName :  (
+      <div>Hi, {user.firstName ? user.firstName : (
         `you haven't set up your profile yet`
       )}</div>
-     
-        <BasicPage.Form>
-            
-         <Styles.Input placeholder="Find a specific tick number" type='search' onChange={handleInputChange}/>
-         {subElem}
-        </BasicPage.Form> 
-         
-        
-        <div>
-         
-           <InternalLinkFloatButton colors={{text: 'white', bg: theme.colors.ruTeal }} padding="1rem 2rem" text="View Submissions" to='/admin/allSubs'/>
-           <Styles.BlockCont>
-           {blockElems}
-           </Styles.BlockCont>
-          
 
-           {user.manageUsers && (
-             <OutlineCard>
-             <BasicPage.SectionTitle>Invite an Admin User</BasicPage.SectionTitle>
-             <Styles.InputCont>
-             <Styles.Input type='email' name='email' value={input.email || ''} placeholder='Email of new user' onChange={(evt) => handleInviteChange(evt)} />
-           <label style={{margin: 0}}>Check box if this user can manage other users:
-             <input type='checkbox' name='manageUsers' value={input.manageUsers} onChange={(evt) => handleInviteChange(evt)} />
-           </label>
-           <Styles.InviteButton   onClick={handleUserInvite}>Invite</Styles.InviteButton>
-           </Styles.InputCont>
-             
-              </OutlineCard>
-           )}
-            <UserMgt/>
+      <BasicPage.Form>
 
-          
-          
-          </div>
-          <div onClick={handleLogout}>
-           <HoverCard 
-           shadowColor={theme.colors.ruTeal}
-           width='3rem'
-           height='2rem'
-           >Logout</HoverCard>
-           </div>
-        
-        
+        <Styles.Input placeholder="Find a specific tick number" type='search' onChange={handleInputChange} />
+        {subElem}
+      </BasicPage.Form>
+
+
+      <div>
+
+        <InternalLinkFloatButton colors={{ text: 'white', bg: theme.colors.ruTeal }} padding="1rem 2rem" text="View Submissions" to='/admin/allSubs' />
+        <Styles.BlockCont>
+          {blockElems}
+        </Styles.BlockCont>
+
+
+        {user.manageUsers && (
+          <OutlineCard>
+            <BasicPage.SectionTitle>Invite an Admin User</BasicPage.SectionTitle>
+            <Styles.InputCont>
+              <Styles.Input type='email' name='email' value={input.email || ''} placeholder='Email of new user' onChange={(evt) => handleInviteChange(evt)} />
+              <label style={{ margin: 0 }}>Check box if this user can manage other users:
+                <input type='checkbox' name='manageUsers' value={input.manageUsers} onChange={(evt) => handleInviteChange(evt)} />
+              </label>
+              <Styles.InviteButton onClick={handleUserInvite}>Invite</Styles.InviteButton>
+            </Styles.InputCont>
+
+          </OutlineCard>
+        )}
+        <UserMgt />
+
+
+
+      </div>
+      <div onClick={handleLogout}>
+        <HoverCard
+          shadowColor={theme.colors.ruTeal}
+          width='3rem'
+          height='2rem'
+        >Logout</HoverCard>
+      </div>
+
+
     </BasicPage.Text>
   )
 }
