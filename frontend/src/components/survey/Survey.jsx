@@ -200,7 +200,9 @@ const Survey = () => {
             <textarea id='activities' name='activities' value={input.activities || ''} onChange={handleChange}></textarea>
           </div>
           <div>
-            <p>Please include a photo of the top side of the tick and a photo of the head of the tick. </p>
+            <p>
+            Please submit up to two photos of the tick
+              </p>
             <div>
               <label htmlFor='front'>Photo 1</label>
               <input type='file' accept='image/*' onChange={handleFront} required id='front' /><br />

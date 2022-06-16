@@ -76,21 +76,21 @@ const TickProgress = () => {
        
        <p className="tl-duration">{data.specimenRequested.substring(0,10)}</p>
         <h5>Specimen Requested</h5>
-        <p>
-        Thank you for your tick submission to NJ Ticks for Science! We appreciate your contribution and encourage you to continue your participation with the program by sending the ticks to the Center for Vector Biology at Rutgers University.
-        </p>
         <ol>
-          <li>Place a few cotton balls in the specimen's plastic bag that it's already contained in.</li>
           <li>
-          Package the tick into a standard envelope and address it:<br/>
-NJ Ticks for Science<br/>
-Center for Vector Biology<br/>
-180 Jones Avenue<br/>
-New Brunswick, NJ 08901-8536<br/>
-          </li>
+            Ship flat ticks in standard envelopes, if it is round (<BasicPage.OutieLink href='https://ticks.rutgers.edu/static/media/slide%2011(2).62964332.jpg' target='_blank' rel='noreferrer'><span>engorged</span></BasicPage.OutieLink>) use a padded envelope or bubble mailer.
+             </li>
           <li>
           Write your Tick ID number on a piece of paper and place into the envelope
           </li>
+          <li>
+          Address it to:<br/>
+NJ Ticks 4 Science <br/>
+Rutgers Center for Vector Biology <br/>
+180 Jones Avenue <br/>
+New Brunswick, NJ 08901-8536 <br/>
+          </li>
+         
           <li>
           Do NOT provide a return address.
           </li>
@@ -126,7 +126,7 @@ Reminder: you must complete a new tick submission each time a tick is sent to NJ
         <h5>Specimen Identified</h5>
           {data.notATick ? (
             <p>
-              NJ Ticks for Science has identified the specimen as not to be a tick in the photo. We encourage you to continue participating in Ticks for Science by looking into <BasicPage.InnieLink to='/tickOrInsect'><span>How to Identify a Tick</span></BasicPage.InnieLink> and send other Tick Submissions in the future. Thank you!
+              The specimen in the photo is not a tick. We encourage you to review <BasicPage.InnieLink to='/tickOrInsect'><span>“Are you sure it's a tick”</span></BasicPage.InnieLink> and continue to participate in NJ Ticks 4 Science! Thank you!
             </p>
           ) : (
             <div>
@@ -140,7 +140,7 @@ Reminder: you must complete a new tick submission each time a tick is sent to NJ
    )}
    
    <p>
-   Thank you for your tick submission to NJ Ticks for Science! We appreciate your contribution and encourage you to continue exploring New Jersey and sending in ticks when encountered. 
+   Thank you for submitting photos of your tick. We appreciate your contribution and encourage you to continue exploring New Jersey and sending in ticks when encountered. 
 Reminder: you must complete a new tick submission each time a tick is sent to NJ Ticks for Science.
    </p>
     {/* <!-- end timeline items --> */}

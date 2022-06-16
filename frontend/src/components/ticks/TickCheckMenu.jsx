@@ -29,15 +29,16 @@ const TickCheckMenu = () => {
         Prevent Tick Bites
       </BasicPage.Title>
       <p >
-      Below is a collection of resources to use before and after entering tick habitats. It's critical to be knowledgeable on tick prevention before going into potential areas with ticks and then being able to properly check yourself and others (including your pets) after exiting those environments. If you find a tick, you can safely remove it with the instructions we provide, and we encourage you to <BasicPage.InnieLink to='/preSurvey'><span>submit your tick</span></BasicPage.InnieLink>! We also list common and emerging tick-borne pathogens in New Jersey.
+      New Jersey is home to many outdoor recreation sites, hiking trails, and beautiful scenery to explore. Many homes and city parks are located close to or within forested areas and meadows where ticks can abound.  
+      </p>
+      <p>
+      Always check yourself, your children, and your pets for ticks after spending time outdoors. If you find a tick, you can safely remove it with the instructions we provide, and we encourage you to <BasicPage.InnieLink to={'/preSurvey'}><span>submit your tick</span></BasicPage.InnieLink>! We also list common and emerging tick-borne pathogens in New Jersey. 
       </p>
         <BasicPage.CardContainer style={{width: '80vw'}}>
            {menuElements}
         </BasicPage.CardContainer>
         <p>
-        New Jersey is home to many outdoor recreation sites, hiking trails, and beautiful scenery to explore. In addition, many homes are located close to or within forested areas where ticks can abound. It is generally best to avoid walking off paths through uncleared brush, leaves, and tall unmowed grass due to the risk of tick bites. </p>
-        <p>
-        If you plan on entering tick habitats, practice safe tick prevention strategies for your family and pets to avoid contracting a <BasicPage.InnieLink to='/disease'><span>tick-borne illness</span></BasicPage.InnieLink>. 
+        Practice safe tick prevention strategies for your family and pets to avoid contracting a <BasicPage.InnieLink to='/disease'><span>tick-borne illness</span></BasicPage.InnieLink>. 
         </p>
         <BasicPage.ImageCont>
           <figure>
