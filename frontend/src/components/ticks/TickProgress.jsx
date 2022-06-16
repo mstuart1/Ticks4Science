@@ -4,6 +4,9 @@ import { useParams } from 'react-router-dom'
 import styled from 'styled-components'
 import { BasicPage } from '../GeneralStyles'
 import SubmissionDataService from '../../services/submission'
+import InternalLinkFloatButton from '../ui/internalLinkFloatButton/InternalLinkFloatButton'
+import ExternalLinkFloatButton from '../ui/externalLinkFloatButton/ExternalLinkFloatButton'
+import { theme } from '../../theme'
 
 const TickProgress = () => {
     let {id} = useParams()
@@ -15,16 +18,27 @@ const TickProgress = () => {
        await SubmissionDataService.getProgress(id);
        
       getData().then(response => {
-        // console.log(response.data.record)
-        setData(response.data.record)
+        let newData = response.data.record
+        if (newData === null) {
+          return
+        } else {
+          setData(response.data.record)
+        }
+        
       })
       
       
     }, [id])
 
-    // console.log(data.specimenRequested)
+  
 
-  return ( Object.keys(data).length > 0 ? (
+  return ( Object.keys(data).length === 0 
+  ?(<BasicPage.Text>
+    <h3>Sorry, we are unable to find this tick number in our system</h3>
+    <InternalLinkFloatButton to='/' text='Return to Home Page' />
+    <ExternalLinkFloatButton colors={{ text: 'black', shadow: '#000000', bg: theme.colors.ruYellow }} to='mailto:cvbquestions@njaes.rutgers.edu' text='Questions?  Contact Us' />
+  </BasicPage.Text>) 
+  :(
     <BasicPage.Text>
       <BasicPage.Title>Tick Progress for Tick # {id}</BasicPage.Title>
     <Styles.Timeline>
@@ -110,15 +124,15 @@ Reminder: you must complete a new tick submission each time a tick is sent to NJ
        
        <p className="tl-duration">{data.specimenIdentified.substring(0,10)}</p>
         <h5>Specimen Identified</h5>
-          {data.species === 'notATick' ? (
+          {data.notATick ? (
             <p>
-              NJ Ticks for Science has identified the specimen as not to be a tick in the photo. We encourage you to continue participating in Ticks for Science by looking into <BasicPage.InnieLink><span>How to Identify a Tick</span></BasicPage.InnieLink> and send other Tick Submissions in the future. Thank you!
+              NJ Ticks for Science has identified the specimen as not to be a tick in the photo. We encourage you to continue participating in Ticks for Science by looking into <BasicPage.InnieLink to='/tickOrInsect'><span>How to Identify a Tick</span></BasicPage.InnieLink> and send other Tick Submissions in the future. Thank you!
             </p>
           ) : (
             <div>
-            <h3> {data.tick.common} - <i>{data.tick.scientific}</i></h3>
+            <h3> {data.specimen.common} - <i>{data.specimen.scientific}</i></h3>
             <p>
-              <BasicPage.InnieLink to={`/ticks/${data.tick.id}`}><span>View more about {data.tick.common} here</span></BasicPage.InnieLink>
+              <BasicPage.InnieLink to={`/ticks/${data.specimen.id}`}><span>View more about {data.specimen.common} here</span></BasicPage.InnieLink>
             </p>
             </div>
           )}      
@@ -132,7 +146,9 @@ Reminder: you must complete a new tick submission each time a tick is sent to NJ
     {/* <!-- end timeline items --> */}
 </Styles.Timeline>
 </BasicPage.Text>
-  ): (<div>Loading...</div>))
+  )
+
+  )
 }
 
 export default TickProgress
