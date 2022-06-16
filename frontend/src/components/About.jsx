@@ -23,20 +23,20 @@ const About = () => {
       </Styles.Para>
      
       <Styles.Para>
-      The goal is to understand the statewide risk of tick-borne pathogens to New Jersey communities. With your help, we can learn about the changing tick species and tick-borne pathogens in New Jersey and their specific locations.
+      The goal is to understand the changing distribution of ticks and tick-borne pathogens across NJ. With your help, we will learn where and when people are exposed to ticks and tick-borne diseases.
       </Styles.Para>
       
       
       <Styles.Para>
-      You don't have to be a trained scientist to help with our quest to participate in this project!
+      You don't have to be a trained scientist to participate in this project!
       </Styles.Para>
 
       <Styles.Para>
       If you love nature and exploring the outdoors…<br/>
-If you are a hunter and spend time in tick habitat…<br/>
+If you are a hunter…<br/>
 If you are a farmer or someone who handles animals routinely…<br/>
 If you have a dog or cat…<br/>
-If you have participated in one of our Tick Blitzes…<br/>
+If you have participated in a Rutgers Tick Blitz…<br/>
       </Styles.Para>
         {/* </Styles.LeftAlignCont> */}
         </Styles.LeftAlignCont>
