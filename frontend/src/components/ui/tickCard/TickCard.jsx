@@ -59,7 +59,9 @@ const TickCard = ({ tick }) => {
 
     // console.log(tick.peopleTick ? 'flex' : 'none')
     return (
-        <a href={`/ticks/${tick.id}`} target='_blank' rel='noreferrer' ><Styles.Container>
+        <a href={tick.featureImgUrl} target='_blank' rel='noreferrer' >
+        {/* <a href={`/ticks/${tick.id}`} target='_blank' rel='noreferrer' > */}
+            <Styles.Container>
         {/* <Styles.Container onClick={() => navigate(`/ticks/${tick.id}`)} > */}
             <Styles.HoverCard tickImage={tick.featureImgUrl} width={'20rem'} height={'20rem'}>
                 <Styles.UpperRight>
