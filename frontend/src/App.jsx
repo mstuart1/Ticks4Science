@@ -76,6 +76,8 @@ const App = () => {
               {/* <Route path='/identify' element={<Identify />} /> */}
               {/* <Route path='/notReady' element={<NotReady />} /> */}
               {/* <Route path='/createAccount/:token' element={<UpdateAccount/>} /> */}
+              {/* Not found routes - this one must always be last - redirecting to home page */}
+              <Route path='*' element={<About />} />
             </Routes>
 
           </Styles.PageContainer>
