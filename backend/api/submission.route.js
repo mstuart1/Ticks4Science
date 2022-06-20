@@ -8,7 +8,7 @@ module.exports = (app) => {
     router
       .get("/", auth.verifyToken, SubmCtl.getAllSubs)
       .post("/", SubmCtl.createSubm)
-      .put("/photos/:id", upload.array('photos'),  SubmCtl.uploadPhoto)
+      .post("/photos/:id", upload.array('photos'),  SubmCtl.uploadPhoto)
       .get('/:id', SubmCtl.getProgress)
       .put('/:id', SubmCtl.updateSubm)
 

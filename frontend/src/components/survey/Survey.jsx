@@ -27,8 +27,13 @@ const Survey = () => {
 
   const handleFront = evt => {
     let file = evt.target.files[0]
-    if(file.size > 4000000) {
+    console.log(file)
+    if(file.size > 4000000 ) {
       alert(`Please reduce file size before uploading`)
+      return
+    }
+    if(file.size < 200000 ) {
+      alert(`Please check your image quality, image may be too small to view tick`)
       return
     }
     setImageFront(file)
@@ -39,6 +44,10 @@ const Survey = () => {
     let file = evt.target.files[0]
     if(file.size > 4000000) {
       alert(`Please reduce file size before uploading`)
+      return
+    }
+    if(file.size < 200000 ) {
+      alert(`Please check your image quality, image may be too small to view tick`)
       return
     }
     setImageBack(file)
@@ -201,17 +210,13 @@ const Survey = () => {
           </div>
           <div>
             <p>
-            Please submit up to two photos of the tick
+            Please submit up to two photos of the tick that are between 2kb and 4Mb in size.
               </p>
             <div>
               <label htmlFor='front'>Photo 1</label>
               <input type='file' accept='image/*' onChange={handleFront} required id='front' /><br />
               <label htmlFor='back'>Photo 2</label>
-              <input type='file' accept='image/*' onChange={handleBack} required id='back' /><br />
-              {/* <label htmlFor='other'>Any additional photo of tick</label>
-              <input type='file' accept='image/*' onChange={handleOther} required id='other' /> */}
-              {/* {imageUrls.map((imageSrc, i) => <img key={i} src={imageSrc} style={{ maxWidth: '300px', margin: '1rem' }} />)} */}
-
+              <input type='file' accept='image/*' onChange={handleBack}  id='back' /><br />
 
             </div>
             <p>Reminder: Review <BasicPage.InnieLink to='/photo'><span>How to Take a Tick Pic</span></BasicPage.InnieLink></p>

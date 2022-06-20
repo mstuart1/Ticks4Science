@@ -9,7 +9,7 @@ class SubmissionDataService {
         return http.post(`/submission`, data)
     }
     submitImage(id, formData, config) {
-        return http.put(`/submission/photos/${id}`, formData, config)
+        return http.post(`/submission/photos/${id}`, formData, config)
     }
     getProgress(id) {
         // console.log('getting progress')
