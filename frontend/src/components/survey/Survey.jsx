@@ -3,9 +3,9 @@ import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
 import SubmissionDataService from '../../services/submission'
 import { theme } from '../../theme'
-// import { createInputElems, createRadioElems } from '../../tools/createElemFunc'
+import { createInputElems, createRadioElems } from '../../tools/createElemFunc'
 import { BasicPage } from '../GeneralStyles'
-// import { attachedOptions, bittenInfoArray, foundOptions, inputElemArray1, inputElemArray2, locationOptions, yesNo } from './surveyFormData'
+import { attachedOptions, bittenInfoArray, foundOptions, inputElemArray1, inputElemArray2, locationOptions, yesNo } from './surveyFormData'
 
 
 
@@ -142,7 +142,6 @@ const Survey = () => {
   const handleSubmit = async (evt) => {
     console.log('handling submit')
     try {
-     if (!canBeSubmitted(input)){
       evt.preventDefault();
       
       let errors = validate(input);
@@ -176,42 +175,12 @@ const Survey = () => {
       // alert(JSON.stringify(response.data))
       setInput(initialState);
       navigate(`/thanks?id=${id}`);
-     }
     }
     catch (err) {
       console.log(err.message)
     }
   }
 
-<<<<<<< HEAD
-  const canBeSubmitted = input => {
-    let {userMuni, userZip, dateTickFound, tickMuni, tickCounty, tickZip, bittenMuni, bittenZip, photoFrontUrl} = input
-    return (
-      userMuni.length > 0 &&
-      userZip.length >= 5 &&
-      dateTickFound > 0 &&
-      tickMuni > 0 &&
-      tickCounty > 0 &&
-      tickZip >= 5 &&
-      bittenMuni > 0 &&
-      bittenZip >= 5 &&
-      photoFrontUrl > 0
-    );
-  }
-
-  const isEnabled = canBeSubmitted(input);
-
-  const inputElem1 = createInputElems(inputElemArray1, handleChange, input)
-  const foundRadioElements = createRadioElems(foundOptions, 'foundOn', handleChange, input)
-  const attachedRadioElem = createRadioElems(attachedOptions, 'tickAttached', handleChange, input)
-  const inputElem2 = createInputElems(inputElemArray2, handleChange, input)
-  const locationRadioElem = createRadioElems(locationOptions, 'locationDesc', handleChange, input)
-  const subBiteElem = createRadioElems(yesNo, 'submitterBitten', handleChange, input)
-  const bittenElem = createInputElems(bittenInfoArray, handleChange, input)
-  const traveledElem = createRadioElems(yesNo, 'bittenTraveled', handleChange, input)
-
-=======
->>>>>>> 19d89feb33d1f39b86611630cbb0d3b8116fb71e
   return (
     <BasicPage.Text >
       <BasicPage.Title>Tick Submission Form</BasicPage.Title>
@@ -432,10 +401,6 @@ const Survey = () => {
                     </BasicPage.RadioButtons>
 
                     {input.submitterBitten === 'No' && (
-<<<<<<< HEAD
-                      <>{bittenElem}</>)}
-                    <label htmlFor='locationDesc'>Have the bitten person traveled outside of New Jersey within the past 10 days?</label>
-=======
                       <>
                         <label htmlFor={'bittenMuni'}>{'Municipality of bitten person *'}</label>
                         <Styles.Input error={shouldMarkError('bittenMuni')}
@@ -474,7 +439,6 @@ const Survey = () => {
                       Please make a selection.
                     </Styles.ErrMessage>
 
->>>>>>> 19d89feb33d1f39b86611630cbb0d3b8116fb71e
                     <BasicPage.RadioButtons>
                       <input
                         type='radio'
@@ -574,7 +538,7 @@ const Survey = () => {
           
           {/* location buttons */}
           <div>
-            <label htmlFor='locationDesc'>Descriptor of Location</label>
+            <label htmlFor='locationDesc'>Descriptor of Location*</label>
             <BasicPage.RadioButtons
               // style={{ flexWrap: 'wrap' }}
             >
@@ -659,18 +623,6 @@ const Survey = () => {
             </BasicPage.RadioButtons>
 
             {input.locationDesc === 'Other' && (
-<<<<<<< HEAD
-              <input
-                type='text'
-                name='locationDescOther'
-                id='locationDescOther'
-                required={true}
-                placeholder='Describe the location where you found the tick*'
-                value={input.locationDescOther || ''}
-                onChange={handleChange}
-
-              />
-=======
              <>
               <Styles.Input error={shouldMarkError('locationDescOther')}
             onBlur={() => handleBlur('locationDescOther')}
@@ -686,7 +638,6 @@ const Survey = () => {
             Please describe the location where you found the tick.
           </Styles.ErrMessage>
              </>
->>>>>>> 19d89feb33d1f39b86611630cbb0d3b8116fb71e
 
             )}
           </div>
@@ -702,7 +653,7 @@ const Survey = () => {
               Please submit at least one photo of the tick between 2kb and 4Mb in size.
             </p>
             <div>
-              <label htmlFor='front'>Photo 1 * </label>
+              <label htmlFor='front'>Photo 1</label>
               <input type='file' accept='image/*' onChange={handleFront} required id='front' /><br />
               <label htmlFor='back'>Photo 2</label>
               <input type='file' accept='image/*' onChange={handleBack} id='back' /><br />
@@ -712,15 +663,6 @@ const Survey = () => {
           <Styles.TextCont>
             <label htmlFor='additionalInfo'>Any additional information about the environment, tick(s), and or person/pet:</label>
             <textarea id='additionalInfo' name='additionalInfo' value={input.additionalInfo || ''} onChange={handleChange}></textarea>
-<<<<<<< HEAD
-          </div>
-          </div>
-          <button disabled={!isEnabled}>
-          <BasicPage.HoverCard bgColor={theme.colors.main} onClick={handleSubmit}>
-            
-            <BasicPage.LinkButton.CardSpecial >
-              <span >Submit</span>
-=======
           </Styles.TextCont>
         </Styles.FormSection>
         
@@ -730,32 +672,11 @@ const Survey = () => {
           <BasicPage.HoverCard>
             <BasicPage.LinkButton.CardSpecial>
               <span>Cancel</span>
->>>>>>> 19d89feb33d1f39b86611630cbb0d3b8116fb71e
             </BasicPage.LinkButton.CardSpecial>
-            
           </BasicPage.HoverCard>
-<<<<<<< HEAD
-          </button>
-          <BasicPage.LinkButton.LinkSpec to={'/steps'}>
-            <BasicPage.HoverCard>
-              <BasicPage.LinkButton.CardSpecial>
-                <span>Cancel</span>
-              </BasicPage.LinkButton.CardSpecial>
-            </BasicPage.HoverCard>
-          </BasicPage.LinkButton.LinkSpec>
-
-        </BasicPage.Form>
-
-
-
-
-
-      </form>
-=======
         </BasicPage.LinkButton.LinkSpec>
 
       </BasicPage.Form>
->>>>>>> 19d89feb33d1f39b86611630cbb0d3b8116fb71e
     </BasicPage.Text>
   )
 }
