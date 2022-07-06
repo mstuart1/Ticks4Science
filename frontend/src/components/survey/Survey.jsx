@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import styled from 'styled-components'
 import SubmissionDataService from '../../services/submission'
 import { theme } from '../../theme'
 import { createInputElems, createRadioElems } from '../../tools/createElemFunc'
@@ -12,54 +13,151 @@ const Survey = () => {
 
   const navigate = useNavigate()
 
-  const [input, setInput] = useState({})
+  let initialState = {
+    userMuni: '',
+    userZip: '',
+    dateTickFound: '',
+    foundOn: '',
+    foundOnOther: '',
+    tickAttached: '',
+    animal: '',
+    dateRemoved: '',
+    locationDesc: '',
+    locationDescOther: '',
+    tickMuni: '',
+    tickCounty: '',
+    tickZip: '',
+    activities: '',
+    personBitten: '',
+    submitterBitten: '',
+    bittenMuni: '',
+    bittenZip: '',
+    bittenTraveledDom: '',
+    bittenTraveledIntl: '',
+    travelInfo: '',
+    photoFrontUrl: '',
+    photoBackUrl: '',
+    photoOtherUrl: '',
+    additionalInfo: '',
+  }
+
+  let initialBlur = {
+    userMuni: false,
+    userZip: false,
+    foundOn: false,
+    foundOnOther: false,
+    dateTickFound: false,
+    tickMuni: false,
+    tickCounty: false,
+    tickZip: false,
+    bittenMuni: false,
+    bittenZip: false,
+    locationDescOther: false,
+    imageFront: false,
+  }
+  
+  const [input, setInput] = useState(initialState)
   const [imageFront, setImageFront] = useState([])
   const [imageBack, setImageBack] = useState([])
+  const [touched, setTouched] = useState(initialBlur)
 
   const handleChange = (evt) => {
+    console.log('handling change')
     const { name, value, type, checked } = evt.target;
-    // console.log(name, value, type, checked);
+    console.log(name, value, type, checked);
     setInput((prevState) => ({
       ...prevState,
       [name]: type === "checkbox" ? checked : value,
     }));
+    if (name === 'foundOn'){
+      if (input.foundOn !== 'Person' && input.foundOn !== 'Animal')
+      setInput(prevState => ({...prevState, tickAttached: ''}))
+    }
   };
 
   const handleFront = evt => {
+    console.log('handling front')
     let file = evt.target.files[0]
-    console.log(file)
-    if(file.size > 4000000 ) {
+    // console.log(file)
+    if (file.size > 4000000) {
       alert(`Please reduce file size before uploading`)
       return
     }
-    if(file.size < 200000 ) {
+    if (file.size < 200000) {
       alert(`Please check your image quality, image may be too small to view tick`)
       return
     }
+
     setImageFront(file)
-    
-    
+
   }
   const handleBack = evt => {
+    console.log('handling back')
     let file = evt.target.files[0]
-    if(file.size > 4000000) {
+    if (file.size > 4000000) {
       alert(`Please reduce file size before uploading`)
       return
     }
-    if(file.size < 200000 ) {
+    if (file.size < 200000) {
       alert(`Please check your image quality, image may be too small to view tick`)
       return
     }
     setImageBack(file)
   }
-  // const handleOther = evt => {
-  //   setImageOther(evt.target.files[0])
-  // }
-  
+
+  const validate = (input) => {
+    console.log('validating', input)
+    return ({
+      // true means invalid
+      userMuni: input.userMuni.length === 0,
+      userZip: input.userZip.length < 5,
+      foundOn: input.foundOn.length === 0,
+      foundOnOther: input.foundOn === 'Other' && input.foundOnOther.length === 0,
+      dateTickFound: input.dateTickFound.length === 0 || new Date(input.dateTickFound) > new Date(),
+      tickMuni: input.tickMuni.length === 0,
+      tickCounty: input.tickCounty.length === 0,
+      tickZip: input.tickZip.length < 5,
+      bittenMuni: input.submitterBitten === 'No' && input.bittenMuni.length === 0,
+      bittenZip: input.submitterBitten === 'No' && input.bittenZip.length === 0,
+      locationDescOther: input.locationDesc === 'Other' && input.locationDescOther.length === 0,
+    })
+  }
+  const errors = validate(input)
+  const handleBlur = (field) => {
+    console.log('handling blur')
+    setTouched(prevState => ({ ...prevState, [field]: true }))
+  }
+
+  const isEnabled = !Object.values(errors).some(x => x === true) && imageFront?.name?.length > 0
+
+  const shouldMarkError = (field) => {
+    // console.log('markingError')
+    let hasError = errors[field]
+    let shouldShow = touched[field]
+    return hasError ? shouldShow : false
+  }
+
+
+
   const handleSubmit = async (evt) => {
+    console.log('handling submit')
     try {
       evt.preventDefault();
-      let data = input;
+      
+      let errors = validate(input);
+      // console.log(errors)
+      
+      
+      if(Object.values(errors).some(x => x === true)) {
+        alert('Please review the form and make sure all of the required fields have been completed.')
+        return
+      }
+      if(imageFront.name.length === 0){
+        alert('Please include at least one image of the tick.')
+        return
+      }
+      let data = Object.entries(input).reduce((a,[k,v]) => (v ? (a[k]=v, a) : a), {})
+     
       const formData = new FormData();
       formData.append('photos', imageFront)
       formData.append('photos', imageBack)
@@ -72,105 +170,303 @@ const Survey = () => {
 
       let response = await SubmissionDataService.submitForm(data);
       let id = response.data.data.id
-     console.log('sent form, now seding photos')
+      console.log('sent form, now seding photos')
       response = await SubmissionDataService.submitImage(id, formData, config)
       // alert(JSON.stringify(response.data))
-      setInput({});
+      setInput(initialState);
       navigate(`/thanks?id=${id}`);
     }
     catch (err) {
       console.log(err.message)
     }
-
-
   }
-
-  const inputElem1 = createInputElems(inputElemArray1, handleChange, input)
-  const foundRadioElements = createRadioElems(foundOptions, 'foundOn', handleChange, input)
-  const attachedRadioElem = createRadioElems(attachedOptions, 'tickAttached', handleChange, input)
-  const inputElem2 = createInputElems(inputElemArray2, handleChange, input)
-  const locationRadioElem = createRadioElems(locationOptions, 'locationDesc', handleChange, input)
-  const subBiteElem = createRadioElems(yesNo, 'submitterBitten', handleChange, input)
-  const bittenElem = createInputElems(bittenInfoArray, handleChange, input)
-  const traveledElem = createRadioElems(yesNo, 'bittenTraveled', handleChange, input)
 
   return (
     <BasicPage.Text >
       <BasicPage.Title>Tick Submission Form</BasicPage.Title>
-      <form onSubmit={handleSubmit}>
-        <BasicPage.Form >
-          <div style={{backgroundColor: '#f2f2f2', borderRadius: '1rem'}}>
-            <h4 style={{padding: '1rem'}}>Submitter Information</h4>
-          {inputElem1}
-          </div>
-          <div style={{backgroundColor: '#f2f2f2', borderRadius: '1rem'}}>
-            <div>
-            <h4>Tick Information</h4>
-            <label htmlFor='foundOn'>Indicate who/what tick(s) were found on:</label>
+
+      <BasicPage.Form >
+        {/* submitter info */}
+        <Styles.FormSection>
+
+          <h4>Submitter Information</h4>
+
+          <label htmlFor={'userMuni'}>{'Municipality *'}</label>
+          <Styles.Input error={shouldMarkError('userMuni')}
+            onBlur={() => handleBlur('userMuni')}
+            type={'text'}
+            name={'userMuni'}
+            id={'userMuni'}
+            required
+            placeholder={'Where you live'}
+            value={input.userMuni}
+            onChange={handleChange}
+          />
+          <Styles.ErrMessage error={shouldMarkError('userMuni')}>
+            Please enter the city or town where you live.
+          </Styles.ErrMessage>
+
+          <label htmlFor={'userZip'}>{'ZIP Code *'}</label>
+          <Styles.Input error={shouldMarkError('userZip')}
+            onBlur={() => handleBlur('userZip')}
+            type={'text'}
+            name={'userZip'}
+            id={'userZip'}
+            required
+            placeholder={'Where you live'}
+            value={input.userZip}
+            onChange={handleChange}
+          />
+          <Styles.ErrMessage error={shouldMarkError('userZip')}>
+            Please enter the ZIP code where you live.
+          </Styles.ErrMessage>
+
+        </Styles.FormSection>
+        {/* tick info */}
+        <Styles.FormSection>
+          {/* tick attached */}
+          <div>
+            <h4>Tick Attachment Information</h4>
+            <label htmlFor='foundOn'>Indicate on who/what tick(s) were found *:</label>
+
+            <Styles.ErrMessage error={shouldMarkError('foundOn')}>
+              Please make a selection.
+            </Styles.ErrMessage>
+
             <BasicPage.RadioButtons>
-              {foundRadioElements}
+              <input
+                type='radio'
+                name={'foundOn'}
+                value={'Person'}
+                checked={input.foundOn === 'Person'}
+                id='foundOn-Person'
+                onChange={handleChange}
+                required
+              />
+              <label htmlFor='foundOn-Person'>Person</label>
+
+              <input
+                type='radio'
+                name={'foundOn'}
+                value={'Animal'}
+                checked={input.foundOn === 'Animal'}
+                id='foundOn-Animal'
+                onChange={handleChange}
+                required
+              />
+              <label htmlFor='foundOn-Animal'>Animal</label>
+              <input
+                type='radio'
+                name={'foundOn'}
+                value={'Environment/Outside'}
+                checked={input.foundOn === 'Environment/Outside'}
+                id='foundOn-Environment/Outside'
+                onChange={handleChange}
+                required
+              />
+              <label htmlFor='foundOn-Environment/Outside'>Environment/Outside</label>
+              <input
+                type='radio'
+                name={'foundOn'}
+                value={'Other'}
+                checked={input.foundOn === 'Other'}
+                id='foundOn-Other'
+                onChange={handleChange}
+                required
+              />
+              <label htmlFor='foundOn-Other'>Other</label>
+
+
             </BasicPage.RadioButtons>
             {input.foundOn === 'Other' && (
-              <input
-                type='text'
-                name='foundOnOther'
-                id='foundOnOther'
-                required={true}
-                placeholder='Describe the object where you found the tick'
-                value={input.foundOnOther || ''}
-                onChange={handleChange}
-
-              />
-
+              <>
+                <Styles.Input error={shouldMarkError('foundOnOther')}
+                  onBlur={() => handleBlur('foundOnOther')}
+                  type='text'
+                  name='foundOnOther'
+                  id='foundOnOther'
+                  required={input.foundOn === 'Other'}
+                  placeholder='Describe the object where you found the tick'
+                  value={input.foundOnOther}
+                  onChange={handleChange}
+                />
+                <Styles.ErrMessage error={shouldMarkError('foundOnOther')}>
+                  Please describe the object on which you found the tick.
+                </Styles.ErrMessage>
+              </>
             )}
             {input.foundOn === 'Animal' && (
-              <input
-                type='text'
-                name='animal'
-                id='animal'
-                required={true}
-                placeholder='Specify Animal'
-                value={input.animal || ''}
-                onChange={handleChange}
-
-              />
-
+              <>
+                <Styles.Input error={shouldMarkError('animal')}
+                  onBlur={() => handleBlur('animal')}
+                  type='text'
+                  name='animal'
+                  id='animal'
+                  required={input.foundOn === 'Animal'}
+                  placeholder='Specify Animal'
+                  value={input.animal}
+                  onChange={handleChange}
+                />
+                <Styles.ErrMessage error={shouldMarkError('animal')}>
+                  Please describe the object on which you found the tick.
+                </Styles.ErrMessage>
+              </>
             )}
             {(input.foundOn === 'Person' || input.foundOn === 'Animal') && (
               <>
-                <label htmlFor='tickAttached'>If tick(s) were found on person/animal, was it attached?</label>
+                <label htmlFor='tickAttached'>If tick(s) were found on person/animal, was it attached *?</label>
+                <Styles.ErrMessage error={shouldMarkError('tickAttached')}>
+                  Please make a selection.
+                </Styles.ErrMessage>
                 <BasicPage.RadioButtons>
-                  {attachedRadioElem}
+                  <input
+                    type='radio'
+                    name={'tickAttached'}
+                    value={'Yes'}
+                    checked={input.tickAttached === 'Yes'}
+                    id='tickAttached-Yes'
+                    onChange={handleChange}
+                    required
+                  />
+                  <label htmlFor='tickAttached-Yes'>Yes</label>
+
+                  <input
+                    type='radio'
+                    name={'tickAttached'}
+                    value={'No'}
+                    checked={input.tickAttached === 'No'}
+                    id='tickAttached-No'
+                    onChange={handleChange}
+                    required
+                  />
+                  <label htmlFor='tickAttached-No'>No</label>
+                  <input
+                    type='radio'
+                    name={'tickAttached'}
+                    value={'Unknown/Believe So'}
+                    checked={input.tickAttached === 'Unknown/Believe So'}
+                    id='tickAttached-Unknown'
+                    onChange={handleChange}
+                    required
+                  />
+                  <label htmlFor='tickAttached-Unknown'>Unknown/Believe So</label>
                 </BasicPage.RadioButtons>
               </>
             )}
             {input.tickAttached === 'Yes' && (
               <>
-                <label htmlFor='dateRemoved'>Date Removed*</label>
-                <input
-                  type='date'
-                  name='dateRemoved'
-                  id='dateRemoved'
-                  value={input.dateRemoved || null}
+              {console.log(input.tickAttached)}
+                <label htmlFor='dateRemoved'>Date Removed *</label>
+                <Styles.Input error={shouldMarkError('dateRemoved')}
+                  onBlur={() => handleBlur('dateRemoved')}
+                  type={'date'}
+                  name={'dateRemoved'}
+                  id={'dateRemoved'}
+                  required
+                  value={input.dateRemoved}
                   onChange={handleChange}
                 />
+                <Styles.ErrMessage error={shouldMarkError('dateRemoved')}>
+                  Please enter the date the tick was removed.
+                </Styles.ErrMessage>
+
                 {input.foundOn === 'Person' && (
                   <>
-                    <label htmlFor='submitterBitten'>Was submitter bitten by the tick?*</label>
+                    <label htmlFor='submitterBitten'>Was submitter bitten by the tick? *</label>
+                    <Styles.ErrMessage error={shouldMarkError('submitterBitten')}>
+                      Please make a selection.
+                    </Styles.ErrMessage>
+
                     <BasicPage.RadioButtons>
-                      {subBiteElem}
+                      <input
+                        type='radio'
+                        name={'submitterBitten'}
+                        value={'Yes'}
+                        checked={input.submitterBitten === 'Yes'}
+                        id='submitterBitten-Yes'
+                        onChange={handleChange}
+                        required
+                      />
+                      <label htmlFor='submitterBitten-Yes'>Yes</label>
+                      <input
+                        type='radio'
+                        name={'submitterBitten'}
+                        value={'No'}
+                        checked={input.submitterBitten === 'No'}
+                        id='submitterBitten-No'
+                        onChange={handleChange}
+                        required
+                      />
+                      <label htmlFor='submitterBitten-No'>No</label>
                     </BasicPage.RadioButtons>
+
                     {input.submitterBitten === 'No' && (
-                      <>{bittenElem}</>)}
-                    <label htmlFor='locationDesc'>Have the bitten person traveled outside of New Jersey within the past 10 days?*</label>
+                      <>
+                        <label htmlFor={'bittenMuni'}>{'Municipality of bitten person *'}</label>
+                        <Styles.Input error={shouldMarkError('bittenMuni')}
+                          onBlur={() => handleBlur('bittenMuni')}
+                          type={'text'}
+                          name={'bittenMuni'}
+                          id={'bittenMuni'}
+                          required
+                          placeholder={'Where bitten person lives'}
+                          value={input.bittenMuni}
+                          onChange={handleChange}
+                        />
+                        <Styles.ErrMessage error={shouldMarkError('bittenMuni')}>
+                          Please enter the city or town where the bitten person lives.
+                        </Styles.ErrMessage>
+
+                        <label htmlFor={'bittenZip'}>{'ZIP Code of bitten person *'}</label>
+                        <Styles.Input error={shouldMarkError('bittenZip')}
+                          onBlur={() => handleBlur('bittenZip')}
+                          type={'text'}
+                          name={'bittenZip'}
+                          id={'bittenZip'}
+                          required
+                          placeholder={'Where bitten person lives'}
+                          value={input.bittenZip}
+                          onChange={handleChange}
+                        />
+                        <Styles.ErrMessage error={shouldMarkError('bittenZip')}>
+                          Please enter the ZIP code where the bitten person lives.
+                        </Styles.ErrMessage>
+                      </>)}
+
+
+                    <label htmlFor='locationDesc'>Has the bitten person traveled outside of New Jersey within the past 10 days?</label>
+                    <Styles.ErrMessage error={shouldMarkError('bittenTraveled')}>
+                      Please make a selection.
+                    </Styles.ErrMessage>
+
                     <BasicPage.RadioButtons>
-                      {traveledElem}
+                      <input
+                        type='radio'
+                        name={'bittenTraveled'}
+                        value={'Yes'}
+                        checked={input.bittenTraveled === 'Yes'}
+                        id='bittenTraveled-Yes'
+                        onChange={handleChange}
+                        required
+                      />
+                      <label htmlFor='bittenTraveled-Yes'>Yes</label>
+                      <input
+                        type='radio'
+                        name={'bittenTraveled'}
+                        value={'No'}
+                        checked={input.bittenTraveled === 'No'}
+                        id='bittenTraveled-No'
+                        onChange={handleChange}
+                        required
+                      />
+                      <label htmlFor='bittenTraveled-No'>No</label>
                     </BasicPage.RadioButtons>
+
                     {input.bittenTraveled === 'Yes' && (
-                      <div style={{ display: 'flex', flexDirection: 'column' }}>
+                      <Styles.TextCont>
                         <label htmlFor='travelInfo'>Provide relevant zip codes or community/city names:</label>
-                        <textarea id='travelInfo' name='travelInfo' value={input.travelInfo || ''} onChange={handleChange}></textarea>
-                      </div>
+                        <textarea id='travelInfo' name='travelInfo' value={input.travelInfo} onChange={handleChange}></textarea>
+                      </Styles.TextCont>
                     )}
                   </>
 
@@ -181,78 +477,230 @@ const Survey = () => {
 
 
           </div>
-          {inputElem2}
+          {/* tick location info */}
+          <div>
+          <h4>Tick Location Information</h4>
+          <label htmlFor={'dateTickFound'}>{'Date tick was found *'}</label>
+          <Styles.Input error={shouldMarkError('dateTickFound')}
+            onBlur={() => handleBlur('dateTickFound')}
+            type={'date'}
+            name={'dateTickFound'}
+            id={'dateTickFound'}
+            required
+            value={input.dateTickFound}
+            onChange={handleChange}
+          />
+          <Styles.ErrMessage error={shouldMarkError('dateTickFound')}>
+            Please enter the date the tick was found.  That date cannot be in the future.
+          </Styles.ErrMessage>
+
+          <label htmlFor={'tickMuni'}>{'Municipality where tick was found *'}</label>
+          <Styles.Input error={shouldMarkError('tickMuni')}
+            onBlur={() => handleBlur('tickMuni')}
+            type={'text'}
+            name={'tickMuni'}
+            id={'tickMuni'}
+            required
+            value={input.tickMuni}
+            onChange={handleChange}
+          />
+          <Styles.ErrMessage error={shouldMarkError('tickMuni')}>
+            Please enter the city or town where the tick was found.
+          </Styles.ErrMessage>
+
+          <label htmlFor={'tickCounty'}>{'County where tick was found *'}</label>
+          <Styles.Input error={shouldMarkError('tickCounty')}
+            onBlur={() => handleBlur('tickCounty')}
+            type={'text'}
+            name={'tickCounty'}
+            id={'tickCounty'}
+            required
+            value={input.tickCounty}
+            onChange={handleChange}
+          />
+          <Styles.ErrMessage error={shouldMarkError('tickCounty')}>
+            Please enter the county where the tick was found.
+          </Styles.ErrMessage>
+
+          <label htmlFor={'tickZip'}>{'ZIP code where tick was found *'}</label>
+          <Styles.Input error={shouldMarkError('tickZip')}
+            onBlur={() => handleBlur('tickZip')}
+            type={'text'}
+            name={'tickZip'}
+            id={'tickZip'}
+            required
+            value={input.tickZip}
+            onChange={handleChange}
+          />
+          <Styles.ErrMessage error={shouldMarkError('tickZip')}>
+            Please enter the ZIP code where the tick was found.
+          </Styles.ErrMessage>
+          
+          {/* location buttons */}
           <div>
             <label htmlFor='locationDesc'>Descriptor of Location*</label>
             <BasicPage.RadioButtons
-              style={{ flexWrap: 'wrap' }}
+              // style={{ flexWrap: 'wrap' }}
             >
-              {locationRadioElem}
+              
+               <input
+                type='radio'
+                name={'locationDesc'}
+                value={'Backyard'}
+                checked={input.locationDesc === 'Backyard'}
+                id='locationDesc-Backyard'
+                onChange={handleChange}
+                required
+              />
+              <label htmlFor='locationDesc-Backyard'>Backyard</label>
+
+               <input
+                type='radio'
+                name={'locationDesc'}
+                value={'Park/Playground'}
+                checked={input.locationDesc === 'Park/Playground'}
+                id='locationDesc-Park/Playground'
+                onChange={handleChange}
+                required
+              />
+              <label htmlFor='locationDesc-Park/Playground'>Park/Playground</label>
+
+               <input
+                type='radio'
+                name={'locationDesc'}
+                value={'Recreational area outside'}
+                checked={input.locationDesc === 'Recreational area outside'}
+                id='locationDesc-Recreational'
+                onChange={handleChange}
+                required
+              />
+              <label htmlFor='locationDesc-Recreational'>Recreational area outside</label>
+
+               <input
+                type='radio'
+                name={'locationDesc'}
+                value={'Forest/Wooded area'}
+                checked={input.locationDesc === 'Forest/Wooded area'}
+                id='locationDesc-Forest/Wooded area'
+                onChange={handleChange}
+                required
+              />
+              <label htmlFor='locationDesc-Forest/Wooded area'>Forest/Wooded area</label>
+
+               <input
+                type='radio'
+                name={'locationDesc'}
+                value={'Field/Grassy area'}
+                checked={input.locationDesc === 'Field/Grassy area'}
+                id='locationDesc-Field/Grassy area'
+                onChange={handleChange}
+                required
+              />
+              <label htmlFor='locationDesc-Field/Grassy area'>Field/Grassy area</label>
+
+               <input
+                type='radio'
+                name={'locationDesc'}
+                value={'Garden/Agriculture'}
+                checked={input.locationDesc === 'Garden/Agriculture'}
+                id='locationDesc-Garden/Agriculture'
+                onChange={handleChange}
+                required
+              />
+              <label htmlFor='locationDesc-Garden/Agriculture'>Garden/Agriculture</label>
+
+               <input
+                type='radio'
+                name={'locationDesc'}
+                value={'Other'}
+                checked={input.locationDesc === 'Other'}
+                id='locationDesc-Other'
+                onChange={handleChange}
+                required
+              />
+              <label htmlFor='locationDesc-Other'>Other</label>
+              {/* {locationRadioElem} */}
             </BasicPage.RadioButtons>
 
             {input.locationDesc === 'Other' && (
-              <input
-                type='text'
-                name='locationDescOther'
-                id='locationDescOther'
-                required={true}
-                placeholder='Describe the location where you found the tick'
-                value={input.locationDescOther || ''}
-                onChange={handleChange}
-
-              />
+             <>
+              <Styles.Input error={shouldMarkError('locationDescOther')}
+            onBlur={() => handleBlur('locationDescOther')}
+            type={'text'}
+            name={'locationDescOther'}
+            id={'locationDescOther'}
+            required
+            placeholder={'Describe the location where you found the tick*'}
+            value={input.locationDescOther}
+            onChange={handleChange}
+          />
+          <Styles.ErrMessage error={shouldMarkError('locationDescOther')}>
+            Please describe the location where you found the tick.
+          </Styles.ErrMessage>
+             </>
 
             )}
           </div>
-          <div style={{ display: 'flex', flexDirection: 'column' }}>
+          </div>
+        {/* activities */}
+          <Styles.TextCont>
             <label htmlFor='activities'>Describe activity/activities when tick(s) were acquired:</label>
             <textarea id='activities' name='activities' value={input.activities || ''} onChange={handleChange}></textarea>
-          </div>
+          </Styles.TextCont>
+           {/* photos */}
           <div>
             <p>
-            Please submit up to two photos of the tick that are between 2kb and 4Mb in size.
-              </p>
+              Please submit at least one photo of the tick between 2kb and 4Mb in size.
+            </p>
             <div>
               <label htmlFor='front'>Photo 1</label>
               <input type='file' accept='image/*' onChange={handleFront} required id='front' /><br />
               <label htmlFor='back'>Photo 2</label>
-              <input type='file' accept='image/*' onChange={handleBack}  id='back' /><br />
-
+              <input type='file' accept='image/*' onChange={handleBack} id='back' /><br />
             </div>
             <p>Reminder: Review <BasicPage.InnieLink to='/photo'><span>How to Take a Tick Pic</span></BasicPage.InnieLink></p>
           </div>
-          <div style={{ display: 'flex', flexDirection: 'column' }}>
+          <Styles.TextCont>
             <label htmlFor='additionalInfo'>Any additional information about the environment, tick(s), and or person/pet:</label>
             <textarea id='additionalInfo' name='additionalInfo' value={input.additionalInfo || ''} onChange={handleChange}></textarea>
-          </div>
-          </div>
+          </Styles.TextCont>
+        </Styles.FormSection>
+        
+         <button onClick={handleSubmit} disabled={!isEnabled} style={{ borderRadius: '0.5rem', padding: '2rem', backgroundColor: theme.colors.ruYellow}}>Submit</button>
 
-          <BasicPage.HoverCard bgColor={theme.colors.main} onClick={handleSubmit}>
-            <BasicPage.LinkButton.CardSpecial >
-              <span >Submit</span>
+        <BasicPage.LinkButton.LinkSpec to={'/steps'}>
+          <BasicPage.HoverCard>
+            <BasicPage.LinkButton.CardSpecial>
+              <span>Cancel</span>
             </BasicPage.LinkButton.CardSpecial>
           </BasicPage.HoverCard>
+        </BasicPage.LinkButton.LinkSpec>
 
-          <BasicPage.LinkButton.LinkSpec to={'/steps'}>
-            <BasicPage.HoverCard>
-              <BasicPage.LinkButton.CardSpecial>
-                <span>Cancel</span>
-              </BasicPage.LinkButton.CardSpecial>
-            </BasicPage.HoverCard>
-          </BasicPage.LinkButton.LinkSpec>
-
-        </BasicPage.Form>
-
-
-
-
-
-      </form>
+      </BasicPage.Form>
     </BasicPage.Text>
   )
 }
-
 export default Survey
 
+const Styles = {
+  FormSection: styled.div`
+  background-color: #f2f2f2;
+  border-radius: 1rem;
+  padding: 1rem;
+  `,
+  Input: styled.input`
+  border: 1px solid ${({ error }) => error ? 'red' : 'black'};
+  `,
+  ErrMessage: styled.label`
+  color: red;
+  display: ${({ error }) => error ? 'initial' : 'none'};
+  `,
+  TextCont: styled.div`
+  display: flex;
+  flex-direction: column;
+  `,
+  SubmitB: styled(BasicPage.LinkButton.CardSpecial)`
+  
+  `
 
-
+}
