@@ -3,9 +3,9 @@ import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
 import SubmissionDataService from '../../services/submission'
 import { theme } from '../../theme'
-import { createInputElems, createRadioElems } from '../../tools/createElemFunc'
+// import { createInputElems, createRadioElems } from '../../tools/createElemFunc'
 import { BasicPage } from '../GeneralStyles'
-import { attachedOptions, bittenInfoArray, foundOptions, inputElemArray1, inputElemArray2, locationOptions, yesNo } from './surveyFormData'
+// import { attachedOptions, bittenInfoArray, foundOptions, inputElemArray1, inputElemArray2, locationOptions, yesNo } from './surveyFormData'
 
 
 
