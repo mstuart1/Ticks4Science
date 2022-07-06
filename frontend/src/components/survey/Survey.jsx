@@ -58,6 +58,7 @@ const Survey = () => {
   
   const handleSubmit = async (evt) => {
     try {
+     if (!canBeSubmitted(input)){
       evt.preventDefault();
       let data = input;
       const formData = new FormData();
@@ -77,6 +78,7 @@ const Survey = () => {
       // alert(JSON.stringify(response.data))
       setInput({});
       navigate(`/thanks?id=${id}`);
+     }
     }
     catch (err) {
       console.log(err.message)
@@ -84,6 +86,23 @@ const Survey = () => {
 
 
   }
+
+  const canBeSubmitted = input => {
+    let {userMuni, userZip, dateTickFound, tickMuni, tickCounty, tickZip, bittenMuni, bittenZip, photoFrontUrl} = input
+    return (
+      userMuni.length > 0 &&
+      userZip.length >= 5 &&
+      dateTickFound > 0 &&
+      tickMuni > 0 &&
+      tickCounty > 0 &&
+      tickZip >= 5 &&
+      bittenMuni > 0 &&
+      bittenZip >= 5 &&
+      photoFrontUrl > 0
+    );
+  }
+
+  const isEnabled = canBeSubmitted(input);
 
   const inputElem1 = createInputElems(inputElemArray1, handleChange, input)
   const foundRadioElements = createRadioElems(foundOptions, 'foundOn', handleChange, input)
@@ -162,7 +181,7 @@ const Survey = () => {
                     </BasicPage.RadioButtons>
                     {input.submitterBitten === 'No' && (
                       <>{bittenElem}</>)}
-                    <label htmlFor='locationDesc'>Have the bitten person traveled outside of New Jersey within the past 10 days?*</label>
+                    <label htmlFor='locationDesc'>Have the bitten person traveled outside of New Jersey within the past 10 days?</label>
                     <BasicPage.RadioButtons>
                       {traveledElem}
                     </BasicPage.RadioButtons>
@@ -183,7 +202,7 @@ const Survey = () => {
           </div>
           {inputElem2}
           <div>
-            <label htmlFor='locationDesc'>Descriptor of Location*</label>
+            <label htmlFor='locationDesc'>Descriptor of Location</label>
             <BasicPage.RadioButtons
               style={{ flexWrap: 'wrap' }}
             >
@@ -196,7 +215,7 @@ const Survey = () => {
                 name='locationDescOther'
                 id='locationDescOther'
                 required={true}
-                placeholder='Describe the location where you found the tick'
+                placeholder='Describe the location where you found the tick*'
                 value={input.locationDescOther || ''}
                 onChange={handleChange}
 
@@ -213,7 +232,7 @@ const Survey = () => {
             Please submit up to two photos of the tick that are between 2kb and 4Mb in size.
               </p>
             <div>
-              <label htmlFor='front'>Photo 1</label>
+              <label htmlFor='front'>Photo 1 * </label>
               <input type='file' accept='image/*' onChange={handleFront} required id='front' /><br />
               <label htmlFor='back'>Photo 2</label>
               <input type='file' accept='image/*' onChange={handleBack}  id='back' /><br />
@@ -226,13 +245,15 @@ const Survey = () => {
             <textarea id='additionalInfo' name='additionalInfo' value={input.additionalInfo || ''} onChange={handleChange}></textarea>
           </div>
           </div>
-
+          <button disabled={!isEnabled}>
           <BasicPage.HoverCard bgColor={theme.colors.main} onClick={handleSubmit}>
+            
             <BasicPage.LinkButton.CardSpecial >
               <span >Submit</span>
             </BasicPage.LinkButton.CardSpecial>
+            
           </BasicPage.HoverCard>
-
+          </button>
           <BasicPage.LinkButton.LinkSpec to={'/steps'}>
             <BasicPage.HoverCard>
               <BasicPage.LinkButton.CardSpecial>
