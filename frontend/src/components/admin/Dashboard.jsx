@@ -71,6 +71,7 @@ const Styles = {
     `,
 
 }
+
 const Dashboard = () => {
 
   const dispatch = useDispatch()
@@ -152,20 +153,38 @@ const Dashboard = () => {
 
 
   let blockArray = [
-    { text: 'Total Submissions', number: totalSubs },
-    { text: 'Waiting for Photo Review', number: pendPhotos.length },
-    { text: 'Waiting for User to Mail Tick In', number: pendReceived.length },
-    { text: 'Waiting for Team to Identify Mailed-In Tick', number: pendIdentified.length },
-    { text: 'Total Identified', number: totalIdent.length },
+    { 
+      filter: "totalSubs", 
+      text: 'Total Submissions', 
+      number: totalSubs },
+    { filter: "pendPhotos",
+     text: 'Waiting for Photo Review',
+     number: pendPhotos.length },
+
+    { filter: "pendReceived",
+     text: 'Waiting for User to Mail Tick In',
+     number: pendReceived.length },
+
+    { filter: "pendIdentified",
+     text: 'Waiting for Team to Identify Mailed-In Tick',
+     number: pendIdentified.length },
+
+    { filter: "totalIdent",
+     text: 'Total Identified',
+     number: totalIdent.length },
   ]
 
   let blockElems = blockArray.map((block, i) => (
+    <div  onClick={() => {
+      
+      return (navigate("/admin/allSubs", {state:{filter: `${block.filter}`}}))}}>
     <OutlineCard key={i}>
       <Styles.BlockDetail>
         <h3>{block.text}</h3>
         <h1>{block.number}</h1>
       </Styles.BlockDetail>
     </OutlineCard>
+    </div>
   ))
 
 
