@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from 'react-redux'
-import { Link
+import { Link, useLocation
   // , useNavigate
  } from "react-router-dom";
 import { BasicPage } from "../GeneralStyles";
@@ -49,13 +49,13 @@ const Styles = {
     border-radius: 1rem;
     `,
 }
-// TODO instead of search bar, use filtering buttons to get all, need photo review, waiting to receive tick, waiting for identification, identified - search by species
 
 const AllSubs = () => {
 
-  
+    const location = useLocation()
+    let filter = location.state?.filter || ""
+
     const [data, setData] = useState([])
-    const [query, setQuery] = useState('');
 
     const token = useSelector(state => state.token.data)
     
@@ -76,24 +76,10 @@ const AllSubs = () => {
         
       }, [token])
 
-    const handleInputChange = evt => {
-    let {value} = evt.target
-    // console.log(value)
-    setQuery(value)
-    }
-
-  //     let filteredData = data.filter(item => {
+      console.log(filter)
       
-  //   if (query === "") {
-  //     return item
-  //   } else if (item.toLowerCase().includes(query.toLowerCase())) {
-  //     // returns filtered array
-  //     return item;
-  //   } else {
-  //       return item
-  //   }
-  // });
-
+      let pendReceived =  data.filter(sub => sub.specimenRequested && sub.specimenReceived === null);
+      let totalIdent = data.filter(sub => sub.specimenIdentified)
   let pendingPhotos = data.filter(item => item.photosReviewed === null)
   let pendingSpecimens = data.filter(item => item.specimenReceived !== null && item.specimenIdentified === null)
 
@@ -104,16 +90,50 @@ const AllSubs = () => {
   return cards
   }
 
-
+  let totalCards = createCardElems(data)
   let photoCards = createCardElems(pendingPhotos)
   let specimenCards = createCardElems(pendingSpecimens)
+  let mailCards = createCardElems(pendReceived)
+  let identCards = createCardElems(totalIdent)
   
   return   (
     <BasicPage.Text>
        
         <InternalLinkFloatButton padding="1rem 2rem" text='Back to Dashboard' to='/admin' />
          <Styles.Waiting>
-         <Styles.WaitingGroup>
+          {filter === 'totalSubs' && (
+            <Styles.WaitingGroup>
+              <h2>All Submissions</h2>
+              {totalCards}
+            </Styles.WaitingGroup>
+          )}
+          {filter === 'pendPhotos' && (
+             <Styles.WaitingGroup>
+             <h2>Waiting for Photo Review</h2>
+             {photoCards}
+           </Styles.WaitingGroup>
+          )}
+          {filter === 'pendReceived' && (
+             <Styles.WaitingGroup>
+             <h2>Waiting for User to Mail In</h2>
+             {mailCards}
+           </Styles.WaitingGroup>
+          )}
+          {filter === 'pendIdentified' && (
+             <Styles.WaitingGroup>
+             <h2>Waiting for Lab to Identify Specimen</h2>
+             {specimenCards}
+           </Styles.WaitingGroup>
+          )}
+          {filter === 'totalIdent' && (
+             <Styles.WaitingGroup>
+             <h2>All Identified</h2>
+             {totalIdent}
+           </Styles.WaitingGroup>
+          )}
+         {filter === '' && (
+          <>
+          <Styles.WaitingGroup>
           <h2>Waiting for Photo Review</h2>
           {photoCards}
         </Styles.WaitingGroup>
@@ -121,6 +141,8 @@ const AllSubs = () => {
           <h2>Waiting for Specimen Review</h2>
           {specimenCards}
         </Styles.WaitingGroup>
+        </>
+         )}
          </Styles.Waiting>
     </BasicPage.Text>
   )
