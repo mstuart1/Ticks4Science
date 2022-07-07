@@ -164,3 +164,33 @@ exports.updateSubm = async (req, res, next) => {
 
 
 }
+
+exports.deleteSub = async (req, res, next) => {
+  console.log(`deleting submission ${req.params.id}`)
+  try {
+    const {id} = req.params;
+    console.log(id)
+    let num;
+    await db.sequelize
+      .transaction(async (t) => {
+
+    num = await Subm.destroy({
+      where: { id:id },
+    }, {transaction: t})
+  });
+      console.log(num)
+        if (num == 1) {
+          res.json({message: `Record ${id} was deleted`})
+        } else {
+          res.status(400).json({
+            code: "ERROR_ADMIN_DELETE",
+            message: `Cannot delete record with id=${id}. Maybe record was not found!`,
+          });
+        }
+      
+ 
+  } catch (error) {
+    console.log(error.message)
+    next(error);
+  }
+}

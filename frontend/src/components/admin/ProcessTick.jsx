@@ -8,7 +8,7 @@ import InternalLinkFloatButton from '../ui/internalLinkFloatButton/InternalLinkF
 import { theme } from '../../theme'
 import OutlineCard from '../ui/outlineCard/OutlineCard'
 import HoverCard from '../ui/hoverCard/HoverCard'
-
+import { useNavigate } from 'react-router-dom'
 
 // TODO create a way for staff to input photo review info
 // TODO create a way to delete photos
@@ -85,14 +85,21 @@ h2 {
   align-self: center;
 }
 `,
+ForgotText: styled.h4`
+margin: 1rem;
+text-decoration: none;
+color: ${({ theme }) => theme.colors.main};
+`
 }
 
 const ProcessTick = () => {
   let { id } = useParams()
+const navigate = useNavigate()
 
   const [tick, setTick] = useState({});
   const [tickSpp, setTickSpp] = useState([]);
   const [idByPhoto, setIdByPhoto] = useState(false)
+  const [showDelete, setShowDelete] = useState(false)
 
   // get the tick info from db
   useEffect(() => {
@@ -121,6 +128,7 @@ const ProcessTick = () => {
     })
   }, [])
 
+  const toggleDelete = () => setShowDelete(!showDelete);
 
   const handlePhotoReview = (id) => {
     let data = { photosReviewed: new Date() }
@@ -165,6 +173,11 @@ const ProcessTick = () => {
     setTick(prevState => ({ ...prevState, ...updatedTick }))
   }
 
+  const handleDelete = async () => {
+    let response = await SubmissionDataService.deleteSub(id);
+    console.log(response.data)
+    navigate('/admin')
+  }
 
   // console.log(`tick`, tick)
 
@@ -279,7 +292,7 @@ const ProcessTick = () => {
         {/* <p>Click on the photo to view full size</p> */}
 
         <a href={tick.photoFrontUrl} target="_blank" rel="noreferrer"> <ImageCard imageUrl={tick.photoFrontUrl} /></a>
-        <a href={tick.photoBackUrl} target="_blank" rel="noreferrer"> <ImageCard imageUrl={tick.photoBackUrl} /></a>
+        {tick.photoBackUrl && <a href={tick.photoBackUrl} target="_blank" rel="noreferrer"> <ImageCard imageUrl={tick.photoBackUrl} /></a>}
         {tick.photoOtherUrl && <a href={tick.photoOtherUrl} target="_blank" rel="noreferrer"> <ImageCard imageUrl={tick.photoOtherUrl} /></a>}
 
         <OutlineCard >
@@ -322,7 +335,33 @@ const ProcessTick = () => {
           </div>
         </OutlineCard>
         <InternalLinkFloatButton colors={{ text: theme.colors.ruTeal, shadow: theme.colors.ruTeal }} to='/admin/allSubs' text='Back to All Submissions' />
+        <div onClick={toggleDelete}>
+          <HoverCard padding='1rem 2rem' shadowColor='#800000'>
+          <span style={{color: '#800000', fontWeight: 'bold'}}>Delete This Submission</span>
+          </HoverCard>
+        </div>
       </Styles.PageCont>
+      {showDelete && (
+        <div>
+        <h1 style={{textAlign: 'center'}}>Are you sure you want to delete this submission forever?</h1>
+        <div style={{display: 'flex', justifyContent: 'space-between', width: '100%'}}>
+            <div onClick={toggleDelete}>
+        <HoverCard shadowColor='#800000'>
+            <span style={{color: '#800000'}}>
+                No
+                </span>
+            </HoverCard>
+            </div>
+            <div onClick={handleDelete}>
+        <HoverCard >
+            <span >
+                Yes
+                </span>
+            </HoverCard>
+            </div>
+        </div>
+        </div>
+      )}
     </BasicPage.Text>
   )
 

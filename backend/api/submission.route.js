@@ -11,6 +11,7 @@ module.exports = (app) => {
       .post("/photos/:id", upload.array('photos'),  SubmCtl.uploadPhoto)
       .get('/:id', SubmCtl.getProgress)
       .put('/:id', SubmCtl.updateSubm)
+      .delete('/:id', SubmCtl.deleteSub)
 
       app.use("/submission", router);
   };

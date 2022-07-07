@@ -9,6 +9,7 @@ import ProcessTick from "./ProcessTick";
 import UpdateAccount from "./UpdateAccount";
 import Dashboard from './Dashboard';
 import { useSelector } from 'react-redux'
+
 // import UserDataService from '../../services/users'
 
 const AdminMgt = () => {
@@ -27,6 +28,7 @@ const AdminMgt = () => {
                 <Route path='/account/:id' element={<UpdateAccount />} />
                 <Route path='/' element={<Dashboard />} />
                 <Route path="/login" element={<Login logout={true} />} />
+                
             </Routes>
     )
 }

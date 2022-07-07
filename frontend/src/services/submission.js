@@ -26,6 +26,9 @@ class SubmissionDataService {
         console.log(data)
         return http.put(`/submission/${id}`, data)
     }
+    deleteSub(id) {
+        return http.delete(`/submission/${id}`)
+    }
 }
 
 export default new SubmissionDataService();
