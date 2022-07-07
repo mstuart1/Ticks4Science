@@ -8,19 +8,17 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      scientific: {
-        type: Sequelize.STRING
-      },
       common: {
         type: Sequelize.STRING
       },
+      scientific: {
+        type: Sequelize.STRING
+      },
+      humanHosts: {
+        type: Sequelize.BOOLEAN,
+      },
       intro: {type: Sequelize.TEXT},
-      colors: {
-        type: Sequelize.STRING
-      },
-      shape: {
-        type: Sequelize.STRING
-      },
+      
       hosts: {
         type: Sequelize.TEXT
       },
@@ -30,12 +28,10 @@ module.exports = {
       njLocations: {
         type: Sequelize.TEXT
       },
-      larvaeActive: { type: Sequelize.STRING },
-      larvaeFeed: { type: Sequelize.STRING },
-      nymphActive: { type: Sequelize.STRING },
-      nymphFeed: { type: Sequelize.STRING },
-      adultActive: { type: Sequelize.STRING },
-      adultFeed: { type: Sequelize.STRING },
+      activeMonths: {
+        type: Sequelize.TEXT,
+      },
+      buttonImgUrl: {type: Sequelize.STRING},
       featureImgUrl: {type:  Sequelize.STRING},
       mapImgUrl: {type:  Sequelize.STRING},
       refImgArray: {type: Sequelize.JSON},
