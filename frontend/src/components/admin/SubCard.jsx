@@ -47,7 +47,7 @@ const SubCard = ({item}) => {
         Specimen Requested: {item.specimenRequested && item.specimenRequested.substring(0,10)}<br/>
         Specimen Received: {item.specimenReceived && item.specimenReceived.substring(0,10)}<br/>
         Specimen Identified: {item.specimenIdentified && item.specimenIdentified.substring(0,10)}<br/>
-        Species: {item.specimenId && item.tick?.scientific}<br/>
+        {/* Species: {item.specimenId && item.tick?.scientific}<br/> */}
         </div>
     </OutlineCard>
     </Styles.Link>
