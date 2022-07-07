@@ -208,6 +208,7 @@ const Dashboard = () => {
       <div>
 
         <InternalLinkFloatButton colors={{ text: 'white', bg: theme.colors.ruTeal }} padding="1rem 2rem" text="View Submissions" to='/admin/allSubs' />
+        <h2>You can now click on the blocks to see filtered lists of all of the submissions.</h2>
         <Styles.BlockCont>
           {blockElems}
         </Styles.BlockCont>
