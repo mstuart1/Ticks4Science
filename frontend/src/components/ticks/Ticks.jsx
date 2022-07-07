@@ -6,7 +6,68 @@ import styled from 'styled-components'
 import TickDataService from '../../services/ticks'
 import HorizScrollCont from '../ui/horizontalScrollingContainer/HorizScrollCont'
 import TickCard from '../ui/tickCard/TickCard'
-import { theme } from '../../theme'
+// import { theme } from '../../theme'
+
+const Styles = {
+    CenterCntr: styled.div`
+    display: flex;
+    justify-content: center;
+    margin: 2rem;
+    @media screen and (min-width: 1366px) {
+     width: 1000px;
+    }
+    @media screen and (max-width: ${({ theme }) => theme.mobile}) {
+      flex-direction: column;
+      width: 90vw;
+      margin: 1rem;
+     }
+    `,
+
+    CenterCol: styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+    `,
+    RptLnkBtn: {
+        LinkSpec: styled.a`
+      text-decoration: none;
+      color: ${({ theme }) => theme.colors.ruTeal};
+      
+      `,
+        CardSpecial: styled.div`
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      padding: 1rem 2rem;
+      span {
+        padding: 1.6rem;
+      }
+    `,
+
+
+    },
+    LeftAlignCont: styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+  
+    min-height: 80vh;
+    max-width: 900px;
+    @media screen and (max-width: ${({ theme }) => theme.mobile}) {
+      width: 100vw;
+      
+     }
+    `,
+    Para: styled.p`
+    font-size: 1.6rem;
+    margin: 2rem;
+    `
+}
+
 
 const Icon = styled.span`
     color: ${({ theme }) => theme.colors.main};
@@ -167,63 +228,4 @@ const Ticks = () => {
 
 export default Ticks
 
-const Styles = {
-    CenterCntr: styled.div`
-    display: flex;
-    justify-content: center;
-    margin: 2rem;
-    @media screen and (min-width: 1366px) {
-     width: 1000px;
-    }
-    @media screen and (max-width: ${({ theme }) => theme.mobile}) {
-      flex-direction: column;
-      width: 90vw;
-      margin: 1rem;
-     }
-    `,
-
-    CenterCol: styled.div`
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    
-    `,
-    RptLnkBtn: {
-        LinkSpec: styled.a`
-      text-decoration: none;
-      color: ${({ theme }) => theme.colors.ruTeal};
-      
-      `,
-        CardSpecial: styled.div`
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 1rem;
-      padding: 1rem 2rem;
-      span {
-        padding: 1.6rem;
-      }
-    `,
-
-
-    },
-    LeftAlignCont: styled.div`
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: space-between;
-  
-    min-height: 80vh;
-    max-width: 900px;
-    @media screen and (max-width: ${({ theme }) => theme.mobile}) {
-      width: 100vw;
-      
-     }
-    `,
-    Para: styled.p`
-    font-size: 1.6rem;
-    margin: 2rem;
-    `
-}
 
