@@ -115,17 +115,17 @@ const TickPage = () => {
 
 
 
-  let refImgElems = data.refImgArray?.length > 0 && data.refImgArray.map((img, i) =>{ 
-    if (!img.source.includes("local"))
-    return (
+  // let refImgElems = data.refImgArray?.length > 0 && data.refImgArray.map((img, i) =>{ 
+  //   if (!img.source.includes("local"))
+  //   return (
 
-    <figure key={i}>
-      <img src={img.source} alt='ticks' style={{ maxWidth: '350px', borderRadius: '5px', margin: '0.5rem' }} />
-      {/* <figcaption>{img.caption} */}
-      {/* </figcaption> */}
-    </figure>
+  //   <figure key={i}>
+  //     <img src={img.source} alt='ticks' style={{ maxWidth: '350px', borderRadius: '5px', margin: '0.5rem' }} />
+  //     {/* <figcaption>{img.caption} */}
+  //     {/* </figcaption> */}
+  //   </figure>
 
-  )})
+  // )})
 
 
   return (
@@ -162,7 +162,7 @@ const TickPage = () => {
           </Styles.MiddleInfo>)}
         </Styles.MiddleCont>
         <Styles.MiddleCont>
-          {refImgElems}
+          {/* {refImgElems} */}
         </Styles.MiddleCont>
         <OutlineCard>
           <h3>A Reminder About Engorged Ticks</h3>
