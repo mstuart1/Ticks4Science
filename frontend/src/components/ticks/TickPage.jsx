@@ -1,62 +1,94 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { BasicPage } from '../GeneralStyles'
-import { FaStar } from 'react-icons/fa'
+// import { FaStar } from 'react-icons/fa'
 import TickDataService from '../../services/ticks'
-import { theme } from '../../theme'
+// import { theme } from '../../theme'
 import OutlineCard from '../ui/outlineCard/OutlineCard'
 import styled from 'styled-components'
 
 const Styles = {
   CardCont: styled.div`
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
+  
   align-items: center;
   justify-content: center;
   margin: 2rem;
-
-  @media screen and (min-width: 1000px) {
-    width: 1000px;
-    & > div {
-      width: 30rem;
-      height: 37rem;
-    }
-  }
-  `,
-  HorizFlex: styled.div`
-  margin: 1rem;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
-  @media screen and (min-width: 1000px) {
-    width: 1000px;
-    flex-wrap: nowrap;
-  }
-  `,
-  VertFlex: styled.div`
-  margin: 1rem;
-  display: flex;
-  flex: 1 1 100;
-  flex-direction: column;
+  background-color: ${({ theme }) => theme.colors.grey1};
+  border-radius: ${({ theme }) => theme.borderRadius};
+  // width: 800px;
   `,
 
-  MapCont: styled.div`
-  flex: 2;
-  justify-content: center;
+  TopCont: styled.div`
+  display: flex;
   align-items: center;
+  justify-content: center;
+  width: 100%;
+  
+
+  @media screen and (max-width:${({ theme }) => theme.mobile}) {
+    flex-wrap: wrap;
+  }
+  
+  `,
+  TopImgCont: styled.div`
+  margin: 2rem;
   img {
-    margin-left: 1rem;
-    max-width: 350px;
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
   }
-  @media screen and (min-width: 1000px) {
+  @media screen and (max-width:${({ theme }) => theme.mobile}) {
     img {
-      max-width: 600px;
+      width: 150px;
+      height: 150px;
     }
+  `,
+
+  Section: styled.div`
+  margin: 1rem;
+  `,
+
+  TopInfoCont: styled.div`
+  margin: 2rem;
+  display: flex;
+  flex-direction: column;
+ 
+  div {
+    font-size: 1.6rem;
   }
+  `,
+  MiddleCont: styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 1rem;
+
+  @media screen and (max-width:${({ theme }) => theme.mobile}) {
+    flex-wrap: wrap;
+  }
+  `,
+  MiddleInfo: styled.div`
+  display: flex;
+  flex-direction: column;
+  // align-items: center;
+  padding: 1rem;
+  `,
+  InfoItem: styled.div`
+  margin: 1rem;
+  `,
+
+  LifeCont: styled.div`
+  display: flex;
+  flex-direction: column;
+  margin: 2rem;
+  `,
+  PhotoGallery: styled.div`
+  display: flex;
+  flex-wrap: wrap
   `,
 }
-
 
 const TickPage = () => {
   let { id } = useParams()
@@ -69,96 +101,74 @@ const TickPage = () => {
 
     getData().then(response => {
       console.log(response.data.record)
+
       setData(response.data.record)
     })
+  
   }, [id])
+
+  useEffect(() => {
+     
+  }, [])
 
   console.log(data.refImgArray)
 
 
-  let refImgElems = data.refImgArray?.length > 0 && data.refImgArray.map((img, i) => (
+
+  let refImgElems = data.refImgArray?.length > 0 && data.refImgArray.map((img, i) =>{ 
+    if (!img.source.includes("local"))
+    return (
 
     <figure key={i}>
-      <img src={img.source} alt='ticks' style={{ maxWidth: '350px', borderRadius: '5px' }} />
-      <figcaption>{img.caption}
-      </figcaption>
+      <img src={img.source} alt='ticks' style={{ maxWidth: '350px', borderRadius: '5px', margin: '0.5rem' }} />
+      {/* <figcaption>{img.caption} */}
+      {/* </figcaption> */}
     </figure>
 
-  ))
+  )})
 
 
   return (
     <BasicPage.Text>
-      <BasicPage.Title>
-        Scientific Name: <i>{data.scientific}</i></BasicPage.Title>
-      <BasicPage.Title>Common: {data.common}</BasicPage.Title>
-      <p>{data.intro}</p>
       <Styles.CardCont>
-      <OutlineCard bgColor={theme.colors.ruBlue} width='25rem' >
-            <BasicPage.SectionTitle>Appearance</BasicPage.SectionTitle>
-            <BasicPage.SectionSubtitle>Colors: </BasicPage.SectionSubtitle> {data.colors}
-            <BasicPage.SectionSubtitle>Shape: </BasicPage.SectionSubtitle>{data.shape}
-          </OutlineCard>
-          <OutlineCard bgColor={theme.colors.ruBlue} width='25rem' >
-            <BasicPage.SectionTitle>Hosts</BasicPage.SectionTitle>
-            {data.hosts}
-          </OutlineCard>
+        <Styles.TopCont>
+          <Styles.TopImgCont>
+            {/* <div style={{backgroundColor: 'white', width: '200px', height: '400px'}}> </div> */}
+            <img src={data.featureImgUrl} alt='tick' style={{ maxWidth: '40vw' }} />
+          </Styles.TopImgCont>
+          <Styles.TopInfoCont>
+            <Styles.Section>
+              <h2>Common Name:<br/> {data.common}</h2>
+              </Styles.Section><Styles.Section>
+              <h2>Scientific Name:<br/> <i>{data.scientific}</i></h2>
+            </Styles.Section>
+            <Styles.Section>
+              <h3>{data.humanHosts && '⭐️ This tick can be found on people'}</h3>
+            </Styles.Section>
+            <Styles.Section>
+              {data.intro}
+            </Styles.Section>
+
+          </Styles.TopInfoCont>
+        </Styles.TopCont>
+        <Styles.MiddleCont>
+          <Styles.MiddleInfo>
+            <Styles.InfoItem><h3>Hosts</h3>{data.hosts}</Styles.InfoItem>
+            <Styles.InfoItem><h3>Habitat</h3>{data.habitat}</Styles.InfoItem>
+            <Styles.InfoItem><h3>Locations in NJ</h3>{data.njLocations}</Styles.InfoItem>
+          </Styles.MiddleInfo>
+          {data.mapImgUrl?.length > 0 && (<Styles.MiddleInfo>
+            <img src={data.mapImgUrl} alt='map of tick locations' style={{ maxWidth: '250px' }} />
+          </Styles.MiddleInfo>)}
+        </Styles.MiddleCont>
+        <Styles.MiddleCont>
+          {refImgElems}
+        </Styles.MiddleCont>
+        <OutlineCard>
+          <h3>A Reminder About Engorged Ticks</h3>
+          <p>Blood feeding increases the <BasicPage.InnieLink to='/tickOrInsect'><span>ticks's size drastically</span></BasicPage.InnieLink> and can increase the chances of them passing on a <BasicPage.InnieLink to='/disease'><span>pathogen</span></BasicPage.InnieLink></p>
+        </OutlineCard>
       </Styles.CardCont>
-      <Styles.HorizFlex>
-      
-          <BasicPage.ImageCont >
-            {refImgElems}
-          </BasicPage.ImageCont>
-      </Styles.HorizFlex>
-      {(data.larvaeFeed || data.larvaeActive) && (
-        <>
-          <p>
-            <FaStar color={theme.colors.ruYellow} /> indicates tick stages that seek people as hosts!
-          </p>
-          <Styles.CardCont>
-
-            <OutlineCard bgColor={theme.colors.ruYellow}  >
-              <BasicPage.SectionTitle>{data.larvaeFeed?.includes('people') && <FaStar color={theme.colors.ruYellow} />} Larvae</BasicPage.SectionTitle>
-              <p>{data.larvaeActive}</p>
-              <p>{data.larvaeFeed}</p>
-            </OutlineCard>
-            <OutlineCard bgColor={theme.colors.ruYellow} >
-              <BasicPage.SectionTitle>{data.nymphFeed?.includes('people') && <FaStar color={theme.colors.ruYellow} />} Nymphs</BasicPage.SectionTitle>
-              <p>{data.nymphActive}</p>
-              <p>{data.nymphFeed}</p>
-            </OutlineCard>
-            <OutlineCard bgColor={theme.colors.ruYellow} >
-              <BasicPage.SectionTitle>{data.adultFeed?.includes('people') && <FaStar color={theme.colors.ruYellow} />} Adults</BasicPage.SectionTitle>
-              <p>{data.adultActive}</p>
-              <p>{data.adultFeed}</p>
-            </OutlineCard>
-          </Styles.CardCont>
-        </>
-      )}
-      <Styles.HorizFlex>
-        <Styles.VertFlex>
-          <OutlineCard bgColor={theme.colors.ruTeal}>
-            <BasicPage.SectionTitle>Habitat</BasicPage.SectionTitle>
-            <p>{data.habitat}</p>
-          </OutlineCard>
-          <OutlineCard bgColor={theme.colors.ruTeal}>
-            <BasicPage.SectionTitle>Locations in NJ</BasicPage.SectionTitle>
-            <p>{data.njLocations}</p>
-          </OutlineCard>
-
-        </Styles.VertFlex>
-        <Styles.MapCont>
-          {data.mapImgUrl && (
-            <img src={data.mapImgUrl} alt='map of locations' />
-          )}
-        </Styles.MapCont>
-      </Styles.HorizFlex>
-
-
-
-
-      <BasicPage.SectionTitle>A reminder about engorged ticks</BasicPage.SectionTitle>
-      <p>Blood meals increase the tick's size drastically.  However, nymphs may become engorged and still go unnoticed because of their already hard to detect size.</p>
     </BasicPage.Text>
   )
 }
