@@ -76,7 +76,7 @@ const AllSubs = () => {
         
       }, [token])
 
-      console.log(filter)
+      
       
       let pendReceived =  data.filter(sub => sub.specimenRequested && sub.specimenReceived === null);
       let totalIdent = data.filter(sub => sub.specimenIdentified)
@@ -88,6 +88,8 @@ const AllSubs = () => {
     let cards = data.map(sub => (
       <SubCard item={sub} key={sub.id}/>
   ))
+
+  console.log(pendReceived)
   return cards
   }
 
