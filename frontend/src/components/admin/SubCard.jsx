@@ -43,7 +43,7 @@ const SubCard = ({item}) => {
         ID: {item.id}<br/>
         Date Submitted: {item.createdAt&& item.createdAt.substring(0,10)}<br/>
         Photos Reviewed: {item.photosReviewed && item.photosReviewed.substring(0,10)}<br/>
-        Photo ID: {item.photoId && item.tick.scientific}<br/>
+        Photo ID: {item.photoId && item.tick?.scientific}<br/>
         Specimen Requested: {item.specimenRequested && item.specimenRequested.substring(0,10)}<br/>
         Specimen Received: {item.specimenReceived && item.specimenReceived.substring(0,10)}<br/>
         Specimen Identified: {item.specimenIdentified && item.specimenIdentified.substring(0,10)}<br/>
