@@ -128,7 +128,7 @@ const AllSubs = () => {
           {filter === 'totalIdent' && (
              <Styles.WaitingGroup>
              <h2>All Identified</h2>
-             {totalIdent}
+             {identCards}
            </Styles.WaitingGroup>
           )}
          {filter === '' && (
