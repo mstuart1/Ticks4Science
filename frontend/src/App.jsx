@@ -29,6 +29,7 @@ import AdminMgt from './components/admin/AdminMgt';
 // import UpdateAccount from './components/admin/UpdateAccount';
 import ResetPassword from './components/login/ResetPassword';
 import TickPage from './components/ticks/TickPage';
+import { BasicPage } from './components/GeneralStyles';
 // import Identify from './components/Identify';
 // import NotReady from './components/NotReady';
 // import { BasicPage } from "./components/GeneralStyles";
@@ -51,7 +52,10 @@ const App = () => {
       <Styles.Wrapper>
         <ScrollToTop>
           <RutgersHeader />
-          <NavbarComp />
+          {/* <BasicPage.Text>
+            <h3>Sorry for the inconvenience, the website is temporarily down for maintenance.  Please check back soon.</h3>
+            </BasicPage.Text> */}
+           <NavbarComp />
           <Styles.PageContainer>
             <Routes>
               <Route path='/' element={<About />} />
@@ -72,24 +76,26 @@ const App = () => {
               <Route path='/reset/:token' element={<ResetPassword reset={true}/>} />
               <Route path='/createAccount/:token' element={<ResetPassword create={true}/>} />
               <Route path='/ticks/:id' element={<TickPage />} />
-              {/* <Route path='/prevention' element={<Prevention />} /> */}
-              {/* <Route path='/identify' element={<Identify />} /> */}
-              {/* <Route path='/notReady' element={<NotReady />} /> */}
-              {/* <Route path='/createAccount/:token' element={<UpdateAccount/>} /> */}
-              {/* Not found routes - this one must always be last - redirecting to home page */}
               <Route path='*' element={<About />} />
             </Routes>
 
-          </Styles.PageContainer>
+          </Styles.PageContainer> 
           <RutgersFooter />
         </ScrollToTop>
       </Styles.Wrapper>
     </ThemeProvider>
 
-  )
+)
 };
 
 export default App;
+
+{/* <Route path='/prevention' element={<Prevention />} /> */}
+{/* <Route path='/identify' element={<Identify />} /> */}
+{/* <Route path='/notReady' element={<NotReady />} /> */}
+{/* <Route path='/createAccount/:token' element={<UpdateAccount/>} /> */}
+{/* Not found routes - this one must always be last - redirecting to home page */}
+
 
 const Styles = {
   Wrapper: styled.main`
