@@ -11,7 +11,7 @@ module.exports = {
     },
     define: {
       freezeTableName: true,
-      // paranoid: true,
+      paranoid: true,
     },
   },
   test: {
@@ -29,7 +29,7 @@ module.exports = {
     },
     define: {
       freezeTableName: true,
-      // paranoid: true,
+      paranoid: true,
     },
   },
 };
