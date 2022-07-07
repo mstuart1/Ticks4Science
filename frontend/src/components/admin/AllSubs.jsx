@@ -84,6 +84,7 @@ const AllSubs = () => {
   let pendingSpecimens = data.filter(item => item.specimenReceived !== null && item.specimenIdentified === null)
 
   const createCardElems = data => {
+
     let cards = data.map(sub => (
       <SubCard item={sub} key={sub.id}/>
   ))
