@@ -185,7 +185,7 @@ const navigate = useNavigate()
   return (
     <BasicPage.Text>
       {/* <p>Developers Note: based on emails, it looks like Dina plans to request all ticks be sent in, the photo review is to make sure it is a tick, not to identify it.  With this info I made the flow of information follow the path that if the photos have been reviewed, the specimen requested button appears or not a tick button, if the specimen has been requested, the submission received button appears, if the specimen has been recieved, the speicies buttons appear to choose the identification.</p> */}
-      <InternalLinkFloatButton colors={{ text: theme.colors.ruTeal, shadow: theme.colors.ruTeal }} to='/admin/allSubs' text='Back to All Submissions' />
+      <InternalLinkFloatButton colors={{ text: theme.colors.ruTeal, shadow: theme.colors.ruTeal }} to={-1} text='  Back to List  ' />
       <Styles.PageCont>
 
         <OutlineCard >
@@ -213,7 +213,7 @@ const navigate = useNavigate()
 
               : !tick.tickId && (
                 <>
-                  {console.log(tick.notATick)}
+                  {/* {console.log(tick.notATick)} */}
                   {!tick.notATick
                     ? (<div onClick={() => handleNotATick(tick.id)}>
                       <HoverCard shadowColor={theme.colors.ruTeal}>
@@ -334,7 +334,7 @@ const navigate = useNavigate()
             <p>Zip Code: {tick.userZip?.toString().padStart(5, "0")}</p>
           </div>
         </OutlineCard>
-        <InternalLinkFloatButton colors={{ text: theme.colors.ruTeal, shadow: theme.colors.ruTeal }} to='/admin/allSubs' text='Back to All Submissions' />
+        <InternalLinkFloatButton colors={{ text: theme.colors.ruTeal, shadow: theme.colors.ruTeal }}  to={-1} text='  Back to List  ' />
         <div onClick={toggleDelete}>
           <HoverCard padding='1rem 2rem' shadowColor='#800000'>
           <span style={{color: '#800000', fontWeight: 'bold'}}>Delete This Submission</span>
