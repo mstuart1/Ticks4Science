@@ -145,6 +145,7 @@ const Styles = {
   Para: styled.p`
   font-size: 1.6rem;
   margin: 2rem;
+  padding: 0 2rem;
   `,
   Logo: styled.span`
   img {
