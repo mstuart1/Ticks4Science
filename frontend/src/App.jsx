@@ -21,31 +21,53 @@ import Survey from './components/survey/Survey';
 import ThankYou from './components/survey/ThankYou';
 import TickProgress from './components/ticks/TickProgress';
 import TickProgressInput from './components/ticks/TickProgressInput';
-// import Login from './components/login/Login';
-// import AddEditTick from './components/admin/AddEditTick';
-// import ProcessTick from './components/admin/ProcessTick';
-// import AllSubs from './components/admin/AllSubs';
 import AdminMgt from './components/admin/AdminMgt';
-// import UpdateAccount from './components/admin/UpdateAccount';
 import ResetPassword from './components/login/ResetPassword';
 import TickPage from './components/ticks/TickPage';
-import { BasicPage } from './components/GeneralStyles';
-// import Identify from './components/Identify';
-// import NotReady from './components/NotReady';
-// import { BasicPage } from "./components/GeneralStyles";
-// import Prevention from './components/Prevention';
-// import Login from './components/admin/Login';
-// import AddEditTick from './components/admin/AddEditTick';
-// import ProcessTick from './components/admin/ProcessTick';
-// import AllSubs from './components/admin/AllSubs';
-// import UpdateAccount from './components/admin/UpdateAccount';
+// import { BasicPage } from './components/GeneralStyles';
 
+const Styles = {
+  Wrapper: styled.main`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: ${({ bgColor }) => bgColor || 'white'};
+  // height: 100vh;
+  font-family: 'Poppins', sans-serif;
+  `,
+  PageContainer: styled.div`
+  display: flex;
+  justify-content: center;
+  width: 100vw;
+  // height: 100vh;
+  
+  @media screen and (min-width:${({ theme }) => theme.mobile}) {
+    max-width: 1366px;
+  }
+`,
+};
+
+const CSSReset = createGlobalStyle`
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+html {
+  font-size: 62.5%; /* 1rem = 10px */
+  box-sizing: border-box;
+}
+
+body {
+  font-size: 1.2rem;
+  font-family: sans-serif;
+}
+`
 
 const App = () => {
-
-  // console.log('basename', process.env.REACT_APP_BASENAME)
-  // console.log('server', process.env.REACT_APP_SERVER_URL)
-
   return (
     <ThemeProvider theme={theme}>
       <CSSReset />
@@ -90,50 +112,3 @@ const App = () => {
 
 export default App;
 
-{/* <Route path='/prevention' element={<Prevention />} /> */}
-{/* <Route path='/identify' element={<Identify />} /> */}
-{/* <Route path='/notReady' element={<NotReady />} /> */}
-{/* <Route path='/createAccount/:token' element={<UpdateAccount/>} /> */}
-{/* Not found routes - this one must always be last - redirecting to home page */}
-
-
-const Styles = {
-  Wrapper: styled.main`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background-color: ${({ bgColor }) => bgColor || 'white'};
-  // height: 100vh;
-  font-family: 'Poppins', sans-serif;
-  `,
-  PageContainer: styled.div`
-  display: flex;
-  justify-content: center;
-  width: 100vw;
-  // height: 100vh;
-  
-  @media screen and (min-width:${({ theme }) => theme.mobile}) {
-    max-width: 1366px;
-  }
-`,
-};
-
-const CSSReset = createGlobalStyle`
-*,
-*::before,
-*::after {
-  margin: 0;
-  padding: 0;
-  box-sizing: inherit;
-}
-
-html {
-  font-size: 62.5%; /* 1rem = 10px */
-  box-sizing: border-box;
-}
-
-body {
-  font-size: 1.2rem;
-  font-family: sans-serif;
-}
-`
