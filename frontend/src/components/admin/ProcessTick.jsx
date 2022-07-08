@@ -298,7 +298,7 @@ const navigate = useNavigate()
         <OutlineCard >
           <div style={{ margin: '1rem', padding: '1rem' }}>
             <h2>Tick Info</h2>
-            Date Tick Found: {tick.dateTickFound.substring(0,10)}<br />
+            Date Tick Found: {tick.dateTickFound?.substring(0,10)}<br />
             Found On: {tick.foundOn}<br />
             {tick.foundOnOther && <span>Found On Other: {tick.foundOnOther}<br /></span>}
             {!tick.tickAttached && <span>Tick Attached: No<br /></span>}
