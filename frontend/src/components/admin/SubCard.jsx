@@ -36,7 +36,7 @@ const Styles = {
 }
 
 const SubCard = ({item}) => {
-  // console.log('item', item)
+  console.log('item', item)
 
   let speciesElem;
   if (item.specimenId ) {
