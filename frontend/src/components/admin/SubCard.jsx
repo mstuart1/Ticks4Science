@@ -40,7 +40,7 @@ const SubCard = ({item}) => {
 
   let speciesElem;
   if (item.specimenId ) {
-    speciesElem = <span>Species: {item.tick?.scientific}</span>
+    speciesElem = <span>Species: {item.specimen?.scientific}</span>
   } else if (item.notATick){
     speciesElem = <span>Species: Not a tick</span>
   } else {
@@ -53,7 +53,7 @@ const SubCard = ({item}) => {
         ID: {item.id}<br/>
         Date Submitted: {item.createdAt&& item.createdAt.substring(0,10)}<br/>
         Photos Reviewed: {item.photosReviewed && item.photosReviewed.substring(0,10)}<br/>
-        Photo ID: {item.photoId && item.tick?.scientific}<br/>
+        Photo ID: {item.photoId && item.specimen?.scientific}<br/>
         Specimen Requested: {item.specimenRequested && item.specimenRequested.substring(0,10)}<br/>
         Specimen Received: {item.specimenReceived && item.specimenReceived.substring(0,10)}<br/>
         Specimen Identified: {item.specimenIdentified && item.specimenIdentified.substring(0,10)}<br/>
