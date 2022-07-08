@@ -80,10 +80,10 @@ console.log(data)
 
       
       
-      let pendReceived =  data.filter(sub => sub.specimenRequested && sub.specimenReceived === null);
-      let totalIdent = data.filter(sub => sub.specimenIdentified)
-  let pendingPhotos = data.filter(item => item.photosReviewed === null)
-  let pendingSpecimens = data.filter(item => item.specimenReceived !== null && item.specimenIdentified === null)
+      let pendReceived =  data.filter(sub => !sub.duplicate && sub.specimenRequested && sub.specimenReceived === null);
+      let totalIdent = data.filter(sub => !sub.duplicate && sub.specimenIdentified)
+  let pendingPhotos = data.filter(item => !item.duplicate && item.photosReviewed === null)
+  let pendingSpecimens = data.filter(item => !item.duplicate && item.specimenReceived !== null && item.specimenIdentified === null)
 
   const createCardElems = data => {
 

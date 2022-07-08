@@ -100,6 +100,7 @@ const navigate = useNavigate()
   const [tickSpp, setTickSpp] = useState([]);
   const [idByPhoto, setIdByPhoto] = useState(false)
   const [showDelete, setShowDelete] = useState(false)
+  const [dupId, setDupId] = useState('')
 
   // get the tick info from db
   useEffect(() => {
@@ -140,6 +141,11 @@ const navigate = useNavigate()
     return updateSub(data, id)
   }
 
+  const handleDuplicate = (id, dupId) => {
+    let data = {duplicate: dupId}
+    return updateSub(data, id)
+  }
+
   const handleIdByPhoto = () => {
     console.log('clicked')
     setIdByPhoto(true)
@@ -164,6 +170,10 @@ const navigate = useNavigate()
   const handleIdentified = (id, tickId) => {
     let data = { specimenIdentified: new Date(), specimenId: tickId }
     return updateSub(data, id)
+  }
+
+  const handleChange = evt => {
+    setDupId(evt.target.value)
   }
 
   const updateSub = async (data, id) => {
@@ -195,7 +205,10 @@ const navigate = useNavigate()
             <h2>Status Info</h2>
             ID: {tick?.id}<br />
             Date Submitted: {tick?.createdAt?.substring(0, 10)}<br />
-
+            This is a duplicate to submission ID: {tick.duplicate ? tick.duplicate : (<>
+              <input type="text" name='duplicate' value={dupId} placeholder='Enter id number for original submission here' onChange={handleChange}/><button onClick={() => handleDuplicate(tick.id, dupId)}>Remove Duplicate From List</button>
+              </>)}
+            <p>If you define this submission as a duplicate, the original will stay in the lists and the duplicate(s) will be removed.  Do not mark the original as a duplicate.</p>
             {/* Photo Review button or status */}
             {tick.photosReviewed
               ? <span>Photos Reviewed: {tick.photosReviewed.substring(0, 10)} <br /></span>

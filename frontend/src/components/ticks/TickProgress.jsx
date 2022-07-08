@@ -33,11 +33,22 @@ const TickProgress = () => {
   
 
   return ( Object.keys(data).length === 0 
-  ?(<BasicPage.Text>
+  ?
+  (<BasicPage.Text>
     <h3>Sorry, we are unable to find this tick number in our system</h3>
     <InternalLinkFloatButton to='/' text='Return to Home Page' />
     <ExternalLinkFloatButton colors={{ text: 'black', shadow: '#000000', bg: theme.colors.ruYellow }} to='mailto:cvbquestions@njaes.rutgers.edu' text='Questions?  Contact Us' />
   </BasicPage.Text>) 
+  : data.duplicate ? 
+  (
+    <BasicPage.Text>
+    <h3>Uh oh, our computer logged your tick more than once!</h3>
+    The correct number to check the progress of your submission is {data.duplicate}.  Please write this number down and use it to check the progress of your tick.
+    <InternalLinkFloatButton to='/progress' text='Track Your Tick' />
+    <InternalLinkFloatButton to='/' text='Return to Home Page' />
+    <ExternalLinkFloatButton colors={{ text: 'black', shadow: '#000000', bg: theme.colors.ruYellow }} to='mailto:cvbquestions@njaes.rutgers.edu' text='Questions?  Contact Us' />
+  </BasicPage.Text>
+  )
   :(
     <BasicPage.Text>
       <BasicPage.Title>Tick Progress for Tick # {id}</BasicPage.Title>

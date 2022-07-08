@@ -46,6 +46,7 @@ module.exports = (sequelize, DataTypes) => {
         specimenReceived: DataTypes.DATE,
         specimenIdentified: DataTypes.DATE,
         notATick: DataTypes.BOOLEAN,
+        duplicate: DataTypes.INTEGER,
     }, {
         sequelize,
         modelName: 'submission',

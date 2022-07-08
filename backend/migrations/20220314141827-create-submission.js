@@ -54,6 +54,7 @@ module.exports = {
       specimenReceived: {type: Sequelize.DATE},
       specimenIdentified: {type: Sequelize.DATE},
       notATick: {type: Sequelize.BOOLEAN},
+      duplicate: {type: Sequelize.INTEGER},
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,

@@ -1,6 +1,6 @@
 const db = require("../models");
 // const Resize = require("../resize");  // trying something more simple
-// const Op = db.Sequelize.Op;
+const Op = db.Sequelize.Op;
 const Subm = db.submission;
 
 // TODO problem with getting photos - wants a token in order to view photo, so have to be logged in to rutgers.maps - either API needs to be able to download the photo somewhere or Dina's group needs to be able to access the Survey123 website so they can see the data (ideal)
@@ -108,6 +108,10 @@ exports.getAllSubs = async (req, res, next) => {
   try {
     // console.log(req.user)
     let foundSubs = await Subm.findAll({
+      where: {
+        duplicate:{
+          [Op.is]: null
+      },},
       include: [
         {
           model: db.ticks,
