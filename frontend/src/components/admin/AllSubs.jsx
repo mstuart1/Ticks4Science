@@ -59,7 +59,7 @@ const AllSubs = () => {
 
     const token = useSelector(state => state.token.data)
     
-
+console.log(data)
     
     useEffect(() => {
         let getData = async (token) => {
@@ -72,6 +72,8 @@ const AllSubs = () => {
           setData(response.data.record)
           
         })
+
+        // if !data.tick && data.specimen
         
         
       }, [token])
@@ -88,8 +90,6 @@ const AllSubs = () => {
     let cards = data.map(sub => (
       <SubCard item={sub} key={sub.id}/>
   ))
-
-  console.log(pendReceived)
   return cards
   }
 
@@ -98,6 +98,8 @@ const AllSubs = () => {
   let specimenCards = createCardElems(pendingSpecimens)
   let mailCards = createCardElems(pendReceived)
   let identCards = createCardElems(totalIdent)
+
+  // console.log('totalIdent', totalIdent)
   
   return   (
     <BasicPage.Text>

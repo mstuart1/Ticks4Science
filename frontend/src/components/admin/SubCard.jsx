@@ -36,6 +36,16 @@ const Styles = {
 }
 
 const SubCard = ({item}) => {
+  // console.log('item', item)
+
+  let speciesElem;
+  if (item.specimenId ) {
+    speciesElem = <span>Species: {item.tick?.scientific}</span>
+  } else if (item.notATick){
+    speciesElem = <span>Species: Not a tick</span>
+  } else {
+    speciesElem = ''
+  }
   return (
     <Styles.Link key={item.id} to={`/admin/processTick/${item.id}`} state={{tick: item}}>
     <OutlineCard >
@@ -47,7 +57,7 @@ const SubCard = ({item}) => {
         Specimen Requested: {item.specimenRequested && item.specimenRequested.substring(0,10)}<br/>
         Specimen Received: {item.specimenReceived && item.specimenReceived.substring(0,10)}<br/>
         Specimen Identified: {item.specimenIdentified && item.specimenIdentified.substring(0,10)}<br/>
-        Species: {item.specimenId && item.tick?.scientific}<br/>
+        {speciesElem}<br/>
         </div>
     </OutlineCard>
     </Styles.Link>

@@ -220,7 +220,7 @@ const navigate = useNavigate()
                         Click if it is not a tick
                       </HoverCard>
                     </div>)
-                    : <OutlineCard padding='1rem 2rem'>Not A Tick</OutlineCard>}
+                    : <span>Photo ID: Not a tick</span>}
                   {!tick.notATick && (
                     <>
                       {!idByPhoto && <div onClick={() => handleIdByPhoto()}>
