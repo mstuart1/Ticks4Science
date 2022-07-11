@@ -6,78 +6,78 @@ const Subm = db.submission;
 // TODO problem with getting photos - wants a token in order to view photo, so have to be logged in to rutgers.maps - either API needs to be able to download the photo somewhere or Dina's group needs to be able to access the Survey123 website so they can see the data (ideal)
 
 exports.createSubm = async (req, res, next) => {
-    console.log(`@@@@---receiving form from arcgis or website---@@@@`);
+  console.log(`@@@@---receiving form from arcgis or website---@@@@`);
+  // console.log(JSON.stringify(req.body, null, 1))
+  try {
     // console.log(JSON.stringify(req.body, null, 1))
-    try {
-        // console.log(JSON.stringify(req.body, null, 1))
-        let createdRecord;
-        let incomingInfo = req.body;
-        
-        
-    
-        // let photos = incomingInfo.feature.attachments 
-        
-        // incomingInfo = incomingInfo.feature.attributes;
-        // if (Object.keys(photos).length > 0){
-        //   incomingInfo.photoFrontUrl = photos.photoFront[0].url; // ?token=7UTVeIz0jyv8LVMGwzVWo-HIQVbEfVMmRVVUv5Zx3pa2G21rMsK398v93M3YSQUpraQJ64I-iimQkAOOmXcuXqfa6YDyZgaIBT1jVJhEmkNAteHCFNq5uxWulZLCMkeQ0OLJ5ICn34wSWKPITxPm4CHYzSbZENbc_ljBtHyvmfRn0X5VVhSNz7fcAp02MwkQ6PV7wda9acD4S8ObH--txOp8LxdxzjYahPWrCPRRF4Q.
-        //   incomingInfo.photoBackUrl = photos.photoBack[0].url;
-        // }
-        // console.log(incomingInfo)
-        await db.sequelize
+    let createdRecord;
+    let incomingInfo = req.body;
+
+
+
+    // let photos = incomingInfo.feature.attachments 
+
+    // incomingInfo = incomingInfo.feature.attributes;
+    // if (Object.keys(photos).length > 0){
+    //   incomingInfo.photoFrontUrl = photos.photoFront[0].url; // ?token=7UTVeIz0jyv8LVMGwzVWo-HIQVbEfVMmRVVUv5Zx3pa2G21rMsK398v93M3YSQUpraQJ64I-iimQkAOOmXcuXqfa6YDyZgaIBT1jVJhEmkNAteHCFNq5uxWulZLCMkeQ0OLJ5ICn34wSWKPITxPm4CHYzSbZENbc_ljBtHyvmfRn0X5VVhSNz7fcAp02MwkQ6PV7wda9acD4S8ObH--txOp8LxdxzjYahPWrCPRRF4Q.
+    //   incomingInfo.photoBackUrl = photos.photoBack[0].url;
+    // }
+    // console.log(incomingInfo)
+    await db.sequelize
       .transaction(async (t) => {
-        createdRecord = await Subm.create(incomingInfo, {transaction: t})
+        createdRecord = await Subm.create(incomingInfo, { transaction: t })
       });
-      // console.log(JSON.stringify(createdRecord, null, 1))
-        return res.json({data: createdRecord})
-    } catch (err) {
-      console.log(err.message)
-        next({status: 400, message: err.message})
-    }
-  
+    // console.log(JSON.stringify(createdRecord, null, 1))
+    return res.json({ data: createdRecord })
+  } catch (err) {
+    console.log(err.message)
+    next({ status: 400, message: err.message })
+  }
+
 }
 exports.uploadPhoto = async (req, res, next) => {
-  
-    console.log(`@@@@---receiving image from website---@@@@`);
-    try {
-      let {id} = req.params
-      const url = process.env.PHOTO_URL
-      console.log(`@@@@---photo url: ${url}---@@@@`);
-      const filesArray = req.files
-      
-        // const imagePath = path.join(__dirname, '/public/tickImages');
-        // const fileUpload = new Resize(imagePath)
-        if (!filesArray || filesArray < 1) {
-          throw new Error('Please provide an image')
-        }
-        let record = await Subm.findByPk(id)
-        filesArray.forEach((file, i) => {
-          console.log(`@@@@@---path---@@@@@`, file.path)
-          if (i === 0){
-            record.photoFrontUrl = `${url}/${file.path}`;
-          }
-          if (i === 1){
-            record.photoBackUrl = `${url}/${file.path}`;
-          }
-          if (i === 2){
-            record.photoOtherUrl = `${url}/${file.path}`;
-          }
 
-        })
-        
-        await record.save();
-        console.log(`@@@@---photo url example---@@@@`, record.photoFrontUrl)
-        
-        return res.json({newUrls: [record.photoFrontUrl, record.photoBackUrl, record.photoOtherUrl]})
-    } catch (err) {
-      console.log(err.message)
-        next(err)
+  console.log(`@@@@---receiving image from website---@@@@`);
+  try {
+    let { id } = req.params
+    const url = process.env.PHOTO_URL
+    console.log(`@@@@---photo url: ${url}---@@@@`);
+    const filesArray = req.files
+
+    // const imagePath = path.join(__dirname, '/public/tickImages');
+    // const fileUpload = new Resize(imagePath)
+    if (!filesArray || filesArray < 1) {
+      throw new Error('Please provide an image')
     }
-  
+    let record = await Subm.findByPk(id)
+    filesArray.forEach((file, i) => {
+      console.log(`@@@@@---path---@@@@@`, file.path)
+      if (i === 0) {
+        record.photoFrontUrl = `${url}/${file.path}`;
+      }
+      if (i === 1) {
+        record.photoBackUrl = `${url}/${file.path}`;
+      }
+      if (i === 2) {
+        record.photoOtherUrl = `${url}/${file.path}`;
+      }
+
+    })
+
+    await record.save();
+    console.log(`@@@@---photo url example---@@@@`, record.photoFrontUrl)
+
+    return res.json({ newUrls: [record.photoFrontUrl, record.photoBackUrl, record.photoOtherUrl] })
+  } catch (err) {
+    console.log(err.message)
+    next(err)
+  }
+
 }
 exports.getProgress = async (req, res, next) => {
   console.log(`@@@@---getting progress of ${req.params.id}---@@@@`);
   try {
-    let {id} = req.params
+    let { id } = req.params
     let foundRecord = await Subm.findByPk(id, {
       include: [
         {
@@ -102,10 +102,10 @@ exports.getProgress = async (req, res, next) => {
         },
       ]
     })
-    
-    res.json({record: foundRecord})
-      
-      
+
+    res.json({ record: foundRecord })
+
+
   } catch (err) {
     console.log(err.message)
     next(err)
@@ -119,16 +119,17 @@ exports.getAllSubs = async (req, res, next) => {
     // let page = req.query.page ? req.query.page : 0;
     // let page = 0;
     // console.log(req.user)
-    let {numPerPage} = req.query.numPerPage ? req.query : 3;
-    let {page} = req.query.page ? req.query : 0;
+
+    // let page  = req.query.page ? req.query.page : 0;
     let foundSubs = await Subm.findAll({
       where: {
-        duplicate:{
+        duplicate: {
           [Op.is]: null
+        },
+
       },
-    limit: numPerPage,
-            offset: page,
-    },
+
+      // offset: page,
       include: [
         {
           model: db.ticks,
@@ -150,11 +151,63 @@ exports.getAllSubs = async (req, res, next) => {
           as: 'photoIdUser',
           attributes: ['id', 'firstName', 'lastName']
         },
-      
+
       ]
     })
     // console.log(JSON.stringify(foundSubs, null, 1))
-    res.json({record: foundSubs})
+    res.json({ record: foundSubs })
+  } catch (err) {
+    console.log(err.message)
+    next(err)
+  }
+}
+
+exports.getSubPage = async (req, res, next) => {
+  console.log(`@@@@---getting a page of submissions---@@@@`);
+  try {
+
+    let numLimit = req.query.numLimit ? req.query.numLimit : 3;
+    let page = req.query.page ? req.query.page : 0;
+    let foundSubs;
+
+    await db.sequelize.transaction(async (t) => {
+      foundSubs = await Subm.findAll({
+        where: {
+          duplicate: {
+            [Op.is]: null
+          },
+
+        },
+        limit: numLimit,
+        offset: page,
+        include: [
+          {
+            model: db.ticks,
+            as: 'photo',
+            attributes: ['id', 'scientific', 'common']
+          },
+          {
+            model: db.ticks,
+            as: 'specimen',
+            attributes: ['id', 'scientific', 'common']
+          },
+          {
+            model: db.users,
+            as: 'specIdUser',
+            attributes: ['id', 'firstName', 'lastName']
+          },
+          {
+            model: db.users,
+            as: 'photoIdUser',
+            attributes: ['id', 'firstName', 'lastName']
+          },
+
+        ]
+      }, { transaction: t })
+    })
+
+    // console.log(JSON.stringify(foundSubs, null, 1))
+    res.json({ record: foundSubs })
   } catch (err) {
     console.log(err.message)
     next(err)
@@ -163,14 +216,14 @@ exports.getAllSubs = async (req, res, next) => {
 
 exports.updateSubm = async (req, res, next) => {
   console.log(`@@@@---update submission: ${JSON.stringify(req.body, null, 1)}---@@@@`);
-      try {
-        let {id} = req.params
-        let data = req.body
-        let updatedTick;
-        
-        await db.sequelize
-        .transaction(async (t) => {
-        await Subm.update(data, {where: {id}}, {transaction: t})
+  try {
+    let { id } = req.params
+    let data = req.body
+    let updatedTick;
+
+    await db.sequelize
+      .transaction(async (t) => {
+        await Subm.update(data, { where: { id } }, { transaction: t })
         updatedTick = await Subm.findByPk(id, {
           include: [
             {
@@ -194,16 +247,17 @@ exports.updateSubm = async (req, res, next) => {
               attributes: ['id', 'firstName', 'lastName']
             },
           ]
-        }, {transaction: t})})
-          if (updatedTick === null) {
-            throw new Error(`tick ${id} not found`)
-          }
-          return res.json({record: updatedTick})
-      } catch (err) {
-        console.log(err.message)
-          next(err)
-      }
-    
+        }, { transaction: t })
+      })
+    if (updatedTick === null) {
+      throw new Error(`tick ${id} not found`)
+    }
+    return res.json({ record: updatedTick })
+  } catch (err) {
+    console.log(err.message)
+    next(err)
+  }
+
 
 
 }
@@ -211,27 +265,27 @@ exports.updateSubm = async (req, res, next) => {
 exports.deleteSub = async (req, res, next) => {
   console.log(`deleting submission ${req.params.id}`)
   try {
-    const {id} = req.params;
+    const { id } = req.params;
     console.log(id)
     let num;
     await db.sequelize
       .transaction(async (t) => {
 
-    num = await Subm.destroy({
-      where: { id:id },
-    }, {transaction: t})
-  });
-      console.log(num)
-        if (num == 1) {
-          res.json({message: `Record ${id} was deleted`})
-        } else {
-          res.status(400).json({
-            code: "ERROR_ADMIN_DELETE",
-            message: `Cannot delete record with id=${id}. Maybe record was not found!`,
-          });
-        }
-      
- 
+        num = await Subm.destroy({
+          where: { id: id },
+        }, { transaction: t })
+      });
+    console.log(num)
+    if (num == 1) {
+      res.json({ message: `Record ${id} was deleted` })
+    } else {
+      res.status(400).json({
+        code: "ERROR_ADMIN_DELETE",
+        message: `Cannot delete record with id=${id}. Maybe record was not found!`,
+      });
+    }
+
+
   } catch (error) {
     console.log(error.message)
     next(error);
