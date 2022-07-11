@@ -12,6 +12,7 @@ import { removeToken } from "./actions";
 import UserMgt from "./UserMgt";
 import OutlineCard from "../ui/outlineCard/OutlineCard";
 import SubCard from "./SubCard";
+import EditUser from "./EditUser";
 
 // import { getOrgDataRequest } from "./actions";
 // import { PageContainer} from '../styles/Common.styled'
@@ -22,7 +23,7 @@ import SubCard from "./SubCard";
 
 const Styles = {
   Input: styled.input`
-    width: 80vw;
+    // width: 80vw;
     @media screen and (min-width:${({ theme }) => theme.mobile}) {
         max-width: 800px;
       }
@@ -47,7 +48,7 @@ const Styles = {
     border-radius: 0.5rem;
     `,
   InputCont: styled.div`
-      height: 200px;
+      // height: 200px;
       display: flex;
       flex-direction: column;
       flex-wrap: wrap;
@@ -214,7 +215,7 @@ const Dashboard = () => {
           {blockElems}
         </Styles.BlockCont>
 
-
+        <Styles.BlockCont style={{flexDirection: 'column', alignItems: 'center', justifyContent: 'center'}}>
         {user.manageUsers && (
           <OutlineCard>
             <BasicPage.SectionTitle>Invite an Admin User</BasicPage.SectionTitle>
@@ -229,7 +230,8 @@ const Dashboard = () => {
           </OutlineCard>
         )}
         <UserMgt />
-
+     <EditUser/>
+        </Styles.BlockCont>
 
 
       </div>
