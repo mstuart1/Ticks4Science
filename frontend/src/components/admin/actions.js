@@ -41,7 +41,7 @@ export const loadToken = credentials => async dispatch => {
         }
     } catch (err) {
         console.log(`!!@@@@---Error---@@@@!! ${err.message}`)
-        dispatch(displayAlert(JSON.stringify(err.response)));
+        dispatch(displayAlert('Your username and password do not match the information in our system.', JSON.stringify(err.message)));
     }
 }
 
