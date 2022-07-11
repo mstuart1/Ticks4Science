@@ -117,13 +117,11 @@ exports.updateUser = async (req, res, next) => {
     try {
         let data = req.body
         let { id } = data
-
-
-
-        if (data.password) {
-            const salt = await bcrypt.genSalt(10);
-            data.password = await bcrypt.hash(data.password, salt);
-        }
+        // is changing the password every time?
+        // if (data.password) {
+        //     const salt = await bcrypt.genSalt(10);
+        //     data.password = await bcrypt.hash(data.password, salt);
+        // }
         let updatedUser
         await db.sequelize
             .transaction(async (t) => {
