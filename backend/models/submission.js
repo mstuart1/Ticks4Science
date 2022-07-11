@@ -11,6 +11,12 @@ module.exports = (sequelize, DataTypes) => {
             submission.belongsTo(models.ticks, {
                 as: "specimen",
               });
+              submission.belongsTo(models.users, {
+                as: "photoIdUser"
+              });
+              submission.belongsTo(models.users, {
+                as: "specIdUser"
+              });
         }
     }
     submission.init({
