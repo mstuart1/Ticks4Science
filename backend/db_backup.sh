@@ -12,7 +12,7 @@ DAILY_DELETE_NAME="daily-"`date +"%Y-%m-%d" --date '7 days ago'`
 WEEKLY_DELETE_NAME="weekly-"`date +"%Y-%m-%d" --date '5 weeks ago'`
 MONTHLY_DELETE_NAME="monthly-"`date +"%Y-%m-%d" --date '12 months ago'`
 
-databases=($(/usr/bin/mysql -Bse "show databases" | grep -i -v "_schema" | grep -i -v "sys" | grep -i -v "mysql"))
+databases=($(/usr/bin/mysql -Bse "show databases" | grep -i -v "_schema" | grep -i -v "sys" | grep -i -v "mysql" | grep -i "ticks"))
 
 function do_backups() {
   # Get db name or "all"
@@ -67,7 +67,7 @@ echo
 
 # Entire backup
 echo "Starting complete MySQL backup..."
-do_backups all
+# do_backups all
 
 # Individual db backups
 for db in "${databases[@]}"; do
