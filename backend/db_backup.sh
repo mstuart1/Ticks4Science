@@ -5,7 +5,7 @@
 # edited by G Pugh 2019-01-15
 
 
-STORE_FOLDER="~/prod/backups"
+STORE_FOLDER="./prod/backend/backups"
 
 TODAY=$(date +"%Y-%m-%d")
 DAILY_DELETE_NAME="daily-"`date +"%Y-%m-%d" --date '7 days ago'`
