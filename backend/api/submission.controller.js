@@ -90,7 +90,16 @@ exports.getProgress = async (req, res, next) => {
           as: 'specimen',
           attributes: ['id', 'scientific', 'common']
         },
-      
+        {
+          model: db.users,
+          as: 'specIdUser',
+          attributes: ['id', 'firstName', 'lastName']
+        },
+        {
+          model: db.users,
+          as: 'photoIdUser',
+          attributes: ['id', 'firstName', 'lastName']
+        },
       ]
     })
     
@@ -123,6 +132,16 @@ exports.getAllSubs = async (req, res, next) => {
           as: 'specimen',
           attributes: ['id', 'scientific', 'common']
         },
+        {
+          model: db.users,
+          as: 'specIdUser',
+          attributes: ['id', 'firstName', 'lastName']
+        },
+        {
+          model: db.users,
+          as: 'photoIdUser',
+          attributes: ['id', 'firstName', 'lastName']
+        },
       
       ]
     })
@@ -139,9 +158,12 @@ exports.updateSubm = async (req, res, next) => {
       try {
         let {id} = req.params
         let data = req.body
-        console.log(id)
-        await Subm.update(data, {where: {id}})
-        let updatedTick = await Subm.findByPk(id, {
+        let updatedTick;
+        
+        await db.sequelize
+        .transaction(async (t) => {
+        await Subm.update(data, {where: {id}}, {transaction: t})
+        updatedTick = await Subm.findByPk(id, {
           include: [
             {
               model: db.ticks,
@@ -153,9 +175,18 @@ exports.updateSubm = async (req, res, next) => {
               as: 'specimen',
               attributes: ['id', 'scientific', 'common']
             },
-          
+            {
+              model: db.users,
+              as: 'specIdUser',
+              attributes: ['id', 'firstName', 'lastName']
+            },
+            {
+              model: db.users,
+              as: 'photoIdUser',
+              attributes: ['id', 'firstName', 'lastName']
+            },
           ]
-        })
+        }, {transaction: t})})
           if (updatedTick === null) {
             throw new Error(`tick ${id} not found`)
           }
