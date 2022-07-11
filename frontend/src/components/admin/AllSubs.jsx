@@ -59,7 +59,7 @@ const AllSubs = () => {
 
     const token = useSelector(state => state.token.data)
     
-console.log(data)
+console.log('data',data)
     
     useEffect(() => {
         let getData = async (token) => {
