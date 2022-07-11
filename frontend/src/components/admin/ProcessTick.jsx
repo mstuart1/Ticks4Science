@@ -279,7 +279,7 @@ const navigate = useNavigate()
                 </div>)
               )
             )}
-{console.log(tick)}
+{/* {console.log(tick)} */}
             {/* Speciment identified button or status */}
             {tick.specimenId
               ? <> Specimen Identified: {tick.specimenIdentified.substring(0, 10)}<br /> Species: {tick.specimen.scientific}<br /></>
