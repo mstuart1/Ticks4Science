@@ -115,12 +115,20 @@ exports.getProgress = async (req, res, next) => {
 exports.getAllSubs = async (req, res, next) => {
   console.log(`@@@@---getting all submissions---@@@@`);
   try {
+    // let orgsPerPage = req.query.orgsPerPage ? req.query.orgsPerPage : 100;
+    // let page = req.query.page ? req.query.page : 0;
+    // let page = 0;
     // console.log(req.user)
+    let {numPerPage} = req.query.numPerPage ? req.query : 3;
+    let {page} = req.query.page ? req.query : 0;
     let foundSubs = await Subm.findAll({
       where: {
         duplicate:{
           [Op.is]: null
-      },},
+      },
+    limit: numPerPage,
+            offset: page,
+    },
       include: [
         {
           model: db.ticks,
