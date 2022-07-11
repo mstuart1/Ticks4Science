@@ -176,10 +176,10 @@ const Dashboard = () => {
   ]
 
   let blockElems = blockArray.map((block, i) => (
-    <div  onClick={() => {
+    <div key={i}  onClick={() => {
       
       return (navigate("/admin/allSubs", {state:{filter: `${block.filter}`}}))}}>
-    <OutlineCard key={i}>
+    <OutlineCard >
       <Styles.BlockDetail>
         <h3>{block.text}</h3>
         <h1>{block.number}</h1>
@@ -195,9 +195,11 @@ const Dashboard = () => {
 
   return (
     <BasicPage.Text>
-      <div>Hi, {user.firstName ? user.firstName : (
-        `you haven't set up your profile yet`
-      )}</div>
+      <div>Hi, 
+        {user.firstName ? user.firstName : (
+        `you haven't set up your profile yet, click the button below to edit your profile.`
+      )}
+      </div>
 
       <BasicPage.Form>
 

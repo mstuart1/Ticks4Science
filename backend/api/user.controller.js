@@ -124,13 +124,15 @@ exports.updateUser = async (req, res, next) => {
             const salt = await bcrypt.genSalt(10);
             data.password = await bcrypt.hash(data.password, salt);
         }
-
+        let updatedUser
         await db.sequelize
             .transaction(async (t) => {
 
                 await User.update(data, { where: { id } }, { transaction: t })
+                updatedUser = await User.findByPk(id, {transaction: t})
             })
-        return res.json({ message: 'ok' })
+            console.log(updatedUser)
+        return res.json({ data: updatedUser })
 
     } catch (err) {
         console.log(err.message)

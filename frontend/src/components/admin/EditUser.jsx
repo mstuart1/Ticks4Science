@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import { createInputElems } from '../../tools/createElemFunc';
 import HoverCard from '../ui/hoverCard/HoverCard';
+import { updateUserReq } from './actions';
 
 const Styles = {
     InputCont: styled.div`
@@ -19,10 +20,11 @@ const Styles = {
 }
 
 const EditUser = () => {
-    
+    const dispatch = useDispatch()
     const user = useSelector(state => state.user)
 
     let initialState = {
+        id: user.id,
         firstName: user.firstName,
         lastName: user.lastName,
         email: user.email,
@@ -34,7 +36,8 @@ const EditUser = () => {
     const toggleEdit = () => setShowEdit(!showEdit);
 
     const handleEdit = () => {
-        console.log('editing user')
+        dispatch(updateUserReq(input))
+        toggleEdit()
     }
 
     const handleChange = (evt) => {
@@ -79,7 +82,7 @@ const EditUser = () => {
     <div>
     <div onClick={toggleEdit}>
     <HoverCard padding='1rem 2rem' >
-    <span style={{ fontWeight: 'bold'}}>{showEdit ? "Close Edit Profile Without Saving" : "Edit User Profile"}</span>
+    <span style={{ fontWeight: 'bold'}}>{showEdit ? "Close Profile Editor Without Saving" : "Edit Your Profile"}</span>
     </HoverCard>
   </div>
   {showEdit && (

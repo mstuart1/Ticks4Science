@@ -48,9 +48,9 @@ export const loadToken = credentials => async dispatch => {
 export const updateUserReq = data => async dispatch => {
     try {
         let response = await UserDataService.updateUser(data);
-        console.log(response)
-        // let user = response.data.data
-        // dispatch(setActiveUser(user))
+        // console.log(response.data.data)
+        let user = response.data.data
+        dispatch(setActiveUser(user))
     } catch (err) {
         console.log(`!!@@@---Error---@@@!! ${err.message}`)
         dispatch(displayAlert('There has been an error attempting to update your user profile', JSON.stringify(err.message)))
