@@ -148,7 +148,7 @@ const Dashboard = () => {
 
   let totalSubs = data.length;
   let pendPhotos = data.filter(sub => sub.photosReviewed === null)
-  let pendReceived = data.filter(sub => sub.specimenReceived === null && sub.specimenRequested !== null)
+  let pendRecieved = data.filter(sub => sub.specimenReceived === null && sub.specimenRequested !== null)
   let pendIdentified = data.filter(sub => sub.specimenReceived && sub.specimenIdentified === null);
   let totalIdent = data.filter(sub => sub.specimenIdentified)
 
@@ -163,9 +163,9 @@ const Dashboard = () => {
      text: 'Waiting for Photo Review',
      number: pendPhotos.length },
 
-    { filter: "pendReceived",
+    { filter: "pendRecieved",
      text: 'Waiting for User to Mail Tick In',
-     number: pendReceived.length },
+     number: pendRecieved.length },
 
     { filter: "pendIdentified",
      text: 'Waiting for Team to Identify Mailed-In Tick',
