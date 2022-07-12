@@ -179,7 +179,7 @@ const Dashboard = () => {
   let blockElems = blockArray.map((block, i) => (
     <div key={i} style={{cursor: 'pointer'}} onClick={() => {
       
-      return (navigate("/admin/allSubs", {state:{filter: `${block.filter}`, limitMax: totalSubs}}))}}>
+      return (navigate("/admin/allSubs", {state:{filter: `${block.filter}`, limitMax: block.number}}))}}>
     <OutlineCard >
       <Styles.BlockDetail>
         <h3>{block.text}</h3>

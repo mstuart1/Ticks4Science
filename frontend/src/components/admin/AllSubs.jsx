@@ -121,7 +121,7 @@ const AllSubs = () => {
             
       <InternalLinkFloatButton padding="1rem 2rem" text='Back to Dashboard' to='/admin' />
             
-            {page < limitMax && <PageButton handleClick={() => handlePageClick(1)} text='Next Page'/>}
+            {page + 1 < limitMax/limit && <PageButton handleClick={() => handlePageClick(1)} text='Next Page'/>}
             
        </Styles.ButtonCont>
           <Styles.WaitingGroup>
