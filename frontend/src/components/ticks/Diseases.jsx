@@ -48,16 +48,16 @@ const Diseases = () => {
                 Tick-Borne Diseases
             </BasicPage.Title>
             <BasicPage.SectionSubtitle>
-                ⭐️ <span color={theme.colors.ruRed}>Disclaimer</span>: This page is intended for spreading awareness and should not be used as a source for medical advice or diagnosis. If you may have a tick-borne disease, seek a medical professional's guidance for appropriate assistance!
+                ⭐️ <span color={theme.colors.ruRed}>Disclaimer</span>: This page is intended to increase awareness and should not be used as a source for medical advice or diagnosis. If you think you have a tick-borne disease, seek a medical professional's guidance for appropriate assistance!
             </BasicPage.SectionSubtitle>
             <p>
-            Bacteria, viruses, or parasites transmitted by ticks are called "tick-borne pathogens" and they can cause "tick-borne diseases". When a tick bites a person or pet, there is a potential that infection can occur depending on whether that tick was carrying a tick-borne pathogen and how long the tick was attached. It's essential to recognize the signs and symptoms of common tick-borne diseases in New Jersey and seek medical attention as soon as possible after a tick bite if you suspect an infection.
+            Bacteria, viruses, or parasites transmitted by ticks are called "tick-borne pathogens" and they can cause "tick-borne diseases". When a tick bites a person or pet, infection can occur depending on whether that tick was carrying a tick-borne pathogen and how long the tick was attached. It's essential to recognize the signs and symptoms of common tick-borne diseases in New Jersey and seek medical attention as soon as possible after a tick bite if you suspect an infection.
             </p>
             <p>
                 The most common symptoms of a tick-borne disease are non-specific flu-like symptoms, such as fever, tiredness, headache, joint pain, and muscle aches. Symptoms may develop within a few days to several months after the initial tick bite.  This makes them hard to differentiate from other illnesses. Some tick-borne diseases are associated with a rash, but not all people will develop the rash. Some people do not become sick after being infected with a tick-borne pathogen.
             </p>
             <p>
-                Note: It is possible to have more than one tick-borne illness simultaneously. This is either because the tick was infected with more than one pathogen or you were potentially bit by multiple ticks.
+                Note: It is possible to have more than one tick-borne illness simultaneously. This is either because the tick was infected with more than one pathogen or you were potentially bitten by multiple ticks.
             </p>
             <BasicPage.SectionTitle>Common Tick-Borne Diseases in New Jersey</BasicPage.SectionTitle>
 
