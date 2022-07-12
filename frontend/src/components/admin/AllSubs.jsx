@@ -59,7 +59,7 @@ const Styles = {
       `,
       ButtonPlaceholder: styled.div`
       display: inline-block;
-      width: 300px !important;
+      width: 33% !important;
       `,
 }
 
