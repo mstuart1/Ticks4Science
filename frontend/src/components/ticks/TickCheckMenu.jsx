@@ -43,15 +43,15 @@ const TickCheckMenu = () => {
         <BasicPage.ImageCont>
           <figure>
             <img src='https://www.cdc.gov/ticks/images/gallery/Permethrininstructions.jpg?_=03722' alt='preparing clothing with tick spray'  />
-            <figcaption>This woman is carefully reading instructions before applying her repellent.</figcaption>
+            <figcaption>Carefully read the instructions before applying repellents to your skin or insecticides to your clothing..</figcaption>
           </figure>
         </BasicPage.ImageCont>
         <BasicPage.SectionSubtitle>
-        Prepare before you go out: apply repellents to skin and/or treat clothing and gear with permethrin.
+        Prepare before you go out:
         </BasicPage.SectionSubtitle>
         <ul>
           <li>
-          Use a repellent that contains 20%-30% DEET, 20% picaridin, Oil of Lemon Eucalyptus, or IR3535 on exposed skin, regularly applying every 5 hours.
+          Use a repellent that contains DEET, picaridin, Oil of Lemon Eucalyptus, or IR3535 on exposed skin, regularly applying every 5 hours.
           </li>
           <li>
           Use 0.5% permethrin to treat clothing and gear. You can also buy clothing pre-treated with permethrin that will last for many washes.
@@ -64,7 +64,7 @@ const TickCheckMenu = () => {
         Ways to wear everyday clothing to prevent tick bites:
         </p>
         <ul><li>
-        Consider wearing light colored long-sleeved shirts, pants, closed-toed shoes, and tuck pants into socks. Ticks grab onto you when you brush against vegetation (grass and bushes). If you prevent them from entering around your shoes and socks they have to crawl upwards seeking skin, giving you more time to find them and prevent attachment. Light colored clothing lets you spot ticks more easily.
+        Consider wearing light colored long-sleeved shirts, pants, closed-toed shoes, and tuck pants into socks. Ticks grab onto you when you brush against vegetation (grass and bushes) so preventing direct contact with your skin will give you more time to find them and avoid attachment. Light colored clothing lets you spot ticks more easily.
 
           </li></ul>
           <BasicPage.SectionSubtitle>
@@ -81,7 +81,7 @@ const TickCheckMenu = () => {
                     <BasicPage.SectionSubtitle>
                         What is DEET?
                     </BasicPage.SectionSubtitle>
-                        DEET is a synthetic chemical that blocks the ability for biting bugs to smell us.<br/>
+                        DEET is a synthetic chemical that blocks the ability of biting bugs to smell us.<br/>
                         For more information, visit the U.S. Environmental Protection Agency's website about <BasicPage.OutieLink href='https://www.epa.gov/insect-repellents/deet' ><span>DEET</span></BasicPage.OutieLink>.
                     </div>
                 </BasicPage.CardSpecial>
@@ -131,7 +131,7 @@ For more information, visit the U.S. Environmental Protection Agency's website a
                         <BasicPage.SectionSubtitle>
                     What is permethrin?
                     </BasicPage.SectionSubtitle>
-                    Permethrin is an insecticide that can cause biting bugs to have severe reactions when ingested. This product should only be treated on clothes and can be toxic to cats.<br/>For more information, visit the U.S. Environmental Protection Agency's website about <BasicPage.OutieLink href='https://www.epa.gov/insect-repellents/repellent-treated-clothing'><span>permethrin</span></BasicPage.OutieLink>.
+                    Permethrin is an insecticide that also acts as a repellent. Permethrin is safe when applied to clothing but not directly on skin and is toxic to cats. This product should only be treated on clothes and can be toxic to cats.<br/>For more information, visit the U.S. Environmental Protection Agency's website about <BasicPage.OutieLink href='https://www.epa.gov/insect-repellents/repellent-treated-clothing'><span>permethrin</span></BasicPage.OutieLink>.
                         </div>
                 </BasicPage.CardSpecial>
             </OutlineCard> 
