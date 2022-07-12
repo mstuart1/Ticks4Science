@@ -166,7 +166,7 @@ const TickPage = () => {
         </Styles.MiddleCont>
         <OutlineCard>
           <h3>A Reminder About Engorged Ticks</h3>
-          <p>Blood feeding increases the <BasicPage.InnieLink to='/tickOrInsect'><span>ticks's size drastically</span></BasicPage.InnieLink> and can increase the chances of them passing on a <BasicPage.InnieLink to='/disease'><span>pathogen</span></BasicPage.InnieLink></p>
+          <p>Blood feeding increases the <BasicPage.InnieLink to='/tickOrInsect'><span>tick's size drastically</span></BasicPage.InnieLink> and can increase the chances of them passing on a <BasicPage.InnieLink to='/disease'><span>pathogen</span></BasicPage.InnieLink></p>
         </OutlineCard>
       </Styles.CardCont>
     </BasicPage.Text>
