@@ -210,8 +210,8 @@ const Dashboard = () => {
 
 
       <div>
-
-        <InternalLinkFloatButton colors={{ text: 'white', bg: theme.colors.ruTeal }} padding="1rem 2rem" text="View Submissions" to='/admin/allSubs' />
+{/* 
+        <InternalLinkFloatButton colors={{ text: 'white', bg: theme.colors.ruTeal }} padding="1rem 2rem" text="View Submissions" to='/admin/allSubs' /> */}
         <h4 style={{textAlign: 'left'}}> • You can now click on the blocks to see filtered lists of all of the submissions.</h4>
         <h4 style={{textAlign: 'left'}}> • You can now delete submissions.</h4>
         <Styles.BlockCont>
