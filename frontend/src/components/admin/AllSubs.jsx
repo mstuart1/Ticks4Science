@@ -59,12 +59,12 @@ const AllSubs = () => {
 
     const token = useSelector(state => state.token.data)
     
-console.log('data',data)
+
     
     useEffect(() => {
         let getData = async (token) => {
-            
-         return await SubmissionDataService.getAllSubm(token);
+        //token, page, limit
+         return await SubmissionDataService.getPageSubm(token,0,3);
         }
         
         getData(token).then(response => {

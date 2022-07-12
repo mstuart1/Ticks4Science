@@ -22,6 +22,11 @@ class SubmissionDataService {
             'Authorization': `Basic ${token}` 
           }})
     }
+    getPageSubm(token, page, limit) {
+        return http.get(`/submission/paged?numLimit=${limit}&page=${page}`, {  headers: {
+            'Authorization': `Basic ${token}` 
+          }})
+    }
     updateSub(data, id) {
         console.log(data)
         return http.put(`/submission/${id}`, data)
