@@ -7,6 +7,7 @@ module.exports = (app) => {
   
     router
       .get("/", auth.verifyToken, SubmCtl.getAllSubs)
+      .get("/paged", auth.verifyToken, SubmCtl.getSubPage)
       .post("/", SubmCtl.createSubm)
       .post("/photos/:id", upload.array('photos'),  SubmCtl.uploadPhoto)
       .get('/:id', SubmCtl.getProgress)

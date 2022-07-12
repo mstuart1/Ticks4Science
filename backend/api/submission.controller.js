@@ -166,20 +166,20 @@ exports.getSubPage = async (req, res, next) => {
   console.log(`@@@@---getting a page of submissions---@@@@`);
   try {
 
-    let numLimit = req.query.numLimit ? req.query.numLimit : 3;
-    let page = req.query.page ? req.query.page : 0;
+    let numLimit = req.query.numLimit ? parseInt(req.query.numLimit) : 3;
+    let page = req.query.page ? parseInt(req.query.page) : 0;
     let foundSubs;
 
     await db.sequelize.transaction(async (t) => {
       foundSubs = await Subm.findAll({
+        limit: numLimit,
+        offset: page,
         where: {
           duplicate: {
             [Op.is]: null
           },
 
         },
-        limit: numLimit,
-        offset: page,
         include: [
           {
             model: db.ticks,
