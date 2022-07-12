@@ -80,7 +80,7 @@ const EditUser = () => {
 
   return (
     <div>
-    <div onClick={toggleEdit}>
+    <div onClick={toggleEdit} style={{cursor: 'pointer'}}>
     <HoverCard padding='1rem 2rem' >
     <span style={{ fontWeight: 'bold'}}>{showEdit ? "Close Profile Editor Without Saving" : "Edit Your Profile"}</span>
     </HoverCard>
