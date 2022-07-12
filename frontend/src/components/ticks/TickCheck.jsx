@@ -26,7 +26,7 @@ const TickCheck = () => {
     return (
         <BasicPage.Text>
             <BasicPage.Title>Tick Checks</BasicPage.Title>
-            <p>The most effective way to know if you have a tick is to check yourself and your pets after spending time outside. Practicing thorough tick checks is essential because ticks can take anywhere between 15 minutes to several hours to find a spot they like. There are three levels of checks to perform given how deceptive ticks can be. </p>
+            <p>The most effective way to know if you have a tick is to check yourself and your pets after spending time outside. Practicing thorough tick checks is essential because ticks can take anywhere between 15 minutes to several hours to find a spot they like. There are three levels of checks to perform given how persistent ticks can be. </p>
 
             <BasicPage.CardContainer>
 
@@ -42,7 +42,7 @@ const TickCheck = () => {
                     <StepStyles.CardSpecial>
                         <BasicPage.StepSpan> Inspection #2 - Skin:</BasicPage.StepSpan>
                         
-                            <p>Ticks enjoy finding warm and dark places to hide, so glancing over the surface of your skin isn't enough. Places such as behind the ears, between toes and fingers, behind the knees, around the ankles, the groin, your hair, and even your belly button are important to look over.</p>
+                            <p>Glancing over the surface of your skin isn't enough. Look behind the ears, between toes and fingers, behind the knees, around the ankles, the groin, your hair, and even your belly button.</p>
                            
                         
                     </StepStyles.CardSpecial>
