@@ -197,7 +197,7 @@ const ProcessTick = () => {
 
   return (
     <BasicPage.Text>
-      {/* <p>Developers Note: based on emails, it looks like Dina plans to request all ticks be sent in, the photo review is to make sure it is a tick, not to identify it.  With this info I made the flow of information follow the path that if the photos have been reviewed, the specimen requested button appears or not a tick button, if the specimen has been requested, the submission received button appears, if the specimen has been recieved, the speicies buttons appear to choose the identification.</p> */}
+      {/* <p>Developers Note: based on emails, it looks like Dina plans to request all ticks be sent in, the photo review is to make sure it is a tick, not to identify it.  With this info I made the flow of information follow the path that if the photos have been reviewed, the specimen requested button appears or not a tick button, if the specimen has been requested, the submission received button appears, if the specimen has been received, the speicies buttons appear to choose the identification.</p> */}
       <InternalLinkFloatButton colors={{ text: theme.colors.ruTeal, shadow: theme.colors.ruTeal }} to={-1} text='  Back to List  ' />
       <Styles.PageCont>
 
@@ -270,7 +270,7 @@ const ProcessTick = () => {
             {tick.photoId && (<span>Photo ID: {tick.photo.scientific}<br/>Photo ID'd by: {`${tick.photoIdUser?.firstName} ${tick.photoIdUser?.lastName}`}</span>)}
 
 
-            {/* Specimen recieved button or status */}
+            {/* Specimen received button or status */}
             {tick.specimenRequested && (tick.specimenReceived
               ? <span>
                 Specimen Received: {tick.specimenReceived.substring(0, 10)}<br />

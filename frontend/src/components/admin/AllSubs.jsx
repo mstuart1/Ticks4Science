@@ -93,7 +93,7 @@ const AllSubs = () => {
   const filterHeadingArray = [
     {filter: 'totalSubs', heading: 'All Submissions'},
     {filter: 'pendPhotos', heading: 'Waiting for Photo Review'},
-    {filter: 'pendRecieved', heading: 'Waiting for User to Mail In'},
+    {filter: 'pendReceived', heading: 'Waiting for User to Mail In'},
     {filter: 'pendIdentified', heading: 'Waiting for Lab to Identify Specimen'},
     {filter: 'totalIdent', heading: 'All Identified'},
   ]

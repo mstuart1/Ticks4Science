@@ -174,10 +174,10 @@ exports.getSubPage = async (req, res, next) => {
       query = { duplicate: { [Op.is]: null }, }
     } else if (filter === 'pendPhotos') {
       query = { duplicate: { [Op.is]: null }, photosReviewed: {[Op.is]: null }, }
-    } else if (filter === 'pendRecieved') {
-      query = { duplicate: { [Op.is]: null }, specimenRequested: {[Op.not]: null }, specimenRecieved: {[Op.is]: null}}
+    } else if (filter === 'pendReceived') {
+      query = { duplicate: { [Op.is]: null }, specimenRequested: {[Op.not]: null }, specimenReceived: {[Op.is]: null}}
     } else if (filter === 'pendIdentified') {
-      query = { duplicate: { [Op.is]: null }, specimenIdentified: {[Op.is]: null }, specimenRecieved: {[Op.not]: null}}
+      query = { duplicate: { [Op.is]: null }, specimenIdentified: {[Op.is]: null }, specimenReceived: {[Op.not]: null}}
     } else if (filter === 'totalIdent') {
       query = { duplicate: { [Op.is]: null }, specimenIdentified: {[Op.not]: null }}
     } else {
