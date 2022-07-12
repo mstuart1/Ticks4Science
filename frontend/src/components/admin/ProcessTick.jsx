@@ -9,6 +9,7 @@ import { theme } from '../../theme'
 import OutlineCard from '../ui/outlineCard/OutlineCard'
 import HoverCard from '../ui/hoverCard/HoverCard'
 import { useNavigate } from 'react-router-dom'
+import { useSelector } from 'react-redux'
 
 // TODO create a way for staff to input photo review info
 // TODO create a way to delete photos
@@ -93,8 +94,10 @@ color: ${({ theme }) => theme.colors.main};
 }
 
 const ProcessTick = () => {
-  let { id } = useParams()
-const navigate = useNavigate()
+  const navigate = useNavigate()
+  
+  const { id } = useParams()
+  const user = useSelector(state => state.user)
 
   const [tick, setTick] = useState({});
   const [tickSpp, setTickSpp] = useState([]);
@@ -153,7 +156,7 @@ const navigate = useNavigate()
 
   const handlePhotoId = (id, tickId) => {
     setIdByPhoto(false)
-    let data = { photoId: tickId }
+    let data = { photoId: tickId, photoIdUserId: user.id }
     return updateSub(data, id)
   }
 
@@ -168,7 +171,7 @@ const navigate = useNavigate()
   }
 
   const handleIdentified = (id, tickId) => {
-    let data = { specimenIdentified: new Date(), specimenId: tickId }
+    let data = { specimenIdentified: new Date(), specimenId: tickId, specIdUserId: user.id }
     return updateSub(data, id)
   }
 
@@ -194,7 +197,7 @@ const navigate = useNavigate()
 
   return (
     <BasicPage.Text>
-      {/* <p>Developers Note: based on emails, it looks like Dina plans to request all ticks be sent in, the photo review is to make sure it is a tick, not to identify it.  With this info I made the flow of information follow the path that if the photos have been reviewed, the specimen requested button appears or not a tick button, if the specimen has been requested, the submission received button appears, if the specimen has been recieved, the speicies buttons appear to choose the identification.</p> */}
+      {/* <p>Developers Note: based on emails, it looks like Dina plans to request all ticks be sent in, the photo review is to make sure it is a tick, not to identify it.  With this info I made the flow of information follow the path that if the photos have been reviewed, the specimen requested button appears or not a tick button, if the specimen has been requested, the submission received button appears, if the specimen has been received, the speicies buttons appear to choose the identification.</p> */}
       <InternalLinkFloatButton colors={{ text: theme.colors.ruTeal, shadow: theme.colors.ruTeal }} to={-1} text='  Back to List  ' />
       <Styles.PageCont>
 
@@ -204,7 +207,7 @@ const navigate = useNavigate()
 
             <h2>Status Info</h2>
             ID: {tick?.id}<br />
-            Date Submitted: {tick?.createdAt?.substring(0, 10)}<br />
+            Date Submitted: {tick.createdAt?.substring(0, 10)}<br />
             This is a duplicate to submission ID: {tick.duplicate ? tick.duplicate : (<>
               <input type="text" name='duplicate' value={dupId} placeholder='Enter id number for original submission here' onChange={handleChange}/><button onClick={() => handleDuplicate(tick.id, dupId)}>Remove Duplicate From List</button>
               </>)}
@@ -236,7 +239,7 @@ const navigate = useNavigate()
                     : <span>Photo ID: Not a tick</span>}
                   {!tick.notATick && (
                     <>
-                      {!idByPhoto && <div onClick={() => handleIdByPhoto()}>
+                      {!tick.photoId && !idByPhoto && <div onClick={() => handleIdByPhoto()}>
                         <HoverCard shadowColor={theme.colors.ruTeal}>
                           Click here to id tick by photo
                         </HoverCard>
@@ -263,10 +266,11 @@ const navigate = useNavigate()
 
               ))
             }
-            {tick.photoId && <span>Photo ID: {tick.photo.scientific}</span>}
+            
+            {tick.photoId && (<span>Photo ID: {tick.photo.scientific}<br/>Photo ID'd by: {`${tick.photoIdUser?.firstName} ${tick.photoIdUser?.lastName}`}</span>)}
 
 
-            {/* Specimen recieved button or status */}
+            {/* Specimen received button or status */}
             {tick.specimenRequested && (tick.specimenReceived
               ? <span>
                 Specimen Received: {tick.specimenReceived.substring(0, 10)}<br />
@@ -279,11 +283,9 @@ const navigate = useNavigate()
                 </div>)
               )
             )}
-{console.log(tick)}
             {/* Speciment identified button or status */}
             {tick.specimenId
-              ? <> Specimen Identified: {tick.specimenIdentified.substring(0, 10)}<br /> Species: {tick.specimen.scientific}<br /></>
-
+              ? <> Specimen Identified: {tick.specimenIdentified.substring(0, 10)}<br /> Species: {tick.specimen.scientific}<br /> Specimen ID'd by: {`${tick.specIdUser?.firstName} ${tick.specIdUser?.lastName}`}</>
               : ((tick.specimenReceived && !tick.tickId) &&
                 tickSpp.map(item => (<div onClick={() => handleIdentified(tick.id, item.id)}>
 
@@ -328,7 +330,7 @@ const navigate = useNavigate()
               <h2>Tick Attached</h2>
               <p>Tick Attached: {tick.tickAttached}</p>
               {tick.animal && <p>Animal: {tick.animal}</p>}
-              <p>Date Removed: {tick.dateRemoved}</p>
+              <p>Date Removed: {tick.dateRemoved?.substring(0,10)}</p>
               <p>Person Bitten: {tick.personBitten}</p>
               <p>Submitter Bitten: {tick.submitterBitten}</p>
               {!tick.submitterBitten && <p>Bitten Municipality: {tick.bittenMuni}</p>}

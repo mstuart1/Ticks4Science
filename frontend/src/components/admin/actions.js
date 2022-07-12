@@ -41,7 +41,19 @@ export const loadToken = credentials => async dispatch => {
         }
     } catch (err) {
         console.log(`!!@@@@---Error---@@@@!! ${err.message}`)
-        dispatch(displayAlert(JSON.stringify(err.response)));
+        dispatch(displayAlert('Your username and password do not match the information in our system.', JSON.stringify(err.message)));
+    }
+}
+
+export const updateUserReq = data => async dispatch => {
+    try {
+        let response = await UserDataService.updateUser(data);
+        // console.log(response.data.data)
+        let user = response.data.data
+        dispatch(setActiveUser(user))
+    } catch (err) {
+        console.log(`!!@@@---Error---@@@!! ${err.message}`)
+        dispatch(displayAlert('There has been an error attempting to update your user profile', JSON.stringify(err.message)))
     }
 }
 

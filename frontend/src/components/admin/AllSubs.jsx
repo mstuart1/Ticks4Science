@@ -1,159 +1,144 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from 'react-redux'
-import { Link, useLocation
-  // , useNavigate
- } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { BasicPage } from "../GeneralStyles";
 import SubmissionDataService from '../../services/submission'
 import SubCard from './SubCard'
 import styled from "styled-components";
 import InternalLinkFloatButton from "../ui/internalLinkFloatButton/InternalLinkFloatButton";
-// import { theme } from "../../theme";
-// import { useDispatch } from "react-redux";
-
-// import { getOrgDataRequest } from "./actions";
-// import { PageContainer} from '../styles/Common.styled'
-// import { useDispatch, useSelector } from "react-redux";
-// import { CreateButton } from "../dataSources/DataSource.styled";
-// import { Instructions } from "./Orgs.styled";
-// import OrgTable from "./OrgTable"
+import HoverCard from '../ui/hoverCard/HoverCard'
 
 const Styles = {
-    Input: styled.input`
+  Input: styled.input`
     width: 80vw;
 
     @media screen and (min-width:${({ theme }) => theme.mobile}) {
         max-width: 800px;
       }
     `,
-    Link: styled(Link)`
+  Link: styled(Link)`
     text-decoration: none;
     color: black;
     `,
-    Card: styled.div`
+  Card: styled.div`
     margin: 1rem;
     padding: 1rem ; 
     width: 80vw;
     max-width: 900px;
-    border-radius: ${({theme}) => theme.borderRadius};
+    border-radius: ${({ theme }) => theme.borderRadius};
     box-shadow: 0 3px 15px ${({ shadowColor }) => shadowColor || '#000000'}20;
     `,
-    Waiting: styled.div`
+  Waiting: styled.div`
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
+    align-items: center;
+    // justify-content: space-between;
+    width: 100%;
     `,
-    WaitingGroup: styled.div`
+  WaitingGroup: styled.div`
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
     margin: 2rem;
     padding: 2rem;
     background-color: #dfdfdf;
     border-radius: 1rem;
     `,
+  ButtonDiv: styled.div`
+      cursor: pointer;
+      `,
+  ButtonText: styled.span`
+      font-weight: bold;
+      `,
+  ButtonCont: styled.div`
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      `,
 }
 
 const AllSubs = () => {
 
-    const location = useLocation()
-    let filter = location.state?.filter || ""
+  const location = useLocation()
+  let filter = location.state?.filter || ""
+  let limitMax = location.state?.limitMax
 
-    const [data, setData] = useState([])
+  const [data, setData] = useState([])
+  const [page, setPage] = useState(0)
+  // const [limit, setLimit] = useState(6);
+  const limit = 6;
 
-    const token = useSelector(state => state.token.data)
-    
-console.log(data)
-    
-    useEffect(() => {
-        let getData = async (token) => {
-            
-         return await SubmissionDataService.getAllSubm(token);
-        }
-        
-        getData(token).then(response => {
-          // console.log(response.data.record)
-          setData(response.data.record)
-          
-        })
+  const token = useSelector(state => state.token.data)
 
-        // if !data.tick && data.specimen
-        
-        
-      }, [token])
+  useEffect(() => {
+    let getData = async (token, page, limit, filter) => {
+      return await SubmissionDataService.getPageSubm(token, page, limit, filter);
+    }
 
-      
-      
-      let pendReceived =  data.filter(sub => !sub.duplicate && sub.specimenRequested && sub.specimenReceived === null);
-      let totalIdent = data.filter(sub => !sub.duplicate && sub.specimenIdentified)
-  let pendingPhotos = data.filter(item => !item.duplicate && item.photosReviewed === null)
-  let pendingSpecimens = data.filter(item => !item.duplicate && item.specimenReceived !== null && item.specimenIdentified === null)
+    getData(token, page, limit, filter).then(response => {
+      // console.log(response.data.record)
+      setData(response.data.record)
+
+    })
+  }, [token, page, limit, filter])
+
+
+  const handlePageClick = value => {
+    setPage(prevPage => prevPage + value)
+  }
+  const filterHeadingArray = [
+    { filter: 'totalSubs', heading: 'All Submissions' },
+    { filter: 'pendPhotos', heading: 'Waiting for Photo Review' },
+    { filter: 'pendReceived', heading: 'Waiting for User to Mail In' },
+    { filter: 'pendIdentified', heading: 'Waiting for Lab to Identify Specimen' },
+    { filter: 'totalIdent', heading: 'All Identified' },
+  ]
+
+  let heading = filterHeadingArray.filter(item => item.filter === filter)[0].heading || ''
 
   const createCardElems = data => {
 
     let cards = data.map(sub => (
-      <SubCard item={sub} key={sub.id}/>
-  ))
-  return cards
+      <SubCard item={sub} key={sub.id} />
+    ))
+    return cards
   }
 
   let totalCards = createCardElems(data)
-  let photoCards = createCardElems(pendingPhotos)
-  let specimenCards = createCardElems(pendingSpecimens)
-  let mailCards = createCardElems(pendReceived)
-  let identCards = createCardElems(totalIdent)
 
-  // console.log('totalIdent', totalIdent)
-  
-  return   (
+  return (
     <BasicPage.Text>
-       
-        <InternalLinkFloatButton padding="1rem 2rem" text='Back to Dashboard' to='/admin' />
-         <Styles.Waiting>
-          {filter === 'totalSubs' && (
-            <Styles.WaitingGroup>
-              <h2>All Submissions</h2>
-              {totalCards}
-            </Styles.WaitingGroup>
-          )}
-          {filter === 'pendPhotos' && (
-             <Styles.WaitingGroup>
-             <h2>Waiting for Photo Review</h2>
-             {photoCards}
-           </Styles.WaitingGroup>
-          )}
-          {filter === 'pendReceived' && (
-             <Styles.WaitingGroup>
-             <h2>Waiting for User to Mail In</h2>
-             {mailCards}
-           </Styles.WaitingGroup>
-          )}
-          {filter === 'pendIdentified' && (
-             <Styles.WaitingGroup>
-             <h2>Waiting for Lab to Identify Specimen</h2>
-             {specimenCards}
-           </Styles.WaitingGroup>
-          )}
-          {filter === 'totalIdent' && (
-             <Styles.WaitingGroup>
-             <h2>All Identified</h2>
-             {identCards}
-           </Styles.WaitingGroup>
-          )}
-         {filter === '' && (
-          <>
-          <Styles.WaitingGroup>
-          <h2>Waiting for Photo Review</h2>
-          {photoCards}
-        </Styles.WaitingGroup>
+
+      <Styles.Waiting>
+        <h2>{heading}</h2>
+
+        <Styles.ButtonCont>
+          {page > 0 && <PageButton handleClick={() => handlePageClick(-1)} text='Prev Page' />}
+
+          <InternalLinkFloatButton padding="1rem 2rem" text='Back to Dashboard' to='/admin' />
+
+          {page + 1 < limitMax / limit && <PageButton handleClick={() => handlePageClick(1)} text='Next Page' />}
+
+        </Styles.ButtonCont>
         <Styles.WaitingGroup>
-          <h2>Waiting for Specimen Review</h2>
-          {specimenCards}
+
+          {totalCards}
         </Styles.WaitingGroup>
-        </>
-         )}
-         </Styles.Waiting>
+
+      </Styles.Waiting>
     </BasicPage.Text>
   )
 }
 
 export default AllSubs
 
-
-
+const PageButton = ({ handleClick, text }) => (
+  <Styles.ButtonDiv onClick={() => handleClick()}>
+    <HoverCard padding="1rem 2rem">
+      <Styles.ButtonText>
+        {text}
+      </Styles.ButtonText>
+    </HoverCard>
+  </Styles.ButtonDiv>
+)

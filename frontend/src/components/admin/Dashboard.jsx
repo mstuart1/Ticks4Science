@@ -12,6 +12,7 @@ import { removeToken } from "./actions";
 import UserMgt from "./UserMgt";
 import OutlineCard from "../ui/outlineCard/OutlineCard";
 import SubCard from "./SubCard";
+import EditUser from "./EditUser";
 
 // import { getOrgDataRequest } from "./actions";
 // import { PageContainer} from '../styles/Common.styled'
@@ -22,7 +23,7 @@ import SubCard from "./SubCard";
 
 const Styles = {
   Input: styled.input`
-    width: 80vw;
+    // width: 80vw;
     @media screen and (min-width:${({ theme }) => theme.mobile}) {
         max-width: 800px;
       }
@@ -45,9 +46,10 @@ const Styles = {
     padding: 1rem;
     font-size: 1.6rem;
     border-radius: 0.5rem;
+    cursor: pointer;
     `,
   InputCont: styled.div`
-      height: 200px;
+      // height: 200px;
       display: flex;
       flex-direction: column;
       flex-wrap: wrap;
@@ -175,10 +177,10 @@ const Dashboard = () => {
   ]
 
   let blockElems = blockArray.map((block, i) => (
-    <div  onClick={() => {
+    <div key={i} style={{cursor: 'pointer'}} onClick={() => {
       
-      return (navigate("/admin/allSubs", {state:{filter: `${block.filter}`}}))}}>
-    <OutlineCard key={i}>
+      return (navigate("/admin/allSubs", {state:{filter: `${block.filter}`, limitMax: block.number}}))}}>
+    <OutlineCard >
       <Styles.BlockDetail>
         <h3>{block.text}</h3>
         <h1>{block.number}</h1>
@@ -194,9 +196,11 @@ const Dashboard = () => {
 
   return (
     <BasicPage.Text>
-      <div>Hi, {user.firstName ? user.firstName : (
-        `you haven't set up your profile yet`
-      )}</div>
+      <div>Hi, {" "}
+        {user.firstName ? user.firstName : (
+        `you haven't set up your profile yet, click the button below to edit your profile.`
+      )}
+      </div>
 
       <BasicPage.Form>
 
@@ -206,15 +210,15 @@ const Dashboard = () => {
 
 
       <div>
-
-        <InternalLinkFloatButton colors={{ text: 'white', bg: theme.colors.ruTeal }} padding="1rem 2rem" text="View Submissions" to='/admin/allSubs' />
-        <h2 style={{textAlign: 'center'}}>You can now click on the blocks to see filtered lists of all of the submissions.</h2>
-        <h2 style={{textAlign: 'center'}}>You can now delete submissions but it is recommended that you check with Dina before deleting anything.</h2>
+{/* 
+        <InternalLinkFloatButton colors={{ text: 'white', bg: theme.colors.ruTeal }} padding="1rem 2rem" text="View Submissions" to='/admin/allSubs' /> */}
+        <h4 style={{textAlign: 'left'}}> • You can now click on the blocks to see filtered lists of all of the submissions.</h4>
+        <h4 style={{textAlign: 'left'}}> • You can now delete submissions.</h4>
         <Styles.BlockCont>
           {blockElems}
         </Styles.BlockCont>
 
-
+        <Styles.BlockCont style={{flexDirection: 'column', alignItems: 'center', justifyContent: 'center'}}>
         {user.manageUsers && (
           <OutlineCard>
             <BasicPage.SectionTitle>Invite an Admin User</BasicPage.SectionTitle>
@@ -229,11 +233,12 @@ const Dashboard = () => {
           </OutlineCard>
         )}
         <UserMgt />
-
+     <EditUser/>
+        </Styles.BlockCont>
 
 
       </div>
-      <div onClick={handleLogout}>
+      <div onClick={handleLogout} style={{cursor: "pointer"}}>
         <HoverCard
           shadowColor={theme.colors.ruTeal}
           width='3rem'
