@@ -161,8 +161,7 @@ const Ticks = () => {
                 As citizen scientists, familiarizing yourselves with the ticks you may come across in New Jersey is essential. Each tick species is unique, living in different habitats and feeding on different hosts. But in New Jersey, ticks are found nearly everywhere, so it is important to take necessary <BasicPage.InnieLink to='/checkMenu'><span>tick preventions</span></BasicPage.InnieLink> when enjoying the outdoors and entering tick habitats.
             </p>
             <p>
-                Listed below are the 4 most common ticks you may encounter in New Jersey. While there are currently at least 12 tick species in New Jersey, not all are found on people. Understanding what you may encounter most frequently will also help you know what <BasicPage.InnieLink to='/disease'><span>tick-borne diseases</span></BasicPage.InnieLink> you may contract if infected. This insight will allow you to enjoy nature safely and be vigilant for yourself and those around you! If you do happen to find a tick on you, do not panic! <BasicPage.InnieLink to='/removal'><span>Removing a tick</span></BasicPage.InnieLink> is easy and <BasicPage.InnieLink to='/preSurvey'><span>submitting the tick</span></BasicPage.InnieLink> is easier.
-
+            Listed below are the three tick species most likely to bite you in New Jersey. The fourth one doesn't often bite humans but is very common in some areas and may bite your dog. Each species is associated with different <BasicPage.InnieLink to='/disease'><span>tick-borne diseases</span></BasicPage.InnieLink>. If you find a tick on you, do not panic! <BasicPage.InnieLink to='/removal'><span>Removing a tick</span></BasicPage.InnieLink> is easy and <BasicPage.InnieLink to='/preSurvey'><span>submitting the tick</span></BasicPage.InnieLink> is easier.
             </p>
 
             <Styles.CenterCntr style={{ backgroundColor: '#f2f2f2', borderRadius: '1rem' }}>
@@ -203,7 +202,7 @@ const Ticks = () => {
             </Styles.CenterCntr>
             <Styles.CenterCntr>
 
-                <p> Here, we list other ticks you may come across in New Jersey. While not all of these ticks feed on people, it's important to be aware of your surroundings and know what you may encounter in nature! The types of tick species you may find depends on the animals you encounter or handle. Whether you're a hunter coming across all types of wildlife, a farmer taking care of the same animals every day, or someone who enjoys going on nature hiking, we encourage you to be aware of your surrounding and practice tick prevention. But, especially if you are someone who handles animals and comes across a tick, we encourage you to submit your tick to help grow our understanding of what ticks are in New Jersey and where!</p>
+                <p> Many NJ ticks are unlikely to bite us and are usually associated with specific animals such as raccoons or squirrels or birds. If you are a hunter, handle livestock, are a wildlife rehabilitator or work in animal control or run a dog rescue, we might encounter some of these ticks and we encourage you to submit them to NJTicks4Science!</p>
 
 
 
