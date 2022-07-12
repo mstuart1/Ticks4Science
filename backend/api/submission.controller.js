@@ -191,7 +191,7 @@ exports.getSubPage = async (req, res, next) => {
     await db.sequelize.transaction(async (t) => {
       foundSubs = await Subm.findAll({
         limit: numLimit,
-        offset: page,
+        offset: page * numLimit,
         where: query,
         include: [
           {
