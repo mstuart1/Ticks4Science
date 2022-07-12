@@ -32,6 +32,9 @@ const TickOrInsect = () => {
       id: 2, imgUrl: 'https://bugwoodcloud.org/images/384x256/1368017.jpg', title: 'Crab Spider', 
       // subTitle: 'Joseph Berger, Bugwood.org'
     },
+    {
+      id: 3, imgUrl: 'https://bugwoodcloud.org/images/384x256/5556301.jpg', title: 'Pseudoscorpion', 
+    },
   ]
   
   const arachElems = arachnids.map(spider => (
@@ -42,9 +45,7 @@ const TickOrInsect = () => {
     {
       id: 1, imgUrl: 'https://bugwoodcloud.org/images/384x256/1233132.jpg', title: 'Bed Bug', 
     },
-    {
-      id: 2, imgUrl: 'https://bugwoodcloud.org/images/384x256/5556301.jpg', title: 'Pseudoscorpion', 
-    },
+    
     {
       id: 3, imgUrl: 'https://bugwoodcloud.org/images/384x256/5388250.jpg', title: 'Japanese Beetle', 
     },
@@ -81,7 +82,7 @@ const TickOrInsect = () => {
       <BasicPage.ImageCont>
         <figure>
           <img src={scutum} alt='scutum' />
-          <figcaption >A male tick (right) has a scutum (a.k.a. shield) that takes up most of the body, while in a female (left), as well as in nymphs and larvae, the scutum covers only part of the tick. Nymphs and adults have 4 pairs of legs (8 total) but the tiny larvae only have 3 pairs (6 legs total). The pictures are of <i>Rhipicephalus sanguineus</i> (photo credit Andrea Egizi, PhD).
+          <figcaption style={{ fontSize: '1.6rem' }}>A male tick (right) has a scutum (a.k.a. shield) that takes up most of the body, while in a female (left), as well as in nymphs and larvae, the scutum covers only part of the tick. Nymphs and adults have 4 pairs of legs (8 total) but the tiny larvae only have 3 pairs (6 legs total). The pictures are of <i>Rhipicephalus sanguineus</i> (photo credit Andrea Egizi, PhD).
           </figcaption>
         </figure>
 
