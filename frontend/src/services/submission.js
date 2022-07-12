@@ -22,8 +22,8 @@ class SubmissionDataService {
             'Authorization': `Basic ${token}` 
           }})
     }
-    getPageSubm(token, page, limit) {
-        return http.get(`/submission/paged?numLimit=${limit}&page=${page}`, {  headers: {
+    getPageSubm(token, page, limit, filter) {
+        return http.get(`/submission/paged?numLimit=${limit}&page=${page}&filter=${filter}`, {  headers: {
             'Authorization': `Basic ${token}` 
           }})
     }
