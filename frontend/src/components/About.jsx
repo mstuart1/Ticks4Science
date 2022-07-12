@@ -23,7 +23,7 @@ const About = () => {
       </Styles.Para>
      
       <Styles.Para>
-      The goal is to understand the changing distribution of ticks and tick-borne pathogens across NJ. With your help, we will learn where and when people are exposed to ticks and tick-borne diseases.
+      The goal is to understand the changing distribution of ticks and tick-borne pathogens across New Jersey. With your help, we will learn where and when people are exposed to ticks and tick-borne diseases.
       </Styles.Para>
       
       
