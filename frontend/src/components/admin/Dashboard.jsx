@@ -151,6 +151,7 @@ const Dashboard = () => {
   let pendReceived = data.filter(sub => sub.specimenReceived === null && sub.specimenRequested !== null)
   let pendIdentified = data.filter(sub => sub.specimenReceived && sub.specimenIdentified === null);
   let totalIdent = data.filter(sub => sub.specimenIdentified)
+  let notReq = data.filter(sub => sub.photosReviewed !== null && sub.specimenIdentified === null && sub.specimenRequested === null)
 
 
 
@@ -174,6 +175,9 @@ const Dashboard = () => {
     { filter: "totalIdent",
      text: 'Total Identified',
      number: totalIdent.length },
+     { filter: "notReq",
+     text: 'Specimen Not Requested',
+     number: notReq.length },
   ]
 
   let blockElems = blockArray.map((block, i) => (

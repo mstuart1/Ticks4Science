@@ -180,6 +180,8 @@ exports.getSubPage = async (req, res, next) => {
       query = { duplicate: { [Op.is]: null }, specimenIdentified: {[Op.is]: null }, specimenReceived: {[Op.not]: null}}
     } else if (filter === 'totalIdent') {
       query = { duplicate: { [Op.is]: null }, specimenIdentified: {[Op.not]: null }}
+    } else if (filter === 'notReq') {
+      query = { duplicate: { [Op.is]: null }, photosReviewed: {[Op.not]: null }, specimenIdentified: {[Op.is]: null }, specimenRequested:{[Op.is]: null}}
     } else {
       query = { duplicate: { [Op.is]: null }, }
     }

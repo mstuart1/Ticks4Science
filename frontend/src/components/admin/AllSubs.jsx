@@ -47,6 +47,7 @@ const Styles = {
     `,
   ButtonDiv: styled.div`
       cursor: pointer;
+      display: ${({display}) => display ? "inherit" : 'none'}
       `,
   ButtonText: styled.span`
       font-weight: bold;
@@ -55,6 +56,10 @@ const Styles = {
       width: 100%;
       display: flex;
       justify-content: space-between;
+      `,
+      ButtonPlaceholder: styled.div`
+      display: inline-block;
+      width: 300px !important;
       `,
 }
 
@@ -93,6 +98,7 @@ const AllSubs = () => {
     { filter: 'pendReceived', heading: 'Waiting for User to Mail In' },
     { filter: 'pendIdentified', heading: 'Waiting for Lab to Identify Specimen' },
     { filter: 'totalIdent', heading: 'All Identified' },
+    { filter: 'notReq', heading: 'Specimen Not Requested' },
   ]
 
   let heading = filterHeadingArray.filter(item => item.filter === filter)[0].heading || ''
@@ -114,12 +120,15 @@ const AllSubs = () => {
         <h2>{heading}</h2>
 
         <Styles.ButtonCont>
-          {page > 0 && <PageButton handleClick={() => handlePageClick(-1)} text='Prev Page' />}
-
+          <Styles.ButtonPlaceholder className='back'>
+          <PageButton handleClick={() => handlePageClick(-1)} text='Prev Page' display={page > 0} />
+          </Styles.ButtonPlaceholder>
+          <Styles.ButtonPlaceholder className='center'>
           <InternalLinkFloatButton padding="1rem 2rem" text='Back to Dashboard' to='/admin' />
-
-          {page + 1 < limitMax / limit && <PageButton handleClick={() => handlePageClick(1)} text='Next Page' />}
-
+          </Styles.ButtonPlaceholder>
+          <Styles.ButtonPlaceholder className='fwd'>
+          <PageButton handleClick={() => handlePageClick(1)} text='Next Page' display={page + 1 < limitMax / limit} />
+          </Styles.ButtonPlaceholder>
         </Styles.ButtonCont>
         <Styles.WaitingGroup>
 
@@ -133,8 +142,8 @@ const AllSubs = () => {
 
 export default AllSubs
 
-const PageButton = ({ handleClick, text }) => (
-  <Styles.ButtonDiv onClick={() => handleClick()}>
+const PageButton = ({ handleClick, text, display }) => (
+  <Styles.ButtonDiv onClick={() => handleClick()} display={display}>
     <HoverCard padding="1rem 2rem">
       <Styles.ButtonText>
         {text}
