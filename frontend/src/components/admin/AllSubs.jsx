@@ -48,7 +48,7 @@ const AllSubs = () => {
 
   const [data, setData] = useState([])
   const [page, setPage] = useState(0)
-  const [limit, setLimit] = useState(3);
+  const [limit, setLimit] = useState(18);
   
 
   const token = useSelector(state => state.token.data)
@@ -67,11 +67,17 @@ const AllSubs = () => {
   }, [token, page, limit, filter])
 
 
+  const filterHeadingArray = [
+    {filter: 'totalSubs', heading: 'All Submissions'},
+    {filter: 'pendPhotos', heading: 'Waiting for Photo Review'},
+    {filter: 'pendRecieved', heading: 'Waiting for User to Mail In'},
+    {filter: 'pendIdentified', heading: 'Waiting for Lab to Identify Specimen'},
+    {filter: 'totalIdent', heading: 'All Identified'},
+  ]
 
-  let pendReceived = data.filter(sub => !sub.duplicate && sub.specimenRequested && sub.specimenReceived === null);
-  let totalIdent = data.filter(sub => !sub.duplicate && sub.specimenIdentified)
-  let pendingPhotos = data.filter(item => !item.duplicate && item.photosReviewed === null)
-  let pendingSpecimens = data.filter(item => !item.duplicate && item.specimenReceived !== null && item.specimenIdentified === null)
+  let heading = filterHeadingArray.filter(item => item.filter === filter)[0].heading
+
+  console.log('heading', heading)
 
   const createCardElems = data => {
 
@@ -82,60 +88,18 @@ const AllSubs = () => {
   }
 
   let totalCards = createCardElems(data)
-  let photoCards = createCardElems(pendingPhotos)
-  let specimenCards = createCardElems(pendingSpecimens)
-  let mailCards = createCardElems(pendReceived)
-  let identCards = createCardElems(totalIdent)
-
-  // console.log('totalIdent', totalIdent)
 
   return (
     <BasicPage.Text>
 
       <InternalLinkFloatButton padding="1rem 2rem" text='Back to Dashboard' to='/admin' />
       <Styles.Waiting>
-        {filter === 'totalSubs' && (
+       
           <Styles.WaitingGroup>
-            <h2>All Submissions</h2>
+            <h2>{heading}</h2>
             {totalCards}
           </Styles.WaitingGroup>
-        )}
-        {filter === 'pendPhotos' && (
-          <Styles.WaitingGroup>
-            <h2>Waiting for Photo Review</h2>
-            {photoCards}
-          </Styles.WaitingGroup>
-        )}
-        {filter === 'pendReceived' && (
-          <Styles.WaitingGroup>
-            <h2>Waiting for User to Mail In</h2>
-            {mailCards}
-          </Styles.WaitingGroup>
-        )}
-        {filter === 'pendIdentified' && (
-          <Styles.WaitingGroup>
-            <h2>Waiting for Lab to Identify Specimen</h2>
-            {specimenCards}
-          </Styles.WaitingGroup>
-        )}
-        {filter === 'totalIdent' && (
-          <Styles.WaitingGroup>
-            <h2>All Identified</h2>
-            {identCards}
-          </Styles.WaitingGroup>
-        )}
-        {filter === '' && (
-          <>
-            <Styles.WaitingGroup>
-              <h2>Waiting for Photo Review</h2>
-              {photoCards}
-            </Styles.WaitingGroup>
-            <Styles.WaitingGroup>
-              <h2>Waiting for Specimen Review</h2>
-              {specimenCards}
-            </Styles.WaitingGroup>
-          </>
-        )}
+        
       </Styles.Waiting>
     </BasicPage.Text>
   )

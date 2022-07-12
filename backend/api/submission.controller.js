@@ -168,18 +168,31 @@ exports.getSubPage = async (req, res, next) => {
 
     let numLimit = req.query.numLimit ? parseInt(req.query.numLimit) : 3;
     let page = req.query.page ? parseInt(req.query.page) : 0;
+    let filter = req.query.filter ? req.query.filter : '';
+
+    if (filter === 'totalSubs') {
+      query = { duplicate: { [Op.is]: null }, }
+    } else if (filter === 'pendPhotos') {
+      query = { duplicate: { [Op.is]: null }, photosReviewed: {[Op.is]: null }, }
+    } else if (filter === 'pendRecieved') {
+      query = { duplicate: { [Op.is]: null }, specimenRequested: {[Op.not]: null }, specimenRecieved: {[Op.is]: null}}
+    } else if (filter === 'pendIdentified') {
+      query = { duplicate: { [Op.is]: null }, specimenIdentified: {[Op.is]: null }, specimenRecieved: {[Op.not]: null}}
+    } else if (filter === 'totalIdent') {
+      query = { duplicate: { [Op.is]: null }, specimenIdentified: {[Op.not]: null }}
+    } else {
+      query = { duplicate: { [Op.is]: null }, }
+    }
+
+
+
     let foundSubs;
 
     await db.sequelize.transaction(async (t) => {
       foundSubs = await Subm.findAll({
         limit: numLimit,
         offset: page,
-        where: {
-          duplicate: {
-            [Op.is]: null
-          },
-
-        },
+        where: query,
         include: [
           {
             model: db.ticks,
