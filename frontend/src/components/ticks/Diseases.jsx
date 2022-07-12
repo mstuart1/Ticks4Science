@@ -1,10 +1,10 @@
 import React from 'react'
 import { emergingDiseases, commonDiseases, animalDiseases } from './diseaseCards'
-import { BasicPage } from './GeneralStyles'
-import { theme } from '../theme'
-import stages from '../images/slide 21.jpg'
-import stages2 from '../images/slide 22.jpg'
-import OutlineCard from './ui/outlineCard/OutlineCard'
+import { BasicPage } from '../GeneralStyles'
+import { theme } from '../../theme'
+import stages from '../../images/slide 21.jpg'
+import stages2 from '../../images/slide 22.jpg'
+import OutlineCard from '../ui/outlineCard/OutlineCard'
 
 
 

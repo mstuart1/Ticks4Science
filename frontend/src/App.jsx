@@ -14,7 +14,7 @@ import styled, { createGlobalStyle } from 'styled-components'
 import Ticks from './components/ticks/Ticks';
 import TickRemoval from './components/ticks/TickRemoval';
 import TickCheck from './components/ticks/TickCheck';
-import Diseases from './components/Diseases';
+import Diseases from './components/ticks/Diseases';
 import TickOrInsect from './components/ticks/TickOrInsect';
 import TickCheckMenu from './components/ticks/TickCheckMenu';
 import Survey from './components/survey/Survey';
