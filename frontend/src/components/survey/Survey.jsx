@@ -110,7 +110,7 @@ const Survey = () => {
     return ({
       // true means invalid
       userMuni: input.userMuni.length === 0,
-      userZip: input.userZip.length < 5 || !Number.isInteger(input.userZip),
+      userZip: input.userZip.length < 5 || !Number.isInteger(parseInt(input.userZip)),
       foundOn: input.foundOn.length === 0,
       foundOnOther: input.foundOn === 'Other' && input.foundOnOther.length === 0,
       dateTickFound: input.dateTickFound.length === 0 || new Date(input.dateTickFound) > new Date(),
