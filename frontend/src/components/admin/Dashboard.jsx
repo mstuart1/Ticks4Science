@@ -46,6 +46,7 @@ const Styles = {
     padding: 1rem;
     font-size: 1.6rem;
     border-radius: 0.5rem;
+    cursor: pointer;
     `,
   InputCont: styled.div`
       // height: 200px;
@@ -176,7 +177,7 @@ const Dashboard = () => {
   ]
 
   let blockElems = blockArray.map((block, i) => (
-    <div key={i}  onClick={() => {
+    <div key={i} style={{cursor: 'pointer'}} onClick={() => {
       
       return (navigate("/admin/allSubs", {state:{filter: `${block.filter}`}}))}}>
     <OutlineCard >
@@ -195,7 +196,7 @@ const Dashboard = () => {
 
   return (
     <BasicPage.Text>
-      <div>Hi, 
+      <div>Hi, {" "}
         {user.firstName ? user.firstName : (
         `you haven't set up your profile yet, click the button below to edit your profile.`
       )}
@@ -211,8 +212,8 @@ const Dashboard = () => {
       <div>
 
         <InternalLinkFloatButton colors={{ text: 'white', bg: theme.colors.ruTeal }} padding="1rem 2rem" text="View Submissions" to='/admin/allSubs' />
-        <h2 style={{textAlign: 'center'}}>You can now click on the blocks to see filtered lists of all of the submissions.</h2>
-        <h2 style={{textAlign: 'center'}}>You can now delete submissions but it is recommended that you check with Dina before deleting anything.</h2>
+        <h4 style={{textAlign: 'left'}}> • You can now click on the blocks to see filtered lists of all of the submissions.</h4>
+        <h4 style={{textAlign: 'left'}}> • You can now delete submissions.</h4>
         <Styles.BlockCont>
           {blockElems}
         </Styles.BlockCont>
@@ -237,7 +238,7 @@ const Dashboard = () => {
 
 
       </div>
-      <div onClick={handleLogout}>
+      <div onClick={handleLogout} style={{cursor: "pointer"}}>
         <HoverCard
           shadowColor={theme.colors.ruTeal}
           width='3rem'
