@@ -45,13 +45,13 @@ const Styles = {
     background-color: #dfdfdf;
     border-radius: 1rem;
     `,
-      ButtonDiv: styled.div`
+  ButtonDiv: styled.div`
       cursor: pointer;
       `,
-      ButtonText: styled.span`
+  ButtonText: styled.span`
       font-weight: bold;
       `,
-      ButtonCont: styled.div`
+  ButtonCont: styled.div`
       width: 100%;
       display: flex;
       justify-content: space-between;
@@ -62,9 +62,7 @@ const AllSubs = () => {
 
   const location = useLocation()
   let filter = location.state?.filter || ""
-  let limitMax = location.state?.limitMax 
-
-  console.log(filter)
+  let limitMax = location.state?.limitMax
 
   const [data, setData] = useState([])
   const [page, setPage] = useState(0)
@@ -72,7 +70,6 @@ const AllSubs = () => {
   const limit = 6;
 
   const token = useSelector(state => state.token.data)
-  
 
   useEffect(() => {
     let getData = async (token, page, limit, filter) => {
@@ -91,11 +88,11 @@ const AllSubs = () => {
     setPage(prevPage => prevPage + value)
   }
   const filterHeadingArray = [
-    {filter: 'totalSubs', heading: 'All Submissions'},
-    {filter: 'pendPhotos', heading: 'Waiting for Photo Review'},
-    {filter: 'pendReceived', heading: 'Waiting for User to Mail In'},
-    {filter: 'pendIdentified', heading: 'Waiting for Lab to Identify Specimen'},
-    {filter: 'totalIdent', heading: 'All Identified'},
+    { filter: 'totalSubs', heading: 'All Submissions' },
+    { filter: 'pendPhotos', heading: 'Waiting for Photo Review' },
+    { filter: 'pendReceived', heading: 'Waiting for User to Mail In' },
+    { filter: 'pendIdentified', heading: 'Waiting for Lab to Identify Specimen' },
+    { filter: 'totalIdent', heading: 'All Identified' },
   ]
 
   let heading = filterHeadingArray.filter(item => item.filter === filter)[0].heading || ''
@@ -115,20 +112,20 @@ const AllSubs = () => {
 
       <Styles.Waiting>
         <h2>{heading}</h2>
-       
-       <Styles.ButtonCont>
-       {page > 0 && <PageButton handleClick={() => handlePageClick(-1)} text='Prev Page'/>}
-            
-      <InternalLinkFloatButton padding="1rem 2rem" text='Back to Dashboard' to='/admin' />
-            
-            {page + 1 < limitMax/limit && <PageButton handleClick={() => handlePageClick(1)} text='Next Page'/>}
-            
-       </Styles.ButtonCont>
-          <Styles.WaitingGroup>
-            
-            {totalCards}
-          </Styles.WaitingGroup>
-        
+
+        <Styles.ButtonCont>
+          {page > 0 && <PageButton handleClick={() => handlePageClick(-1)} text='Prev Page' />}
+
+          <InternalLinkFloatButton padding="1rem 2rem" text='Back to Dashboard' to='/admin' />
+
+          {page + 1 < limitMax / limit && <PageButton handleClick={() => handlePageClick(1)} text='Next Page' />}
+
+        </Styles.ButtonCont>
+        <Styles.WaitingGroup>
+
+          {totalCards}
+        </Styles.WaitingGroup>
+
       </Styles.Waiting>
     </BasicPage.Text>
   )
@@ -136,12 +133,12 @@ const AllSubs = () => {
 
 export default AllSubs
 
-const PageButton = ({handleClick, text}) => (
-<Styles.ButtonDiv onClick={() => handleClick()}>
-  <HoverCard padding="1rem 2rem">
-  <Styles.ButtonText>
-    {text}
-  </Styles.ButtonText>
-  </HoverCard>
-</Styles.ButtonDiv>
+const PageButton = ({ handleClick, text }) => (
+  <Styles.ButtonDiv onClick={() => handleClick()}>
+    <HoverCard padding="1rem 2rem">
+      <Styles.ButtonText>
+        {text}
+      </Styles.ButtonText>
+    </HoverCard>
+  </Styles.ButtonDiv>
 )
