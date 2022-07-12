@@ -6,6 +6,7 @@ import SubmissionDataService from '../../services/submission'
 import SubCard from './SubCard'
 import styled from "styled-components";
 import InternalLinkFloatButton from "../ui/internalLinkFloatButton/InternalLinkFloatButton";
+import HoverCard from '../ui/hoverCard/HoverCard'
 
 const Styles = {
   Input: styled.input`
@@ -29,27 +30,46 @@ const Styles = {
     `,
   Waiting: styled.div`
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
+    align-items: center;
+    // justify-content: space-between;
+    width: 100%;
     `,
   WaitingGroup: styled.div`
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
     margin: 2rem;
     padding: 2rem;
     background-color: #dfdfdf;
     border-radius: 1rem;
     `,
+      ButtonDiv: styled.div`
+      cursor: pointer;
+      `,
+      ButtonText: styled.span`
+      font-weight: bold;
+      `,
+      ButtonCont: styled.div`
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      `,
 }
 
 const AllSubs = () => {
 
   const location = useLocation()
   let filter = location.state?.filter || ""
+  let limitMax = location.state?.limitMax 
 
   console.log(filter)
 
   const [data, setData] = useState([])
   const [page, setPage] = useState(0)
-  const [limit, setLimit] = useState(18);
-  
+  // const [limit, setLimit] = useState(6);
+  const limit = 6;
 
   const token = useSelector(state => state.token.data)
   
@@ -67,6 +87,9 @@ const AllSubs = () => {
   }, [token, page, limit, filter])
 
 
+  const handlePageClick = value => {
+    setPage(prevPage => prevPage + value)
+  }
   const filterHeadingArray = [
     {filter: 'totalSubs', heading: 'All Submissions'},
     {filter: 'pendPhotos', heading: 'Waiting for Photo Review'},
@@ -75,9 +98,7 @@ const AllSubs = () => {
     {filter: 'totalIdent', heading: 'All Identified'},
   ]
 
-  let heading = filterHeadingArray.filter(item => item.filter === filter)[0].heading
-
-  console.log('heading', heading)
+  let heading = filterHeadingArray.filter(item => item.filter === filter)[0].heading || ''
 
   const createCardElems = data => {
 
@@ -92,11 +113,19 @@ const AllSubs = () => {
   return (
     <BasicPage.Text>
 
-      <InternalLinkFloatButton padding="1rem 2rem" text='Back to Dashboard' to='/admin' />
       <Styles.Waiting>
+        <h2>{heading}</h2>
        
+       <Styles.ButtonCont>
+       {page > 0 && <PageButton handleClick={() => handlePageClick(-1)} text='Prev Page'/>}
+            
+      <InternalLinkFloatButton padding="1rem 2rem" text='Back to Dashboard' to='/admin' />
+            
+            {page < limitMax && <PageButton handleClick={() => handlePageClick(1)} text='Next Page'/>}
+            
+       </Styles.ButtonCont>
           <Styles.WaitingGroup>
-            <h2>{heading}</h2>
+            
             {totalCards}
           </Styles.WaitingGroup>
         
@@ -107,5 +136,12 @@ const AllSubs = () => {
 
 export default AllSubs
 
-
-
+const PageButton = ({handleClick, text}) => (
+<Styles.ButtonDiv onClick={() => handleClick()}>
+  <HoverCard padding="1rem 2rem">
+  <Styles.ButtonText>
+    {text}
+  </Styles.ButtonText>
+  </HoverCard>
+</Styles.ButtonDiv>
+)
