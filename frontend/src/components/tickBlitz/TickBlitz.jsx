@@ -53,7 +53,7 @@ const TickBlitz = () => {
             <Styles.Title>Rutgers Tick Blitz</Styles.Title>
             <p>
                 In May 2018, {" "}
-                <BasicPage.OutieLink to='https://sebsnjaesnews.rutgers.edu/2018/06/rutgers-led-tick-blitz-finds-exotic-longhorned-ticks-and-aggressive-lone-star-ticks-in-new-locations-across-new-jersey/'>
+                <BasicPage.OutieLink href='https://sebsnjaesnews.rutgers.edu/2018/06/rutgers-led-tick-blitz-finds-exotic-longhorned-ticks-and-aggressive-lone-star-ticks-in-new-locations-across-new-jersey/'>
                     <span>
                         the first statewide tick surveillance in New Jersey
                     </span>
