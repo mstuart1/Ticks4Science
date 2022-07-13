@@ -6,6 +6,9 @@ const Styles =  {
     Link: styled(Link)`
     text-decoration: none;
     color: ${({ colors }) => colors.text};
+    display: flex;
+    align-items: center;
+    justify-content: center;
     `,
     HoverCard: styled.div`
     display: flex;
