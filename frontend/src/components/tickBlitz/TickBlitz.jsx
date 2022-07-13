@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { BasicPage } from '../GeneralStyles'
-import BorderDiv from '../ui/ borderDiv/BorderDiv'
+import BorderDiv from '../ui/borderDiv/BorderDiv'
 import ExternalLinkFloatButton from '../ui/externalLinkFloatButton/ExternalLinkFloatButton'
 import InternalLinkFloatButton from '../ui/internalLinkFloatButton/InternalLinkFloatButton'
 import LearnMore from '../ui/learnMore/LearnMore'

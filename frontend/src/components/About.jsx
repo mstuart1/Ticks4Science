@@ -6,7 +6,7 @@ import InternalLinkFloatButton from './ui/internalLinkFloatButton/InternalLinkFl
 import { theme } from '../theme'
 import logo from '../images/Logo.svg'
 import LearnMore from "./ui/learnMore/LearnMore";
-import BorderDiv from "./ui/ borderDiv/BorderDiv";
+import BorderDiv from "./ui/borderDiv/BorderDiv";
 
 const Styles = {
   CenterCntr: styled.div`
