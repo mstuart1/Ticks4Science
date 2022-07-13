@@ -24,6 +24,7 @@ import TickProgressInput from './components/ticks/TickProgressInput';
 import AdminMgt from './components/admin/AdminMgt';
 import ResetPassword from './components/login/ResetPassword';
 import TickPage from './components/ticks/TickPage';
+import TickBlitz from './components/tickBlitz/TickBlitz';
 // import { BasicPage } from './components/GeneralStyles';
 
 const Styles = {
@@ -89,6 +90,7 @@ const App = () => {
               <Route path='/removal' element={<TickRemoval />} />
               <Route path='/disease' element={<Diseases />} />
               <Route path='/ticks' element={<Ticks />} />
+              <Route path='/tickBlitz' element={<TickBlitz />} />
               <Route path='/preSurvey' element={<PreSurvey />} />
               <Route path='/survey' element={<Survey />} />
               <Route path='/thanks' element={<ThankYou />} />
