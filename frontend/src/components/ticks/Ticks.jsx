@@ -207,7 +207,8 @@ const Ticks = () => {
 
 
             </Styles.CenterCntr>
-            <div style={{ backgroundColor: '#f2f2f2', borderRadius: '1rem' }}>
+            <Styles.CenterCntr style={{ backgroundColor: '#f2f2f2', borderRadius: '1rem' }}>
+            <Styles.CenterCol style={{ flex: 1 }}>
                 <BasicPage.SectionTitle>
                     Other Ticks of New Jersey
                 </BasicPage.SectionTitle>
@@ -219,7 +220,8 @@ const Ticks = () => {
                 </BasicPage.SectionTitle>
 
                 <HorizScrollCont cardArray={newTickElem} />
-            </div>
+            </Styles.CenterCol>
+            </Styles.CenterCntr>
         </BasicPage.Text>
 
     )
