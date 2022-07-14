@@ -111,13 +111,13 @@ const TickPage = () => {
      
   }, [])
 
-  console.log(data.refImgArray?.images)
+  console.log('refImgArray', data.refImgArray?.images)
 
 
 
   let refImgElems = data.refImgArray?.images.length > 0 && data.refImgArray.images.map((img, i) =>{ 
 
-    console.log(img)
+    console.log('img', img)
     if (i > 0) {
       
       if (img.includes("http")){
