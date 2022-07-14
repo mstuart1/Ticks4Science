@@ -113,6 +113,8 @@ const TickPage = () => {
 
   console.log('data', typeof data.refImgArray)
   
+  
+
   const handleString = () => {
     let newImgArray = JSON.parse(data.refImgArray)
     setData(prevState => ({...prevState, refImgArray: newImgArray}))
