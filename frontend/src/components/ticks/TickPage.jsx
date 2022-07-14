@@ -104,10 +104,11 @@ const TickPage = () => {
 
       setData(response.data.record)
     })
-    if (typeof data.refImgArray === 'string'){
-      console.log('handling string')
-      handleString()
-    }
+    console.log('type', typeof data.refImgArray)
+    // if (typeof data.refImgArray === 'string'){
+      // console.log('handling string')
+      // handleString()
+    // }
   
   }, [id])
 
@@ -128,23 +129,23 @@ const TickPage = () => {
 
   
 
-  let refImgElems = data.refImgArray?.images.length > 0 && data.refImgArray.images.map((img, i) =>{ 
+//   let refImgElems = data.refImgArray?.images.length > 0 && data.refImgArray.images.map((img, i) =>{ 
 
-    if (i > 0) {
+//     if (i > 0) {
       
-      if (img.includes("http")){
-        return (
-          <img src={`${img}`} alt='ticks' style={{ maxWidth: '350px', maxHeight: '250px', borderRadius: '5px', margin: '0.5rem' }} key={i}/>
-        )
-      } else {
-        return (
-          <img src={process.env.PUBLIC_URL + img} alt='ticks' style={{ maxWidth: '350px', maxHeight: '250px', borderRadius: '5px', margin: '0.5rem' }} key={i}/>
-        )
-      }
+//       if (img.includes("http")){
+//         return (
+//           <img src={`${img}`} alt='ticks' style={{ maxWidth: '350px', maxHeight: '250px', borderRadius: '5px', margin: '0.5rem' }} key={i}/>
+//         )
+//       } else {
+//         return (
+//           <img src={process.env.PUBLIC_URL + img} alt='ticks' style={{ maxWidth: '350px', maxHeight: '250px', borderRadius: '5px', margin: '0.5rem' }} key={i}/>
+//         )
+//       }
       
-    }
+//     }
     
-})
+// })
 
 
   return (
@@ -181,7 +182,7 @@ const TickPage = () => {
           </Styles.MiddleInfo>)}
         </Styles.MiddleCont>
         <Styles.MiddleCont>
-          {refImgElems}
+          {/* {refImgElems} */}
         </Styles.MiddleCont>
         <OutlineCard>
           <h3>A Reminder About Engorged Ticks</h3>
