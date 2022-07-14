@@ -114,12 +114,13 @@ const TickPage = () => {
   console.log('data', typeof data.refImgArray)
   console.log('refImgArray', data.refImgArray?.images)
   
-  if(typeof data.refImgArray === 'string'){
+  
+
+  const handleString = () => {
     let newImgArray = JSON.parse(data.refImgArray)
-    console.log('newImgArray', newImgArray)
+    setData(prevState => ({...prevState, refImgArray: newImgArray}))
   }
-
-
+  typeof data.refImgArray === 'string' && handleString()
 
   let refImgElems = data.refImgArray?.images.length > 0 && data.refImgArray.images.map((img, i) =>{ 
 
