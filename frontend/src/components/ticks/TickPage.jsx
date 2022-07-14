@@ -104,6 +104,10 @@ const TickPage = () => {
 
       setData(response.data.record)
     })
+    if (typeof data.refImgArray === 'string'){
+      console.log('handling string')
+      handleString()
+    }
   
   }, [id])
 
@@ -120,7 +124,8 @@ const TickPage = () => {
     setData(prevState => ({...prevState, refImgArray: newImgArray}))
     console.log(data)
   }
-  typeof data.refImgArray === 'string' && handleString()
+  
+
   
 
   let refImgElems = data.refImgArray?.images.length > 0 && data.refImgArray.images.map((img, i) =>{ 
