@@ -665,7 +665,7 @@ const Survey = () => {
             <textarea id='additionalInfo' name='additionalInfo' value={input.additionalInfo || ''} onChange={handleChange}></textarea>
           </Styles.TextCont>
         </Styles.FormSection>
-        
+        {!isEnabled && <h4>Please scan the form for missing information and complete the form in order to make the submit button active.</h4>}
          <button onClick={handleSubmit} disabled={!isEnabled} style={{ borderRadius: '0.5rem', padding: '2rem', backgroundColor: theme.colors.ruYellow}}>Submit</button>
 
         <BasicPage.LinkButton.LinkSpec to={'/steps'}>
