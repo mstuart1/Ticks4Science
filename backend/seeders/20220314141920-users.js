@@ -13,7 +13,8 @@ module.exports = {
         "resetToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZ3JhbnQiOm51bGwsImlhdCI6MTY1Mjg5ODg5MCwiZXhwIjoxNjUyOTg1MjkwfQ.B3YiIuiT3F7Xa19PMXHBGTOMT-nS1XNbrrAirLaJm8U",
         "emailAlerts": 1,
         "createdAt": "2022-05-16 13:43:08",
-        "updatedAt": "2022-05-18 18:34:50"
+        "updatedAt": "2022-05-18 18:34:50",
+        "deletedAt": null
       },
       {
         "id": 4,
@@ -25,7 +26,8 @@ module.exports = {
         "resetToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NTQ4ODE2NDgsImV4cCI6MTY1NDk2ODA0OH0.Ytx3FS2yNzbMm9GUvJScY6bYJETxQ0As9rqFRE-438Q",
         "emailAlerts": null,
         "createdAt": "2022-06-10 17:20:48",
-        "updatedAt": "2022-06-10 17:20:48"
+        "updatedAt": "2022-06-10 17:20:48",
+        "deletedAt": null
       },
       {
         "id": 5,
@@ -37,19 +39,21 @@ module.exports = {
         "resetToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NTQ4ODE3MDcsImV4cCI6MTY1NDk2ODEwN30.XN_kNHnSS7TehJewdlwazgke00pG5d6TqeN7Dqg5jWU",
         "emailAlerts": 1,
         "createdAt": "2022-06-10 17:21:47",
-        "updatedAt": "2022-06-10 17:29:00"
+        "updatedAt": "2022-06-10 17:29:00",
+        "deletedAt": null
       },
       {
         "id": 6,
         "firstName": "Andrea",
         "lastName": null,
         "email": "andrea.egizi@co.monmouth.nj.us",
-        "password": "$2b$10$qZ4ernQXi9Y1e41pecZyGOYVJ9nVuEGiH.KLJ7Or3MkjZ1vIhotCG",
+        "password": "$2b$10$ybZaisXRerF0E9Ca8xVLVuiRP7ogoAIFpiIcVUhaM5eLdNEbTRVIW",
         "manageUsers": null,
         "resetToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NTQ4ODE3MTUsImV4cCI6MTY1NDk2ODExNX0.iarjpDd6nykj_Kz_ppqYLVrl4ewgB-Ic8navRDIUGBU",
-        "emailAlerts": null,
+        "emailAlerts": 1,
         "createdAt": "2022-06-10 17:21:55",
-        "updatedAt": "2022-06-10 17:35:51"
+        "updatedAt": "2022-06-23 13:55:09",
+        "deletedAt": null
       }
     ], {});
   },
