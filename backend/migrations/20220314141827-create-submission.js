@@ -22,20 +22,7 @@ module.exports = {
           key: "id",
         },
       },
-      photoIdUserId: {
-        type: Sequelize.INTEGER,
-        references: {
-          model: "users",
-          key: "id",
-        },
-      },
-      specIdUserId: {
-        type: Sequelize.INTEGER,
-        references: {
-          model: "users",
-          key: "id",
-        },
-      },
+     
       dateSubmitted: {type: Sequelize.DATE},
       userMuni: {type: Sequelize.STRING},
       userZip: {type: Sequelize.DOUBLE},
