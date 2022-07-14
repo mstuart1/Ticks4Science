@@ -110,7 +110,7 @@ const Survey = () => {
     return ({
       // true means invalid
       userMuni: input.userMuni.length === 0,
-      userZip: input.userZip.length < 5 || !Number.isInteger(input.userZip),
+      userZip: input.userZip.length < 5,
       foundOn: input.foundOn.length === 0,
       foundOnOther: input.foundOn === 'Other' && input.foundOnOther.length === 0,
       dateTickFound: input.dateTickFound.length === 0 || new Date(input.dateTickFound) > new Date(),
@@ -137,7 +137,7 @@ const Survey = () => {
     return hasError ? shouldShow : false
   }
 
-console.log(input.userZip.length < 5 || Number.isInteger(input.userZip))
+
 
   const handleSubmit = async (evt) => {
     console.log('handling submit')
@@ -218,7 +218,7 @@ console.log(input.userZip.length < 5 || Number.isInteger(input.userZip))
             onChange={handleChange}
           />
           <Styles.ErrMessage error={shouldMarkError('userZip')}>
-            Please enter the 5 digit ZIP code where you live.
+            Please enter the ZIP code where you live.
           </Styles.ErrMessage>
 
         </Styles.FormSection>
