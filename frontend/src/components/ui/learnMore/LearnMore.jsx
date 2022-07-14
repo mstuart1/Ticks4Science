@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import { theme } from '../../../theme'
 import InternalLinkFloatButton from '../internalLinkFloatButton/InternalLinkFloatButton'
 import QuestionsButton from '../questionsButton/QuestionsButton'
 
@@ -26,7 +27,7 @@ const LearnMore = () => {
   return (
     <Styles.LearnCont>
     <span>Want to learn more about New Jersey's tick species?</span>
-    <InternalLinkFloatButton to='/ticks' text='View Ticks of New Jersey'/>
+    <InternalLinkFloatButton colors={{text: theme.colors.ruTeal, shadow: theme.colors.ruTeal}} to='/ticks' text='View Ticks of New Jersey'/>
    <QuestionsButton/>
    
 </Styles.LearnCont>
