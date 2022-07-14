@@ -100,25 +100,24 @@ const TickPage = () => {
       await TickDataService.getTick(id);
 
     getData().then(response => {
-      // console.log(response.data.record)
+      
       let freshData = response.data.record
  if (typeof freshData.refImgArray === 'string'){
-      console.log('handling string')
+      
       let newImgArray = JSON.parse(freshData.refImgArray);
       freshData.refImgArray = newImgArray;
     }
       setData(freshData)
     })
     
-   
-  
   }, [id])
 
   useEffect(() => {
      
   }, [])
 
-  console.log('data', typeof data.refImgArray)
+  console.log(data.refImgArray.images)
+  
   
 //   let refImgElems = data.refImgArray?.images.length > 0 && data.refImgArray.images.map((img, i) =>{ 
 
@@ -144,7 +143,7 @@ const TickPage = () => {
       <Styles.CardCont>
         <Styles.TopCont>
           <Styles.TopImgCont>
-            {/* <div style={{backgroundColor: 'white', width: '200px', height: '400px'}}> </div> */}
+            
             <img src={data.featureImgUrl?.includes("http") ? data.featureImgUrl : process.env.PUBLIC_URL + data.featureImgUrl} alt='tick' style={{ maxWidth: '40vw' }} />
           </Styles.TopImgCont>
           <Styles.TopInfoCont>
