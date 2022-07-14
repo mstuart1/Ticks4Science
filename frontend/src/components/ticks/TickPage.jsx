@@ -111,7 +111,7 @@ const TickPage = () => {
      
   }, [])
 
-  console.log('data', data.refImgArray)
+  console.log('data', typeof data.refImgArray)
   console.log('refImgArray', data.refImgArray?.images)
 
 
