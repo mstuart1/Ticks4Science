@@ -63,7 +63,7 @@ const TickCard = ({ tick }) => {
         <a href={`/ticks/${tick.id}`} target='_blank' rel='noreferrer' >
             <Styles.Container>
         {/* <Styles.Container onClick={() => navigate(`/ticks/${tick.id}`)} > */}
-            <Styles.HoverCard tickImage={tick.featureImgUrl} width={'20rem'} height={'20rem'}>
+            <Styles.HoverCard tickImage={tick.buttonImgUrl} width={'20rem'} height={'20rem'}>
                 <Styles.UpperRight>
                     <CircleButton active={tick.peopleTick} sizePx='20px' colors={{ bg: theme.colors.grey0 }} icon={<FaStar color={theme.colors.ruYellow} />} />
                 </Styles.UpperRight>

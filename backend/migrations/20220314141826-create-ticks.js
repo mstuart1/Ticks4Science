@@ -23,7 +23,7 @@ module.exports = {
         type: Sequelize.TEXT
       },
       habitat: {
-        type: Sequelize.STRING
+        type: Sequelize.TEXT
       },
       njLocations: {
         type: Sequelize.TEXT

@@ -82,6 +82,10 @@ const Styles = {
   display: flex;
   align-items: center;
   justify-content: center;
+  font-size: 2.5rem;
+font-weight: 700;
+text-align: center;
+margin: 1rem;
   `,
 }
 
@@ -93,8 +97,12 @@ const About = () => {
         <Styles.LeftAlignCont>
 
           <Styles.Title>  <Styles.Logo> <img src={logo} alt='NJ ticks for science logo' /></Styles.Logo>
-            <h1>Welcome to NJ Ticks 4 Science!</h1></Styles.Title>
-          {/* <Styles.LeftAlignCont> */}
+          
+          {/* <BasicPage.Title> */}
+              Welcome to NJ Ticks 4 Science!
+              {/* </BasicPage.Title> */}
+              </Styles.Title>
+          
           <Styles.Para>
             This is a citizen science project where we enlist people to submit ticks they come across in their everyday lives while living, working, and visiting New Jersey or as part of a Tick Blitz!
 
@@ -114,9 +122,9 @@ const About = () => {
             If you are a hunter…<br />
             If you are a farmer or someone who handles animals routinely…<br />
             If you have a dog or cat…<br />
-            If you have participated in a <BasicPage.InnieLink to='/tickBlitz'><span>Rutgers Tick Blitz</span></BasicPage.InnieLink>…<br />
+            If you have participated in a Rutgers Tick Blitz…<br />
           </Styles.Para>
-          {/* </Styles.LeftAlignCont> */}
+          
         </Styles.LeftAlignCont>
 
       </Styles.CenterCntr>
