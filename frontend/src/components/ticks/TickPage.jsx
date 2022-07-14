@@ -100,26 +100,27 @@ const TickPage = () => {
       await TickDataService.getTick(id);
 
     getData().then(response => {
-      console.log(response.data.record)
-
-      setData(response.data.record)
+      
+      let freshData = response.data.record
+ if (typeof freshData.refImgArray === 'string'){
+      
+      let newImgArray = JSON.parse(freshData.refImgArray);
+      freshData.refImgArray = newImgArray;
+    }
+      setData(freshData)
     })
-  
+    
   }, [id])
 
   useEffect(() => {
      
   }, [])
 
-  console.log('data', typeof data.refImgArray)
-  console.log('refImgArray', data.refImgArray?.images)
-  console.log('parsed', JSON.parse(data.refImgArray))
-
-
-
+  // data.refImgArray && console.log(Object.keys(data.refImgArray))
+  
+  
   let refImgElems = data.refImgArray?.images.length > 0 && data.refImgArray.images.map((img, i) =>{ 
 
-    console.log('img', img)
     if (i > 0) {
       
       if (img.includes("http")){
@@ -142,7 +143,7 @@ const TickPage = () => {
       <Styles.CardCont>
         <Styles.TopCont>
           <Styles.TopImgCont>
-            {/* <div style={{backgroundColor: 'white', width: '200px', height: '400px'}}> </div> */}
+            
             <img src={data.featureImgUrl?.includes("http") ? data.featureImgUrl : process.env.PUBLIC_URL + data.featureImgUrl} alt='tick' style={{ maxWidth: '40vw' }} />
           </Styles.TopImgCont>
           <Styles.TopInfoCont>
