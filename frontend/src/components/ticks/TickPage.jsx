@@ -100,15 +100,17 @@ const TickPage = () => {
       await TickDataService.getTick(id);
 
     getData().then(response => {
-      console.log(response.data.record)
-
-      setData(response.data.record)
+      // console.log(response.data.record)
+      let freshData = response.data.record
+ if (typeof freshData.refImgArray === 'string'){
+      console.log('handling string')
+      let newImgArray = JSON.parse(freshData.refImgArray);
+      freshData.refImgArray = newImgArray;
+    }
+      setData(freshData)
     })
-    console.log('type', typeof data.refImgArray)
-    // if (typeof data.refImgArray === 'string'){
-      // console.log('handling string')
-      // handleString()
-    // }
+    
+   
   
   }, [id])
 
@@ -116,19 +118,8 @@ const TickPage = () => {
      
   }, [])
 
-  // console.log('data', typeof data.refImgArray)
+  console.log('data', typeof data.refImgArray)
   
-  
-
-  const handleString = () => {
-    let newImgArray = JSON.parse(data.refImgArray)
-    setData(prevState => ({...prevState, refImgArray: newImgArray}))
-    console.log(data)
-  }
-  
-
-  
-
 //   let refImgElems = data.refImgArray?.images.length > 0 && data.refImgArray.images.map((img, i) =>{ 
 
 //     if (i > 0) {
