@@ -116,7 +116,7 @@ const TickPage = () => {
      
   }, [])
 
-  console.log(Object.keys(data.refImgArray))
+  data.refImgArray && console.log(Object.keys(data.refImgArray))
   
   
 //   let refImgElems = data.refImgArray?.images.length > 0 && data.refImgArray.images.map((img, i) =>{ 
