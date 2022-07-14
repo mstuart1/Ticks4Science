@@ -113,7 +113,7 @@ const TickPage = () => {
 
   console.log('data', typeof data.refImgArray)
   console.log('refImgArray', data.refImgArray?.images)
-  console.log('parsed', JSON.parse(data.refImgArray))
+  // console.log('parsed', JSON.parse(data.refImgArray))
 
 
 
