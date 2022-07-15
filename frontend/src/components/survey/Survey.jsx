@@ -5,6 +5,7 @@ import SubmissionDataService from '../../services/submission'
 import { theme } from '../../theme'
 // import { createInputElems, createRadioElems } from '../../tools/createElemFunc'
 import { BasicPage } from '../GeneralStyles'
+import FormSelectionBlocks from '../ui/formSelectionBlocks/FormSelectionBlocks'
 // import { attachedOptions, bittenInfoArray, foundOptions, inputElemArray1, inputElemArray2, locationOptions, yesNo } from './surveyFormData'
 
 
@@ -181,6 +182,19 @@ console.log(input.userZip.length < 5 || Number.isInteger(input.userZip))
     }
   }
 
+  const foundArray = [
+    {value: 'Person', required: true, label: 'Person'},
+    {value: 'Animal', required: true, label: 'Animal'},
+    {value: 'Environment/Outside', required: true, label: 'Environment/Outside'},
+    {value: 'Other', required: true, label: 'Other'},
+]
+
+const yesNoArray = [
+  {value: 'yes', required: true, label: 'Yes'},
+  {value: 'no', required: true, label: 'No'},
+  {value: 'unknown', required: true, label: 'Unknown/Believe So'},
+]
+
   return (
     <BasicPage.Text >
       <BasicPage.Title>Tick Submission Form</BasicPage.Title>
@@ -234,50 +248,8 @@ console.log(input.userZip.length < 5 || Number.isInteger(input.userZip))
             </Styles.ErrMessage>
 
             <BasicPage.RadioButtons>
-              <input
-                type='radio'
-                name={'foundOn'}
-                value={'Person'}
-                checked={input.foundOn === 'Person'}
-                id='foundOn-Person'
-                onChange={handleChange}
-                required
-              />
-              <label htmlFor='foundOn-Person'>Person</label>
-
-              <input
-                type='radio'
-                name={'foundOn'}
-                value={'Animal'}
-                checked={input.foundOn === 'Animal'}
-                id='foundOn-Animal'
-                onChange={handleChange}
-                required
-              />
-              <label htmlFor='foundOn-Animal'>Animal</label>
-              <input
-                type='radio'
-                name={'foundOn'}
-                value={'Environment/Outside'}
-                checked={input.foundOn === 'Environment/Outside'}
-                id='foundOn-Environment/Outside'
-                onChange={handleChange}
-                required
-              />
-              <label htmlFor='foundOn-Environment/Outside'>Environment/Outside</label>
-              <input
-                type='radio'
-                name={'foundOn'}
-                value={'Other'}
-                checked={input.foundOn === 'Other'}
-                id='foundOn-Other'
-                onChange={handleChange}
-                required
-              />
-              <label htmlFor='foundOn-Other'>Other</label>
-
-
-            </BasicPage.RadioButtons>
+              <FormSelectionBlocks input={input} handleChange={handleChange} fieldName='foundOn' valueArray={foundArray} />
+               </BasicPage.RadioButtons>
             {input.foundOn === 'Other' && (
               <>
                 <Styles.Input error={shouldMarkError('foundOnOther')}
@@ -319,37 +291,7 @@ console.log(input.userZip.length < 5 || Number.isInteger(input.userZip))
                   Please make a selection.
                 </Styles.ErrMessage>
                 <BasicPage.RadioButtons>
-                  <input
-                    type='radio'
-                    name={'tickAttached'}
-                    value={'Yes'}
-                    checked={input.tickAttached === 'Yes'}
-                    id='tickAttached-Yes'
-                    onChange={handleChange}
-                    required
-                  />
-                  <label htmlFor='tickAttached-Yes'>Yes</label>
-
-                  <input
-                    type='radio'
-                    name={'tickAttached'}
-                    value={'No'}
-                    checked={input.tickAttached === 'No'}
-                    id='tickAttached-No'
-                    onChange={handleChange}
-                    required
-                  />
-                  <label htmlFor='tickAttached-No'>No</label>
-                  <input
-                    type='radio'
-                    name={'tickAttached'}
-                    value={'Unknown/Believe So'}
-                    checked={input.tickAttached === 'Unknown/Believe So'}
-                    id='tickAttached-Unknown'
-                    onChange={handleChange}
-                    required
-                  />
-                  <label htmlFor='tickAttached-Unknown'>Unknown/Believe So</label>
+                <FormSelectionBlocks input={input} handleChange={handleChange} fieldName='tickAttached' valueArray={yesNoArray} />
                 </BasicPage.RadioButtons>
               </>
             )}
