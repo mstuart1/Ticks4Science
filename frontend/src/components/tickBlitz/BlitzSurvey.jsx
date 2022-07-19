@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
 import { theme } from '../../theme'
 import { BasicPage } from '../GeneralStyles'
+import ImageInput from '../ui/imageInput/ImageInput'
 
 const Styles = {
   
@@ -174,6 +175,7 @@ const BlitzSurvey = () =>{
       <BasicPage.Title>Tick Submission Form</BasicPage.Title>
 
       <BasicPage.Form >
+        
         {/* submitter info */}
         <Styles.FormSection>
 
@@ -424,7 +426,7 @@ const BlitzSurvey = () =>{
             </BasicPage.RadioButtons>
 
           </div>
-
+          <ImageInput maxNumImages={2}/>
 
 
 
