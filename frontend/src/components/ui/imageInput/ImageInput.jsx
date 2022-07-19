@@ -15,9 +15,9 @@ const Styles = {
   `,
 }
 
-
-const ImageInput = ({maxNumImages = 2}) => {
-    const [images, setImages] = useState([])
+// in order to save the images with the form, the image state has to come from the parent.
+const ImageInput = ({maxNumImages = 2, images, setImages}) => {
+    // const [images, setImages] = useState([])
     const [imgUrls, setImgUrls] = useState([]);
     
     useEffect(() => {

@@ -66,6 +66,7 @@ const BlitzSurvey = () =>{
   const [input, setInput] = useState(initialState)
   const [photoArray, setPhotoArray] = useState([])
   const [touched, setTouched] = useState(initialBlur)
+  const [images, setImages] = useState([]);
 
   const handleChange = (evt) => {
     
@@ -426,7 +427,7 @@ const BlitzSurvey = () =>{
             </BasicPage.RadioButtons>
 
           </div>
-          <ImageInput maxNumImages={2}/>
+          <ImageInput maxNumImages={2} images={images} setImages={setImages} />
 
 
 
