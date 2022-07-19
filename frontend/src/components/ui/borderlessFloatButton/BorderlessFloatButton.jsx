@@ -23,6 +23,7 @@ const Styles =  {
         font-weight: bold;
         text-align: center;
         font-size: 1.8rem;
+        color: ${({colors}) => colors.text}
     }
     `,
 }
