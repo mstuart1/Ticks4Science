@@ -19,11 +19,7 @@ const FormSelectionBlocks = ({input, handleChange, fieldName, valueArray = [{val
     ))
     console.log(blocksElems)
 
-  return (
-    <div>
- {blocksElems}
-    </div>
-  )
+  return blocksElems
 }
 
 export default FormSelectionBlocks

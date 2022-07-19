@@ -35,8 +35,18 @@ p {
 li {
   padding: 1em 0;
 }
+
+@media screen and (max-width: ${({theme}) => theme.mobile}) {
+  width: 100%;
+}
+
 @media screen and (min-width: 810px) {
   width: 800px;
+  text-align: left;
+  
+}
+@media screen and (min-width: 1010px) {
+  width: 1000px;
   text-align: left;
   
 }
@@ -214,12 +224,12 @@ color: ${({ theme }) => theme.colors.ruTeal};
     margin-bottom: 2rem;
     
 
-    div {
-      display: flex;
-      margin: 1rem;
-      flex-direction: column;
-      // justify-content: space-between;
-    }
+    // div {
+    //   display: flex;
+    //   margin: 1rem;
+    //   flex-direction: column;
+    //   // justify-content: space-between;
+    // }
     
     label {
     line-height: 2.24rem;
@@ -229,11 +239,15 @@ color: ${({ theme }) => theme.colors.ruTeal};
     }
     
       input {
-        // width: 100%;
+        width: 30rem;
         padding: 0.7rem;
         margin: 0.5rem;
         border: 0.5px solid ${({ theme }) => theme.colors.darkGreyBG};
         border-radius: 0.25em;
+
+        @media screen and (max-width: ${({theme}) => theme.mobile}) {
+          width: 90%;
+        }
 
       }
       input::placeholder,
@@ -252,7 +266,9 @@ color: ${({ theme }) => theme.colors.ruTeal};
     `,
   RadioButtons: styled.div`
     display: flex;
-    // width: 80vw;
+    width: 20rem;
+    flex-wrap: wrap;
+    
     /*
     Hide radio button (the round disc)
     we will use just the label to create pushbutton effect

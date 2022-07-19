@@ -7,9 +7,13 @@ const Styles = {
   border-radius: 0.5rem;
   max-width: 300px;
   margin: 1rem;
+  @media screen and (max-width: ${({theme}) => theme.mobile}) {
+    width: 90%;
+  }
   `,
   ImgCont: styled.div`
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   `,
@@ -36,11 +40,11 @@ const ImageInput = ({maxNumImages = 2, images, setImages}) => {
   return (
    <Styles.ImgCont>
    <RenderIf isTrue={images.length < maxNumImages}>
-    <h3>To upload multiple images, please select all of the images from your file system while the selection window is open by holding ctrl on windows or cmd on mac.</h3>
+    <p>To upload multiple images, please select all of the images from your file system while the selection window is open by holding ctrl on windows or cmd on mac.</p>
     <input type='file' multiple accept='image/*' onChange={handleImageChange} />
     </RenderIf>
    <RenderIf isTrue={images.length >= maxNumImages}>
-    <h3>You have selected the maximum allowed number of images</h3>
+    <p>You have selected the maximum allowed number of images</p>
     </RenderIf>
    {imgUrls.map((imgSrc, i) => <Styles.ImageCard key={i} src={imgSrc} alt='uploaded item' />)}
    </Styles.ImgCont>
