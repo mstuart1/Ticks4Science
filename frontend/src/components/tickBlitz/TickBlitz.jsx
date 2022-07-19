@@ -2,8 +2,6 @@ import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
 import { BasicPage } from '../GeneralStyles'
-import BorderDiv from '../ui/borderDiv/BorderDiv'
-import ExternalLinkFloatButton from '../ui/externalLinkFloatButton/ExternalLinkFloatButton'
 import LearnMore from '../ui/learnMore/LearnMore'
 import OutlineFloatButton from '../ui/outlineFloatButton/OutlineFloatButton'
 import {theme} from '../../theme'
@@ -20,6 +18,8 @@ const Styles = {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding-bottom: 2rem;
+    border-bottom: 2px solid ${({theme}) => theme.colors.grey3};
 
     @media screen and (max-width: ${({ theme }) => theme.mobile}) {
     flex-wrap: wrap;
@@ -45,6 +45,8 @@ const Styles = {
 //   margin: 1rem;
   display: flex;
   justify-content: center;
+  padding-bottom: 2rem;
+  border-bottom: 2px solid ${({theme}) => theme.colors.grey3};
   `,
 }
 
@@ -98,7 +100,7 @@ const TickBlitz = () => {
 
                 <BorderlessFloatButton colors={{text: theme.colors.ruTeal, shadow: theme.colors.ruTeal, bg: 'white'}} text="Tick Blitz 2018"  handleClick={() => window.open('https://vectorbio.rutgers.edu/TickBlitz.htm', '_blank')} />
             </Styles.ButtonDiv>
-            <BorderDiv/>
+            
             <p>
                 We encourage you to fully check out our website, which has resources on preventing tick bites! If you happen to find a tick on you or your pet, we also provide resources on how to 
                 remove the tick. </p>
@@ -106,7 +108,7 @@ const TickBlitz = () => {
                     <OutlineFloatButton colors={{text: theme.colors.ruTeal, shadow: theme.colors.ruTeal, bg: theme.colors.ruTeal }} handleClick={() => navigate('/checkMenu')} text='Learn more about preventing tick bites and removing ticks' width='80%'/>
                
                 </Styles.LinkCont>
-                <BorderDiv/>
+                
             <p>
 
                 Since you are here, we hope you are inspired to send us your ticks! Begin a tick submission and help all of us across New Jersey assess our risk from ticks and tick-borne diseases. </p>
@@ -114,7 +116,7 @@ const TickBlitz = () => {
                 <OutlineFloatButton colors={{text: theme.colors.ruTeal, shadow: theme.colors.ruTeal, bg: theme.colors.ruTeal }} handleClick={() => navigate('/steps')} text='Find out how to send us your ticks' width='80%'/>
                
                 </Styles.LinkCont>
-                <BorderDiv/>
+                
             <p>
                 If you have already submitted ticks, we thank you for your participation, and encourage you to view the progress on your tick submission.
             </p>
@@ -122,7 +124,7 @@ const TickBlitz = () => {
             <OutlineFloatButton colors={{text: theme.colors.ruTeal, shadow: theme.colors.ruTeal, bg: theme.colors.ruTeal }} handleClick={() => navigate('/progress')} text='Check the progress of your tick submission' width='80%'/>
             
             </Styles.LinkCont>
-            <BorderDiv/>
+            
            <LearnMore/>
            </Styles.CenterCntr>
         </BasicPage.Text>
