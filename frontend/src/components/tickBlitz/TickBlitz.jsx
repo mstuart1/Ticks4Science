@@ -103,9 +103,9 @@ const TickBlitz = () => {
 
                 <BorderlessFloatButton colors={{text: theme.colors.ruTeal, shadow: theme.colors.ruTeal, bg: 'white'}} text="Tick Blitz 2018"  handleClick={() => window.open('https://vectorbio.rutgers.edu/TickBlitz.htm', '_blank')} />
             </Styles.ButtonDiv>
-            <Styles.ButtonDiv style={{justifyContent: 'center'}}>
+            {/* <Styles.ButtonDiv style={{justifyContent: 'center'}}>
                 <BorderlessFloatButton handleClick={() => navigate('/blitzSurvey')} colors={{bg: theme.colors.ruTeal, text: 'white', shadow: theme.colors.ruTeal}} text='Submit your Tick Blitz ticks'/>
-            </Styles.ButtonDiv>
+            </Styles.ButtonDiv> */}
             <p>
                 We encourage you to fully check out our website, which has resources on preventing tick bites! If you happen to find a tick on you or your pet, we also provide resources on how to 
                 remove the tick. </p>
