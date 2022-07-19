@@ -1,0 +1,354 @@
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: Ticks4Science
+servers:
+  - url: https://ticks.rutgers.edu/api/
+    description: Production API Server
+paths:
+  /submission:
+    get:
+      summary: List all submissions
+      operationId: getAllSubs
+      tags:
+        - submission
+      responses:
+        '200':
+          description: An array of submissions
+          content:
+            application/json:    
+              schema:
+                  $ref: "#/components/schemas/Submission"
+    post:
+      summary: Create a new submission
+      operationId: createSubm
+      tags:
+        - submission
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Submission"
+      responses:
+        '200':
+          description: A submission object
+          content:
+            application/json:    
+              schema:
+                  $ref: "#/components/schemas/Submission"
+
+components:
+  parameters:
+    tokenParam:
+      name: token
+      in: path
+      required: true
+      schema:
+        type: string
+        example: 283749fu987pofja38wuojf7878ojkjj
+    payPurposeParam:
+      name: payPurpose
+      in: path
+      required: true
+      schema:
+        type: string
+        example: exam
+    examIdParam:
+      name: examId
+      in: path
+      required: true
+      schema:
+        type: integer
+        example: 2983
+    cfaIdParam:
+      name: cfaId
+      in: path
+      required: true
+      schema:
+        type: integer
+        example: 2983
+    courseIdParam:
+      name: courseId
+      in: path
+      required: true
+      schema:
+        type: integer
+        example: 2983
+    payIdParam:
+      name: payId
+      in: path
+      required: true
+      schema:
+        type: integer
+        example: 1
+    idParam:
+      name: id
+      in: path
+      required: true
+      schema:
+        type: integer
+        example: 2983
+  schemas:
+    Submission:
+      type: object
+      properties:
+        firstName:
+          type: string
+          example: Bob
+        lastName:
+          type: string
+          example: Roberts
+        email:
+          type: string
+          example: bob@bobslawns.com
+        id: 
+          type: integer
+          example: 13
+        dateSubmitted:
+          type: string
+          example: 2022-06-21T00:00:00.000Z
+        userMuni": 
+          type: string
+          example: Wallkill
+        userZip:
+          type: integer
+          example: 08904
+        dateTickFound:
+          type: string
+          example: 2022-06-21T00:00:00.000Z
+        foundOn:
+          type: string
+          example:  Person
+        foundOnOther:
+          type: string
+          example: Something else
+        tickAttached:
+          type: string
+          example: Yes
+        animal: 
+          type: string
+          example: bear
+        dateRemoved: 
+          type: string
+          example: 2022-06-21T00:00:00.000Z
+        tickLocation:
+          type: string
+          example: Wallkill
+        locationDesc:
+          type: string
+          example: Recreational area outside
+        locationDescOther:
+          type: string
+          example: something else
+        tickMuni:
+          type: string
+          example: Wallkill
+        tickCounty:
+          type: string
+          example: Monmouth
+        tickZip:
+          type: string
+          example: 08901
+        activities:
+          type: string
+          example: Mountain bike riding
+        personBitten:
+          type: string
+          example: Yes
+        submitterBitten:
+          type: string
+          example: No
+        bittenMuni:
+          type: string
+          example: Wallkill
+        bittenZip:
+          type: string
+          example: null,
+        bittenTraveledDom:
+          type: string
+          example: null,
+        bittenTraveledIntl:
+          type: string
+          example: null
+        travelInfo:
+          type: string
+          example: null
+        photoFrontUrl:
+          type: string
+          example: /api/public/tickImages/image-1655985356117.jpeg
+        photoBackUrl:
+          type: string
+          example: null
+        photoOtherUrl:
+          type: string
+          example: null
+        additionalInfo:
+          type: string
+          example: Identified as lone Star Tick
+        photosReviewed:
+          type: string
+          example: 2022-06-24T01:38:15.000Z
+        specimenRequested:
+          type: string
+          example: 2022-06-24T01:38:22.000Z
+        specimenReceived:
+          type: string
+          example: null
+        specimenIdentified:
+          type: string
+          example: null
+        notATick:
+          type: string
+          example: null
+        duplicate:
+          type: string
+          example: null
+        createdAt:
+          type: string
+          example: 2022-06-23T11:55:56.000Z
+        updatedAt:
+          type: string
+          example: 2022-06-24T01:38:22.000Z
+        deletedAt:
+          type: string
+          example: null
+        photoId:
+          type: string
+          example: null
+        specimenId:
+          type: string
+          example: null
+        photoIdUserId:
+          type: string
+          example: null
+        specIdUserId:
+          type: string
+          example: null
+        photo:
+          type: string
+          example: null
+        specimen:
+          type: string
+          example: null
+        specIdUser:
+          type: string
+          example: null
+        photoIdUser:
+          type: string
+          example: nul
+  responses:
+    400ApiError:
+      description: Either missing data or invalid data was submitted in the request
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              statusCode:
+                type: integer
+                example: 400
+              code:
+                type: string
+                example: NOT_OK
+              message:
+                type: string
+                example: There was an error with the query parameters
+    400EmptyValidationError:
+      description: Required information missing from request.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              statusCode:
+                type: integer
+                example: 400
+              code:
+                type: string
+                example: VALIDATION_ERROR
+              message:
+                type: string
+                example: Content can not be empty!
+    401NoAuth:
+      description: No Authorization Header
+      content:
+        text/html:
+          schema:
+            type: object
+            properties:
+              text:
+                type: string
+                example: No Auth Header.
+    403AuthError:
+      description: Invalid auth token error
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              code:
+                type: string
+                example: AUTH_ERROR
+              message:
+                type: string
+                example: Error authenticating token
+    404ValidationError:
+      description: Not found
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              code:
+                type: string
+                example: BAD_OBJECT
+              message:
+                type: string
+                example: This object does not exist.
+    404examValidationError:
+      description: examId not found
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              code:
+                type: string
+                example: BAD_EXAM_ID
+              message:
+                type: string
+                example: This exam does not exist for this course.
+    409examValidationError:
+      description: The exam has expired
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              code:
+                type: string
+                example: EXAM_EXPIRED
+              message:
+                type: string
+                example: This exam ${req.params.examId} is no longer in progress.
+    500ApiError:
+      description: This is an unexpected error
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              statusCode:
+                type: integer
+                example: 500
+              code:
+                type: string
+                example: NOT_OK
+              message:
+                type: string
+                example: This is an error
+  securitySchemes:
+    bearerAuth: # arbitrary name for the security scheme
+      type: http
+      scheme: bearer
+      bearerFormat: JWT # optional, arbitrary value for documentation purposes

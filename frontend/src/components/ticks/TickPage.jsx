@@ -100,32 +100,42 @@ const TickPage = () => {
       await TickDataService.getTick(id);
 
     getData().then(response => {
-      console.log(response.data.record)
-
-      setData(response.data.record)
+      
+      let freshData = response.data.record
+ if (typeof freshData.refImgArray === 'string'){
+      
+      let newImgArray = JSON.parse(freshData.refImgArray);
+      freshData.refImgArray = newImgArray;
+    }
+      setData(freshData)
     })
-  
+    
   }, [id])
 
   useEffect(() => {
      
   }, [])
 
-  console.log(data.refImgArray)
+  // data.refImgArray && console.log(Object.keys(data.refImgArray))
+  
+  
+  let refImgElems = data.refImgArray?.images.length > 0 && data.refImgArray.images.map((img, i) =>{ 
 
-
-
-  // let refImgElems = data.refImgArray?.length > 0 && data.refImgArray.map((img, i) =>{ 
-  //   if (!img.source.includes("local"))
-  //   return (
-
-  //   <figure key={i}>
-  //     <img src={img.source} alt='ticks' style={{ maxWidth: '350px', borderRadius: '5px', margin: '0.5rem' }} />
-  //     {/* <figcaption>{img.caption} */}
-  //     {/* </figcaption> */}
-  //   </figure>
-
-  // )})
+    if (i > 0) {
+      
+      if (img.includes("http")){
+        return (
+          <img src={`${img}`} alt='ticks' style={{ maxWidth: '350px', maxHeight: '250px', borderRadius: '5px', margin: '0.5rem' }} key={i}/>
+        )
+      } else {
+        return (
+          <img src={process.env.PUBLIC_URL + img} alt='ticks' style={{ maxWidth: '350px', maxHeight: '250px', borderRadius: '5px', margin: '0.5rem' }} key={i}/>
+        )
+      }
+      
+    }
+    
+})
 
 
   return (
@@ -133,8 +143,8 @@ const TickPage = () => {
       <Styles.CardCont>
         <Styles.TopCont>
           <Styles.TopImgCont>
-            {/* <div style={{backgroundColor: 'white', width: '200px', height: '400px'}}> </div> */}
-            <img src={data.featureImgUrl} alt='tick' style={{ maxWidth: '40vw' }} />
+            
+            <img src={data.featureImgUrl?.includes("http") ? data.featureImgUrl : process.env.PUBLIC_URL + data.featureImgUrl} alt='tick' style={{ maxWidth: '40vw' }} />
           </Styles.TopImgCont>
           <Styles.TopInfoCont>
             <Styles.Section>
@@ -143,7 +153,7 @@ const TickPage = () => {
               <h2>Scientific Name:<br/> <i>{data.scientific}</i></h2>
             </Styles.Section>
             <Styles.Section>
-              <h3>{data.humanHosts && '⭐️ This tick can be found on people'}</h3>
+              <h3>{data.humanHosts && '⭐️ A frequent human biter'}</h3>
             </Styles.Section>
             <Styles.Section>
               {data.intro}
@@ -162,7 +172,7 @@ const TickPage = () => {
           </Styles.MiddleInfo>)}
         </Styles.MiddleCont>
         <Styles.MiddleCont>
-          {/* {refImgElems} */}
+          {refImgElems}
         </Styles.MiddleCont>
         <OutlineCard>
           <h3>A Reminder About Engorged Ticks</h3>

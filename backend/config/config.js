@@ -6,9 +6,14 @@ module.exports = {
     database: process.env.DB_NAME,
     host: process.env.DB_HOST,
     dialect: "mysql",
-    dialectOptions: {
-      charset: "utf8mb4",
-    },
+    // dialectOptions: {
+    //   charset: "utf8mb4",
+    // },
+    // this is ignored by sequelize - use this in the migration instead:
+    // {
+      // charset: "utf8mb4",
+      // collate: "utf8mb4_general_ci",
+    // }
     define: {
       freezeTableName: true,
       paranoid: true,
@@ -24,9 +29,14 @@ module.exports = {
     database: process.env.DB_NAME,
     host: process.env.DB_HOST,
     dialect: "mysql",
-    dialectOptions: {
-      charset: "utf8mb4",
-    },
+     // dialectOptions: {
+    //   charset: "utf8mb4",
+    // },
+    // this is ignored by sequelize - use this in the migration instead:
+    // {
+      // charset: "utf8mb4",
+      // collate: "utf8mb4_general_ci",
+    // }
     define: {
       freezeTableName: true,
       paranoid: true,

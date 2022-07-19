@@ -7,6 +7,8 @@ import { theme } from '../theme'
 import logo from '../images/Logo.svg'
 import LearnMore from "./ui/learnMore/LearnMore";
 import BorderDiv from "./ui/borderDiv/BorderDiv";
+import OutlineFloatButton from "./ui/outlineFloatButton/OutlineFloatButton";
+import { useNavigate } from "react-router-dom";
 
 const Styles = {
   CenterCntr: styled.div`
@@ -82,10 +84,15 @@ const Styles = {
   display: flex;
   align-items: center;
   justify-content: center;
+  font-size: 2.5rem;
+font-weight: 700;
+text-align: center;
+margin: 1rem;
   `,
 }
 
 const About = () => {
+  const navigate = useNavigate()
   return (
     <Styles.CenterCol >
       <Styles.CenterCntr>
@@ -93,8 +100,12 @@ const About = () => {
         <Styles.LeftAlignCont>
 
           <Styles.Title>  <Styles.Logo> <img src={logo} alt='NJ ticks for science logo' /></Styles.Logo>
-            <h1>Welcome to NJ Ticks 4 Science!</h1></Styles.Title>
-          {/* <Styles.LeftAlignCont> */}
+          
+          {/* <BasicPage.Title> */}
+              Welcome to NJ Ticks 4 Science!
+              {/* </BasicPage.Title> */}
+              </Styles.Title>
+          
           <Styles.Para>
             This is a citizen science project where we enlist people to submit ticks they come across in their everyday lives while living, working, and visiting New Jersey or as part of a Tick Blitz!
 
@@ -114,28 +125,23 @@ const About = () => {
             If you are a hunter…<br />
             If you are a farmer or someone who handles animals routinely…<br />
             If you have a dog or cat…<br />
-            If you have participated in a <BasicPage.InnieLink to='/tickBlitz'><span>Rutgers Tick Blitz</span></BasicPage.InnieLink>…<br />
+            If you have participated in a Rutgers Tick Blitz…<br />
           </Styles.Para>
-          {/* </Styles.LeftAlignCont> */}
+          
         </Styles.LeftAlignCont>
 
       </Styles.CenterCntr>
 
-      <Styles.CenterCntr>
+      <Styles.CenterCntr style={{borderBottom: `2px solid ${theme.colors.grey3}`}}>
         <Styles.CenterCol>
           <BasicPage.SectionTitle>Get Started</BasicPage.SectionTitle>
-
-          {/* // todo add info buttons to supply the extra text? */}
-
           <InternalLinkFloatButton width="25rem" colors={{ text: theme.colors.ruTeal, shadow: theme.colors.ruTeal }} to='/checkMenu' text='Tick Prevention' />
           <InternalLinkFloatButton width="25rem" colors={{ text: theme.colors.ruTeal, shadow: theme.colors.ruTeal }} to='/removal' text='Tick Removal' />
           <InternalLinkFloatButton width="25rem" colors={{ text: theme.colors.ruTeal, shadow: theme.colors.ruTeal }} to='/steps' text='Send us your ticks!' />
 
 
           <BasicPage.SectionTitle>If you have already submitted ticks </BasicPage.SectionTitle>
-          <InternalLinkFloatButton width="25rem" colors={{ text: theme.colors.ruTeal, shadow: theme.colors.ruTeal }} to='/progress'
-            text='Track your progress'
-          // text='under construction'
+          <OutlineFloatButton  colors={{ text: theme.colors.ruTeal, shadow: theme.colors.ruTeal, bg: theme.colors.ruTeal }} handleClick={() => navigate('/progress')} text='Track your progress'
           />
         </Styles.CenterCol>
 
@@ -149,7 +155,7 @@ const About = () => {
 
       </Styles.CenterCntr>
 
-      <BorderDiv />
+      {/* <BorderDiv /> */}
       <LearnMore />
 
     </Styles.CenterCol>

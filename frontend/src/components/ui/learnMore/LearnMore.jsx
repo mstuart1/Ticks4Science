@@ -26,6 +26,7 @@ const Styles = {
 const LearnMore = () => {
   return (
     <Styles.LearnCont>
+      
     <span>Want to learn more about New Jersey's tick species?</span>
     <InternalLinkFloatButton colors={{text: theme.colors.ruTeal, shadow: theme.colors.ruTeal}} to='/ticks' text='View Ticks of New Jersey'/>
    <QuestionsButton/>

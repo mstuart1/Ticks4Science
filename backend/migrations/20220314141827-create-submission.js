@@ -22,20 +22,7 @@ module.exports = {
           key: "id",
         },
       },
-      photoIdUserId: {
-        type: Sequelize.INTEGER,
-        references: {
-          model: "users",
-          key: "id",
-        },
-      },
-      specIdUserId: {
-        type: Sequelize.INTEGER,
-        references: {
-          model: "users",
-          key: "id",
-        },
-      },
+     
       dateSubmitted: {type: Sequelize.DATE},
       userMuni: {type: Sequelize.STRING},
       userZip: {type: Sequelize.DOUBLE},
@@ -84,7 +71,12 @@ module.exports = {
         type: Sequelize.DATE,
         defaultValue: new Date(),
       }
-    });
+    },
+    {
+      charset: "utf8mb4",
+      collate: "utf8mb4_general_ci",
+    }
+    );
   },
   async down(queryInterface, Sequelize) {
     await queryInterface.dropTable('submission');

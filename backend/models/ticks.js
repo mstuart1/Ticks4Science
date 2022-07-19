@@ -19,7 +19,7 @@ module.exports = (sequelize, DataTypes) => {
     humanHosts: DataTypes.BOOLEAN,
     intro: DataTypes.TEXT,
     hosts: DataTypes.TEXT, 
-    habitat: DataTypes.STRING, 
+    habitat: DataTypes.TEXT, 
     njLocations: DataTypes.TEXT, 
     activeMonths: DataTypes.TEXT,
     buttonImgUrl: DataTypes.STRING,

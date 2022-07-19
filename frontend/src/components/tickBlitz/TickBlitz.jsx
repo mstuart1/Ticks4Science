@@ -1,12 +1,11 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
 import { theme } from '../../theme'
 import { BasicPage } from '../GeneralStyles'
-import BorderDiv from '../ui/borderDiv/BorderDiv'
-import ExternalLinkFloatButton from '../ui/externalLinkFloatButton/ExternalLinkFloatButton'
-import InternalLinkFloatButton from '../ui/internalLinkFloatButton/InternalLinkFloatButton'
 import LearnMore from '../ui/learnMore/LearnMore'
-
+import OutlineFloatButton from '../ui/outlineFloatButton/OutlineFloatButton'
+import BorderlessFloatButton from '../ui/borderlessFloatButton/BorderlessFloatButton'
 
 const Styles = {
     Title: styled.h2`
@@ -19,6 +18,8 @@ const Styles = {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding-bottom: 2rem;
+    border-bottom: 2px solid ${({theme}) => theme.colors.grey3};
 
     @media screen and (max-width: ${({ theme }) => theme.mobile}) {
     flex-wrap: wrap;
@@ -44,10 +45,13 @@ const Styles = {
 //   margin: 1rem;
   display: flex;
   justify-content: center;
+  padding-bottom: 2rem;
+  border-bottom: 2px solid ${({theme}) => theme.colors.grey3};
   `,
 }
 
 const TickBlitz = () => {
+    const navigate = useNavigate()
     return (
         <BasicPage.Text>
             <Styles.CenterCntr>
@@ -92,34 +96,38 @@ const TickBlitz = () => {
                 We encourage you to check out the article and publications resulting from the NJ Tick Blitz to learn more about the initiative that inspired NJ Ticks 4 Science! to do a large-scale tick surveillance program across New Jersey!
             </p>
             <Styles.ButtonDiv>
-            <ExternalLinkFloatButton colors={{text: theme.colors.ruTeal, shadow: theme.colors.ruTeal}} to='https://pubmed.ncbi.nlm.nih.gov/31344868/' text='NCBI Article' />
-            <ExternalLinkFloatButton colors={{text: theme.colors.ruTeal, shadow: theme.colors.ruTeal}} to='https://www.rutgers.edu/news/rutgers-led-tick-blitz-finds-exotic-longhorned-ticks-and-aggressive-lone-star-ticks-new' text='Rutgers News Room' />
-            <ExternalLinkFloatButton colors={{text: theme.colors.ruTeal, shadow: theme.colors.ruTeal}} to='https://vectorbio.rutgers.edu/TickBlitz.htm' text={`Jim's PDF`} />
+                <BorderlessFloatButton colors={{text: theme.colors.ruTeal, shadow: theme.colors.ruTeal, bg: 'white'}} text='Rutgers News Room'  handleClick={() => window.open('https://www.rutgers.edu/news/rutgers-led-tick-blitz-finds-exotic-longhorned-ticks-and-aggressive-lone-star-ticks-new', '_blank')} />
+                
+                <BorderlessFloatButton colors={{text: theme.colors.ruTeal, shadow: theme.colors.ruTeal, bg: 'white'}}  text='NCBI Article' handleClick={() => window.open('https://pubmed.ncbi.nlm.nih.gov/31344868/', '_blank')} />
+                
+
+                <BorderlessFloatButton colors={{text: theme.colors.ruTeal, shadow: theme.colors.ruTeal, bg: 'white'}} text="Tick Blitz 2018"  handleClick={() => window.open('https://vectorbio.rutgers.edu/TickBlitz.htm', '_blank')} />
             </Styles.ButtonDiv>
-            <BorderDiv/>
-            <InternalLinkFloatButton to='/blitzSurvey' text='Submit Your Tick Blitz Ticks' colors={{bg: theme.colors.ruTeal, text: 'white'}}/>
-            <BorderDiv/>
+            
             <p>
                 We encourage you to fully check out our website, which has resources on preventing tick bites! If you happen to find a tick on you or your pet, we also provide resources on how to 
                 remove the tick. </p>
                 <Styles.LinkCont>
-                <InternalLinkFloatButton colors={{text: theme.colors.ruTeal, shadow: theme.colors.ruTeal}} to='/checkMenu' text='Learn more about preventing tick bites and removing ticks' width='80%' />
+                    <OutlineFloatButton colors={{text: theme.colors.ruTeal, shadow: theme.colors.ruTeal, bg: theme.colors.ruTeal }} handleClick={() => navigate('/checkMenu')} text='Learn more about preventing tick bites and removing ticks' width='80%'/>
+               
                 </Styles.LinkCont>
-                <BorderDiv/>
+                
             <p>
 
                 Since you are here, we hope you are inspired to send us your ticks! Begin a tick submission and help all of us across New Jersey assess our risk from ticks and tick-borne diseases. </p>
                 <Styles.LinkCont>
-                <InternalLinkFloatButton to='steps' text='Find out how to send us your ticks' width='80%' colors={{text: theme.colors.ruTeal, shadow: theme.colors.ruTeal}}/>
+                <OutlineFloatButton colors={{text: theme.colors.ruTeal, shadow: theme.colors.ruTeal, bg: theme.colors.ruTeal }} handleClick={() => navigate('/steps')} text='Find out how to send us your ticks' width='80%'/>
+               
                 </Styles.LinkCont>
-                <BorderDiv/>
+                
             <p>
                 If you have already submitted ticks, we thank you for your participation, and encourage you to view the progress on your tick submission.
             </p>
             <Styles.LinkCont>
-            <InternalLinkFloatButton to='/progress' text='Check the progress of your tick submission' width='80%' colors={{text: theme.colors.ruTeal, shadow: theme.colors.ruTeal}}/>
+            <OutlineFloatButton colors={{text: theme.colors.ruTeal, shadow: theme.colors.ruTeal, bg: theme.colors.ruTeal }} handleClick={() => navigate('/progress')} text='Check the progress of your tick submission' width='80%'/>
+            
             </Styles.LinkCont>
-            <BorderDiv/>
+            
            <LearnMore/>
            </Styles.CenterCntr>
         </BasicPage.Text>

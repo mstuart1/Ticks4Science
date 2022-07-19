@@ -23,7 +23,7 @@ module.exports = {
         type: Sequelize.TEXT
       },
       habitat: {
-        type: Sequelize.STRING
+        type: Sequelize.TEXT
       },
       njLocations: {
         type: Sequelize.TEXT
@@ -49,8 +49,13 @@ module.exports = {
         allowNull: false,
         type: Sequelize.DATE,
         defaultValue: new Date(),
-      }
-    });
+      },
+    },
+    {
+      charset: "utf8mb4",
+      collate: "utf8mb4_general_ci",
+    }
+    );
   },
   async down(queryInterface, Sequelize) {
     await queryInterface.dropTable('ticks');
