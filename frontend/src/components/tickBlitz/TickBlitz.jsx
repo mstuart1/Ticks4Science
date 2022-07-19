@@ -7,6 +7,7 @@ import ExternalLinkFloatButton from '../ui/externalLinkFloatButton/ExternalLinkF
 import LearnMore from '../ui/learnMore/LearnMore'
 import OutlineFloatButton from '../ui/outlineFloatButton/OutlineFloatButton'
 import {theme} from '../../theme'
+import BorderlessFloatButton from '../ui/borderlessFloatButton/BorderlessFloatButton'
 
 const Styles = {
     Title: styled.h2`
@@ -90,9 +91,12 @@ const TickBlitz = () => {
                 We encourage you to check out the article and publications resulting from the NJ Tick Blitz to learn more about the initiative that inspired NJ Ticks 4 Science! to do a large-scale tick surveillance program across New Jersey!
             </p>
             <Styles.ButtonDiv>
-            <ExternalLinkFloatButton to='https://www.rutgers.edu/news/rutgers-led-tick-blitz-finds-exotic-longhorned-ticks-and-aggressive-lone-star-ticks-new' text='Rutgers News Room' />
-            <ExternalLinkFloatButton to='https://pubmed.ncbi.nlm.nih.gov/31344868/' text='NCBI Article' />
-            <ExternalLinkFloatButton to='https://vectorbio.rutgers.edu/TickBlitz.htm' text={`Jim's PDF`} />
+                <BorderlessFloatButton colors={{text: theme.colors.ruTeal, shadow: theme.colors.ruTeal, bg: 'white'}} text='Rutgers News Room'  handleClick={() => window.open('https://www.rutgers.edu/news/rutgers-led-tick-blitz-finds-exotic-longhorned-ticks-and-aggressive-lone-star-ticks-new', '_blank')} />
+                
+                <BorderlessFloatButton colors={{text: theme.colors.ruTeal, shadow: theme.colors.ruTeal, bg: 'white'}}  text='NCBI Article' handleClick={() => window.open('https://pubmed.ncbi.nlm.nih.gov/31344868/', '_blank')} />
+                
+
+                <BorderlessFloatButton colors={{text: theme.colors.ruTeal, shadow: theme.colors.ruTeal, bg: 'white'}} text="Tick Blitz 2018"  handleClick={() => window.open('https://vectorbio.rutgers.edu/TickBlitz.htm', '_blank')} />
             </Styles.ButtonDiv>
             <BorderDiv/>
             <p>
