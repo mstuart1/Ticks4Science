@@ -7,6 +7,8 @@ import { theme } from '../theme'
 import logo from '../images/Logo.svg'
 import LearnMore from "./ui/learnMore/LearnMore";
 import BorderDiv from "./ui/borderDiv/BorderDiv";
+import OutlineFloatButton from "./ui/outlineFloatButton/OutlineFloatButton";
+import { useNavigate } from "react-router-dom";
 
 const Styles = {
   CenterCntr: styled.div`
@@ -90,6 +92,7 @@ margin: 1rem;
 }
 
 const About = () => {
+  const navigate = useNavigate()
   return (
     <Styles.CenterCol >
       <Styles.CenterCntr>
@@ -129,21 +132,16 @@ const About = () => {
 
       </Styles.CenterCntr>
 
-      <Styles.CenterCntr>
+      <Styles.CenterCntr style={{borderBottom: `2px solid ${theme.colors.grey3}`}}>
         <Styles.CenterCol>
           <BasicPage.SectionTitle>Get Started</BasicPage.SectionTitle>
-
-          {/* // todo add info buttons to supply the extra text? */}
-
           <InternalLinkFloatButton width="25rem" colors={{ text: theme.colors.ruTeal, shadow: theme.colors.ruTeal }} to='/checkMenu' text='Tick Prevention' />
           <InternalLinkFloatButton width="25rem" colors={{ text: theme.colors.ruTeal, shadow: theme.colors.ruTeal }} to='/removal' text='Tick Removal' />
           <InternalLinkFloatButton width="25rem" colors={{ text: theme.colors.ruTeal, shadow: theme.colors.ruTeal }} to='/steps' text='Send us your ticks!' />
 
 
           <BasicPage.SectionTitle>If you have already submitted ticks </BasicPage.SectionTitle>
-          <InternalLinkFloatButton width="25rem" colors={{ text: theme.colors.ruTeal, shadow: theme.colors.ruTeal }} to='/progress'
-            text='Track your progress'
-          // text='under construction'
+          <OutlineFloatButton  colors={{ text: theme.colors.ruTeal, shadow: theme.colors.ruTeal, bg: theme.colors.ruTeal }} handleClick={() => navigate('/progress')} text='Track your progress'
           />
         </Styles.CenterCol>
 
@@ -157,7 +155,7 @@ const About = () => {
 
       </Styles.CenterCntr>
 
-      <BorderDiv />
+      {/* <BorderDiv /> */}
       <LearnMore />
 
     </Styles.CenterCol>
