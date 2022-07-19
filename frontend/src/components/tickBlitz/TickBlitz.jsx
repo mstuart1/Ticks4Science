@@ -1,11 +1,12 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
 import { BasicPage } from '../GeneralStyles'
 import BorderDiv from '../ui/borderDiv/BorderDiv'
 import ExternalLinkFloatButton from '../ui/externalLinkFloatButton/ExternalLinkFloatButton'
-import InternalLinkFloatButton from '../ui/internalLinkFloatButton/InternalLinkFloatButton'
 import LearnMore from '../ui/learnMore/LearnMore'
-
+import OutlineFloatButton from '../ui/outlineFloatButton/OutlineFloatButton'
+import {theme} from '../../theme'
 
 const Styles = {
     Title: styled.h2`
@@ -47,6 +48,7 @@ const Styles = {
 }
 
 const TickBlitz = () => {
+    const navigate = useNavigate()
     return (
         <BasicPage.Text>
             <Styles.CenterCntr>
@@ -97,21 +99,24 @@ const TickBlitz = () => {
                 We encourage you to fully check out our website, which has resources on preventing tick bites! If you happen to find a tick on you or your pet, we also provide resources on how to 
                 remove the tick. </p>
                 <Styles.LinkCont>
-                <InternalLinkFloatButton to='/checkMenu' text='Learn more about preventing tick bites and removing ticks' width='80%' />
+                    <OutlineFloatButton colors={{text: theme.colors.ruTeal, shadow: theme.colors.ruTeal, bg: theme.colors.ruTeal }} handleClick={() => navigate('/checkMenu')} text='Learn more about preventing tick bites and removing ticks' width='80%'/>
+               
                 </Styles.LinkCont>
                 <BorderDiv/>
             <p>
 
                 Since you are here, we hope you are inspired to send us your ticks! Begin a tick submission and help all of us across New Jersey assess our risk from ticks and tick-borne diseases. </p>
                 <Styles.LinkCont>
-                <InternalLinkFloatButton to='steps' text='Find out how to send us your ticks' width='80%' />
+                <OutlineFloatButton colors={{text: theme.colors.ruTeal, shadow: theme.colors.ruTeal, bg: theme.colors.ruTeal }} handleClick={() => navigate('/steps')} text='Find out how to send us your ticks' width='80%'/>
+               
                 </Styles.LinkCont>
                 <BorderDiv/>
             <p>
                 If you have already submitted ticks, we thank you for your participation, and encourage you to view the progress on your tick submission.
             </p>
             <Styles.LinkCont>
-            <InternalLinkFloatButton to='/progress' text='Check the progress of your tick submission' width='80%' />
+            <OutlineFloatButton colors={{text: theme.colors.ruTeal, shadow: theme.colors.ruTeal, bg: theme.colors.ruTeal }} handleClick={() => navigate('/progress')} text='Check the progress of your tick submission' width='80%'/>
+            
             </Styles.LinkCont>
             <BorderDiv/>
            <LearnMore/>
