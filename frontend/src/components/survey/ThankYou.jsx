@@ -9,7 +9,7 @@ const ThankYou = () => {
     return (
         <BasicPage.Text>
             <BasicPage.Title>Thank you for your submission!</BasicPage.Title>
-            <BasicPage.SectionTitle>Your personalized tick id number is {id}.<br /><br />
+            <BasicPage.SectionTitle>Your personalized tick id number is {id}.</BasicPage.SectionTitle><br /><br />
                 {/* Bookmark or write down this website to access your tick progress: <BasicPage.InnieLink 
                 // to={`/`}
                 to={`/progress/${id}`}
@@ -17,7 +17,7 @@ const ThankYou = () => {
                 <h2>You must write down this number to access your tick submission!</h2>
                 <h1>{id}</h1>
                 <h2>Please this number down.</h2>
-                </BasicPage.SectionTitle>
+                
             <p>
                 One of our tick experts will be examining the submitted photos and information about your tick! Be sure to save your personalized Tick ID number from your Tick Submission Form! You will use this number to access the website to check your progress.
             </p><p>
