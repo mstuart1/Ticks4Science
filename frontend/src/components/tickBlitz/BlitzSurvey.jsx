@@ -140,9 +140,9 @@ const BlitzSurvey = () => {
       let data = Object.entries(input).reduce((a, [k, v]) => (v ? (a[k] = v, a) : a), {})
 
       const formData = new FormData();
-      formData.append('photos', images)
-      console.log('images', images)
-      
+      images.forEach(image => {
+        formData.append('photos', image)
+      })     
       const config = {
         headers: {
           'content-type': 'multipart/form-data'
