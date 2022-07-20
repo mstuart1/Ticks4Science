@@ -7,6 +7,7 @@ import ImageInput from '../ui/imageInput/ImageInput'
 import FormSelectionBlocks from '../ui/formSelectionBlocks/FormSelectionBlocks'
 import RenderIf from '../../tools/RenderIf'
 import BorderlessFloatButton from '../ui/borderlessFloatButton/BorderlessFloatButton'
+import SubmissionDataService from '../../services/submission'
 
 const Styles = {
   Label: styled.label`
@@ -140,6 +141,7 @@ const BlitzSurvey = () => {
 
       const formData = new FormData();
       formData.append('photos', images)
+      console.log('images', images)
       
       const config = {
         headers: {
@@ -147,13 +149,13 @@ const BlitzSurvey = () => {
         }
       }
 
-      // let response = await SubmissionDataService.submitForm(data);
-      // let id = response.data.data.id
-      // console.log('sent form, now seding photos')
-      // response = await SubmissionDataService.submitImage(id, formData, config)
+      let response = await SubmissionDataService.submitForm(data);
+      let id = response.data.data.id
+      console.log('sent form, now seding photos')
+      response = await SubmissionDataService.submitImage(id, formData, config)
       // alert(JSON.stringify(response.data))
       setInput(initialState);
-      navigate(`/`);
+      navigate(`/thanks?id=${id}`);
     }
     catch (err) {
       console.log(err.message)
