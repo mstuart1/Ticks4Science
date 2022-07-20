@@ -152,9 +152,7 @@ const Dashboard = () => {
   let pendIdentified = data.filter(sub => sub.specimenReceived && sub.specimenIdentified === null);
   let totalIdent = data.filter(sub => sub.specimenIdentified)
   let notReq = data.filter(sub => sub.photosReviewed !== null && sub.specimenIdentified === null && sub.specimenRequested === null)
-
-
-
+  
   let blockArray = [
     { 
       filter: "totalSubs", 

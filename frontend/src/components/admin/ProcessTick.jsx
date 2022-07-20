@@ -1,18 +1,15 @@
 import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
-import { BasicPage } from '../GeneralStyles';
+import { useParams, useNavigate } from 'react-router-dom'
+import { useSelector } from 'react-redux'
 import styled from 'styled-components';
+import { BasicPage } from '../GeneralStyles';
+import { theme } from '../../theme'
 import SubmissionDataService from '../../services/submission'
 import TickDataService from '../../services/ticks'
 import InternalLinkFloatButton from '../ui/internalLinkFloatButton/InternalLinkFloatButton'
-import { theme } from '../../theme'
 import OutlineCard from '../ui/outlineCard/OutlineCard'
 import HoverCard from '../ui/hoverCard/HoverCard'
-import { useNavigate } from 'react-router-dom'
-import { useSelector } from 'react-redux'
-
-// TODO create a way for staff to input photo review info
-// TODO create a way to delete photos
+import RenderIf from '../../tools/RenderIf'
 
 const Styles = {
   Container: styled.div`
@@ -197,14 +194,13 @@ const ProcessTick = () => {
 
   return (
     <BasicPage.Text>
-      {/* <p>Developers Note: based on emails, it looks like Dina plans to request all ticks be sent in, the photo review is to make sure it is a tick, not to identify it.  With this info I made the flow of information follow the path that if the photos have been reviewed, the specimen requested button appears or not a tick button, if the specimen has been requested, the submission received button appears, if the specimen has been received, the speicies buttons appear to choose the identification.</p> */}
       <InternalLinkFloatButton colors={{ text: theme.colors.ruTeal, shadow: theme.colors.ruTeal }} to={-1} text='  Back to List  ' />
       <Styles.PageCont>
-
+        <RenderIf isTrue={tick?.blitzLoc?.length > 0}>
+        <BasicPage.SectionTitle>This is a Tick Blitz Submission</BasicPage.SectionTitle>
+        </RenderIf>
         <OutlineCard >
           <Styles.CardInsides>
-
-
             <h2>Status Info</h2>
             ID: {tick?.id}<br />
             Date Submitted: {tick.createdAt?.substring(0, 10)}<br />
