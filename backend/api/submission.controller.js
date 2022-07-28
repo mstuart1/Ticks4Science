@@ -248,8 +248,8 @@ exports.updateSubm = async (req, res, next) => {
           await toBeUpdated.setPathogens(freshPathogens) // this does not work if you include it in the transactions, the pathogens write but the update times out no matter how long you run it.
         }
         
-        let updated = await Subm.update(data, { where: { id } }, { transaction: t })
-        console.log('updated', updated)
+        await Subm.update(data, { where: { id } }, { transaction: t })
+        // console.log('updated', updated)
         updatedTick = await Subm.findByPk(id, {
           include: [
             {
