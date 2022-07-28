@@ -100,6 +100,10 @@ exports.getProgress = async (req, res, next) => {
           as: 'photoIdUser',
           attributes: ['id', 'firstName', 'lastName']
         },
+        {
+          model: db.pathogen,
+          attributes: ["id", "pathogen"]
+        }
       ]
     })
 
