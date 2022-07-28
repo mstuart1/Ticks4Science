@@ -190,7 +190,7 @@ const ProcessTick = () => {
     navigate('/admin')
   }
 
-  // console.log(`tick`, tick)
+  console.log(`tick`, tick)
 
 
   return (
@@ -338,7 +338,7 @@ const ProcessTick = () => {
             </div>
           </OutlineCard>
         )}
-        <Pathogens/>
+        <Pathogens currentSelection={tick.pathogens}/>
         <OutlineCard >
           <div style={{ margin: '1rem', padding: '1rem' }}>
             <h2>Submitter Info</h2>
@@ -346,11 +346,13 @@ const ProcessTick = () => {
             <p>Zip Code: {tick.userZip?.toString().padStart(5, "0")}</p>
           </div>
         </OutlineCard>
+        <div>
         <InternalLinkFloatButton colors={{ text: theme.colors.ruTeal, shadow: theme.colors.ruTeal }}  to={-1} text='  Back to List  ' />
         <div onClick={toggleDelete}>
           <HoverCard padding='1rem 2rem' shadowColor='#800000'>
           <span style={{color: '#800000', fontWeight: 'bold'}}>Delete This Submission</span>
           </HoverCard>
+        </div>
         </div>
       </Styles.PageCont>
       {showDelete && (
