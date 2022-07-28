@@ -10,6 +10,7 @@ import InternalLinkFloatButton from '../ui/internalLinkFloatButton/InternalLinkF
 import OutlineCard from '../ui/outlineCard/OutlineCard'
 import HoverCard from '../ui/hoverCard/HoverCard'
 import RenderIf from '../../tools/RenderIf'
+import Pathogens from './Pathogens';
 
 const Styles = {
   Container: styled.div`
@@ -337,7 +338,7 @@ const ProcessTick = () => {
             </div>
           </OutlineCard>
         )}
-
+        <Pathogens/>
         <OutlineCard >
           <div style={{ margin: '1rem', padding: '1rem' }}>
             <h2>Submitter Info</h2>
