@@ -1,87 +1,26 @@
 let chai = require("chai");
 let chaiHttp = require("chai-http");
 let server = require("../index");
-// let testPrep = require("./cfa.setup");
-// let adminPrep = require("./admin.setup");
-// let loginPrep = require("./login.setup");
 
 chai.should();
 chai.use(chaiHttp);
 
-const existEmail = 'michelle.stuart@rutgers.edu'
-const password = 'letmein'
 
-describe("Login", () => {
-    // test POST login CFA or Admin
-  describe("post /api/user/login", () => {
-    it("should create a login session for this user", (done) => {
-      const login_info = {
-        email: existEmail,
-        password: password
-      };
-      chai
-        .request(server)
-        .post("/user/login")
-        .send(login_info)
-        .end((err, res) => {
-          console.log(res.body)
-          res.should.have.status(200);
-          res.type.should.eq("application/json");
-          res.body.should.be.an("object");
-          res.body.should.have.property("token");
-          done();
-        });
-    });
-    it("should fail to login this non-user", (done) => {
-      const login_info = {
-        email: 'bob@sparks.com',
-        password: password
-      };
-      chai
-        .request(server)
-        .post("/api/user/login")
-        .send(login_info)
-        .end((err, res) => {
-          console.log(res.body)
-          res.should.have.status(401);
-          res.type.should.eq("application/json");
-          res.body.should.be.an("object");
-          res.body.should.have.property("message").eq('BAD_USER');
-          done();
-        });
-    });
-    it("should fail to login this bad password", (done) => {
-      const login_info = {
-        email: existEmail,
-        password: 'badpassword'
-      };
-      chai
-        .request(server)
-        .post("/api/user/login")
-        .send(login_info)
-        .end((err, res) => {
-          console.log(res.body)
-          res.should.have.status(401);
-          res.type.should.eq("application/json");
-          res.body.should.be.an("object");
-          res.body.should.have.property("message").eq('BAD_PASSWORD');
-          done();
-        });
-    });
-  });
+describe("Submission", () => {
 
-  // test PUT forgot password send email with token
-  describe("PUT /api/user/forgot", () => {
-    it("should generate a token and email it for this user", (done) => {
-      const login_info = {
-        email: existEmail,
-      };
+  // update existing submission
+  describe("PUT /submission/:id", () => {
+    it.only("should add a userMuni to this submission", (done) => {
+     let id = 9
+     let newInfo = {
+      userMuni: 'Test Muni'
+     }
       chai
         .request(server)
-        .put("/api/user/forgot")
-        .send(login_info)
+        .put(`/submission/${id}`)
+        .send(newInfo)
         .end((err, res) => {
-          console.log(res.body);
+          // console.log(res.body);
           res.should.have.status(200);
           // res.body.should.have.property("code").eq("OK");
           done();

@@ -1,9 +1,7 @@
 const db = require("../models");
-// const Resize = require("../resize");  // trying something more simple
 const Op = db.Sequelize.Op;
 const Subm = db.submission;
-
-// TODO problem with getting photos - wants a token in order to view photo, so have to be logged in to rutgers.maps - either API needs to be able to download the photo somewhere or Dina's group needs to be able to access the Survey123 website so they can see the data (ideal)
+const Pathogen = db.pathogens;
 
 exports.createSubm = async (req, res, next) => {
   console.log(`@@@@---receiving form from arcgis or website---@@@@`);
@@ -230,7 +228,7 @@ exports.getSubPage = async (req, res, next) => {
 }
 
 exports.updateSubm = async (req, res, next) => {
-  console.log(`@@@@---update submission: ${JSON.stringify(req.body, null, 1)}---@@@@`);
+  console.log(`@@@@---update existing submission: ${JSON.stringify(req.body, null, 1)}---@@@@`);
   try {
     let { id } = req.params
     let data = req.body
@@ -238,6 +236,13 @@ exports.updateSubm = async (req, res, next) => {
 
     await db.sequelize
       .transaction(async (t) => {
+        const toBeUpdated = await Subm.findByPk(id,{
+          include: {model: db.pathogen}
+        }, {transaction: t})
+        console.log(Pathogen)
+        // const pathogen = await Pathogen.findAll({transaction: t})
+        console.log('toBeUpdated', toBeUpdated)
+        // console.log('pathogen', pathogen)
         await Subm.update(data, { where: { id } }, { transaction: t })
         updatedTick = await Subm.findByPk(id, {
           include: [
