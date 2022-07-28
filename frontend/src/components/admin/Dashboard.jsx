@@ -65,7 +65,7 @@ const Styles = {
   BlockDetail: styled.div`
     width: 200px;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     h3 {
       color: ${({ theme }) => theme.colors.grey3};
@@ -182,7 +182,7 @@ const Dashboard = () => {
     <div key={i} style={{cursor: 'pointer'}} onClick={() => {
       
       return (navigate("/admin/allSubs", {state:{filter: `${block.filter}`, limitMax: block.number}}))}}>
-    <OutlineCard >
+    <OutlineCard width="245px" height="115px">
       <Styles.BlockDetail>
         <h3>{block.text}</h3>
         <h1>{block.number}</h1>
