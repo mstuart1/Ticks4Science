@@ -2,9 +2,10 @@ import React, { useEffect, useState } from 'react'
 import OutlineCard from '../ui/outlineCard/OutlineCard'
 import PathogenDataService from '../../services/pathogens'
 
-const Pathogens = () => {
+const Pathogens = ({currentSelection}) => {
 
     const [pathogens, setPathogens] = useState([])
+    const [input, setInput] = useState(currentSelection)
     
     const getPathogens = () => {
         PathogenDataService.getAll()
@@ -19,16 +20,37 @@ const Pathogens = () => {
     useEffect(() => {
       getPathogens();
     }, []);
+      
+    const handleChange = ({target}) => {
+      const { value, checked } = target;
+      console.log(value, checked)
+      let freshState = []
+      if (checked){
+        freshState = [...input, value]
+      } else {
+        freshState = input.filter(id => id !== value)
+      }
 
-    console.log(pathogens)
-  
+      setInput(freshState);
+  };
+
+  console.log(input)
     
+    let pathogenElems = pathogens.length > 0 && pathogens.map(patho => (
+      <div style={{width: '100%', display: 'flex', justifyContent: 'flex-start', alignItems: 'center'}}>
+      <input type='checkbox' id={patho.pathogen} name={patho.pathogen} value={patho.id} style={{margin: '1rem'}} checked={input.some(value => value === patho.id)} 
+      onChange={evt => handleChange(evt)} 
+      // onChange={() => console.log('clicked')} 
+      />
+      <label htmlFor={patho.pathogen}>{patho.pathogen}</label>
+      </div>
+    ))
 
   return (
    <OutlineCard>
     <h2>Pathogens</h2>
     <p>select all that tested positive</p>
-
+    {pathogenElems}
    </OutlineCard>
   )
 }
