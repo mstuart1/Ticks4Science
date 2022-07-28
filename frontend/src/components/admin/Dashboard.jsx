@@ -5,7 +5,6 @@ import SubmissionDataService from '../../services/submission'
 import HoverCard from '../ui/hoverCard/HoverCard'
 import styled from "styled-components";
 import UserDataService from '../../services/users'
-import InternalLinkFloatButton from "../ui/internalLinkFloatButton/InternalLinkFloatButton";
 import { theme } from "../../theme";
 import { useDispatch, useSelector } from "react-redux";
 import { removeToken } from "./actions";
@@ -14,6 +13,7 @@ import OutlineCard from "../ui/outlineCard/OutlineCard";
 import SubCard from "./SubCard";
 import EditUser from "./EditUser";
 
+// import InternalLinkFloatButton from "../ui/internalLinkFloatButton/InternalLinkFloatButton";
 // import { getOrgDataRequest } from "./actions";
 // import { PageContainer} from '../styles/Common.styled'
 // import { useDispatch, useSelector } from "react-redux";
@@ -23,7 +23,9 @@ import EditUser from "./EditUser";
 
 const Styles = {
   Input: styled.input`
-    // width: 80vw;
+    padding: 1rem;
+    border-radius: 0.25rem;
+    margin: 1rem;
     @media screen and (min-width:${({ theme }) => theme.mobile}) {
         max-width: 800px;
       }
@@ -99,8 +101,6 @@ const Dashboard = () => {
       setData(response.data.record)
 
     })
-
-
   }, [token])
 
   const handleInputChange = evt => {
@@ -214,8 +214,8 @@ const Dashboard = () => {
       <div>
 {/* 
         <InternalLinkFloatButton colors={{ text: 'white', bg: theme.colors.ruTeal }} padding="1rem 2rem" text="View Submissions" to='/admin/allSubs' /> */}
-        <h4 style={{textAlign: 'left'}}> • You can now click on the blocks to see filtered lists of all of the submissions.</h4>
-        <h4 style={{textAlign: 'left'}}> • You can now delete submissions.</h4>
+        {/* <h4 style={{textAlign: 'left'}}> • You can now click on the blocks to see filtered lists of all of the submissions.</h4>
+        <h4 style={{textAlign: 'left'}}> • You can now delete submissions.</h4> */}
         <Styles.BlockCont>
           {blockElems}
         </Styles.BlockCont>
