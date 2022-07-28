@@ -103,6 +103,7 @@ const ProcessTick = () => {
   const [showDelete, setShowDelete] = useState(false)
   const [dupId, setDupId] = useState('')
 
+
   // get the tick info from db
   useEffect(() => {
     let getTick = async () => await SubmissionDataService.getProgress(id)
@@ -302,11 +303,20 @@ const ProcessTick = () => {
           </Styles.CardInsides>
         </OutlineCard>
         {/* <p>Click on the photo to view full size</p> */}
-
+        <div style={{display: 'flex'}}>
+            <div>
         <a href={tick.photoFrontUrl} target="_blank" rel="noreferrer"> <ImageCard imageUrl={tick.photoFrontUrl} /></a>
         {tick.photoBackUrl && <a href={tick.photoBackUrl} target="_blank" rel="noreferrer"> <ImageCard imageUrl={tick.photoBackUrl} /></a>}
         {tick.photoOtherUrl && <a href={tick.photoOtherUrl} target="_blank" rel="noreferrer"> <ImageCard imageUrl={tick.photoOtherUrl} /></a>}
-
+        </div>
+            <div>
+            <OutlineCard >
+          <div style={{ margin: '1rem', padding: '1rem' }}>
+            <h2>Submitter Info</h2>
+            <p>Municipality: {tick.userMuni}</p>
+            <p>Zip Code: {tick.userZip?.toString().padStart(5, "0")}</p>
+          </div>
+        </OutlineCard>
         <OutlineCard >
           <div style={{ margin: '1rem', padding: '1rem' }}>
             <h2>Tick Info</h2>
@@ -321,7 +331,8 @@ const ProcessTick = () => {
             Activities: {tick.activities ? <span>{tick.activities}</span> : <span>None reported</span>}
           </div>
         </OutlineCard>
-        {tick.tickAttached && (
+       
+        {/* {tick.tickAttached && ( */}
           <OutlineCard >
             <div style={{ margin: '1rem', padding: '1rem' }}>
               <h2>Tick Attached</h2>
@@ -337,15 +348,11 @@ const ProcessTick = () => {
 
             </div>
           </OutlineCard>
-        )}
-        <Pathogens currentSelection={tick.pathogens}/>
-        <OutlineCard >
-          <div style={{ margin: '1rem', padding: '1rem' }}>
-            <h2>Submitter Info</h2>
-            <p>Municipality: {tick.userMuni}</p>
-            <p>Zip Code: {tick.userZip?.toString().padStart(5, "0")}</p>
-          </div>
-        </OutlineCard>
+        {/* )} */}
+        </div>
+        
+        <Pathogens currentSelection={tick.pathogens ? tick.pathogens.map(item => item.id) : []}/>
+        </div>
         <div>
         <InternalLinkFloatButton colors={{ text: theme.colors.ruTeal, shadow: theme.colors.ruTeal }}  to={-1} text='  Back to List  ' />
         <div onClick={toggleDelete}>
