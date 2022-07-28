@@ -1,7 +1,9 @@
+const { DataTypes } = require("sequelize");
+const { sequelize } = require("../models");
 const db = require("../models");
 const Op = db.Sequelize.Op;
 const Subm = db.submission;
-const Pathogen = db.pathogens;
+const Pathogen = db.pathogen;
 
 exports.createSubm = async (req, res, next) => {
   console.log(`@@@@---receiving form from arcgis or website---@@@@`);
@@ -233,17 +235,21 @@ exports.updateSubm = async (req, res, next) => {
     let { id } = req.params
     let data = req.body
     let updatedTick;
-
+    let freshPathogens = data.pathogens
+    // delete data.pathogens
+    
     await db.sequelize
       .transaction(async (t) => {
-        const toBeUpdated = await Subm.findByPk(id,{
-          include: {model: db.pathogen}
-        }, {transaction: t})
-        console.log(Pathogen)
-        // const pathogen = await Pathogen.findAll({transaction: t})
-        console.log('toBeUpdated', toBeUpdated)
-        // console.log('pathogen', pathogen)
-        await Subm.update(data, { where: { id } }, { transaction: t })
+        if (freshPathogens?.length > 0){
+          const toBeUpdated = await Subm.findByPk(id,{
+            include: {model: db.pathogen}
+          }, {transaction: t})
+          // replace previous with updated list of pathogens
+          await toBeUpdated.setPathogens(freshPathogens) // this does not work if you include it in the transactions, the pathogens write but the update times out no matter how long you run it.
+        }
+        
+        let updated = await Subm.update(data, { where: { id } }, { transaction: t })
+        console.log('updated', updated)
         updatedTick = await Subm.findByPk(id, {
           include: [
             {
@@ -266,6 +272,10 @@ exports.updateSubm = async (req, res, next) => {
               as: 'photoIdUser',
               attributes: ['id', 'firstName', 'lastName']
             },
+            // {
+            //   model: db.pathogen,
+            //   attributes: ['id', 'pathogen']
+            // }
           ]
         }, { transaction: t })
       })
@@ -311,3 +321,22 @@ exports.deleteSub = async (req, res, next) => {
     next(error);
   }
 }
+
+// testing
+
+
+const Movie = sequelize.define('Movie', {name: DataTypes.STRING})
+const Actor = sequelize.define('Actor', {name: DataTypes.STRING})
+
+Movie.belongsToMany(Actor, {through: 'ActorMovies'})
+Actor.belongsToMany(Movie, {through: 'ActorMovies'})
+
+///////////////
+const User = sequelize.define('user', {
+    username: DataTypes.STRING,
+    point: DataTypes.INTEGER
+  }, {timestamps: false});
+  const Profile = sequelize.define('profile', {
+    name: DataTypes.STRING,
+  }, {timestamps: false})
+
