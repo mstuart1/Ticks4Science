@@ -83,7 +83,7 @@ h2 {
   align-self: center;
 }
 `,
-ForgotText: styled.h4`
+  ForgotText: styled.h4`
 margin: 1rem;
 text-decoration: none;
 color: ${({ theme }) => theme.colors.main};
@@ -92,7 +92,7 @@ color: ${({ theme }) => theme.colors.main};
 
 const ProcessTick = () => {
   const navigate = useNavigate()
-  
+
   const { id } = useParams()
   const user = useSelector(state => state.user)
 
@@ -101,7 +101,7 @@ const ProcessTick = () => {
   const [idByPhoto, setIdByPhoto] = useState(false)
   const [showDelete, setShowDelete] = useState(false)
   const [dupId, setDupId] = useState('')
-
+const [labNumber, setLabNumber] = useState('')
   // get the tick info from db
   useEffect(() => {
     let getTick = async () => await SubmissionDataService.getProgress(id)
@@ -142,18 +142,25 @@ const ProcessTick = () => {
   }
 
   const handleDuplicate = (id, dupId) => {
-    let data = {duplicate: dupId}
+    let data = { duplicate: dupId }
     return updateSub(data, id)
   }
 
   const handleIdByPhoto = () => {
-    console.log('clicked')
+    // console.log('clicked')
     setIdByPhoto(true)
   }
 
   const handlePhotoId = (id, tickId) => {
     setIdByPhoto(false)
     let data = { photoId: tickId, photoIdUserId: user.id }
+    return updateSub(data, id)
+  }
+  const handleLabChange = ({target}) => {
+    setLabNumber(target.value)
+  }
+  const handleLabNumber = (id, labNumber) => {
+    let data = { labNumber: labNumber }
     return updateSub(data, id)
   }
 
@@ -189,7 +196,7 @@ const ProcessTick = () => {
     navigate('/admin')
   }
 
-  // console.log(`tick`, tick)
+  console.log(`tick`, tick)
 
 
   return (
@@ -197,7 +204,7 @@ const ProcessTick = () => {
       <InternalLinkFloatButton colors={{ text: theme.colors.ruTeal, shadow: theme.colors.ruTeal }} to={-1} text='  Back to List  ' />
       <Styles.PageCont>
         <RenderIf isTrue={tick?.blitzLoc?.length > 0}>
-        <BasicPage.SectionTitle>This is a Tick Blitz Submission</BasicPage.SectionTitle>
+          <BasicPage.SectionTitle>This is a Tick Blitz Submission</BasicPage.SectionTitle>
         </RenderIf>
         <OutlineCard >
           <Styles.CardInsides>
@@ -205,8 +212,8 @@ const ProcessTick = () => {
             ID: {tick?.id}<br />
             Date Submitted: {tick.createdAt?.substring(0, 10)}<br />
             This is a duplicate to submission ID: {tick.duplicate ? tick.duplicate : (<>
-              <input type="text" name='duplicate' value={dupId} placeholder='Enter id number for original submission here' onChange={handleChange}/><button onClick={() => handleDuplicate(tick.id, dupId)}>Remove Duplicate From List</button>
-              </>)}
+              <input type="text" name='duplicate' value={dupId} placeholder='Enter id number for original submission here' onChange={handleChange} /><button onClick={() => handleDuplicate(tick.id, dupId)}>Remove Duplicate From List</button>
+            </>)}
             <p>If you define this submission as a duplicate, the original will stay in the lists and the duplicate(s) will be removed.  Do not mark the original as a duplicate.</p>
             {/* Photo Review button or status */}
             {tick.photosReviewed
@@ -262,8 +269,8 @@ const ProcessTick = () => {
 
               ))
             }
-            
-            {tick.photoId && (<span>Photo ID: {tick.photo.scientific}<br/>Photo ID'd by: {`${tick.photoIdUser?.firstName} ${tick.photoIdUser?.lastName}`}</span>)}
+
+            {tick.photoId && (<span>Photo ID: {tick.photo.scientific}<br />Photo ID'd by: {`${tick.photoIdUser?.firstName} ${tick.photoIdUser?.lastName}`}</span>)}
 
 
             {/* Specimen received button or status */}
@@ -309,7 +316,7 @@ const ProcessTick = () => {
         <OutlineCard >
           <div style={{ margin: '1rem', padding: '1rem' }}>
             <h2>Tick Info</h2>
-            Date Tick Found: {tick.dateTickFound?.substring(0,10)}<br />
+            Date Tick Found: {tick.dateTickFound?.substring(0, 10)}<br />
             Found On: {tick.foundOn}<br />
             {tick.foundOnOther && <span>Found On Other: {tick.foundOnOther}<br /></span>}
             {!tick.tickAttached && <span>Tick Attached: No<br /></span>}
@@ -326,13 +333,16 @@ const ProcessTick = () => {
               <h2>Tick Attached</h2>
               <p>Tick Attached: {tick.tickAttached}</p>
               {tick.animal && <p>Animal: {tick.animal}</p>}
-              <p>Date Removed: {tick.dateRemoved?.substring(0,10)}</p>
-              <p>Person Bitten: {tick.personBitten}</p>
+              <p>Date Removed: {tick.dateRemoved?.substring(0, 10)}</p>
+              <p>Person Bitten: {tick.foundOn === "Person" && tick.tickAttached === "Yes" ? "Yes" : "No"}</p>
               <p>Submitter Bitten: {tick.submitterBitten}</p>
               {!tick.submitterBitten && <p>Bitten Municipality: {tick.bittenMuni}</p>}
               {!tick.submitterBitten && <p>Bitten Zip Code: {tick.bittenZip?.toString().padStart(5, "0")}</p>}
-              <p>Bitten Traveled: {tick.bittenTraveledDom} </p>
+              <p>The bitten person has traveled: {tick.bittenTraveledDom ? "Yes" : "No"} </p>
               {tick.bittenTraveledDom && <p>{tick.travelInfo}</p>}
+              <p>Tick Engorged: {tick.engorged ? 'Yes' : 'No'}</p>
+              <p>Tick Life Stage: {tick.lifeStage ? tick.lifeStage : 'undocumented'}</p>
+              <p>Lab Number: {tick.labNumber ? tick.labNumber : (<><input type='text' name='labNumber' value={labNumber} onChange={handleLabChange} style={{ padding: '1rem' }} /> <button onClick={() => handleLabNumber(tick.id, labNumber)}>Save Lab Number</button></>)}</p>
 
             </div>
           </OutlineCard>
@@ -345,32 +355,32 @@ const ProcessTick = () => {
             <p>Zip Code: {tick.userZip?.toString().padStart(5, "0")}</p>
           </div>
         </OutlineCard>
-        <InternalLinkFloatButton colors={{ text: theme.colors.ruTeal, shadow: theme.colors.ruTeal }}  to={-1} text='  Back to List  ' />
+        <InternalLinkFloatButton colors={{ text: theme.colors.ruTeal, shadow: theme.colors.ruTeal }} to={-1} text='  Back to List  ' />
         <div onClick={toggleDelete}>
           <HoverCard padding='1rem 2rem' shadowColor='#800000'>
-          <span style={{color: '#800000', fontWeight: 'bold'}}>Delete This Submission</span>
+            <span style={{ color: '#800000', fontWeight: 'bold' }}>Delete This Submission</span>
           </HoverCard>
         </div>
       </Styles.PageCont>
       {showDelete && (
         <div>
-        <h1 style={{textAlign: 'center'}}>Are you sure you want to delete this submission forever?</h1>
-        <div style={{display: 'flex', justifyContent: 'space-between', width: '100%'}}>
+          <h1 style={{ textAlign: 'center' }}>Are you sure you want to delete this submission forever?</h1>
+          <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%' }}>
             <div onClick={toggleDelete}>
-        <HoverCard shadowColor='#800000'>
-            <span style={{color: '#800000'}}>
-                No
+              <HoverCard shadowColor='#800000'>
+                <span style={{ color: '#800000' }}>
+                  No
                 </span>
-            </HoverCard>
+              </HoverCard>
             </div>
             <div onClick={handleDelete}>
-        <HoverCard >
-            <span >
-                Yes
+              <HoverCard >
+                <span >
+                  Yes
                 </span>
-            </HoverCard>
+              </HoverCard>
             </div>
-        </div>
+          </div>
         </div>
       )}
     </BasicPage.Text>
