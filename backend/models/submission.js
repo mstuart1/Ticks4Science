@@ -64,6 +64,9 @@ module.exports = (sequelize, DataTypes) => {
         weatherOther: DataTypes.STRING,
         blitzPhotos: DataTypes.STRING,
         blitzAddInfo: DataTypes.STRING,
+        engorged: DataTypes.BOOLEAN,
+        lifeStage: DataTypes.STRING,
+        labNumber: DataTypes.INTEGER,
     }, {
         sequelize,
         modelName: 'submission',
