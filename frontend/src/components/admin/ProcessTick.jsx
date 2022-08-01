@@ -10,6 +10,7 @@ import InternalLinkFloatButton from '../ui/internalLinkFloatButton/InternalLinkF
 import OutlineCard from '../ui/outlineCard/OutlineCard'
 import HoverCard from '../ui/hoverCard/HoverCard'
 import RenderIf from '../../tools/RenderIf'
+import SubTickInfo from './SubTickInfo';
 
 const Styles = {
   Container: styled.div`
@@ -101,7 +102,7 @@ const ProcessTick = () => {
   const [idByPhoto, setIdByPhoto] = useState(false)
   const [showDelete, setShowDelete] = useState(false)
   const [dupId, setDupId] = useState('')
-const [labNumber, setLabNumber] = useState('')
+  const [labNumber, setLabNumber] = useState('')
   // get the tick info from db
   useEffect(() => {
     let getTick = async () => await SubmissionDataService.getProgress(id)
@@ -156,7 +157,7 @@ const [labNumber, setLabNumber] = useState('')
     let data = { photoId: tickId, photoIdUserId: user.id }
     return updateSub(data, id)
   }
-  const handleLabChange = ({target}) => {
+  const handleLabChange = ({ target }) => {
     setLabNumber(target.value)
   }
   const handleLabNumber = (id, labNumber) => {
@@ -313,41 +314,7 @@ const [labNumber, setLabNumber] = useState('')
         {tick.photoBackUrl && <a href={tick.photoBackUrl} target="_blank" rel="noreferrer"> <ImageCard imageUrl={tick.photoBackUrl} /></a>}
         {tick.photoOtherUrl && <a href={tick.photoOtherUrl} target="_blank" rel="noreferrer"> <ImageCard imageUrl={tick.photoOtherUrl} /></a>}
 
-        <OutlineCard >
-          <div style={{ margin: '1rem', padding: '1rem' }}>
-            <h2>Tick Info</h2>
-            Date Tick Found: {tick.dateTickFound?.substring(0, 10)}<br />
-            Found On: {tick.foundOn}<br />
-            {tick.foundOnOther && <span>Found On Other: {tick.foundOnOther}<br /></span>}
-            {!tick.tickAttached && <span>Tick Attached: No<br /></span>}
-            Location Found: {tick.locationDesc} <br />
-            {tick.locationDescOther && <span>Found  Other: {tick.locationDescOther}<br /></span>}
-            Municipality: {tick.tickMuni}<br />
-            Zip Code: {tick.tickZip?.toString().padStart(5, "0")}<br />
-            Activities: {tick.activities ? <span>{tick.activities}</span> : <span>None reported</span>}
-          </div>
-        </OutlineCard>
-        {tick.tickAttached && (
-          <OutlineCard >
-            <div style={{ margin: '1rem', padding: '1rem' }}>
-              <h2>Tick Attached</h2>
-              <p>Tick Attached: {tick.tickAttached}</p>
-              {tick.animal && <p>Animal: {tick.animal}</p>}
-              <p>Date Removed: {tick.dateRemoved?.substring(0, 10)}</p>
-              <p>Person Bitten: {tick.foundOn === "Person" && tick.tickAttached === "Yes" ? "Yes" : "No"}</p>
-              <p>Submitter Bitten: {tick.submitterBitten}</p>
-              {!tick.submitterBitten && <p>Bitten Municipality: {tick.bittenMuni}</p>}
-              {!tick.submitterBitten && <p>Bitten Zip Code: {tick.bittenZip?.toString().padStart(5, "0")}</p>}
-              <p>The bitten person has traveled: {tick.bittenTraveledDom ? "Yes" : "No"} </p>
-              {tick.bittenTraveledDom && <p>{tick.travelInfo}</p>}
-              <p>Tick Engorged: {tick.engorged ? 'Yes' : 'No'}</p>
-              <p>Tick Life Stage: {tick.lifeStage ? tick.lifeStage : 'undocumented'}</p>
-              <p>Lab Number: {tick.labNumber ? tick.labNumber : (<><input type='text' name='labNumber' value={labNumber} onChange={handleLabChange} style={{ padding: '1rem' }} /> <button onClick={() => handleLabNumber(tick.id, labNumber)}>Save Lab Number</button></>)}</p>
-
-            </div>
-          </OutlineCard>
-        )}
-
+        <SubTickInfo tick={tick}></SubTickInfo>
         <OutlineCard >
           <div style={{ margin: '1rem', padding: '1rem' }}>
             <h2>Submitter Info</h2>
