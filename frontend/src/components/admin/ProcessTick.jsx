@@ -165,6 +165,21 @@ const ProcessTick = () => {
     return updateSub(data, id)
   }
 
+  const handleLifeStageChange = ({ target }) => {
+    setLabNumber(target.value)
+  }
+  const handleLifeStage = (id, labNumber) => {
+    let data = { labNumber: labNumber }
+    return updateSub(data, id)
+  }
+  const handleEngorgedChange = ({ target }) => {
+    setLabNumber(target.value)
+  }
+  const handleEngorged = (id, labNumber) => {
+    let data = { labNumber: labNumber }
+    return updateSub(data, id)
+  }
+
   const handleRequest = (id) => {
     let data = { specimenRequested: new Date() }
     return updateSub(data, id)
@@ -227,6 +242,7 @@ const ProcessTick = () => {
               </div>
               )
             }
+            {/* put life stage, engorged and lab number here */}
             {/* Specimen request button/status or not a tick */}
             {tick.photosReviewed && (tick.specimenRequested
               ? <span>Specimen Requested: {tick.specimenRequested.substring(0, 10)}<br /></span>
@@ -300,13 +316,7 @@ const ProcessTick = () => {
                 ))
 
             }
-
-
-
-            {/* {tick.tickId ? : <p>placeholder</p>} */}
-
-
-          </Styles.CardInsides>
+            </Styles.CardInsides>
         </OutlineCard>
         {/* <p>Click on the photo to view full size</p> */}
 
