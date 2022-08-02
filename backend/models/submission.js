@@ -67,7 +67,7 @@ module.exports = (sequelize, DataTypes) => {
         blitzAddInfo: DataTypes.STRING,
         engorged: DataTypes.BOOLEAN,
         lifeStage: DataTypes.STRING,
-        labNumber: DataTypes.INTEGER,
+        labNumber: DataTypes.STRING,
     }, {
         sequelize,
         modelName: 'submission',
