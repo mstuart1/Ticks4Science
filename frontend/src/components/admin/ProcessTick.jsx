@@ -428,7 +428,7 @@ const ProcessTick = () => {
             <ImageCard imageUrl={tick.photoOtherUrl} />
           </a>
         )}
-
+<Pathogens tick={tick} />
         <SubTickInfo tick={tick}></SubTickInfo>
         <OutlineCard>
           <div style={{ margin: "1rem", padding: "1rem" }}>
