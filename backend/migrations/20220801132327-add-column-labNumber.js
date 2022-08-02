@@ -5,7 +5,7 @@ module.exports = {
     return queryInterface.addColumn(
       'submission',
       'labNumber',
-      { type: Sequelize.INTEGER }
+      { type: Sequelize.STRING }
     );
 
   },
