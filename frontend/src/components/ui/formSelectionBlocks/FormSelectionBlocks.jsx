@@ -17,8 +17,6 @@ const FormSelectionBlocks = ({input, handleChange, fieldName, valueArray = [{val
         <label key={`${i}-label`} htmlFor={`${fieldName}-${value.value}`}>{value.label}</label>
         </>
     ))
-    console.log(blocksElems)
-
   return blocksElems
 }
 
