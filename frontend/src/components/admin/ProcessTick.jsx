@@ -104,9 +104,8 @@ const ProcessTick = () => {
   const [showDelete, setShowDelete] = useState(false);
   const [dupId, setDupId] = useState("");
   const [lifeStage, setLifeStage] = useState({ lifeStage: "" });
-  const [engorged, setEngorged] = useState({engorged: false});
-  const [labNumber, setLabNumber] = useState('');
-
+  const [engorged, setEngorged] = useState({ engorged: false });
+  const [labNumber, setLabNumber] = useState("");
 
   // get the tick info from db
   useEffect(() => {
@@ -160,9 +159,9 @@ const ProcessTick = () => {
     setLabNumber(target.value);
   };
   const handleLabNumber = (id, labNumber) => {
-    console.log(id)
-    console.log(labNumber)
-    let data = {labNumber: labNumber};
+    console.log(id);
+    console.log(labNumber);
+    let data = { labNumber: labNumber };
     return updateSub(data, id);
   };
 
@@ -175,8 +174,8 @@ const ProcessTick = () => {
     return updateSub(data, id);
   };
   const handleEngorgedChange = ({ target }) => {
-    setEngorged({engorged: target.value});
-    handleEngorged(id, engorged)
+    setEngorged({ engorged: target.value });
+    handleEngorged(id, engorged);
   };
   const handleEngorged = (id, engorged) => {
     let data = engorged;
@@ -288,7 +287,6 @@ const ProcessTick = () => {
             )}
             {/* put engorged and lab number here */}
             {/* Specimen request button/status or not a tick */}
-            
             {tick.photosReviewed &&
               (tick.specimenRequested ? (
                 <span>
@@ -337,8 +335,8 @@ const ProcessTick = () => {
                   </>
                 )
               ))}
-            <span style={{margin: '1rem 0'}}>
-              Life Stage: 
+            <span style={{ margin: "1rem 0" }}>
+              Life Stage:
               <BasicPage.RadioButtons style={{ width: "25rem" }}>
                 <FormSelectionBlocks
                   input={lifeStage}
@@ -348,8 +346,8 @@ const ProcessTick = () => {
                 />
               </BasicPage.RadioButtons>
             </span>
-            <span style={{margin: '1rem 0'}}>
-              Engorged: 
+            <span style={{ margin: "1rem 0" }}>
+              Engorged:
               <BasicPage.RadioButtons>
                 <FormSelectionBlocks
                   input={engorged}
@@ -359,7 +357,6 @@ const ProcessTick = () => {
                 />
               </BasicPage.RadioButtons>
             </span>
-
             {tick.photoId && (
               <span>
                 Photo ID: {tick.photo.scientific}
@@ -368,7 +365,6 @@ const ProcessTick = () => {
                 {`${tick.photoIdUser?.firstName} ${tick.photoIdUser?.lastName}`}
               </span>
             )}
-            
             {/* Specimen received button or status */}
             {tick.specimenRequested &&
               (tick.specimenReceived ? (
@@ -403,14 +399,29 @@ const ProcessTick = () => {
                 </div>
               ))
             )}
-            {tick.labNumber ? <span>Lab Number: {tick.labNumber}</span> : (
+            {tick.labNumber ? (
+              <span>Lab Number: {tick.labNumber}</span>
+            ) : (
               <>
-              <label htmlFor="labNumber">Lab Number: </label>
-              <input style={{width: '30rem', padding: '1rem'}} id='labNumber' type='text' name='labNumber' value={labNumber} onChange={handleLabChange}/>
-              <button style={{width: '30rem', padding: '1rem', margin: '1rem 0'}}  onClick={() => handleLabNumber(id, labNumber)}>Save Lab Number</button>
+                <label htmlFor="labNumber">Lab Number: </label>
+                <input
+                  style={{ width: "30rem", padding: "1rem" }}
+                  id="labNumber"
+                  type="text"
+                  name="labNumber"
+                  value={labNumber}
+                  onChange={handleLabChange}
+                />
+                <button
+                  style={{ width: "30rem", padding: "1rem", margin: "1rem 0" }}
+                  onClick={() => handleLabNumber(id, labNumber)}
+                >
+                  Save Lab Number
+                </button>
               </>
             )}
           </Styles.CardInsides>
+        
         </OutlineCard>
         {/* <p>Click on the photo to view full size</p> */}
 
