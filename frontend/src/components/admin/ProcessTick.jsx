@@ -265,14 +265,14 @@ const ProcessTick = () => {
   let pathogenElems =
     pathogens.length > 0 &&
     pathogens.map((patho) => (
-      <Styles.PathosCont>
+      <Styles.PathosCont key={patho.id}>
         <input
           type="checkbox"
           id={patho.pathogen}
           name={patho.pathogen}
           value={patho.id}
           style={{ margin: "1rem" }}
-          checked={tick.pathogens?.some((value) => value === patho.id)}
+          checked={tick.pathogens && tick.pathogens.some((value) => value.id === patho.id)}
           onChange={handlePathoChange}
         />
         <label htmlFor={patho.pathogen}>{patho.pathogen}</label>
