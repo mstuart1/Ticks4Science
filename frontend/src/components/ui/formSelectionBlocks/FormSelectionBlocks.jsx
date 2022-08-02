@@ -3,7 +3,7 @@ import React from 'react'
 const FormSelectionBlocks = ({input, handleChange, fieldName, valueArray = [{value: 'Person', required: false, label: 'Person'}],}) => {
 
     let blocksElems = valueArray.map((value, i) => (
-        <>
+        <div key={i}>
         <input
         key={`${i}-input`}
         type='radio'
@@ -15,7 +15,7 @@ const FormSelectionBlocks = ({input, handleChange, fieldName, valueArray = [{val
         required={value.required}
         />
         <label key={`${i}-label`} htmlFor={`${fieldName}-${value.value}`}>{value.label}</label>
-        </>
+        </div>
     ))
   return blocksElems
 }
