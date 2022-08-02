@@ -2,10 +2,12 @@ import React, { useEffect, useState } from 'react'
 import OutlineCard from '../ui/outlineCard/OutlineCard'
 import PathogenDataService from '../../services/pathogens'
 
-const Pathogens = ({currentSelection}) => {
+const Pathogens = ({tick, updateSub}) => {
+  console.log(tick)
 
     const [pathogens, setPathogens] = useState([])
-    const [input, setInput] = useState(currentSelection)
+    // the input is an array of pathogens
+    const [input, setInput] = useState([tick.pathogens])
     
     const getPathogens = () => {
         PathogenDataService.getAll()
@@ -30,9 +32,14 @@ const Pathogens = ({currentSelection}) => {
       } else {
         freshState = input.filter(id => id !== value)
       }
-
       setInput(freshState);
+      handlePathogen(tick.id, input)
   };
+
+  const handlePathogen = (id, pathogens) => {
+    let data = {pathogens: pathogens}
+    return updateSub(data, id)
+  }
 
   console.log(input)
     

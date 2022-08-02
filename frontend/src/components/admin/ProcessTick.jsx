@@ -12,8 +12,7 @@ import HoverCard from "../ui/hoverCard/HoverCard";
 import RenderIf from "../../tools/RenderIf";
 import SubTickInfo from "./SubTickInfo";
 import FormSelectionBlocks from "../ui/formSelectionBlocks/FormSelectionBlocks";
-import Pathogens from "./Pathogens";
-
+import PathogenDataService from "../../services/pathogens";
 
 const Styles = {
   Container: styled.div`
@@ -90,6 +89,12 @@ const Styles = {
     text-decoration: none;
     color: ${({ theme }) => theme.colors.main};
   `,
+  PathosCont: styled.div`
+    width: 100%;
+    display: flex;
+    justifycontent: flex-start;
+    alignitems: center;
+  `,
 };
 
 const ProcessTick = () => {
@@ -106,6 +111,21 @@ const ProcessTick = () => {
   const [lifeStage, setLifeStage] = useState({ lifeStage: "" });
   const [engorged, setEngorged] = useState({ engorged: false });
   const [labNumber, setLabNumber] = useState("");
+  const [pathogens, setPathogens] = useState([]);
+
+  const getPathogens = () => {
+    PathogenDataService.getAll()
+      .then((response) => {
+        setPathogens(response.data.data);
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
+  };
+
+  useEffect(() => {
+    getPathogens();
+  }, []);
 
   // get the tick info from db
   useEffect(() => {
@@ -205,6 +225,19 @@ const ProcessTick = () => {
     setDupId(evt.target.value);
   };
 
+  const handlePathoChange = ({ target }) => {
+    const { value, checked } = target;
+    console.log(value, checked)
+    let freshPathos = tick.pathogens;
+    if (checked) {
+      freshPathos = [...freshPathos, value];
+    } else {
+      freshPathos = freshPathos.filter((id) => id !== value);
+    }
+    setTick((prevState) => ({ ...prevState, pathogens: freshPathos }));
+    updateSub(tick, id);
+  };
+
   const updateSub = async (data, id) => {
     let response = await SubmissionDataService.updateSub(data, id);
     let updatedTick = response.data.record;
@@ -228,6 +261,23 @@ const ProcessTick = () => {
     { value: "true", required: true, label: "true" },
     { value: "false", required: true, label: "false" },
   ];
+
+  let pathogenElems =
+    pathogens.length > 0 &&
+    pathogens.map((patho) => (
+      <Styles.PathosCont>
+        <input
+          type="checkbox"
+          id={patho.pathogen}
+          name={patho.pathogen}
+          value={patho.id}
+          style={{ margin: "1rem" }}
+          checked={tick.pathogens?.some((value) => value === patho.id)}
+          onChange={handlePathoChange}
+        />
+        <label htmlFor={patho.pathogen}>{patho.pathogen}</label>
+      </Styles.PathosCont>
+    ));
 
   // console.log(`tick`, lifeStage);
 
@@ -421,7 +471,6 @@ const ProcessTick = () => {
               </>
             )}
           </Styles.CardInsides>
-        
         </OutlineCard>
         {/* <p>Click on the photo to view full size</p> */}
 
@@ -443,7 +492,11 @@ const ProcessTick = () => {
         )}
 
         <SubTickInfo tick={tick}></SubTickInfo>
-        <Pathogens tick={tick} />
+        <OutlineCard>
+          <h2>Pathogens</h2>
+          <p>select all that tested positive</p>
+          {pathogenElems}
+        </OutlineCard>
         <OutlineCard>
           <div style={{ margin: "1rem", padding: "1rem" }}>
             <h2>Submitter Info</h2>
@@ -451,20 +504,20 @@ const ProcessTick = () => {
             <p>Zip Code: {tick.userZip?.toString().padStart(5, "0")}</p>
           </div>
         </OutlineCard>
-       <div>
-       <InternalLinkFloatButton
-          colors={{ text: theme.colors.ruTeal, shadow: theme.colors.ruTeal }}
-          to={-1}
-          text="  Back to List  "
-        />
-        <div onClick={toggleDelete}>
-          <HoverCard padding="1rem 2rem" shadowColor="#800000">
-            <span style={{ color: "#800000", fontWeight: "bold" }}>
-              Delete This Submission
-            </span>
-          </HoverCard>
+        <div>
+          <InternalLinkFloatButton
+            colors={{ text: theme.colors.ruTeal, shadow: theme.colors.ruTeal }}
+            to={-1}
+            text="  Back to List  "
+          />
+          <div onClick={toggleDelete}>
+            <HoverCard padding="1rem 2rem" shadowColor="#800000">
+              <span style={{ color: "#800000", fontWeight: "bold" }}>
+                Delete This Submission
+              </span>
+            </HoverCard>
+          </div>
         </div>
-       </div>
       </Styles.PageCont>
       {showDelete && (
         <div>
