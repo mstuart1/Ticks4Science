@@ -12,6 +12,8 @@ import HoverCard from "../ui/hoverCard/HoverCard";
 import RenderIf from "../../tools/RenderIf";
 import SubTickInfo from "./SubTickInfo";
 import FormSelectionBlocks from "../ui/formSelectionBlocks/FormSelectionBlocks";
+import Pathogens from "./Pathogens";
+
 
 const Styles = {
   Container: styled.div`
@@ -437,7 +439,8 @@ const ProcessTick = () => {
             <p>Zip Code: {tick.userZip?.toString().padStart(5, "0")}</p>
           </div>
         </OutlineCard>
-        <InternalLinkFloatButton
+       <div>
+       <InternalLinkFloatButton
           colors={{ text: theme.colors.ruTeal, shadow: theme.colors.ruTeal }}
           to={-1}
           text="  Back to List  "
@@ -449,7 +452,7 @@ const ProcessTick = () => {
             </span>
           </HoverCard>
         </div>
-        </div>
+       </div>
       </Styles.PageCont>
       {showDelete && (
         <div>
