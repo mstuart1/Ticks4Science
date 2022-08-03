@@ -9,10 +9,7 @@ const bcrypt = require('bcrypt')
 
 exports.inviteUser = async (req, res, next) => {
     console.log(`@@@@---invite User ${JSON.stringify(req.body, null, 1)}---@@@@`);
-    // console.log(JSON.stringify(req.body, null, 1))
     try {
-
-        // console.log(JSON.stringify(req.body, null, 1))
         let newUser;
         let data = req.body;
         let expiration = '24h'
@@ -24,7 +21,7 @@ exports.inviteUser = async (req, res, next) => {
 
         data.resetToken = token;
 
-        let message = ` <p>Dr. Dina Fonseca is inviting you to participate in the administration of the tick survey system, Ticks for Science. Please follow the link to create an account.  The link will expire in ${expiration} so please follow the link as soon as possible.
+        let message = `<p>Dr. Dina Fonseca is inviting you to participate in the administration of the tick survey system, Ticks for Science. Please follow the link to create an account.  The link will expire in ${expiration} so please follow the link as soon as possible.
         <a href="${process.env.CORS_ORIGIN}/createAccount/${token}">Create Account</a> to setup your account.</p>`
 
 
@@ -36,14 +33,17 @@ exports.inviteUser = async (req, res, next) => {
                         email: data.email
                     }
                 })
+                
                 if (newUser.length > 0) {
+                 
                     await User.update(data, {
                         where: {
                             id: newUser[0].id
                         }
                     }, { transaction: t })
-                    await mailHelper.sendMail(newUser.email, message);
-                    return res.json({ data: 'RESENT_EMAIL' })
+                    
+                    await mailHelper.sendMail(newUser[0].email, message);
+                    return res.status(200)
                 } else {
                     // create new user
                     newUser = await User.create(data, { transaction: t })
@@ -53,7 +53,7 @@ exports.inviteUser = async (req, res, next) => {
                 }
             });
     } catch (err) {
-        console.log(err.message)
+        // console.log(err.message)
         next({ status: 500, message: err.message })
     }
 

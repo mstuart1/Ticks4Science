@@ -78,7 +78,7 @@ const UserMgt = () => {
     }
 
     const handleInvite = async email => {
-        await UserDataService.inviteUser(email)
+        await UserDataService.inviteUser({email: email})
         alert('User has been invited')
     }
     
