@@ -25,7 +25,7 @@ const upload = multer({
       cb(new Error('Only image is allowed'))
     }
   },
-  limits: {fileSize: 4000000}, //4Mb
+  limits: {fileSize: 8000000}, //8Mb
 });
 
 module.exports = upload;
