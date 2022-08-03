@@ -4,6 +4,11 @@ import styled from 'styled-components';
 import { createInputElems } from '../../tools/createElemFunc';
 import HoverCard from '../ui/hoverCard/HoverCard';
 import { updateUserReq } from './actions';
+import BorderlessFloatButton from '../ui/borderlessFloatButton/BorderlessFloatButton'
+import {theme} from '../../theme'
+import UserDataService from '../../services/users'
+
+let ruRed = theme.colors.ruRed
 
 const Styles = {
     InputCont: styled.div`
@@ -22,6 +27,7 @@ const Styles = {
 const EditUser = () => {
     const dispatch = useDispatch()
     const user = useSelector(state => state.user)
+    const token = useSelector(state => state.token.data)
 
     let initialState = {
         id: user.id,
@@ -48,6 +54,17 @@ const EditUser = () => {
             [name]: type === "checkbox" ? checked : value,
         }));
     };
+
+    const handleReset = async () => {
+      try {
+        await UserDataService.inviteUser(user.email);
+        alert('An email has been sent with a link to reset your password. This email looks like the original invitation email but will work to change your password.')
+      } catch (err) {
+        console.log(err.message)
+        alert('An error occurred while trying to send the email to reset your password')
+      }
+      
+    }
 
     const inputArray = [
         {
@@ -88,7 +105,7 @@ const EditUser = () => {
   {showEdit && (
     <Styles.InputCont>
  {inputElems}
- 
+ <button onClick={handleReset}>Change Password</button>
   <div style={{display: 'flex', justifyContent: 'center', width: '100%'}}>
     
       <div onClick={handleEdit}>
