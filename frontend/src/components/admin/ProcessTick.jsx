@@ -99,10 +99,9 @@ const Styles = {
 
 const ProcessTick = () => {
   const navigate = useNavigate();
-
+  
   const { id } = useParams();
   const user = useSelector((state) => state.user);
-
   const [tick, setTick] = useState({});
   const [tickSpp, setTickSpp] = useState([]);
   const [idByPhoto, setIdByPhoto] = useState(false);
@@ -111,10 +110,11 @@ const ProcessTick = () => {
   const [lifeStage, setLifeStage] = useState({ lifeStage: "" });
   const [engorged, setEngorged] = useState({ engorged: false });
   const [labNumber, setLabNumber] = useState("");
+  const [tickPathos, setTickPathos] = useState([])
   const [pathogens, setPathogens] = useState([]);
 
-  const getPathogens = () => {
-    PathogenDataService.getAll()
+  const getPathogens = async () => {
+    await PathogenDataService.getAll()
       .then((response) => {
         setPathogens(response.data.data);
       })
@@ -128,13 +128,16 @@ const ProcessTick = () => {
   }, []);
 
   // get the tick info from db
-  useEffect(() => {
-    let getTick = async () => await SubmissionDataService.getProgress(id);
 
-    getTick().then((response) => {
-      // console.log(response.data)
-      setTick((prevState) => ({ ...response.data.record }));
-    });
+  let getTick = async (id) => {
+    let response = await SubmissionDataService.getProgress(id)
+    await setTick({...response.data.record})
+    let freshPathos = tick.pathogens?.map(patho => patho.id)
+    await setTickPathos(freshPathos)
+  };
+
+  useEffect(() => {
+    getTick(id)
   }, [id]);
 
   // get all the tick options
@@ -143,7 +146,6 @@ const ProcessTick = () => {
 
     getData().then((response) => {
       // console.log(response.data.data)
-      // adding in the not a tick option - this is not included in the db so it doesn't screw up the tick list on other pages
       setTickSpp((prevState) => [...response.data.data]);
     });
   }, []);
@@ -179,8 +181,6 @@ const ProcessTick = () => {
     setLabNumber(target.value);
   };
   const handleLabNumber = (id, labNumber) => {
-    console.log(id);
-    console.log(labNumber);
     let data = { labNumber: labNumber };
     return updateSub(data, id);
   };
@@ -226,28 +226,29 @@ const ProcessTick = () => {
   };
 
   const handlePathoChange = ({ target }) => {
-    const { value, checked } = target;
-    console.log(value, checked)
-    let freshPathos = tick.pathogens;
-    if (checked) {
-      freshPathos = [...freshPathos, value];
+    const { value } = target;
+    let freshPatho = parseInt(value)
+    if (tick.pathogens.some(item => item.id === freshPatho)){
+      // console.log('remove from list')
+      updateSub({operation: 'remove', pathogens: freshPatho}, id)
     } else {
-      freshPathos = freshPathos.filter((id) => id !== value);
+      // console.log('add to list')
+      updateSub({operation: 'add', pathogens: freshPatho}, id)
     }
-    setTick((prevState) => ({ ...prevState, pathogens: freshPathos }));
-    updateSub(tick, id);
+ 
   };
 
   const updateSub = async (data, id) => {
+    console.log('updating tick')
     let response = await SubmissionDataService.updateSub(data, id);
     let updatedTick = response.data.record;
-
+    console.log('updated', updatedTick)
     setTick((prevState) => ({ ...prevState, ...updatedTick }));
   };
 
   const handleDelete = async () => {
     let response = await SubmissionDataService.deleteSub(id);
-    console.log(response.data);
+    console.log('deleted',response.data);
     navigate("/admin");
   };
 
@@ -272,7 +273,7 @@ const ProcessTick = () => {
           name={patho.pathogen}
           value={patho.id}
           style={{ margin: "1rem" }}
-          checked={tick.pathogens && tick.pathogens.some((value) => value.id === patho.id)}
+          checked={ tick.pathogens?.some((value) => value.id === patho.id) || ""}
           onChange={handlePathoChange}
         />
         <label htmlFor={patho.pathogen}>{patho.pathogen}</label>
