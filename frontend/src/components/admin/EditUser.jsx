@@ -57,7 +57,8 @@ const EditUser = () => {
 
     const handleReset = async () => {
       try {
-        await UserDataService.inviteUser(user.email);
+        let response = await UserDataService.resetPassword({email: user.email});
+        console.log(response.data)
         alert('An email has been sent with a link to reset your password. This email looks like the original invitation email but will work to change your password.')
       } catch (err) {
         console.log(err.message)
@@ -105,7 +106,7 @@ const EditUser = () => {
   {showEdit && (
     <Styles.InputCont>
  {inputElems}
- <button onClick={handleReset}>Change Password</button>
+ <button style={{padding: '1rem 2rem', borderRadius: '0.5rem', margin: '1rem'}} onClick={handleReset}>Change Password</button>
   <div style={{display: 'flex', justifyContent: 'center', width: '100%'}}>
     
       <div onClick={handleEdit}>
