@@ -3,13 +3,13 @@ export const theme = {
         main: '#ebb600', // dark
         secondary: '#00626d',
         white: '#ffffff',
-        grey0: '#f8f8f8',
-        grey1: '#f2f2f2',
-        grey2: '#b2becd',
-        grey3: '#6c7983',
-        grey4: '#454e56',
-        grey5: '#2a2e35',
-        grey6: '#12181b',
+        grey0: '#f2f2f2',  // e6e6e6
+        grey1: '#cccccc', // c0c0c0
+        grey2: '#a6a6a6', // 999999
+        grey3: '#808080', // 8d8d8d // 737373
+        grey4: '#5a5a5a', // 666666
+        grey5: '#333333', // 404040
+        grey6: '#0d0d0d', // 1a1a1a 
         ruRed: '#cc0033',
         ruBlack: '#000',
         ruGrey: '#5f6a72',
