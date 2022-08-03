@@ -238,18 +238,25 @@ exports.updateSubm = async (req, res, next) => {
   try {
     let { id } = req.params
     let data = req.body
+    let pathosOp = data.operation
+    let freshPathogens = [data.pathogens]
     let updatedTick;
-    let freshPathogens = data.pathogens
-    // delete data.pathogens
-    
+        
     await db.sequelize
       .transaction(async (t) => {
-        if (freshPathogens?.length > 0){
+        if (freshPathogens?.length > 0 && pathosOp === 'add'){
           const toBeUpdated = await Subm.findByPk(id,{
             include: {model: db.pathogen}
           }, {transaction: t})
           // replace previous with updated list of pathogens
-          await toBeUpdated.setPathogens(freshPathogens) // this does not work if you include it in the transactions, the pathogens write but the update times out no matter how long you run it.
+          await toBeUpdated.addPathogens(freshPathogens) // this does not work if you include it in the transactions, the pathogens write but the update times out no matter how long you run it.
+        }
+        if (freshPathogens?.length > 0 && pathosOp === 'remove'){
+          const toBeUpdated = await Subm.findByPk(id,{
+            include: {model: db.pathogen}
+          }, {transaction: t})
+          // replace previous with updated list of pathogens
+          await toBeUpdated.removePathogens(freshPathogens) // this does not work if you include it in the transactions, the pathogens write but the update times out no matter how long you run it.
         }
         
         await Subm.update(data, { where: { id } }, { transaction: t })
@@ -276,10 +283,10 @@ exports.updateSubm = async (req, res, next) => {
               as: 'photoIdUser',
               attributes: ['id', 'firstName', 'lastName']
             },
-            // {
-            //   model: db.pathogen,
-            //   attributes: ['id', 'pathogen']
-            // }
+            {
+              model: db.pathogen,
+              attributes: ['id', 'pathogen']
+            }
           ]
         }, { transaction: t })
       })
@@ -288,7 +295,7 @@ exports.updateSubm = async (req, res, next) => {
     }
     return res.json({ record: updatedTick })
   } catch (err) {
-    console.log(err.message)
+    // console.log(err.message)
     next(err)
   }
 
