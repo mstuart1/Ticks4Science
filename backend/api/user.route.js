@@ -12,6 +12,7 @@ module.exports = (app) => {
       .put('/', UserCtl.updateUser)
       .post('/login', UserCtl.login)
       .put('/forgot', UserCtl.forgot)
+      .put('/reset', UserCtl.reset)
       
 
       app.use("/user", router);

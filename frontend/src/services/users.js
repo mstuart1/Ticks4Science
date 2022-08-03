@@ -25,6 +25,9 @@ class UserDataService {
    forgotPassword(data){
        return http.put(`/user/forgot`, data)
    }
+   resetPassword(data){
+       return http.put(`/user/reset`, data)
+   }
    
    getAllUsers(token) {
     // console.log(token)

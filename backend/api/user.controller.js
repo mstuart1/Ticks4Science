@@ -33,17 +33,17 @@ exports.inviteUser = async (req, res, next) => {
                         email: data.email
                     }
                 })
-                
+
                 if (newUser.length > 0) {
-                 
+
                     await User.update(data, {
                         where: {
                             id: newUser[0].id
                         }
                     }, { transaction: t })
-                    
+
                     await mailHelper.sendMail(newUser[0].email, message);
-                    return res.status(200)
+                    return res.json({ data: 'success' })
                 } else {
                     // create new user
                     newUser = await User.create(data, { transaction: t })
@@ -130,9 +130,9 @@ exports.updateUser = async (req, res, next) => {
             .transaction(async (t) => {
 
                 await User.update(data, { where: { id } }, { transaction: t })
-                updatedUser = await User.findByPk(id, {transaction: t})
+                updatedUser = await User.findByPk(id, { transaction: t })
             })
-            console.log(updatedUser)
+        console.log(updatedUser)
         return res.json({ data: updatedUser })
 
     } catch (err) {
@@ -212,10 +212,14 @@ exports.forgot = async (req, res, next) => {
 }
 
 exports.reset = async (req, res, next) => {
-    console.log(`@@@@----someone reset their password ${req.body}---@@@@`)
+    console.log(`@@@@----someone reset their password ${JSON.stringify(req.body, null, 1)}---@@@@`)
     try {
         let { email } = req.body
         let foundUser
+        let expiration = '24h'
+
+
+
         await db.sequelize.transaction(async (t) => {
             foundUser = await User.findOne({
                 where: {
@@ -232,7 +236,9 @@ exports.reset = async (req, res, next) => {
                     process.env.SECRET_KEY,
                     { expiresIn: "24h" }
                 );
-                let message = `This email has been sent to you because you requested to reset your password.This link will expire 24 hours from when this email was sent.<a href='${process.env.CORS_ORIGIN}/admin/reset/${accessToken}'>Click this link</a>`
+                let message = `<p>Thank you for requesting to reset your password through the ticks for science website. Please follow the link to reset your password.  The link will expire in ${expiration} so please follow the link as soon as possible.
+        <a href="${process.env.CORS_ORIGIN}/createAccount/${accessToken}">Reset Passowrd</a>.</p>`
+
                 await mailHelper.sendMail(foundUser.email, message)
                 await User.update({ resetToken: accessToken }, {
                     where: {
