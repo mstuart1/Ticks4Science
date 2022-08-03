@@ -473,7 +473,7 @@ const Survey = () => {
                         <Styles.FormDiv>
                           <Styles.TextCont>
                             <label htmlFor='travelInfo'>Where did the bitten person travel?</label>
-                            <textarea rows={5} id='travelInfo' name='travelInfo' value={input.travelInfo} onChange={handleChange} placeholder='You can grab onto the lower right corner and drag to make this text area larger.'></textarea>
+                            <textarea rows={5} id='travelInfo' name='travelInfo' value={input.travelInfo} onChange={handleChange} ></textarea>
                           </Styles.TextCont>
                         </Styles.FormDiv>
                       )}
@@ -667,7 +667,7 @@ const Survey = () => {
       {/* activities */}
       <Styles.TextCont>
         <label htmlFor='activities'>Describe activity/activities when tick(s) were acquired:</label>
-        <textarea id='activities' name='activities' value={input.activities || ''} onChange={handleChange} placeholder='You can grab onto the lower right corner and drag to make this text area larger.' ></textarea>
+        <textarea id='activities' name='activities' value={input.activities || ''} onChange={handleChange}  ></textarea>
       </Styles.TextCont>
       </Styles.FormSection>
       {/* photos */}
@@ -691,7 +691,7 @@ const Survey = () => {
       <Styles.FormSection>
             <Styles.TextCont>
         <label htmlFor='additionalInfo'>Any additional information about the environment, tick(s), and or person/pet:</label>
-        <textarea id='additionalInfo' name='additionalInfo' value={input.additionalInfo || ''} onChange={handleChange} placeholder='You can grab onto the lower right corner and drag to make this text area larger.' ></textarea>
+        <textarea id='additionalInfo' name='additionalInfo' value={input.additionalInfo || ''} onChange={handleChange}  ></textarea>
       </Styles.TextCont>
     </Styles.FormSection>
         { !isEnabled && <h4>Please scan the form for missing information and complete the form in order to make the submit button active.</h4> }
