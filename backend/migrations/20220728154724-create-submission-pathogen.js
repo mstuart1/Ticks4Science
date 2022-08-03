@@ -1,32 +1,23 @@
 'use strict';
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('users', {
+    await queryInterface.createTable('submission_pathogen', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      firstName: {
-        type: Sequelize.STRING
+      submissionId: {
+        type: Sequelize.INTEGER,
+        references: {model: 'submission', key: 'id'},
+        onDelete: 'CASCADE'
       },
-      lastName: {
-        type: Sequelize.STRING
+      pathogenId: {
+        type: Sequelize.INTEGER,
+        references: {model: 'pathogen', key: 'id'},
+        onDelete: 'CASCADE'
       },
-      email: {
-        type: Sequelize.STRING
-      },
-      password: {
-        type: Sequelize.STRING
-      },
-      manageUsers: {
-        type: Sequelize.BOOLEAN
-      },
-      resetToken: {
-        type: Sequelize.STRING
-      },
-      emailAlerts: {type: Sequelize.BOOLEAN},
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,
@@ -38,18 +29,15 @@ module.exports = {
         defaultValue: Sequelize.fn('now'),
       },
       deletedAt: {
-        
         type: Sequelize.DATE,
-        
       }
     },
     {
       charset: "utf8mb4",
       collate: "utf8mb4_general_ci",
-    }
-    );
+    });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('users');
+    await queryInterface.dropTable('submission_pathogen');
   }
 };

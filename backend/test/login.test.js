@@ -14,7 +14,7 @@ const password = 'letmein'
 describe("Login", () => {
     // test POST login CFA or Admin
   describe("post /api/user/login", () => {
-    it.only("should create a login session for this user", (done) => {
+    it("should create a login session for this user", (done) => {
       const login_info = {
         email: existEmail,
         password: password

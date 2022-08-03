@@ -9,6 +9,7 @@ exports.notFound = (req, res, next) => {
 exports.errorHandler = (error, req, res, next) => {
     const statusCode = res.statusCode === 200 ? 500 : res.statusCode;
     sendMail('michelle.stuart@rutgers.edu', `Tick Error: ${error.message} at time: ${new Date()}`)
+    console.log(`!!!!!@@@@ Error: ${error.message} @@@!!!!`)
     res.status(statusCode);
     res.send({
         message: error.message, 

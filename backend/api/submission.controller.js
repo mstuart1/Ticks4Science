@@ -1,9 +1,9 @@
+const { DataTypes } = require("sequelize");
+const { sequelize } = require("../models");
 const db = require("../models");
-// const Resize = require("../resize");  // trying something more simple
 const Op = db.Sequelize.Op;
 const Subm = db.submission;
-
-// TODO problem with getting photos - wants a token in order to view photo, so have to be logged in to rutgers.maps - either API needs to be able to download the photo somewhere or Dina's group needs to be able to access the Survey123 website so they can see the data (ideal)
+const Pathogen = db.pathogen;
 
 exports.createSubm = async (req, res, next) => {
   console.log(`@@@@---receiving form from arcgis or website---@@@@`);
@@ -100,6 +100,10 @@ exports.getProgress = async (req, res, next) => {
           as: 'photoIdUser',
           attributes: ['id', 'firstName', 'lastName']
         },
+        {
+          model: db.pathogen,
+          attributes: ["id", "pathogen"]
+        }
       ]
     })
 
@@ -230,15 +234,33 @@ exports.getSubPage = async (req, res, next) => {
 }
 
 exports.updateSubm = async (req, res, next) => {
-  console.log(`@@@@---update submission: ${JSON.stringify(req.body, null, 1)}---@@@@`);
+  console.log(`@@@@---update existing submission: ${JSON.stringify(req.body, null, 1)}---@@@@`);
   try {
     let { id } = req.params
     let data = req.body
+    let pathosOp = data.operation
+    let freshPathogens = [data.pathogens]
     let updatedTick;
-
+        
     await db.sequelize
       .transaction(async (t) => {
+        if (freshPathogens?.length > 0 && pathosOp === 'add'){
+          const toBeUpdated = await Subm.findByPk(id,{
+            include: {model: db.pathogen}
+          }, {transaction: t})
+          // replace previous with updated list of pathogens
+          await toBeUpdated.addPathogens(freshPathogens) // this does not work if you include it in the transactions, the pathogens write but the update times out no matter how long you run it.
+        }
+        if (freshPathogens?.length > 0 && pathosOp === 'remove'){
+          const toBeUpdated = await Subm.findByPk(id,{
+            include: {model: db.pathogen}
+          }, {transaction: t})
+          // replace previous with updated list of pathogens
+          await toBeUpdated.removePathogens(freshPathogens) // this does not work if you include it in the transactions, the pathogens write but the update times out no matter how long you run it.
+        }
+        
         await Subm.update(data, { where: { id } }, { transaction: t })
+        // console.log('updated', updated)
         updatedTick = await Subm.findByPk(id, {
           include: [
             {
@@ -261,6 +283,10 @@ exports.updateSubm = async (req, res, next) => {
               as: 'photoIdUser',
               attributes: ['id', 'firstName', 'lastName']
             },
+            {
+              model: db.pathogen,
+              attributes: ['id', 'pathogen']
+            }
           ]
         }, { transaction: t })
       })
@@ -269,7 +295,7 @@ exports.updateSubm = async (req, res, next) => {
     }
     return res.json({ record: updatedTick })
   } catch (err) {
-    console.log(err.message)
+    // console.log(err.message)
     next(err)
   }
 
@@ -306,3 +332,22 @@ exports.deleteSub = async (req, res, next) => {
     next(error);
   }
 }
+
+// testing
+
+
+const Movie = sequelize.define('Movie', {name: DataTypes.STRING})
+const Actor = sequelize.define('Actor', {name: DataTypes.STRING})
+
+Movie.belongsToMany(Actor, {through: 'ActorMovies'})
+Actor.belongsToMany(Movie, {through: 'ActorMovies'})
+
+///////////////
+const User = sequelize.define('user', {
+    username: DataTypes.STRING,
+    point: DataTypes.INTEGER
+  }, {timestamps: false});
+  const Profile = sequelize.define('profile', {
+    name: DataTypes.STRING,
+  }, {timestamps: false})
+

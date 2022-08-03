@@ -25,6 +25,7 @@ app.use(cors(corsOptions));
 require("./api/submission.route")(app);
 require("./api/tick.route")(app);
 require("./api/user.route")(app);
+require("./api/pathogen.route")(app);
 
 // For sending emails in dev
 if ("development" == app.get("env")) {

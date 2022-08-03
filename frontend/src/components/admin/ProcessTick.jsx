@@ -12,6 +12,7 @@ import HoverCard from "../ui/hoverCard/HoverCard";
 import RenderIf from "../../tools/RenderIf";
 import SubTickInfo from "./SubTickInfo";
 import FormSelectionBlocks from "../ui/formSelectionBlocks/FormSelectionBlocks";
+import PathogenDataService from "../../services/pathogens";
 
 const Styles = {
   Container: styled.div`
@@ -88,31 +89,55 @@ const Styles = {
     text-decoration: none;
     color: ${({ theme }) => theme.colors.main};
   `,
+  PathosCont: styled.div`
+    width: 100%;
+    display: flex;
+    justifycontent: flex-start;
+    alignitems: center;
+  `,
 };
 
 const ProcessTick = () => {
   const navigate = useNavigate();
-
+  
   const { id } = useParams();
   const user = useSelector((state) => state.user);
-
   const [tick, setTick] = useState({});
   const [tickSpp, setTickSpp] = useState([]);
   const [idByPhoto, setIdByPhoto] = useState(false);
   const [showDelete, setShowDelete] = useState(false);
   const [dupId, setDupId] = useState("");
   const [lifeStage, setLifeStage] = useState({ lifeStage: "" });
-  const [engorged, setEngorged] = useState({engorged: false});
-  const [labNumber, setLabNumber] = useState('');
+  const [engorged, setEngorged] = useState({ engorged: false });
+  const [labNumber, setLabNumber] = useState("");
+  const [tickPathos, setTickPathos] = useState([])
+  const [pathogens, setPathogens] = useState([]);
+
+  const getPathogens = async () => {
+    await PathogenDataService.getAll()
+      .then((response) => {
+        setPathogens(response.data.data);
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
+  };
+
+  useEffect(() => {
+    getPathogens();
+  }, []);
 
   // get the tick info from db
-  useEffect(() => {
-    let getTick = async () => await SubmissionDataService.getProgress(id);
 
-    getTick().then((response) => {
-      // console.log(response.data)
-      setTick((prevState) => ({ ...response.data.record }));
-    });
+  let getTick = async (id) => {
+    let response = await SubmissionDataService.getProgress(id)
+    await setTick({...response.data.record})
+    let freshPathos = tick.pathogens?.map(patho => patho.id)
+    await setTickPathos(freshPathos)
+  };
+
+  useEffect(() => {
+    getTick(id)
   }, [id]);
 
   // get all the tick options
@@ -121,7 +146,6 @@ const ProcessTick = () => {
 
     getData().then((response) => {
       // console.log(response.data.data)
-      // adding in the not a tick option - this is not included in the db so it doesn't screw up the tick list on other pages
       setTickSpp((prevState) => [...response.data.data]);
     });
   }, []);
@@ -157,9 +181,7 @@ const ProcessTick = () => {
     setLabNumber(target.value);
   };
   const handleLabNumber = (id, labNumber) => {
-    console.log(id)
-    console.log(labNumber)
-    let data = {labNumber: labNumber};
+    let data = { labNumber: labNumber };
     return updateSub(data, id);
   };
 
@@ -172,8 +194,8 @@ const ProcessTick = () => {
     return updateSub(data, id);
   };
   const handleEngorgedChange = ({ target }) => {
-    setEngorged({engorged: target.value});
-    handleEngorged(id, engorged)
+    setEngorged({ engorged: target.value });
+    handleEngorged(id, engorged);
   };
   const handleEngorged = (id, engorged) => {
     let data = engorged;
@@ -203,16 +225,30 @@ const ProcessTick = () => {
     setDupId(evt.target.value);
   };
 
+  const handlePathoChange = ({ target }) => {
+    const { value } = target;
+    let freshPatho = parseInt(value)
+    if (tick.pathogens.some(item => item.id === freshPatho)){
+      // console.log('remove from list')
+      updateSub({operation: 'remove', pathogens: freshPatho}, id)
+    } else {
+      // console.log('add to list')
+      updateSub({operation: 'add', pathogens: freshPatho}, id)
+    }
+ 
+  };
+
   const updateSub = async (data, id) => {
+    console.log('updating tick')
     let response = await SubmissionDataService.updateSub(data, id);
     let updatedTick = response.data.record;
-
+    console.log('updated', updatedTick)
     setTick((prevState) => ({ ...prevState, ...updatedTick }));
   };
 
   const handleDelete = async () => {
     let response = await SubmissionDataService.deleteSub(id);
-    console.log(response.data);
+    console.log('deleted',response.data);
     navigate("/admin");
   };
 
@@ -226,6 +262,23 @@ const ProcessTick = () => {
     { value: "true", required: true, label: "true" },
     { value: "false", required: true, label: "false" },
   ];
+
+  let pathogenElems =
+    pathogens.length > 0 &&
+    pathogens.map((patho) => (
+      <Styles.PathosCont key={patho.id}>
+        <input
+          type="checkbox"
+          id={patho.pathogen}
+          name={patho.pathogen}
+          value={patho.id}
+          style={{ margin: "1rem" }}
+          checked={ tick.pathogens?.some((value) => value.id === patho.id) || ""}
+          onChange={handlePathoChange}
+        />
+        <label htmlFor={patho.pathogen}>{patho.pathogen}</label>
+      </Styles.PathosCont>
+    ));
 
   // console.log(`tick`, lifeStage);
 
@@ -285,7 +338,6 @@ const ProcessTick = () => {
             )}
             {/* put engorged and lab number here */}
             {/* Specimen request button/status or not a tick */}
-            
             {tick.photosReviewed &&
               (tick.specimenRequested ? (
                 <span>
@@ -334,8 +386,8 @@ const ProcessTick = () => {
                   </>
                 )
               ))}
-            <span style={{margin: '1rem 0'}}>
-              Life Stage: 
+            <span style={{ margin: "1rem 0" }}>
+              Life Stage:
               <BasicPage.RadioButtons style={{ width: "25rem" }}>
                 <FormSelectionBlocks
                   input={lifeStage}
@@ -345,8 +397,8 @@ const ProcessTick = () => {
                 />
               </BasicPage.RadioButtons>
             </span>
-            <span style={{margin: '1rem 0'}}>
-              Engorged: 
+            <span style={{ margin: "1rem 0" }}>
+              Engorged:
               <BasicPage.RadioButtons>
                 <FormSelectionBlocks
                   input={engorged}
@@ -356,7 +408,6 @@ const ProcessTick = () => {
                 />
               </BasicPage.RadioButtons>
             </span>
-
             {tick.photoId && (
               <span>
                 Photo ID: {tick.photo.scientific}
@@ -365,7 +416,6 @@ const ProcessTick = () => {
                 {`${tick.photoIdUser?.firstName} ${tick.photoIdUser?.lastName}`}
               </span>
             )}
-            
             {/* Specimen received button or status */}
             {tick.specimenRequested &&
               (tick.specimenReceived ? (
@@ -400,11 +450,25 @@ const ProcessTick = () => {
                 </div>
               ))
             )}
-            {tick.labNumber ? <span>Lab Number: {tick.labNumber}</span> : (
+            {tick.labNumber ? (
+              <span>Lab Number: {tick.labNumber}</span>
+            ) : (
               <>
-              <label htmlFor="labNumber">Lab Number: </label>
-              <input style={{width: '30rem', padding: '1rem'}} id='labNumber' type='text' name='labNumber' value={labNumber} onChange={handleLabChange}/>
-              <button style={{width: '30rem', padding: '1rem', margin: '1rem 0'}}  onClick={() => handleLabNumber(id, labNumber)}>Save Lab Number</button>
+                <label htmlFor="labNumber">Lab Number: </label>
+                <input
+                  style={{ width: "30rem", padding: "1rem" }}
+                  id="labNumber"
+                  type="text"
+                  name="labNumber"
+                  value={labNumber}
+                  onChange={handleLabChange}
+                />
+                <button
+                  style={{ width: "30rem", padding: "1rem", margin: "1rem 0" }}
+                  onClick={() => handleLabNumber(id, labNumber)}
+                >
+                  Save Lab Number
+                </button>
               </>
             )}
           </Styles.CardInsides>
@@ -430,23 +494,30 @@ const ProcessTick = () => {
 
         <SubTickInfo tick={tick}></SubTickInfo>
         <OutlineCard>
+          <h2>Pathogens</h2>
+          <p>select all that tested positive</p>
+          {pathogenElems}
+        </OutlineCard>
+        <OutlineCard>
           <div style={{ margin: "1rem", padding: "1rem" }}>
             <h2>Submitter Info</h2>
             <p>Municipality: {tick.userMuni}</p>
             <p>Zip Code: {tick.userZip?.toString().padStart(5, "0")}</p>
           </div>
         </OutlineCard>
-        <InternalLinkFloatButton
-          colors={{ text: theme.colors.ruTeal, shadow: theme.colors.ruTeal }}
-          to={-1}
-          text="  Back to List  "
-        />
-        <div onClick={toggleDelete}>
-          <HoverCard padding="1rem 2rem" shadowColor="#800000">
-            <span style={{ color: "#800000", fontWeight: "bold" }}>
-              Delete This Submission
-            </span>
-          </HoverCard>
+        <div>
+          <InternalLinkFloatButton
+            colors={{ text: theme.colors.ruTeal, shadow: theme.colors.ruTeal }}
+            to={-1}
+            text="  Back to List  "
+          />
+          <div onClick={toggleDelete}>
+            <HoverCard padding="1rem 2rem" shadowColor="#800000">
+              <span style={{ color: "#800000", fontWeight: "bold" }}>
+                Delete This Submission
+              </span>
+            </HoverCard>
+          </div>
         </div>
       </Styles.PageCont>
       {showDelete && (
