@@ -244,14 +244,14 @@ exports.updateSubm = async (req, res, next) => {
         
     await db.sequelize
       .transaction(async (t) => {
-        if (freshPathogens?.length > 0 && pathosOp === 'add'){
+        if (freshPathogens && freshPathogens.length > 0 && pathosOp === 'add'){
           const toBeUpdated = await Subm.findByPk(id,{
             include: {model: db.pathogen}
           }, {transaction: t})
           // replace previous with updated list of pathogens
           await toBeUpdated.addPathogens(freshPathogens) // this does not work if you include it in the transactions, the pathogens write but the update times out no matter how long you run it.
         }
-        if (freshPathogens?.length > 0 && pathosOp === 'remove'){
+        if (freshPathogens && freshPathogens.length > 0 && pathosOp === 'remove'){
           const toBeUpdated = await Subm.findByPk(id,{
             include: {model: db.pathogen}
           }, {transaction: t})
