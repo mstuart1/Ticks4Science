@@ -124,11 +124,9 @@ const Dashboard = () => {
     let response = input.email && await UserDataService.inviteUser(input)
     setInput({})
     // console.log(response.data)
-    if (response.data.data === 'ALREADY_EXISTED') {
-      alert('User was already in the system, no email sent')
-    } else {
+    
       alert('User has been invited')
-    }
+    
   }
 
   const handleLogout = () => {
@@ -212,10 +210,7 @@ const Dashboard = () => {
 
 
       <div>
-{/* 
-        <InternalLinkFloatButton colors={{ text: 'white', bg: theme.colors.ruTeal }} padding="1rem 2rem" text="View Submissions" to='/admin/allSubs' /> */}
-        {/* <h4 style={{textAlign: 'left'}}> • You can now click on the blocks to see filtered lists of all of the submissions.</h4>
-        <h4 style={{textAlign: 'left'}}> • You can now delete submissions.</h4> */}
+
         <Styles.BlockCont>
           {blockElems}
         </Styles.BlockCont>

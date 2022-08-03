@@ -42,7 +42,8 @@ exports.inviteUser = async (req, res, next) => {
                             id: newUser[0].id
                         }
                     }, { transaction: t })
-                    return res.json({ data: 'ALREADY_EXISTED' })
+                    await mailHelper.sendMail(newUser.email, message);
+                    return res.json({ data: 'RESENT_EMAIL' })
                 } else {
                     // create new user
                     newUser = await User.create(data, { transaction: t })
