@@ -117,11 +117,13 @@ exports.updateUser = async (req, res, next) => {
     try {
         let data = req.body
         let { id } = data
-        // is changing the password every time?
-        // if (data.password) {
-        //     const salt = await bcrypt.genSalt(10);
-        //     data.password = await bcrypt.hash(data.password, salt);
-        // }
+        // only change the password if there is a resetToken
+        if (data.password && data.resetToken) {
+            const salt = await bcrypt.genSalt(10);
+            data.password = await bcrypt.hash(data.password, salt);
+            data.resetToken = null
+            delete data.reset
+        }
         let updatedUser
         await db.sequelize
             .transaction(async (t) => {
