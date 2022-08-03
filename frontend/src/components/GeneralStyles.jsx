@@ -266,7 +266,7 @@ color: ${({ theme }) => theme.colors.ruTeal};
     `,
   RadioButtons: styled.div`
     display: flex;
-    width: 20rem;
+    width: ${({width}) => width || '25rem'};
     flex-wrap: wrap;
     
     /*
