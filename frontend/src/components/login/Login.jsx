@@ -46,17 +46,22 @@ const Login = ({logout}) => {
   };
 
   const submitForgot = async (evt) => {
-    evt.preventDefault();
-    let response = await UserDataService.forgotPassword(forgotEmail);
+    try {
+      evt.preventDefault();
+    let response = await UserDataService.forgotPassword({email: forgotEmail});
     let { message } = response.data
     if (message === 'BAD_USER') {
       alert('Please contact Dina Fonseca regarding using this system.')
     } else if (message === 'EMAIL_SENT') {
-      alert(`A reset link was sent to your email`)
+      alert(`A reset link was sent to your email.  There is a chance it might go to your spam folder, so check there if you don't see it.`)
     } else {
       alert('no reset email sent, please contact Dina Fonseca for help')
     }
     setForgotEmail("");
+    } catch (err) {
+      alert('no reset email sent, please contact Dina Fonseca for help')
+    }
+    
   };
 
   return (
@@ -95,7 +100,7 @@ const Login = ({logout}) => {
           <Styles.LoginButton onClick={submitForgot}>Send reset email</Styles.LoginButton>
         </>
       )}
-      <Styles.ForgotText >If you click inside the form and nothing happens, please refresh the page.</Styles.ForgotText>
+      
     </Styles.LoginBackground>
   );
 };
