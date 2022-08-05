@@ -142,7 +142,7 @@ exports.updateUser = async (req, res, next) => {
 }
 
 exports.login = async (req, res, next) => {
-    console.log(`@@@@---login user ${JSON.stringify(req.body, null, 1)}---@@@@`)
+    console.log(`@@@@---login user ${JSON.stringify(req.body.email, null, 1)}---@@@@`)
     try {
         let { email, password } = req.body
         let foundUser, accessToken
