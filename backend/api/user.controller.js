@@ -191,7 +191,7 @@ exports.reset = async (req, res, next) => {
             }, { transaction: t })
 
             if (foundUser === null) {
-                return res.json({ message: 'BAD_USER' })
+                throw Error(`USER_NOT_IN_SYSTEM: ${email}`)
             }
             else {
                 accessToken = jwt.sign(
@@ -212,7 +212,6 @@ exports.reset = async (req, res, next) => {
         })
         res.json({ message: 'EMAIL_SENT' })
     } catch (err) {
-        console.log(err.message)
         next(err)
     }
 }
@@ -230,7 +229,6 @@ exports.getAllUsers = async (req, res, next) => {
             })
         return res.json({ users })
     } catch (err) {
-        console.log(`!!!! Error !!!!`, err.message)
         next(err)
     }
 }
