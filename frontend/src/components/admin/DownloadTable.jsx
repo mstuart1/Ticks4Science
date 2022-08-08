@@ -1,9 +1,12 @@
-import React from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
+import {useNavigate} from 'react-router-dom'
 import styled from 'styled-components'
 import { CSVLink } from "react-csv";
 import OutlineFloatButton from "../ui/outlineFloatButton/OutlineFloatButton";
 import BorderlessFloatButton from '../ui/borderlessFloatButton/BorderlessFloatButton';
 import { theme } from '../../theme';
+import SubmissionDataService from "../../services/submission";
+import { useSelector } from 'react-redux';
 
  const Styles = {
    Wrapper: styled.div`
@@ -51,21 +54,60 @@ flex-direction: column;
  }
 
 const DownloadTable = () => {
-  // get the data from the backend
+
+  const navigate = useNavigate()
   
+  const token = useSelector(state => state.token)
+  const [data, setData] = useState([])
+
+  // get the data from the backend
+  useEffect(() => {
+    let getData = async (token) => {
+      return await SubmissionDataService.getDownloadData(token);
+    };
+
+    getData(token).then((response) => {
+      console.log(response.data.record)
+      setData(response.data.record);
+    });
+  }, [token]);
+  
+  console.log(data)
   // define the columns
-  let columns = []
-  // reduce the data to what will be visible in the table view
-  let editedData
+  let columns = [
+    "id",
+    "dateSubmitted",
+    "photosReviewedDate",
+    "notATick",
+    "specimenRequestedDate",
+    "specimenReceivededDate",
+    "specimenId",
+    "duplicate",
+    "deletedDate"
+  ]
+  
   // map through the rows as elems
-  let tableElems
+  let tableElems = data.map(item => 
+    (<tr key={item.id}>
+      <td>{item.id}</td>
+      <td>{item.createdAt?.substring(0,10)}</td>
+      <td>{item.photosReviewed?.substring(0,10)}</td>
+      <td>{item.notATick && 'not a tick'}</td>
+      <td>{item.specimenRequested?.substring(0,10)}</td>
+      <td>{item.specimenReceived?.substring(0,10)}</td>
+      <td>{item.specimen?.specimenScientific}</td>
+      <td>{item.duplicate}</td>
+      <td>{item.deletedAt?.substring(0,10)}</td>
+      
+    </tr>)
+  )
   let date = new Date()
   let dateString = `${date.getFullYear()}_${date.getMonth() + 1}_${date.getDate()} `
   
     return (
     <Styles.Wrapper>
       <Styles.ButtonCont>
-      {/* <CSVLink data={editedData} filename={`ticksWebsiteData-${dateString}.csv`}> */}
+      <CSVLink style={{textDecoration: 'none'}} data={data} filename={`ticksWebsiteData-${dateString}.csv`}>
       <OutlineFloatButton
           colors={{
             text: theme.colors.ruTeal,
@@ -76,8 +118,8 @@ const DownloadTable = () => {
           text="Download Data"
           padding="2rem"
         />
-      {/* </CSVLink> */}
-      <BorderlessFloatButton text='Back to Dashboard'/>
+      </CSVLink>
+      <BorderlessFloatButton handleClick={() => navigate('/admin')} text='Back to Dashboard'/>
       
       </Styles.ButtonCont>
       <p>
