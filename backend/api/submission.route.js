@@ -8,9 +8,10 @@ module.exports = (app) => {
     router
       .get("/", auth.verifyToken, SubmCtl.getAllSubs)
       .get("/paged", auth.verifyToken, SubmCtl.getSubPage)
+      .get("/downloadData", SubmCtl.downloadData)
+      .get('/:id', SubmCtl.getProgress)
       .post("/", SubmCtl.createSubm)
       .post("/photos/:id", upload.array('photos', 2),  SubmCtl.uploadPhoto)
-      .get('/:id', SubmCtl.getProgress)
       .put('/:id', SubmCtl.updateSubm)
       .delete('/:id', SubmCtl.deleteSub)
 

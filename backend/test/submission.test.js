@@ -46,6 +46,21 @@ describe("Submission", () => {
     //  .timeout(5000000);
     
   });
+  // get downloadable data
+  describe.only("GET /submission/downloadData", () => {
+    it("should return all of the information pertaining to all of the submissions", (done) => {
+      let token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZ3JhbnQiOnRydWUsImlhdCI6MTY1OTk2MzQ5MCwiZXhwIjoxNjU5OTcwNjkwfQ.OAoYdpioqLopRjFVUv1qSL5LwbHUma7LgLc5JaBi4cI'
+      chai
+      .request(server)
+      .get('/submission/downloadData')
+      .send(token)
+      .end((err, res) => {
+        console.log(JSON.stringify(res.body, null, 1))
+        res.should.have.status(200)
+        done()
+      })
+    })
+  })
 
 
 });

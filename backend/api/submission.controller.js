@@ -333,21 +333,41 @@ exports.deleteSub = async (req, res, next) => {
   }
 }
 
-// testing
-
-
-const Movie = sequelize.define('Movie', {name: DataTypes.STRING})
-const Actor = sequelize.define('Actor', {name: DataTypes.STRING})
-
-Movie.belongsToMany(Actor, {through: 'ActorMovies'})
-Actor.belongsToMany(Movie, {through: 'ActorMovies'})
-
-///////////////
-const User = sequelize.define('user', {
-    username: DataTypes.STRING,
-    point: DataTypes.INTEGER
-  }, {timestamps: false});
-  const Profile = sequelize.define('profile', {
-    name: DataTypes.STRING,
-  }, {timestamps: false})
-
+exports.downloadData = async (req, res, next) => {
+  console.log('downloading submission data')
+  try {
+    let foundSubs = await Subm.findAll({
+      // offset: page,
+      include: [
+        {
+          model: db.ticks,
+          as: 'photo',
+          attributes: ['id', ['scientific', 'photoScientific']]
+        },
+        {
+          model: db.ticks,
+          as: 'specimen',
+          attributes: ['id', ['scientific', 'specimenScientific']]
+        },
+        {
+          model: db.users,
+          as: 'specIdUser',
+          attributes: ['id', ['firstName', 'specimenIdentifierFirstName'], ['lastName', 'specimentIdentiferLastName']]
+        },
+        {
+          model: db.users,
+          as: 'photoIdUser',
+          attributes: ['id', ['firstName', 'photoIdentiferFirstName'], ['lastName', 'photoIdentifierLastName']]
+        },
+        {
+          model: db.pathogen,
+          attributes: {exclude: ['createdAt', 'updatedAt', 'deletedAt']}
+        }
+      ]
+    })
+    // console.log(JSON.stringify(foundSubs, null, 1))
+    res.json({ record: foundSubs })
+  } catch (err) {
+    next(err)
+  }
+}
