@@ -337,7 +337,7 @@ exports.downloadData = async (req, res, next) => {
   console.log('downloading submission data')
   try {
     let foundSubs = await Subm.findAll({
-      // offset: page,
+      paranoid: false,
       include: [
         {
           model: db.ticks,
