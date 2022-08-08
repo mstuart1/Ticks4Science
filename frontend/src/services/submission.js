@@ -28,12 +28,18 @@ class SubmissionDataService {
           }})
     }
     updateSub(data, id) {
-        console.log(data)
+        // console.log(data)
         return http.put(`/submission/${id}`, data)
     }
     deleteSub(id) {
         return http.delete(`/submission/${id}`)
     }
+    getDownloadData(token) {
+        return http.get(`/submission/downloadData`, { headers: {
+            'Authorization': `Basic ${token}`
+        } })
+    }
+    
 }
 
 export default new SubmissionDataService();
