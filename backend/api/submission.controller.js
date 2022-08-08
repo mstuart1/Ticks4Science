@@ -338,6 +338,7 @@ exports.downloadData = async (req, res, next) => {
   try {
     let foundSubs = await Subm.findAll({
       paranoid: false,
+      raw: true,
       include: [
         {
           model: db.ticks,
@@ -361,7 +362,6 @@ exports.downloadData = async (req, res, next) => {
         },
         {
           model: db.pathogen,
-          attributes: {exclude: ['createdAt', 'updatedAt', 'deletedAt']}
         }
       ]
     })
