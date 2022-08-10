@@ -72,7 +72,7 @@ const TickProgress = () => {
         <i><FaImages/></i>
       </Styles.TimelineIcon>
        
-       <p className="tl-duration">{data.photosReviewed.substring(0,10)}</p>
+       <p className="tl-duration">{data.photosReviewed?.substring(0,10)}</p>
         <h5>Photos Reviewed</h5>
         {/* <p>
            We have reviewed your photos.   (depending on the results, either the tick species or the submission requested will appear below)
@@ -85,7 +85,7 @@ const TickProgress = () => {
         <i><FaMailBulk/></i>
       </Styles.TimelineIcon>
        
-       <p className="tl-duration">{data.specimenRequested.substring(0,10)}</p>
+       <p className="tl-duration">{data.specimenRequested?.substring(0,10)}</p>
         <h5>Specimen Requested</h5>
         <ol>
           <li>
@@ -117,7 +117,7 @@ New Brunswick, NJ 08901-8536 <br/>
         <i><FaRegEnvelopeOpen/></i>
       </Styles.TimelineIcon>
        
-       <p className="tl-duration">{data.specimenReceived.substring(0,10)}</p>
+       <p className="tl-duration">{data.specimenReceived?.substring(0,10)}</p>
         <h5>Specimen Received</h5>
         <p>
         The specimen has arrived at the Center for Vector Biology! We appreciate your contribution and encourage you to continue exploring New Jersey and sending in ticks when encountered. 
@@ -133,7 +133,7 @@ Reminder: you must complete a new tick submission each time a tick is sent to NJ
         <i><FaSearch/></i>
       </Styles.TimelineIcon>
        
-       <p className="tl-duration">{data.specimenIdentified.substring(0,10)}</p>
+       <p className="tl-duration">{data.specimenIdentified?.substring(0,10)}</p>
         <h5>Specimen Identified</h5>
           {data.notATick ? (
             <p>
@@ -141,7 +141,7 @@ Reminder: you must complete a new tick submission each time a tick is sent to NJ
             </p>
           ) : (
             <div>
-            <h3> {data.specimen.common} - <i>{data.specimen.scientific}</i></h3>
+            <h3> {data.specimen?.common} - <i>{data.specimen.scientific}</i></h3>
             <p>
               <BasicPage.InnieLink to={`/ticks/${data.specimen.id}`}><span>View more about {data.specimen.common} here</span></BasicPage.InnieLink>
             </p>

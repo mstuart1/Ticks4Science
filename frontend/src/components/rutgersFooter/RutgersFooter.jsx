@@ -36,7 +36,7 @@ const RutgersFooter = () => {
         <Styles.Disclaimer>
         <p>Rutgers is an equal access/equal opportunity institution. Individuals with disabilities are encouraged to direct suggestions, comments, or complaints concerning any accessibility issues with Rutgers websites to&nbsp;<a href="mailto:accessibility@rutgers.edu">accessibility@rutgers.edu</a>&nbsp;or complete the&nbsp;<a href="https://it.rutgers.edu/it-accessibility-initiative/barrierform/" target="_blank" rel="noreferrer">Report Accessibility Barrier / Provide Feedback</a>&nbsp;form.</p>
 
-        <p><a href="/copyright-information" target="_blank" rel="noreferrer">Copyright ©{new Date().getFullYear()}</a>, Rutgers, The State University of New Jersey. All rights reserved.&nbsp;<br/><a href="https://rutgers.ca1.qualtrics.com/jfe/form/SV_cMZTiDLz0sftzhP" target="_blank" rel="noreferrer">Contact webmaster</a></p>
+        <p><a href="/copyright-information" target="_blank" rel="noreferrer">Copyright ©{new Date().getFullYear()}</a>, Rutgers, The State University of New Jersey. All rights reserved.&nbsp;<br/><a href="mailto:ora-it@njaes.rutgers.edu">Contact webmaster</a></p>
         </Styles.Disclaimer>
         </Styles.WidthContainer>
       </Styles.FooterContainer>
