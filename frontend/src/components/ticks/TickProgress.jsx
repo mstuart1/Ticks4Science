@@ -141,9 +141,9 @@ Reminder: you must complete a new tick submission each time a tick is sent to NJ
             </p>
           ) : (
             <div>
-            <h3> {data.specimen?.common} - <i>{data.specimen.scientific}</i></h3>
+            <h3> {data.specimen?.common} - <i>{data.specimen?.scientific}</i></h3>
             <p>
-              <BasicPage.InnieLink to={`/ticks/${data.specimen.id}`}><span>View more about {data.specimen.common} here</span></BasicPage.InnieLink>
+              <BasicPage.InnieLink to={`/ticks/${data.specimen?.id}`}><span>View more about {data.specimen?.common} here</span></BasicPage.InnieLink>
             </p>
            {data.lifeStage &&  <p>
             Your tick was at the life stage {data.lifeStage} and was {!data.engorged && 'not'} engorged.
