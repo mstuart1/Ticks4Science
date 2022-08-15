@@ -389,26 +389,28 @@ const ProcessTick = () => {
                 )
               ))}
             <span style={{ margin: "1rem 0" }}>
-            Life Stage:
-              <BasicPage.RadioButtons>
-                <FormSelectionBlocks
-                  input={lifeStage}
-                  handleChange={handleLifeStageChange}
-                  fieldName="lifeStage"
-                  valueArray={stageArray}
-                />
-              </BasicPage.RadioButtons>
+            Life Stage: {tick.lifeStage ? tick.lifeStage : (
+
+<BasicPage.RadioButtons>
+<FormSelectionBlocks
+  input={lifeStage}
+  handleChange={handleLifeStageChange}
+  fieldName="lifeStage"
+  valueArray={stageArray}
+/>
+</BasicPage.RadioButtons>
+            )}
             </span>
             <span style={{ margin: "1rem 0" }}>
-              Engorged:
-              <BasicPage.RadioButtons>
+              Engorged: {tick.engorged !== null ? tick.engorged.toString() : <BasicPage.RadioButtons>
                 <FormSelectionBlocks
                   input={engorged}
                   handleChange={handleEngorgedChange}
                   fieldName="engorged"
                   valueArray={engorgedArray}
                 />
-              </BasicPage.RadioButtons>
+              </BasicPage.RadioButtons>}
+              
             </span>
             {tick.photoId && (
               <span>
