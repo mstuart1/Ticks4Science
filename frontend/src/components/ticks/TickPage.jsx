@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { BasicPage } from '../GeneralStyles'
-// import { FaStar } from 'react-icons/fa'
 import TickDataService from '../../services/ticks'
-// import { theme } from '../../theme'
 import OutlineCard from '../ui/outlineCard/OutlineCard'
 import styled from 'styled-components'
+// import { FaStar } from 'react-icons/fa'
+// import { theme } from '../../theme'
 
 const Styles = {
   CardCont: styled.div`
@@ -112,9 +112,10 @@ const TickPage = () => {
     
   }, [id])
 
-  useEffect(() => {
+  // why is there an empty useEffect here?
+  // useEffect(() => {
      
-  }, [])
+  // }, [])
 
   // data.refImgArray && console.log(Object.keys(data.refImgArray))
   
@@ -136,7 +137,14 @@ const TickPage = () => {
     }
     
 })
-
+let researchElems
+if (data.researchLinks){
+  let researchLinks = data.researchLinks && JSON.parse(data.researchLinks)
+  researchElems = researchLinks.research.map(item => (
+    <li><BasicPage.OutieLink href={item.path} target='_blank' rel='noreferrer'><span>{item.text}</span></BasicPage.OutieLink></li>
+    
+  ))
+}
 
   return (
     <BasicPage.Text>
@@ -166,6 +174,7 @@ const TickPage = () => {
             <Styles.InfoItem><h3>Hosts</h3>{data.hosts}</Styles.InfoItem>
             <Styles.InfoItem><h3>Habitat</h3>{data.habitat}</Styles.InfoItem>
             <Styles.InfoItem><h3>Locations in NJ</h3>{data.njLocations}</Styles.InfoItem>
+            <Styles.InfoItem><h3>Active Months</h3>{data.activeMonths}</Styles.InfoItem>
           </Styles.MiddleInfo>
           {data.mapImgUrl?.length > 0 && (<Styles.MiddleInfo>
             <img src={data.mapImgUrl} alt='map of tick locations' style={{ maxWidth: '250px' }} />
@@ -174,6 +183,14 @@ const TickPage = () => {
         <Styles.MiddleCont>
           {refImgElems}
         </Styles.MiddleCont>
+        {data.researchLinks && (
+           <OutlineCard  margin='1rem'>
+           <h3>Research Links</h3>
+           <ul style={{padding:'1rem'}}>
+           {researchElems}
+           </ul>
+         </OutlineCard>
+        )}
         <OutlineCard>
           <h3>A Reminder About Engorged Ticks</h3>
           <p>Blood feeding increases the <BasicPage.InnieLink to='/tickOrInsect'><span>tick's size drastically</span></BasicPage.InnieLink> and can increase the chances of them passing on a <BasicPage.InnieLink to='/disease'><span>pathogen</span></BasicPage.InnieLink></p>

@@ -26,6 +26,7 @@ module.exports = (sequelize, DataTypes) => {
     featureImgUrl: DataTypes.STRING, 
     mapImgUrl: DataTypes.STRING, 
     refImgArray: DataTypes.JSON, 
+    researchLinks: DataTypes.TEXT,
   }, {
     sequelize,
     modelName: 'ticks',

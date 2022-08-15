@@ -76,9 +76,7 @@ const App = () => {
       <Styles.Wrapper>
         <ScrollToTop>
           <RutgersHeader />
-          {/* <BasicPage.Text>
-            <h3>Sorry for the inconvenience, the website is temporarily down for maintenance.  Please check back soon.</h3>
-            </BasicPage.Text> */}
+          
            <NavbarComp />
           <Styles.PageContainer>
             <Routes>
