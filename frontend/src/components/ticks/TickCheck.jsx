@@ -50,7 +50,7 @@ const TickCheck = () => {
                 <BasicPage.ImageCont>
                                 <figure>
                                     <img style={{maxWidth: '80%'}} src='https://www.cdc.gov/ticks/images/gallery/Still-Web-Graphic-Checking-for-ticks_FINAL-2.jpg?_=63048' alt='infographic woman tick check' />
-                                    <figcaption>CDC -Ticks Image Gallery</figcaption>
+                                    <figcaption>A diagram demonstrating where to check for ticks (photo credit CDC Tick Image Gallery).</figcaption>
                                 </figure>
                             </BasicPage.ImageCont>
                             <OutlineCard bgColor={theme.colors.ruTeal} width='90%'>
@@ -72,7 +72,7 @@ const TickCheck = () => {
                 <BasicPage.ImageCont>
                     <figure>
                         <img src='https://www.cdc.gov/ticks/images/gallery/Tickcheckdog_eng.jpg?_=03961' alt='infographic dog tick check' />
-                        <figcaption>CDC -Ticks Image Gallery</figcaption>
+                        <figcaption>A diagram demonstrating where to check for ticks (photo credit CDC Tick Image Gallery).</figcaption>
                     </figure>
                 </BasicPage.ImageCont>
             

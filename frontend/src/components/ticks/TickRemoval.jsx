@@ -10,7 +10,7 @@ const TickRemoval = () => {
             <BasicPage.ImageCont>
                 <figure>
                     <img src='https://www.cdc.gov/ticks/images/gallery/Tickremovalrectangle2.jpg?_=84771' alt='infographic dog tick check' />
-                    <figcaption>CDC -Ticks Image Gallery - This diagram demonstrates all four steps of the tick removal process.
+                    <figcaption>This diagram demonstrates all four steps of the tick removal process (photo credit CDC Tick Image Gallery).
                     </figcaption>
                 </figure>
             </BasicPage.ImageCont>

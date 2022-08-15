@@ -148,7 +148,7 @@ const About = () => {
         <BasicPage.ImageCont>
           <figure>
             <img src={tickIntro} alt='ticks' />
-            <figcaption>Female black legged tick. Photo credit Jim Occi
+            <figcaption>Photo of a female blacklegged tick (sometimes called “deer tick”), (photo credit Jim Occi, PhD).
             </figcaption>
           </figure>
         </BasicPage.ImageCont>

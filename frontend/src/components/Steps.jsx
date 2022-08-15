@@ -52,22 +52,12 @@ const Steps = () => (
           <InternalLinkFloatButton width="30rem" colors={{ text: theme.colors.ruTeal, shadow: theme.colors.ruTeal }} to='/photo' text='Step 2 - Learn to take tick pics' />
           <InternalLinkFloatButton width="30rem" colors={{ text: theme.colors.ruTeal, shadow: theme.colors.ruTeal }} to='/preSurvey' text='Step 3 - Fill out the form and upload your pics' />
           <InternalLinkFloatButton width="30rem" colors={{ text: theme.colors.ruTeal, shadow: theme.colors.ruTeal }} to='/progress' text='Step 4 - Check your progress' />
-            
-            {/* <OutlineCard bgColor={theme.colors.ruTeal}>
-              <StepStyles.CardSpecial>
-                <BasicPage.StepSpan>Step 4:</BasicPage.StepSpan>
-                <div>
-                After submitting the form, keep the tick in a sealed plastic bag. Safely place the tick in the refrigerator or freezer to preserve it. You will receive a personalized ID number based on your tick submission. Save that number for future reference!            
-                </div>
-              </StepStyles.CardSpecial>
-              </OutlineCard> */}
-           
               </BasicPage.CardContainer>
               </div>
               <BasicPage.ImageCont>
             <figure>
               <img src={circle} alt='circle of ticks' />
-              <figcaption>Photo credit Andrea Egizi, PhD.
+              <figcaption>Multiple life stages of common ticks of New Jersey (photo credit Andrea Egizi, PhD).
               </figcaption>
             </figure>
           </BasicPage.ImageCont>

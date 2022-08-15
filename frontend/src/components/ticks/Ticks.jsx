@@ -93,14 +93,7 @@ const Ticks = () => {
     let invasiveTicks = ['longicornis']
     let otherTicks = ['kelleyi', 'albipictus', 'leporispalustris', 'brunneus', 'cookei', 'dentatus', 'texanus', 'marxi', 'texanus', 'sanguineus']
     let newTick = ['maculatum']
-
-    // let peopleTickElements = data.map(tick => {
-    //     if (peopleTicks.some(item => tick.scientific?.includes(item))) {
-    //         return <li key={tick.id}><BasicPage.InnieLink to={`/ticks/${tick.id}`}><span><Icon><FaStar/></Icon><i>{tick.scientific}</i>, {tick.common}</span></BasicPage.InnieLink><br /></li>
-    //     } else {
-    //         return null
-    //     }
-    // })
+    
     let peopleCardElements = data.map(tick => {
         if (peopleTicks.some(item => tick.scientific?.includes(item))) {
             tick.peopleTick = true;

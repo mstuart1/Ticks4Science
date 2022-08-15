@@ -83,7 +83,7 @@ const TickOrInsect = () => {
       <BasicPage.ImageCont>
         <figure>
           <img src={scutum} alt='scutum' />
-          <figcaption style={{ fontSize: '1.6rem' }}>A male tick (right) has a scutum (a.k.a. shield) that takes up most of the body, while in a female (left), as well as in nymphs and larvae, the scutum covers only part of the tick. Nymphs and adults have 4 pairs of legs (8 total) but the tiny larvae only have 3 pairs (6 legs total). The pictures are of <i>Rhipicephalus sanguineus</i> (photo credit Andrea Egizi, PhD).
+          <figcaption style={{ fontSize: '1.6rem', width: '300px'}}>A male tick (right) has a scutum (a.k.a. shield) that takes up most of the body, while in the female (left), as well as in the nymphs and larvae, the scutum covers only the part of the tick closest to the mouthparts. Nymphs and adult ticks have 4 pairs of legs but the tiny larvae have 3 pairs. Pictured is the brown dog tick, an invasive tick species that can survive indoors (photo credit Andrea Egizi, PhD).
           </figcaption>
         </figure>
 
@@ -97,7 +97,7 @@ const TickOrInsect = () => {
       <BasicPage.ImageCont>
         <figure>
           <img src={mouth} alt='mouth parts' />
-          <figcaption style={{ fontSize: '1.6rem' }}>The tick’s mouthparts include the hypostome and palps. The hypostome enters the skin and draws up the blood. The palps do not enter the body when feeding, splaying out to the side while attached to its host. <i>Ixodes scapularis</i> (photo credit Andrea Egizi, PhD).
+          <figcaption style={{ fontSize: '1.6rem', width: '300px' }}>The tick’s mouthparts include the hypostome and palps. The hypostome enters the skin and draws up the blood. The palps do not enter the body when feeding, splaying out to the side while attached to its host. This photo is a close up of a blacklegged tick (photo credit Andrea Egizi, PhD).
           </figcaption>
         </figure>
       </BasicPage.ImageCont>
@@ -107,7 +107,15 @@ const TickOrInsect = () => {
       <BasicPage.ImageCont>
         <figure>
           <img src={stage} alt='ticks at different life stages' />
-          <figcaption style={{ fontSize: '1.6rem' }}>Photo of a female blacklegged tick, <i>Ixodes scapularis</i> (left) next to a sesame seed. On top of the sesame seed is a blacklegged tick nymph (photo credit Jim Occi).
+          <figcaption style={{ fontSize: '1.6rem', width: '300px' }}>Photo is of a female blacklegged tick (left) next to a sesame seed. On top of the sesame seed is a blacklegged tick nymph (photo credit Jim Occi, PhD).
+          </figcaption>
+        </figure>
+      </BasicPage.ImageCont>
+        
+      <BasicPage.ImageCont>
+        <figure>
+          <img src='https://www.cdc.gov/ticks/images/gallery/Lifeseriesillustration.jpg?_=03668?noicon' alt='ticks at different life stages' />
+          <figcaption style={{ fontSize: '1.6rem', width: '300px' }}>An illustration of relative sizes of several ticks at different life stages (photo credit CDC Tick Image Gallery).
           </figcaption>
         </figure>
       </BasicPage.ImageCont>

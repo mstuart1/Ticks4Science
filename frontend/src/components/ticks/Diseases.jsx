@@ -67,7 +67,7 @@ const Diseases = () => {
             <BasicPage.ImageCont>
                 <figure>
                     <img src={stages} alt='engorged tick' />
-                    <figcaption style={{ fontSize: '1.4rem' }}>This photo shows blacklegged ticks at different stages of feeding. The left shows an unfed tick, and as you move to the right, each tick grows in size. The longer a tick feeds, the greater chance of it transmitting a pathogen (photo credit Jim Occi).
+                    <figcaption style={{ fontSize: '1.4rem', width: '300px' }}>This photo shows blacklegged ticks at different stages of feeding. On the left is an unfed tick, and to the right are ticks at different levels of engorgement - the rightmost tick was likely blood feeding for at least 2 days. The longer a tick feeds, the greater chance of it transmitting a pathogen (photo credit Jim Occi, PhD).
                     </figcaption>
                 </figure>
             </BasicPage.ImageCont>
@@ -86,7 +86,7 @@ const Diseases = () => {
             <BasicPage.ImageCont>
                 <figure>
                     <img src={stages2} alt='engorged tick' />
-                    <figcaption style={{ fontSize: '1.4rem' }}>Above: Adult, larva, and nymph lone star ticks, unfed. Below: Engorged (blood-fed) lone star ticks (photo credit Jim Occi).</figcaption>
+                    <figcaption style={{ fontSize: '1.4rem', width: '300px' }}>Above: From left to right, adult female, larva, and nymph lone star ticks, unfed. Below: engorged lone star ticks after blood feeding for an increasing number of hours (photo credit Jim Occi, PhD).</figcaption>
                 </figure>
             </BasicPage.ImageCont>
             <p>
@@ -103,7 +103,7 @@ const Diseases = () => {
 <BasicPage.ImageCont>
     <figure>
         <img src='https://www.cdc.gov/ticks/images/gallery/CDCMosquitoPHOCO-218.jpg?_=40558?noicon' alt='dog' />
-        <figcaption style={{ fontSize: '1.4rem' }}>Applying tick preventative to a dog. CDC - Ticks Image Gallery
+        <figcaption style={{ fontSize: '1.4rem' }}> Applying tick preventative to a dog (photo credit CDC Tick Image Gallery).
         </figcaption>
     </figure>
 </BasicPage.ImageCont>

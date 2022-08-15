@@ -57,13 +57,13 @@ const Photo = () => {
         <BasicPage.ImageCont>
           <figure>
             <img src={dime} alt='tick next to dime' />
-            <figcaption>Use of a coin as size reference (photo credit Jim Occi).</figcaption>
+            <figcaption>Use of a coin as size reference (photo credit Jim Occi, PhD).</figcaption>
           </figure>
         </BasicPage.ImageCont>
         <BasicPage.ImageCont>
           <figure>
             <img src={nail} alt='tick next to nail' />
-            <figcaption>Use of a pin and ruler as size reference (photo credit Jim Occi).</figcaption>
+            <figcaption>Use of a pin and ruler as size reference (photo credit Jim Occi, PhD).</figcaption>
           </figure>
         </BasicPage.ImageCont>
       </PhotoStyles.CenterCntr>
@@ -104,7 +104,7 @@ const Photo = () => {
       <BasicPage.ImageCont>
         <figure>
           <img src={comp} alt='unfed vs fed' />
-          <figcaption style={{ fontSize: '1.4rem' }}>Unfed vs. blood-fed lone star ticks. Photo credit Jim Occi</figcaption>
+          <figcaption style={{ fontSize: '1.4rem' }}>Unfed vs. blood-fed lone star ticks (photo credit Jim Occi, PhD).</figcaption>
         </figure>
       </BasicPage.ImageCont>
       <p>
@@ -142,13 +142,13 @@ const Photo = () => {
         <BasicPage.ImageCont>
           <figure>
             <img src={bad2} alt='bad tick' style={{ maxHeight: '400px' }} />
-            <figcaption style={{fontSize: '1.4rem'}} > This tick is not in a light-colored background so it’s hard to identify its features.Photo credits Kayla Vuoso
+            <figcaption style={{fontSize: '1.4rem', width: '300px'}} >This tick is not in a light-colored background so it's hard to identify its features (photo credit Kayla Vuoso).
             </figcaption>
           </figure>  </BasicPage.ImageCont>
         <BasicPage.ImageCont>
           <figure>
             <img src={bad1} alt='bad tick' style={{ maxHeight: '400px' }} />
-            <figcaption style={{fontSize: '1.4rem'}} > The subject is too far away to recognize clearly as a tick. Photo credits Kayla Vuoso
+            <figcaption style={{fontSize: '1.4rem', width: '300px'}} > The subject is too far away to recognize clearly as a tick. Photo credits Kayla Vuoso
             </figcaption>
           </figure>
         </BasicPage.ImageCont>
