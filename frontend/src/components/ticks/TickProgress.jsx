@@ -77,11 +77,11 @@ const TickProgress = () => {
         {data.photoId && (
           <p>Based on the photo, it looks like this is probably <BasicPage.InnieLink to={`/ticks/${data.photo.id}`}><span>{data.photo.common}</span></BasicPage.InnieLink>.</p>
         )}
-        {console.log(data.lifeStage.length)}
+        {/* {console.log(data.lifeStage.length)} */}
         {data.engorged !== null && (
           <p>It {data.engorged ? "appears" :  'does not appear'}  to be engorged.</p>
         )}
-        {data.lifeStage.length > 0 && (
+        {data.lifeStage?.length > 0 && (
           <p>The life stage appears to be {data.lifeStage}.</p>
         )}
     </div>
