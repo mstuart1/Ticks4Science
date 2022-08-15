@@ -43,6 +43,8 @@ const UserMgt = () => {
     
     const [data, setData] = useState([])
     const token = useSelector(state => state.token.data)
+    
+
 
     useEffect(() => {
         let getData = async (token) => {
@@ -59,23 +61,23 @@ const UserMgt = () => {
    const handleChange = async (id, evt) => {
     
        let  {checked} = evt.target
+       setData(prevState => prevState.map(item => {
+        if (item.id === id){
+          item.emailAlerts = checked
+          return item
+        } else {
+          return item
+        }
+       }))
     
         let updatedUser = data.filter(user => user.id === id)[0]
-        updatedUser.emailAlerts = checked
-        let response = await UserDataService.updateUser(updatedUser) 
-        if(response.data.message === 'ok'){
-            let updatedData = data.map(user => {
-                if (user.id === updatedUser.id) {
-                    return updatedUser
-                }
-                return user
-            })
-            setData(updatedData) 
-        }
         
-             
-
-    }
+        let response = await UserDataService.updateUser(updatedUser) 
+        
+        if(response.status !== 200){
+         alert(`Error ${response.status}: there was an error updating the user`)
+        }
+      }
 
     const handleInvite = async email => {
         await UserDataService.inviteUser({email: email})
@@ -93,6 +95,7 @@ const UserMgt = () => {
                     <th>Email</th>
                     <th>Accepted Invite</th>
                     <th>Email Alerts</th>
+                    
                 </tr>
             </thead>
             <tbody>
@@ -103,10 +106,11 @@ const UserMgt = () => {
             <td>
                 {user.password?.length > 0 ? "Yes" : "No"}
                 {!user.password && 
-                <button style={{margin: '1rem'}} onClick={() => handleInvite(user.email)}>Resend Invite</button>
+                <button style={{margin: '1rem', padding: '1rem', borderRadius: '0.5rem'}} onClick={() => handleInvite(user.email)}>Resend Invite</button>
                 }
             </td>
             <td>
+              
             <input id={user.id} type='checkbox' checked={user.emailAlerts} onChange={(evt) => handleChange(user.id, evt)} />
             </td>            
             </tr>
