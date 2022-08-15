@@ -10,7 +10,7 @@ import { theme } from '../../theme'
 
 const TickProgress = () => {
     let {id} = useParams()
-    // console.log(id)
+    
     const [data, setData] = useState({})
 
     useEffect(() => {
@@ -30,7 +30,7 @@ const TickProgress = () => {
       
     }, [id])
 
-  
+    console.log(data)
 
   return ( Object.keys(data).length === 0 
   ?
@@ -74,9 +74,16 @@ const TickProgress = () => {
        
        <p className="tl-duration">{data.photosReviewed?.substring(0,10)}</p>
         <h5>Photos Reviewed</h5>
-        {/* <p>
-           We have reviewed your photos.   (depending on the results, either the tick species or the submission requested will appear below)
-        </p> */}
+        {data.photoId && (
+          <p>Based on the photo, it looks like this is probably <BasicPage.InnieLink to={`/ticks/${data.photo.id}`}><span>{data.photo.common}</span></BasicPage.InnieLink>.</p>
+        )}
+        {console.log(data.lifeStage.length)}
+        {data.engorged !== null && (
+          <p>It {data.engorged ? "appears" :  'does not appear'}  to be engorged.</p>
+        )}
+        {data.lifeStage.length > 0 && (
+          <p>The life stage appears to be {data.lifeStage}.</p>
+        )}
     </div>
    )}
    {data?.specimenRequested !== null && (
