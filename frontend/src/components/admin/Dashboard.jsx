@@ -77,6 +77,9 @@ const Styles = {
 };
 
 const Dashboard = () => {
+
+  const usersWhoCanEdit = [1,5] // Michelle and Dina
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -86,6 +89,8 @@ const Dashboard = () => {
 
   const user = useSelector((state) => state.user);
   const token = useSelector((state) => state.token.data);
+
+  
 
   useEffect(() => {
     let getData = async (token) => {
@@ -239,6 +244,16 @@ const Dashboard = () => {
           }}
           handleClick={() => navigate("/admin/data")}
           text="View Data to Download"
+          padding="2rem"
+        />
+         <OutlineFloatButton
+          colors={{
+            text: theme.colors.ruTeal,
+            shadow: theme.colors.ruTeal,
+            bg: theme.colors.white,
+          }}
+          handleClick={() => navigate("/admin/editData")}
+          text="Edit the Database"
           padding="2rem"
         />
 </BasicPage.CardContainer>
