@@ -148,7 +148,7 @@ const About = () => {
         <BasicPage.ImageCont>
           <figure>
             <img src={tickIntro} alt='ticks' />
-            <figcaption>Photo credit Jim Occi
+            <figcaption>Female black legged tick. Photo credit Jim Occi
             </figcaption>
           </figure>
         </BasicPage.ImageCont>
