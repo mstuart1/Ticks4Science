@@ -43,7 +43,7 @@ const TickCheckMenu = () => {
         <BasicPage.ImageCont>
           <figure>
             <img src='https://www.cdc.gov/ticks/images/gallery/Permethrininstructions.jpg?_=03722' alt='preparing clothing with tick spray'  />
-            <figcaption>This person is carefully reading instructions before applying repellent, permethrin (photo credit CDC Tick Image Gallery).</figcaption>
+            <figcaption style={{width: '300px'}}>This person is carefully reading instructions before applying repellent, permethrin (photo credit CDC Tick Image Gallery).</figcaption>
           </figure>
         </BasicPage.ImageCont>
         <BasicPage.SectionSubtitle>
