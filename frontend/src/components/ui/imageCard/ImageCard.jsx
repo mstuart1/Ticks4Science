@@ -51,11 +51,11 @@ font-weight: bold;
 
 }
 
-const ImageCard = ({ imgUrl, title = 'Enter a title', subTitle='' }) => {
+const ImageCard = ({ imgUrl, title = 'Enter a title', subTitle='', path }) => {
  
     
     return (
-       <a href={imgUrl} target='_blank' rel='noreferrer'>
+       <a href={path || imgUrl} target='_blank' rel='noreferrer'>
             <Styles.Container >
             <Styles.HoverCard image={imgUrl} width={'20rem'} height={'20rem'}>
                 <Styles.Content >

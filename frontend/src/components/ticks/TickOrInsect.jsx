@@ -25,12 +25,13 @@ const TickOrInsect = () => {
 
   const arachnids = [
     {
-      id: 1, imgUrl: 'https://bugwoodcloud.org/images/384x256/5445143.jpg', title: 'Clover Mites', 
-      // subTitle: 'Whitney Cranshaw, Colorado State University, Bugwood.org'
+      id: 1, imgUrl: 'https://bugwoodcloud.org/images/384x256/1123015.jpg', title: 'Clover Mites', 
+      path: "https://njaes.rutgers.edu/pubs/publication.php?pid=fs175"
+      
     },
     {
       id: 2, imgUrl: 'https://bugwoodcloud.org/images/384x256/1368017.jpg', title: 'Crab Spider', 
-      // subTitle: 'Joseph Berger, Bugwood.org'
+      
     },
     {
       id: 3, imgUrl: 'https://bugwoodcloud.org/images/384x256/5556301.jpg', title: 'Pseudoscorpion', 
@@ -38,25 +39,25 @@ const TickOrInsect = () => {
   ]
   
   const arachElems = arachnids.map(spider => (
-    <ImageCard key={spider.id} imgUrl={spider.imgUrl} title={spider.title} subTitle={spider.subTitle} />
+    <ImageCard key={spider.id} imgUrl={spider.imgUrl} title={spider.title} subTitle={spider.subTitle} path={spider.path} />
   ))
 
   const insects  = [
     {
-      id: 1, imgUrl: 'https://bugwoodcloud.org/images/384x256/1233132.jpg', title: 'Bed Bug', 
+      id: 1, imgUrl: 'https://njaes.rutgers.edu/bed-bug/images/bedbug-on-white-sm-500.jpg', title: 'Bed Bug', path: "https://njaes.rutgers.edu/bed-bug/"
     },
     
     {
-      id: 3, imgUrl: 'https://bugwoodcloud.org/images/384x256/5388250.jpg', title: 'Japanese Beetle', 
+      id: 3, imgUrl: 'https://static.inaturalist.org/photos/44096780/medium.jpg', title: 'Japanese Beetle', path: "https://njaes.rutgers.edu/fs1009/"
     },
     {
-      id: 4, imgUrl: 'https://bugwoodcloud.org/images/384x256/5360751.jpg', title: 'Stink Bug', 
+      id: 4, imgUrl: 'https://njaes.rutgers.edu/stink-bug/images/adult-female-full.jpg', title: 'Brown marmorated stink bug', path: 'https://njaes.rutgers.edu/stink-bug/identify.php'
     },
     {
-      id: 5, imgUrl: 'https://bugwoodcloud.org/images/384x256/5369900.jpg', title: 'Acorn Weevil', 
+      id: 5, imgUrl: 'https://pemaruccicenter.rutgers.edu/images/cranberry-weevil-1.jpg', title: 'Cranberry Weevil', path: "https://pemaruccicenter.rutgers.edu/entomology/iCranberry-Weevil.html"
     },
     {
-      id: 6, imgUrl: 'https://bugwoodcloud.org/images/384x256/5370352.jpg', title: 'Whitemarked Spider Beetle', 
+      id: 6, imgUrl: "https://bugwoodcloud.org/images/384x256/5439037.jpg", title: "Varied Carpet Beetle", path: "https://njaes.rutgers.edu/fs1181/"
     },
     {
       id: 7, imgUrl: 'https://bugwoodcloud.org/images/384x256/5462408.jpg', title: 'Smooth Spider Beetle', 
@@ -66,7 +67,7 @@ const TickOrInsect = () => {
 
     
   const insectElems = insects.map(bug => (
-    <ImageCard key={bug.id} imgUrl={bug.imgUrl} title={bug.title} subTitle={bug.subTitle} />
+    <ImageCard key={bug.id} imgUrl={bug.imgUrl} title={bug.title} subTitle={bug.subTitle} path={bug.path} />
   ))
 
   return (
