@@ -107,7 +107,7 @@ const ProcessTick = () => {
   const [idByPhoto, setIdByPhoto] = useState(false);
   const [showDelete, setShowDelete] = useState(false);
   const [dupId, setDupId] = useState("");
-  const [lifeStage, setLifeStage] = useState({ lifeStage: "" });
+  const [lifeStage, setLifeStage] = useState({ lifeStage: '' });
   const [engorged, setEngorged] = useState({ engorged: false });
   const [labNumber, setLabNumber] = useState("");
   const [tickPathos, setTickPathos] = useState([])
@@ -187,8 +187,9 @@ const ProcessTick = () => {
 
   const handleLifeStageChange = ({ target }) => {
     setLifeStage({ lifeStage: target.value });
-    handleLifeStage(id, lifeStage);
+    handleLifeStage(id, {lifeStage: target.value});
   };
+  
   const handleLifeStage = (id, lifeStage) => {
     let data = lifeStage;
     return updateSub(data, id);
@@ -197,6 +198,7 @@ const ProcessTick = () => {
     setEngorged({ engorged: target.value });
     handleEngorged(id, engorged);
   };
+  
   const handleEngorged = (id, engorged) => {
     let data = engorged;
     return updateSub(data, id);
@@ -239,7 +241,7 @@ const ProcessTick = () => {
   };
 
   const updateSub = async (data, id) => {
-    console.log('updating tick')
+    console.log('updating tick', data)
     let response = await SubmissionDataService.updateSub(data, id);
     let updatedTick = response.data.record;
     console.log('updated', updatedTick)
@@ -280,7 +282,7 @@ const ProcessTick = () => {
       </Styles.PathosCont>
     ));
 
-  // console.log(`tick`, lifeStage);
+  console.log(`tick`, tick);
 
   return (
     <BasicPage.Text>
@@ -387,8 +389,8 @@ const ProcessTick = () => {
                 )
               ))}
             <span style={{ margin: "1rem 0" }}>
-              Life Stage:
-              <BasicPage.RadioButtons style={{ width: "25rem" }}>
+            Life Stage:
+              <BasicPage.RadioButtons>
                 <FormSelectionBlocks
                   input={lifeStage}
                   handleChange={handleLifeStageChange}
