@@ -123,9 +123,10 @@ const EditingTable = () => {
         </Styles.ButtonCont>
 
         <div>
-          <h3 style={{ margin: '1rem' }}>You cannot remove the photosReviewed and specimenRequested dates from a specimen that has already been received.</h3>
-          <br />
+         
           <h3>The changes on this page are intended to undo mistakes made while processing ticks.  These changes undo the decision made on the process tick page so that you can go back to that page and make the correct choice.</h3><br />
+          <h3 style={{ margin: '1rem' }}>You can only remove the photosReviewed and specimenRequested dates from a specimen that has not been received.</h3>
+          <br />
           <span>Photos Reviewed: {data.photosReviewed}</span><br />
           <RenderIf isTrue={data.photosReviewed && !data.specimenReceived}>
             <div style={{ margin: '1rem' }}>
@@ -183,9 +184,10 @@ const EditingTable = () => {
               text="remove photoId"
             />
           </RenderIf>
-
+          <h3 style={{ margin: '1rem' }}>You can only remove the specimen recieved dates from a specimen that does not have pathogens.</h3>
+          <br />
           <span>Specimen Recieved: {data.specimenReceived}</span><br />
-          <RenderIf isTrue={data.specimenReceived}>
+          <RenderIf isTrue={data.specimenReceived && data.pathogens.length === 0}>
             <h3 style={{ color: theme.colors.ruRed }}>
               Warning: removing the specimen received date also removes the species identification.
             </h3>
