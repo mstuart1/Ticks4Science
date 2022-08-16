@@ -65,14 +65,15 @@ const EditingTable = () => {
     };
 
     getData(token).then((response) => {
-      console.log(response.data.record);
-      // setData(response.data.record);
+      // console.log(response.data.record);
+      setData(response.data.record);
     });
   }, [token]);
 
-  console.log('data', data);
+  // console.log('data', data);
   // define the columns
-  let columns = Object.keys(data)
+  // let columns = Object.keys(data[0])
+let columns = ['id', 'photosReviewed', 'notATick','specimenRequested', 'specimenReceived', 'scientific', 'duplicate', 'deletedAt']
   
   console.log('columns', columns);
 
@@ -80,7 +81,6 @@ const EditingTable = () => {
   let tableElems = data.map((item, i) => (
     <tr key={i}>
       <td>{item.id}</td>
-      <td>{item.createdAt?.substring(0, 10)}</td>
       <td>{item.photosReviewed?.substring(0, 10)}</td>
       <td>{item.notATick && "not a tick"}</td>
       <td>{item.specimenRequested?.substring(0, 10)}</td>
