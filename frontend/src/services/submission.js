@@ -39,6 +39,11 @@ class SubmissionDataService {
             'Authorization': `Basic ${token}`
         } })
     }
+    getDeleted(token) {
+        return http.get(`/submission/deleted`, { headers: {
+            'Authorization': `Basic ${token}`
+        }})
+    }
     
 }
 
