@@ -19,7 +19,7 @@ class UserDataService {
     getByToken(token) {
         return http.get(`/user/byToken/${token}`)
     }
-   updateUser(data){
+   updateUser(data, token){
        return http.put(`/user`, data)
    }
    forgotPassword(data){
@@ -35,6 +35,7 @@ class UserDataService {
         'Authorization': `Basic ${token}` 
       }})
    }
+   
     
 }
 

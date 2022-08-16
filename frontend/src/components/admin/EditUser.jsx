@@ -42,7 +42,7 @@ const EditUser = () => {
     const toggleEdit = () => setShowEdit(!showEdit);
 
     const handleEdit = () => {
-        dispatch(updateUserReq(input))
+        dispatch(updateUserReq(input, token))
         toggleEdit()
     }
 

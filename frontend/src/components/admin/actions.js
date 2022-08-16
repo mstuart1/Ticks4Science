@@ -45,9 +45,9 @@ export const loadToken = credentials => async dispatch => {
     }
 }
 
-export const updateUserReq = data => async dispatch => {
+export const updateUserReq = (data, token) => async dispatch => {
     try {
-        let response = await UserDataService.updateUser(data);
+        let response = await UserDataService.updateUser(data, token);
         // console.log(response.data.data)
         let user = response.data.data
         dispatch(setActiveUser(user))

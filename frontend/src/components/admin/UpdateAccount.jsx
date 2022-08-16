@@ -58,7 +58,7 @@ const UpdateAccount = () => {
             setOkToGo(false)
         }
         // console.log(okToGo)
-        let response = okToGo && await UserDataService.updateUser(data)
+        let response = okToGo && await UserDataService.updateUser(data, token)
         // console.log(response)
         response.status === 200 &&  navigate('/admin/allSubs')
 

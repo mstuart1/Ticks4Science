@@ -39,7 +39,7 @@ const ResetPassword = ({reset = false, create = false}) => {
       setInput({})
     } else {
       user.password = input.password1;
-      let response = await UserDataService.updateUser(user)
+      let response = await UserDataService.updateUser(user, token)
       // console.log(response)
         response.status === 200 &&  navigate('/admin')
     }
