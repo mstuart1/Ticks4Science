@@ -73,8 +73,6 @@ const EditingTable = () => {
     }));
   };
 
-  console.log('updated data', data)
-
   const handleIsATick = () => {
     setData((prevState) => ({ ...prevState, notATick: false }));
 
@@ -158,6 +156,7 @@ const EditingTable = () => {
               text="undo specimenRequested"
             />
           </RenderIf>
+          <span>Life Stage: {data.lifeStage}</span><br/>
           <RenderIf isTrue={data.lifeStage}>
 
             <OutlineFloatButton
