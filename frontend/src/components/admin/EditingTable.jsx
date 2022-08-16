@@ -1,12 +1,14 @@
-import React, { useCallback, useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import { CSVLink } from "react-csv";
-import OutlineFloatButton from "../ui/outlineFloatButton/OutlineFloatButton";
 import BorderlessFloatButton from "../ui/borderlessFloatButton/BorderlessFloatButton";
-import { theme } from "../../theme";
 import SubmissionDataService from "../../services/submission";
-import { useSelector } from "react-redux";
+import OutlineFloatButton from "../ui/outlineFloatButton/OutlineFloatButton";
+import { theme } from "../../theme";
+import RenderIf from "../../tools/RenderIf";
+import { BasicPage } from "../GeneralStyles"
+import FormSelectClear from "../ui/formSelectClear/FormSelectClear";
+import { lifeStages } from '../../data/lifeStages'
 
 const Styles = {
   Wrapper: styled.div`
@@ -53,91 +55,177 @@ const Styles = {
 
 const EditingTable = () => {
   const navigate = useNavigate();
+  let location = useLocation();
+  let { tick } = location.state !== null ? location.state : { tick: {} };
 
-  const token = useSelector((state) => state.token.data);
-  const [data, setData] = useState([]);
+  const [data, setData] = useState(tick);
 
-  console.log('token',token)
-  // get the data from the backend
-  useEffect(() => {
-    let getData = async (token) => {
-      return await SubmissionDataService.getAllSubm(token);
-    };
+  const handleRemovePhotoReview = () => {
+    setData((prevState) => ({
+      ...prevState,
+      photosReviewed: null,
+      specimenRequested: null,
+      photoId: null,
+      photo: null,
+      photoIdUserId: null,
+      photoIdUser:null,
+      engorged: null,
+      lifeStage: null,
+      notATick: null,
+    }));
+  };
 
-    getData(token).then((response) => {
-      // console.log(response.data.record);
-      setData(response.data.record);
-    });
-  }, [token]);
+  console.log('updated data', data)
 
-  // console.log('data', data);
-  // define the columns
-  // let columns = Object.keys(data[0])
-let columns = ['id', 'photosReviewed', 'notATick','specimenRequested', 'specimenReceived', 'scientific', 'duplicate', 'deletedAt']
-  
-  console.log('columns', columns);
+  const handleIsATick = () => {
+    setData((prevState) => ({ ...prevState, notATick: false }));
 
-  // map through the rows as elems
-  let tableElems = data.map((item, i) => (
-    <tr key={i}>
-      <td>{item.id}</td>
-      <td>{item.photosReviewed?.substring(0, 10)}</td>
-      <td>{item.notATick && "not a tick"}</td>
-      <td>{item.specimenRequested?.substring(0, 10)}</td>
-      <td>{item.specimenReceived?.substring(0, 10)}</td>
-      <td>{item.specimen?.specimenScientific}</td>
-      <td>{item.duplicate}</td>
-      <td>{item.deletedAt?.substring(0, 10)}</td>
-    </tr>
-  ));
-  let date = new Date();
-  let dateString = `${date.getFullYear()}_${
-    date.getMonth() + 1
-  }_${date.getDate()} `;
+  };
+  const handleSpecReq = () => {
+    setData((prevState) => ({ ...prevState, specimenRequested: false }));
+
+  }
+  const handleLifeStageChange = ({ target }) => {
+    const { value } = target;
+    setData(prevState => ({ ...prevState, lifeStage: value }))
+  }
+  const handleEngorged = () => {
+    setData((prevState) => ({ ...prevState, engorged: !data.engorged }));
+  }
+  const handlePhotoId = () => {
+    setData(prevState => ({...prevState, photo: null, photoId: null, photoIdUser: null, photoIdUserId: null}))
+  }
+  const handleReceived = () => {
+    setData(prevState => ({...prevState, specimenReceived: null, specIdUser: null, specIdUserId: null, specimen: null, specimenId: null, specimenIdentified: null}))
+  }
+  const handleSpecimen = () => {
+    setData(prevState => ({...prevState, specIdUser: null, specIdUserId: null, specimen: null, specimenId: null, specimenIdentified: null}))
+  }
+  const handleLabNumber = () => {
+    setData(prevState => ({...prevState, labNumber: null}))
+  }
+
+  const updateSubReq = async (data, id) => {
+    // console.log(data);
+    await SubmissionDataService.updateSub(data, data.id);
+    navigate(-1)
+  };
 
   return (
-    <Styles.Wrapper>
-      <Styles.ButtonCont>
-        <CSVLink
-          style={{ textDecoration: "none" }}
-          data={data}
-          filename={`ticksWebsiteData-${dateString}.csv`}
-        >
-          <OutlineFloatButton
-            colors={{
-              text: theme.colors.ruTeal,
-              shadow: theme.colors.ruTeal,
-              bg: theme.colors.ruTeal,
-            }}
-            text="Download Data"
-            padding="2rem"
+    <BasicPage.Text>
+      <Styles.Wrapper>
+        <Styles.ButtonCont>
+          <BorderlessFloatButton
+            handleClick={() => navigate(-1)}
+            text="Cancel"
           />
-        </CSVLink>
-        <BorderlessFloatButton
-          handleClick={() => navigate("/admin")}
-          text="Back to Dashboard"
-        />
-      </Styles.ButtonCont>
-      <p>
-        Additional data have been excluded from this view for screen space but
-        are included in the download. If a submission has multiple pathogens,
-        that submission will appear in multiple rows, one for each pathogen.
-        Please be aware that rows may appear duplicated because of this, but
-        that each row contains a separate pathogen.
-      </p>
-      <Styles.TableContainer>
-        <table>
-          <thead>
-            <tr>
-              {columns.map((col, i) => (
-                <th key={i}>{col}</th>
-              ))}
-            </tr>
-          </thead>
-          <tbody>{tableElems}</tbody>
-        </table>
-      </Styles.TableContainer>
-    </Styles.Wrapper>
+          <OutlineFloatButton
+            handleClick={() => updateSubReq(data, data.id)}
+            colors={{ bg: theme.colors.ruTeal }}
+            text="Save Changes"
+          />
+        </Styles.ButtonCont>
+
+        <div>
+          <h3 style={{ margin: '1rem' }}>You cannot remove the photosReviewed and specimenRequested dates from a specimen that has already been received.</h3>
+          <br/>
+          <h3>The changes on this page are intended to undo mistakes made while processing ticks.  These changes undo the decision made on the process tick page so that you can go back to that page and make the correct choice.</h3><br/>
+          <span>Photos Reviewed: {data.photosReviewed}</span><br />
+          <RenderIf isTrue={data.photosReviewed && !data.specimenReceived}>
+            <div style={{ margin: '1rem' }}>
+              <h3 style={{color: theme.colors.ruRed}}>
+                Warning: removing the photo review also removes the specimen
+                requested date and photo identification.
+              </h3>
+              <OutlineFloatButton
+                handleClick={() => handleRemovePhotoReview()}
+                text="remove photos reviewed status"
+              />
+            </div>
+          </RenderIf>
+          <span>Not A Tick:
+            
+            <RenderIf isTrue={data.notATick}> TRUE</RenderIf>
+            <RenderIf isTrue={data.notATick === false}>FALSE </RenderIf>
+          </span><br />
+          <RenderIf isTrue={data.notATick}>
+            <OutlineFloatButton
+              handleClick={handleIsATick}
+              text="undo 'not a tick' "
+            />
+          </RenderIf>
+          <span>Specimen Requested: {data.specimenRequested}</span><br />
+          <RenderIf isTrue={data.specimenRequested && !data.specimenReceived}>
+            <OutlineFloatButton
+              handleClick={handleSpecReq}
+              text="remove specimenRequested"
+            />
+          </RenderIf>
+          <RenderIf isTrue={data.lifeStage}>
+
+            <FormSelectClear
+              name="lifeStage"
+              optionArray={lifeStages}
+              handleSelect={handleLifeStageChange}
+              defaultText="Change life stage"
+              useLabel={true}
+              label={`Life Stage: ${data.lifeStage}`}
+            />
+
+          </RenderIf>
+          <span>Engorged:
+            
+            <RenderIf isTrue={data.engorged}> TRUE
+            <OutlineFloatButton
+              handleClick={handleEngorged}
+              text="change to not engorged"
+            />
+          </RenderIf>
+          <RenderIf isTrue={data.engorged === false}> FALSE
+            <OutlineFloatButton
+              handleClick={handleEngorged}
+              text="change to engorged"
+            />
+          </RenderIf>
+          </span><br />
+          <span>PhotoId: {data.photo?.scientific}</span><br/>
+          <span>PhotoId'd By: {data.photoIdUser?.firstName} {data.photoIdUser?.lastName}</span><br/>
+          <RenderIf isTrue={data.photoId}>
+          <OutlineFloatButton
+              handleClick={handlePhotoId}
+              text="remove photoId"
+            />
+          </RenderIf>
+          
+          <span>Specimen Recieved: {data.specimenReceived}</span><br/>
+          <RenderIf isTrue={data.specimenReceived}>
+          <h3 style={{color: theme.colors.ruRed}}>
+                Warning: removing the specimen received date also removes the species identification.
+              </h3>
+          <OutlineFloatButton
+              handleClick={handleReceived}
+              text="remove specimen received"
+            />
+          </RenderIf>
+          <span>Specimen Identified: {data.specimenIdentified}</span><br/>
+          <span>Species: {data.specimen.scientific}</span><br/>
+          <span>Specimen ID'd by: {data.specIdUser?.firstName} {data.specIdUser?.lastName}</span><br/>
+          <RenderIf isTrue={data.specimenIdentified}>
+            <OutlineFloatButton
+              handleClick={handleSpecimen}
+              text="undo specimen identification"
+            />
+          </RenderIf>
+          <span>Lab Number: {data.labNumber}</span><br/>
+          <RenderIf isTrue={data.labNumber}>
+            <OutlineFloatButton
+              handleClick={handleLabNumber}
+              text="undo labNumber"
+            />
+          </RenderIf>
+        </div>
+      </Styles.Wrapper>
+    </BasicPage.Text>
   );
 };
 

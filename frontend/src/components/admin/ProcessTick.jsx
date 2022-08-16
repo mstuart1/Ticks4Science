@@ -14,6 +14,7 @@ import SubTickInfo from "./SubTickInfo";
 import FormSelectionBlocks from "../ui/formSelectionBlocks/FormSelectionBlocks";
 import PathogenDataService from "../../services/pathogens";
 import BorderlessFloatButton from "../ui/borderlessFloatButton/BorderlessFloatButton";
+import {lifeStages} from '../../data/lifeStages'
 
 let ruTeal = theme.colors.ruTeal;
 
@@ -261,12 +262,7 @@ const ProcessTick = () => {
     navigate("/admin");
   };
 
-  const stageArray = [
-    { value: "male", required: true, label: "male" },
-    { value: "female", required: true, label: "female" },
-    { value: "nymph", required: true, label: "nymph" },
-    { value: "larva", required: true, label: "larva" },
-  ];
+  
   const engorgedArray = [
     { value: "true", required: true, label: "true" },
     { value: "false", required: true, label: "false" },
@@ -384,7 +380,7 @@ const ProcessTick = () => {
                       input={lifeStage}
                       handleChange={handleLifeStageChange}
                       fieldName="lifeStage"
-                      valueArray={stageArray}
+                      valueArray={lifeStages}
                     />
                   </BasicPage.RadioButtons>
                 )}
@@ -439,6 +435,7 @@ const ProcessTick = () => {
             <RenderIf isTrue={idByPhoto}>
               {tickSpp.map((item) => (
                 <BorderlessFloatButton
+                key={item.id}
                   text={item.scientific}
                   colors={{ shadow: ruTeal }}
                   handleClick={() => handlePhotoId(tick.id, item.id)}
@@ -492,9 +489,10 @@ const ProcessTick = () => {
               <br /> Specimen ID'd by:{" "}
               {`${tick.specIdUser?.firstName} ${tick.specIdUser?.lastName}`}
             </RenderIf>
-            <RenderIf isTrue={tick.specimenReceived && !tick.tickId && !tick.notATick}>
+            <RenderIf isTrue={tick.specimenReceived && !tick.specimenId && !tick.notATick}>
+              Identify the specimen:
               {tickSpp.map((item) => (
-                <BorderlessFloatButton text={item.scientific} colors={{shadow: ruTeal}} handleClick={() => handleIdentified(tick.id, item.id)}/>
+                <BorderlessFloatButton key={item.id} text={item.scientific} colors={{shadow: ruTeal}} handleClick={() => handleIdentified(tick.id, item.id)}/>
                 ))}
             </RenderIf>
           </Styles.CardInsides>
