@@ -54,7 +54,7 @@ const Styles = {
 const EditingTable = () => {
   const navigate = useNavigate();
 
-  const token = useSelector((state) => state.token);
+  const token = useSelector((state) => state.token.data);
   const [data, setData] = useState([]);
 
   console.log('token',token)
@@ -65,7 +65,7 @@ const EditingTable = () => {
     };
 
     getData(token).then((response) => {
-      console.log(response.data);
+      console.log(response.data.record);
       // setData(response.data.record);
     });
   }, [token]);
