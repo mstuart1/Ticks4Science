@@ -7,6 +7,7 @@ import styled from 'styled-components'
 import OutlineFloatButton from '../ui/outlineFloatButton/OutlineFloatButton'
 import {theme} from '../../theme'
 import RenderIf from '../../tools/RenderIf'
+import { useNavigate } from 'react-router-dom'
 
 const Styles = {
     TableContainer: styled.div`
@@ -43,12 +44,11 @@ const Styles = {
 
 const UserMgt = () => {
     const dispatch = useDispatch()
+    const navigate = useNavigate()
     
     const [data, setData] = useState([])
     const token = useSelector(state => state.token.data)
-    const user = useSelector(state => state.user)
-    
-console.log('user',user)
+    // const user = useSelector(state => state.user)
 
     useEffect(() => {
         let getData = async (token) => {
@@ -74,28 +74,37 @@ console.log('user',user)
           return item
         }
        }))}
-
        const handleSave = async (id) => {
         let updatedUser = data.filter(user => user.id === id)[0]
         
-        let response = await UserDataService.updateUser(updatedUser) 
+        let response = await UserDataService.updateUser(updatedUser, token) 
         
         if(response.status !== 200){
          alert(`Error ${response.status}: there was an error updating the user`)
         }
        }
+       const handleRemove = async(id) => {
+        try{
+          let data = {id: id, deletedAt: new Date()}
+          await UserDataService.updateUser(data, token)
+          navigate('/admin')
+        } catch({message}){
+          console.log(message)
+        }
+       }
 
     const handleInvite = async email => {
         await UserDataService.inviteUser({email: email})
-        alert('User has been invited')
+        navigate('/admin')
     }
-    console.log(data)
+    
   return (
     <OutlineCard>
       <ul>
         <li>Email Alerts will be sent daily around 5am to all of the members checked.</li>
         <li>Manage Users means checked users will be able to invite others and edit this table.</li>
         <li>Edit Data means checked users will be able to see the buttons that allow editing of general data, deleted submissions, and duplicates.</li>
+        <li>You may need to refresh the screen a couple of times before the new user appears in the able or the old user has been removed.</li>
         {/* <li> You cannot edit your own user permissions.</li> */}
         </ul>
         <h2>User Management</h2>
@@ -109,6 +118,7 @@ console.log('user',user)
                     <th>Email Alerts</th>
                     <th>Manage Users</th>
                     <th>Edit Data</th>
+                    <th></th>
                     <th></th>
                 </tr>
             </thead>
@@ -139,6 +149,9 @@ console.log('user',user)
                       </td> 
                       <td>
                         <OutlineFloatButton handleClick={() => handleSave(item.id)} text='Save' padding='1rem' colors={{text: theme.colors.ruTeal, bg: theme.colors.ruTeal}}/>
+                        </td>          
+                      <td>
+                        <OutlineFloatButton handleClick={() => handleRemove(item.id)} text='Remove User' padding='1rem' colors={{text: theme.colors.ruRed, bg: theme.colors.ruRed}}/>
                         </td>          
                       </tr>
                  )
