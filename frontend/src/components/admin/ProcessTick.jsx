@@ -15,6 +15,8 @@ import FormSelectionBlocks from "../ui/formSelectionBlocks/FormSelectionBlocks";
 import PathogenDataService from "../../services/pathogens";
 import BorderlessFloatButton from "../ui/borderlessFloatButton/BorderlessFloatButton";
 
+let ruTeal = theme.colors.ruTeal;
+
 const Styles = {
   Container: styled.div`
     display: flex;
@@ -97,16 +99,15 @@ const Styles = {
     alignitems: center;
   `,
   ButtonCont: styled.div`
-      width: 100%;
-      display: flex;
-      justify-content: space-between;
-      `,
-      
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+  `,
 };
 
 const ProcessTick = () => {
   const navigate = useNavigate();
-  
+
   const { id } = useParams();
   const user = useSelector((state) => state.user);
   const [tick, setTick] = useState({});
@@ -114,10 +115,10 @@ const ProcessTick = () => {
   const [idByPhoto, setIdByPhoto] = useState(false);
   const [showDelete, setShowDelete] = useState(false);
   const [dupId, setDupId] = useState("");
-  const [lifeStage, setLifeStage] = useState({ lifeStage: '' });
+  const [lifeStage, setLifeStage] = useState({ lifeStage: "" });
   const [engorged, setEngorged] = useState({ engorged: false });
   const [labNumber, setLabNumber] = useState("");
-  const [tickPathos, setTickPathos] = useState([])
+  const [tickPathos, setTickPathos] = useState([]);
   const [pathogens, setPathogens] = useState([]);
 
   const getPathogens = async () => {
@@ -137,14 +138,14 @@ const ProcessTick = () => {
   // get the tick info from db
 
   let getTick = async (id) => {
-    let response = await SubmissionDataService.getProgress(id)
-    await setTick({...response.data.record})
-    let freshPathos = tick.pathogens?.map(patho => patho.id)
-    await setTickPathos(freshPathos)
+    let response = await SubmissionDataService.getProgress(id);
+    await setTick({ ...response.data.record });
+    let freshPathos = tick.pathogens?.map((patho) => patho.id);
+    await setTickPathos(freshPathos);
   };
 
   useEffect(() => {
-    getTick(id)
+    getTick(id);
   }, [id]);
 
   // get all the tick options
@@ -194,9 +195,9 @@ const ProcessTick = () => {
 
   const handleLifeStageChange = ({ target }) => {
     setLifeStage({ lifeStage: target.value });
-    handleLifeStage(id, {lifeStage: target.value});
+    handleLifeStage(id, { lifeStage: target.value });
   };
-  
+
   const handleLifeStage = (id, lifeStage) => {
     let data = lifeStage;
     return updateSub(data, id);
@@ -205,7 +206,7 @@ const ProcessTick = () => {
     setEngorged({ engorged: target.value });
     handleEngorged(id, engorged);
   };
-  
+
   const handleEngorged = (id, engorged) => {
     let data = engorged;
     return updateSub(data, id);
@@ -236,28 +237,27 @@ const ProcessTick = () => {
 
   const handlePathoChange = ({ target }) => {
     const { value } = target;
-    let freshPatho = parseInt(value)
-    if (tick.pathogens.some(item => item.id === freshPatho)){
+    let freshPatho = parseInt(value);
+    if (tick.pathogens.some((item) => item.id === freshPatho)) {
       // console.log('remove from list')
-      updateSub({operation: 'remove', pathogens: freshPatho}, id)
+      updateSub({ operation: "remove", pathogens: freshPatho }, id);
     } else {
       // console.log('add to list')
-      updateSub({operation: 'add', pathogens: freshPatho}, id)
+      updateSub({ operation: "add", pathogens: freshPatho }, id);
     }
- 
   };
 
   const updateSub = async (data, id) => {
-    console.log('updating tick', data)
+    console.log("updating tick", data);
     let response = await SubmissionDataService.updateSub(data, id);
     let updatedTick = response.data.record;
-    console.log('updated', updatedTick)
+    console.log("updated", updatedTick);
     setTick((prevState) => ({ ...prevState, ...updatedTick }));
   };
 
   const handleDelete = async () => {
     let response = await SubmissionDataService.deleteSub(id);
-    console.log('deleted',response.data);
+    console.log("deleted", response.data);
     navigate("/admin");
   };
 
@@ -282,33 +282,75 @@ const ProcessTick = () => {
           name={patho.pathogen}
           value={patho.id}
           style={{ margin: "1rem" }}
-          checked={ tick.pathogens?.some((value) => value.id === patho.id) || ""}
+          checked={tick.pathogens?.some((value) => value.id === patho.id) || ""}
           onChange={handlePathoChange}
         />
         <label htmlFor={patho.pathogen}>{patho.pathogen}</label>
       </Styles.PathosCont>
     ));
 
-  console.log(`uesr`, user.id);
+  console.log(`tick`, tick);
 
   return (
     <BasicPage.Text>
       <Styles.ButtonCont>
-      <InternalLinkFloatButton
-        colors={{ text: theme.colors.ruTeal, shadow: theme.colors.ruTeal }}
-        to={-1}
-        text="  Back to List  "
-      />
-      {/* only Michelle and Dina can see this button */}
-      <RenderIf isTrue={[1,5].includes(user.id)}>
-      <BorderlessFloatButton handleClick={() => navigate("/admin/editData")} colors={{text: theme.colors.ruRed, shadow: theme.colors.ruRed}} text="Edit This Data"/>
-      </RenderIf>
+        <InternalLinkFloatButton
+          colors={{ text: ruTeal, shadow: ruTeal }}
+          to={-1}
+          text="  Back to List  "
+        />
+        {/* only Michelle and Dina can see this button */}
+        <RenderIf isTrue={[1, 5].includes(user.id)}>
+          <BorderlessFloatButton
+            handleClick={() =>
+              navigate("/admin/editData", { state: { tick: tick } })
+            }
+            colors={{ text: theme.colors.ruRed, shadow: theme.colors.ruRed }}
+            text="Edit This Data"
+          />
+        </RenderIf>
       </Styles.ButtonCont>
       <Styles.PageCont>
         <RenderIf isTrue={tick?.blitzLoc?.length > 0}>
           <BasicPage.SectionTitle>
             This is a Tick Blitz Submission
           </BasicPage.SectionTitle>
+        </RenderIf>
+        <RenderIf isTrue={!tick.duplicate}>
+          <OutlineCard>
+            <label htmlFor="duplicate">
+              Enter the original submission id if this is a duplicate:
+            </label>
+            <input
+              id="duplicate"
+              type="text"
+              name="duplicate"
+              value={dupId}
+              placeholder="Enter id number for original submission here"
+              onChange={handleChange}
+              style={{
+                border: "1px solid black",
+                padding: "1rem",
+                borderRadius: "0.5rem",
+              }}
+            />
+            <button
+              style={{
+                backgroundColor: "lightgrey",
+                border: "1px solid black",
+                padding: "1rem",
+                borderRadius: "0.5rem",
+              }}
+              onClick={() => handleDuplicate(tick.id, dupId)}
+            >
+              Remove Duplicate From List
+            </button>
+            <p>
+              If you define this submission as a duplicate, the original will
+              stay in the lists and the duplicate(s) will be removed. Do not
+              mark the original as a duplicate.
+            </p>
+          </OutlineCard>
         </RenderIf>
         <OutlineCard>
           <Styles.CardInsides>
@@ -317,160 +359,116 @@ const ProcessTick = () => {
             <br />
             Date Submitted: {tick.createdAt?.substring(0, 10)}
             <br />
-            This is a duplicate to submission ID:{" "}
-            {tick.duplicate ? (
-              tick.duplicate
-            ) : (
-              <>
-                <input
-                  type="text"
-                  name="duplicate"
-                  value={dupId}
-                  placeholder="Enter id number for original submission here"
-                  onChange={handleChange}
-                />
-                <button onClick={() => handleDuplicate(tick.id, dupId)}>
-                  Remove Duplicate From List
-                </button>
-              </>
-            )}
-            <p>
-              If you define this submission as a duplicate, the original will
-              stay in the lists and the duplicate(s) will be removed. Do not
-              mark the original as a duplicate.
-            </p>
+            <RenderIf isTrue={tick.duplicate}>
+              This is a duplicate to submission ID: {tick.duplicate}
+            </RenderIf>
             {/* Photo Review button or status */}
-            {tick.photosReviewed ? (
+            <RenderIf isTrue={tick.photosReviewed}>
               <span>
-                Photos Reviewed: {tick.photosReviewed.substring(0, 10)} <br />
+                Photos Reviewed: {tick.photosReviewed?.substring(0, 10)} <br />
               </span>
-            ) : (
-              <div onClick={() => handlePhotoReview(tick.id)}>
-                <HoverCard shadowColor={theme.colors.ruTeal}>
-                  Click here when photos have been reviewed
-                </HoverCard>
-              </div>
-            )}
-            {/* put engorged and lab number here */}
-            {/* Specimen request button/status or not a tick */}
-            {tick.photosReviewed &&
-              (tick.specimenRequested ? (
-                <span>
-                  Specimen Requested: {tick.specimenRequested.substring(0, 10)}
-                  <br />
-                </span>
-              ) : (
-                !tick.tickId && (
-                  <>
-                    {/* {console.log(tick.notATick)} */}
-                    {!tick.notATick ? (
-                      <div onClick={() => handleNotATick(tick.id)}>
-                        <HoverCard shadowColor={theme.colors.ruTeal}>
-                          Click if it is not a tick
-                        </HoverCard>
-                      </div>
-                    ) : (
-                      <span>Photo ID: Not a tick</span>
-                    )}
-                    {!tick.notATick && (
-                      <>
-                        {!tick.photoId && !idByPhoto && (
-                          <div onClick={() => handleIdByPhoto()}>
-                            <HoverCard shadowColor={theme.colors.ruTeal}>
-                              Click here to id tick by photo
-                            </HoverCard>
-                          </div>
-                        )}
-                        <div onClick={() => handleRequest(tick.id)}>
-                          <HoverCard shadowColor={theme.colors.ruTeal}>
-                            Click here to request a specimen
-                          </HoverCard>
-                        </div>
-                        {idByPhoto &&
-                          tickSpp.map((item) => (
-                            <div
-                              onClick={() => handlePhotoId(tick.id, item.id)}
-                            >
-                              <HoverCard shadowColor={theme.colors.ruTeal}>
-                                {item.scientific}
-                              </HoverCard>
-                            </div>
-                          ))}
-                      </>
-                    )}
-                  </>
-                )
-              ))}
-            <span style={{ margin: "1rem 0" }}>
-            Life Stage: {tick.lifeStage ? tick.lifeStage : (
-
-<BasicPage.RadioButtons>
-<FormSelectionBlocks
-  input={lifeStage}
-  handleChange={handleLifeStageChange}
-  fieldName="lifeStage"
-  valueArray={stageArray}
-/>
-</BasicPage.RadioButtons>
-            )}
-            </span>
-            <span style={{ margin: "1rem 0" }}>
-              Engorged: {tick.engorged !== null ? tick.engorged?.toString() : <BasicPage.RadioButtons>
-                <FormSelectionBlocks
-                  input={engorged}
-                  handleChange={handleEngorgedChange}
-                  fieldName="engorged"
-                  valueArray={engorgedArray}
-                />
-              </BasicPage.RadioButtons>}
-              
-            </span>
-            {tick.photoId && (
+              <RenderIf isTrue={!tick.specimenRequested}>
+              <BorderlessFloatButton
+                text="Click here to request a specimen"
+                colors={{ shadow: ruTeal }}
+                handleClick={() => handleRequest(tick.id)}
+              />
+              </RenderIf>
+              <span style={{ margin: "1rem 0" }}>
+                Life Stage:{" "}
+                {tick.lifeStage ? (
+                  tick.lifeStage
+                ) : (
+                  <BasicPage.RadioButtons>
+                    <FormSelectionBlocks
+                      input={lifeStage}
+                      handleChange={handleLifeStageChange}
+                      fieldName="lifeStage"
+                      valueArray={stageArray}
+                    />
+                  </BasicPage.RadioButtons>
+                )}
+              </span>
+              <span style={{ margin: "1rem 0" }}>
+                Engorged:{" "}
+                {tick.engorged !== null ? (
+                  tick.engorged?.toString()
+                ) : (
+                  <BasicPage.RadioButtons>
+                    <FormSelectionBlocks
+                      input={engorged}
+                      handleChange={handleEngorgedChange}
+                      fieldName="engorged"
+                      valueArray={engorgedArray}
+                    />
+                  </BasicPage.RadioButtons>
+                )}
+              </span>
+            </RenderIf>
+            <RenderIf isTrue={!tick.photosReviewed}>
+              <BorderlessFloatButton
+                text=" Click here when photos have been reviewed to show tick ID
+                  options"
+                colors={{ shadow: ruTeal }}
+                handleClick={() => handlePhotoReview(tick.id)}
+              />
+            </RenderIf>
+            <RenderIf isTrue={tick.specimenRequested}>
               <span>
-                Photo ID: {tick.photo.scientific}
+                Specimen Requested: {tick.specimenRequested?.substring(0, 10)}
+              </span>
+              <br />
+            </RenderIf>
+            <RenderIf isTrue={tick.notATick}>
+              <span>Photo ID: Not a tick</span>
+            </RenderIf>
+            <RenderIf isTrue={tick.photosReviewed && !tick.tickId && !tick.notATick}>
+              <BorderlessFloatButton
+                text="Click if it is not a tick"
+                colors={{ shadow: ruTeal }}
+                handleClick={() => handleNotATick(tick.id)}
+              />
+            </RenderIf>
+            <RenderIf isTrue={tick.photosReviewed && !tick.photoId && !idByPhoto && !tick.notATick}>
+              <BorderlessFloatButton
+                text="Click here to id tick by photo"
+                colors={{ shadow: ruTeal }}
+                handleClick={() => handleIdByPhoto()}
+              />
+            </RenderIf>
+            <RenderIf isTrue={idByPhoto}>
+              {tickSpp.map((item) => (
+                <BorderlessFloatButton
+                  text={item.scientific}
+                  colors={{ shadow: ruTeal }}
+                  handleClick={() => handlePhotoId(tick.id, item.id)}
+                />
+              ))}
+            </RenderIf>
+            <RenderIf isTrue={tick.photoId}>
+              <span>
+                Photo ID: {tick.photo?.scientific}
                 <br />
                 Photo ID'd by:{" "}
                 {`${tick.photoIdUser?.firstName} ${tick.photoIdUser?.lastName}`}
               </span>
-            )}
-            {/* Specimen received button or status */}
-            {tick.specimenRequested &&
-              (tick.specimenReceived ? (
-                <span>
-                  Specimen Received: {tick.specimenReceived.substring(0, 10)}
-                  <br />
-                </span>
-              ) : (
-                <div onClick={() => handleReceived(tick.id)}>
-                  <HoverCard shadowColor={theme.colors.ruTeal}>
-                    Click if you've received tick
-                  </HoverCard>
-                </div>
-              ))}
-            {/* Speciment identified button or status */}
-            {tick.specimenId ? (
-              <>
-                {" "}
-                Specimen Identified: {tick.specimenIdentified.substring(0, 10)}
-                <br /> Species: {tick.specimen.scientific}
-                <br /> Specimen ID'd by:{" "}
-                {`${tick.specIdUser?.firstName} ${tick.specIdUser?.lastName}`}
-              </>
-            ) : (
-              tick.specimenReceived &&
-              !tick.tickId &&
-              tickSpp.map((item) => (
-                <div onClick={() => handleIdentified(tick.id, item.id)}>
-                  <HoverCard shadowColor={theme.colors.ruTeal}>
-                    {item.scientific}
-                  </HoverCard>
-                </div>
-              ))
-            )}
-            {tick.labNumber ? (
+            </RenderIf>
+            <RenderIf isTrue={tick.specimenRequested && !tick.specimenReceived}>
+              <BorderlessFloatButton
+                text="Click if you've received a tick"
+                colors={{ shadow: ruTeal }}
+                handleClick={() => handleReceived(tick.id)}
+              />
+            </RenderIf>
+            <RenderIf isTrue={tick.labNumber}>
               <span>Lab Number: {tick.labNumber}</span>
-            ) : (
-              <>
+            </RenderIf>
+            <RenderIf isTrue={tick.specimenReceived}>
+              <span>
+                Specimen Received: {tick.specimenReceived?.substring(0, 10)}
+              </span>
+              <br />
+              <RenderIf isTrue={!tick.labNumber}>
                 <label htmlFor="labNumber">Lab Number: </label>
                 <input
                   style={{ width: "30rem", padding: "1rem" }}
@@ -486,8 +484,19 @@ const ProcessTick = () => {
                 >
                   Save Lab Number
                 </button>
-              </>
-            )}
+              </RenderIf>
+            </RenderIf>
+            <RenderIf isTrue={tick.specimenId}>
+              Specimen Identified: {tick.specimenIdentified?.substring(0, 10)}
+              <br /> Species: {tick.specimen?.scientific}
+              <br /> Specimen ID'd by:{" "}
+              {`${tick.specIdUser?.firstName} ${tick.specIdUser?.lastName}`}
+            </RenderIf>
+            <RenderIf isTrue={tick.specimenReceived && !tick.tickId && !tick.notATick}>
+              {tickSpp.map((item) => (
+                <BorderlessFloatButton text={item.scientific} colors={{shadow: ruTeal}} handleClick={() => handleIdentified(tick.id, item.id)}/>
+                ))}
+            </RenderIf>
           </Styles.CardInsides>
         </OutlineCard>
         {/* <p>Click on the photo to view full size</p> */}
@@ -524,7 +533,7 @@ const ProcessTick = () => {
         </OutlineCard>
         <div>
           <InternalLinkFloatButton
-            colors={{ text: theme.colors.ruTeal, shadow: theme.colors.ruTeal }}
+            colors={{ text: ruTeal, shadow: ruTeal }}
             to={-1}
             text="  Back to List  "
           />
