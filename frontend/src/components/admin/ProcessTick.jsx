@@ -418,7 +418,7 @@ const ProcessTick = () => {
             <RenderIf isTrue={tick.notATick}>
               <span>Photo ID: Not a tick</span>
             </RenderIf>
-            <RenderIf isTrue={tick.photosReviewed && !tick.tickId && !tick.notATick}>
+            <RenderIf isTrue={tick.photosReviewed && !tick.specimenId && !tick.notATick}>
               <BorderlessFloatButton
                 text="Click if it is not a tick"
                 colors={{ shadow: ruTeal }}
