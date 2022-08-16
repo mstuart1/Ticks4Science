@@ -13,6 +13,7 @@ import RenderIf from "../../tools/RenderIf";
 import SubTickInfo from "./SubTickInfo";
 import FormSelectionBlocks from "../ui/formSelectionBlocks/FormSelectionBlocks";
 import PathogenDataService from "../../services/pathogens";
+import BorderlessFloatButton from "../ui/borderlessFloatButton/BorderlessFloatButton";
 
 const Styles = {
   Container: styled.div`
@@ -95,6 +96,12 @@ const Styles = {
     justifycontent: flex-start;
     alignitems: center;
   `,
+  ButtonCont: styled.div`
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      `,
+      
 };
 
 const ProcessTick = () => {
@@ -282,15 +289,21 @@ const ProcessTick = () => {
       </Styles.PathosCont>
     ));
 
-  console.log(`tick`, tick);
+  console.log(`uesr`, user.id);
 
   return (
     <BasicPage.Text>
+      <Styles.ButtonCont>
       <InternalLinkFloatButton
         colors={{ text: theme.colors.ruTeal, shadow: theme.colors.ruTeal }}
         to={-1}
         text="  Back to List  "
       />
+      {/* only Michelle and Dina can see this button */}
+      <RenderIf isTrue={[1,5].includes(user.id)}>
+      <BorderlessFloatButton handleClick={() => navigate("/admin/editData")} colors={{text: theme.colors.ruRed, shadow: theme.colors.ruRed}} text="Edit This Data"/>
+      </RenderIf>
+      </Styles.ButtonCont>
       <Styles.PageCont>
         <RenderIf isTrue={tick?.blitzLoc?.length > 0}>
           <BasicPage.SectionTitle>
@@ -402,7 +415,7 @@ const ProcessTick = () => {
             )}
             </span>
             <span style={{ margin: "1rem 0" }}>
-              Engorged: {tick.engorged !== null ? tick.engorged.toString() : <BasicPage.RadioButtons>
+              Engorged: {tick.engorged !== null ? tick.engorged?.toString() : <BasicPage.RadioButtons>
                 <FormSelectionBlocks
                   input={engorged}
                   handleChange={handleEngorgedChange}
