@@ -4,6 +4,9 @@ import OutlineCard from '../ui/outlineCard/OutlineCard'
 import {useDispatch, useSelector} from 'react-redux'
 import { loadTokenSuccess } from './actions'
 import styled from 'styled-components'
+import OutlineFloatButton from '../ui/outlineFloatButton/OutlineFloatButton'
+import {theme} from '../../theme'
+import RenderIf from '../../tools/RenderIf'
 
 const Styles = {
     TableContainer: styled.div`
@@ -43,8 +46,9 @@ const UserMgt = () => {
     
     const [data, setData] = useState([])
     const token = useSelector(state => state.token.data)
+    const user = useSelector(state => state.user)
     
-
+console.log('user',user)
 
     useEffect(() => {
         let getData = async (token) => {
@@ -60,16 +64,18 @@ const UserMgt = () => {
 
    const handleChange = async (id, evt) => {
     
-       let  {checked} = evt.target
+       let  {checked, name} = evt.target
+       
        setData(prevState => prevState.map(item => {
         if (item.id === id){
-          item.emailAlerts = checked
+          item[name] = checked
           return item
         } else {
           return item
         }
-       }))
-    
+       }))}
+
+       const handleSave = async (id) => {
         let updatedUser = data.filter(user => user.id === id)[0]
         
         let response = await UserDataService.updateUser(updatedUser) 
@@ -77,15 +83,21 @@ const UserMgt = () => {
         if(response.status !== 200){
          alert(`Error ${response.status}: there was an error updating the user`)
         }
-      }
+       }
 
     const handleInvite = async email => {
         await UserDataService.inviteUser({email: email})
         alert('User has been invited')
     }
-    
+    console.log(data)
   return (
     <OutlineCard>
+      <ul>
+        <li>Email Alerts will be sent daily around 5am to all of the members checked.</li>
+        <li>Manage Users means checked users will be able to invite others and edit this table.</li>
+        <li>Edit Data means checked users will be able to see the buttons that allow editing of general data, deleted submissions, and duplicates.</li>
+        {/* <li> You cannot edit your own user permissions.</li> */}
+        </ul>
         <h2>User Management</h2>
         <Styles.TableContainer>
         <table>
@@ -95,26 +107,44 @@ const UserMgt = () => {
                     <th>Email</th>
                     <th>Accepted Invite</th>
                     <th>Email Alerts</th>
-                    
+                    <th>Manage Users</th>
+                    <th>Edit Data</th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
-            {data.map((user, i) => (
-        <tr key={`${i}-${user.id}`}>
-            <td>{user.firstName} {user.lastName}</td>
-            <td>{user.email}</td>
-            <td>
-                {user.password?.length > 0 ? "Yes" : "No"}
-                {!user.password && 
-                <button style={{margin: '1rem', padding: '1rem', borderRadius: '0.5rem'}} onClick={() => handleInvite(user.email)}>Resend Invite</button>
-                }
-            </td>
-            <td>
-              
-            <input id={user.id} type='checkbox' checked={user.emailAlerts} onChange={(evt) => handleChange(user.id, evt)} />
-            </td>            
-            </tr>
-       ))}
+            {data.map((item, i) => {
+              // if (item.id === user.id){
+              //   return
+              // } else {
+                return (
+            
+                  <tr key={`${i}-${item.id}`}>
+                      <td>{item.firstName} {item.lastName}</td>
+                      <td>{item.email}</td>
+                      <td>
+                          {item.password?.length > 0 ? "Yes" : "No"}
+                          <RenderIf isTrue={!item.password}>
+                          <button style={{margin: '1rem', padding: '1rem', borderRadius: '0.5rem'}} onClick={() => handleInvite(item.email)}>Resend Invite</button>
+                          </RenderIf>
+                      </td>
+                      <td>
+                      <input id={item.id} type='checkbox' name='emailAlerts' checked={item.emailAlerts || false} onChange={(evt) => handleChange(item.id, evt)} />
+                      </td>            
+                      <td>
+                      <input id={item.id} type='checkbox' name='manageUsers' checked={item.manageUsers || false} onChange={(evt) => handleChange(item.id, evt)} />
+                      </td>            
+                      <td>
+                      <input id={item.id} type='checkbox' name='editData' checked={item.editData || false} onChange={(evt) => handleChange(item.id, evt)} />
+                      </td> 
+                      <td>
+                        <OutlineFloatButton handleClick={() => handleSave(item.id)} text='Save' padding='1rem' colors={{text: theme.colors.ruTeal, bg: theme.colors.ruTeal}}/>
+                        </td>          
+                      </tr>
+                 )
+              // }
+
+             })}
             </tbody>
         </table>
         </Styles.TableContainer>
