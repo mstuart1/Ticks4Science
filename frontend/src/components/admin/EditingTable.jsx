@@ -58,6 +58,10 @@ const EditingTable = () => {
 
   const [data, setData] = useState(tick);
 
+  const handleDuplicate = () => {
+    setData(prevState => ({...prevState, duplicate: null}))
+  }
+
   const handleRemovePhotoReview = () => {
     setData((prevState) => ({
       ...prevState,
@@ -125,6 +129,13 @@ const EditingTable = () => {
         <div>
          
           <h3>The changes on this page are intended to undo mistakes made while processing ticks.  These changes undo the decision made on the process tick page so that you can go back to that page and make the correct choice.</h3><br />
+          <span>Duplicate: {data.duplicate}</span><br/>
+          <RenderIf isTrue={data.duplicate}>
+          <OutlineFloatButton
+                handleClick={handleDuplicate}
+                text="undo duplicate"
+              />
+          </RenderIf>
           <h3 style={{ margin: '1rem' }}>You can only remove the photosReviewed and specimenRequested dates from a specimen that has not been received.</h3>
           <br />
           <span>Photos Reviewed: {data.photosReviewed}</span><br />

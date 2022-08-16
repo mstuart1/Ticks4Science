@@ -247,13 +247,20 @@ const ProcessTick = () => {
       updateSub({ operation: "add", pathogens: freshPatho }, id);
     }
   };
+  const handleUndelete = () => {
+    console.log('clicked')
+    updateSub({deletedAt: null}, id)
+  }
+
 
   const updateSub = async (data, id) => {
     console.log("updating tick", data);
-    let response = await SubmissionDataService.updateSub(data, id);
-    let updatedTick = response.data.record;
+    await SubmissionDataService.updateSub(data, id).then(response => {
+      let updatedTick = response.data.record;
     console.log("updated", updatedTick);
     setTick((prevState) => ({ ...prevState, ...updatedTick }));
+    })
+    
   };
 
   const handleDelete = async () => {
@@ -356,7 +363,7 @@ const ProcessTick = () => {
             Date Submitted: {tick.createdAt?.substring(0, 10)}
             <br />
             <RenderIf isTrue={tick.duplicate}>
-              This is a duplicate to submission ID: {tick.duplicate}
+              This is a duplicate of submission ID: {tick.duplicate}
             </RenderIf>
             {/* Photo Review button or status */}
             <RenderIf isTrue={tick.photosReviewed}>
@@ -535,13 +542,15 @@ const ProcessTick = () => {
             to={-1}
             text="  Back to List  "
           />
-          <div onClick={toggleDelete}>
-            <HoverCard padding="1rem 2rem" shadowColor="#800000">
-              <span style={{ color: "#800000", fontWeight: "bold" }}>
-                Delete This Submission
-              </span>
-            </HoverCard>
-          </div>
+         <RenderIf isTrue={tick.deletedAt === null}>
+         <BorderlessFloatButton text="Delete This Submission" padding="1rem 2rem" colors={{text: '#800000', shadow: '#800000'}} handleClick={toggleDelete} />
+         <RenderIf isTrue={showDelete}>
+          <p>scroll to the bottom of the screen to see delete options</p>
+         </RenderIf>
+         </RenderIf>
+         <RenderIf isTrue={tick.deletedAt !== null}>
+         <BorderlessFloatButton text="Un-Delete This Submission" padding="1rem 2rem" colors={{text: '#800000', shadow: '#800000'}} handleClick={handleUndelete} />
+         </RenderIf>
         </div>
       </Styles.PageCont>
       {showDelete && (

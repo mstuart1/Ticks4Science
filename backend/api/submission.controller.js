@@ -259,7 +259,7 @@ exports.updateSubm = async (req, res, next) => {
           await toBeUpdated.removePathogens(freshPathogens) // this does not work if you include it in the transactions, the pathogens write but the update times out no matter how long you run it.
         }
         
-        await Subm.update(data, { where: { id } }, { transaction: t })
+        await Subm.update(data, { paranoid: false, where: { id } }, { transaction: t })
         // console.log('updated', updated)
         updatedTick = await Subm.findByPk(id, {
           include: [
@@ -371,7 +371,7 @@ exports.downloadData = async (req, res, next) => {
     next(err)
   }
 }
-exports.getDeleted = async(res, res, next) => {
+exports.getDeleted = async(req, res, next) => {
   console.log(`@@@@---getting deleted submissions---@@@@`);
   try {
     // let orgsPerPage = req.query.orgsPerPage ? req.query.orgsPerPage : 100;
@@ -388,6 +388,51 @@ exports.getDeleted = async(res, res, next) => {
         }
 
       },
+
+      // offset: page,
+      include: [
+        {
+          model: db.ticks,
+          as: 'photo',
+          attributes: ['id', 'scientific', 'common']
+        },
+        {
+          model: db.ticks,
+          as: 'specimen',
+          attributes: ['id', 'scientific', 'common']
+        },
+        {
+          model: db.users,
+          as: 'specIdUser',
+          attributes: ['id', 'firstName', 'lastName']
+        },
+        {
+          model: db.users,
+          as: 'photoIdUser',
+          attributes: ['id', 'firstName', 'lastName']
+        },
+
+      ]
+    })
+    // console.log(JSON.stringify(foundSubs, null, 1))
+    res.json({ record: foundSubs })
+  } catch (err) {
+    console.log(err.message)
+    next(err)
+  }
+}
+exports.getDupes = async(req, res, next) => {
+  console.log(`@@@@---getting all submissions, even duplicates---@@@@`);
+  try {
+    // let orgsPerPage = req.query.orgsPerPage ? req.query.orgsPerPage : 100;
+    // let page = req.query.page ? req.query.page : 0;
+    // let page = 0;
+    // console.log(req.user)
+
+    // let page  = req.query.page ? req.query.page : 0;
+    let foundSubs = await Subm.findAll({
+      
+     
 
       // offset: page,
       include: [

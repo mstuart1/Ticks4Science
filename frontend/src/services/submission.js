@@ -12,12 +12,10 @@ class SubmissionDataService {
         return http.post(`/submission/photos/${id}`, formData, config)
     }
     getProgress(id) {
-        // console.log('getting progress')
         return http.get(`/submission/${id}`)
     }
 
     getAllSubm(token) {
-        // console.log(token)
         return http.get(`/submission`, {  headers: {
             'Authorization': `Basic ${token}` 
           }})
@@ -28,7 +26,6 @@ class SubmissionDataService {
           }})
     }
     updateSub(data, id) {
-        // console.log(data)
         return http.put(`/submission/${id}`, data)
     }
     deleteSub(id) {
@@ -41,6 +38,11 @@ class SubmissionDataService {
     }
     getDeleted(token) {
         return http.get(`/submission/deleted`, { headers: {
+            'Authorization': `Basic ${token}`
+        }})
+    }
+    getDuplicates(token) {
+        return http.get(`/submission/dupes`,  { headers: {
             'Authorization': `Basic ${token}`
         }})
     }

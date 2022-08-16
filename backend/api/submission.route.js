@@ -10,6 +10,7 @@ module.exports = (app) => {
       .get("/paged", auth.verifyToken, SubmCtl.getSubPage)
       .get("/downloadData", SubmCtl.downloadData)
       .get('/deleted', auth.verifyToken, SubmCtl.getDeleted)
+      .get('/dupes', auth.verifyToken, SubmCtl.getDupes)
       .get('/:id', SubmCtl.getProgress)
       .post("/", SubmCtl.createSubm)
       .post("/photos/:id", upload.array('photos', 2),  SubmCtl.uploadPhoto)

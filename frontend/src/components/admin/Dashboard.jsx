@@ -13,14 +13,10 @@ import OutlineCard from "../ui/outlineCard/OutlineCard";
 import SubCard from "./SubCard";
 import EditUser from "./EditUser";
 import OutlineFloatButton from "../ui/outlineFloatButton/OutlineFloatButton";
+import RenderIf from '../../tools/RenderIf'
 
-// import InternalLinkFloatButton from "../ui/internalLinkFloatButton/InternalLinkFloatButton";
-// import { getOrgDataRequest } from "./actions";
-// import { PageContainer} from '../styles/Common.styled'
-// import { useDispatch, useSelector } from "react-redux";
-// import { CreateButton } from "../dataSources/DataSource.styled";
-// import { Instructions } from "./Orgs.styled";
-// import OrgTable from "./OrgTable"
+const ruTeal = theme.colors.ruTeal
+const ruRed = theme.colors.ruRed
 
 const Styles = {
   Input: styled.input`
@@ -76,6 +72,8 @@ const Styles = {
   `,
 };
 
+const allowedUsers = [1,5]
+
 const Dashboard = () => {
 
   const dispatch = useDispatch();
@@ -87,8 +85,6 @@ const Dashboard = () => {
 
   const user = useSelector((state) => state.user);
   const token = useSelector((state) => state.token.data);
-
-  
 
   useEffect(() => {
     let getData = async (token) => {
@@ -236,15 +232,36 @@ const Dashboard = () => {
         <BasicPage.CardContainer>
         <OutlineFloatButton
           colors={{
-            text: theme.colors.ruTeal,
-            shadow: theme.colors.ruTeal,
-            bg: theme.colors.ruTeal,
+            text: ruTeal,
+            shadow: ruTeal,
+            bg: ruTeal,
           }}
           handleClick={() => navigate("/admin/data")}
           text="View Data to Download"
           padding="2rem"
         />
-        
+        <RenderIf isTrue={allowedUsers.includes(user.id)}>
+        <OutlineFloatButton
+          colors={{
+            text: ruRed,
+            shadow: ruRed,
+            bg: theme.colors.white,
+          }}
+          handleClick={() => navigate("/admin/deleted")}
+          text="View Deleted Submissions"
+          padding="2rem"
+        />
+         <OutlineFloatButton
+          colors={{
+            text: ruTeal,
+            shadow: ruTeal,
+            bg: theme.colors.white,
+          }}
+          handleClick={() => navigate("/admin/duplicates")}
+          text="View Duplicate Submissions"
+          padding="2rem"
+        />
+        </RenderIf>
 </BasicPage.CardContainer>
         <Styles.BlockCont
           style={{
@@ -286,7 +303,7 @@ const Dashboard = () => {
         </Styles.BlockCont>
       </div>
       <div onClick={handleLogout} style={{ cursor: "pointer" }}>
-        <HoverCard shadowColor={theme.colors.ruTeal} width="3rem" height="2rem">
+        <HoverCard shadowColor={ruTeal} width="3rem" height="2rem">
           Logout
         </HoverCard>
       </div>

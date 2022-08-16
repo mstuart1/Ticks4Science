@@ -11,6 +11,8 @@ import Dashboard from './Dashboard';
 import { useSelector } from 'react-redux'
 import DownloadTable from './DownloadTable'
 import EditingTable from "./EditingTable";
+import DeletedSubs from "./DeletedSubs";
+import DuplicateSubs from "./DuplicateSubs";
 
 // import UserDataService from '../../services/users'
 
@@ -32,6 +34,8 @@ const AdminMgt = () => {
                 <Route path="/login" element={<Login logout={true} />} />
                 <Route path="/data" element={<DownloadTable/>} /> 
                 <Route path="/editData" element={<EditingTable/>} /> 
+                <Route path="/deleted" element={<DeletedSubs/>} /> 
+                <Route path="/duplicates" element={<DuplicateSubs/>} /> 
 
                 
             </Routes>
