@@ -208,6 +208,8 @@ const Dashboard = () => {
     filteredData &&
     filteredData.map((sub) => <SubCard item={sub} key={sub.id} />);
 
+    
+
   return (
     <BasicPage.Text>
       <div>
@@ -240,7 +242,7 @@ const Dashboard = () => {
           text="View Data to Download"
           padding="2rem"
         />
-        <RenderIf isTrue={allowedUsers.includes(user.id)}>
+        <RenderIf isTrue={user.editData}>
         <OutlineFloatButton
           colors={{
             text: ruRed,
