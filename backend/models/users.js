@@ -21,6 +21,7 @@ module.exports = (sequelize, DataTypes) => {
     manageUsers: DataTypes.BOOLEAN,
     resetToken: DataTypes.STRING,
     emailAlerts: DataTypes.BOOLEAN,
+    editData: DataTypes.BOOLEAN,
   }, {
     sequelize,
     modelName: 'users',
