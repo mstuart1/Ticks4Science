@@ -78,8 +78,6 @@ const Styles = {
 
 const Dashboard = () => {
 
-  const usersWhoCanEdit = [1,5] // Michelle and Dina
-
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -246,16 +244,7 @@ const Dashboard = () => {
           text="View Data to Download"
           padding="2rem"
         />
-         <OutlineFloatButton
-          colors={{
-            text: theme.colors.ruTeal,
-            shadow: theme.colors.ruTeal,
-            bg: theme.colors.white,
-          }}
-          handleClick={() => navigate("/admin/editData")}
-          text="Edit the Database"
-          padding="2rem"
-        />
+        
 </BasicPage.CardContainer>
         <Styles.BlockCont
           style={{
