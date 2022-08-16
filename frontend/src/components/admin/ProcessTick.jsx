@@ -303,7 +303,7 @@ const ProcessTick = () => {
           text="  Back to List  "
         />
         {/* only Michelle and Dina can see this button */}
-        <RenderIf isTrue={[1, 5].includes(user.id)}>
+        <RenderIf isTrue={user.editData}>
           <BorderlessFloatButton
             handleClick={() =>
               navigate("/admin/editData", { state: { tick: tick } })
