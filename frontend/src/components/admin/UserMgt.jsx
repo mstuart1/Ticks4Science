@@ -104,7 +104,7 @@ const UserMgt = () => {
         <li>Email Alerts will be sent daily around 5am to all of the members checked.</li>
         <li>Manage Users means checked users will be able to invite others and edit this table.</li>
         <li>Edit Data means checked users will be able to see the buttons that allow editing of general data, deleted submissions, and duplicates.</li>
-        <li>You may need to refresh the screen a couple of times before the new user appears in the able or the old user has been removed.</li>
+        <li>You may need to refresh the screen before the new user appears in the table or the old user has been removed.</li>
         {/* <li> You cannot edit your own user permissions.</li> */}
         </ul>
         <h2>User Management</h2>
