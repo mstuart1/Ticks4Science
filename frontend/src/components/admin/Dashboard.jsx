@@ -21,8 +21,9 @@ const ruRed = theme.colors.ruRed
 const Styles = {
   Input: styled.input`
     padding: 1rem;
-    border-radius: 0.25rem;
+    border-radius: 0.5rem;
     margin: 1rem;
+    width: 250px;
     @media screen and (min-width: ${({ theme }) => theme.mobile}) {
       max-width: 800px;
     }
@@ -217,14 +218,14 @@ const Dashboard = () => {
           : `you haven't set up your profile yet, click the button below to edit your profile.`}
       </div>
 
-      <BasicPage.Form>
+      {/* <BasicPage.Form> */}
         <Styles.Input
           placeholder="Find a specific tick number"
           type="search"
           onChange={handleInputChange}
         />
         {subElem}
-      </BasicPage.Form>
+      {/* </BasicPage.Form> */}
 
       <div>
         <Styles.BlockCont>{blockElems}</Styles.BlockCont>
@@ -270,8 +271,8 @@ const Dashboard = () => {
             justifyContent: "center",
           }}
         >
-          {user.manageUsers && (
-            <OutlineCard>
+          <RenderIf isTrue={user.manageUsers}>
+          <OutlineCard>
               <BasicPage.SectionTitle>
                 Invite an Admin User
               </BasicPage.SectionTitle>
@@ -290,6 +291,7 @@ const Dashboard = () => {
                     name="manageUsers"
                     value={input.manageUsers}
                     onChange={(evt) => handleInviteChange(evt)}
+                    style={{padding: '1rem', margin: '1rem'}}
                   />
                 </label>
                 <Styles.InviteButton onClick={handleUserInvite}>
@@ -297,8 +299,12 @@ const Dashboard = () => {
                 </Styles.InviteButton>
               </Styles.InputCont>
             </OutlineCard>
-          )}
-          <UserMgt />
+            <UserMgt />
+          </RenderIf>
+          
+            
+        
+          
           <EditUser />
         </Styles.BlockCont>
       </div>
