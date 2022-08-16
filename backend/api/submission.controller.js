@@ -371,3 +371,53 @@ exports.downloadData = async (req, res, next) => {
     next(err)
   }
 }
+exports.getDeleted = async(res, res, next) => {
+  console.log(`@@@@---getting deleted submissions---@@@@`);
+  try {
+    // let orgsPerPage = req.query.orgsPerPage ? req.query.orgsPerPage : 100;
+    // let page = req.query.page ? req.query.page : 0;
+    // let page = 0;
+    // console.log(req.user)
+
+    // let page  = req.query.page ? req.query.page : 0;
+    let foundSubs = await Subm.findAll({
+      paranoid: false,
+      where: {
+        deletedAt: {
+          [Op.not]: null
+        }
+
+      },
+
+      // offset: page,
+      include: [
+        {
+          model: db.ticks,
+          as: 'photo',
+          attributes: ['id', 'scientific', 'common']
+        },
+        {
+          model: db.ticks,
+          as: 'specimen',
+          attributes: ['id', 'scientific', 'common']
+        },
+        {
+          model: db.users,
+          as: 'specIdUser',
+          attributes: ['id', 'firstName', 'lastName']
+        },
+        {
+          model: db.users,
+          as: 'photoIdUser',
+          attributes: ['id', 'firstName', 'lastName']
+        },
+
+      ]
+    })
+    // console.log(JSON.stringify(foundSubs, null, 1))
+    res.json({ record: foundSubs })
+  } catch (err) {
+    console.log(err.message)
+    next(err)
+  }
+}

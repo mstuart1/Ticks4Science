@@ -9,6 +9,7 @@ module.exports = (app) => {
       .get("/", auth.verifyToken, SubmCtl.getAllSubs)
       .get("/paged", auth.verifyToken, SubmCtl.getSubPage)
       .get("/downloadData", SubmCtl.downloadData)
+      .get('/deleted', auth.verifyToken, SubmCtl.getDeleted)
       .get('/:id', SubmCtl.getProgress)
       .post("/", SubmCtl.createSubm)
       .post("/photos/:id", upload.array('photos', 2),  SubmCtl.uploadPhoto)
