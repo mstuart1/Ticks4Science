@@ -7,8 +7,6 @@ import OutlineFloatButton from "../ui/outlineFloatButton/OutlineFloatButton";
 import { theme } from "../../theme";
 import RenderIf from "../../tools/RenderIf";
 import { BasicPage } from "../GeneralStyles"
-import FormSelectClear from "../ui/formSelectClear/FormSelectClear";
-import { lifeStages } from '../../data/lifeStages'
 
 const Styles = {
   Wrapper: styled.div`
@@ -68,7 +66,7 @@ const EditingTable = () => {
       photoId: null,
       photo: null,
       photoIdUserId: null,
-      photoIdUser:null,
+      photoIdUser: null,
       engorged: null,
       lifeStage: null,
       notATick: null,
@@ -85,24 +83,24 @@ const EditingTable = () => {
     setData((prevState) => ({ ...prevState, specimenRequested: false }));
 
   }
-  const handleLifeStageChange = ({ target }) => {
-    const { value } = target;
-    setData(prevState => ({ ...prevState, lifeStage: value }))
+  const handleLifeStage = () => {
+
+    setData(prevState => ({ ...prevState, lifeStage: null }))
   }
   const handleEngorged = () => {
-    setData((prevState) => ({ ...prevState, engorged: !data.engorged }));
+    setData((prevState) => ({ ...prevState, engorged: null }));
   }
   const handlePhotoId = () => {
-    setData(prevState => ({...prevState, photo: null, photoId: null, photoIdUser: null, photoIdUserId: null}))
+    setData(prevState => ({ ...prevState, photo: null, photoId: null, photoIdUser: null, photoIdUserId: null }))
   }
   const handleReceived = () => {
-    setData(prevState => ({...prevState, specimenReceived: null, specIdUser: null, specIdUserId: null, specimen: null, specimenId: null, specimenIdentified: null}))
+    setData(prevState => ({ ...prevState, specimenReceived: null, specIdUser: null, specIdUserId: null, specimen: null, specimenId: null, specimenIdentified: null }))
   }
   const handleSpecimen = () => {
-    setData(prevState => ({...prevState, specIdUser: null, specIdUserId: null, specimen: null, specimenId: null, specimenIdentified: null}))
+    setData(prevState => ({ ...prevState, specIdUser: null, specIdUserId: null, specimen: null, specimenId: null, specimenIdentified: null }))
   }
   const handleLabNumber = () => {
-    setData(prevState => ({...prevState, labNumber: null}))
+    setData(prevState => ({ ...prevState, labNumber: null }))
   }
 
   const updateSubReq = async (data, id) => {
@@ -128,25 +126,24 @@ const EditingTable = () => {
 
         <div>
           <h3 style={{ margin: '1rem' }}>You cannot remove the photosReviewed and specimenRequested dates from a specimen that has already been received.</h3>
-          <br/>
-          <h3>The changes on this page are intended to undo mistakes made while processing ticks.  These changes undo the decision made on the process tick page so that you can go back to that page and make the correct choice.</h3><br/>
+          <br />
+          <h3>The changes on this page are intended to undo mistakes made while processing ticks.  These changes undo the decision made on the process tick page so that you can go back to that page and make the correct choice.</h3><br />
           <span>Photos Reviewed: {data.photosReviewed}</span><br />
           <RenderIf isTrue={data.photosReviewed && !data.specimenReceived}>
             <div style={{ margin: '1rem' }}>
-              <h3 style={{color: theme.colors.ruRed}}>
+              <h3 style={{ color: theme.colors.ruRed }}>
                 Warning: removing the photo review also removes the specimen
                 requested date and photo identification.
               </h3>
               <OutlineFloatButton
                 handleClick={() => handleRemovePhotoReview()}
-                text="remove photos reviewed status"
+                text="undo photos reviewed status"
               />
             </div>
           </RenderIf>
-          <span>Not A Tick:
-            
-            <RenderIf isTrue={data.notATick}> TRUE</RenderIf>
-            <RenderIf isTrue={data.notATick === false}>FALSE </RenderIf>
+          <span>Not A Tick: {data.notATick?.toString()}
+
+
           </span><br />
           <RenderIf isTrue={data.notATick}>
             <OutlineFloatButton
@@ -158,65 +155,56 @@ const EditingTable = () => {
           <RenderIf isTrue={data.specimenRequested && !data.specimenReceived}>
             <OutlineFloatButton
               handleClick={handleSpecReq}
-              text="remove specimenRequested"
+              text="undo specimenRequested"
             />
           </RenderIf>
           <RenderIf isTrue={data.lifeStage}>
 
-            <FormSelectClear
-              name="lifeStage"
-              optionArray={lifeStages}
-              handleSelect={handleLifeStageChange}
-              defaultText="Change life stage"
-              useLabel={true}
-              label={`Life Stage: ${data.lifeStage}`}
-            />
+            <OutlineFloatButton
+              handleClick={handleLifeStage}
+              text='undo life stage'
 
-          </RenderIf>
-          <span>Engorged:
-            
-            <RenderIf isTrue={data.engorged}> TRUE
-            <OutlineFloatButton
-              handleClick={handleEngorged}
-              text="change to not engorged"
             />
           </RenderIf>
-          <RenderIf isTrue={data.engorged === false}> FALSE
-            <OutlineFloatButton
-              handleClick={handleEngorged}
-              text="change to engorged"
-            />
-          </RenderIf>
+          <span>Engorged: {data.engorged?.toString()}
+
+            <RenderIf isTrue={data.engorged !== null}>
+              <OutlineFloatButton
+                handleClick={handleEngorged}
+                text="undo engorged"
+              />
+            </RenderIf>
+
           </span><br />
-          <span>PhotoId: {data.photo?.scientific}</span><br/>
-          <span>PhotoId'd By: {data.photoIdUser?.firstName} {data.photoIdUser?.lastName}</span><br/>
+          <span>PhotoId: {data.photo?.scientific}</span><br />
+          <span>PhotoId'd By: {data.photoIdUser?.firstName} {data.photoIdUser?.lastName}</span><br />
           <RenderIf isTrue={data.photoId}>
-          <OutlineFloatButton
+            <OutlineFloatButton
               handleClick={handlePhotoId}
               text="remove photoId"
             />
           </RenderIf>
-          
-          <span>Specimen Recieved: {data.specimenReceived}</span><br/>
+
+          <span>Specimen Recieved: {data.specimenReceived}</span><br />
           <RenderIf isTrue={data.specimenReceived}>
-          <h3 style={{color: theme.colors.ruRed}}>
-                Warning: removing the specimen received date also removes the species identification.
-              </h3>
-          <OutlineFloatButton
+            <h3 style={{ color: theme.colors.ruRed }}>
+              Warning: removing the specimen received date also removes the species identification.
+            </h3>
+            <OutlineFloatButton
               handleClick={handleReceived}
               text="remove specimen received"
             />
           </RenderIf>
-          <span>Specimen Identified: {data.specimenIdentified}</span><br/>
-          <span>Species: {data.specimen.scientific}</span><br/>
-          <span>Specimen ID'd by: {data.specIdUser?.firstName} {data.specIdUser?.lastName}</span><br/>
+          <span>Specimen Identified: {data.specimenIdentified}</span><br />
+          <span>Species: {data.specimen?.scientific}</span><br />
+          <span>Specimen ID'd by: {data.specIdUser?.firstName} {data.specIdUser?.lastName}</span><br />
           <RenderIf isTrue={data.specimenIdentified}>
             <OutlineFloatButton
               handleClick={handleSpecimen}
               text="undo specimen identification"
             />
           </RenderIf>
-          <span>Lab Number: {data.labNumber}</span><br/>
+          <span>Lab Number: {data.labNumber}</span><br />
           <RenderIf isTrue={data.labNumber}>
             <OutlineFloatButton
               handleClick={handleLabNumber}
