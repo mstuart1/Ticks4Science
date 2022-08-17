@@ -577,6 +577,8 @@ const ProcessTick = () => {
             <h2>Submitter Info</h2>
             <p>Municipality: {tick.userMuni}</p>
             <p>Zip Code: {tick.userZip?.toString().padStart(5, "0")}</p>
+            <p>Travel History: {tick.travelInfo}</p>
+            <p>Additional Info: {tick.additionalInfo}</p>
           </div>
         </OutlineCard>
         <div>

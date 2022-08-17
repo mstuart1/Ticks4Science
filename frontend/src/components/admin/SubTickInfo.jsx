@@ -24,7 +24,6 @@ const SubTickInfo = ({tick}) => {
         <p>Found in Municipality: {tick.tickMuni}</p>
         <p>Found in Zip Code: {tick.tickZip?.toString().padStart(5, "0")}</p>
         <p>Activities: {tick.activities}</p>
-        <p>Travel History: {tick.travelInfo}</p>
         </Styles.Container>
     </OutlineCard>
   )
