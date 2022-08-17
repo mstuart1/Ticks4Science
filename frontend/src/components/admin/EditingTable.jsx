@@ -78,11 +78,11 @@ const EditingTable = () => {
   };
 
   const handleIsATick = () => {
-    setData((prevState) => ({ ...prevState, notATick: false }));
+    setData((prevState) => ({ ...prevState, notATick: null }));
 
   };
   const handleSpecReq = () => {
-    setData((prevState) => ({ ...prevState, specimenRequested: false }));
+    setData((prevState) => ({ ...prevState, specimenRequested: null }));
 
   }
   const handleLifeStage = () => {
