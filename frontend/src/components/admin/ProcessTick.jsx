@@ -306,7 +306,7 @@ const ProcessTick = () => {
               navigate("/admin/editData", { state: { tick: tick } })
             }
             colors={{ text: theme.colors.ruRed, shadow: theme.colors.ruRed }}
-            text="Edit This Data"
+            text="Edit Data"
           />
         </RenderIf>
       </Styles.ButtonCont>
@@ -415,7 +415,7 @@ const ProcessTick = () => {
                 </span>
               </RenderIf>
               <RenderIf isTrue={!tick.photosReviewed}>
-                <BorderlessFloatButton
+                <BorderlessFloatButton width="330px"
                   text=" Click here when photos have been reviewed to show tick ID
                   options"
                   colors={{ shadow: ruTeal }}
