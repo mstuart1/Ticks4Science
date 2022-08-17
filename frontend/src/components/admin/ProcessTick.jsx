@@ -14,7 +14,7 @@ import SubTickInfo from "./SubTickInfo";
 import FormSelectionBlocks from "../ui/formSelectionBlocks/FormSelectionBlocks";
 import PathogenDataService from "../../services/pathogens";
 import BorderlessFloatButton from "../ui/borderlessFloatButton/BorderlessFloatButton";
-import {lifeStages} from '../../data/lifeStages'
+import { lifeStages } from "../../data/lifeStages";
 
 let ruTeal = theme.colors.ruTeal;
 
@@ -248,19 +248,17 @@ const ProcessTick = () => {
     }
   };
   const handleUndelete = () => {
-    console.log('clicked')
-    updateSub({deletedAt: null}, id)
-  }
-
+    console.log("clicked");
+    updateSub({ deletedAt: null }, id);
+  };
 
   const updateSub = async (data, id) => {
     console.log("updating tick", data);
-    await SubmissionDataService.updateSub(data, id).then(response => {
+    await SubmissionDataService.updateSub(data, id).then((response) => {
       let updatedTick = response.data.record;
-    console.log("updated", updatedTick);
-    setTick((prevState) => ({ ...prevState, ...updatedTick }));
-    })
-    
+      console.log("updated", updatedTick);
+      setTick((prevState) => ({ ...prevState, ...updatedTick }));
+    });
   };
 
   const handleDelete = async () => {
@@ -269,7 +267,6 @@ const ProcessTick = () => {
     navigate("/admin");
   };
 
-  
   const engorgedArray = [
     { value: "true", required: true, label: "true" },
     { value: "false", required: true, label: "false" },
@@ -355,180 +352,226 @@ const ProcessTick = () => {
             </p>
           </OutlineCard>
         </RenderIf>
-        <OutlineCard>
-          <Styles.CardInsides>
-            <h2>Status Info</h2>
-            ID: {tick?.id}
-            <br />
-            Date Submitted: {tick.createdAt?.substring(0, 10)}
-            <br />
-            <RenderIf isTrue={tick.duplicate}>
-              This is a duplicate of submission ID: {tick.duplicate}
-            </RenderIf>
-            {/* Photo Review button or status */}
-            <RenderIf isTrue={tick.photosReviewed}>
-              <span>
-                Photos Reviewed: {tick.photosReviewed?.substring(0, 10)} <br />
-              </span>
-              <RenderIf isTrue={!tick.specimenRequested}>
-              <BorderlessFloatButton
-                text="Click here to request a specimen"
-                colors={{ shadow: ruTeal }}
-                handleClick={() => handleRequest(tick.id)}
-              />
-              </RenderIf>
-              <span style={{ margin: "1rem 0" }}>
-                Life Stage:{" "}
-                {tick.lifeStage ? (
-                  tick.lifeStage
-                ) : (
-                  <BasicPage.RadioButtons>
-                    <FormSelectionBlocks
-                      input={lifeStage}
-                      handleChange={handleLifeStageChange}
-                      fieldName="lifeStage"
-                      valueArray={lifeStages}
-                    />
-                  </BasicPage.RadioButtons>
-                )}
-              </span>
-              <span style={{ margin: "1rem 0" }}>
-                Engorged:{" "}
-                {tick.engorged !== null ? (
-                  tick.engorged?.toString()
-                ) : (
-                  <BasicPage.RadioButtons>
-                    <FormSelectionBlocks
-                      input={engorged}
-                      handleChange={handleEngorgedChange}
-                      fieldName="engorged"
-                      valueArray={engorgedArray}
-                    />
-                  </BasicPage.RadioButtons>
-                )}
-              </span>
-            </RenderIf>
-            <RenderIf isTrue={!tick.photosReviewed}>
-              <BorderlessFloatButton
-                text=" Click here when photos have been reviewed to show tick ID
-                  options"
-                colors={{ shadow: ruTeal }}
-                handleClick={() => handlePhotoReview(tick.id)}
-              />
-            </RenderIf>
-            <RenderIf isTrue={tick.specimenRequested}>
-              <span>
-                Specimen Requested: {tick.specimenRequested?.substring(0, 10)}
-              </span>
+        <div
+          style={{
+            width: "100%",
+            display: "flex",
+            flexDirection: "row",
+            flexWrap: "wrap",
+          }}
+        >
+          <OutlineCard>
+            <Styles.CardInsides>
+              <h2>Status Info</h2>
+              ID: {tick?.id}
               <br />
-            </RenderIf>
-            <RenderIf isTrue={tick.notATick}>
-              <span>Photo ID: Not a tick</span>
-            </RenderIf>
-            <RenderIf isTrue={tick.photosReviewed && !tick.specimenId && !tick.notATick}>
-              <BorderlessFloatButton
-                text="Click if it is not a tick"
-                colors={{ shadow: ruTeal }}
-                handleClick={() => handleNotATick(tick.id)}
-              />
-            </RenderIf>
-            <RenderIf isTrue={tick.photosReviewed && !tick.photoId && !idByPhoto && !tick.notATick}>
-              <BorderlessFloatButton
-                text="Click here to id tick by photo"
-                colors={{ shadow: ruTeal }}
-                handleClick={() => handleIdByPhoto()}
-              />
-            </RenderIf>
-            <RenderIf isTrue={idByPhoto}>
-              {tickSpp.map((item) => (
+              Date Submitted: {tick.createdAt?.substring(0, 10)}
+              <br />
+              <RenderIf isTrue={tick.duplicate}>
+                This is a duplicate of submission ID: {tick.duplicate}
+              </RenderIf>
+              {/* Photo Review button or status */}
+              <RenderIf isTrue={tick.photosReviewed}>
+                <span>
+                  Photos Reviewed: {tick.photosReviewed?.substring(0, 10)}{" "}
+                  <br />
+                </span>
+                <RenderIf isTrue={!tick.specimenRequested}>
+                  <BorderlessFloatButton
+                    text="Click here to request a specimen"
+                    colors={{ shadow: ruTeal }}
+                    handleClick={() => handleRequest(tick.id)}
+                  />
+                </RenderIf>
+                <span style={{ margin: "1rem 0" }}>
+                  Life Stage:{" "}
+                  {tick.lifeStage ? (
+                    tick.lifeStage
+                  ) : (
+                    <BasicPage.RadioButtons>
+                      <FormSelectionBlocks
+                        input={lifeStage}
+                        handleChange={handleLifeStageChange}
+                        fieldName="lifeStage"
+                        valueArray={lifeStages}
+                      />
+                    </BasicPage.RadioButtons>
+                  )}
+                </span>
+                <span style={{ margin: "1rem 0" }}>
+                  Engorged:{" "}
+                  {tick.engorged !== null ? (
+                    tick.engorged?.toString()
+                  ) : (
+                    <BasicPage.RadioButtons>
+                      <FormSelectionBlocks
+                        input={engorged}
+                        handleChange={handleEngorgedChange}
+                        fieldName="engorged"
+                        valueArray={engorgedArray}
+                      />
+                    </BasicPage.RadioButtons>
+                  )}
+                </span>
+              </RenderIf>
+              <RenderIf isTrue={!tick.photosReviewed}>
                 <BorderlessFloatButton
-                key={item.id}
-                  text={item.scientific}
+                  text=" Click here when photos have been reviewed to show tick ID
+                  options"
                   colors={{ shadow: ruTeal }}
-                  handleClick={() => handlePhotoId(tick.id, item.id)}
+                  handleClick={() => handlePhotoReview(tick.id)}
                 />
-              ))}
-            </RenderIf>
-            <RenderIf isTrue={tick.photoId}>
-              <span>
-                Photo ID: {tick.photo?.scientific}
-                <br />
-                Photo ID'd by:{" "}
-                {`${tick.photoIdUser?.firstName} ${tick.photoIdUser?.lastName}`}
-              </span>
-            </RenderIf>
-            <RenderIf isTrue={tick.specimenRequested && !tick.specimenReceived}>
-              <BorderlessFloatButton
-                text="Click if you've received a tick"
-                colors={{ shadow: ruTeal }}
-                handleClick={() => handleReceived(tick.id)}
-              />
-            </RenderIf>
-            <RenderIf isTrue={tick.labNumber}>
-              <span>Lab Number: {tick.labNumber}</span>
-            </RenderIf>
-            <RenderIf isTrue={tick.specimenReceived}>
-              <span>
-                Specimen Received: {tick.specimenReceived?.substring(0, 10)}
-              </span>
-              <br />
-              <RenderIf isTrue={!tick.labNumber}>
-                <label htmlFor="labNumber">Lab Number: </label>
-                <input
-                  style={{ width: "30rem", padding: "1rem" }}
-                  id="labNumber"
-                  type="text"
-                  name="labNumber"
-                  value={labNumber}
-                  onChange={handleLabChange}
-                />
-                <button
-                  style={{ width: "30rem", padding: "1rem", margin: "1rem 0" }}
-                  onClick={() => handleLabNumber(id, labNumber)}
-                >
-                  Save Lab Number
-                </button>
               </RenderIf>
-            </RenderIf>
-            <RenderIf isTrue={tick.specimenId}>
-              Specimen Identified: {tick.specimenIdentified?.substring(0, 10)}
-              <br /> Species: {tick.specimen?.scientific}
-              <br /> Specimen ID'd by:{" "}
-              {`${tick.specIdUser?.firstName} ${tick.specIdUser?.lastName}`}
-            </RenderIf>
-            <RenderIf isTrue={tick.specimenReceived && !tick.specimenId && !tick.notATick}>
-              Identify the specimen:
-              {tickSpp.map((item) => (
-                <BorderlessFloatButton key={item.id} text={item.scientific} colors={{shadow: ruTeal}} handleClick={() => handleIdentified(tick.id, item.id)}/>
+              <RenderIf isTrue={tick.specimenRequested}>
+                <span>
+                  Specimen Requested: {tick.specimenRequested?.substring(0, 10)}
+                </span>
+                <br />
+              </RenderIf>
+              <RenderIf isTrue={tick.notATick}>
+                <span>Photo ID: Not a tick</span>
+              </RenderIf>
+              <RenderIf
+                isTrue={
+                  tick.photosReviewed && !tick.specimenId && !tick.notATick
+                }
+              >
+                <BorderlessFloatButton
+                  text="Click if it is not a tick"
+                  colors={{ shadow: ruTeal }}
+                  handleClick={() => handleNotATick(tick.id)}
+                />
+              </RenderIf>
+              <RenderIf
+                isTrue={
+                  tick.photosReviewed &&
+                  !tick.photoId &&
+                  !idByPhoto &&
+                  !tick.notATick
+                }
+              >
+                <BorderlessFloatButton
+                  text="Click here to id tick by photo"
+                  colors={{ shadow: ruTeal }}
+                  handleClick={() => handleIdByPhoto()}
+                />
+              </RenderIf>
+              <RenderIf isTrue={idByPhoto}>
+                {tickSpp.map((item) => (
+                  <BorderlessFloatButton
+                    key={item.id}
+                    text={item.scientific}
+                    colors={{ shadow: ruTeal }}
+                    handleClick={() => handlePhotoId(tick.id, item.id)}
+                  />
                 ))}
+              </RenderIf>
+              <RenderIf isTrue={tick.photoId}>
+                <span>
+                  Photo ID: {tick.photo?.scientific}
+                  <br />
+                  Photo ID'd by:{" "}
+                  {`${tick.photoIdUser?.firstName} ${tick.photoIdUser?.lastName}`}
+                </span>
+              </RenderIf>
+              <RenderIf
+                isTrue={tick.specimenRequested && !tick.specimenReceived}
+              >
+                <BorderlessFloatButton
+                  text="Click if you've received a tick"
+                  colors={{ shadow: ruTeal }}
+                  handleClick={() => handleReceived(tick.id)}
+                />
+              </RenderIf>
+              <RenderIf isTrue={tick.labNumber}>
+                <span>Lab Number: {tick.labNumber}</span>
+              </RenderIf>
+              <RenderIf isTrue={tick.specimenReceived}>
+                <span>
+                  Specimen Received: {tick.specimenReceived?.substring(0, 10)}
+                </span>
+                <br />
+                <RenderIf isTrue={!tick.labNumber}>
+                  <label htmlFor="labNumber">Lab Number: </label>
+                  <input
+                    style={{ width: "30rem", padding: "1rem" }}
+                    id="labNumber"
+                    type="text"
+                    name="labNumber"
+                    value={labNumber}
+                    onChange={handleLabChange}
+                  />
+                  <button
+                    style={{
+                      width: "30rem",
+                      padding: "1rem",
+                      margin: "1rem 0",
+                    }}
+                    onClick={() => handleLabNumber(id, labNumber)}
+                  >
+                    Save Lab Number
+                  </button>
+                </RenderIf>
+              </RenderIf>
+              <RenderIf isTrue={tick.specimenId}>
+                Specimen Identified: {tick.specimenIdentified?.substring(0, 10)}
+                <br /> Species: {tick.specimen?.scientific}
+                <br /> Specimen ID'd by:{" "}
+                {`${tick.specIdUser?.firstName} ${tick.specIdUser?.lastName}`}
+              </RenderIf>
+              <RenderIf
+                isTrue={
+                  tick.specimenReceived && !tick.specimenId && !tick.notATick
+                }
+              >
+                Identify the specimen:
+                {tickSpp.map((item) => (
+                  <BorderlessFloatButton
+                    key={item.id}
+                    text={item.scientific}
+                    colors={{ shadow: ruTeal }}
+                    handleClick={() => handleIdentified(tick.id, item.id)}
+                  />
+                ))}
+              </RenderIf>
+            </Styles.CardInsides>
+          </OutlineCard>
+          {/* <p>Click on the photo to view full size</p> */}
+          <div>
+            <RenderIf isTrue={tick.photoFrontUrl?.toString().includes("heic")}>
+              <OutlineCard width="20rem">
+                The user submitted photos in the format HEIC which is unable be
+                displayed by browsers at the time when this website was coded.
+                Please click on the white photo block to download and view with
+                the photo viewing software on your machine.{" "}
+              </OutlineCard>
             </RenderIf>
-          </Styles.CardInsides>
-        </OutlineCard>
-        {/* <p>Click on the photo to view full size</p> */}
-
-        <a href={tick.photoFrontUrl} target="_blank" rel="noreferrer">
-          {" "}
-          <ImageCard imageUrl={tick.photoFrontUrl} />
-        </a>
-        {tick.photoBackUrl && (
-          <a href={tick.photoBackUrl} target="_blank" rel="noreferrer">
-            {" "}
-            <ImageCard imageUrl={tick.photoBackUrl} />
-          </a>
-        )}
-        {tick.photoOtherUrl && (
-          <a href={tick.photoOtherUrl} target="_blank" rel="noreferrer">
-            {" "}
-            <ImageCard imageUrl={tick.photoOtherUrl} />
-          </a>
-        )}
-
-        <SubTickInfo tick={tick}></SubTickInfo>
-        <OutlineCard>
+            <a href={tick.photoFrontUrl} target="_blank" rel="noreferrer">
+              {" "}
+              <ImageCard imageUrl={tick.photoFrontUrl} />
+            </a>
+            {tick.photoBackUrl && (
+              <a href={tick.photoBackUrl} target="_blank" rel="noreferrer">
+                {" "}
+                <ImageCard imageUrl={tick.photoBackUrl} />
+              </a>
+            )}
+            {tick.photoOtherUrl && (
+              <a href={tick.photoOtherUrl} target="_blank" rel="noreferrer">
+                {" "}
+                <ImageCard imageUrl={tick.photoOtherUrl} />
+              </a>
+            )}
+            {tick.photoFrontUrl?.toString().includes("heic")}
+          </div>
+          <OutlineCard width="300px">
           <h2>Pathogens</h2>
           <p>select all that tested positive</p>
           {pathogenElems}
         </OutlineCard>
+        </div>
+        <SubTickInfo tick={tick}></SubTickInfo>
+       
         <OutlineCard>
           <div style={{ margin: "1rem", padding: "1rem" }}>
             <h2>Submitter Info</h2>
@@ -542,15 +585,25 @@ const ProcessTick = () => {
             to={-1}
             text="  Back to List  "
           />
-         <RenderIf isTrue={tick.deletedAt === null}>
-         <BorderlessFloatButton text="Delete This Submission" padding="1rem 2rem" colors={{text: '#800000', shadow: '#800000'}} handleClick={toggleDelete} />
-         <RenderIf isTrue={showDelete}>
-          <p>scroll to the bottom of the screen to see delete options</p>
-         </RenderIf>
-         </RenderIf>
-         <RenderIf isTrue={tick.deletedAt !== null}>
-         <BorderlessFloatButton text="Un-Delete This Submission" padding="1rem 2rem" colors={{text: '#800000', shadow: '#800000'}} handleClick={handleUndelete} />
-         </RenderIf>
+          <RenderIf isTrue={tick.deletedAt === null}>
+            <BorderlessFloatButton
+              text="Delete This Submission"
+              padding="1rem 2rem"
+              colors={{ text: "#800000", shadow: "#800000" }}
+              handleClick={toggleDelete}
+            />
+            <RenderIf isTrue={showDelete}>
+              <p>scroll to the bottom of the screen to see delete options</p>
+            </RenderIf>
+          </RenderIf>
+          <RenderIf isTrue={tick.deletedAt !== null}>
+            <BorderlessFloatButton
+              text="Un-Delete This Submission"
+              padding="1rem 2rem"
+              colors={{ text: "#800000", shadow: "#800000" }}
+              handleClick={handleUndelete}
+            />
+          </RenderIf>
         </div>
       </Styles.PageCont>
       {showDelete && (
