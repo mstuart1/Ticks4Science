@@ -76,16 +76,16 @@ const Styles = {
 const allowedUsers = [1,5]
 
 const Dashboard = () => {
-
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
+  
   const [data, setData] = useState([]);
   const [query, setQuery] = useState("");
   const [input, setInput] = useState({});
-
+  
   const user = useSelector((state) => state.user);
   const token = useSelector((state) => state.token.data);
+  console.log('token', token)
 
   useEffect(() => {
     let getData = async (token) => {
@@ -211,7 +211,7 @@ const Dashboard = () => {
 
     
 
-  return (
+  return token?.length > 7 ? (
     <BasicPage.Text>
       <div>
         Hi,{" "}
@@ -316,7 +316,7 @@ const Dashboard = () => {
         </HoverCard>
       </div>
     </BasicPage.Text>
-  );
+  ) : <BasicPage.Text><h1>Please refresh your browser window</h1></BasicPage.Text>
 };
 
 export default Dashboard;
