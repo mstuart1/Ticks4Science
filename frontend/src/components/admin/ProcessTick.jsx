@@ -205,7 +205,7 @@ const ProcessTick = () => {
   };
   const handleEngorgedChange = ({ target }) => {
     setEngorged({ engorged: target.value });
-    handleEngorged(id, engorged);
+    handleEngorged(id, { engorged: target.value });
   };
 
   const handleEngorged = (id, engorged) => {
@@ -571,7 +571,7 @@ const ProcessTick = () => {
         </OutlineCard>
         </div>
         <SubTickInfo tick={tick}></SubTickInfo>
-       {console.log('travel',tick.travelInfo)}
+       
         <OutlineCard>
           <div style={{ margin: "1rem", padding: "1rem" }}>
             <h2>Submitter Info</h2>
