@@ -360,7 +360,7 @@ const ProcessTick = () => {
             flexWrap: "wrap",
           }}
         >
-          <OutlineCard>
+          <OutlineCard width="430px">
             <Styles.CardInsides>
               <h2>Status Info</h2>
               ID: {tick?.id}
