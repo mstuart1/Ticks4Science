@@ -160,13 +160,13 @@ const Survey = () => {
     return ({
       // true means invalid
       userMuni: input.userMuni.length === 0,
-      userZip: input.userZip.length < 5,
+      userZip: input.userZip.length < 4 || isNaN(input.userZip),
       foundOn: input.foundOn.length === 0,
       foundOnOther: input.foundOn === 'Other' && input.foundOnOther.length === 0,
       dateTickFound: input.dateTickFound.length === 0 || new Date(input.dateTickFound) > new Date(),
       tickMuni: input.tickMuni.length === 0,
       tickCounty: input.tickCounty.length === 0,
-      tickZip: input.tickZip.length < 5,
+      tickZip: input.tickZip.length < 4 || isNaN(input.tickZip),
       bittenMuni: input.submitterBitten === 'No' && input.bittenMuni.length === 0,
       bittenZip: input.submitterBitten === 'No' && input.bittenZip.length === 0,
       locationDescOther: input.locationDesc === 'Other' && input.locationDescOther.length === 0,
@@ -283,7 +283,7 @@ const Survey = () => {
                 onChange={handleChange}
               />
               <Styles.ErrMessage error={shouldMarkError('userZip')}>
-                Please enter the ZIP code where you live.
+                Please enter the 5-digit ZIP code where you live, do not include a dash.
               </Styles.ErrMessage>
             </Styles.FormDiv>
           </Styles.ResponsiveDiv>
@@ -552,7 +552,7 @@ const Survey = () => {
                   onChange={handleChange}
                 />
                 <Styles.ErrMessage error={shouldMarkError('tickZip')}>
-                  Please enter the ZIP code where the tick was found.
+                  Please enter the 5 digit ZIP code where the tick was found, do not include a dash.
                 </Styles.ErrMessage>
               </Styles.FormDiv>
               <Styles.FormDiv>
