@@ -169,7 +169,7 @@ const Survey = () => {
       bittenZip: input.submitterBitten === "No" && input.bittenZip.length === 0,
       locationDescOther:
         input.locationDesc === "Other" && input.locationDescOther.length === 0,
-      additionalInfo: input.additionalInfo.length > 60000,
+      additionalInfo: input.additionalInfo.length > 200,
     };
   };
   const errors = validate(input);
@@ -789,8 +789,8 @@ const Survey = () => {
           <Styles.TextCont>
             <label htmlFor="additionalInfo">
               Any additional information about the environment, tick(s), and or
-              person/pet: (please keep character number below 60,000) <br/>
-              Character count: {input.additionalInfo.length > 60000 ? <span style={{color: 'red'}}>{input.additionalInfo.length}</span> : (<span>{input.additionalInfo.length}</span>)} 
+              person/pet: (please keep character number below 200) <br/>
+              Character count: {input.additionalInfo.length > 200 ? <span style={{color: 'red'}}>{input.additionalInfo.length}</span> : (<span>{input.additionalInfo.length}</span>)} 
               
             </label>
             <textarea
