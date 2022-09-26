@@ -2,7 +2,7 @@ import { LOADING_TOKEN, LOAD_TOKEN_FAIL, LOAD_TOKEN_SUCESS, REMOVE_TOKEN, SET_AC
 
 const initialState = {
     isLoading: false,
-    data: []
+    data: ''
 }
 
 export const token = (state = initialState, action) => {
@@ -20,7 +20,7 @@ export const token = (state = initialState, action) => {
         case LOAD_TOKEN_FAIL: { return { ...state, isLoading: false }; }
 
         case REMOVE_TOKEN: {
-            return {...state, isLoading: false, data: []}
+            return {...state, isLoading: false, data: ''}
         }
         default:
             return state;
