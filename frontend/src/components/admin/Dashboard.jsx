@@ -73,7 +73,7 @@ const Styles = {
   `,
 };
 
-const allowedUsers = [1,5]
+
 
 const Dashboard = () => {
   const dispatch = useDispatch();
@@ -128,7 +128,9 @@ const Dashboard = () => {
     navigate("/");
   };
 
-  let filteredData = data.filter((sub) => {
+  console.log('data', data)
+
+  let filteredData = data?.filter((sub) => {
     if (query === "") {
       return null;
     } else if (parseInt(sub.id) === parseInt(query)) {
@@ -138,16 +140,16 @@ const Dashboard = () => {
     }
   });
 
-  let totalSubs = data.length;
-  let pendPhotos = data.filter((sub) => sub.photosReviewed === null);
-  let pendReceived = data.filter(
+  let totalSubs = data?.length;
+  let pendPhotos = data?.filter((sub) => sub.photosReviewed === null);
+  let pendReceived = data?.filter(
     (sub) => sub.specimenReceived === null && sub.specimenRequested !== null
   );
-  let pendIdentified = data.filter(
+  let pendIdentified = data?.filter(
     (sub) => sub.specimenReceived && sub.specimenIdentified === null
   );
-  let totalIdent = data.filter((sub) => sub.specimenIdentified);
-  let notReq = data.filter(
+  let totalIdent = data?.filter((sub) => sub.specimenIdentified);
+  let notReq = data?.filter(
     (sub) =>
       sub.photosReviewed !== null &&
       sub.specimenIdentified === null &&
@@ -163,27 +165,27 @@ const Dashboard = () => {
     {
       filter: "pendPhotos",
       text: "Waiting for Photo Review",
-      number: pendPhotos.length,
+      number: pendPhotos?.length,
     },
 
     {
       filter: "pendReceived",
       text: "Waiting for User to Mail Tick In",
-      number: pendReceived.length,
+      number: pendReceived?.length,
     },
 
     {
       filter: "pendIdentified",
       text: "Waiting for Team to Identify Mailed-In Tick",
-      number: pendIdentified.length,
+      number: pendIdentified?.length,
     },
 
     {
       filter: "totalIdent",
       text: "Total Identified",
-      number: totalIdent.length,
+      number: totalIdent?.length,
     },
-    { filter: "notReq", text: "Specimen Not Requested", number: notReq.length },
+    { filter: "notReq", text: "Specimen Not Requested", number: notReq?.length },
   ];
 
   let blockElems = blockArray.map((block, i) => (
