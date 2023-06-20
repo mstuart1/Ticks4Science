@@ -6,7 +6,6 @@ import styled from 'styled-components'
 import TickDataService from '../../services/ticks'
 import HorizScrollCont from '../ui/horizontalScrollingContainer/HorizScrollCont'
 import TickCard from '../ui/tickCard/TickCard'
-// import { theme } from '../../theme'
 
 const Styles = {
     CenterCntr: styled.div`
@@ -68,7 +67,6 @@ const Styles = {
     `
 }
 
-
 const Icon = styled.span`
     color: ${({ theme }) => theme.colors.main};
 `
@@ -93,7 +91,7 @@ const Ticks = () => {
     let invasiveTicks = ['longicornis']
     let otherTicks = ['kelleyi', 'albipictus', 'leporispalustris', 'brunneus', 'cookei', 'dentatus', 'texanus', 'marxi', 'texanus', 'sanguineus']
     let newTick = ['maculatum']
-    
+
     let peopleCardElements = data.map(tick => {
         if (peopleTicks.some(item => tick.scientific?.includes(item))) {
             tick.peopleTick = true;
@@ -154,7 +152,7 @@ const Ticks = () => {
                 As citizen scientists, familiarizing yourselves with the ticks you may come across in New Jersey is essential. Each tick species is unique, living in different habitats and feeding on different hosts. But in New Jersey, ticks are found nearly everywhere, so it is important to take necessary <BasicPage.InnieLink to='/checkMenu'><span>tick preventions</span></BasicPage.InnieLink> when enjoying the outdoors and entering tick habitats.
             </p>
             <p>
-            Listed below are the three tick species most likely to bite you in New Jersey. The fourth one doesn't often bite humans but is very common in some areas and may bite your dog. Each species is associated with different <BasicPage.InnieLink to='/disease'><span>tick-borne diseases</span></BasicPage.InnieLink>. If you find a tick on you, do not panic! <BasicPage.InnieLink to='/removal'><span>Removing a tick</span></BasicPage.InnieLink> is easy and <BasicPage.InnieLink to='/preSurvey'><span>submitting the tick</span></BasicPage.InnieLink> is easier.
+                Listed below are the three tick species most likely to bite you in New Jersey. The fourth one doesn't often bite humans but is very common in some areas and may bite your dog. Each species is associated with different <BasicPage.InnieLink to='/disease'><span>tick-borne diseases</span></BasicPage.InnieLink>. If you find a tick on you, do not panic! <BasicPage.InnieLink to='/removal'><span>Removing a tick</span></BasicPage.InnieLink> is easy and <BasicPage.InnieLink to='/preSurvey'><span>submitting the tick</span></BasicPage.InnieLink> is easier.
             </p>
 
             <Styles.CenterCntr style={{ backgroundColor: '#f2f2f2', borderRadius: '1rem' }}>
@@ -201,19 +199,19 @@ const Ticks = () => {
 
             </Styles.CenterCntr>
             <Styles.CenterCntr style={{ backgroundColor: '#f2f2f2', borderRadius: '1rem' }}>
-            <Styles.CenterCol style={{ flex: 1 }}>
-                <BasicPage.SectionTitle>
-                    Other Ticks of New Jersey
-                </BasicPage.SectionTitle>
+                <Styles.CenterCol style={{ flex: 1 }}>
+                    <BasicPage.SectionTitle>
+                        Other Ticks of New Jersey
+                    </BasicPage.SectionTitle>
 
-                <HorizScrollCont cardArray={otherTickElem} />
+                    <HorizScrollCont cardArray={otherTickElem} />
 
-                <BasicPage.SectionTitle>
-                    Spotlight: Potential new tick in New Jersey
-                </BasicPage.SectionTitle>
+                    <BasicPage.SectionTitle>
+                        Spotlight: Potential new tick in New Jersey
+                    </BasicPage.SectionTitle>
 
-                <HorizScrollCont cardArray={newTickElem} />
-            </Styles.CenterCol>
+                    <HorizScrollCont cardArray={newTickElem} />
+                </Styles.CenterCol>
             </Styles.CenterCntr>
         </BasicPage.Text>
 
