@@ -13,7 +13,9 @@ Dina Fonseca's (Rutgers Entomology) project to use citizen science to track tick
 1. `yarn start` the backend or `yarn dev` if making changes to the code.
 1. `yarn start` the frontend to develop
 1. `yarn build` the frontend to finalize changes and copy the build folder to the public server
-- `cp -r ./build/. /var/www/html/tick-frontend/`
+cp -r ./build/. /var/www/html/tick-frontend/
+ npx update-browserslist-db@latest
+ npx browserslist --update-db
 
 ## Credits
 This project was developed by Michelle Stuart for the Office of Research Analytics at Rutgers University.
