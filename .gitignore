@@ -3,3 +3,6 @@ backend/.env
 backend/public/tickImages
 backend/development.env
 backend/production.env
+backend/_.env
+backend/_development.env
+backend/_production.env

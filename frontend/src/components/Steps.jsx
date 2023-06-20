@@ -51,7 +51,10 @@ const Steps = () => (
           <InternalLinkFloatButton width="30rem" colors={{ text: theme.colors.ruTeal, shadow: theme.colors.ruTeal }} to='/tickOrInsect' text='Step 1 - Are you sure it is a tick?' />
           <InternalLinkFloatButton width="30rem" colors={{ text: theme.colors.ruTeal, shadow: theme.colors.ruTeal }} to='/photo' text='Step 2 - Learn to take tick pics' />
           <InternalLinkFloatButton width="30rem" colors={{ text: theme.colors.ruTeal, shadow: theme.colors.ruTeal }} to='/preSurvey' text='Step 3 - Fill out the form and upload your pics' />
-          <InternalLinkFloatButton width="30rem" colors={{ text: theme.colors.ruTeal, shadow: theme.colors.ruTeal }} to='/progress' text='Step 4 - Check your progress' />
+          <InternalLinkFloatButton width="30rem" colors={{ text: theme.colors.ruTeal, shadow: theme.colors.ruTeal }} to='/' text='Step 4 - Write down tick identification number' />
+          <InternalLinkFloatButton width="30rem" colors={{ text: theme.colors.ruTeal, shadow: theme.colors.ruTeal }} to='/progress' text='Step 5 - Check our website for a tick request (usually 24hrs or less)' />
+          <InternalLinkFloatButton width="30rem" colors={{ text: theme.colors.ruTeal, shadow: theme.colors.ruTeal }} to='/progress' text='Step 6 - Mail tick in' />
+          <InternalLinkFloatButton width="30rem" colors={{ text: theme.colors.ruTeal, shadow: theme.colors.ruTeal }} to='/progress' text='Step 7 - Check our website for results in a few weeks' />
               </BasicPage.CardContainer>
               </div>
               <BasicPage.ImageCont>
