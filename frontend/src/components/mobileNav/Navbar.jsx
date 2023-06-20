@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import navMenuItems from "./navMenuItems";
 import { Link } from "react-router-dom";
 import { theme } from "../../theme";
-import logo from '../../images/Logo.svg'
+import logo from '../../images/Logo2023.png'
 
 
 const NavbarComp = () => {
@@ -106,7 +106,7 @@ const Navbar = {
   
   
   img { 
-    max-width: 75px; 
+    max-width: 100px; 
     border-radius: ${({theme}) => theme.borderRadius};
   }
   a {

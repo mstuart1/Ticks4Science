@@ -4,7 +4,7 @@ import tickIntro from '../images/scap1.jpeg'
 import styled from "styled-components";
 import InternalLinkFloatButton from './ui/internalLinkFloatButton/InternalLinkFloatButton'
 import { theme } from '../theme'
-import logo from '../images/Logo.svg'
+import logo from '../images/Logo2023.png'
 import LearnMore from "./ui/learnMore/LearnMore";
 import BorderDiv from "./ui/borderDiv/BorderDiv";
 import OutlineFloatButton from "./ui/outlineFloatButton/OutlineFloatButton";
