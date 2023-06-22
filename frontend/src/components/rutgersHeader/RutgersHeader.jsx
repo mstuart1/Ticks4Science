@@ -30,7 +30,7 @@ const Styles = {
   justify-content: space-between;
   align-items: center;
   width: 100vw;
-  @media screen and (min-width:${({theme}) => theme.mobile}) {
+  @media screen and (min-width:${({ theme }) => theme.mobile}) {
       max-width: 1920px;
   }
   `,
@@ -38,50 +38,53 @@ const Styles = {
   min-width: 150px;
   width: 18rem;  
   max-width: 464px; 
+  margin-left: 5rem;
   `,
   Logo: styled.div`
   display: flex;
   width: 100%;
   align-items: center;
-  @media screen and (max-width:${({theme}) => theme.mobile}) {
+  margin-left: 1rem;
+  @media screen and (max-width:${({ theme }) => theme.mobile}) {
     justify-content: space-between;
    }
    margin-left: 1rem;
 `,
-Menu: styled.div`
+  Menu: styled.div`
 width: 100%;
 display: flex;
 justify-content: flex-end;
+
 li {
     display: inline;
     margin-right: 2rem;
     font-size: 1rem;
 }
-@media screen and (max-width:${({theme}) => theme.mobile}) {
+@media screen and (max-width:${({ theme }) => theme.mobile}) {
  display: none;
 }
 `,
-OtherLogo: styled.img`
+  OtherLogo: styled.img`
 display: none;
-@media screen and (max-width:${({theme}) => theme.mobile}) {
+@media screen and (max-width:${({ theme }) => theme.mobile}) {
   display: flex;
-  max-width: 13rem;
+  max-width: 20rem;
  }
 `,
 }
 
 const RutgersHeader = () => (
-    <Styles.Header>
-      <Styles.WidthContainer className='width-cont'>
+  <Styles.Header>
+    <Styles.WidthContainer className='width-cont'>
       <Styles.Logo>
         <a href="https://www.rutgers.edu">
-          <Styles.RULogo src={headerLogo} alt="Rutgers Logo"  />
+          <Styles.RULogo src={headerLogo} alt="Rutgers Logo" />
         </a>
-        <Styles.OtherLogo src={logo} alt="Rutgers Logo"  />
-        
-        
+        <Styles.OtherLogo src={logo} alt="Rutgers Logo" />
+
+
       </Styles.Logo>
-     
+
       <Styles.Menu>
         <ul>
           <li>
@@ -97,9 +100,9 @@ const RutgersHeader = () => (
           </li>
         </ul>
       </Styles.Menu>
-      </Styles.WidthContainer>
-    </Styles.Header>
-  );
+    </Styles.WidthContainer>
+  </Styles.Header>
+);
 
 
 export default RutgersHeader;

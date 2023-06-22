@@ -106,8 +106,8 @@ const Navbar = {
   
   
   img { 
-    max-width: 100px; 
-    border-radius: ${({theme}) => theme.borderRadius};
+    max-width: 12rem; 
+    border-radius: ${({ theme }) => theme.borderRadius};
   }
   a {
     display: flex;

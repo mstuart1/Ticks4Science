@@ -71,7 +71,7 @@ const Styles = {
   Logo: styled.span`
   img {
     display: inline;
-    max-width: 10rem;
+    max-width: 25rem;
     margin: 1rem;
   }
   @media screen and (max-width: ${({ theme }) => theme.mobile}) {
@@ -100,12 +100,12 @@ const About = () => {
         <Styles.LeftAlignCont>
 
           <Styles.Title>  <Styles.Logo> <img src={logo} alt='NJ ticks for science logo' /></Styles.Logo>
-          
-          {/* <BasicPage.Title> */}
-              Welcome to NJ Ticks 4 Science!
-              {/* </BasicPage.Title> */}
-              </Styles.Title>
-          
+
+            {/* <BasicPage.Title> */}
+            Welcome to NJ Ticks 4 Science!
+            {/* </BasicPage.Title> */}
+          </Styles.Title>
+
           <Styles.Para>
             This is a citizen science project where we enlist people to submit ticks they come across in their everyday lives while living, working, and visiting New Jersey or as part of a Tick Blitz!
 
@@ -127,12 +127,12 @@ const About = () => {
             If you have a dog or cat…<br />
             If you have participated in a Rutgers Tick Blitz…<br />
           </Styles.Para>
-          
+
         </Styles.LeftAlignCont>
 
       </Styles.CenterCntr>
 
-      <Styles.CenterCntr style={{borderBottom: `2px solid ${theme.colors.grey3}`}}>
+      <Styles.CenterCntr style={{ borderBottom: `2px solid ${theme.colors.grey3}` }}>
         <Styles.CenterCol>
           <BasicPage.SectionTitle>Get Started</BasicPage.SectionTitle>
           <InternalLinkFloatButton width="25rem" colors={{ text: theme.colors.ruTeal, shadow: theme.colors.ruTeal }} to='/checkMenu' text='Tick Prevention' />
@@ -141,7 +141,7 @@ const About = () => {
 
 
           <BasicPage.SectionTitle>If you have already submitted ticks </BasicPage.SectionTitle>
-          <OutlineFloatButton  colors={{ text: theme.colors.ruTeal, shadow: theme.colors.ruTeal, bg: theme.colors.ruTeal }} handleClick={() => navigate('/progress')} text='Track your progress'
+          <OutlineFloatButton colors={{ text: theme.colors.ruTeal, shadow: theme.colors.ruTeal, bg: theme.colors.ruTeal }} handleClick={() => navigate('/progress')} text='Track your progress'
           />
         </Styles.CenterCol>
 
