@@ -1,6 +1,7 @@
 import React from 'react'
 import { useSearchParams } from 'react-router-dom'
 import { BasicPage } from '../GeneralStyles'
+import { theme } from '../../theme'
 
 const ThankYou = () => {
     const [searchParams] = useSearchParams()
@@ -10,14 +11,14 @@ const ThankYou = () => {
         <BasicPage.Text>
             <BasicPage.Title>Thank you for your submission!</BasicPage.Title>
             <BasicPage.SectionTitle>Your personalized tick id number is {id}.</BasicPage.SectionTitle><br /><br />
-                {/* Bookmark or write down this website to access your tick progress: <BasicPage.InnieLink 
+            {/* Bookmark or write down this website to access your tick progress: <BasicPage.InnieLink 
                 // to={`/`}
                 to={`/progress/${id}`}
                 ><span>https://ticks.rutgers.edu/progress/{id}</span></BasicPage.InnieLink> */}
-                <h2>You must write down this number to access your tick submission!</h2>
-                <h1 style={{fontSize: '6rem'}}>{id}</h1>
-                <h1 style={{fontSize: '6rem'}}>Please write this number down.</h1>
-                
+            <h2>You must write down this number to access your tick submission!</h2>
+            <h1 style={{ fontSize: '6rem' }}>{id}</h1>
+            <h1 style={{ fontSize: '6rem', color: theme.colors.ruRed }}>Please write this number down.</h1>
+
             <p>
                 One of our tick experts will be examining the submitted photos and information about your tick! Be sure to save your personalized Tick ID number from your Tick Submission Form! You will use this number to access the website to check your progress.
             </p><p>
