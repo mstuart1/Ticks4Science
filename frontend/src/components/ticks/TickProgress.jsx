@@ -61,7 +61,7 @@ const TickProgress = () => {
               </Styles.TimelineIcon>
 
               <p className="tl-duration">{data.createdAt.substring(0, 10)}</p>
-              <h5>Form Received</h5>
+              <h3>Form Received</h3>
               <p>
                 We have received your form.  Please check back for updates.
               </p>
@@ -74,7 +74,7 @@ const TickProgress = () => {
                 </Styles.TimelineIcon>
 
                 <p className="tl-duration">{data.photosReviewed?.substring(0, 10)}</p>
-                <h5>Photos Reviewed</h5>
+                <h3>Photos Reviewed</h3>
                 {data.photoId && (
                   <p>Based on the photo, it looks like this is probably <BasicPage.InnieLink to={`/ticks/${data.photo.id}`}><span>{data.photo.common}</span></BasicPage.InnieLink>.</p>
                 )}
@@ -94,7 +94,7 @@ const TickProgress = () => {
                 </Styles.TimelineIcon>
 
                 <p className="tl-duration">{data.specimenRequested?.substring(0, 10)}</p>
-                <h5>Specimen Requested</h5>
+                <h3>Specimen Requested</h3>
                 <ol>
                   <li>
                     Ship flat ticks in standard envelopes, if it is round (<BasicPage.OutieLink href='https://ticks.rutgers.edu/static/media/slide%2011(2).62964332.jpg' target='_blank' rel='noreferrer'><span>engorged</span></BasicPage.OutieLink>) use a padded envelope or bubble mailer.
@@ -126,7 +126,7 @@ const TickProgress = () => {
                 </Styles.TimelineIcon>
 
                 <p className="tl-duration">{data.specimenReceived?.substring(0, 10)}</p>
-                <h5>Specimen Received</h5>
+                <h3>Specimen Received</h3>
                 <p>
                   The specimen has arrived at the Center for Vector Biology! We appreciate your contribution and encourage you to continue exploring New Jersey and sending in ticks when encountered.
                   Reminder: you must complete a new tick submission each time a tick is sent to NJ Ticks for Science.
@@ -142,7 +142,7 @@ const TickProgress = () => {
                 </Styles.TimelineIcon>
 
                 <p className="tl-duration">{data.specimenIdentified?.substring(0, 10)}</p>
-                <h5>Specimen Identified</h5>
+                <h3>Specimen Identified</h3>
                 {data.notATick ? (
                   <p>
                     The specimen in the photo is not a tick. We encourage you to review <BasicPage.InnieLink to='/tickOrInsect'><span>“Are you sure it's a tick”</span></BasicPage.InnieLink> and continue to participate in NJ Ticks 4 Science! Thank you!
@@ -212,7 +212,7 @@ const Styles = {
             text-transform: uppercase;
             font-weight: 500;
         }
-        h5 {
+        h3 {
             padding: 1rem 0;
             text-transform: uppercase;
             font-size: 1.3rem;
