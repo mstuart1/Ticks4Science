@@ -12,12 +12,13 @@ const ThankYou = () => {
 
     return (
         <BasicPage.Text>
-            <h1 style={{ fontSize: '6rem', color: theme.colors.ruRed, textAlign: 'center' }}>Please write this number down or take a screenshot.</h1>
+            <h1 style={{ fontSize: '6rem', color: theme.colors.ruRed, textAlign: 'center' }}>Write this number down or take a screenshot.</h1>
             <h1 style={{ fontSize: '6rem' }}>{id}</h1>
             <BasicPage.Title>Thank you for your submission!</BasicPage.Title>
             <BasicPage.SectionTitle>Your personalized tick id number is {id}.</BasicPage.SectionTitle><br /><br />
-            <BasicPage.SectionTitle>Access and bookmark your personalized tick page.</BasicPage.SectionTitle><br /><br />
+            <BasicPage.SectionTitle>You must have this number to access your tick submission.</BasicPage.SectionTitle><br /><br />
             <BasicPage.SectionTitle>Because the survey is anonymous the only way to track your tick is with this number.</BasicPage.SectionTitle><br /><br />
+            <BasicPage.SectionTitle>Bookmark this page to remember your tick number.</BasicPage.SectionTitle><br /><br />
             <div style={{ display: 'flex' }}>
 
 
@@ -39,9 +40,7 @@ const ThankYou = () => {
                         <ul style={{ fontWeight: 'bold' }}>
                             <li >write it down</li>
                             <li >take a screenshot</li>
-                            <li >click here to access your tick progress and <span style={{ color: theme.colors.ruRed }}>bookmark</span> your personal tick page: <BasicPage.InnieLink
-                                to={`/progress/${id}`}
-                            ><span>https://ticks.rutgers.edu/progress/{id}</span></BasicPage.InnieLink></li>
+                            <li >bookmark this page</li>
                         </ul>
                     </div>
                 </HoverCard>
