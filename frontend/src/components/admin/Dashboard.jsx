@@ -78,11 +78,11 @@ const Styles = {
 const Dashboard = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  
+
   const [data, setData] = useState([]);
   const [query, setQuery] = useState("");
   const [input, setInput] = useState({});
-  
+
   const user = useSelector((state) => state.user);
   const token = useSelector((state) => state.token.data);
   console.log('token', token)
@@ -92,11 +92,15 @@ const Dashboard = () => {
       return await SubmissionDataService.getAllSubm(token);
     };
 
+
+
     getData(token).then((response) => {
       // console.log(response.data.record)
       setData(response.data.record);
     });
   }, [token]);
+
+  console.log('data', data)
 
   const handleInputChange = (evt) => {
     let { value } = evt.target;
@@ -211,7 +215,7 @@ const Dashboard = () => {
     filteredData &&
     filteredData.map((sub) => <SubCard item={sub} key={sub.id} />);
 
-    
+
 
   return token?.length > 7 ? (
     <BasicPage.Text>
@@ -223,51 +227,51 @@ const Dashboard = () => {
       </div>
 
       {/* <BasicPage.Form> */}
-        <Styles.Input
-          placeholder="Find a specific tick number"
-          type="search"
-          onChange={handleInputChange}
-        />
-        {subElem}
+      <Styles.Input
+        placeholder="Find a specific tick number"
+        type="search"
+        onChange={handleInputChange}
+      />
+      {subElem}
       {/* </BasicPage.Form> */}
 
       <div>
         <Styles.BlockCont>{blockElems}</Styles.BlockCont>
         {/* will eventually navigate to route where download table renders */}
         <BasicPage.CardContainer>
-        <OutlineFloatButton
-          colors={{
-            text: ruTeal,
-            shadow: ruTeal,
-            bg: ruTeal,
-          }}
-          handleClick={() => navigate("/admin/data")}
-          text="View Data to Download"
-          padding="2rem"
-        />
-        <RenderIf isTrue={user.editData}>
-        <OutlineFloatButton
-          colors={{
-            text: ruRed,
-            shadow: ruRed,
-            bg: theme.colors.white,
-          }}
-          handleClick={() => navigate("/admin/deleted")}
-          text="View Deleted Submissions"
-          padding="2rem"
-        />
-         <OutlineFloatButton
-          colors={{
-            text: ruTeal,
-            shadow: ruTeal,
-            bg: theme.colors.white,
-          }}
-          handleClick={() => navigate("/admin/duplicates")}
-          text="View Duplicate Submissions"
-          padding="2rem"
-        />
-        </RenderIf>
-</BasicPage.CardContainer>
+          <OutlineFloatButton
+            colors={{
+              text: ruTeal,
+              shadow: ruTeal,
+              bg: ruTeal,
+            }}
+            handleClick={() => navigate("/admin/data")}
+            text="View Data to Download"
+            padding="2rem"
+          />
+          <RenderIf isTrue={user.editData}>
+            <OutlineFloatButton
+              colors={{
+                text: ruRed,
+                shadow: ruRed,
+                bg: theme.colors.white,
+              }}
+              handleClick={() => navigate("/admin/deleted")}
+              text="View Deleted Submissions"
+              padding="2rem"
+            />
+            <OutlineFloatButton
+              colors={{
+                text: ruTeal,
+                shadow: ruTeal,
+                bg: theme.colors.white,
+              }}
+              handleClick={() => navigate("/admin/duplicates")}
+              text="View Duplicate Submissions"
+              padding="2rem"
+            />
+          </RenderIf>
+        </BasicPage.CardContainer>
         <Styles.BlockCont
           style={{
             flexDirection: "column",
@@ -276,7 +280,7 @@ const Dashboard = () => {
           }}
         >
           <RenderIf isTrue={user.manageUsers}>
-          <OutlineCard>
+            <OutlineCard>
               <BasicPage.SectionTitle>
                 Invite an Admin User
               </BasicPage.SectionTitle>
@@ -295,7 +299,7 @@ const Dashboard = () => {
                     name="manageUsers"
                     value={input.manageUsers}
                     onChange={(evt) => handleInviteChange(evt)}
-                    style={{padding: '1rem', margin: '1rem'}}
+                    style={{ padding: '1rem', margin: '1rem' }}
                   />
                 </label>
                 <Styles.InviteButton onClick={handleUserInvite}>
@@ -305,10 +309,10 @@ const Dashboard = () => {
             </OutlineCard>
             <UserMgt />
           </RenderIf>
-          
-            
-        
-          
+
+
+
+
           <EditUser />
         </Styles.BlockCont>
       </div>
