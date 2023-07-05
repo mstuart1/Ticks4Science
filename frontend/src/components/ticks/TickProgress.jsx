@@ -208,7 +208,7 @@ const Styles = {
             background-color: ${({ theme }) => theme.colorGrey5};
             border-radius: 15px;
             display: inline-block;
-            font-size: 1.2rem;
+            font-size: 1.6rem;
             text-transform: uppercase;
             font-weight: 500;
         }
