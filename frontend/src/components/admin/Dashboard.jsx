@@ -85,7 +85,7 @@ const Dashboard = () => {
 
   const user = useSelector((state) => state.user);
   const token = useSelector((state) => state.token.data);
-  console.log('token', token)
+  // console.log('token', token)
 
   useEffect(() => {
     let getData = async (token) => {
@@ -100,7 +100,7 @@ const Dashboard = () => {
     });
   }, [token]);
 
-  console.log('data', data)
+  // console.log('data', data)
 
   const handleInputChange = (evt) => {
     let { value } = evt.target;
@@ -132,7 +132,7 @@ const Dashboard = () => {
     navigate("/");
   };
 
-  console.log('data', data)
+  // console.log('data', data)
 
   let filteredData = data?.filter((sub) => {
     if (query === "") {
@@ -271,6 +271,16 @@ const Dashboard = () => {
               padding="2rem"
             />
           </RenderIf>
+          <OutlineFloatButton
+            colors={{
+              text: ruTeal,
+              shadow: ruTeal,
+              bg: theme.colors.white,
+            }}
+            handleClick={() => console.log('create a function to edit tick pathogens')}
+            text="Edit Tick Pathogens"
+            padding="2rem"
+          />
         </BasicPage.CardContainer>
         <Styles.BlockCont
           style={{
@@ -322,7 +332,8 @@ const Dashboard = () => {
         </HoverCard>
       </div>
     </BasicPage.Text>
-  ) : <BasicPage.Text><h1>Please refresh your browser window</h1></BasicPage.Text>
+  )
+    : <BasicPage.Text><h1>Please refresh your browser window</h1></BasicPage.Text>
 };
 
 export default Dashboard;
