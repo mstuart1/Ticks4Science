@@ -12,9 +12,12 @@ import HoverCard from "../ui/hoverCard/HoverCard";
 import RenderIf from "../../tools/RenderIf";
 import SubTickInfo from "./SubTickInfo";
 import FormSelectionBlocks from "../ui/formSelectionBlocks/FormSelectionBlocks";
-import PathogenDataService from "../../services/pathogens";
 import BorderlessFloatButton from "../ui/borderlessFloatButton/BorderlessFloatButton";
 import { lifeStages } from "../../data/lifeStages";
+// import getPathogens from "../../tools/getPathogens";
+// import useAxios from "../../tools/useAxios";
+// import PathogenDataService from '../../services/pathogens'
+import PathogenCard from "./PathogenCard";
 
 let ruTeal = theme.colors.ruTeal;
 
@@ -120,21 +123,8 @@ const ProcessTick = () => {
   const [engorged, setEngorged] = useState({ engorged: false });
   const [labNumber, setLabNumber] = useState("");
   const [tickPathos, setTickPathos] = useState([]);
-  const [pathogens, setPathogens] = useState([]);
 
-  const getPathogens = async () => {
-    await PathogenDataService.getAll()
-      .then((response) => {
-        setPathogens(response.data.data);
-      })
-      .catch((err) => {
-        console.log(err.message);
-      });
-  };
 
-  useEffect(() => {
-    getPathogens();
-  }, []);
 
   // get the tick info from db
 
@@ -272,24 +262,9 @@ const ProcessTick = () => {
     { value: "false", required: true, label: "false" },
   ];
 
-  let pathogenElems =
-    pathogens.length > 0 &&
-    pathogens.map((patho) => (
-      <Styles.PathosCont key={patho.id}>
-        <input
-          type="checkbox"
-          id={patho.pathogen}
-          name={patho.pathogen}
-          value={patho.id}
-          style={{ margin: "1rem" }}
-          checked={tick.pathogens?.some((value) => value.id === patho.id) || ""}
-          onChange={handlePathoChange}
-        />
-        <label htmlFor={patho.pathogen}>{patho.pathogen}</label>
-      </Styles.PathosCont>
-    ));
 
-  console.log(`tick`, tick);
+
+  // console.log(`tick`, tick);
 
   return (
     <BasicPage.Text>
@@ -564,21 +539,18 @@ const ProcessTick = () => {
             )}
             {tick.photoFrontUrl?.toString().includes("heic")}
           </div>
-          <OutlineCard width="300px">
-          <h2>Pathogens</h2>
-          <p>select all that tested positive</p>
-          {pathogenElems}
-        </OutlineCard>
+          {console.log('tick pathos', tick.pathogens)}
+          <PathogenCard message='select all that tested positive' checkedPathogens={tick?.pathogens} handleChange={handlePathoChange} />
         </div>
         <SubTickInfo tick={tick}></SubTickInfo>
-       
+
         <OutlineCard>
           <div style={{ margin: "1rem", padding: "1rem" }}>
             <h2>Submitter Info</h2>
             <p>Municipality: {tick.userMuni}</p>
             <p>Zip Code: {tick.userZip?.toString().padStart(5, "0")}</p>
             <p>Travel History: {tick.travelInfo ? tick.travelInfo : 'not reported'}</p>
-            <p style={{maxWidth: '300px'}}>Additional Info: {tick.additionalInfo}</p>
+            <p style={{ maxWidth: '300px' }}>Additional Info: {tick.additionalInfo}</p>
           </div>
         </OutlineCard>
         <div>
