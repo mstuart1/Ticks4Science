@@ -254,7 +254,7 @@ const Survey = () => {
   ];
 
   if (inProgress) {
-    return (<div>Submitting form...</div>)
+    return (<div style={{ width: '100vw', heigh: '100vh' }}><h1>Submitting form...</h1></div>)
   }
 
   return (
