@@ -3,11 +3,11 @@ import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import SubmissionDataService from "../../services/submission";
 import { theme } from "../../theme";
-// import { createInputElems, createRadioElems } from '../../tools/createElemFunc'
 import { BasicPage } from "../GeneralStyles";
 import FormSelectionBlocks from "../ui/formSelectionBlocks/FormSelectionBlocks";
+// import { createInputElems, createRadioElems } from '../../tools/createElemFunc'
 // import { attachedOptions, bittenInfoArray, foundOptions, inputElemArray1, inputElemArray2, locationOptions, yesNo } from './surveyFormData'
-import RenderIf from '../../tools/RenderIf'
+// import RenderIf from '../../tools/RenderIf'
 
 const Styles = {
   FormSection: styled.div`
@@ -104,6 +104,7 @@ const Survey = () => {
   const [imageFront, setImageFront] = useState([]);
   const [imageBack, setImageBack] = useState([]);
   const [touched, setTouched] = useState(initialBlur);
+  const [inProgress, setInProgress] = useState(false);
 
   const handleChange = (evt) => {
     console.log("handling change");
@@ -120,9 +121,8 @@ const Survey = () => {
   };
 
   const handleFront = (evt) => {
-    // console.log('handling front')
+    console.log('handling front')
     let file = evt.target.files[0];
-    // console.log(file)
     if (file.size > 8000000) {
       alert(`Please reduce file size before uploading`);
     } else if (file.size < 200000) {
@@ -193,6 +193,7 @@ const Survey = () => {
   const handleSubmit = async (evt) => {
     console.log("handling submit");
     try {
+      setInProgress(true);
       evt.preventDefault();
 
       let errors = validate(input);
@@ -251,6 +252,10 @@ const Survey = () => {
     { value: "no", required: true, label: "No" },
     { value: "unknown", required: true, label: "Unknown/Believe So" },
   ];
+
+  if (inProgress) {
+    return (<div>Submitting form...</div>)
+  }
 
   return (
     <BasicPage.Text>
@@ -789,9 +794,9 @@ const Survey = () => {
           <Styles.TextCont>
             <label htmlFor="additionalInfo">
               Any additional information about the environment, tick(s), and or
-              person/pet: (please keep character number below 200) <br/>
-              Character count: {input.additionalInfo.length > 200 ? <span style={{color: 'red'}}>{input.additionalInfo.length}</span> : (<span>{input.additionalInfo.length}</span>)} 
-              
+              person/pet: (please keep character number below 200) <br />
+              Character count: {input.additionalInfo.length > 200 ? <span style={{ color: 'red' }}>{input.additionalInfo.length}</span> : (<span>{input.additionalInfo.length}</span>)}
+
             </label>
             <textarea
               error={shouldMarkError("additionalInfo")}
