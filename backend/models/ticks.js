@@ -10,7 +10,7 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // define association here
+      ticks.belongsToMany(models.pathogen, { through: 'tick_pathogen' })
     }
   }
   ticks.init({
@@ -18,14 +18,14 @@ module.exports = (sequelize, DataTypes) => {
     scientific: DataTypes.STRING,
     humanHosts: DataTypes.BOOLEAN,
     intro: DataTypes.TEXT,
-    hosts: DataTypes.TEXT, 
-    habitat: DataTypes.TEXT, 
-    njLocations: DataTypes.TEXT, 
+    hosts: DataTypes.TEXT,
+    habitat: DataTypes.TEXT,
+    njLocations: DataTypes.TEXT,
     activeMonths: DataTypes.TEXT,
     buttonImgUrl: DataTypes.STRING,
-    featureImgUrl: DataTypes.STRING, 
-    mapImgUrl: DataTypes.STRING, 
-    refImgArray: DataTypes.JSON, 
+    featureImgUrl: DataTypes.STRING,
+    mapImgUrl: DataTypes.STRING,
+    refImgArray: DataTypes.JSON,
     researchLinks: DataTypes.TEXT,
   }, {
     sequelize,
