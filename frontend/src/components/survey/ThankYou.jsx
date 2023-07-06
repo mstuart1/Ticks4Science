@@ -8,8 +8,6 @@ const ThankYou = () => {
     const [searchParams] = useSearchParams()
     let id = searchParams.get('id')
 
-    id = 20
-
     return (
         <BasicPage.Text>
             <h1 style={{ fontSize: '6rem', color: theme.colors.ruRed, textAlign: 'center' }}>Write this number down or take a screenshot.</h1>
