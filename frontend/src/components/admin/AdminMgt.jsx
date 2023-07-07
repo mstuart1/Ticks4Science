@@ -13,15 +13,16 @@ import DownloadTable from './DownloadTable'
 import EditingTable from "./EditingTable";
 import DeletedSubs from "./DeletedSubs";
 import DuplicateSubs from "./DuplicateSubs";
+import TickList from "./TickList";
 
 // import UserDataService from '../../services/users'
 
 const AdminMgt = () => {
 
     const token = useSelector(state => state.token.data)
-    
+
     return (
-        (token.length === 0 || token === 'expired' ) ? (
+        (token.length === 0 || token === 'expired') ? (
             <Login />
         ) :
             <Routes>
@@ -32,12 +33,11 @@ const AdminMgt = () => {
                 <Route path='/account/:id' element={<UpdateAccount />} />
                 <Route path='/' element={<Dashboard />} />
                 <Route path="/login" element={<Login logout={true} />} />
-                <Route path="/data" element={<DownloadTable/>} /> 
-                <Route path="/editData" element={<EditingTable/>} /> 
-                <Route path="/deleted" element={<DeletedSubs/>} /> 
-                <Route path="/duplicates" element={<DuplicateSubs/>} /> 
-
-                
+                <Route path="/data" element={<DownloadTable />} />
+                <Route path="/editData" element={<EditingTable />} />
+                <Route path="/deleted" element={<DeletedSubs />} />
+                <Route path="/duplicates" element={<DuplicateSubs />} />
+                <Route path='/tickList' element={<TickList />} />
             </Routes>
     )
 }
