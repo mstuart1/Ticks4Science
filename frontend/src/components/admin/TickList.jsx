@@ -1,5 +1,6 @@
 import useAxios from "../../tools/useAxios"
 import TickDataService from "../../services/ticks"
+import { Link } from "react-router-dom"
 
 const TickList = () => {
 
@@ -11,7 +12,13 @@ const TickList = () => {
     if (isError) return <div><h1>Error...</h1></div>
 
     return (
-        <div>A list of ticks to select to edit, currently can only edit pathogen list</div>
+        <div style={{ display: 'flex', flexDirection: 'column', height: '100vh', justifyContent: 'space-evenly' }}>
+            {data.map(item => (
+                <Link to={`/admin/edit-tick-pathos/${item.id}`} key={item.id}>
+                    {item.common} - {item.scientific}
+                </Link>
+            ))}
+        </div>
     )
 }
 export default TickList

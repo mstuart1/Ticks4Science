@@ -14,8 +14,7 @@ import EditingTable from "./EditingTable";
 import DeletedSubs from "./DeletedSubs";
 import DuplicateSubs from "./DuplicateSubs";
 import TickList from "./TickList";
-
-// import UserDataService from '../../services/users'
+import EditTickPathos from "./EditTickPathos";
 
 const AdminMgt = () => {
 
@@ -38,6 +37,7 @@ const AdminMgt = () => {
                 <Route path="/deleted" element={<DeletedSubs />} />
                 <Route path="/duplicates" element={<DuplicateSubs />} />
                 <Route path='/tickList' element={<TickList />} />
+                <Route path='/edit-tick-pathos/:id' element={<EditTickPathos />} />
             </Routes>
     )
 }
