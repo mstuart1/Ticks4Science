@@ -123,21 +123,20 @@ const ProcessTick = () => {
   const [engorged, setEngorged] = useState({ engorged: false });
   const [labNumber, setLabNumber] = useState("");
   const [tickPathos, setTickPathos] = useState([]);
+  console.log(tickPathos)
 
 
-
-  // get the tick info from db
-
-  let getTick = async (id) => {
-    let response = await SubmissionDataService.getProgress(id);
-    await setTick({ ...response.data.record });
-    let freshPathos = tick.pathogens?.map((patho) => patho.id);
-    await setTickPathos(freshPathos);
-  };
-
+  //** */ get the tick info from db
   useEffect(() => {
+    let getTick = async (id) => {
+      let response = await SubmissionDataService.getProgress(id);
+      setTick({ ...response.data.record });
+      let freshPathos = tick.pathogens?.map((patho) => patho.id);
+      setTickPathos(freshPathos);
+    };
+
     getTick(id);
-  }, [id]);
+  }, [id, tick.pathogens]);
 
   // get all the tick options
   useEffect(() => {

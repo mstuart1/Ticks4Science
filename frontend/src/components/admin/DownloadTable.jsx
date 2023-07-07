@@ -1,4 +1,7 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, {
+  // useCallback, 
+  useEffect, useState
+} from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { CSVLink } from "react-csv";
@@ -98,9 +101,8 @@ const DownloadTable = () => {
     </tr>
   ));
   let date = new Date();
-  let dateString = `${date.getFullYear()}_${
-    date.getMonth() + 1
-  }_${date.getDate()} `;
+  let dateString = `${date.getFullYear()}_${date.getMonth() + 1
+    }_${date.getDate()} `;
 
   return (
     <Styles.Wrapper>

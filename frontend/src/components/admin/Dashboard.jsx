@@ -122,7 +122,7 @@ const Dashboard = () => {
     }
     let response = input.email && (await UserDataService.inviteUser(input));
     setInput({});
-    // console.log(response.data)
+    console.log(response.data)
 
     alert("User has been invited");
   };

@@ -2,7 +2,7 @@ import useAxios from "../../tools/useAxios";
 import PathogenDataService from '../../services/pathogens'
 import styled from "styled-components";
 import OutlineCard from "../ui/outlineCard/OutlineCard";
-import { useState } from "react";
+
 
 const Styles = {
     PathosCont: styled.div`
@@ -27,7 +27,7 @@ const PathogenCard = ({ message = 'select all that tested positive', checkedPath
                     name={patho.pathogen}
                     value={patho.id}
                     style={{ margin: "1rem" }}
-                    checked={checkedPathogens.length && checkedPathogens.some((value) => value.id === patho.id) || ""}
+                    checked={checkedPathogens.length && (checkedPathogens.some((value) => value.id === patho.id) || "")}
                     onChange={handleChange}
                 />
                 <label htmlFor={patho.pathogen}>{patho.pathogen}</label>
