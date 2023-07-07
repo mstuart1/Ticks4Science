@@ -10,20 +10,25 @@ const EditTickPathos = () => {
 
     const { isLoading, isError, data } = useAxios(TickDataService.getTick, id)
 
-    const tickPathogens = []
-
-
-
-
     if (isLoading) return <div><h1>Loading...</h1></div>
     if (isError) return <div><h1>Error...</h1></div>
 
-    console.log(data)
-    const handleChange = (e) => { }
+    const { foundRecord: tick } = data
+
+    const handleChange = async values => {
+        try {
+
+            let response = await TickDataService.updatePathos(values, id)
+            console.log('EditTickPathos', response.data)
+
+        } catch (err) {
+            console.log(err.message)
+        }
+    }
 
     return (
         <BasicPage.Text>
-            <PathogenCard message="select which tests will always be run for this species" checkedPathogens={tickPathogens} handleChange={handleChange} />
+            <PathogenCard message={`Select which tests will always be run for ${tick?.common}.  You must hit the save button in order to save these changes.`} tick={tick} handleChange={handleChange} />
         </BasicPage.Text>
     )
 }
