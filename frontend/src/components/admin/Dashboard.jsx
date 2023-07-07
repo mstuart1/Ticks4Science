@@ -277,7 +277,7 @@ const Dashboard = () => {
               shadow: ruTeal,
               bg: theme.colors.white,
             }}
-            handleClick={() => console.log('create a function to edit tick pathogens')}
+            handleClick={() => navigate("/admin/tickList")}
             text="Edit Tick Pathogens"
             padding="2rem"
           />
