@@ -4,18 +4,18 @@ const db = require("../models");
 const Pathogen = db.pathogen;
 
 exports.getAll = async (req, res, next) => {
-    console.log(`@@@@---get all pathogens---@@@@`);
-    
-    try {
-        let foundData;
-        await db.sequelize.transaction(async (t) => {
-            foundData = await Pathogen.findAll({transaction: t})
-        })
-        if (foundData === null) {
-            throw new Error(`no pathogens found`)
-          }
-          return res.json({ data: foundData })
-        } catch (err) {
-          next(err)
-        }
+  console.log(`@@@@---get all pathogens---@@@@`);
+
+  try {
+    let foundData;
+    await db.sequelize.transaction(async (t) => {
+      foundData = await Pathogen.findAll({ transaction: t })
+    })
+    if (foundData === null) {
+      throw new Error(`no pathogens found`)
+    }
+    return res.json({ foundData })
+  } catch (err) {
+    next(err)
   }
+}

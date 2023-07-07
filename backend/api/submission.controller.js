@@ -177,15 +177,15 @@ exports.getSubPage = async (req, res, next) => {
     if (filter === 'totalSubs') {
       query = { duplicate: { [Op.is]: null }, }
     } else if (filter === 'pendPhotos') {
-      query = { duplicate: { [Op.is]: null }, photosReviewed: {[Op.is]: null }, }
+      query = { duplicate: { [Op.is]: null }, photosReviewed: { [Op.is]: null }, }
     } else if (filter === 'pendReceived') {
-      query = { duplicate: { [Op.is]: null }, specimenRequested: {[Op.not]: null }, specimenReceived: {[Op.is]: null}}
+      query = { duplicate: { [Op.is]: null }, specimenRequested: { [Op.not]: null }, specimenReceived: { [Op.is]: null } }
     } else if (filter === 'pendIdentified') {
-      query = { duplicate: { [Op.is]: null }, specimenIdentified: {[Op.is]: null }, specimenReceived: {[Op.not]: null}}
+      query = { duplicate: { [Op.is]: null }, specimenIdentified: { [Op.is]: null }, specimenReceived: { [Op.not]: null } }
     } else if (filter === 'totalIdent') {
-      query = { duplicate: { [Op.is]: null }, specimenIdentified: {[Op.not]: null }}
+      query = { duplicate: { [Op.is]: null }, specimenIdentified: { [Op.not]: null } }
     } else if (filter === 'notReq') {
-      query = { duplicate: { [Op.is]: null }, photosReviewed: {[Op.not]: null }, specimenIdentified: {[Op.is]: null }, specimenRequested:{[Op.is]: null}}
+      query = { duplicate: { [Op.is]: null }, photosReviewed: { [Op.not]: null }, specimenIdentified: { [Op.is]: null }, specimenRequested: { [Op.is]: null } }
     } else {
       query = { duplicate: { [Op.is]: null }, }
     }
@@ -241,24 +241,24 @@ exports.updateSubm = async (req, res, next) => {
     let pathosOp = data.operation
     let freshPathogens = [data.pathogens]
     let updatedTick;
-        
+
     await db.sequelize
       .transaction(async (t) => {
-        if (freshPathogens && freshPathogens.length > 0 && pathosOp === 'add'){
-          const toBeUpdated = await Subm.findByPk(id,{
-            include: {model: db.pathogen}
-          }, {transaction: t})
+        if (freshPathogens && freshPathogens.length > 0 && pathosOp === 'add') {
+          const toBeUpdated = await Subm.findByPk(id, {
+            include: { model: db.pathogen }
+          }, { transaction: t })
           // replace previous with updated list of pathogens
           await toBeUpdated.addPathogens(freshPathogens) // this does not work if you include it in the transactions, the pathogens write but the update times out no matter how long you run it.
         }
-        if (freshPathogens && freshPathogens.length > 0 && pathosOp === 'remove'){
-          const toBeUpdated = await Subm.findByPk(id,{
-            include: {model: db.pathogen}
-          }, {transaction: t})
+        if (freshPathogens && freshPathogens.length > 0 && pathosOp === 'remove') {
+          const toBeUpdated = await Subm.findByPk(id, {
+            include: { model: db.pathogen }
+          }, { transaction: t })
           // replace previous with updated list of pathogens
           await toBeUpdated.removePathogens(freshPathogens) // this does not work if you include it in the transactions, the pathogens write but the update times out no matter how long you run it.
         }
-        
+
         await Subm.update(data, { paranoid: false, where: { id } }, { transaction: t })
         // console.log('updated', updated)
         updatedTick = await Subm.findByPk(id, {
@@ -293,7 +293,7 @@ exports.updateSubm = async (req, res, next) => {
     if (updatedTick === null) {
       throw new Error(`tick ${id} not found`)
     }
-    return res.json({ record: updatedTick })
+    return res.json({ data: updatedTick })
   } catch (err) {
     // console.log(err.message)
     next(err)
@@ -371,7 +371,7 @@ exports.downloadData = async (req, res, next) => {
     next(err)
   }
 }
-exports.getDeleted = async(req, res, next) => {
+exports.getDeleted = async (req, res, next) => {
   console.log(`@@@@---getting deleted submissions---@@@@`);
   try {
     // let orgsPerPage = req.query.orgsPerPage ? req.query.orgsPerPage : 100;
@@ -421,7 +421,7 @@ exports.getDeleted = async(req, res, next) => {
     next(err)
   }
 }
-exports.getDupes = async(req, res, next) => {
+exports.getDupes = async (req, res, next) => {
   console.log(`@@@@---getting all submissions, even duplicates---@@@@`);
   try {
     // let orgsPerPage = req.query.orgsPerPage ? req.query.orgsPerPage : 100;
@@ -431,8 +431,8 @@ exports.getDupes = async(req, res, next) => {
 
     // let page  = req.query.page ? req.query.page : 0;
     let foundSubs = await Subm.findAll({
-      
-     
+
+
 
       // offset: page,
       include: [

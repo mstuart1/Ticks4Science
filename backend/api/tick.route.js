@@ -1,13 +1,14 @@
 module.exports = (app) => {
-    const TickCtl  = require("./tick.controller");
-    const router = require("express").Router();
-  
-    router
-      .post("/", TickCtl.createTick)
-      .get('/', TickCtl.getAllTicks)
-      .get('/:id', TickCtl.getTick)
-      .put('/:id', TickCtl.updateTick)
+  const TickCtl = require("./tick.controller");
+  const router = require("express").Router();
 
-      app.use("/tick", router);
-  };
-  
+  router
+    .post("/", TickCtl.createTick)
+    .get('/', TickCtl.getAllTicks)
+    .get('/:id', TickCtl.getTick)
+    .put('/:id/pathos', TickCtl.updatePathos)
+    .put('/:id', TickCtl.updateTick)
+
+
+  app.use("/tick", router);
+};
