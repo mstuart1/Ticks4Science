@@ -1,24 +1,54 @@
 import useAxios from "../../tools/useAxios"
 import TickDataService from "../../services/ticks"
 import { Link } from "react-router-dom"
+import styled from 'styled-components'
+
+const Styles = {
+    PageCont: styled.div`
+    display: flex;
+    flex-direction: column;
+    `,
+    ListCont: styled.div`
+    width: 300px;
+    background-color: #f0f0f0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    `,
+    LinkItem: styled(Link)`
+    font-family: 'OpenSans', sans-serif;
+    font-weight: 200;
+    text-decoration: none;
+    color: #000;
+    font-size: 2rem;
+    padding: 2rem 1rem;
+    border-bottom: 1px solid #000;
+    `,
+
+}
 
 const TickList = () => {
 
     const { isLoading, isError, data } = useAxios(TickDataService.getAllTicks)
-
-    console.log(data)
+    const { allTicks } = data || {}
+    // console.log('data', data)
 
     if (isLoading) return <div><h1>Loading...</h1></div>
     if (isError) return <div><h1>Error...</h1></div>
 
     return (
-        <div style={{ display: 'flex', flexDirection: 'column', height: '100vh', justifyContent: 'space-evenly' }}>
-            {data.map(item => (
-                <Link to={`/admin/edit-tick-pathos/${item.id}`} key={item.id}>
-                    {item.common} - {item.scientific}
-                </Link>
-            ))}
-        </div>
+        <Styles.PageCont>
+            <h1> Select the Tick Species</h1>
+            <Styles.ListCont>
+                <Styles.LinkItem style={{ fontWeight: '400' }} to='/admin'>Back to Dashboard</Styles.LinkItem>
+                {allTicks?.map(item => (
+                    <Styles.LinkItem to={`/admin/edit-tick-pathos/${item.id}`} key={item.id}>
+                        {item.scientific} - {item.common}
+                    </Styles.LinkItem>
+                ))}
+                <Styles.LinkItem style={{ fontWeight: '400' }} to='/admin'>Back to Dashboard</Styles.LinkItem>
+            </Styles.ListCont>
+        </Styles.PageCont>
     )
 }
 export default TickList
