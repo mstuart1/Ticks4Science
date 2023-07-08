@@ -73,8 +73,6 @@ const Styles = {
   `,
 };
 
-
-
 const Dashboard = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -271,6 +269,16 @@ const Dashboard = () => {
               padding="2rem"
             />
           </RenderIf>
+          <OutlineFloatButton
+            colors={{
+              text: ruTeal,
+              shadow: ruTeal,
+              bg: theme.colors.white,
+            }}
+            handleClick={() => navigate("/admin/pathos-list")}
+            text="Edit Pathogen List"
+            padding="2rem"
+          />
           <OutlineFloatButton
             colors={{
               text: ruTeal,
