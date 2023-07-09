@@ -74,6 +74,7 @@ exports.uploadPhoto = async (req, res, next) => {
   }
 
 }
+// get submission by id
 exports.getProgress = async (req, res, next) => {
   console.log(`@@@@---getting progress of ${req.params.id}---@@@@`);
   try {
@@ -88,7 +89,8 @@ exports.getProgress = async (req, res, next) => {
         {
           model: db.ticks,
           as: 'specimen',
-          attributes: ['id', 'scientific', 'common']
+          attributes: ['id', 'scientific', 'common'],
+          include: db.pathogen
         },
         {
           model: db.users,
@@ -293,7 +295,7 @@ exports.updateSubm = async (req, res, next) => {
     if (updatedTick === null) {
       throw new Error(`tick ${id} not found`)
     }
-    return res.json({ data: updatedTick })
+    return res.json({ updatedTick })
   } catch (err) {
     // console.log(err.message)
     next(err)
