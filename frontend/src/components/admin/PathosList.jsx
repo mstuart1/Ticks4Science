@@ -2,7 +2,7 @@ import useAxios from "../../tools/useAxios"
 import PathogenDataService from "../../services/pathogens"
 import styled from "styled-components"
 import { theme } from "../../theme"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { BasicPage } from "../GeneralStyles"
 
 const Styles = {
@@ -44,11 +44,22 @@ const PathosList = () => {
     const { isLoading, isError, data } = useAxios(PathogenDataService.getAll)
     const [editMode, setEditMode] = useState(null)
     const [input, setInput] = useState({})
+    const [pathogens, setPathogens] = useState([])
 
-    const handleSave = () => {
-        // todo: create a way to update pathogens
-        // todo: add a column to the pathogen table for name
-        console.log('todo: create a way to update pathogens')
+    useEffect(() => {
+        if (data) {
+            setPathogens(data.foundData)
+        }
+    }, [data])
+
+    const handleSave = async (id) => {
+        console.log('input', input)
+        const response = await PathogenDataService.update(id, input)
+        console.log('response', response.data.foundData)
+        let freshPathos = pathogens.map(patho =>
+            patho.id === id ? patho = response.data.foundData : patho
+        )
+        setPathogens(freshPathos)
         setEditMode(null)
     }
 
@@ -65,7 +76,7 @@ const PathosList = () => {
 
     if (isLoading) return <div><h1>Loading...</h1></div>
     if (isError) return <div><h1>Error...</h1></div>
-    const { foundData: pathogens } = data ?? {}
+    // const { foundData: pathogens } = data ?? {}
 
     return (
         <div style={{ display: "flex", flexDirection: 'column', width: '80vw' }}>
@@ -82,7 +93,7 @@ const PathosList = () => {
                         <th>Pathogen Abbrv</th>
                         <th>Pathogen Name</th>
                         <th></th>
-                        <th></th>
+
                     </tr>
                 </thead>
                 <tbody>
@@ -94,13 +105,19 @@ const PathosList = () => {
 
                                 </Styles.InputDiv></td>
                                 : <td >{pathogen.pathogen}</td>}
-                            <td>{pathogen.name}</td>
+                            {editMode === pathogen.id
+                                ? <td><Styles.InputDiv>
+                                    <input type='text' name="name" value={input.name ?? pathogen.name} onChange={(e) => setInput({ ...input, name: e.target.value })} />
+
+                                </Styles.InputDiv></td>
+                                : <td >{pathogen.name}</td>}
+
                             {
                                 editMode === pathogen.id ?
-                                    <td style={{ backgroundColor: `#52A2A9` }} onClick={handleSave}>Save</td>
+                                    <td style={{ backgroundColor: `#52A2A9` }} onClick={() => handleSave(pathogen.id)}>Save</td>
                                     : <td onClick={() => setEditMode(pathogen.id)}>Edit</td>
                             }
-                            <td style={{ color: '#8E0D18' }} onClick={handleDelete}>Delete</td>
+
                         </tr>
                     ))}
                     <tr>
