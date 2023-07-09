@@ -15,7 +15,8 @@ module.exports = (sequelize, DataTypes) => {
   }
   submission_pathogen.init({
     submissionId: DataTypes.INTEGER,
-    pathogenId: DataTypes.INTEGER
+    pathogenId: DataTypes.INTEGER,
+    result: DataTypes.STRING,
   }, {
     sequelize,
     modelName: 'submission_pathogen',
