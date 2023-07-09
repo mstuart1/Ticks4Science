@@ -462,15 +462,19 @@ exports.updatePathos = async (req, res, next) => {
 
     await db.sequelize
       .transaction(async (t) => {
-        let createArr = pathogens.map(item => (
-          { submissionId: id, pathogenId: item.id, result: 'pending' }
-        ))
 
+        let foundSub = await Subm.findByPk(id, { include: db.pathogen }, { transaction: t })
+        let existing = foundSub.pathogens.map(item => item.id)
+        let createArr = pathogens
+          .filter(item => !existing.includes(item.id))
+          .map(item => (
+            { submissionId: id, pathogenId: item.id, result: 'pending' }
+          ))
         await Sub_Pathos.bulkCreate(createArr, { transaction: t })
-
-        updatedSub = await Subm.findByPk(id, { include: db.pathogen }, { transaction: t })
-
       });
+
+    // this has to be outside of the transaction to get the updated data
+    updatedSub = await Subm.findByPk(id, { include: db.pathogen })
 
     return res.json({ updatedSub })
   } catch (err) {
@@ -499,10 +503,11 @@ exports.updateResult = async (req, res, next) => {
         foundShip.result = result
         await foundShip.save({ transaction: t })
 
-        updatedSub = await Subm.findByPk(id, { include: db.pathogen }, { transaction: t })
+
 
       });
-    console.log(JSON.stringify(updatedSub.pathogens, null, 1))
+    updatedSub = await Subm.findByPk(id, { include: db.pathogen })
+    // console.log(JSON.stringify(updatedSub.pathogens, null, 1))
     return res.json({ updatedSub })
   } catch (err) {
     console.log(err.message)
