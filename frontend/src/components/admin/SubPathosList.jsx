@@ -2,8 +2,6 @@ import styled from "styled-components"
 import { theme } from "../../theme"
 import { useEffect, useState } from "react"
 import SubmissionDataService from "../../services/submission"
-import { useNavigate } from "react-router-dom"
-
 
 const Styles = {
     InputDiv: styled.div`
@@ -40,8 +38,7 @@ const Styles = {
 
 const SubPathosList = ({ sub }) => {
 
-    const navigate = useNavigate()
-
+    const [subData, setSubData] = useState(sub)
     const [tableData, setTableData] = useState([])
 
     useEffect(() => {
@@ -56,18 +53,29 @@ const SubPathosList = ({ sub }) => {
             } catch (err) { console.log(err) }
         }
 
-        if (!sub?.pathogens?.length) {
-            console.log('update', sub.specimen.pathogens)
-            updateSubPathos(sub.id, { pathogens: sub.specimen.pathogens })
-            //!! refreshing the page so that it pulls fresh data from the database, for some reason the result of the updated sub doesn't contain the updated pathogens array
-            navigate(0)
+        if (!subData?.pathogens?.length) {
+            console.log('update', subData.specimen.pathogens)
+            updateSubPathos(subData.id, { pathogens: subData.specimen.pathogens }).then(data => {
+                setSubData(data)
+                setTableData(data.pathogens)
+            })
         } else {
-            setTableData(sub.pathogens)
+            console.log('pathogens', sub)
+            setTableData(subData.pathogens)
         }
     }, [sub])
 
-    const handleResult = () => {
-        console.log('todo create a service route to handle the test results')
+    const handleResult = async ({ target: { name: pathogenId, value: result } }) => {
+        try {
+            let response = await SubmissionDataService.updateResult(sub.id, { pathogenId, result })
+            let { updatedSub } = response.data
+            console.log('response', updatedSub)
+            setSubData(updatedSub)
+            setTableData(updatedSub.pathogens)
+        } catch (err) {
+            console.log(err)
+        }
+
     }
 
 
@@ -91,7 +99,7 @@ const SubPathosList = ({ sub }) => {
     // if (isError) return <div><h1>Error retrieving tick...</h1></div>
     // const { foundData: pathogens } = pathosData ?? {}
 
-    console.log('sub', sub)
+    // console.log('sub', sub)
 
     return (
         <div style={{ display: "flex", flexDirection: 'column', width: '80vw' }}>
@@ -114,7 +122,7 @@ const SubPathosList = ({ sub }) => {
                             <td>{item.name}</td>
                             <td>{item.submission_pathogen.result}</td>
                             <td>
-                                <select onChange={handleResult}>
+                                <select defaultValue={item.submission_pathogen.result} name={item.id} onChange={(evt) => handleResult(evt)}>
                                     <option value="positive">Positive</option>
                                     <option value="negative">Negative</option>
                                     <option value="inconclusive">Inconclusive</option>
