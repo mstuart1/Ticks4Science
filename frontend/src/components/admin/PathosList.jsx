@@ -3,7 +3,6 @@ import PathogenDataService from "../../services/pathogens"
 import styled from "styled-components"
 import { theme } from "../../theme"
 import { useState } from "react"
-import { Link } from "react-router-dom"
 import { BasicPage } from "../GeneralStyles"
 
 const Styles = {
@@ -73,7 +72,7 @@ const PathosList = () => {
             <BasicPage.LinkButton.LinkSpec to={'/admin'}>
                 <BasicPage.HoverCard>
                     <BasicPage.LinkButton.CardSpecial>
-                        <span>Back to Dashboard</span>
+                        <span style={{ fontSize: '2rem' }}>Back to Dashboard</span>
                     </BasicPage.LinkButton.CardSpecial>
                 </BasicPage.HoverCard>
             </BasicPage.LinkButton.LinkSpec>
