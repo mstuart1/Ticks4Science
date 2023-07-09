@@ -11,7 +11,8 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   pathogen.init({
-    pathogen: DataTypes.STRING
+    pathogen: DataTypes.STRING,
+    name: DataTypes.STRING,
   }, {
     sequelize,
     modelName: 'pathogen',
