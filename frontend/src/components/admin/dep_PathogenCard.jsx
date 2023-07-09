@@ -33,6 +33,7 @@ const PathogenCard = ({ message = 'select all that tested positive, you must hit
     let { foundData: pathogens } = data
 
     // todo add the list of current tick_Pathogen records to populate the checked boxes
+    console.log('tick', tick.pathogens)
 
     const handleSave = (evt) => {
         evt.preventDefault()
@@ -43,6 +44,7 @@ const PathogenCard = ({ message = 'select all that tested positive, you must hit
         handleChange(values)
     }
 
+    // todo because of the way the checked attribute works, we need to change this to update the db on check change instead of all at once in bulk.
     let pathogenElems =
         pathogens?.length > 0 &&
         pathogens?.map((patho) => (
@@ -54,8 +56,8 @@ const PathogenCard = ({ message = 'select all that tested positive, you must hit
                     value={patho.id}
                     style={{ margin: "1rem" }}
 
-                // checked={checkedPathogens.length && (checkedPathogens.some((value) => value.id === patho.id) || "")}
-                // onChange={handleChange}
+                    checked={tick.pathogens.some((value) => value.id === patho.id) || ""}
+
                 />
                 <label htmlFor={patho.pathogen}>{patho.pathogen}</label>
             </Styles.PathosCont>
