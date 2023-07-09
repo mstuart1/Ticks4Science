@@ -8,6 +8,9 @@ class PathogenDataService {
     getAll() {
         return http.get(`/pathogen`)
     }
+    update(id, data) {
+        return http.put(`/pathogen/${id}`, data)
+    }
 }
 
 export default new PathogenDataService();
