@@ -47,7 +47,7 @@ const Styles = {
     `,
   ButtonDiv: styled.div`
       cursor: pointer;
-      display: ${({display}) => display ? "inherit" : 'none'}
+      display: ${({ display }) => display ? "inherit" : 'none'}
       `,
   ButtonText: styled.span`
       font-weight: bold;
@@ -57,7 +57,7 @@ const Styles = {
       display: flex;
       justify-content: space-between;
       `,
-      ButtonPlaceholder: styled.div`
+  ButtonPlaceholder: styled.div`
       display: inline-block;
       width: 33% !important;
       `,
@@ -82,7 +82,7 @@ const AllSubs = () => {
     }
 
     getData(token, page, limit, filter).then(response => {
-      // console.log(response.data.record)
+      // console.log('allSubs', response.data)
       setData(response.data.record)
 
     })
@@ -105,7 +105,7 @@ const AllSubs = () => {
 
   const createCardElems = data => {
 
-    let cards = data.map(sub => (
+    let cards = data?.map(sub => (
       <SubCard item={sub} key={sub.id} />
     ))
     return cards
@@ -121,13 +121,13 @@ const AllSubs = () => {
 
         <Styles.ButtonCont>
           <Styles.ButtonPlaceholder className='back'>
-          <PageButton handleClick={() => handlePageClick(-1)} text='Prev Page' display={page > 0} />
+            <PageButton handleClick={() => handlePageClick(-1)} text='Prev Page' display={page > 0} />
           </Styles.ButtonPlaceholder>
           <Styles.ButtonPlaceholder className='center'>
-          <InternalLinkFloatButton padding="1rem 2rem" text='Back to Dashboard' to='/admin' />
+            <InternalLinkFloatButton padding="1rem 2rem" text='Back to Dashboard' to='/admin' />
           </Styles.ButtonPlaceholder>
           <Styles.ButtonPlaceholder className='fwd'>
-          <PageButton handleClick={() => handlePageClick(1)} text='Next Page' display={page + 1 < limitMax / limit} />
+            <PageButton handleClick={() => handlePageClick(1)} text='Next Page' display={page + 1 < limitMax / limit} />
           </Styles.ButtonPlaceholder>
         </Styles.ButtonCont>
         <Styles.WaitingGroup>
