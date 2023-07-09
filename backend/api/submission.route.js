@@ -15,6 +15,7 @@ module.exports = (app) => {
     .post("/", SubmCtl.createSubm)
     .post("/photos/:id", upload.array('photos', 2), SubmCtl.uploadPhoto)
     .put('/:id/pathos', SubmCtl.updatePathos)
+    .put('/:id/result', SubmCtl.updateResult)
     .put('/:id', SubmCtl.updateSubm)
     .delete('/:id', SubmCtl.deleteSub)
 

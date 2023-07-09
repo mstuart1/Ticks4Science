@@ -453,44 +453,57 @@ exports.getDupes = async (req, res, next) => {
 }
 exports.updatePathos = async (req, res, next) => {
   console.log(`@@@@---updating submission pathogens---@@@@`);
-  console.log(JSON.stringify(req.body, null, 1))
+  // console.log(JSON.stringify(req.body, null, 1))
   console.log(req.params)
   try {
     let updatedSub
-    let incomingInfo = req.body
+    let { pathogens } = req.body
     let { id } = req.params
 
     await db.sequelize
       .transaction(async (t) => {
-        let foundSub = await Subm.findOne({
-          where: {
-            id,
-          },
-        }, { transaction: t })
-
-        let createArr = incomingInfo.map(item => (
-          { submissionId: id, pathogenId: item.id }
+        let createArr = pathogens.map(item => (
+          { submissionId: id, pathogenId: item.id, result: 'pending' }
         ))
-        console.log('@@@@@ createArr', createArr)
 
         await Sub_Pathos.bulkCreate(createArr, { transaction: t })
 
-
-        // let createArr = freshPathos.map(item => {
-        //   return { tickId: id, pathogenId: item }
-        // })
-
-        // await TickPathos.bulkCreate(
-        //   createArr,
-        //   { transaction: t }
-        // )
-
-
-        updatedTick = await Tick.findOne({ where: { id }, include: { model: db.pathogen } }, { transaction: t })
+        updatedSub = await Subm.findByPk(id, { include: db.pathogen }, { transaction: t })
 
       });
-    // console.log('@@@@@@@@@@@@@@', JSON.stringify(updatedTick, null, 1))
-    return res.json({ updatedTick })
+
+    return res.json({ updatedSub })
+  } catch (err) {
+    console.log(err.message)
+    next(err)
+  }
+
+}
+exports.updateResult = async (req, res, next) => {
+  console.log(`@@@@---updating submission pathogens---@@@@`);
+  // console.log(JSON.stringify(req.body, null, 1))
+  console.log(req.params)
+  try {
+    let updatedSub
+    let { pathogenId, result } = req.body
+    let { id } = req.params
+
+    await db.sequelize
+      .transaction(async (t) => {
+        const foundShip = await Sub_Pathos.findOne({
+          where: {
+            submissionId: id,
+            pathogenId,
+          }
+        }, { transaction: t })
+        foundShip.result = result
+        await foundShip.save({ transaction: t })
+
+        updatedSub = await Subm.findByPk(id, { include: db.pathogen }, { transaction: t })
+
+      });
+    console.log(JSON.stringify(updatedSub.pathogens, null, 1))
+    return res.json({ updatedSub })
   } catch (err) {
     console.log(err.message)
     next(err)
