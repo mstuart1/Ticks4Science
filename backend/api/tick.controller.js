@@ -8,7 +8,13 @@ exports.getTick = async (req, res, next) => {
   console.log(`@@@@---getting tick id ${req.params.id}---@@@@`);
   try {
     let { id } = req.params
-    let foundRecord = await Tick.findByPk(id)
+    let foundRecord
+    await db.sequelize
+      .transaction(async (t) => {
+        foundRecord = await Tick.findByPk(id, {
+          include: { model: db.pathogen }
+        }, { transaction: t })
+      })
 
     res.json({ foundRecord })
 
