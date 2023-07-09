@@ -56,11 +56,12 @@ class SubmissionDataService {
             }
         })
     }
-    updatePathos(subId, pathogenId) {
-        /** this is going to send one id, if that id is already in the list, 
-         * it will remove it, if it is not in the list, it will add it
-         */
-        return http.put(`/submission/${subId}/pathos`, pathogenId)
+    updatePathos(subId, pathogens) {
+        // this is going to send multiple pathogens at once
+        return http.put(`/submission/${subId}/pathos`, pathogens)
+    }
+    updateResult(subId, result) {
+        return http.put(`/submission/${subId}/result`, result)
     }
 
 }
