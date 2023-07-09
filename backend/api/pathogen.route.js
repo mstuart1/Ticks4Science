@@ -7,6 +7,7 @@ module.exports = (app) => {
     //get all pathogens
     .get("/", PathogenCtl.getAll)
     .put("/:id", PathogenCtl.update)
+    .post("/", PathogenCtl.create)
 
   app.use("/pathogen", router);
 };

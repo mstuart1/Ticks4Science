@@ -41,3 +41,20 @@ exports.update = async (req, res, next) => {
     next(err)
   }
 }
+
+// create one pathogen
+exports.create = async (req, res, next) => {
+  console.log(`@@@@---create pathogen---@@@@`, JSON.stringify(req.body));
+
+  try {
+    let foundData;
+    let incomingInfo = req.body
+    await db.sequelize.transaction(async (t) => {
+      foundData = await Pathogen.create(incomingInfo, { transaction: t })
+    })
+
+    return res.json({ foundData })
+  } catch (err) {
+    next(err)
+  }
+}

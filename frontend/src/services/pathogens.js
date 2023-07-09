@@ -11,6 +11,9 @@ class PathogenDataService {
     update(id, data) {
         return http.put(`/pathogen/${id}`, data)
     }
+    create(data) {
+        return http.post(`/pathogen`, data)
+    }
 }
 
 export default new PathogenDataService();

@@ -45,6 +45,7 @@ const PathosList = () => {
     const [editMode, setEditMode] = useState(null)
     const [input, setInput] = useState({})
     const [pathogens, setPathogens] = useState([])
+    const [addMode, setAddMode] = useState(false)
 
     useEffect(() => {
         if (data) {
@@ -53,9 +54,9 @@ const PathosList = () => {
     }, [data])
 
     const handleSave = async (id) => {
-        console.log('input', input)
+        // console.log('input', input)
         const response = await PathogenDataService.update(id, input)
-        console.log('response', response.data.foundData)
+        // console.log('response', response.data.foundData)
         let freshPathos = pathogens.map(patho =>
             patho.id === id ? patho = response.data.foundData : patho
         )
@@ -63,16 +64,13 @@ const PathosList = () => {
         setEditMode(null)
     }
 
-    const handleAdd = () => {
-        //todo: create a way to add pathogens
-        console.log('todo: create a way to add pathogens')
+    const handleAdd = async () => {
+        const response = await PathogenDataService.create(input)
+        // console.log('response', response.data.foundData)
+        setPathogens([...pathogens, response.data.foundData])
+        setAddMode(false)
     }
 
-    const handleDelete = () => {
-        // todo: create a way to delete pathogens
-        // todo: show a modal to confirm delete
-        console.log('todo: create a way to delete pathogens')
-    }
 
     if (isLoading) return <div><h1>Loading...</h1></div>
     if (isError) return <div><h1>Error...</h1></div>
@@ -120,13 +118,29 @@ const PathosList = () => {
 
                         </tr>
                     ))}
-                    <tr>
-                        <td colSpan="4" onClick={handleAdd}>Add Pathogen</td>
+                    <tr style={{ backgroundColor: addMode && `#F5D36A` }}>
+                        {
+                            addMode ?
+                                <>
+                                    <td>
+                                        <Styles.InputDiv>
+                                            <input type='text' placeholder='abbreviation' name="pathogen" value={input.pathogen} onChange={(e) => setInput({ ...input, pathogen: e.target.value })} />
+                                        </Styles.InputDiv>
+                                    </td>
+                                    <td>
+                                        <Styles.InputDiv>
+                                            <input type='text' placeholder='name' name="name" value={input.name} onChange={(e) => setInput({ ...input, name: e.target.value })} />
+                                        </Styles.InputDiv>
+                                    </td>
+                                    <td style={{ backgroundColor: `#52A2A9` }} onClick={handleAdd}>Save</td>
+                                </>
+                                : <td colSpan="4" onClick={() => setAddMode(true)}>Add Pathogen</td>
+                        }
 
                     </tr>
                 </tbody>
             </Styles.Table >
-        </div>
+        </div >
     )
 }
 export default PathosList
