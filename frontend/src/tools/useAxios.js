@@ -14,7 +14,7 @@ const useAxios = (dataService, info) => {
                     setIsLoading(false);
                     return;
                 }
-                setData(resp.data.data);
+                setData(resp.data);
             } catch (error) {
                 setIsError(true);
                 console.log(error);
