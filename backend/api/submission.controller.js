@@ -1,9 +1,7 @@
-const { DataTypes } = require("sequelize");
-const { sequelize } = require("../models");
 const db = require("../models");
 const Op = db.Sequelize.Op;
 const Subm = db.submission;
-const Pathogen = db.pathogen;
+
 
 exports.createSubm = async (req, res, next) => {
   console.log(`@@@@---receiving form from arcgis or website---@@@@`);
@@ -240,26 +238,10 @@ exports.updateSubm = async (req, res, next) => {
   try {
     let { id } = req.params
     let data = req.body
-    let pathosOp = data.operation
-    let freshPathogens = [data.pathogens]
     let updatedTick;
 
     await db.sequelize
       .transaction(async (t) => {
-        if (freshPathogens && freshPathogens.length > 0 && pathosOp === 'add') {
-          const toBeUpdated = await Subm.findByPk(id, {
-            include: { model: db.pathogen }
-          }, { transaction: t })
-          // replace previous with updated list of pathogens
-          await toBeUpdated.addPathogens(freshPathogens) // this does not work if you include it in the transactions, the pathogens write but the update times out no matter how long you run it.
-        }
-        if (freshPathogens && freshPathogens.length > 0 && pathosOp === 'remove') {
-          const toBeUpdated = await Subm.findByPk(id, {
-            include: { model: db.pathogen }
-          }, { transaction: t })
-          // replace previous with updated list of pathogens
-          await toBeUpdated.removePathogens(freshPathogens) // this does not work if you include it in the transactions, the pathogens write but the update times out no matter how long you run it.
-        }
 
         await Subm.update(data, { paranoid: false, where: { id } }, { transaction: t })
         // console.log('updated', updated)
