@@ -1,6 +1,7 @@
 const db = require("../models");
 const Op = db.Sequelize.Op;
 const Subm = db.submission;
+const Sub_Pathos = db.submission_pathogen;
 
 
 exports.createSubm = async (req, res, next) => {
@@ -449,4 +450,50 @@ exports.getDupes = async (req, res, next) => {
     console.log(err.message)
     next(err)
   }
+}
+exports.updatePathos = async (req, res, next) => {
+  console.log(`@@@@---updating submission pathogens---@@@@`);
+  console.log(JSON.stringify(req.body, null, 1))
+  console.log(req.params)
+  try {
+    let updatedSub
+    let incomingInfo = req.body
+    let { id } = req.params
+
+    await db.sequelize
+      .transaction(async (t) => {
+        let foundSub = await Subm.findOne({
+          where: {
+            id,
+          },
+        }, { transaction: t })
+
+        let createArr = incomingInfo.map(item => (
+          { submissionId: id, pathogenId: item.id }
+        ))
+        console.log('@@@@@ createArr', createArr)
+
+        await Sub_Pathos.bulkCreate(createArr, { transaction: t })
+
+
+        // let createArr = freshPathos.map(item => {
+        //   return { tickId: id, pathogenId: item }
+        // })
+
+        // await TickPathos.bulkCreate(
+        //   createArr,
+        //   { transaction: t }
+        // )
+
+
+        updatedTick = await Tick.findOne({ where: { id }, include: { model: db.pathogen } }, { transaction: t })
+
+      });
+    // console.log('@@@@@@@@@@@@@@', JSON.stringify(updatedTick, null, 1))
+    return res.json({ updatedTick })
+  } catch (err) {
+    console.log(err.message)
+    next(err)
+  }
+
 }
