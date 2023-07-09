@@ -80,8 +80,8 @@ const Ticks = () => {
             await TickDataService.getAllTicks();
 
         getData().then(response => {
-            //   console.log(response.data.data)
-            setData(response.data.data)
+            console.log(response.data)
+            setData(response.data.allTicks)
         })
     }, [])
 
