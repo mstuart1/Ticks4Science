@@ -12,7 +12,7 @@ describe("Tick", () => {
     // test GET @@@@---update tick species pathogens---@@@@
   describe("PUT /tick/:id/pathos", () => {
     it("should add tick pathogen relationship", (done) => {
-      let testArray = ["1", "3", "4"]
+      let test = 7
       chai
         .request(server)
         .put(`/tick/1/pathos`)
