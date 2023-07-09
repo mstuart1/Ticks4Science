@@ -98,7 +98,6 @@ exports.updatePathos = async (req, res, next) => {
   console.log(JSON.stringify(req.body, null, 1))
   console.log(req.params)
   try {
-    // console.log(JSON.stringify(req.body, null, 1))
     let updatedTick
     let { pathogenId } = req.body
     let { id } = req.params
@@ -112,19 +111,24 @@ exports.updatePathos = async (req, res, next) => {
           include: { model: db.pathogen }
         }, { transaction: t })
 
-        // todo this needs to be tested once data exists
         let oldPathos = foundTick.pathogens.map(item => item.id)
-        let freshPathos = incomingInfo.filter(item => !oldPathos.includes(item))
+        if (oldPathos.includes(pathogenId)) {
+          console.log('@@@@@@@@@@   already in there')
+          await foundTick.removePathogen(pathogenId, { transaction: t })
 
-        let createArr = freshPathos.map(item => {
-          return { tickId: id, pathogenId: item }
-        })
+        } else {
+          console.log('@@@@@@@@@@   not in there')
+          await foundTick.addPathogen(pathogenId, { transaction: t })
+        }
 
-        console.log('@@@@@@@@@@@@@@@@@@', createArr)
-        await TickPathos.bulkCreate(
-          createArr,
-          { transaction: t }
-        )
+        // let createArr = freshPathos.map(item => {
+        //   return { tickId: id, pathogenId: item }
+        // })
+
+        // await TickPathos.bulkCreate(
+        //   createArr,
+        //   { transaction: t }
+        // )
 
 
         updatedTick = await Tick.findOne({ where: { id }, include: { model: db.pathogen } }, { transaction: t })
