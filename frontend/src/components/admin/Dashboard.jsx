@@ -286,7 +286,7 @@ const Dashboard = () => {
               bg: theme.colors.white,
             }}
             handleClick={() => navigate("/admin/tickList")}
-            text="Edit Tick Pathogens"
+            text="Edit Tick Tests"
             padding="2rem"
           />
         </BasicPage.CardContainer>
