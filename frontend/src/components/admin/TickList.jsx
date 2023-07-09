@@ -2,6 +2,7 @@ import useAxios from "../../tools/useAxios"
 import TickDataService from "../../services/ticks"
 import { Link } from "react-router-dom"
 import styled from 'styled-components'
+import { BasicPage } from "../GeneralStyles"
 
 const Styles = {
     PageCont: styled.div`
@@ -38,16 +39,28 @@ const TickList = () => {
 
     return (
         <Styles.PageCont>
+            <BasicPage.LinkButton.LinkSpec to={'/admin'}>
+                <BasicPage.HoverCard>
+                    <BasicPage.LinkButton.CardSpecial>
+                        <span style={{ fontSize: '2rem' }}>Back to Dashboard</span>
+                    </BasicPage.LinkButton.CardSpecial>
+                </BasicPage.HoverCard>
+            </BasicPage.LinkButton.LinkSpec>
             <h1> Select the Tick Species</h1>
             <Styles.ListCont>
-                <Styles.LinkItem style={{ fontWeight: '400' }} to='/admin'>Back to Dashboard</Styles.LinkItem>
                 {allTicks?.map(item => (
                     <Styles.LinkItem to={`/admin/edit-tick-pathos/${item.id}`} key={item.id}>
                         {item.scientific} - {item.common}
                     </Styles.LinkItem>
                 ))}
-                <Styles.LinkItem style={{ fontWeight: '400' }} to='/admin'>Back to Dashboard</Styles.LinkItem>
             </Styles.ListCont>
+            <BasicPage.LinkButton.LinkSpec to={'/admin'}>
+                <BasicPage.HoverCard>
+                    <BasicPage.LinkButton.CardSpecial>
+                        <span style={{ fontSize: '2rem' }}>Back to Dashboard</span>
+                    </BasicPage.LinkButton.CardSpecial>
+                </BasicPage.HoverCard>
+            </BasicPage.LinkButton.LinkSpec>
         </Styles.PageCont>
     )
 }
