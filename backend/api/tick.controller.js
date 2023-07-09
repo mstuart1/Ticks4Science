@@ -100,9 +100,7 @@ exports.updatePathos = async (req, res, next) => {
   try {
     // console.log(JSON.stringify(req.body, null, 1))
     let updatedTick
-    let incomingInfo = req.body.map(item => parseInt(item));
-
-
+    let { pathogenId } = req.body
     let { id } = req.params
 
     await db.sequelize
