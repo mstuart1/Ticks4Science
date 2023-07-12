@@ -43,6 +43,7 @@ const SubPathosList = ({ sub }) => {
 
     useEffect(() => {
 
+        // ** create function to update pathos in sub
         const updateSubPathos = async (subId, pathogens) => {
             try {
                 let response = await SubmissionDataService.updatePathos(subId, pathogens)
@@ -53,14 +54,15 @@ const SubPathosList = ({ sub }) => {
             } catch (err) { console.log(err) }
         }
 
-        if (!subData?.pathogens?.length) {
-            console.log('update', subData.specimen.pathogens)
+        // ** if subData.pathogens is empty, update it with subData.specimen.pathogens
+        if (!subData?.pathogens?.length !== subData?.specimen?.pathogens?.length) {
+            console.log('update', subData.specimen.pathogens.length, subData.specimen.pathogens.length)
             updateSubPathos(subData.id, { pathogens: subData.specimen.pathogens }).then(data => {
                 setSubData(data)
                 setTableData(data.pathogens)
             })
         } else {
-            console.log('pathogens', sub)
+            console.log('pathogens', subData.specimen.pathogens.length, subData.specimen.pathogens.length)
             setTableData(subData.pathogens)
         }
     }, [sub])
