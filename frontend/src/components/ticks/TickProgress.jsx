@@ -213,11 +213,11 @@ const TickProgress = () => {
                     {data.lifeStage && <p>
                       Your tick was at the life stage {data.lifeStage} and was {!data.engorged && 'not'} engorged.
                     </p>}
-                    {console.log('data.specimen', data)}
+                    {console.log('data.specimen', data.specimen)}
                     {/* // Todo once the team updates the names of all of the pathogens, can remove the abbreviations  */}
                     Your tick will be tested for the following pathogens.  The results will be posted here when they are available.
                     <ul>
-                      {data.pathogens.map(pathogen => (
+                      {data.specimen.pathogens.map(pathogen => (
                         <li key={pathogen.id}>{pathogen.name} - {pathogen.pathogen} - {pathogen.submission_pathogen.result}</li>
                       ))
                       }
