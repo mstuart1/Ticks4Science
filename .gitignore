@@ -6,3 +6,4 @@ backend/production.env
 backend/_.env
 backend/_development.env
 backend/_production.env
+backend/.env.local
