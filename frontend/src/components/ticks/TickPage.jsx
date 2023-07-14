@@ -113,7 +113,7 @@ const TickPage = () => {
 
   let refImgElems = data.refImgArray?.images.length > 0 && data.refImgArray.images.map((img, i) => {
 
-    console.log('public url', process.env.PUBLIC_URL)
+    // console.log('public url', process.env.PUBLIC_URL)
     if (i > 0) {
 
       if (img.includes("http")) {
