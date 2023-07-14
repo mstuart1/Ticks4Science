@@ -80,19 +80,22 @@ const Ticks = () => {
             await TickDataService.getAllTicks();
 
         getData().then(response => {
-            // console.log(response.data)
-            setData(response.data.allTicks)
+            console.log('ticks response', response.data)
+            setData(response.data.data)
         })
     }, [])
 
-    // console.log(data)
+    if (!data) {
+        return <div>Loading...</div>
+    }
+
 
     let peopleTicks = ['americanum', 'variabilis', 'scapularis']
     let invasiveTicks = ['longicornis']
     let otherTicks = ['kelleyi', 'albipictus', 'leporispalustris', 'brunneus', 'cookei', 'dentatus', 'texanus', 'marxi', 'texanus', 'sanguineus']
     let newTick = ['maculatum']
 
-    let peopleCardElements = data?.map(tick => {
+    let peopleCardElements = data.map(tick => {
         if (peopleTicks.some(item => tick.scientific?.includes(item))) {
             tick.peopleTick = true;
             return <TickCard key={tick.id} tick={tick} />

@@ -99,8 +99,8 @@ const TickPage = () => {
       await TickDataService.getTick(id);
 
     getData().then(response => {
-
-      let freshData = response.data.foundRecord
+      console.log('tick page response', response.data)
+      let freshData = response.data.record
       if (typeof freshData.refImgArray === 'string') {
 
         let newImgArray = JSON.parse(freshData.refImgArray);
