@@ -4,8 +4,7 @@ import { BasicPage } from '../GeneralStyles'
 import TickDataService from '../../services/ticks'
 import OutlineCard from '../ui/outlineCard/OutlineCard'
 import styled from 'styled-components'
-// import { FaStar } from 'react-icons/fa'
-// import { theme } from '../../theme'
+
 
 const Styles = {
   CardCont: styled.div`
@@ -100,65 +99,57 @@ const TickPage = () => {
       await TickDataService.getTick(id);
 
     getData().then(response => {
-      
-      let freshData = response.data.record
- if (typeof freshData.refImgArray === 'string'){
-      
-      let newImgArray = JSON.parse(freshData.refImgArray);
-      freshData.refImgArray = newImgArray;
-    }
+
+      let freshData = response.data.foundRecord
+      if (typeof freshData.refImgArray === 'string') {
+
+        let newImgArray = JSON.parse(freshData.refImgArray);
+        freshData.refImgArray = newImgArray;
+      }
       setData(freshData)
     })
-    
+
   }, [id])
 
-  // why is there an empty useEffect here?
-  // useEffect(() => {
-     
-  // }, [])
-
-  // data.refImgArray && console.log(Object.keys(data.refImgArray))
-  
-  
-  let refImgElems = data.refImgArray?.images.length > 0 && data.refImgArray.images.map((img, i) =>{ 
+  let refImgElems = data.refImgArray?.images.length > 0 && data.refImgArray.images.map((img, i) => {
 
     if (i > 0) {
-      
-      if (img.includes("http")){
+
+      if (img.includes("http")) {
         return (
-          <img src={`${img}`} alt='ticks' style={{ maxWidth: '350px', maxHeight: '250px', borderRadius: '5px', margin: '0.5rem' }} key={i}/>
+          <img src={`${img}`} alt='ticks' style={{ maxWidth: '350px', maxHeight: '250px', borderRadius: '5px', margin: '0.5rem' }} key={i} />
         )
       } else {
         return (
-          <img src={process.env.PUBLIC_URL + img} alt='ticks' style={{ maxWidth: '350px', maxHeight: '250px', borderRadius: '5px', margin: '0.5rem' }} key={i}/>
+          <img src={process.env.PUBLIC_URL + img} alt='ticks' style={{ maxWidth: '350px', maxHeight: '250px', borderRadius: '5px', margin: '0.5rem' }} key={i} />
         )
       }
-      
+
     }
-    
-})
-let researchElems
-if (data.researchLinks){
-  let researchLinks = data.researchLinks && JSON.parse(data.researchLinks)
-  researchElems = researchLinks.research.map(item => (
-    <li><BasicPage.OutieLink href={item.path} target='_blank' rel='noreferrer'><span>{item.text}</span></BasicPage.OutieLink></li>
-    
-  ))
-}
+
+  })
+  let researchElems
+  if (data.researchLinks) {
+    let researchLinks = data.researchLinks && JSON.parse(data.researchLinks)
+    researchElems = researchLinks.research.map(item => (
+      <li><BasicPage.OutieLink href={item.path} target='_blank' rel='noreferrer'><span>{item.text}</span></BasicPage.OutieLink></li>
+
+    ))
+  }
 
   return (
     <BasicPage.Text>
       <Styles.CardCont>
         <Styles.TopCont>
           <Styles.TopImgCont>
-            
+
             <img src={data.featureImgUrl?.includes("http") ? data.featureImgUrl : process.env.PUBLIC_URL + data.featureImgUrl} alt='tick' style={{ maxWidth: '40vw' }} />
           </Styles.TopImgCont>
           <Styles.TopInfoCont>
             <Styles.Section>
-              <h2>Common Name:<br/> {data.common}</h2>
-              </Styles.Section><Styles.Section>
-              <h2>Scientific Name:<br/> <i>{data.scientific}</i></h2>
+              <h2>Common Name:<br /> {data.common}</h2>
+            </Styles.Section><Styles.Section>
+              <h2>Scientific Name:<br /> <i>{data.scientific}</i></h2>
             </Styles.Section>
             <Styles.Section>
               <h3>{data.humanHosts && '⭐️ A frequent human biter'}</h3>
@@ -184,12 +175,12 @@ if (data.researchLinks){
           {refImgElems}
         </Styles.MiddleCont>
         {data.researchLinks && (
-           <OutlineCard  margin='1rem'>
-           <h3>Research Links</h3>
-           <ul style={{padding:'1rem'}}>
-           {researchElems}
-           </ul>
-         </OutlineCard>
+          <OutlineCard margin='1rem'>
+            <h3>Research Links</h3>
+            <ul style={{ padding: '1rem' }}>
+              {researchElems}
+            </ul>
+          </OutlineCard>
         )}
         <OutlineCard>
           <h3>A Reminder About Engorged Ticks</h3>
