@@ -80,19 +80,19 @@ const Ticks = () => {
             await TickDataService.getAllTicks();
 
         getData().then(response => {
-            //   console.log(response.data.data)
-            setData(response.data.data)
+            // console.log(response.data)
+            setData(response.data.allTicks)
         })
     }, [])
 
-    //   console.log(data)
+    // console.log(data)
 
     let peopleTicks = ['americanum', 'variabilis', 'scapularis']
     let invasiveTicks = ['longicornis']
     let otherTicks = ['kelleyi', 'albipictus', 'leporispalustris', 'brunneus', 'cookei', 'dentatus', 'texanus', 'marxi', 'texanus', 'sanguineus']
     let newTick = ['maculatum']
 
-    let peopleCardElements = data.map(tick => {
+    let peopleCardElements = data?.map(tick => {
         if (peopleTicks.some(item => tick.scientific?.includes(item))) {
             tick.peopleTick = true;
             return <TickCard key={tick.id} tick={tick} />
@@ -102,7 +102,7 @@ const Ticks = () => {
         }
     })
 
-    let invTickElem = data.map(tick => {
+    let invTickElem = data?.map(tick => {
         if (invasiveTicks.some(item => tick.scientific?.includes(item))) {
             tick.peopleTick = true;
             return <TickCard key={tick.id} tick={tick} />
@@ -111,7 +111,7 @@ const Ticks = () => {
         }
     })
 
-    let otherTickElem = data.map(tick => {
+    let otherTickElem = data?.map(tick => {
         if (otherTicks.some(item => tick.scientific?.includes(item))) {
             if (tick.common?.toLowerCase().includes('brown dog tick') || tick.common?.toLowerCase().includes('groundhog tick')) {
                 tick.peopleTick = true;
@@ -127,7 +127,7 @@ const Ticks = () => {
     })
 
 
-    let newTickElem = data.map(tick => {
+    let newTickElem = data?.map(tick => {
         if (newTick.some(item => tick.scientific?.includes(item))) {
 
             tick.peopleTick = true;
@@ -172,24 +172,12 @@ const Ticks = () => {
 
                     <HorizScrollCont cardArray={invTickElem} />
 
-
-                    {/* <BasicPage.SectionTitle>Other Ticks of New Jersey</BasicPage.SectionTitle>
-            <HorizScrollCont cardArray={briefTickElements}/> */}
                     <BasicPage.SectionTitle>
                         Here we provide a published scientific paper on the ticks of New Jersey by Rutgers scientists!
                     </BasicPage.SectionTitle>
 
                     <p><TickReportLink /></p>
                 </Styles.CenterCol>
-
-                {/* <BasicPage.ImageCont style={{flex: 1}}>
-        <figure>
-          <img src={'https://www.cdc.gov/ticks/images/gallery/Lifeseriesillustration.jpg?_=03668?noicon'} alt='ticks' />
-          <figcaption>Image provided by Andrea Egizi, PhD
-              </figcaption> 
-        </figure>
-      </BasicPage.ImageCont> */}
-
             </Styles.CenterCntr>
             <Styles.CenterCntr>
 
