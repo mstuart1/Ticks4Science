@@ -269,6 +269,8 @@ const Dashboard = () => {
               padding="2rem"
             />
           </RenderIf>
+          <RenderIf isTrue={user.editPathogens}>
+
           <OutlineFloatButton
             colors={{
               text: ruTeal,
@@ -289,6 +291,7 @@ const Dashboard = () => {
             text="Edit Tick Tests"
             padding="2rem"
           />
+          </RenderIf>
         </BasicPage.CardContainer>
         <Styles.BlockCont
           style={{
@@ -327,10 +330,6 @@ const Dashboard = () => {
             </OutlineCard>
             <UserMgt />
           </RenderIf>
-
-
-
-
           <EditUser />
         </Styles.BlockCont>
       </div>
