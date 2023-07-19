@@ -22,6 +22,7 @@ module.exports = (sequelize, DataTypes) => {
     resetToken: DataTypes.STRING,
     emailAlerts: DataTypes.BOOLEAN,
     editData: DataTypes.BOOLEAN,
+    editPathogens: DataTypes.BOOLEAN,
   }, {
     sequelize,
     modelName: 'users',
