@@ -118,6 +118,7 @@ const UserMgt = () => {
                     <th>Email Alerts</th>
                     <th>Manage Users</th>
                     <th>Edit Data</th>
+                    <th>Edit Pathogens</th>
                     <th></th>
                     <th></th>
                 </tr>
@@ -146,6 +147,9 @@ const UserMgt = () => {
                       </td>            
                       <td>
                       <input id={item.id} type='checkbox' name='editData' checked={item.editData || false} onChange={(evt) => handleChange(item.id, evt)} />
+                      </td> 
+                      <td>
+                      <input id={item.id} type='checkbox' name='editPathogens' checked={item.editPathogens || false} onChange={(evt) => handleChange(item.id, evt)} />
                       </td> 
                       <td>
                         <OutlineFloatButton handleClick={() => handleSave(item.id)} text='Save' padding='1rem' colors={{text: theme.colors.ruTeal, bg: theme.colors.ruTeal}}/>
