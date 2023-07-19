@@ -16,7 +16,7 @@ module.exports = {
     // logic for reverting the changes
     return queryInterface.removeColumn(
       'pathogen',
-      'result'
+      'name'
     );
   }
 }
