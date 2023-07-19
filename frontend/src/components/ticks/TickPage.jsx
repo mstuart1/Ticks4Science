@@ -4,8 +4,7 @@ import { BasicPage } from '../GeneralStyles'
 import TickDataService from '../../services/ticks'
 import OutlineCard from '../ui/outlineCard/OutlineCard'
 import styled from 'styled-components'
-// import { FaStar } from 'react-icons/fa'
-// import { theme } from '../../theme'
+
 
 const Styles = {
   CardCont: styled.div`
@@ -100,7 +99,7 @@ const TickPage = () => {
       await TickDataService.getTick(id);
 
     getData().then(response => {
-
+      // console.log('tick page response', response.data)
       let freshData = response.data.record
       if (typeof freshData.refImgArray === 'string') {
 
@@ -112,9 +111,9 @@ const TickPage = () => {
 
   }, [id])
 
-  //eslint-disable-next-line
   let refImgElems = data.refImgArray?.images.length > 0 && data.refImgArray.images.map((img, i) => {
 
+    // console.log('public url', process.env.PUBLIC_URL)
     if (i > 0) {
 
       if (img.includes("http")) {

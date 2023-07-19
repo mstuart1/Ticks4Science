@@ -3,7 +3,7 @@ import styled from 'styled-components'
 
 
 const Styles = {
-    ScrollingWrapper: styled.div`
+  ScrollingWrapper: styled.div`
     width: 70vw;
     display: flex;
     overflow-x: scroll;
@@ -19,20 +19,20 @@ const Styles = {
       
     }
     `,
-    CardContainer: styled.div`
+  CardContainer: styled.div`
     display: inline-block;
     `,
 }
 
-const HorizScrollCont = ({cardArray}) => {
+const HorizScrollCont = ({ cardArray = [] }) => {
 
-    let cardElements = cardArray.map((card, i) => (
-        <Styles.CardContainer key={i}>{card}</Styles.CardContainer>
-    ))
+  let cardElements = cardArray.map((card, i) => (
+    <Styles.CardContainer key={i}>{card}</Styles.CardContainer>
+  ))
 
   return (
     <Styles.ScrollingWrapper>
-        {cardElements}
+      {cardElements}
     </Styles.ScrollingWrapper>
   )
 }

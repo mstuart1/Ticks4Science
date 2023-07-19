@@ -73,7 +73,7 @@ const TickCard = ({ tick }) => {
                 </Styles.Content>
             </Styles.HoverCard>
         </Styles.Container>
-        // </a>
+        // </a >
     )
 }
 
