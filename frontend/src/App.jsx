@@ -77,8 +77,8 @@ const App = () => {
       <Styles.Wrapper>
         <ScrollToTop>
           <RutgersHeader />
-          
-           <NavbarComp />
+
+          <NavbarComp />
           <Styles.PageContainer>
             <Routes>
               <Route path='/' element={<About />} />
@@ -96,21 +96,22 @@ const App = () => {
               <Route path='/survey' element={<Survey />} />
               <Route path='/thanks' element={<ThankYou />} />
               <Route path='/missingId' element={<MissingId />} />
+              <Route path='/progress' element={<TickProgressInput buttonColors={{ text: theme.colors.ruTeal, bg: 'white', shadow: theme.colors.ruTeal }} />} />
               <Route path='/progress/:id' element={<TickProgress />} />
               <Route path="/admin/*" element={<AdminMgt />} />
-              <Route path='/reset/:token' element={<ResetPassword reset={true}/>} />
-              <Route path='/createAccount/:token' element={<ResetPassword create={true}/>} />
+              <Route path='/reset/:token' element={<ResetPassword reset={true} />} />
+              <Route path='/createAccount/:token' element={<ResetPassword create={true} />} />
               <Route path='/ticks/:id' element={<TickPage />} />
               <Route path='*' element={<About />} />
             </Routes>
 
-          </Styles.PageContainer> 
+          </Styles.PageContainer>
           <RutgersFooter />
         </ScrollToTop>
       </Styles.Wrapper>
     </ThemeProvider>
 
-)
+  )
 };
 
 export default App;

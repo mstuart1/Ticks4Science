@@ -4,7 +4,7 @@ import tickIntro from '../images/scap1.jpeg'
 import styled from "styled-components";
 import InternalLinkFloatButton from './ui/internalLinkFloatButton/InternalLinkFloatButton'
 import { theme } from '../theme'
-import logo from '../images/Logo2023.png'
+// import logo from '../images/Logo2023.png'
 import LearnMore from "./ui/learnMore/LearnMore";
 import OutlineFloatButton from "./ui/outlineFloatButton/OutlineFloatButton";
 import { useNavigate } from "react-router-dom";
@@ -99,7 +99,12 @@ const About = () => {
 
         <Styles.LeftAlignCont>
 
-          <Styles.Title>  <Styles.Logo> <img src={logo} alt='NJ ticks for science logo' /></Styles.Logo>
+          <Styles.Title>
+            {/* 
+            <Styles.Logo> 
+             <img src={logo} alt='NJ ticks for science logo' /> 
+            </Styles.Logo> 
+            */}
 
             {/* <BasicPage.Title> */}
             Welcome to NJ Ticks 4 Science!
