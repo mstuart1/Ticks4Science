@@ -26,6 +26,7 @@ import ResetPassword from './components/login/ResetPassword';
 import TickPage from './components/ticks/TickPage';
 import TickBlitz from './components/tickBlitz/TickBlitz';
 import BlitzSurvey from './components/tickBlitz/BlitzSurvey';
+import MissingId from './components/survey/MissingId';
 
 
 const Styles = {
@@ -94,7 +95,7 @@ const App = () => {
               <Route path='/preSurvey' element={<PreSurvey />} />
               <Route path='/survey' element={<Survey />} />
               <Route path='/thanks' element={<ThankYou />} />
-              <Route path='/progress' element={<TickProgressInput buttonColors={{text: theme.colors.ruTeal, bg: 'white', shadow: theme.colors.ruTeal}} />} />
+              <Route path='/missingId' element={<MissingId />} />
               <Route path='/progress/:id' element={<TickProgress />} />
               <Route path="/admin/*" element={<AdminMgt />} />
               <Route path='/reset/:token' element={<ResetPassword reset={true}/>} />
