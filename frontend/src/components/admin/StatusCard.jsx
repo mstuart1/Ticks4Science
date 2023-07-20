@@ -114,7 +114,7 @@ const StatusCard = ({ tick, updateSub, user, id }) => {
         getData().then((response) => {
             console.log('processTicks.getData', response.data)
 
-            setTickSpp(response.data.allTicks);
+            setTickSpp(response.data.data);
         });
     }, []);
 
