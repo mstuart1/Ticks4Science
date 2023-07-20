@@ -112,7 +112,7 @@ const StatusCard = ({ tick, updateSub, user, id }) => {
         let getData = async () => await TickDataService.getAllTicks();
 
         getData().then((response) => {
-            console.log('processTicks.getData', response.data.allTicks)
+            console.log('processTicks.getData', response.data)
 
             setTickSpp(response.data.allTicks);
         });
