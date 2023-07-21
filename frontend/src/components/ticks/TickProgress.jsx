@@ -218,7 +218,7 @@ const TickProgress = () => {
                     Your tick will be tested for the following pathogens.  The results will be posted here when they are available.
                     <ul>
                       {data?.pathogens?.map(pathogen => (
-                        <li key={pathogen.id}>{pathogen.name} - {pathogen.pathogen} - {pathogen.submission_pathogen?.result}</li>
+                        <li key={pathogen.id}><em>{pathogen.name}</em> - {pathogen.submission_pathogen?.result}</li>
                       ))
                       }
                     </ul>
