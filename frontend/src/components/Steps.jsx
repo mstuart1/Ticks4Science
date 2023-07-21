@@ -40,6 +40,11 @@ const StepStyles = {
       // flexWrap: wrap;
      }
     `,
+  CustImgCont: styled(BasicPage.ImageCont)`
+  @media screen and (max-width: ${({ theme }) => theme.mobile}) {
+    flex-wrap: wrap-reverse;
+  }
+  `,
 }
 
 const Steps = () => (
@@ -48,16 +53,9 @@ const Steps = () => (
     <BasicPage.Title>Join NJ Ticks 4 Science!</BasicPage.Title>
     {/* <div style={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap-reverse', justifyContent: 'center' }}> */}
     <StepStyles.CenterCntr>
-      <div>
-        <InternalLinkFloatButton width="30rem" colors={{ text: theme.colors.ruTeal, shadow: theme.colors.ruTeal }} to='/tickOrInsect' text='Are you sure it is a tick?' />
-        <InternalLinkFloatButton width="30rem" colors={{ text: theme.colors.ruTeal, shadow: theme.colors.ruTeal }} to='/photo' text='Learn to take tick pics' />
-      </div>
       <div >
-
         <p>Here's what to do:</p>
         <BasicPage.CardContainer >
-
-
           <InternalLinkFloatButton width="30rem" colors={{ text: theme.colors.ruTeal, shadow: theme.colors.ruTeal }} to='/preSurvey' text='Step 1 - Fill out the form and upload your pics' />
           <InternalLinkFloatButton width="30rem" colors={{ text: theme.colors.ruTeal, shadow: theme.colors.ruTeal }} to='/missingId' text='Step 2 - Write down tick identification number' />
           <InternalLinkFloatButton width="30rem" colors={{ text: theme.colors.ruTeal, shadow: theme.colors.ruTeal }} to='/progress' text='Step 3 - Check our website for a tick request (usually 24hrs or less)' />
@@ -66,13 +64,17 @@ const Steps = () => (
         </BasicPage.CardContainer>
       </div>
 
-      <BasicPage.ImageCont>
+      <StepStyles.CustImgCont>
         <figure>
           <img src={circle} alt='circle of ticks' />
           <figcaption>Multiple life stages of common ticks of New Jersey (photo credit Andrea Egizi, PhD).
           </figcaption>
         </figure>
-      </BasicPage.ImageCont>
+        <div>
+          <InternalLinkFloatButton width="30rem" colors={{ text: theme.colors.ruTeal, shadow: theme.colors.ruTeal }} to='/tickOrInsect' text='Are you sure it is a tick?' />
+          <InternalLinkFloatButton width="30rem" colors={{ text: theme.colors.ruTeal, shadow: theme.colors.ruTeal }} to='/photo' text='Learn to take tick pics' />
+        </div>
+      </StepStyles.CustImgCont>
     </StepStyles.CenterCntr>
     {/* </div> */}
   </BasicPage.Text>
