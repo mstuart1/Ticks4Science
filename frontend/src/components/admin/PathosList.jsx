@@ -62,6 +62,7 @@ const PathosList = () => {
         )
         setPathogens(freshPathos)
         setEditMode(null)
+        setInput({})
     }
 
     const handleAdd = async () => {
