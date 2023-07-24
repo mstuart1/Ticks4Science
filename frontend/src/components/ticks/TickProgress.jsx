@@ -87,7 +87,7 @@ const TickProgress = () => {
 
   }, [id])
 
-  console.log(data)
+
 
   return (Object.keys(data).length === 0
     ?
@@ -135,7 +135,6 @@ const TickProgress = () => {
                 {data.photoId && (
                   <p>Based on the photo, it looks like this is probably <BasicPage.InnieLink to={`/ticks/${data.photo.id}`}><span>{data.photo.common}</span></BasicPage.InnieLink>.</p>
                 )}
-                {/* {console.log(data.lifeStage.length)} */}
                 {data.engorged !== null && (
                   <p>It {data.engorged ? "appears" : 'does not appear'}  to be engorged.</p>
                 )}
@@ -213,12 +212,13 @@ const TickProgress = () => {
                     {data.lifeStage && <p>
                       Your tick was at the life stage {data.lifeStage} and was {!data.engorged && 'not'} engorged.
                     </p>}
-                    {console.log('data.specimen', data.pathogens[0])}
-                    {/* // Todo once the team updates the names of all of the pathogens, can remove the abbreviations  */}
+
                     Your tick will be tested for the following pathogens.  The results will be posted here when they are available.
                     <ul>
-                      {data?.pathogens?.map(pathogen => (
+                      {data?.pathogens.length ? data?.pathogens?.map(pathogen => (
                         <li key={pathogen.id}><em>{pathogen.name}</em> - {pathogen.submission_pathogen?.result}</li>
+                      )) : data?.specimen?.pathogens?.map(pathogen => (
+                        <li key={pathogen.id}><em>{pathogen.name}</em></li>
                       ))
                       }
                     </ul>
