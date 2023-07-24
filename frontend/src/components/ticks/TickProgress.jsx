@@ -7,6 +7,7 @@ import SubmissionDataService from '../../services/submission'
 import InternalLinkFloatButton from '../ui/internalLinkFloatButton/InternalLinkFloatButton'
 import ExternalLinkFloatButton from '../ui/externalLinkFloatButton/ExternalLinkFloatButton'
 import { theme } from '../../theme'
+import SubPathos from '../subs/SubPathos'
 
 const Styles = {
   TimelineIcon: styled.div`
@@ -69,34 +70,44 @@ const TickProgress = () => {
   let { id } = useParams()
 
   const [data, setData] = useState({})
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState(false)
 
   useEffect(() => {
+    setLoading(true)
     let getData = async () =>
       await SubmissionDataService.getProgress(id);
 
     getData().then(response => {
       let newData = response.data.record
       if (newData === null) {
-        return
+        setError(true)
       } else {
         setData(response.data.record)
       }
 
+    }).catch(err => {
+      console.log(err)
+      setError(true)
     })
-
+    setLoading(false)
 
   }, [id])
 
 
+  if (loading) return <BasicPage.Text><h3>Loading...</h3></BasicPage.Text>
+  if (error) return (<BasicPage.Text>
+  <h3>Sorry, we are unable to find this tick number in our system</h3>
+  <InternalLinkFloatButton to='/' text='Return to Home Page' />
+  <ExternalLinkFloatButton colors={{ text: 'black', shadow: '#000000', bg: theme.colors.ruYellow }} to='mailto:cvbquestions@njaes.rutgers.edu' text='Questions?  Contact Us' />
+</BasicPage.Text>)
 
-  return (Object.keys(data).length === 0
-    ?
-    (<BasicPage.Text>
-      <h3>Sorry, we are unable to find this tick number in our system</h3>
-      <InternalLinkFloatButton to='/' text='Return to Home Page' />
-      <ExternalLinkFloatButton colors={{ text: 'black', shadow: '#000000', bg: theme.colors.ruYellow }} to='mailto:cvbquestions@njaes.rutgers.edu' text='Questions?  Contact Us' />
-    </BasicPage.Text>)
-    : data.duplicate ?
+
+
+
+
+  return (
+    data.duplicate ?
       (
         <BasicPage.Text>
           <h3>Uh oh, our computer logged your tick more than once!</h3>
@@ -213,15 +224,8 @@ const TickProgress = () => {
                       Your tick was at the life stage {data.lifeStage} and was {!data.engorged && 'not'} engorged.
                     </p>}
 
-                    Your tick will be tested for the following pathogens.  The results will be posted here when they are available.
-                    <ul>
-                      {data?.pathogens.length ? data?.pathogens?.map(pathogen => (
-                        <li key={pathogen.id}><em>{pathogen.name}</em> - {pathogen.submission_pathogen?.result}</li>
-                      )) : data?.specimen?.pathogens?.map(pathogen => (
-                        <li key={pathogen.id}><em>{pathogen.name}</em></li>
-                      ))
-                      }
-                    </ul>
+                    
+                   <SubPathos data={data} />
                   </div>
                 )}
               </div>
