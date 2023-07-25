@@ -60,6 +60,8 @@ const DownloadTable = () => {
   const token = useSelector((state) => state.token);
   const [data, setData] = useState([]);
 
+  // console.log('data', data)
+
   // get the data from the backend
   useEffect(() => {
     let getData = async (token) => {
@@ -67,12 +69,37 @@ const DownloadTable = () => {
     };
 
     getData(token).then((response) => {
-      console.log(response.data.record);
-      setData(response.data.record);
+      // console.log(response.data.record);
+      let preData = response.data.record;
+      let data = preData.map((item) => {
+        let pathos = {}
+        if (item.pathogens.length){
+          item.pathogens.forEach(patho => {
+            let pathogen = patho.pathogen
+            let result = patho.submission_pathogen.result
+            item[pathogen] = result
+          })
+        }
+        
+        if (!!item.specimen){
+          item.specimenScientific = item.specimen.specimenScientific
+        }
+        // if (item.id === 13){
+          
+        //   console.log('item.pathogens',{...item})
+        // }
+        delete item.photo
+        delete item.specimen
+        delete item.specIdUser
+        delete item.photoIdUser
+        delete item.pathogens
+
+        return item
+      })
+      setData(data);
     });
   }, [token]);
 
-  console.log(data);
   // define the columns
   let columns = [
     "id",
