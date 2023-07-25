@@ -181,6 +181,7 @@ const ProcessTick = () => {
             display: "flex",
             flexDirection: "row",
             flexWrap: "wrap",
+            justifyContent: "center",
           }}
         >
           <StatusCard tick={tick} updateSub={updateSub} user={user} id={id} />
@@ -196,6 +197,8 @@ const ProcessTick = () => {
                 the photo viewing software on your machine.{" "}
               </OutlineCard>
             </RenderIf>
+            <OutlineCard>
+
             <a href={tick.photoFrontUrl} target="_blank" rel="noreferrer">
               {" "}
               <ImageCard imageUrl={tick.photoFrontUrl} />
@@ -213,19 +216,20 @@ const ProcessTick = () => {
               </a>
             )}
             {tick.photoFrontUrl?.toString().includes("heic")}
+            </OutlineCard>
           </div>
-          {/* {console.log('tick pathos', tick.pathogens)} */}
-          {/* <PathogenCard message='select all that tested positive' checkedPathogens={tick?.pathogens} handleChange={handlePathoChange} /> */}
-        </div>
         {tick?.specimen?.id
           ? (<SubPathosList sub={tick} updateSub={updateSub} />)
           : (
             <span>Assign a tick species in order to see the list of possible tests.</span>
           )
         }
+        
         <RenderIf isTrue={!tick.duplicate}>
           <DupSubDefine tick={tick} updateSub={updateSub} />
         </RenderIf>
+        </div>
+        
 
         <div>
           <InternalLinkFloatButton
