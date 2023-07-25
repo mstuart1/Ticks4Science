@@ -186,7 +186,7 @@ const ProcessTick = () => {
           <SubTickInfo tick={tick} />
           <SubmitterInfo tick={tick} />
           {/* <p>Click on the photo to view full size</p> */}
-          <div>
+          <div className='photoDiv' style={{flexGrow: 1}}>
             <RenderIf isTrue={tick.photoFrontUrl?.toString().includes("heic")}>
               <OutlineCard width="20rem">
                 The user submitted photos in the format HEIC which is unable be
