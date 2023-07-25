@@ -69,7 +69,7 @@ const Styles = {
 const TickProgress = () => {
   let { id } = useParams()
 
-  const [data, setData] = useState({})
+  const [data, setData] = useState(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(false)
 
@@ -82,28 +82,26 @@ const TickProgress = () => {
       let newData = response.data.record
       if (newData === null) {
         setError(true)
+        setLoading(false)
       } else {
         setData(response.data.record)
+        setLoading(false)
       }
 
     }).catch(err => {
       console.log(err)
       setError(true)
+      setLoading(false)
     })
-    setLoading(false)
 
   }, [id])
 
-
   if (loading) return <BasicPage.Text><h3>Loading...</h3></BasicPage.Text>
   if (error) return (<BasicPage.Text>
-  <h3>Sorry, we are unable to find this tick number in our system</h3>
-  <InternalLinkFloatButton to='/' text='Return to Home Page' />
-  <ExternalLinkFloatButton colors={{ text: 'black', shadow: '#000000', bg: theme.colors.ruYellow }} to='mailto:cvbquestions@njaes.rutgers.edu' text='Questions?  Contact Us' />
-</BasicPage.Text>)
-
-
-
+    <h3>Sorry, we are unable to find this tick number in our system</h3>
+    <InternalLinkFloatButton to='/' text='Return to Home Page' />
+    <ExternalLinkFloatButton colors={{ text: 'black', shadow: '#000000', bg: theme.colors.ruYellow }} to='mailto:cvbquestions@njaes.rutgers.edu' text='Questions?  Contact Us' />
+  </BasicPage.Text>)
 
 
   return (
@@ -224,8 +222,8 @@ const TickProgress = () => {
                       Your tick was at the life stage {data.lifeStage} and was {!data.engorged && 'not'} engorged.
                     </p>}
 
-                    
-                   <SubPathos data={data} />
+
+                    <SubPathos data={data} />
                   </div>
                 )}
               </div>
