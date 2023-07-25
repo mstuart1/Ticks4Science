@@ -84,10 +84,10 @@ const DownloadTable = () => {
         if (!!item.specimen){
           item.specimenScientific = item.specimen.specimenScientific
         }
-        // if (item.id === 13){
+        if (item.id === 667){
           
-        //   console.log('item.pathogens',{...item})
-        // }
+          console.log('item',{...item})
+        }
         delete item.photo
         delete item.specimen
         delete item.specIdUser
