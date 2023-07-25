@@ -127,12 +127,12 @@ exports.getAllSubs = async (req, res, next) => {
 
     // let page  = req.query.page ? req.query.page : 0;
     let foundSubs = await Subm.findAll({
-      where: {
-        duplicate: {
-          [Op.is]: null
-        },
+      // where: {
+      //   duplicate: {
+      //     [Op.is]: null
+      //   },
 
-      },
+      // },
 
       // offset: page,
       include: [
@@ -176,19 +176,19 @@ exports.getSubPage = async (req, res, next) => {
     let filter = req.query.filter ? req.query.filter : '';
 
     if (filter === 'totalSubs') {
-      query = { duplicate: { [Op.is]: null }, }
+      query = {}
     } else if (filter === 'pendPhotos') {
-      query = { duplicate: { [Op.is]: null }, photosReviewed: { [Op.is]: null }, }
+      query = { photosReviewed: { [Op.is]: null }, }
     } else if (filter === 'pendReceived') {
-      query = { duplicate: { [Op.is]: null }, specimenRequested: { [Op.not]: null }, specimenReceived: { [Op.is]: null } }
+      query = { specimenRequested: { [Op.not]: null }, specimenReceived: { [Op.is]: null } }
     } else if (filter === 'pendIdentified') {
-      query = { duplicate: { [Op.is]: null }, specimenIdentified: { [Op.is]: null }, specimenReceived: { [Op.not]: null } }
+      query = { specimenIdentified: { [Op.is]: null }, specimenReceived: { [Op.not]: null } }
     } else if (filter === 'totalIdent') {
-      query = { duplicate: { [Op.is]: null }, specimenIdentified: { [Op.not]: null } }
+      query = { specimenIdentified: { [Op.not]: null } }
     } else if (filter === 'notReq') {
-      query = { duplicate: { [Op.is]: null }, photosReviewed: { [Op.not]: null }, specimenIdentified: { [Op.is]: null }, specimenRequested: { [Op.is]: null } }
+      query = { photosReviewed: { [Op.not]: null }, specimenIdentified: { [Op.is]: null }, specimenRequested: { [Op.is]: null } }
     } else {
-      query = { duplicate: { [Op.is]: null }, }
+      query = {}
     }
 
 
