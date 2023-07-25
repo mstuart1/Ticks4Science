@@ -2,6 +2,8 @@ import React from 'react'
 
 const SubPathos = ({ data }) => {
 
+    console.log('SubPathos data: ', data)
+
     let pathogenData = []
     if (data?.pathogens?.length) {
         pathogenData = data?.pathogens
@@ -24,7 +26,7 @@ const SubPathos = ({ data }) => {
                 </>
             )
         } else {
-            return <p>We are currently testing only for the most common virus, bacteria and parasites transmitted by ticks in NJ, none of which are known to be associated with American Dog Ticks (<em>Dermacentor variabilis</em>). Although your tick will not be tested for pathogens we would greatly appreciate if you still sent us your tick as it will be used for educational purposes!</p>
+            return <p>We are currently testing only for the most common virus, bacteria and parasites transmitted by ticks in NJ, none of which are known to be associated with {data.specimen.common} (<em>{data.specimen.scientific}</em>). Although your tick will not be tested for pathogens we would greatly appreciate if you still sent us your tick as it will be used for educational purposes!</p>
         }
     }
     let pathElems = createPathElems()
