@@ -104,7 +104,7 @@ const SubPathosList = ({ sub }) => {
     // console.log('sub', sub)
 
     return (
-        <div style={{ display: "flex", flexDirection: 'column', width: '80vw' }}>
+        <div style={{ display: "flex", flexDirection: 'column', width: '80vw', maxWidth: '900px' }}>
             <h1 style={{ textAlign: 'center' }}>Test Status</h1>
             <Styles.Table>
                 <thead>
