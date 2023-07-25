@@ -13,18 +13,18 @@ const SubPathos = ({ data }) => {
         if (pathogenData.length) {
             return (
                 <>
-            <p>
-            Your tick will be tested for the following pathogens.  The results will be posted here when they are available.
-            </p>
-            <ul>
-                { pathogenData.map(pathogen => (
-                <li key={pathogen.id}><em>{pathogen.name}</em> - {pathogen.submission_pathogen?.result}</li>)
-            )}
-            </ul>
-            </>
-           )
+                    <p>
+                        Your tick will be tested for the following pathogens.  The results will be posted here when they are available.
+                    </p>
+                    <ul>
+                        {pathogenData.map(pathogen => (
+                            <li key={pathogen.id}><em>{pathogen.name}</em> - {pathogen.submission_pathogen?.result}</li>)
+                        )}
+                    </ul>
+                </>
+            )
         } else {
-            return <p>We are currently not testing this species of tick for pathogens at this time.</p>
+            return <p>We are currently testing only for the most common virus, bacteria and parasites transmitted by ticks in NJ, none of which are known to be associated with American Dog Ticks (<em>Dermacentor variabilis</em>). Although your tick will not be tested for pathogens we would greatly appreciate if you still sent us your tick as it will be used for educational purposes!</p>
         }
     }
     let pathElems = createPathElems()
