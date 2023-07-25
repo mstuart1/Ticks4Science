@@ -323,7 +323,7 @@ exports.downloadData = async (req, res, next) => {
   try {
     let foundSubs = await Subm.findAll({
       paranoid: false,
-      raw: true,
+      // raw: true,
       include: [
         {
           model: db.ticks,
