@@ -34,19 +34,19 @@ const Styles = {
     background-color: #dfdfdf;
     border-radius: 1rem;
     `,
-  Outline: styled.div`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    border-radius: ${({ theme }) => theme.borderRadius};
-    border: 2px solid ${({ bgColor }) => bgColor + 30 || 'grey'};
-    background-color: ${({ bgColor }) => bgColor || 'white'};
-    padding: 2rem; 
-    margin: 1rem;
-    width: ${({ width }) => width};
-    height: ${({ height }) => height};
-    `,
+  // Outline: styled.div`
+  //   display: flex;
+  //   flex-direction: column;
+  //   align-items: center;
+  //   justify-content: center;
+  //   border-radius: ${({ theme }) => theme.borderRadius};
+  //   border: 2px solid ${({ bgColor }) => bgColor + 30 || 'grey'};
+  //   background-color: ${({ bgColor }) => bgColor || 'white'};
+  //   padding: 2rem; 
+  //   margin: 1rem;
+  //   width: ${({ width }) => width};
+  //   height: ${({ height }) => height};
+  //   `,
 }
 
 const SubCard = ({ item }) => {
@@ -60,12 +60,12 @@ const SubCard = ({ item }) => {
   } else {
     speciesElem = ''
   }
-  console.log('SubCard', item.duplicate)
+  // console.log('SubCard', item.duplicate)
   return (
     <Styles.Link key={item.id} to={`/admin/processTick/${item.id}`} state={{ tick: item }}>
-      <Styles.Outline bgColor={item.duplicate ? '#FCE48B' : 'white'}>
+      <OutlineCard>
         <div>
-          {item.duplicate && <strong>Duplicate - do not use</strong>}<br />
+          {/* {item.duplicate && <strong>Duplicate - do not use</strong>}<br /> */}
           ID: {item.id}<br />
           Date Submitted: {item.createdAt && item.createdAt.substring(0, 10)}<br />
           Photos Reviewed: {item.photosReviewed && item.photosReviewed.substring(0, 10)}<br />
@@ -75,7 +75,7 @@ const SubCard = ({ item }) => {
           Specimen Identified: {item.specimenIdentified && item.specimenIdentified.substring(0, 10)}<br />
           {speciesElem}<br />
         </div>
-      </Styles.Outline>
+        </OutlineCard>
     </Styles.Link>
   )
 }
