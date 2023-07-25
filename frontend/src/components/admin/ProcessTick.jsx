@@ -173,9 +173,7 @@ const ProcessTick = () => {
             This is a Tick Blitz Submission
           </BasicPage.SectionTitle>
         </RenderIf>
-        <RenderIf isTrue={!tick.duplicate}>
-          <DupSubDefine tick={tick} updateSub={updateSub} />
-        </RenderIf>
+
         <div
           style={{
             width: "100%",
@@ -224,6 +222,9 @@ const ProcessTick = () => {
             <span>Assign a tick species in order to see the list of possible tests.</span>
           )
         }
+        <RenderIf isTrue={!tick.duplicate}>
+          <DupSubDefine tick={tick} updateSub={updateSub} />
+        </RenderIf>
 
         <div>
           <InternalLinkFloatButton
