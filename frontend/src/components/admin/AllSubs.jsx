@@ -92,6 +92,9 @@ const AllSubs = () => {
   const handlePageClick = value => {
     setPage(prevPage => prevPage + value)
   }
+  const handleEndPage = () => {
+    setPage(highestPage)
+  }
   const filterHeadingArray = [
     { filter: 'totalSubs', heading: 'All Submissions' },
     { filter: 'pendPhotos', heading: 'Waiting for Photo Review' },
@@ -113,6 +116,8 @@ const AllSubs = () => {
 
   let totalCards = createCardElems(data)
 
+  let highestPage = Math.floor(limitMax / limit)
+
   return (
     <BasicPage.Text>
 
@@ -127,7 +132,10 @@ const AllSubs = () => {
             <InternalLinkFloatButton padding="1rem 2rem" text='Back to Dashboard' to='/admin' />
           </Styles.ButtonPlaceholder>
           <Styles.ButtonPlaceholder className='fwd'>
-            <PageButton handleClick={() => handlePageClick(1)} text='Next Page' display={page + 1 < limitMax / limit} />
+            <PageButton handleClick={() => handlePageClick(1)} text='Next Page' display={page + 1 < highestPage} />
+          </Styles.ButtonPlaceholder>
+          <Styles.ButtonPlaceholder className='end'>
+            <PageButton handleClick={handleEndPage} text='Jump to End' display={page + 1 < highestPage} />
           </Styles.ButtonPlaceholder>
         </Styles.ButtonCont>
         <Styles.WaitingGroup>
