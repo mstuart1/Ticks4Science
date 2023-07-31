@@ -14,9 +14,11 @@ const ThankYou = () => {
             <h1 style={{ fontSize: '6rem' }}>{id}</h1>
             <BasicPage.Title>Thank you for your submission!</BasicPage.Title>
             <BasicPage.SectionTitle>Your personalized tick id number is {id}.</BasicPage.SectionTitle><br /><br />
-            <BasicPage.SectionTitle>You must have this number to access your tick submission.</BasicPage.SectionTitle><br /><br />
-            <BasicPage.SectionTitle>Because the survey is anonymous the only way to track your tick is with this number.</BasicPage.SectionTitle><br /><br />
-            <BasicPage.SectionTitle>Bookmark this page to remember your tick number.</BasicPage.SectionTitle><br /><br />
+            <BasicPage.SectionTitle><span style={{ color: theme.colors.ruRed, textAlign: 'center' }}>Mail your tick to the Center for Vector Biology</span><br/><span style={{ color: theme.colors.ruRed, textAlign: 'center' }}>180 Jones Ave, New Brunswick, NJ 08901</span></BasicPage.SectionTitle><br />
+            <BasicPage.SectionTitle><span style={{ color: theme.colors.ruRed, textAlign: 'center' }}>You MUST include this number in your tick mail!</span></BasicPage.SectionTitle><br /><br />
+            <BasicPage.SectionTitle>If the tick ID number is not included in the tick mail you will not be able to receive the pathogen-testing results.</BasicPage.SectionTitle><br /><br />
+            <BasicPage.SectionTitle>Make sure to keep a copy of your tick ID for yourself so you continue to check your tick's progress.</BasicPage.SectionTitle><br /><br />
+            
             <div style={{ display: 'flex' }}>
 
 
