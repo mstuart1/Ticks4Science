@@ -121,14 +121,20 @@ const Survey = () => {
   };
 
   const handleFront = (evt) => {
-    console.log('handling front')
     let file = evt.target.files[0];
+    console.log('handling front, file.type:', file.type)
+    if (!file.type.includes('image')) {
+      alert(`Please upload an image file`);
+      return;
+    }
     if (file.size > 8000000) {
       alert(`Please reduce file size before uploading`);
+      return
     } else if (file.size < 200000) {
       alert(
         `Please check your image quality, image may be too small to view tick`
       );
+      return
     } else {
       setImageFront(file);
     }

@@ -36,7 +36,7 @@ exports.createSubm = async (req, res, next) => {
 }
 exports.uploadPhoto = async (req, res, next) => {
 
-  console.log(`@@@@---receiving image from website---@@@@`);
+  console.log(`@@@@---receiving image from website---@@@@`, JSON.stringify(req.files));
   try {
     let { id } = req.params
     const url = process.env.PHOTO_URL

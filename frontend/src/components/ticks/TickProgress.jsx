@@ -229,10 +229,14 @@ const TickProgress = () => {
               </div>
             )}
 
-            <p>
+            {data.photoFrontUrl ? (
+              <p>
               Thank you for submitting photos of your tick. We appreciate your contribution and encourage you to continue exploring New Jersey and sending in ticks when encountered.
               Reminder: you must complete a new tick submission each time a tick is sent to NJ Ticks for Science.
             </p>
+            ) : (<p>
+              The filetype you uploaded is not recognized by our system.  Please fill out the survey again, note this submission number in your new survey, tell us you are re-submitting your tick image, and write down the new number as the submission number to check.  Please make sure the file you are uploading is an image file ending with .jpg or .png for example.
+            </p>)}
             {/* <!-- end timeline items --> */}
           </Styles.Timeline>
         </BasicPage.Text>
