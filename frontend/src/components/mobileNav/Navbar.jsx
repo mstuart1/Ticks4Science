@@ -4,6 +4,7 @@ import navMenuItems from "./navMenuItems";
 import { Link } from "react-router-dom";
 import { theme } from "../../theme";
 // import logo from '../../images/Logo2023.png'
+import logo from '../../images/Magnifying.png'
 
 
 const NavbarComp = () => {
@@ -45,7 +46,7 @@ const NavbarComp = () => {
   let logoElement = (
     <Navbar.LogoDiv >
       <Link to='/'>
-        {/* <img src={logo} alt='logo' /> */}
+        <img style={{maxHeight: '5rem'}} src={logo} alt='logo' />
         <Navbar.Logo>NJ Ticks 4 Science!</Navbar.Logo>
       </Link>
     </Navbar.LogoDiv>)

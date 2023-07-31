@@ -6,7 +6,7 @@ import QuestionsButton from '../questionsButton/QuestionsButton'
 
 const Styles = {
     LearnCont: styled.div`
-    width: 100%;
+    width: 95%;
     margin: 1rem;
     padding: 1rem;
 
