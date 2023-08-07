@@ -22,7 +22,6 @@ const Styles = {
     margin: 1rem;
    }
   `,
-
   CenterCol: styled.div`
   display: flex;
   flex-direction: column;
@@ -57,7 +56,7 @@ const Styles = {
   // justify-content: space-between;
 
   // min-height: 80vh;
-  max-width: 900px;
+  max-width: 1000px;
   @media screen and (max-width: ${({ theme }) => theme.mobile}) {
     width: 100vw;
     
@@ -68,15 +67,14 @@ const Styles = {
   margin-bottom: 2rem;
   padding: 0 2rem;
   `,
-  Logo: styled.span`
+  Logo: styled.div`
+  padding-left: 5rem;
+  padding-right: 5rem;
   img {
-    display: inline;
-    max-width: 40rem;
-    // margin: 1rem;
+    max-width: 25rem;
   }
   @media screen and (max-width: ${({ theme }) => theme.mobile}) {
     display: none;
-    
    }
   `,
   Title: styled.div`
