@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Route, Routes, } from 'react-router-dom';
 import About from './components/About';
 import ScrollToTop from './components/ScrollToTop';
@@ -28,6 +28,11 @@ import TickBlitz from './components/tickBlitz/TickBlitz';
 import BlitzSurvey from './components/tickBlitz/BlitzSurvey';
 import MissingId from './components/survey/MissingId';
 
+import ReactGA from 'react-ga'
+import { addGaScript, createWindowGTag } from './tools/googleAnalytics';
+
+const trackingId = process.env.REACT_APP_GA_TRACKING
+ReactGA.initialize(trackingId)
 
 const Styles = {
   Wrapper: styled.main`
@@ -71,6 +76,20 @@ body {
 `
 
 const App = () => {
+
+  addGaScript()
+  createWindowGTag()
+
+  window.gtag('config', process.env.REACT_APP_GA_TRACKING, {
+    path_title: window.location.pathname,
+    path_page: window.location.pathname
+  })
+
+  useEffect(() => {
+    ReactGA.pageview(window.location.pathname + window.location.search)
+  }, [])
+
+
   return (
     <ThemeProvider theme={theme}>
       <CSSReset />
