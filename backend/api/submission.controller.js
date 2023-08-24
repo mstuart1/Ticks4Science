@@ -237,6 +237,7 @@ exports.getSubPage = async (req, res, next) => {
 
 exports.updateSubm = async (req, res, next) => {
   console.log(`@@@@---update existing submission: ${JSON.stringify(req.body, null, 1)}---@@@@`);
+  //!! model.update allows you to pass in any changes as an object.  model.save requires you to specify the exact field changes.
   try {
     let { id } = req.params
     let data = req.body
