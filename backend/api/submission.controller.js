@@ -258,7 +258,8 @@ exports.updateSubm = async (req, res, next) => {
             {
               model: db.ticks,
               as: 'specimen',
-              attributes: ['id', 'scientific', 'common']
+              attributes: ['id', 'scientific', 'common'],
+              include: db.pathogen,
             },
             {
               model: db.users,
@@ -285,9 +286,6 @@ exports.updateSubm = async (req, res, next) => {
     // console.log(err.message)
     next(err)
   }
-
-
-
 }
 
 exports.deleteSub = async (req, res, next) => {
@@ -454,12 +452,11 @@ exports.getDupes = async (req, res, next) => {
   }
 }
 exports.updatePathos = async (req, res, next) => {
-  console.log(`@@@@---updating submission pathogens---@@@@`);
-  // console.log(JSON.stringify(req.body, null, 1))
-  console.log(req.params)
+  console.log(`@@@@---updating submission pathogens---@@@@`, req.params);
   try {
     let updatedSub
     let { pathogens } = req.body
+    console.log(`@@@@@ pathogens should be these`, pathogens)
     let { id } = req.params
 
     await db.sequelize
