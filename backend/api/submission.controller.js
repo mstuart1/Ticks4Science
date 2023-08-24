@@ -479,8 +479,16 @@ exports.updatePathos = async (req, res, next) => {
       });
 
     // this has to be outside of the transaction to get the updated data
-    updatedSub = await Subm.findByPk(id, { include: db.pathogen })
-
+    updatedSub = await Subm.findByPk(id, {
+      include: [
+        { model: db.pathogen },
+        {
+          model: db.specimen,
+          include: db.pathogen
+        }
+      ]
+    })
+    // console.log(JSON.stringify(updatedSub, null, 1))
     return res.json({ updatedSub })
   } catch (err) {
     console.log(err.message)
