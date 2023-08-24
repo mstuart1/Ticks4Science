@@ -2,6 +2,7 @@ import styled from "styled-components"
 import { theme } from "../../theme"
 import { useEffect, useState } from "react"
 import SubmissionDataService from "../../services/submission"
+import { useNavigate } from "react-router-dom"
 
 const Styles = {
     InputDiv: styled.div`
@@ -36,34 +37,38 @@ const Styles = {
   `
 }
 
+
 const SubPathosList = ({ sub }) => {
+
+    const navigate = useNavigate()
 
     const [subData, setSubData] = useState(sub)
     const [tableData, setTableData] = useState([])
 
     useEffect(() => {
-
         // ** create function to update pathos in sub
         const updateSubPathos = async (subId, pathogens) => {
             try {
                 let response = await SubmissionDataService.updatePathos(subId, pathogens)
-                console.log('response', response.data)
                 return (response.data.updatedSub)
-
-
             } catch (err) { console.log(err) }
         }
 
-        // ** if subData.pathogens is empty, update it with subData.specimen.pathogens
-        if (!subData?.pathogens?.length !== subData?.specimen?.pathogens?.length) {
-            console.log('update', subData.specimen.pathogens.length, subData.specimen.pathogens.length)
-            updateSubPathos(subData.id, { pathogens: subData.specimen.pathogens }).then(data => {
+        let submissionPathogens = subData?.pathogens ?? []// expect array
+        let speciesPathogens = subData?.specimen?.pathogens ?? [] // expect array
+        console.log('subData', subData)
+        // ** if subData?.pathogens is empty, update it with subData.specimen?.pathogens
+        // !! species should override submission unless there are test results
+        if (submissionPathogens?.length !== speciesPathogens?.length) {
+            console.log('update', submissionPathogens?.length, speciesPathogens?.length)
+            updateSubPathos(subData.id, { pathogens: speciesPathogens }).then(data => {
+                console.log('update pathogen response', data)
                 setSubData(data)
-                setTableData(data.pathogens)
+                setTableData(data?.pathogens)
             })
         } else {
-            console.log('pathogens', subData.specimen.pathogens.length, subData.specimen.pathogens.length)
-            setTableData(subData.pathogens)
+            // console.log('pathogens', submissionPathogens.length, speciesPathogens.length)
+            setTableData(submissionPathogens)
         }
     }, [sub])
 
@@ -71,37 +76,14 @@ const SubPathosList = ({ sub }) => {
         try {
             let response = await SubmissionDataService.updateResult(sub.id, { pathogenId, result })
             let { updatedSub } = response.data
-            console.log('response', updatedSub)
+            console.log('handle result response', updatedSub)
             setSubData(updatedSub)
-            setTableData(updatedSub.pathogens)
+            setTableData(updatedSub?.pathogens)
         } catch (err) {
             console.log(err)
         }
 
     }
-
-
-    // const handlePathos = async (pathogenId) => {
-    //     try {
-    //         /** this is going to send one id, if that id is already in the list, it will remove it, if it is not in the list, it will add it */
-    //         let response = await TickDataService.updatePathos(tickId, { pathogenId })
-    //         setCurrentTick(response.data.updatedTick)
-    //         if (selected.includes(pathogenId)) {
-    //             setSelected(selected.filter(id => id !== pathogenId))
-    //         } else {
-    //             setSelected([...selected, pathogenId])
-    //         }
-    //     } catch (err) { console.log(err) }
-
-    // }
-
-    // if (pathosLoading) return <div><h1>Loading Pathogens...</h1></div>
-    // if (isLoading) return <div><h1>Loading Tick...</h1></div>
-    // if (pathosError) return <div><h1>Error retrieving pathogen list...</h1></div>
-    // if (isError) return <div><h1>Error retrieving tick...</h1></div>
-    // const { foundData: pathogens } = pathosData ?? {}
-
-    // console.log('sub', sub)
 
     return (
         <div style={{ display: "flex", flexDirection: 'column', width: '80vw', maxWidth: '900px' }}>
@@ -117,9 +99,7 @@ const SubPathosList = ({ sub }) => {
                 </thead>
                 <tbody>
                     {tableData?.map(item => (
-                        <tr
-                            // onClick={() => handlePathos(item.id)} 
-                            key={item.id} >
+                        <tr key={item.id} >
                             <td >{item.pathogen}</td>
                             <td>{item.name}</td>
                             <td>{item.submission_pathogen.result}</td>
