@@ -126,16 +126,16 @@ const AllSubs = () => {
 
         <Styles.ButtonCont>
           <Styles.ButtonPlaceholder className='back'>
-            <PageButton handleClick={() => handlePageClick(-1)} text='Prev Page' display={page > 0} />
+            <PageButton handleClick={() => handlePageClick(-1)} text='Prev Page' display={!!(page > 0)} />
           </Styles.ButtonPlaceholder>
           <Styles.ButtonPlaceholder className='center'>
             <InternalLinkFloatButton padding="1rem 2rem" text='Back to Dashboard' to='/admin' />
           </Styles.ButtonPlaceholder>
           <Styles.ButtonPlaceholder className='fwd'>
-            <PageButton handleClick={() => handlePageClick(1)} text='Next Page' display={page + 1 < highestPage} />
+            <PageButton handleClick={() => handlePageClick(1)} text='Next Page' display={!!(page + 1 < highestPage)} />
           </Styles.ButtonPlaceholder>
           <Styles.ButtonPlaceholder className='end'>
-            <PageButton handleClick={handleEndPage} text='Jump to End' display={page + 1 < highestPage} />
+            <PageButton handleClick={handleEndPage} text='Jump to End' display={(page + 1 < highestPage).toString()} />
           </Styles.ButtonPlaceholder>
         </Styles.ButtonCont>
         <Styles.WaitingGroup>
@@ -150,12 +150,14 @@ const AllSubs = () => {
 
 export default AllSubs
 
-const PageButton = ({ handleClick, text, display }) => (
-  <Styles.ButtonDiv onClick={() => handleClick()} display={display}>
-    <HoverCard padding="1rem 2rem">
-      <Styles.ButtonText>
-        {text}
-      </Styles.ButtonText>
-    </HoverCard>
-  </Styles.ButtonDiv>
-)
+const PageButton = ({ handleClick, text, display = false }) => {
+  return (
+    < Styles.ButtonDiv onClick={() => handleClick()} display={display.toString()} >
+      <HoverCard padding="1rem 2rem">
+        <Styles.ButtonText>
+          {text}
+        </Styles.ButtonText>
+      </HoverCard>
+    </ Styles.ButtonDiv>
+  )
+}
