@@ -464,12 +464,18 @@ exports.updatePathos = async (req, res, next) => {
 
         let foundSub = await Subm.findByPk(id, { include: db.pathogen }, { transaction: t })
         let existing = foundSub.pathogens.map(item => item.id)
-        let createArr = pathogens
-          .filter(item => !existing.includes(item.id))
-          .map(item => (
-            { submissionId: id, pathogenId: item.id, result: 'pending' }
-          ))
-        await Sub_Pathos.bulkCreate(createArr, { transaction: t })
+        if (existing.length !== pathogens.length) {
+          await Sub_Pathos.destroy({ where: { submissionId: id } }, { transaction: t })
+        }
+
+        if (pathogens.length) {
+          let createArr = pathogens
+            .filter(item => !existing.includes(item.id))
+            .map(item => (
+              { submissionId: id, pathogenId: item.id, result: 'pending' }
+            ))
+          await Sub_Pathos.bulkCreate(createArr, { transaction: t })
+        }
       });
 
     // this has to be outside of the transaction to get the updated data
