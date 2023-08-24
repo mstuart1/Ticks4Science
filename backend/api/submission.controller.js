@@ -497,7 +497,7 @@ exports.updatePathos = async (req, res, next) => {
 
 }
 exports.updateResult = async (req, res, next) => {
-  console.log(`@@@@---updating submission pathogens---@@@@`);
+  console.log(`@@@@---updating sub pathos results---@@@@`);
   // console.log(JSON.stringify(req.body, null, 1))
   console.log(req.params)
   try {
