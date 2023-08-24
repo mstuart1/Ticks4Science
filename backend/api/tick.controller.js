@@ -121,16 +121,6 @@ exports.updatePathos = async (req, res, next) => {
           await foundTick.addPathogen(pathogenId, { transaction: t })
         }
 
-        // let createArr = freshPathos.map(item => {
-        //   return { tickId: id, pathogenId: item }
-        // })
-
-        // await TickPathos.bulkCreate(
-        //   createArr,
-        //   { transaction: t }
-        // )
-
-
         updatedTick = await Tick.findOne({ where: { id }, include: { model: db.pathogen } }, { transaction: t })
 
       });
