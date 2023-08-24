@@ -188,7 +188,7 @@ const ProcessTick = () => {
           <SubTickInfo tick={tick} />
           <SubmitterInfo tick={tick} />
           {/* <p>Click on the photo to view full size</p> */}
-          <div className='photoDiv' style={{flexGrow: 1}}>
+          <div className='photoDiv' style={{ flexGrow: 1 }}>
             <RenderIf isTrue={tick.photoFrontUrl?.toString().includes("heic")}>
               <OutlineCard width="20rem">
                 The user submitted photos in the format HEIC which is unable be
@@ -199,37 +199,37 @@ const ProcessTick = () => {
             </RenderIf>
             <OutlineCard>
 
-            <a href={tick.photoFrontUrl} target="_blank" rel="noreferrer">
-              {" "}
-              <ImageCard imageUrl={tick.photoFrontUrl} />
-            </a>
-            {tick.photoBackUrl && (
-              <a href={tick.photoBackUrl} target="_blank" rel="noreferrer">
+              <a href={tick.photoFrontUrl} target="_blank" rel="noreferrer">
                 {" "}
-                <ImageCard imageUrl={tick.photoBackUrl} />
+                <ImageCard imageUrl={tick.photoFrontUrl} />
               </a>
-            )}
-            {tick.photoOtherUrl && (
-              <a href={tick.photoOtherUrl} target="_blank" rel="noreferrer">
-                {" "}
-                <ImageCard imageUrl={tick.photoOtherUrl} />
-              </a>
-            )}
-            {tick.photoFrontUrl?.toString().includes("heic")}
+              {tick.photoBackUrl && (
+                <a href={tick.photoBackUrl} target="_blank" rel="noreferrer">
+                  {" "}
+                  <ImageCard imageUrl={tick.photoBackUrl} />
+                </a>
+              )}
+              {tick.photoOtherUrl && (
+                <a href={tick.photoOtherUrl} target="_blank" rel="noreferrer">
+                  {" "}
+                  <ImageCard imageUrl={tick.photoOtherUrl} />
+                </a>
+              )}
+              {tick.photoFrontUrl?.toString().includes("heic")}
             </OutlineCard>
           </div>
-        {tick?.specimen?.id
-          ? (<SubPathosList sub={tick} updateSub={updateSub} />)
-          : (
-            <span>Assign a tick species in order to see the list of possible tests.</span>
-          )
-        }
-        
-        <RenderIf isTrue={!tick.duplicate}>
-          <DupSubDefine tick={tick} updateSub={updateSub} />
-        </RenderIf>
+          {tick?.specimen?.id
+            ? (<SubPathosList sub={tick} />)
+            : (
+              <span>Assign a tick species in order to see the list of possible tests.</span>
+            )
+          }
+
+          <RenderIf isTrue={!tick.duplicate}>
+            <DupSubDefine tick={tick} updateSub={updateSub} />
+          </RenderIf>
         </div>
-        
+
 
         <div>
           <InternalLinkFloatButton
