@@ -3,8 +3,9 @@ import styled from 'styled-components'
 import navMenuItems from "./navMenuItems";
 import { Link } from "react-router-dom";
 import { theme } from "../../theme";
-// import logo from '../../images/Logo2023.png'
 import logo from '../../images/Magnifying.png'
+import { FaDonate } from "react-icons/fa";
+// import logo from '../../images/Logo2023.png'
 
 
 const NavbarComp = () => {
@@ -60,6 +61,13 @@ const NavbarComp = () => {
         <MobileNavbar.Wrapper>
           <MobileNavbar.Items>
             {mobileElements}
+            <MobileNavbar.Item key={`donate-mobile`} >   <a href='https://give.rutgers.edu/NJticks' target="_blank" rel='noreferrer'>
+      <MobileNavbar.Icon>
+        <FaDonate />
+      </MobileNavbar.Icon><br />
+      Donate!
+    </a>
+    </MobileNavbar.Item>
           </MobileNavbar.Items>
         </MobileNavbar.Wrapper>
 
@@ -69,6 +77,11 @@ const NavbarComp = () => {
             {logoElement}
             <Navbar.Items>
               {deskElements}
+              <Navbar.Item key={`donate-desk`}>
+      <a href='https://give.rutgers.edu/NJticks' target="_blank" rel='noreferrer'>
+        Donate!
+      </a>
+    </Navbar.Item>
             </Navbar.Items>
           </Navbar.WidthCnt>
         </Navbar.Wrapper>
