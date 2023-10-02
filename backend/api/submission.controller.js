@@ -456,7 +456,7 @@ exports.updatePathos = async (req, res, next) => {
   try {
     let updatedSub
     let { pathogens } = req.body
-    console.log(`@@@@@ pathogens should be these`, pathogens)
+    
     let { id } = req.params
 
     await db.sequelize
@@ -467,28 +467,30 @@ exports.updatePathos = async (req, res, next) => {
         if (existing.length !== pathogens.length) {
           await Sub_Pathos.destroy({ where: { submissionId: id } }, { transaction: t })
         }
-
+        
         if (pathogens.length) {
           let createArr = pathogens
-            .filter(item => !existing.includes(item.id))
-            .map(item => (
-              { submissionId: id, pathogenId: item.id, result: 'pending' }
+          .filter(item => !existing.includes(item.id))
+          .map(item => (
+            { submissionId: id, pathogenId: item.id, result: 'pending' }
             ))
-          await Sub_Pathos.bulkCreate(createArr, { transaction: t })
-        }
-      });
-
-    // this has to be outside of the transaction to get the updated data
-    updatedSub = await Subm.findByPk(id, {
-      include: [
-        { model: db.pathogen },
-        {
-          model: db.specimen,
-          include: db.pathogen
-        }
-      ]
-    })
-    // console.log(JSON.stringify(updatedSub, null, 1))
+            await Sub_Pathos.bulkCreate(createArr, { transaction: t })
+          }
+        });
+        
+        // this has to be outside of the transaction to get the updated data
+        updatedSub = await Subm.findByPk(id, {
+          include: [
+            { model: db.pathogen },
+            {
+              model: db.ticks,
+              as: 'specimen',
+              include: db.pathogen
+            }
+          ]
+        })
+        console.log(JSON.stringify(updatedSub, null, 1))
+        
     return res.json({ updatedSub })
   } catch (err) {
     console.log(err.message)
