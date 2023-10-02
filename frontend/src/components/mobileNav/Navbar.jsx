@@ -77,7 +77,7 @@ const NavbarComp = () => {
             {logoElement}
             <Navbar.Items>
               {deskElements}
-              <Navbar.Item key={`donate-desk`}>
+              <Navbar.Item key={`donate-desk`} style={{backgroundColor: '#ffc500'}}>
       <a href='https://give.rutgers.edu/NJticks' target="_blank" rel='noreferrer'>
         Donate!
       </a>
