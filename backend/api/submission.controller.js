@@ -236,7 +236,7 @@ exports.getSubPage = async (req, res, next) => {
 }
 
 exports.updateSubm = async (req, res, next) => {
-  console.log(`@@@@---update existing submission: ${JSON.stringify(req.body, null, 1)}---@@@@`);
+
   //!! model.update allows you to pass in any changes as an object.  model.save requires you to specify the exact field changes.
   try {
     let { id } = req.params
@@ -452,7 +452,7 @@ exports.getDupes = async (req, res, next) => {
   }
 }
 exports.updatePathos = async (req, res, next) => {
-  console.log(`@@@@---updating submission pathogens---@@@@`, req.params);
+  console.log(`@@@@---updating submission pathogens ---@@@@`, req.params, req.body);
   try {
     let updatedSub
     let { pathogens: speciesPathos } = req.body
@@ -464,6 +464,14 @@ exports.updatePathos = async (req, res, next) => {
 
         let foundSub = await Subm.findByPk(subId, { include: db.pathogen }, { transaction: t })
         let subPathos = foundSub.pathogens.map(item => item.id)
+        //** create a combined list so that if there are the same number of items but they are all different, they will be included in the list along with the old and the lengths will be different when we check in the logic below.  Example: old  [1,2,3,4] and new [5, 6,7, 8] then combined list will be [1,2,3,4,5,6,7,8] and will be different length than subPathos.length */
+        let combinedList = [...new Set([...subPathos, ...speciesPathos.map(item => item.id)])]
+
+
+        if (combinedList.length !== subPathos.length) {
+          await Sub_Pathos.destroy({ where: { submissionId: subId } }, { transaction: t })
+        }
+
         if (speciesPathos.length) {
           let createArr = speciesPathos
             // .filter(item => !subPathos.includes(item.id))
@@ -486,7 +494,7 @@ exports.updatePathos = async (req, res, next) => {
       ]
     })
     console.log(JSON.stringify(updatedSub, null, 1))
-        
+
     return res.json({ updatedSub })
   } catch (err) {
     console.log(err.message)
