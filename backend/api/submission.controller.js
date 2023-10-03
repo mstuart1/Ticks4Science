@@ -89,7 +89,7 @@ exports.getProgress = async (req, res, next) => {
           model: db.ticks,
           as: 'specimen',
           attributes: ['id', 'scientific', 'common'],
-          include: db.pathogen
+          include: [{ model: db.pathogen, attributes: ['id', 'pathogen', 'name'] }]
         },
         {
           model: db.users,
