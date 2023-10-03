@@ -54,22 +54,23 @@ const SubPathosList = ({ sub }) => {
             } catch (err) { console.log(err) }
         }
 
-        let submissionPathogens = subData?.pathogens ?? []// expect array
+        // !! this logic should be handled on the backend
+        // let submissionPathogens = subData?.pathogens ?? []// expect array
         let speciesPathogens = subData?.specimen?.pathogens ?? [] // expect array
-        console.log('subData', subData)
+        // console.log('subData', subData)
         // ** if subData?.pathogens is empty, update it with subData.specimen?.pathogens
         // !! species should override submission unless there are test results
-        if (submissionPathogens?.length !== speciesPathogens?.length) {
-            console.log('update', submissionPathogens?.length, speciesPathogens?.length)
-            updateSubPathos(subData.id, { pathogens: speciesPathogens }).then(data => {
-                console.log('update pathogen response', data)
-                setSubData(data)
-                setTableData(data?.pathogens)
-            })
-        } else {
-            // console.log('pathogens', submissionPathogens.length, speciesPathogens.length)
-            setTableData(submissionPathogens)
-        }
+        // if (submissionPathogens?.length !== speciesPathogens?.length) {
+        // console.log('update', submissionPathogens?.length, speciesPathogens?.length)
+        updateSubPathos(subData.id, { pathogens: speciesPathogens }).then(data => {
+            console.log('update pathogen response', data)
+            setSubData(data)
+            setTableData(data?.pathogens)
+        })
+        // } else {
+        // console.log('pathogens', submissionPathogens.length, speciesPathogens.length)
+        // setTableData(submissionPathogens)
+        // }
     }, [sub])
 
     const handleResult = async ({ target: { name: pathogenId, value: result } }) => {
