@@ -455,41 +455,37 @@ exports.updatePathos = async (req, res, next) => {
   console.log(`@@@@---updating submission pathogens---@@@@`, req.params);
   try {
     let updatedSub
-    let { pathogens } = req.body
-    
-    let { id } = req.params
+    let { pathogens: speciesPathos } = req.body
+    let { id: subId } = req.params
+
 
     await db.sequelize
       .transaction(async (t) => {
 
-        let foundSub = await Subm.findByPk(id, { include: db.pathogen }, { transaction: t })
-        let existing = foundSub.pathogens.map(item => item.id)
-        if (existing.length !== pathogens.length) {
-          await Sub_Pathos.destroy({ where: { submissionId: id } }, { transaction: t })
-        }
-        
-        if (pathogens.length) {
-          let createArr = pathogens
-          .filter(item => !existing.includes(item.id))
-          .map(item => (
-            { submissionId: id, pathogenId: item.id, result: 'pending' }
+        let foundSub = await Subm.findByPk(subId, { include: db.pathogen }, { transaction: t })
+        let subPathos = foundSub.pathogens.map(item => item.id)
+        if (speciesPathos.length) {
+          let createArr = speciesPathos
+            // .filter(item => !subPathos.includes(item.id))
+            .map(item => (
+              { submissionId: subId, pathogenId: item.id, result: 'pending' }
             ))
-            await Sub_Pathos.bulkCreate(createArr, { transaction: t })
-          }
-        });
-        
-        // this has to be outside of the transaction to get the updated data
-        updatedSub = await Subm.findByPk(id, {
-          include: [
-            { model: db.pathogen },
-            {
-              model: db.ticks,
-              as: 'specimen',
-              include: db.pathogen
-            }
-          ]
-        })
-        console.log(JSON.stringify(updatedSub, null, 1))
+          await Sub_Pathos.bulkCreate(createArr, { transaction: t })
+        }
+      });
+
+    // this has to be outside of the transaction to get the updated data
+    updatedSub = await Subm.findByPk(subId, {
+      include: [
+        { model: db.pathogen },
+        {
+          model: db.ticks,
+          as: 'specimen',
+          include: db.pathogen
+        }
+      ]
+    })
+    console.log(JSON.stringify(updatedSub, null, 1))
         
     return res.json({ updatedSub })
   } catch (err) {
