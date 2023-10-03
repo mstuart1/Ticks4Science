@@ -2,7 +2,7 @@ import styled from "styled-components"
 import { theme } from "../../theme"
 import { useEffect, useState } from "react"
 import SubmissionDataService from "../../services/submission"
-import { useNavigate } from "react-router-dom"
+// import { useNavigate } from "react-router-dom"
 
 const Styles = {
     InputDiv: styled.div`
@@ -40,7 +40,7 @@ const Styles = {
 
 const SubPathosList = ({ sub }) => {
 
-    const navigate = useNavigate()
+    // const navigate = useNavigate()
 
     const [subData, setSubData] = useState(sub)
     const [tableData, setTableData] = useState([])
