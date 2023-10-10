@@ -454,36 +454,33 @@ exports.getDupes = async (req, res, next) => {
 exports.updatePathos = async (req, res, next) => {
   console.log(`@@@@---updating submission pathogens ---@@@@`, req.params, req.body);
   try {
-    let updatedSub
+
     let { pathogens: speciesPathos } = req.body
     let { id: subId } = req.params
 
+    // for each sub_pathos relationship, there should be a sub id, a pathos id and a result
 
     await db.sequelize
       .transaction(async (t) => {
 
         let foundSub = await Subm.findByPk(subId, { include: db.pathogen }, { transaction: t })
+        console.log('foundSub', JSON.stringify(foundSub, null, 1))
         let subPathos = foundSub.pathogens.map(item => item.id)
         //** create a combined list so that if there are the same number of items but they are all different, they will be included in the list along with the old and the lengths will be different when we check in the logic below.  Example: old  [1,2,3,4] and new [5, 6,7, 8] then combined list will be [1,2,3,4,5,6,7,8] and will be different length than subPathos.length */
         let combinedList = [...new Set([...subPathos, ...speciesPathos.map(item => item.id)])]
+        const differenceList = combinedList.filter(item => !subPathos.map(item => item.id).includes(item))
 
-
-        if (combinedList.length !== subPathos.length) {
-          await Sub_Pathos.destroy({ where: { submissionId: subId } }, { transaction: t })
-        }
-
-        if (speciesPathos.length) {
-          let createArr = speciesPathos
-            // .filter(item => !subPathos.includes(item.id))
+        if (differenceList.length) {
+          let createArr = differenceList
             .map(item => (
-              { submissionId: subId, pathogenId: item.id, result: 'pending' }
+              { submissionId: subId, pathogenId: item, result: 'pending' }
             ))
           await Sub_Pathos.bulkCreate(createArr, { transaction: t })
         }
       });
 
     // this has to be outside of the transaction to get the updated data
-    updatedSub = await Subm.findByPk(subId, {
+    let updatedSub = await Subm.findByPk(subId, {
       include: [
         { model: db.pathogen },
         {
@@ -493,7 +490,7 @@ exports.updatePathos = async (req, res, next) => {
         }
       ]
     })
-    console.log(JSON.stringify(updatedSub, null, 1))
+    // console.log(JSON.stringify(updatedSub, null, 1))
 
     return res.json({ updatedSub })
   } catch (err) {
@@ -503,7 +500,7 @@ exports.updatePathos = async (req, res, next) => {
 
 }
 exports.updateResult = async (req, res, next) => {
-  console.log(`@@@@---updating sub pathos results---@@@@`);
+  console.log(`@@@@--- updating sub pathos results ---@@@@`);
   // console.log(JSON.stringify(req.body, null, 1))
   console.log(req.params)
   try {
@@ -519,6 +516,7 @@ exports.updateResult = async (req, res, next) => {
             pathogenId,
           }
         }, { transaction: t })
+
         foundShip.result = result
         await foundShip.save({ transaction: t })
 
