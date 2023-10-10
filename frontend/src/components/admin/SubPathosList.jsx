@@ -34,51 +34,52 @@ const Styles = {
  td {
     color: black;
     }
-  `
+  `,
+    Container: styled.section`
+  display: flex;
+    flex-direction: column;
+    width: 80vw;
+    max-width: 900px;
+  `,
+    Title: styled.h1`
+  text-align: center;
+  `,
 }
 
 
 const SubPathosList = ({ sub }) => {
 
-    // const navigate = useNavigate()
+    const { id: subId, specimen: { pathogens: speciesPathos }, pathogens: subPathos } = sub
 
-    const [subData, setSubData] = useState(sub)
-    const [tableData, setTableData] = useState([])
+    // ** combine subPathos and speciesPathos to remove duplicates but include any new items
+    const combinedList = [...new Set([...subPathos.map(item => item.id), ...speciesPathos.map(item => item.id)])]
+    // ** are there any differences between the ids in the combined list and the subPathos list?
+    const differenceList = combinedList.filter(item => !subPathos.map(item => item.id).includes(item))
+
+    const [tableData, setTableData] = useState(subPathos)
 
     useEffect(() => {
         // ** create function to update pathos in sub
         const updateSubPathos = async (subId, pathogens) => {
             try {
-                let response = await SubmissionDataService.updatePathos(subId, pathogens)
+                let response = await SubmissionDataService.updatePathos(subId, { pathogens })
                 return (response.data.updatedSub)
             } catch (err) { console.log(err) }
         }
-
-        // !! this logic should be handled on the backend
-        // let submissionPathogens = subData?.pathogens ?? []// expect array
-        let speciesPathogens = subData?.specimen?.pathogens ?? [] // expect array
-        // console.log('subData', subData)
-        // ** if subData?.pathogens is empty, update it with subData.specimen?.pathogens
-        // !! species should override submission unless there are test results
-        // if (submissionPathogens?.length !== speciesPathogens?.length) {
-        // console.log('update', submissionPathogens?.length, speciesPathogens?.length)
-        updateSubPathos(subData.id, { pathogens: speciesPathogens }).then(data => {
-            console.log('update pathogen response', data)
-            setSubData(data)
-            setTableData(data?.pathogens)
-        })
-        // } else {
-        // console.log('pathogens', submissionPathogens.length, speciesPathogens.length)
-        // setTableData(submissionPathogens)
-        // }
+        // ** if there are any differences, update the subPathos list
+        if (differenceList.length) {
+            updateSubPathos(subId, speciesPathos).then(freshData => {
+                console.log('fresh data', freshData)
+                setTableData(freshData?.pathogens)
+            })
+        }
     }, [sub])
 
     const handleResult = async ({ target: { name: pathogenId, value: result } }) => {
         try {
             let response = await SubmissionDataService.updateResult(sub.id, { pathogenId, result })
             let { updatedSub } = response.data
-            console.log('handle result response', updatedSub)
-            setSubData(updatedSub)
+            // console.log('handle result response', updatedSub)
             setTableData(updatedSub?.pathogens)
         } catch (err) {
             console.log(err)
@@ -87,8 +88,8 @@ const SubPathosList = ({ sub }) => {
     }
 
     return (
-        <div style={{ display: "flex", flexDirection: 'column', width: '80vw', maxWidth: '900px' }}>
-            <h1 style={{ textAlign: 'center' }}>Test Status</h1>
+        <Styles.Container>
+            <Styles.Title>Test Status</Styles.Title>
             <Styles.Table>
                 <thead>
                     <tr>
@@ -105,18 +106,19 @@ const SubPathosList = ({ sub }) => {
                             <td>{item.name}</td>
                             <td>{item.submission_pathogen.result}</td>
                             <td>
-                                <select defaultValue={item.submission_pathogen.result} name={item.id} onChange={(evt) => handleResult(evt)}>
+                                <select defaultValue={item.submission_pathogen.result} name={item.id} onChange={handleResult}>
                                     <option value="positive">Positive</option>
                                     <option value="negative">Negative</option>
                                     <option value="inconclusive">Inconclusive</option>
                                     <option value="pending">Pending</option>
+                                    <option value="not testing">Not Testing</option>
                                 </select>
                             </td>
                         </tr>
                     ))}
                 </tbody>
             </Styles.Table >
-        </div >
+        </Styles.Container >
     )
 }
 export default SubPathosList
