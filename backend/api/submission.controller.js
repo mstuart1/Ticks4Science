@@ -174,7 +174,7 @@ exports.getSubPage = async (req, res, next) => {
   try {
 
     let numLimit = req.query.numLimit ? parseInt(req.query.numLimit) : 3;
-    let page = req.query.page ? parseInt(req.query.page) : 0;
+    let page = req.query.page > 0 ? parseInt(req.query.page) : 0;
     let filter = req.query.filter ? req.query.filter : '';
 
     if (filter === 'totalSubs') {
