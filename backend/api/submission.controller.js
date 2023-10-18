@@ -169,6 +169,8 @@ exports.getAllSubs = async (req, res, next) => {
 
 exports.getSubPage = async (req, res, next) => {
   console.log(`@@@@---getting a page of submissions---@@@@`);
+  console.log(`@@@@--- query ---@@@@`, req.query);
+
   try {
 
     let numLimit = req.query.numLimit ? parseInt(req.query.numLimit) : 3;
@@ -190,9 +192,6 @@ exports.getSubPage = async (req, res, next) => {
     } else {
       query = { duplicate: { [Op.is]: null }, }
     }
-
-
-
 
     let foundSubs;
 
