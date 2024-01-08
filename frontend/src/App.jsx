@@ -30,6 +30,7 @@ import MissingId from './components/survey/MissingId';
 
 import ReactGA from 'react-ga'
 import { addGaScript, createWindowGTag } from './tools/googleAnalytics';
+import Maint from './components/maint/Maint';
 
 const trackingId = process.env.REACT_APP_GA_TRACKING
 ReactGA.initialize(trackingId)
@@ -89,6 +90,9 @@ const App = () => {
     ReactGA.pageview(window.location.pathname + window.location.search)
   }, [])
 
+  
+  let maintActive = false
+  
 
   return (
     <ThemeProvider theme={theme}>
@@ -100,8 +104,11 @@ const App = () => {
           <NavbarComp />
           <Styles.PageContainer>
             <Routes>
+              {maintActive ? <Route path='*' element={<Maint />} /> 
+              :
+              ( <>
               <Route path='/' element={<About />} />
-              <Route path='/steps' element={<Steps />} />
+               <Route path='/steps' element={<Steps />} />
               <Route path='/tickOrInsect' element={<TickOrInsect />} />
               <Route path='/photo' element={<Photo />} />
               <Route path='/checkMenu' element={<TickCheckMenu />} />
@@ -117,11 +124,13 @@ const App = () => {
               <Route path='/missingId' element={<MissingId />} />
               <Route path='/progress' element={<TickProgressInput buttonColors={{ text: theme.colors.ruTeal, bg: 'white', shadow: theme.colors.ruTeal }} />} />
               <Route path='/progress/:id' element={<TickProgress />} />
-              <Route path="/admin/*" element={<AdminMgt />} />
+             <Route path="/admin/*" element={<AdminMgt />} />
               <Route path='/reset/:token' element={<ResetPassword reset={true} />} />
               <Route path='/createAccount/:token' element={<ResetPassword create={true} />} />
               <Route path='/ticks/:id' element={<TickPage />} />
               <Route path='*' element={<About />} />
+              </>)}
+             
             </Routes>
 
           </Styles.PageContainer>

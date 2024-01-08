@@ -14,6 +14,7 @@ import SubCard from "./SubCard";
 import EditUser from "./EditUser";
 import OutlineFloatButton from "../ui/outlineFloatButton/OutlineFloatButton";
 import RenderIf from '../../tools/RenderIf'
+import MaintMessage from "../maint/MaintMessage";
 
 const ruTeal = theme.colors.ruTeal
 const ruRed = theme.colors.ruRed
@@ -223,6 +224,7 @@ const Dashboard = () => {
           ? user.firstName
           : `you haven't set up your profile yet, click the button below to edit your profile.`}
       </div>
+     <MaintMessage/>
 
       {/* <BasicPage.Form> */}
       <Styles.Input
