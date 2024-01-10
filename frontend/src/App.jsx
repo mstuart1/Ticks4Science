@@ -31,6 +31,7 @@ import MissingId from './components/survey/MissingId';
 import ReactGA from 'react-ga'
 import { addGaScript, createWindowGTag } from './tools/googleAnalytics';
 import Maint from './components/maint/Maint';
+import MaintMessage from './components/maint/MaintMessage';
 
 const trackingId = process.env.REACT_APP_GA_TRACKING
 ReactGA.initialize(trackingId)
@@ -78,6 +79,21 @@ body {
 
 const App = () => {
 
+  //* * if there is upcoming maintenance, 
+  /* enter the date(and time) into the maintDate field and activate it.
+  /* Update the maintText field.  
+  /* Activate the maintActive = currentDate > maintDate version and 
+  /* deactivate the =false version 
+  /* Once done, change the maintText field to an empty string and
+  /* reverse the order of steps above 
+  */
+
+  let currentDate = new Date()
+  let maintDate = new Date("2024-01-17T00:00:00")
+  let maintText = 'Due to inclement weather, the maintenance which will temporarily make the site unavailable has been rescheduled for January 17. We expect this maintenance to take less than an hour.'
+  let maintActive = currentDate > maintDate
+  // let maintActive = false
+
   addGaScript()
   createWindowGTag()
 
@@ -90,47 +106,43 @@ const App = () => {
     ReactGA.pageview(window.location.pathname + window.location.search)
   }, [])
 
-  
-  let maintActive = false
-  
-
   return (
     <ThemeProvider theme={theme}>
       <CSSReset />
       <Styles.Wrapper>
         <ScrollToTop>
           <RutgersHeader />
-
           <NavbarComp />
+          <MaintMessage message={maintText} />
           <Styles.PageContainer>
             <Routes>
-              {maintActive ? <Route path='*' element={<Maint />} /> 
-              :
-              ( <>
-              <Route path='/' element={<About />} />
-               <Route path='/steps' element={<Steps />} />
-              <Route path='/tickOrInsect' element={<TickOrInsect />} />
-              <Route path='/photo' element={<Photo />} />
-              <Route path='/checkMenu' element={<TickCheckMenu />} />
-              <Route path='/check' element={<TickCheck />} />
-              <Route path='/removal' element={<TickRemoval />} />
-              <Route path='/disease' element={<Diseases />} />
-              <Route path='/ticks' element={<Ticks />} />
-              <Route path='/tickBlitz' element={<TickBlitz />} />
-              <Route path='/blitzSurvey' element={<BlitzSurvey />} />
-              <Route path='/preSurvey' element={<PreSurvey />} />
-              <Route path='/survey' element={<Survey />} />
-              <Route path='/thanks' element={<ThankYou />} />
-              <Route path='/missingId' element={<MissingId />} />
-              <Route path='/progress' element={<TickProgressInput buttonColors={{ text: theme.colors.ruTeal, bg: 'white', shadow: theme.colors.ruTeal }} />} />
-              <Route path='/progress/:id' element={<TickProgress />} />
-             <Route path="/admin/*" element={<AdminMgt />} />
-              <Route path='/reset/:token' element={<ResetPassword reset={true} />} />
-              <Route path='/createAccount/:token' element={<ResetPassword create={true} />} />
-              <Route path='/ticks/:id' element={<TickPage />} />
-              <Route path='*' element={<About />} />
-              </>)}
-             
+              {maintActive ? <Route path='*' element={<Maint />} />
+                :
+                (<>
+                  <Route path='/' element={<About />} />
+                  <Route path='/steps' element={<Steps />} />
+                  <Route path='/tickOrInsect' element={<TickOrInsect />} />
+                  <Route path='/photo' element={<Photo />} />
+                  <Route path='/checkMenu' element={<TickCheckMenu />} />
+                  <Route path='/check' element={<TickCheck />} />
+                  <Route path='/removal' element={<TickRemoval />} />
+                  <Route path='/disease' element={<Diseases />} />
+                  <Route path='/ticks' element={<Ticks />} />
+                  <Route path='/tickBlitz' element={<TickBlitz />} />
+                  <Route path='/blitzSurvey' element={<BlitzSurvey />} />
+                  <Route path='/preSurvey' element={<PreSurvey />} />
+                  <Route path='/survey' element={<Survey />} />
+                  <Route path='/thanks' element={<ThankYou />} />
+                  <Route path='/missingId' element={<MissingId />} />
+                  <Route path='/progress' element={<TickProgressInput buttonColors={{ text: theme.colors.ruTeal, bg: 'white', shadow: theme.colors.ruTeal }} />} />
+                  <Route path='/progress/:id' element={<TickProgress />} />
+                  <Route path="/admin/*" element={<AdminMgt />} />
+                  <Route path='/reset/:token' element={<ResetPassword reset={true} />} />
+                  <Route path='/createAccount/:token' element={<ResetPassword create={true} />} />
+                  <Route path='/ticks/:id' element={<TickPage />} />
+                  <Route path='*' element={<About />} />
+                </>)}
+
             </Routes>
 
           </Styles.PageContainer>

@@ -8,7 +8,7 @@ import logo from '../images/Logo2023.png'
 import LearnMore from "./ui/learnMore/LearnMore";
 import OutlineFloatButton from "./ui/outlineFloatButton/OutlineFloatButton";
 import { useNavigate } from "react-router-dom";
-import MaintMessage from "./maint/MaintMessage";
+
 
 const Styles = {
   CenterCntr: styled.div`
@@ -97,7 +97,7 @@ const About = () => {
       <Styles.CenterCntr>
 
         <Styles.LeftAlignCont>
-    <MaintMessage/>
+
           <Styles.Title>
             Welcome to NJ Ticks 4 Science!
           </Styles.Title>

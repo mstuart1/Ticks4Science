@@ -14,7 +14,7 @@ import SubCard from "./SubCard";
 import EditUser from "./EditUser";
 import OutlineFloatButton from "../ui/outlineFloatButton/OutlineFloatButton";
 import RenderIf from '../../tools/RenderIf'
-import MaintMessage from "../maint/MaintMessage";
+
 
 const ruTeal = theme.colors.ruTeal
 const ruRed = theme.colors.ruRed
@@ -224,7 +224,7 @@ const Dashboard = () => {
           ? user.firstName
           : `you haven't set up your profile yet, click the button below to edit your profile.`}
       </div>
-     <MaintMessage/>
+
 
       {/* <BasicPage.Form> */}
       <Styles.Input
@@ -273,26 +273,26 @@ const Dashboard = () => {
           </RenderIf>
           <RenderIf isTrue={user.editPathogens}>
 
-          <OutlineFloatButton
-            colors={{
-              text: ruTeal,
-              shadow: ruTeal,
-              bg: theme.colors.white,
-            }}
-            handleClick={() => navigate("/admin/pathos-list")}
-            text="Edit Pathogen List"
-            padding="2rem"
-          />
-          <OutlineFloatButton
-            colors={{
-              text: ruTeal,
-              shadow: ruTeal,
-              bg: theme.colors.white,
-            }}
-            handleClick={() => navigate("/admin/tickList")}
-            text="Edit Tick Tests"
-            padding="2rem"
-          />
+            <OutlineFloatButton
+              colors={{
+                text: ruTeal,
+                shadow: ruTeal,
+                bg: theme.colors.white,
+              }}
+              handleClick={() => navigate("/admin/pathos-list")}
+              text="Edit Pathogen List"
+              padding="2rem"
+            />
+            <OutlineFloatButton
+              colors={{
+                text: ruTeal,
+                shadow: ruTeal,
+                bg: theme.colors.white,
+              }}
+              handleClick={() => navigate("/admin/tickList")}
+              text="Edit Tick Tests"
+              padding="2rem"
+            />
           </RenderIf>
         </BasicPage.CardContainer>
         <Styles.BlockCont
