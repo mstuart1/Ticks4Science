@@ -1,7 +1,7 @@
 # NJTicks4Science! Front end
 
 ## Build history
-1/17/2024 - frontend built with commit 4f805e2
+1/17/2024 - frontend built with commit efc566a
 7/20/2023 - the frontend is currently built with commit 205bc4cb
 develop is currently on commit b888502d
 
