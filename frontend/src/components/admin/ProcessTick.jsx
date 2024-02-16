@@ -176,7 +176,8 @@ const ProcessTick = () => {
             This is a Tick Blitz Submission
           </BasicPage.SectionTitle>
         </RenderIf>
-
+        <div style={{display: 'flex'}}>
+        <MessagesCard messages={tick.messages} user={user} submissionId={id} />
         <div
           style={{
             width: "100%",
@@ -187,7 +188,7 @@ const ProcessTick = () => {
             justifyContent: "center",
           }}
         >
-          <MessagesCard messages={tick.messages} user={user} submissionId={id} />
+         
           <StatusCard tick={tick} updateSub={updateSub} user={user} id={id} />
           <SubTickInfo tick={tick} />
           <SubmitterInfo tick={tick} />
@@ -233,7 +234,7 @@ const ProcessTick = () => {
             <DupSubDefine tick={tick} updateSub={updateSub} />
           </RenderIf>
         </div>
-
+</div>
 
         <div>
           <InternalLinkFloatButton
