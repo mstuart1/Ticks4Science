@@ -104,6 +104,10 @@ exports.getProgress = async (req, res, next) => {
         {
           model: db.pathogen,
           attributes: ["id", "pathogen", "name"]
+        },
+        {
+          model: db.message,
+          attributes: ['id', 'message', 'role', 'answered', 'createdAt']
         }
       ]
     })
