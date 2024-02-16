@@ -1,3 +1,4 @@
+const db = require("../models");
 const Message = db.message;
 
 exports.createMessage = async (req, res, next) => {
