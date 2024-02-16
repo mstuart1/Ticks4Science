@@ -5,6 +5,7 @@ module.exports = (app) => {
 
     router
     .post("/", MessageCtl.createMessage)
+    .put("/:id", MessageCtl.updateMessage)
         // .get("/", auth.verifyToken, SubmCtl.getAllSubs)
         // .get("/paged", auth.verifyToken, SubmCtl.getSubPage)
         // .get("/downloadData", SubmCtl.downloadData)

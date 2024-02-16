@@ -8,6 +8,9 @@ class MessageDataService {
     createMessage(data) {
         return http.post(`/message`, data)
     }
+    updateMessage(data){
+        return http.put(`/message/${data.id}`, data)
+    }
     
 
 }
