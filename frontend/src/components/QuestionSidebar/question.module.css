@@ -12,6 +12,7 @@
     font-size: 1.5rem;
     font-weight: 500;
     margin: 1rem 0;
+    text-wrap: wrap;
     /* max-width: 200px; */
 }
 .button {
@@ -42,4 +43,21 @@
 
     .textarea {
         max-width: 300px;
+    }
+
+    .list {
+        list-style: none;
+    }
+
+    .highlight{
+        background-color: #e3f3ef;
+        border-radius: 0.5rem;
+        padding: 0.5rem;
+        margin: 1rem 0;
+        display: block;
+        max-width: 300px;
+        text-wrap: wrap;
+    }
+    .date {
+    font-size: 1.25rem;
     }
