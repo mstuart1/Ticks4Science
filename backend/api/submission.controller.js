@@ -168,7 +168,7 @@ exports.getAllSubs = async (req, res, next) => {
           as: 'photoIdUser',
           attributes: ['id', 'firstName', 'lastName']
         },
-        {model: db.message}
+        { model: db.message }
 
       ]
     })
@@ -202,6 +202,7 @@ exports.getSubPage = async (req, res, next) => {
       query = { duplicate: { [Op.is]: null }, specimenIdentified: { [Op.not]: null } }
     } else if (filter === 'notReq') {
       query = { duplicate: { [Op.is]: null }, photosReviewed: { [Op.not]: null }, specimenIdentified: { [Op.is]: null }, specimenRequested: { [Op.is]: null } }
+    
     } else {
       query = { duplicate: { [Op.is]: null }, }
     }
@@ -234,10 +235,16 @@ exports.getSubPage = async (req, res, next) => {
             as: 'photoIdUser',
             attributes: ['id', 'firstName', 'lastName']
           },
-
+          {
+            model: db.message,
+          }
         ]
       }, { transaction: t })
     })
+
+    if (filter === 'questions') {
+      foundSubs = foundSubs.filter(sub => sub.messages.length > 0 && sub.messages.filter(msg => !msg.answered).length > 0)
+    }
 
     // console.log(JSON.stringify(foundSubs, null, 1))
     res.json({ record: foundSubs })
