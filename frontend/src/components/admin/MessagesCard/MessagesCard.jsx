@@ -34,7 +34,7 @@ const MessagesCard = ({messages, user, submissionId}) => {
       </form>
       {!!sortedMessages && !!sortedMessages.length && <>
         <h2 className={styles.title}>Message History</h2>
-        <h3>most recent on top</h3>
+        {/* <h3>most recent on top</h3> */}
         
           {sortedMessages.map((message) => (
             <div key={message.id} className={styles.messageDiv}><div className={styles.text}><span className={styles.date}>{new Date(message.createdAt).toString()} from {message.role === 'submitter' ? message.role : message.admin.firstName}:</span><br /> <span className={styles.highlight} style={{ background: message.role === 'admin' ? '#fff6d4' : '#e3f3ef'}}>{message.message}</span></div>
