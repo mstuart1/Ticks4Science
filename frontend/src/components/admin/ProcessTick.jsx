@@ -15,6 +15,7 @@ import DupSubDefine from "./DupSubDefine";
 import StatusCard from "./StatusCard";
 import SubmitterInfo from "./SubmitterInfo";
 import SubPathosList from "./SubPathosList";
+import MessagesCard from "./MessagesCard/MessagesCard";
 
 let { ruTeal } = theme.colors;
 
@@ -148,6 +149,8 @@ const ProcessTick = () => {
     navigate("/admin");
   };
 
+  console.log('tick', tick)
+
   return (
     <BasicPage.Text>
       <Styles.ButtonCont>
@@ -184,6 +187,7 @@ const ProcessTick = () => {
             justifyContent: "center",
           }}
         >
+          <MessagesCard messages={tick.messages} user={user} submissionId={id} />
           <StatusCard tick={tick} updateSub={updateSub} user={user} id={id} />
           <SubTickInfo tick={tick} />
           <SubmitterInfo tick={tick} />
