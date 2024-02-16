@@ -22,10 +22,11 @@ app.use('/public', express.static('public'));
 
 app.use(cors(corsOptions));
 
+require("./api/message.route")(app);
+require("./api/pathogen.route")(app);
 require("./api/submission.route")(app);
 require("./api/tick.route")(app);
 require("./api/user.route")(app);
-require("./api/pathogen.route")(app);
 
 // For sending emails in dev
 if ("development" == app.get("env")) {
