@@ -72,7 +72,7 @@ const DownloadTable = () => {
       // console.log(response.data.record);
       let preData = response.data.record;
       let data = preData.map((item) => {
-        let pathos = {}
+        // let pathos = {}
         if (item.pathogens?.length){
           item.pathogens.forEach(patho => {
             let pathogen = patho.pathogen
