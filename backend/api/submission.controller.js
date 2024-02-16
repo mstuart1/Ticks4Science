@@ -168,6 +168,7 @@ exports.getAllSubs = async (req, res, next) => {
           as: 'photoIdUser',
           attributes: ['id', 'firstName', 'lastName']
         },
+        {model: db.message}
 
       ]
     })
