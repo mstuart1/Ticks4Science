@@ -7,6 +7,7 @@ module.exports = (sequelize, DataTypes) => {
     
     static associate(models) {
       message.belongsTo(models.submission);
+      message.belongsTo(models.users, {as: 'admin'});
     }
   }
   message.init({
