@@ -189,6 +189,7 @@ const Dashboard = () => {
       number: totalIdent?.length,
     },
     { filter: "notReq", text: "Specimen Not Requested", number: notReq?.length },
+    {filter: 'questions', text: "Unanswered Questions", number: questions?.Dashboardlength}
   ];
 
   let blockElems = blockArray.map((block, i) => (
