@@ -107,7 +107,15 @@ exports.getProgress = async (req, res, next) => {
         },
         {
           model: db.message,
-          attributes: ['id', 'message', 'role', 'answered', 'createdAt']
+          include: [
+            {
+              model: db.users,
+              as: 'admin',
+              attributes: ['id', 'firstName', 'lastName']
+            }
+          ]
+          // attributes: ['id', 'message', 'role', 'answered', 'createdAt'],
+          // order: [['createdAt', 'asc']] // this isn't having an effect
         }
       ]
     })
