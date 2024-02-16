@@ -10,18 +10,20 @@ const MessagesCard = ({messages, user, submissionId}) => {
   const [ansMsgs, setAnsMsgs] = useState([])
 
     useEffect(() => {
-      setAnsMsgs(messages?.map((msg) => {
-        if (msg.answered) {return msg.id} else {return}}))
-    }, [])
+      let freshMsgs = messages?.filter(msg => msg.answered).map((msg) => msg.id).filter(msg => msg !== undefined)
+      setAnsMsgs(freshMsgs)
+    }, [messages])
   
   const handleAnswered = async (id, evt) => {
     let {checked} = evt.target
     await MessageDataService.updateMessage({id, answered: checked})
     if (checked) {
-      let freshMsgs = [...new Set([...ansMsgs, id])]
+      let freshMsgs = [...new Set([...ansMsgs, id])].filter(msg => msg !== undefined)
+      // console.log('freshMsgs', freshMsgs)
       setAnsMsgs(freshMsgs)
     } else {
-      let freshMsgs = ansMsgs.filter(msg => msg !== id)
+      let freshMsgs = ansMsgs.filter(msg => msg !== id).filter(msg => msg !== undefined)
+      // console.log('freshMsgs', freshMsgs)
       setAnsMsgs(freshMsgs)
     }
 
@@ -40,8 +42,8 @@ const MessagesCard = ({messages, user, submissionId}) => {
 
   }
 
-
-  console.log('answered messages', ansMsgs)
+// 
+  // console.log('answered messages', ansMsgs)
   return (
     <OutlineCard width="30rem">
       <h2 className={styles.title}>Add a message to the submission</h2>
@@ -55,7 +57,7 @@ const MessagesCard = ({messages, user, submissionId}) => {
         {/* <h3>most recent on top</h3> */}
         
           {sortedMessages.map((message) => {
-            console.log('messageID', message.id)
+            // console.log('messageID', message.id)
             return (
             <div key={message.id} className={styles.messageDiv}><div className={styles.text}><span className={styles.date}>{new Date(message.createdAt).toString()} from {message.role === 'submitter' ? message.role : message.admin.firstName}:</span><br /> <span className={styles.highlight} style={{ background: message.role === 'admin' ? '#fff6d4' : '#e3f3ef'}}>{message.message}</span></div>
            {message.role === 'submitter' && <form>
