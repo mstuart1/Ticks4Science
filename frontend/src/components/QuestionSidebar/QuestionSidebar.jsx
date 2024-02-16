@@ -28,9 +28,10 @@ const QuestionSidebar = ({subId, subMessages}) => {
         </form>
           
           {!!subMessages.length &&  <>
-          <h2 className={styles.title}>Message History</h2>
+        <h2 className={styles.title}>Message History</h2>
+        <h3>most recent on top</h3>
             <ul className={styles.list}>
-          {subMessages.map((message) => (<li key={message.id} className={styles.text}><span className={styles.date}>{new Date(message.createdAt).toString()} from {message.role}:</span><br/> <span className={styles.highlight}>{message.message}</span></li>)
+          {subMessages.map((message) => (<li key={message.id} className={styles.text}><span className={styles.date}>{new Date(message.createdAt).toString()} from {message.role}:</span><br /><span className={styles.highlight} style={{ background: message.role === 'admin' ? '#fff6d4' : '#e3f3ef' }}>{message.message}</span></li>)
               )}
             </ul></>}
     </div>
