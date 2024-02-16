@@ -6,7 +6,7 @@ const Styles = {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    
     border-radius: ${({ theme }) => theme.borderRadius};
     border: 2px solid ${({ bgColor }) => bgColor + 30 || 'grey'};
     background-color: ${({ bgColor }) => bgColor + 20 || 'white'};
