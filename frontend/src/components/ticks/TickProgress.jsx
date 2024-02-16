@@ -248,7 +248,7 @@ const TickProgress = () => {
             {/* <!-- end timeline items --> */}
           </Styles.Timeline>
         </BasicPage.Text>
-        <QuestionSidebar subId={id} />
+        <QuestionSidebar subId={id} subMessages={data.messages} />
         </div>
       )
 
