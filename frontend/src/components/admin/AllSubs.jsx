@@ -102,6 +102,7 @@ const AllSubs = () => {
     { filter: 'pendIdentified', heading: 'Waiting for Lab to Identify Specimen' },
     { filter: 'totalIdent', heading: 'All Identified' },
     { filter: 'notReq', heading: 'Specimen Not Requested' },
+    {filter: 'questions', heading: 'Unanswered Questions'}
   ]
 
   let heading = filterHeadingArray.filter(item => item.filter === filter)[0].heading || ''
