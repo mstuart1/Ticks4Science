@@ -1,14 +1,30 @@
 import OutlineCard from "../../ui/outlineCard/OutlineCard"
 import styles from './messages.module.css'
 import MessageDataService from '../../../services/message'
+import { useEffect, useState } from "react"
 
 const MessagesCard = ({messages, user, submissionId}) => {
 // console.log('messages', messages, 'user', user, 'submissionId', submissionId)
   let sortedMessages = messages?.sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt))
+
+  const [ansMsgs, setAnsMsgs] = useState([])
+
+    useEffect(() => {
+      setAnsMsgs(messages?.map((msg) => {
+        if (msg.answered) {return msg.id} else {return}}))
+    }, [])
   
   const handleAnswered = async (id, evt) => {
-    // console.log('evt', evt.target.checked)
-    let response = await MessageDataService.updateMessage({id, answered: evt.target.checked})
+    let {checked} = evt.target
+    await MessageDataService.updateMessage({id, answered: checked})
+    if (checked) {
+      let freshMsgs = [...new Set([...ansMsgs, id])]
+      setAnsMsgs(freshMsgs)
+    } else {
+      let freshMsgs = ansMsgs.filter(msg => msg !== id)
+      setAnsMsgs(freshMsgs)
+    }
+
   }
 
   const handleQuestion = async (evt) => {
@@ -24,6 +40,8 @@ const MessagesCard = ({messages, user, submissionId}) => {
 
   }
 
+
+  console.log('answered messages', ansMsgs)
   return (
     <OutlineCard width="30rem">
       <h2 className={styles.title}>Add a message to the submission</h2>
@@ -36,14 +54,16 @@ const MessagesCard = ({messages, user, submissionId}) => {
         <h2 className={styles.title}>Message History</h2>
         {/* <h3>most recent on top</h3> */}
         
-          {sortedMessages.map((message) => (
+          {sortedMessages.map((message) => {
+            console.log('messageID', message.id)
+            return (
             <div key={message.id} className={styles.messageDiv}><div className={styles.text}><span className={styles.date}>{new Date(message.createdAt).toString()} from {message.role === 'submitter' ? message.role : message.admin.firstName}:</span><br /> <span className={styles.highlight} style={{ background: message.role === 'admin' ? '#fff6d4' : '#e3f3ef'}}>{message.message}</span></div>
-           {message.role === 'submitter' && <>
+           {message.role === 'submitter' && <form>
               <label htmlFor='answered'>Answered? {'   '}</label>
-              <input  type='checkbox' id='answered' name='answered' checked={message.answered} onChange={(evt) => handleAnswered(message.id, evt)} />
-              </>
+              <input  type='checkbox' id='answered' name='answered' checked={ansMsgs?.includes(message.id)} onChange={(evt) => handleAnswered(message.id, evt)} />
+              </form>
           }
-            </div>)
+            </div>)}
           )}
         
         </>}
