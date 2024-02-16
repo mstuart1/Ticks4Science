@@ -15,7 +15,6 @@ import EditUser from "./EditUser";
 import OutlineFloatButton from "../ui/outlineFloatButton/OutlineFloatButton";
 import RenderIf from '../../tools/RenderIf'
 
-
 const ruTeal = theme.colors.ruTeal
 const ruRed = theme.colors.ruRed
 
@@ -158,6 +157,8 @@ const Dashboard = () => {
       sub.specimenIdentified === null &&
       sub.specimenRequested === null
   );
+  let questions = data?.filter((sub) => !!sub.messages?.length && sub.messages.filter((msg) => !msg.answered).length)
+    console.log('questions', questions)
 
   let blockArray = [
     {
@@ -189,7 +190,7 @@ const Dashboard = () => {
       number: totalIdent?.length,
     },
     { filter: "notReq", text: "Specimen Not Requested", number: notReq?.length },
-    {filter: 'questions', text: "Unanswered Questions", number: questions?.Dashboardlength}
+    {filter: 'questions', text: "Unanswered Questions", number: questions?.length}
   ];
 
   let blockElems = blockArray.map((block, i) => (
