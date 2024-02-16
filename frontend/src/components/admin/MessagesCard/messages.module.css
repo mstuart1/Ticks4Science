@@ -1,0 +1,66 @@
+.cont {
+    margin: 2rem;
+    max-width: 300px;
+    
+}
+.title {
+    font-size: 2rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+.text {
+    font-size: 1.5rem;
+    font-weight: 500;
+    margin: 1rem 0;
+    text-wrap: wrap;
+    /* max-width: 200px; */
+}
+.button {
+     
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 1rem;
+    box-shadow: 0 3px 15px #00626d40;
+    margin: 2rem 0 ;
+    background-color: white;
+    width: 30%;
+    /* height: ${({height}) => height}; */
+    padding: 1rem 2rem;
+    color: #00626d;
+    border: 1px solid #00626d;
+}
+ .button:hover {
+      opacity: 0.9;
+      transform: scale(0.98);
+    }
+
+.button > span {
+        font-weight: bold;
+        text-align: center;
+        font-size: 1.8rem;
+    }
+
+    .textarea {
+        max-width: 300px;
+    }
+
+
+    .highlight{
+        background-color: #e3f3ef;
+        border-radius: 0.5rem;
+        padding: 0.5rem;
+        margin: 1rem 0;
+        display: block;
+        max-width: 300px;
+        text-wrap: wrap;
+    }
+    .date {
+    font-size: 1.25rem;
+    }
+
+    .messageDiv {
+        border: 2px solid #00626d;
+        margin: 2rem;
+        padding: 1rem;
+    }
