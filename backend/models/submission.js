@@ -18,6 +18,7 @@ module.exports = (sequelize, DataTypes) => {
                 as: "specIdUser"
               });
               submission.belongsToMany(models.pathogen, { through: 'submission_pathogen' })
+              submission.hasMany(models.message)
         }
     }
     submission.init({
