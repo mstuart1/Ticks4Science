@@ -26,7 +26,12 @@ const MessagesCard = ({messages, user, submissionId}) => {
 
   return (
     <OutlineCard width="30rem">
-        {/* <h2>Messages</h2> */}
+      <h2 className={styles.title}>Add a message to the submission</h2>
+      <form onSubmit={handleQuestion}>
+        <textarea className={styles.textarea} defaultValue='' id="message" name="message" rows="4" cols="30" placeholder="Drag the bottom right corner to create more space if needed."></textarea>
+        <br />
+        <button className={styles.button} type="submit" value="Submit" ><span>Submit</span></button>
+      </form>
       {!!sortedMessages && !!sortedMessages.length && <>
         <h2 className={styles.title}>Message History</h2>
         <h3>most recent on top</h3>
@@ -42,12 +47,7 @@ const MessagesCard = ({messages, user, submissionId}) => {
           )}
         
         </>}
-      <h2 className={styles.title}>Add a message to the submission</h2>
-      <form onSubmit={handleQuestion}>
-        <textarea className={styles.textarea} defaultValue='' id="message" name="message" rows="4" cols="30" placeholder="Drag the bottom right corner to create more space if needed."></textarea>
-        <br />
-        <button className={styles.button} type="submit" value="Submit" ><span>Submit</span></button>
-      </form>
+      
     </OutlineCard>
   )
 }
