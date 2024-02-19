@@ -157,8 +157,8 @@ const ProcessTick = () => {
       <Styles.ButtonCont>
         <InternalLinkFloatButton
           colors={{ text: ruTeal, shadow: ruTeal }}
-          to={-1}
-          text="  Back to List  "
+          to={"/admin"}
+          text="  Back to Dashboard  "
         />
         {/* only Michelle and Dina can see this button */}
         <RenderIf isTrue={user.editData}>
