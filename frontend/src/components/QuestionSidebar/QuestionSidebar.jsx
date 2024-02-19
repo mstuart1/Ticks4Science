@@ -1,22 +1,22 @@
 import styles from './question.module.css'
 import MessageDataService from '../../services/message'
+import { useNavigate } from 'react-router-dom'
+
 const QuestionSidebar = ({subId, subMessages}) => {
 
-  console.log('subId', subId, 'subMessages', subMessages)
-    // todo create send question function
+  const navigate = useNavigate()
 
     const handleQuestion = async (evt) => {
-        // evt.preventDefault()
+        evt.preventDefault()
         const formData = new FormData(evt.currentTarget)
         formData.append('submissionId', subId)
         formData.append('role', 'submitter')
         const formObject = Object.fromEntries(formData)
-        // console.log('Question', formObject)
-      let response = await MessageDataService.createMessage(formObject);
+      await MessageDataService.createMessage(formObject);
+      navigate(0, { replace: true })
         
     }
-    // todo create fetch message history function
-    let messages = true
+    
   return (
     <div className={styles.cont} >
         <h2 className={styles.title}>Questions?</h2>
