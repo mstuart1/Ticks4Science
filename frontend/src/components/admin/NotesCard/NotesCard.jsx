@@ -2,23 +2,33 @@ import SubmissionDataService from "../../../services/submission"
 import OutlineCard from "../../ui/outlineCard/OutlineCard"
 import styles from './notes.module.css'
 
-const NotesCard = ({ notes, id }) => {
+const NotesCard = ({ notes, id, user }) => {
     const handleNotes = async (evt) => {
+        // evt.preventDefault()
         const formData = new FormData(evt.currentTarget)
-        formData.append('id', id)
+        // formData.append('id', id)
         const formObject = Object.fromEntries(formData)
-        await SubmissionDataService.updateSub(formObject, id);
-        // return
+        // console.log('formObject', formObject.notes.length)
+        let data = {notes: {data: [...notes.data, {date: new Date(), text: formObject.notes, user: `${user.firstName} ${user.lastName}`}]}}
+        // console.log('notesCard', data)
+        if (formObject.notes.length > 0) {
+            let response = await SubmissionDataService.updateSub(data, id);
+            console.log("updated", response.data);
+        } 
+        return
     }
     return (
         <OutlineCard style={{ justifyContent: 'flex-start' }} width="30rem">
-            <h2 className={styles.title}>Notes</h2>
-            {!!notes && <p>{notes}</p>}
+            <h2 className={styles.title}>Lab Notes</h2>
+            {/* {!!notes && <p>{notes}</p>} */}
             <form onSubmit={handleNotes}>
                 <textarea className={styles.textarea} defaultValue='' id="notes" name="notes" rows="4" cols="30" placeholder="Drag the bottom right corner to create more space if needed."></textarea>
                 <br />
                 <button className={styles.button} type="submit" value="Submit" ><span>Submit</span></button>
             </form>
+            {notes?.data?.length && notes.data.map((note, index) => (<div key={index} className={styles.messageDiv}><div className={styles.text}><span className={styles.date}>{new Date(note.date).toString()} from {note.user}:</span><br /> <span className={styles.highlight}>{note.text}</span></div>
+               
+            </div>))}
         </OutlineCard>
     )
 }
