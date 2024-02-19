@@ -30,3 +30,29 @@
   text-align: center;
   font-size: 1.8rem;
 }
+.messageDiv {
+  border: 1px solid #00626d;
+  border-radius: 1rem;
+  margin: 2rem;
+  padding: 1rem;
+}
+.text {
+  font-size: 1.5rem;
+  font-weight: 500;
+  margin: 1rem 0;
+  text-wrap: wrap;
+  /* max-width: 200px; */
+}
+.date {
+  font-size: 1.25rem;
+}
+
+.highlight {
+  background-color: #e3f3ef;
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+  margin: 1rem 0;
+  display: block;
+  max-width: 300px;
+  text-wrap: wrap;
+}
