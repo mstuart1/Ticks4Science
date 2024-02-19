@@ -1,20 +1,26 @@
 import SubmissionDataService from "../../../services/submission"
 import OutlineCard from "../../ui/outlineCard/OutlineCard"
 import styles from './notes.module.css'
+import { useNavigate } from 'react-router-dom'
 
 const NotesCard = ({ notes, id, user }) => {
+    const navigate = useNavigate()
     const handleNotes = async (evt) => {
-        // evt.preventDefault()
+        evt.preventDefault()
         const formData = new FormData(evt.currentTarget)
-        // formData.append('id', id)
         const formObject = Object.fromEntries(formData)
-        // console.log('formObject', formObject.notes.length)
-        let data = {notes: {data: [...notes.data, {date: new Date(), text: formObject.notes, user: `${user.firstName} ${user.lastName}`}]}}
-        // console.log('notesCard', data)
+        let data
+        if (notes){
+
+            data = {notes: {data: [...notes?.data, {date: new Date(), text: formObject.notes, user: `${user.firstName} ${user.lastName}`}]}}
+        } else {
+            data = { notes: { data: [{ date: new Date(), text: formObject.notes, user: `${user.firstName} ${user.lastName}` }] } }
+        }
         if (formObject.notes.length > 0) {
             let response = await SubmissionDataService.updateSub(data, id);
             console.log("updated", response.data);
         } 
+        navigate(0, { replace: true })
         return
     }
     return (

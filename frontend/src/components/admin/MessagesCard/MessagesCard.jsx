@@ -2,8 +2,10 @@ import OutlineCard from "../../ui/outlineCard/OutlineCard"
 import styles from './messages.module.css'
 import MessageDataService from '../../../services/message'
 import { useEffect, useState } from "react"
+import {useNavigate} from 'react-router-dom'
 
 const MessagesCard = ({messages, user, submissionId}) => {
+  const navigate = useNavigate()
 // console.log('messages', messages, 'user', user, 'submissionId', submissionId)
   let sortedMessages = messages?.sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt))
 
@@ -29,7 +31,7 @@ const MessagesCard = ({messages, user, submissionId}) => {
   }
 
   const handleQuestion = async (evt) => {
-    // evt.preventDefault()
+    evt.preventDefault()
     const formData = new FormData(evt.currentTarget)
     formData.append('submissionId', submissionId)
     formData.append('role', 'admin')
@@ -38,7 +40,8 @@ const MessagesCard = ({messages, user, submissionId}) => {
     const formObject = Object.fromEntries(formData)
     // console.log('Question', formObject)
     await MessageDataService.createMessage(formObject);
-    return
+    navigate(0, { replace: true })
+        return
   }
 
 // 
