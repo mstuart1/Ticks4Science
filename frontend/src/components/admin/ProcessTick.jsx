@@ -150,8 +150,6 @@ const ProcessTick = () => {
     navigate("/admin");
   };
 
-  console.log('tick', tick)
-
   return (
     <BasicPage.Text>
       <Styles.ButtonCont>
@@ -178,7 +176,7 @@ const ProcessTick = () => {
           </BasicPage.SectionTitle>
         </RenderIf>
         <div style={{display: 'flex'}}>
-        <MessagesCard messages={tick.messages} user={user} submissionId={id} />
+       
         <div
           style={{
             width: "100%",
@@ -191,7 +189,6 @@ const ProcessTick = () => {
         >
          
           <StatusCard tick={tick} updateSub={updateSub} user={user} id={id} />
-          <NotesCard notes={tick.notes} id={id} />
           <SubTickInfo tick={tick} />
           <SubmitterInfo tick={tick} />
           {/* <p>Click on the photo to view full size</p> */}
@@ -236,6 +233,8 @@ const ProcessTick = () => {
             <DupSubDefine tick={tick} updateSub={updateSub} />
           </RenderIf>
         </div>
+          <MessagesCard messages={tick.messages} user={user} submissionId={id} />
+          <NotesCard notes={tick.notes} id={id} user={user} />
 </div>
 
         <div>
