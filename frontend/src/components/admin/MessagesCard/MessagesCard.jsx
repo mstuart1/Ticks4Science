@@ -26,7 +26,6 @@ const MessagesCard = ({messages, user, submissionId}) => {
       // console.log('freshMsgs', freshMsgs)
       setAnsMsgs(freshMsgs)
     }
-
   }
 
   const handleQuestion = async (evt) => {
@@ -38,8 +37,8 @@ const MessagesCard = ({messages, user, submissionId}) => {
     formData.append('answered', true)
     const formObject = Object.fromEntries(formData)
     // console.log('Question', formObject)
-    let response = await MessageDataService.createMessage(formObject);
-
+    await MessageDataService.createMessage(formObject);
+    return
   }
 
 // 
