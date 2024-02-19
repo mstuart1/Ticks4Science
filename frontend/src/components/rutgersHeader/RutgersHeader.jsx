@@ -1,7 +1,7 @@
 import React from "react";
-import headerLogo from "./NJAESCVB_RED_GRAY.png";
+import headerLogo from "./RUTGERS_H_RED_BLACK_RGB.png";
 import styled from 'styled-components'
-// import logo from '../../images/Logo2023.png'
+
 
 
 const Styles = {
@@ -64,13 +64,7 @@ li {
  display: none;
 }
 `,
-  OtherLogo: styled.img`
-display: none;
-@media screen and (max-width:${({ theme }) => theme.mobile}) {
-  display: flex;
-  max-width: 20rem;
- }
-`,
+
 }
 
 const RutgersHeader = () => (
@@ -80,7 +74,6 @@ const RutgersHeader = () => (
         <a href="https://www.rutgers.edu">
           <Styles.RULogo src={headerLogo} alt="Rutgers Logo" />
         </a>
-        {/* <Styles.OtherLogo src={logo} alt="Rutgers Logo" /> */}
 
 
       </Styles.Logo>
