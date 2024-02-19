@@ -158,7 +158,7 @@ const Dashboard = () => {
       sub.specimenRequested === null
   );
   let questions = data?.filter((sub) => !!sub.messages?.length && sub.messages.filter((msg) => !msg.answered).length)
-    console.log('questions', questions)
+    // console.log('questions', questions)
 
   let blockArray = [
     {
