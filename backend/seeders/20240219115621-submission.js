@@ -66351,7 +66351,9 @@ module.exports = {
     "photoIdUserId": null,
     "specIdUserId": null
   }
-], {});
+], {
+    updateOnDuplicate: true
+});
   },
 
   async down (queryInterface, Sequelize) {
