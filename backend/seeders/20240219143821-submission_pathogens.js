@@ -10,7 +10,7 @@ module.exports = {
     "createdAt": "2022-08-03 14:12:24",
     "updatedAt": "2022-08-03 14:12:24",
     "deletedAt": "2022-08-03 14:12:25",
-    "result": null
+    "result": "pending"
   },
   {
     "id": 2,
@@ -19,7 +19,7 @@ module.exports = {
     "createdAt": "2022-08-16 18:05:26",
     "updatedAt": "2022-08-16 18:05:26",
     "deletedAt": "2022-08-16 18:05:27",
-    "result": null
+    "result": "pending"
   },
   {
     "id": 3,
@@ -28,7 +28,7 @@ module.exports = {
     "createdAt": "2022-08-16 18:05:28",
     "updatedAt": "2022-08-16 18:05:28",
     "deletedAt": "2022-08-16 18:05:30",
-    "result": null
+    "result": "pending"
   },
   {
     "id": 4,
@@ -37,7 +37,7 @@ module.exports = {
     "createdAt": "2022-08-16 18:05:29",
     "updatedAt": "2022-08-16 18:05:29",
     "deletedAt": "2022-08-16 18:05:30",
-    "result": null
+    "result": "pending"
   },
   {
     "id": 5,
@@ -46,7 +46,7 @@ module.exports = {
     "createdAt": "2022-08-16 21:47:51",
     "updatedAt": "2022-08-16 21:47:51",
     "deletedAt": "2022-08-16 21:48:00",
-    "result": null
+    "result": "pending"
   },
   {
     "id": 6,
@@ -55,7 +55,7 @@ module.exports = {
     "createdAt": "2022-08-16 21:47:52",
     "updatedAt": "2022-08-16 21:47:52",
     "deletedAt": "2022-08-16 21:48:02",
-    "result": null
+    "result": "pending"
   },
   {
     "id": 7,
@@ -64,7 +64,7 @@ module.exports = {
     "createdAt": "2022-08-16 21:47:53",
     "updatedAt": "2022-08-16 21:47:53",
     "deletedAt": "2022-08-16 21:48:02",
-    "result": null
+    "result": "pending"
   },
   {
     "id": 8,
@@ -73,7 +73,7 @@ module.exports = {
     "createdAt": "2022-08-16 21:47:55",
     "updatedAt": "2022-08-16 21:47:55",
     "deletedAt": "2022-08-16 21:47:55",
-    "result": null
+    "result": "pending"
   },
   {
     "id": 9,
@@ -82,7 +82,7 @@ module.exports = {
     "createdAt": "2022-08-16 21:47:56",
     "updatedAt": "2022-08-16 21:47:56",
     "deletedAt": "2022-08-16 21:47:59",
-    "result": null
+    "result": "pending"
   },
   {
     "id": 10,
@@ -91,7 +91,7 @@ module.exports = {
     "createdAt": "2022-08-16 21:47:57",
     "updatedAt": "2022-08-16 21:47:57",
     "deletedAt": "2022-08-16 21:47:59",
-    "result": null
+    "result": "pending"
   },
   {
     "id": 11,
@@ -100,7 +100,7 @@ module.exports = {
     "createdAt": "2023-03-22 16:50:31",
     "updatedAt": "2023-03-22 16:50:31",
     "deletedAt": "2023-03-22 16:50:35",
-    "result": null
+    "result": "pending"
   },
   {
     "id": 12,
@@ -14554,7 +14554,7 @@ module.exports = {
     "createdAt": "2024-01-17 22:14:33",
     "updatedAt": "2024-01-30 21:30:16",
     "deletedAt": null,
-    "result": null
+    "result": "pending"
   },
   {
     "id": 1618,
@@ -14563,7 +14563,7 @@ module.exports = {
     "createdAt": "2024-01-17 22:14:33",
     "updatedAt": "2024-01-30 19:09:05",
     "deletedAt": null,
-    "result": null
+    "result": "pending"
   },
   {
     "id": 1619,
@@ -14572,7 +14572,7 @@ module.exports = {
     "createdAt": "2024-01-17 22:14:33",
     "updatedAt": "2024-01-30 19:07:08",
     "deletedAt": null,
-    "result": null
+    "result": "pending"
   },
   {
     "id": 1620,
@@ -14581,7 +14581,7 @@ module.exports = {
     "createdAt": "2024-01-17 22:14:33",
     "updatedAt": "2024-01-30 21:30:24",
     "deletedAt": null,
-    "result": null
+    "result": "pending"
   },
   {
     "id": 1621,
@@ -14590,7 +14590,7 @@ module.exports = {
     "createdAt": "2024-01-17 22:22:42",
     "updatedAt": "2024-01-30 21:29:30",
     "deletedAt": null,
-    "result": null
+    "result": "pending"
   },
   {
     "id": 1622,
@@ -14599,7 +14599,7 @@ module.exports = {
     "createdAt": "2024-01-17 22:22:42",
     "updatedAt": "2024-01-30 19:08:56",
     "deletedAt": null,
-    "result": null
+    "result": "pending"
   },
   {
     "id": 1623,
@@ -14608,7 +14608,7 @@ module.exports = {
     "createdAt": "2024-01-17 22:22:42",
     "updatedAt": "2024-01-30 19:06:56",
     "deletedAt": null,
-    "result": null
+    "result": "pending"
   },
   {
     "id": 1624,
@@ -14617,7 +14617,7 @@ module.exports = {
     "createdAt": "2024-01-17 22:22:42",
     "updatedAt": "2024-01-30 21:29:38",
     "deletedAt": null,
-    "result": null
+    "result": "pending"
   },
   {
     "id": 1625,
@@ -14626,7 +14626,7 @@ module.exports = {
     "createdAt": "2024-01-18 21:24:52",
     "updatedAt": "2024-01-30 21:30:55",
     "deletedAt": null,
-    "result": null
+    "result": "pending"
   },
   {
     "id": 1626,
@@ -14635,7 +14635,7 @@ module.exports = {
     "createdAt": "2024-01-18 21:24:52",
     "updatedAt": "2024-01-30 19:09:25",
     "deletedAt": null,
-    "result": null
+    "result": "pending"
   },
   {
     "id": 1627,
@@ -14644,7 +14644,7 @@ module.exports = {
     "createdAt": "2024-01-18 21:24:52",
     "updatedAt": "2024-01-30 19:07:24",
     "deletedAt": null,
-    "result": null
+    "result": "pending"
   },
   {
     "id": 1628,
@@ -14653,7 +14653,7 @@ module.exports = {
     "createdAt": "2024-01-18 21:24:52",
     "updatedAt": "2024-01-30 21:31:09",
     "deletedAt": null,
-    "result": null
+    "result": "pending"
   },
   {
     "id": 1629,
@@ -14662,7 +14662,7 @@ module.exports = {
     "createdAt": "2024-01-18 21:25:01",
     "updatedAt": "2024-01-30 21:31:28",
     "deletedAt": null,
-    "result": null
+    "result": "pending"
   },
   {
     "id": 1630,
@@ -14671,7 +14671,7 @@ module.exports = {
     "createdAt": "2024-01-18 21:25:01",
     "updatedAt": "2024-01-30 19:09:37",
     "deletedAt": null,
-    "result": null
+    "result": "pending"
   },
   {
     "id": 1631,
@@ -14680,7 +14680,7 @@ module.exports = {
     "createdAt": "2024-01-18 21:25:01",
     "updatedAt": "2024-01-30 19:07:34",
     "deletedAt": null,
-    "result": null
+    "result": "pending"
   },
   {
     "id": 1632,
@@ -14689,7 +14689,7 @@ module.exports = {
     "createdAt": "2024-01-18 21:25:01",
     "updatedAt": "2024-01-30 21:31:56",
     "deletedAt": null,
-    "result": null
+    "result": "pending"
   },
   {
     "id": 1633,
@@ -14698,7 +14698,7 @@ module.exports = {
     "createdAt": "2024-01-22 21:57:05",
     "updatedAt": "2024-01-30 21:32:14",
     "deletedAt": null,
-    "result": null
+    "result": "pending"
   },
   {
     "id": 1634,
@@ -14707,7 +14707,7 @@ module.exports = {
     "createdAt": "2024-01-22 21:57:05",
     "updatedAt": "2024-01-30 19:09:44",
     "deletedAt": null,
-    "result": null
+    "result": "pending"
   },
   {
     "id": 1635,
@@ -14716,7 +14716,7 @@ module.exports = {
     "createdAt": "2024-01-22 21:57:05",
     "updatedAt": "2024-01-30 19:07:57",
     "deletedAt": null,
-    "result": null
+    "result": "pending"
   },
   {
     "id": 1636,
@@ -14725,7 +14725,7 @@ module.exports = {
     "createdAt": "2024-01-22 21:57:05",
     "updatedAt": "2024-01-30 21:32:27",
     "deletedAt": null,
-    "result": null
+    "result": "pending"
   },
   {
     "id": 1637,
@@ -14734,7 +14734,7 @@ module.exports = {
     "createdAt": "2024-02-06 04:40:22",
     "updatedAt": "2024-02-17 17:19:45",
     "deletedAt": null,
-    "result": null
+    "result": "pending"
   },
   {
     "id": 1638,
@@ -14743,7 +14743,7 @@ module.exports = {
     "createdAt": "2024-02-06 04:40:22",
     "updatedAt": "2024-02-15 21:15:33",
     "deletedAt": null,
-    "result": null
+    "result": "pending"
   },
   {
     "id": 1639,
@@ -14752,7 +14752,7 @@ module.exports = {
     "createdAt": "2024-02-06 04:40:22",
     "updatedAt": "2024-02-15 21:15:35",
     "deletedAt": null,
-    "result": null
+    "result": "pending"
   },
   {
     "id": 1640,
@@ -14761,7 +14761,7 @@ module.exports = {
     "createdAt": "2024-02-06 04:40:22",
     "updatedAt": "2024-02-17 17:19:48",
     "deletedAt": null,
-    "result": null
+    "result": "pending"
   },
   {
     "id": 1641,
@@ -14770,7 +14770,7 @@ module.exports = {
     "createdAt": "2024-02-07 20:33:28",
     "updatedAt": "2024-02-19 15:22:14",
     "deletedAt": null,
-    "result": null
+    "result": "pending"
   },
   {
     "id": 1642,
@@ -14779,7 +14779,7 @@ module.exports = {
     "createdAt": "2024-02-07 20:33:28",
     "updatedAt": "2024-02-15 21:16:31",
     "deletedAt": null,
-    "result": null
+    "result": "pending"
   },
   {
     "id": 1643,
@@ -14788,7 +14788,7 @@ module.exports = {
     "createdAt": "2024-02-07 20:33:28",
     "updatedAt": "2024-02-15 21:16:32",
     "deletedAt": null,
-    "result": null
+    "result": "pending"
   },
   {
     "id": 1644,
@@ -14797,7 +14797,7 @@ module.exports = {
     "createdAt": "2024-02-07 20:33:28",
     "updatedAt": "2024-02-19 15:22:16",
     "deletedAt": null,
-    "result": null
+    "result": "pending"
   },
   {
     "id": 1645,
@@ -14806,7 +14806,7 @@ module.exports = {
     "createdAt": "2024-02-07 20:37:51",
     "updatedAt": "2024-02-19 15:21:54",
     "deletedAt": null,
-    "result": null
+    "result": "pending"
   },
   {
     "id": 1646,
@@ -14815,7 +14815,7 @@ module.exports = {
     "createdAt": "2024-02-07 20:37:51",
     "updatedAt": "2024-02-15 21:16:18",
     "deletedAt": null,
-    "result": null
+    "result": "pending"
   },
   {
     "id": 1647,
@@ -14824,7 +14824,7 @@ module.exports = {
     "createdAt": "2024-02-07 20:37:51",
     "updatedAt": "2024-02-15 21:16:19",
     "deletedAt": null,
-    "result": null
+    "result": "pending"
   },
   {
     "id": 1648,
@@ -14833,7 +14833,7 @@ module.exports = {
     "createdAt": "2024-02-07 20:37:51",
     "updatedAt": "2024-02-19 15:21:58",
     "deletedAt": null,
-    "result": null
+    "result": "pending"
   },
   {
     "id": 1649,
@@ -14842,7 +14842,7 @@ module.exports = {
     "createdAt": "2024-02-15 16:26:35",
     "updatedAt": "2024-02-15 16:26:35",
     "deletedAt": null,
-    "result": null
+    "result": "pending"
   },
   {
     "id": 1650,
@@ -14851,7 +14851,7 @@ module.exports = {
     "createdAt": "2024-02-15 16:26:35",
     "updatedAt": "2024-02-15 16:26:35",
     "deletedAt": null,
-    "result": null
+    "result": "pending"
   },
   {
     "id": 1651,
@@ -14860,7 +14860,7 @@ module.exports = {
     "createdAt": "2024-02-15 16:26:35",
     "updatedAt": "2024-02-15 16:26:35",
     "deletedAt": null,
-    "result": null
+    "result": "pending"
   },
   {
     "id": 1652,
@@ -14869,7 +14869,7 @@ module.exports = {
     "createdAt": "2024-02-15 16:26:35",
     "updatedAt": "2024-02-15 16:26:35",
     "deletedAt": null,
-    "result": null
+    "result": "pending"
   },
   {
     "id": 1653,
@@ -14878,7 +14878,7 @@ module.exports = {
     "createdAt": "2024-02-15 16:42:04",
     "updatedAt": "2024-02-15 16:42:04",
     "deletedAt": null,
-    "result": null
+    "result": "pending"
   },
   {
     "id": 1654,
@@ -14887,7 +14887,7 @@ module.exports = {
     "createdAt": "2024-02-15 16:42:04",
     "updatedAt": "2024-02-15 16:42:04",
     "deletedAt": null,
-    "result": null
+    "result": "pending"
   },
   {
     "id": 1655,
@@ -14896,7 +14896,7 @@ module.exports = {
     "createdAt": "2024-02-15 16:42:04",
     "updatedAt": "2024-02-15 16:42:04",
     "deletedAt": null,
-    "result": null
+    "result": "pending"
   },
   {
     "id": 1656,
@@ -14905,7 +14905,7 @@ module.exports = {
     "createdAt": "2024-02-15 16:42:04",
     "updatedAt": "2024-02-15 16:42:04",
     "deletedAt": null,
-    "result": null
+    "result": "pending"
   },
   {
     "id": 1657,
@@ -14914,7 +14914,7 @@ module.exports = {
     "createdAt": "2024-02-15 16:51:49",
     "updatedAt": "2024-02-15 16:51:49",
     "deletedAt": null,
-    "result": null
+    "result": "pending"
   },
   {
     "id": 1658,
@@ -14923,7 +14923,7 @@ module.exports = {
     "createdAt": "2024-02-15 16:51:49",
     "updatedAt": "2024-02-15 16:51:49",
     "deletedAt": null,
-    "result": null
+    "result": "pending"
   },
   {
     "id": 1659,
@@ -14932,7 +14932,7 @@ module.exports = {
     "createdAt": "2024-02-15 16:51:49",
     "updatedAt": "2024-02-15 16:51:49",
     "deletedAt": null,
-    "result": null
+    "result": "pending"
   },
   {
     "id": 1660,
@@ -14941,7 +14941,7 @@ module.exports = {
     "createdAt": "2024-02-15 16:51:49",
     "updatedAt": "2024-02-15 16:51:49",
     "deletedAt": null,
-    "result": null
+    "result": "pending"
   }
 ] , {});
   },
