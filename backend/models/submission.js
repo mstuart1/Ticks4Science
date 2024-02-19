@@ -69,6 +69,7 @@ module.exports = (sequelize, DataTypes) => {
         engorged: DataTypes.BOOLEAN,
         lifeStage: DataTypes.STRING,
         labNumber: DataTypes.STRING,
+        notes: DataTypes.JSON,
     }, {
         sequelize,
         modelName: 'submission',

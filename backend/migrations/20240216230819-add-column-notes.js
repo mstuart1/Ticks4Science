@@ -6,7 +6,7 @@ module.exports = {
       'submission',
       'notes',
       {
-        type: Sequelize.TEXT,
+        type: Sequelize.JSON,
       }
     );
 
