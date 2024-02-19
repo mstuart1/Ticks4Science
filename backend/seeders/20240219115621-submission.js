@@ -66352,7 +66352,7 @@ module.exports = {
     "specIdUserId": null
   }
 ], {
-    updateOnDuplicate: true
+   
 });
   },
 
