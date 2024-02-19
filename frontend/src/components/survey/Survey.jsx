@@ -5,6 +5,7 @@ import SubmissionDataService from "../../services/submission";
 import { theme } from "../../theme";
 import { BasicPage } from "../GeneralStyles";
 import FormSelectionBlocks from "../ui/formSelectionBlocks/FormSelectionBlocks";
+import styles from './survey.module.css'
 // import { createInputElems, createRadioElems } from '../../tools/createElemFunc'
 // import { attachedOptions, bittenInfoArray, foundOptions, inputElemArray1, inputElemArray2, locationOptions, yesNo } from './surveyFormData'
 // import RenderIf from '../../tools/RenderIf'
@@ -264,51 +265,13 @@ const Survey = () => {
   }
 
   return (
-    <BasicPage.Text>
-      <BasicPage.Title>Tick Submission Form</BasicPage.Title>
+    <div className={styles.text}>
+      <h2 className={styles.title}>Tick Submission Form</h2>
 
-      <BasicPage.Form>
-        {/* submitter info */}
-        <Styles.FormSection>
-          <h4>Submitter Information</h4>
-          <Styles.ResponsiveDiv>
-            <Styles.FormDiv>
-              <label htmlFor={"userMuni"}>{"Municipality *"}</label>
-              <Styles.Input
-                error={shouldMarkError("userMuni")}
-                onBlur={() => handleBlur("userMuni")}
-                type={"text"}
-                name={"userMuni"}
-                id={"userMuni"}
-                required
-                placeholder={"Where you live"}
-                value={input.userMuni}
-                onChange={handleChange}
-              />
-              <Styles.ErrMessage error={shouldMarkError("userMuni")}>
-                Please enter the city or town where you live.
-              </Styles.ErrMessage>
-            </Styles.FormDiv>
-            <Styles.FormDiv>
-              <label htmlFor={"userZip"}>{"ZIP Code *"}</label>
-              <Styles.Input
-                error={shouldMarkError("userZip")}
-                onBlur={() => handleBlur("userZip")}
-                type={"text"}
-                name={"userZip"}
-                id={"userZip"}
-                required
-                placeholder={"Where you live"}
-                value={input.userZip}
-                onChange={handleChange}
-              />
-              <Styles.ErrMessage error={shouldMarkError("userZip")}>
-                Please enter the 5-digit ZIP code where you live, do not include
-                a dash.
-              </Styles.ErrMessage>
-            </Styles.FormDiv>
-          </Styles.ResponsiveDiv>
-        </Styles.FormSection>
+      <form className={styles.form}>
+        
+      <SubmitterInfo shouldMarkError={shouldMarkError} handleBlur={handleBlur} handleChange={handleChange} input={input} />
+        
         {/* tick attached */}
         <Styles.FormSection>
           {/* tick attached */}
@@ -841,8 +804,54 @@ const Survey = () => {
             </BasicPage.LinkButton.CardSpecial>
           </BasicPage.HoverCard>
         </BasicPage.LinkButton.LinkSpec>
-      </BasicPage.Form>
-    </BasicPage.Text>
+      </form>
+    </div>
   );
 };
 export default Survey;
+
+
+const SubmitterInfo = ({error, shouldMarkError, handleBlur, handleChange, input}) => {
+  return (
+  <div className={styles.formSection}>
+    <h4>Submitter Information</h4>
+    <div className={styles.responsiveDiv}>
+      <div 
+      className={styles.formDiv}
+      >
+        <label htmlFor={"userMuni"}>{"Municipality *"}</label><br/>
+          <input
+            style={{ border: error ? "1px solid red" : "1px solid black" }}
+            error={shouldMarkError("userMuni")}
+            onBlur={() => handleBlur("userMuni")}
+            type={"text"}
+            name={"userMuni"}
+            id={"userMuni"}
+            required
+            placeholder={"Where you live"}
+            value={input.userMuni}
+            onChange={handleChange}
+            className={styles.input}
+          />
+      </div>
+      <div 
+      className={styles.formDiv}
+      >
+          <label htmlFor={"userZip"}>{"ZIP Code *"}</label><br></br>
+        <input
+        style={{border: error ? "1px solid red" : "1px solid black"}}
+            error={shouldMarkError("userMuni")}
+            onBlur={() => handleBlur("userMuni")}
+            type={"text"}
+            name={"userMuni"}
+            id={"userMuni"}
+            required
+            placeholder={"Where you live"}
+            value={input.userMuni}
+            onChange={handleChange}
+            className={styles.input}
+         />
+      </div>
+    </div>
+  </div>)
+}
