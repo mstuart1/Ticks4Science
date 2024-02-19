@@ -45,7 +45,7 @@ const MessagesCard = ({messages, user, submissionId}) => {
   // console.log('answered messages', ansMsgs)
   return (
     <OutlineCard style={{justifyContent: 'flex-start'}} width="30rem">
-      <h2 className={styles.title}>Add a message to the submission</h2>
+      <h2 className={styles.title}>Add a public message to the submission</h2>
       <form onSubmit={handleQuestion}>
         <textarea className={styles.textarea} defaultValue='' id="message" name="message" rows="4" cols="30" placeholder="Drag the bottom right corner to create more space if needed."></textarea>
         <br />
