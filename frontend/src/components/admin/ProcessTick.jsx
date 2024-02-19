@@ -16,6 +16,7 @@ import StatusCard from "./StatusCard";
 import SubmitterInfo from "./SubmitterInfo";
 import SubPathosList from "./SubPathosList";
 import MessagesCard from "./MessagesCard/MessagesCard";
+import NotesCard from "./NotesCard/NotesCard";
 
 let { ruTeal } = theme.colors;
 
@@ -190,6 +191,7 @@ const ProcessTick = () => {
         >
          
           <StatusCard tick={tick} updateSub={updateSub} user={user} id={id} />
+          <NotesCard notes={tick.notes} id={id} />
           <SubTickInfo tick={tick} />
           <SubmitterInfo tick={tick} />
           {/* <p>Click on the photo to view full size</p> */}
