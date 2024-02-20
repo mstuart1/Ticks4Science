@@ -1,0 +1,9 @@
+.formDiv {
+    margin-bottom: 1rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.label {
+    margin-bottom: 1rem;
+}
