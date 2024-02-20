@@ -3,7 +3,7 @@ import { theme } from '../../theme'
 import { BasicPage } from '../GeneralStyles'
 import TickDataService from '../../services/ticks'
 import { useNavigate, useParams } from 'react-router-dom'
-import FormSelectionBlocks from '../ui/formSelectionBlocks/FormSelectionBlocks'
+import FormSelectionBlocks from '../ui/FormSelectionBlocks'
 // import BorderlessInput from '../ui/borderlessInput/BorderlessInput'
 
 const AddEditTick = () => {
