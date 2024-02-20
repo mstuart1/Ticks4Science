@@ -4,7 +4,7 @@ import BorderlessFloatButton from "../ui/borderlessFloatButton/BorderlessFloatBu
 import styled from 'styled-components'
 import { theme } from '../../theme'
 import { BasicPage } from "../GeneralStyles";
-import FormSelectionBlocks from "../ui/formSelectionBlocks/FormSelectionBlocks";
+import FormSelectionBlocks from "../ui/FormSelectionBlocks";
 import { useEffect, useState } from "react";
 import TickDataService from '../../services/ticks'
 import { lifeStages } from "../../data/lifeStages";

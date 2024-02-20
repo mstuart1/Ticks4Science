@@ -4,7 +4,7 @@ import styled from "styled-components";
 import SubmissionDataService from "../../services/submission";
 import { theme } from "../../theme";
 import { BasicPage } from "../GeneralStyles";
-import FormSelectionBlocks from "../ui/formSelectionBlocks/FormSelectionBlocks";
+import FormSelectionBlocks from "../ui/FormSelectionBlocks/FormSelectionBlocks";
 import styles from './survey.module.css'
 // import { createInputElems, createRadioElems } from '../../tools/createElemFunc'
 // import { attachedOptions, bittenInfoArray, foundOptions, inputElemArray1, inputElemArray2, locationOptions, yesNo } from './surveyFormData'

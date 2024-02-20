@@ -1,6 +1,4 @@
-import React from 'react'
-
-const FormSelectionBlocks = ({input, handleChange, fieldName, valueArray = [{value: 'Person', required: false, label: 'Person'}],}) => {
+const FormSelectionBlocks = ({input, handleChange, fieldName, valueArray = [{value: 'Person', required: false, label: 'Person'}]}) => {
 
     let blocksElems = valueArray.map((value, i) => (
         <div key={i}>
