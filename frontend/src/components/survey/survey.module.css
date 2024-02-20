@@ -1,0 +1,86 @@
+h4 {
+  margin-bottom: 1.38rem;
+}
+.text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 1.4em;
+  margin: 1rem;
+  min-height: 80vh;
+}
+
+.text > p {
+  margin: 2rem;
+  padding: 1rem;
+}
+
+.text > li {
+  padding: 1em 0;
+}
+
+.title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  text-align: center;
+  margin: 1rem;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 2rem;
+}
+
+.form > label {
+  line-height: 2.24rem;
+  /* font-weight: bold; */
+  margin-top: 2rem;
+  font-size: 1.6rem;
+}
+
+.sectionTitle {
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
+}
+
+
+.formSection {
+  background-color: #ebb60040;
+  border-radius: 1rem;
+  padding: 3rem;
+  margin: 1rem;
+  width: 100%;
+}
+.responsiveDiv {
+  display: table;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+@media screen and (max-width: 748px) {
+  .text {
+    width: 100%;
+  }
+  .form input {
+    width: 90%;
+  }
+  .responsiveDiv {
+    max-width: 80%;
+  }
+}
+
+@media screen and (min-width: 810px) {
+  .text {
+    width: 800px;
+    text-align: left;
+  }
+}
+@media screen and (min-width: 1010px) {
+  .text {
+    width: 1000px;
+    text-align: left;
+  }
+}

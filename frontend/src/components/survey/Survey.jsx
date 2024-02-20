@@ -6,9 +6,14 @@ import { theme } from "../../theme";
 import { BasicPage } from "../GeneralStyles";
 import FormSelectionBlocks from "../ui/FormSelectionBlocks/FormSelectionBlocks";
 import styles from './survey.module.css'
-// import { createInputElems, createRadioElems } from '../../tools/createElemFunc'
-// import { attachedOptions, bittenInfoArray, foundOptions, inputElemArray1, inputElemArray2, locationOptions, yesNo } from './surveyFormData'
-// import RenderIf from '../../tools/RenderIf'
+import { locationOptions } from "./surveyFormData";
+import GenericInput from "../ui/GenericInput";
+import GenericRadio from "../ui/GenericRadio";
+import GenericTextarea from "../ui/GenericTextarea";
+import SubmitterInfo from "./SubmitterInfo";
+import TickAttached from "./TickAttached";
+import TickLocation from "./TickLocation";
+
 
 const Styles = {
   FormSection: styled.div`
@@ -53,6 +58,16 @@ const Styles = {
     display: none;
   `,
 };
+
+const AdditionalText = () => {
+  return (
+    <div>
+    <p>Any additional information about the environment, tick(s), and or
+        person / pet: (please keep character number below 200)</p> <br />
+              Character count: { input.additionalInfo.length > 200 ? <span style={{ color: 'red' }}>{input.additionalInfo.length}</span> : (<span>{input.additionalInfo.length}</span>) }
+    </div>
+  )
+}
 
 const Survey = () => {
   const navigate = useNavigate();
@@ -110,7 +125,7 @@ const Survey = () => {
   const handleChange = (evt) => {
     console.log("handling change");
     const { name, value, type, checked } = evt.target;
-    console.log(name, value, type, checked);
+    // console.log(name, value, type, checked);
     setInput((prevState) => ({
       ...prevState,
       [name]: type === "checkbox" ? checked : value,
@@ -123,7 +138,7 @@ const Survey = () => {
 
   const handleFront = (evt) => {
     let file = evt.target.files[0];
-    console.log('handling front, file.type:', file.type)
+    // console.log('handling front, file.type:', file.type)
     if (!file.type.includes('image')) {
       alert(`Please upload an image file`);
       return;
@@ -141,7 +156,7 @@ const Survey = () => {
     }
   };
   const handleBack = (evt) => {
-    console.log("handling back");
+    // console.log("handling back");
     let file = evt.target.files[0];
     if (file.size > 8000000) {
       alert(`Please reduce file size before uploading`);
@@ -157,7 +172,7 @@ const Survey = () => {
   };
 
   const validate = (input) => {
-    console.log("validating", input);
+    // console.log("validating", input);
     return {
       // true means invalid
       userMuni: input.userMuni.length === 0,
@@ -181,7 +196,7 @@ const Survey = () => {
   };
   const errors = validate(input);
   const handleBlur = (field) => {
-    console.log("handling blur");
+    // console.log("handling blur");
     setTouched((prevState) => ({ ...prevState, [field]: true }));
   };
 
@@ -195,10 +210,26 @@ const Survey = () => {
     return hasError ? shouldShow : undefined;
   };
 
-  console.log(input.additionalInfo.length);
+  // console.log(input.additionalInfo.length);
+
+  // const onSubmit = (e) => {
+  //   e.preventDefault();
+  //   const { isEmpty, data } = getFormValues(e.currentTarget);
+
+  //   if (isEmpty) {
+  //     console.log('please provide all values');
+  //     return;
+  //   }
+
+  //   // do something
+  //   console.log(data);
+
+  //   // clear inputs
+  //   e.currentTarget.reset();
+  // };
 
   const handleSubmit = async (evt) => {
-    console.log("handling submit");
+    console.log("handling submit",);
     try {
       setInProgress(true);
       evt.preventDefault();
@@ -243,22 +274,7 @@ const Survey = () => {
     }
   };
 
-  const foundArray = [
-    { value: "Person", required: true, label: "Person" },
-    { value: "Animal", required: true, label: "Animal" },
-    {
-      value: "Environment/Outside",
-      required: true,
-      label: "Environment/Outside",
-    },
-    { value: "Other", required: true, label: "Other" },
-  ];
 
-  const yesNoArray = [
-    { value: "yes", required: true, label: "Yes" },
-    { value: "no", required: true, label: "No" },
-    { value: "unknown", required: true, label: "Unknown/Believe So" },
-  ];
 
   if (inProgress) {
     return (<div style={{ width: '100vw', height: '100vh' }}><h1>Submitting form...</h1></div>)
@@ -268,502 +284,10 @@ const Survey = () => {
     <BasicPage.Text>
       <BasicPage.Title>Tick Submission Form</BasicPage.Title>
 
-      <BasicPage.Form>
-        {/* submitter info */}
-        <Styles.FormSection>
-          <h4>Submitter Information</h4>
-          <Styles.ResponsiveDiv>
-            <Styles.FormDiv>
-              <label htmlFor={"userMuni"}>{"Municipality *"}</label>
-              <Styles.Input
-                error={shouldMarkError("userMuni")}
-                onBlur={() => handleBlur("userMuni")}
-                type={"text"}
-                name={"userMuni"}
-                id={"userMuni"}
-                required
-                placeholder={"Where you live"}
-                value={input.userMuni}
-                onChange={handleChange}
-              />
-              <Styles.ErrMessage error={shouldMarkError("userMuni")}>
-                Please enter the city or town where you live.
-              </Styles.ErrMessage>
-            </Styles.FormDiv>
-            <Styles.FormDiv>
-              <label htmlFor={"userZip"}>{"ZIP Code *"}</label>
-              <Styles.Input
-                error={shouldMarkError("userZip")}
-                onBlur={() => handleBlur("userZip")}
-                type={"text"}
-                name={"userZip"}
-                id={"userZip"}
-                required
-                placeholder={"Where you live"}
-                value={input.userZip}
-                onChange={handleChange}
-              />
-              <Styles.ErrMessage error={shouldMarkError("userZip")}>
-                Please enter the 5-digit ZIP code where you live, do not include
-                a dash.
-              </Styles.ErrMessage>
-            </Styles.FormDiv>
-          </Styles.ResponsiveDiv>
-        </Styles.FormSection>
-        {/* tick attached */}
-        <Styles.FormSection>
-          {/* tick attached */}
-          <div>
-            <h4>Tick Attachment Information</h4>
-            <Styles.ResponsiveDiv>
-              <Styles.FormDiv>
-                <label htmlFor="foundOn">
-                  Indicate on who/what tick(s) were found *:
-                </label>
-
-                <Styles.ErrMessage error={shouldMarkError("foundOn")}>
-                  Please make a selection.
-                </Styles.ErrMessage>
-
-                <BasicPage.RadioButtons width="90%">
-                  <FormSelectionBlocks
-                    input={input}
-                    handleChange={handleChange}
-                    fieldName="foundOn"
-                    valueArray={foundArray}
-                  />
-                </BasicPage.RadioButtons>
-              </Styles.FormDiv>
-              {input.foundOn === "Other" && (
-                <Styles.FormDiv>
-                  <Styles.Input
-                    error={shouldMarkError("foundOnOther")}
-                    onBlur={() => handleBlur("foundOnOther")}
-                    type="text"
-                    name="foundOnOther"
-                    id="foundOnOther"
-                    required={input.foundOn === "Other"}
-                    placeholder="Describe the object where you found the tick"
-                    value={input.foundOnOther}
-                    onChange={handleChange}
-                  />
-                  <Styles.ErrMessage error={shouldMarkError("foundOnOther")}>
-                    Please describe the object on which you found the tick.
-                  </Styles.ErrMessage>
-                </Styles.FormDiv>
-              )}
-              {input.foundOn === "Animal" && (
-                <Styles.FormDiv>
-                  <Styles.Input
-                    error={shouldMarkError("animal")}
-                    onBlur={() => handleBlur("animal")}
-                    type="text"
-                    name="animal"
-                    id="animal"
-                    required={input.foundOn === "Animal"}
-                    placeholder="Specify Animal"
-                    value={input.animal}
-                    onChange={handleChange}
-                  />
-                  <Styles.ErrMessage error={shouldMarkError("animal")}>
-                    Please describe the object on which you found the tick.
-                  </Styles.ErrMessage>
-                </Styles.FormDiv>
-              )}
-
-              {(input.foundOn === "Person" || input.foundOn === "Animal") && (
-                <Styles.FormDiv>
-                  <label htmlFor="tickAttached">
-                    If tick(s) were found on person/animal, was it attached *?
-                  </label>
-                  <Styles.ErrMessage error={shouldMarkError("tickAttached")}>
-                    Please make a selection.
-                  </Styles.ErrMessage>
-                  <BasicPage.RadioButtons>
-                    <FormSelectionBlocks
-                      input={input}
-                      handleChange={handleChange}
-                      fieldName="tickAttached"
-                      valueArray={yesNoArray}
-                    />
-                  </BasicPage.RadioButtons>
-                </Styles.FormDiv>
-              )}
-              {input.tickAttached === "yes" && (
-                <>
-                  <Styles.ResponsiveDiv>
-                    <Styles.FormDiv>
-                      <label htmlFor="dateRemoved">Date Removed *</label>
-                      <Styles.Input
-                        error={shouldMarkError("dateRemoved")}
-                        onBlur={() => handleBlur("dateRemoved")}
-                        type={"date"}
-                        name={"dateRemoved"}
-                        id={"dateRemoved"}
-                        required
-                        value={input.dateRemoved}
-                        onChange={handleChange}
-                      />
-                      <Styles.ErrMessage error={shouldMarkError("dateRemoved")}>
-                        Please enter the date the tick was removed.
-                      </Styles.ErrMessage>
-                    </Styles.FormDiv>
-                  </Styles.ResponsiveDiv>
-                  {input.foundOn === "Person" && (
-                    <Styles.ResponsiveDiv>
-                      <Styles.FormDiv>
-                        <label htmlFor="submitterBitten">
-                          Was submitter bitten by the tick? *
-                        </label>
-                        <Styles.ErrMessage
-                          error={shouldMarkError("submitterBitten")}
-                        >
-                          Please make a selection.
-                        </Styles.ErrMessage>
-
-                        <BasicPage.RadioButtons>
-                          <input
-                            type="radio"
-                            name={"submitterBitten"}
-                            value={"Yes"}
-                            checked={input.submitterBitten === "Yes"}
-                            id="submitterBitten-Yes"
-                            onChange={handleChange}
-                            required
-                          />
-                          <label htmlFor="submitterBitten-Yes">Yes</label>
-                          <input
-                            type="radio"
-                            name={"submitterBitten"}
-                            value={"No"}
-                            checked={input.submitterBitten === "No"}
-                            id="submitterBitten-No"
-                            onChange={handleChange}
-                            required
-                          />
-                          <label htmlFor="submitterBitten-No">No</label>
-                        </BasicPage.RadioButtons>
-                      </Styles.FormDiv>
-                      {input.submitterBitten === "No" && (
-                        <Styles.ResponsiveDiv>
-                          <Styles.FormDiv>
-                            <label htmlFor={"bittenMuni"}>
-                              {"Municipality of bitten person *"}
-                            </label>
-                            <Styles.Input
-                              error={shouldMarkError("bittenMuni")}
-                              onBlur={() => handleBlur("bittenMuni")}
-                              type={"text"}
-                              name={"bittenMuni"}
-                              id={"bittenMuni"}
-                              required
-                              placeholder={"Where bitten person lives"}
-                              value={input.bittenMuni}
-                              onChange={handleChange}
-                            />
-                            <Styles.ErrMessage
-                              error={shouldMarkError("bittenMuni")}
-                            >
-                              Please enter the city or town where the bitten
-                              person lives.
-                            </Styles.ErrMessage>
-                          </Styles.FormDiv>
-                          <Styles.FormDiv>
-                            <label htmlFor={"bittenZip"}>
-                              {"ZIP Code of bitten person *"}
-                            </label>
-                            <Styles.Input
-                              error={shouldMarkError("bittenZip")}
-                              onBlur={() => handleBlur("bittenZip")}
-                              type={"text"}
-                              name={"bittenZip"}
-                              id={"bittenZip"}
-                              required
-                              placeholder={"Where bitten person lives"}
-                              value={input.bittenZip}
-                              onChange={handleChange}
-                            />
-                            <Styles.ErrMessage
-                              error={shouldMarkError("bittenZip")}
-                            >
-                              Please enter the ZIP code where the bitten person
-                              lives.
-                            </Styles.ErrMessage>
-                          </Styles.FormDiv>
-                        </Styles.ResponsiveDiv>
-                      )}
-
-                      <Styles.FormDiv>
-                        <label htmlFor="locationDesc">
-                          Has the bitten person traveled outside of New Jersey
-                          within the past 10 days?
-                        </label>
-                        <Styles.ErrMessage
-                          error={shouldMarkError("bittenTraveled")}
-                        >
-                          Please make a selection.
-                        </Styles.ErrMessage>
-
-                        <BasicPage.RadioButtons>
-                          <input
-                            type="radio"
-                            name={"bittenTraveled"}
-                            value={"Yes"}
-                            checked={input.bittenTraveled === "Yes"}
-                            id="bittenTraveled-Yes"
-                            onChange={handleChange}
-                            required
-                          />
-                          <label htmlFor="bittenTraveled-Yes">Yes</label>
-                          <input
-                            type="radio"
-                            name={"bittenTraveled"}
-                            value={"No"}
-                            checked={input.bittenTraveled === "No"}
-                            id="bittenTraveled-No"
-                            onChange={handleChange}
-                            required
-                          />
-                          <label htmlFor="bittenTraveled-No">No</label>
-                        </BasicPage.RadioButtons>
-                      </Styles.FormDiv>
-
-                      {input.bittenTraveled === "Yes" && (
-                        <Styles.FormDiv>
-                          <Styles.TextCont>
-                            <label htmlFor="travelInfo">
-                              Where did the bitten person travel?
-                            </label>
-                            <textarea
-                              rows={5}
-                              id="travelInfo"
-                              name="travelInfo"
-                              value={input.travelInfo}
-                              onChange={handleChange}
-                            ></textarea>
-                          </Styles.TextCont>
-                        </Styles.FormDiv>
-                      )}
-                    </Styles.ResponsiveDiv>
-                  )}
-                </>
-              )}
-            </Styles.ResponsiveDiv>
-          </div>
-        </Styles.FormSection>
-        {/* tick location info */}
-        <Styles.FormSection>
-          <div>
-            <h4>Tick Location Information</h4>
-            <Styles.ResponsiveDiv>
-              <Styles.FormDiv>
-                <label htmlFor={"dateTickFound"}>
-                  {"Date tick was found *"}
-                </label>
-                <Styles.Input
-                  error={shouldMarkError("dateTickFound")}
-                  onBlur={() => handleBlur("dateTickFound")}
-                  type={"date"}
-                  name={"dateTickFound"}
-                  id={"dateTickFound"}
-                  required
-                  value={input.dateTickFound}
-                  onChange={handleChange}
-                />
-                <Styles.ErrMessage error={shouldMarkError("dateTickFound")}>
-                  Please enter the date the tick was found. That date cannot be
-                  in the future.
-                </Styles.ErrMessage>
-              </Styles.FormDiv>
-              <Styles.FormDiv>
-                <label htmlFor={"tickMuni"}>
-                  {"Municipality where tick was found *"}
-                </label>
-                <Styles.Input
-                  error={shouldMarkError("tickMuni")}
-                  onBlur={() => handleBlur("tickMuni")}
-                  type={"text"}
-                  name={"tickMuni"}
-                  id={"tickMuni"}
-                  required
-                  value={input.tickMuni}
-                  onChange={handleChange}
-                />
-                <Styles.ErrMessage error={shouldMarkError("tickMuni")}>
-                  Please enter the city or town where the tick was found.
-                </Styles.ErrMessage>
-              </Styles.FormDiv>
-              <Styles.FormDiv>
-                <label htmlFor={"tickCounty"}>
-                  {"County where tick was found *"}
-                </label>
-                <Styles.Input
-                  error={shouldMarkError("tickCounty")}
-                  onBlur={() => handleBlur("tickCounty")}
-                  type={"text"}
-                  name={"tickCounty"}
-                  id={"tickCounty"}
-                  required
-                  value={input.tickCounty}
-                  onChange={handleChange}
-                />
-                <Styles.ErrMessage error={shouldMarkError("tickCounty")}>
-                  Please enter the county where the tick was found.
-                </Styles.ErrMessage>
-              </Styles.FormDiv>
-              <Styles.FormDiv>
-                <label htmlFor={"tickZip"}>
-                  {"ZIP code where tick was found *"}
-                </label>
-                <Styles.Input
-                  error={shouldMarkError("tickZip")}
-                  onBlur={() => handleBlur("tickZip")}
-                  type={"text"}
-                  name={"tickZip"}
-                  id={"tickZip"}
-                  required
-                  value={input.tickZip}
-                  onChange={handleChange}
-                />
-                <Styles.ErrMessage error={shouldMarkError("tickZip")}>
-                  Please enter the 5 digit ZIP code where the tick was found, do
-                  not include a dash.
-                </Styles.ErrMessage>
-              </Styles.FormDiv>
-              <Styles.FormDiv>
-                {/* location buttons */}
-
-                <label htmlFor="locationDesc">Descriptor of Location*</label>
-                <BasicPage.RadioButtons
-                // style={{ flexWrap: 'wrap' }}
-                >
-                  <input
-                    type="radio"
-                    name={"locationDesc"}
-                    value={"Backyard"}
-                    checked={input.locationDesc === "Backyard"}
-                    id="locationDesc-Backyard"
-                    onChange={handleChange}
-                    required
-                  />
-                  <label htmlFor="locationDesc-Backyard">Backyard</label>
-
-                  <input
-                    type="radio"
-                    name={"locationDesc"}
-                    value={"Park/Playground"}
-                    checked={input.locationDesc === "Park/Playground"}
-                    id="locationDesc-Park/Playground"
-                    onChange={handleChange}
-                    required
-                  />
-                  <label htmlFor="locationDesc-Park/Playground">
-                    Park/Playground
-                  </label>
-
-                  <input
-                    type="radio"
-                    name={"locationDesc"}
-                    value={"Recreational area outside"}
-                    checked={input.locationDesc === "Recreational area outside"}
-                    id="locationDesc-Recreational"
-                    onChange={handleChange}
-                    required
-                  />
-                  <label htmlFor="locationDesc-Recreational">
-                    Recreational area outside
-                  </label>
-
-                  <input
-                    type="radio"
-                    name={"locationDesc"}
-                    value={"Forest/Wooded area"}
-                    checked={input.locationDesc === "Forest/Wooded area"}
-                    id="locationDesc-Forest/Wooded area"
-                    onChange={handleChange}
-                    required
-                  />
-                  <label htmlFor="locationDesc-Forest/Wooded area">
-                    Forest/Wooded area
-                  </label>
-
-                  <input
-                    type="radio"
-                    name={"locationDesc"}
-                    value={"Field/Grassy area"}
-                    checked={input.locationDesc === "Field/Grassy area"}
-                    id="locationDesc-Field/Grassy area"
-                    onChange={handleChange}
-                    required
-                  />
-                  <label htmlFor="locationDesc-Field/Grassy area">
-                    Field/Grassy area
-                  </label>
-
-                  <input
-                    type="radio"
-                    name={"locationDesc"}
-                    value={"Garden/Agriculture"}
-                    checked={input.locationDesc === "Garden/Agriculture"}
-                    id="locationDesc-Garden/Agriculture"
-                    onChange={handleChange}
-                    required
-                  />
-                  <label htmlFor="locationDesc-Garden/Agriculture">
-                    Garden/Agriculture
-                  </label>
-
-                  <input
-                    type="radio"
-                    name={"locationDesc"}
-                    value={"Other"}
-                    checked={input.locationDesc === "Other"}
-                    id="locationDesc-Other"
-                    onChange={handleChange}
-                    required
-                  />
-                  <label htmlFor="locationDesc-Other">Other</label>
-                  {/* {locationRadioElem} */}
-                </BasicPage.RadioButtons>
-              </Styles.FormDiv>
-
-              {input.locationDesc === "Other" && (
-                <Styles.FormDiv>
-                  <Styles.Input
-                    error={shouldMarkError("locationDescOther")}
-                    onBlur={() => handleBlur("locationDescOther")}
-                    type={"text"}
-                    name={"locationDescOther"}
-                    id={"locationDescOther"}
-                    required
-                    placeholder={
-                      "Describe the location where you found the tick*"
-                    }
-                    value={input.locationDescOther}
-                    onChange={handleChange}
-                  />
-                  <Styles.ErrMessage
-                    error={shouldMarkError("locationDescOther")}
-                  >
-                    Please describe the location where you found the tick.
-                  </Styles.ErrMessage>
-                </Styles.FormDiv>
-              )}
-            </Styles.ResponsiveDiv>
-          </div>
-          {/* activities */}
-          <Styles.TextCont>
-            <label htmlFor="activities">
-              Describe activity/activities when tick(s) were acquired:
-            </label>
-            <textarea
-              id="activities"
-              name="activities"
-              value={input.activities || ""}
-              onChange={handleChange}
-            ></textarea>
-          </Styles.TextCont>
-        </Styles.FormSection>
+      <form onSubmit={handleSubmit} className={styles.form}>
+        <SubmitterInfo />
+        <TickAttached />
+        <TickLocation />
         {/* photos */}
         <Styles.FormSection>
           <h3>
@@ -798,6 +322,7 @@ const Survey = () => {
           </p>
         </Styles.FormSection>
         <Styles.FormSection>
+          
           <Styles.TextCont>
             <label htmlFor="additionalInfo">
               Any additional information about the environment, tick(s), and or
@@ -842,8 +367,12 @@ const Survey = () => {
             </BasicPage.LinkButton.CardSpecial>
           </BasicPage.HoverCard>
         </BasicPage.LinkButton.LinkSpec>
-      </BasicPage.Form>
+      </form>
     </BasicPage.Text>
   );
 };
 export default Survey;
+
+
+
+

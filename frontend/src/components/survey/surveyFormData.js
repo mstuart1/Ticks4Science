@@ -1,28 +1,28 @@
-export const yesNo = [
-    {id: 1, text: 'Yes'},
-    {id: 2, text: 'No'},
-]
+export const foundArray = [
+    { value: "Person", required: true, label: "Person" },
+    { value: "Animal", required: true, label: "Animal" },
+    {
+        value: "Environment/Outside",
+        required: true,
+        label: "Environment/Outside",
+    },
+    { value: "Other", required: true, label: "Other" },
+];
 
-export const foundOptions = [
-    {id: 1, text: 'Person'},
-    {id: 2, text: 'Animal'},
-    {id: 3, text: 'Environment/Outside'},
-    {id: 4, text: 'Other'},
-]
-export const attachedOptions = [
-    {id: 1, text: 'Yes'},
-    {id: 2, text: 'No'},
-    {id: 3, text: 'Unknown/Believe So'},
-]
+export const yesNoArray = [
+    { value: "yes", required: true, label: "Yes" },
+    { value: "no", required: true, label: "No" },
+    { value: "unknown", required: true, label: "Unknown/Believe So" },
+];
 
 export const locationOptions = [
-    {id: 1, text: 'Backyard'},
-    {id: 2, text: 'Park/Playground'},
-    {id: 3, text: 'Recreational area outside'},
-    {id: 4, text: 'Forest/Wooded area'},
-    {id: 5, text: 'Field/Grassy area'},
-    {id: 6, text: 'Garden/Agriculture'},
-    {id: 7, text: 'Other'},
+    {id: 1, required: true, label: 'Backyard', value: 'Backyard'},
+    {id: 2, required: true, label: 'Park/Playground', value: 'Park/Playground'},
+    {id: 3, required: true, label: 'Recreational area outside', value: 'Recreational area outside'},
+    {id: 4, required: true, label: 'Forest/Wooded area', value: 'Forest/Wooded area'},
+    {id: 5, required: true, label: 'Field/Grassy area', value: 'Field/Grassy area'},
+    {id: 6, required: true, label: 'Garden/Agriculture', value: 'Garden/Agriculture'},
+    {id: 7, required: true, label: 'Other', value: 'Other'},
 ]
 
 export const inputElemArray1 = [
