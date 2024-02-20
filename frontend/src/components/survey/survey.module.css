@@ -60,6 +60,19 @@ h4 {
   align-items: center;
 }
 
+.innieLink {
+  text-decoration: none;
+  color: #00626d;
+}
+.innieLink > span {
+    border-bottom: 1px solid #ebb600;
+    
+  }
+  /* TODO get this hover works with desktop but not mobile - NEED AN ON TOUCH FOR MOBILE */
+  .innieLink:hover {
+    border-bottom: 0px;
+  }
+
 @media screen and (max-width: 748px) {
   .text {
     width: 100%;
