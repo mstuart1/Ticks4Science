@@ -1,0 +1,32 @@
+.inputContainer {
+    margin-bottom: 1rem;
+}
+
+.label{
+    line-height: 2.24rem;
+    /* font-weight: bold; */
+    margin-bottom: 1rem;
+    font-size: 1.6rem;
+    display: block;
+}
+
+.input {
+  width: 30rem;
+  padding: 0.7rem;
+  margin-bottom: 1rem;
+  border: 0.5px solid #0d0d0d;
+  border-radius: 0.25em;
+}
+.input::placeholder,
+.input::-webkit-input-placeholder {
+  font-size: 1.6rem;
+  font-family: inherit;
+  color: #0d0d0d;
+  opacity: 0.8;
+}
+.input:-ms-input-placeholder {
+  font-size: 1.6rem;
+  font-family: inherit;
+  color: #ebb600;
+  opacity: 0.8;
+}
