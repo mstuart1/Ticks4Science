@@ -3,6 +3,7 @@ import GenericInput from '../ui/GenericInput'
 import GenericTextarea from '../ui/GenericTextarea'
 import GenericRadio from '../ui/GenericRadio'
 import { useState } from 'react'
+import {locationOptions} from './surveyFormData'
 
 const TickLocation = () => {
 
