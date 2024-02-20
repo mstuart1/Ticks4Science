@@ -38,26 +38,13 @@ h4 {
   margin-top: 2rem;
   font-size: 1.6rem;
 }
-.input {
-  width: 30rem;
-  padding: 0.7rem;
-  /* margin: 0.5rem; */
-  border: 0.5px solid #0d0d0d;
-  border-radius: 0.25em;
+
+.sectionTitle {
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
 }
-.input::placeholder,
-.input::-webkit-input-placeholder {
-  font-size: 1.6rem;
-  font-family: inherit;
-  color: #0d0d0d;
-  opacity: 0.8;
-}
-.input:-ms-input-placeholder {
-  font-size: 1.6rem;
-  font-family: inherit;
-  color: #ebb600;
-  opacity: 0.8;
-}
+
 
 .formSection {
   background-color: #ebb60040;
@@ -67,14 +54,12 @@ h4 {
   width: 100%;
 }
 .responsiveDiv {
-  display: flex;
+  display: table;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: space-evenly;
   align-items: center;
 }
-.formDiv {
- margin-bottom: 1rem; 
-} 
+
 @media screen and (max-width: 748px) {
   .text {
     width: 100%;
