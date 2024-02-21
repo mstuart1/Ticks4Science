@@ -73,6 +73,12 @@ h4 {
     border-bottom: 0px;
   }
 
+  .specialText {
+    font-weight: 700;
+    display: inline;
+    
+  }
+
 @media screen and (max-width: 748px) {
   .text {
     width: 100%;
