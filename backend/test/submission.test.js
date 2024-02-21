@@ -7,7 +7,36 @@ chai.use(chaiHttp);
 
 
 describe("Submission", () => {
-
+//create submission
+describe("POST /submission", () => {
+  it("should create a new submission", (done) => {
+    let submission = {
+      "userMuni": "test",
+      "userZip": "08901",
+      "email": "michelle.stuart@rutgers.edu",
+      "foundOn": "Environment/Outside",
+      "dateTickFound": "2024-02-01",
+      "tickMuni": "test",
+      "tickCounty": "New Jersey",
+      "tickZip": "08901",
+      "locationDesc": "Garden/Agriculture",
+      "activities": "",
+      "imageFront": {},
+      "imageBack": {}
+    }
+    chai
+      .request(server)
+      .post("/submission")
+      .send(submission)
+      .end((err, res) => {
+        console.log(res.body);
+        res.should.have.status(200);
+        // res.body.should.have.property("code").eq("OK");
+        done();
+      });
+  })
+  // .timeout(5000000);
+});
   // update existing submission
   describe("PUT /submission/:id", () => {
     it("should add a userMuni to this submission", (done) => {

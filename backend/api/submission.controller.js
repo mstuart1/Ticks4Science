@@ -1,32 +1,47 @@
 const db = require("../models");
+const { mailUser } = require("./mailHelper");
 const Op = db.Sequelize.Op;
 const Subm = db.submission;
 const Sub_Pathos = db.submission_pathogen;
+const Citizen = db.citizen;
 
-
+//create submission
 exports.createSubm = async (req, res, next) => {
   console.log(`@@@@---receiving form from arcgis or website---@@@@`);
   // console.log(JSON.stringify(req.body, null, 1))
   try {
-    // console.log(JSON.stringify(req.body, null, 1))
     let createdRecord;
     let incomingInfo = req.body;
 
+    if(incomingInfo.email){
+      let foundCitizen = await Citizen.findOne({ where: { email: incomingInfo.email } })
+      // console.log('foundCitizen', foundCitizen.id)
+      if (!foundCitizen) {
+        // ** create a new citizen record and add the id to the submission
+      incomingInfo.citizen = {
+        email: incomingInfo.email,
+      }
+      
+     } else {
+      // ** add the citizen id to the submission
+        incomingInfo.citizenId = foundCitizen.id
+      }
+    }
 
-
-    // let photos = incomingInfo.feature.attachments 
-
-    // incomingInfo = incomingInfo.feature.attributes;
-    // if (Object.keys(photos).length > 0){
-    //   incomingInfo.photoFrontUrl = photos.photoFront[0].url; // ?token=7UTVeIz0jyv8LVMGwzVWo-HIQVbEfVMmRVVUv5Zx3pa2G21rMsK398v93M3YSQUpraQJ64I-iimQkAOOmXcuXqfa6YDyZgaIBT1jVJhEmkNAteHCFNq5uxWulZLCMkeQ0OLJ5ICn34wSWKPITxPm4CHYzSbZENbc_ljBtHyvmfRn0X5VVhSNz7fcAp02MwkQ6PV7wda9acD4S8ObH--txOp8LxdxzjYahPWrCPRRF4Q.
-    //   incomingInfo.photoBackUrl = photos.photoBack[0].url;
-    // }
-    // console.log(incomingInfo)
     await db.sequelize
       .transaction(async (t) => {
-        createdRecord = await Subm.create(incomingInfo, { transaction: t })
+        createdRecord = await Subm.create(incomingInfo, {
+          include: [{
+            model: db.citizen,
+          }] }, { transaction: t })
       });
-    // console.log(JSON.stringify(createdRecord, null, 1))
+    
+    if (incomingInfo.email.length){
+      console.log('sending email')
+      let subject = `Thank you for your submission!`
+      let message = "Your tick ID # is {createdRecord.id}.  Check your tick's progress by clicking this link: <a href={`https://ticks.rutgers.edu/progress/${createdRecord.id}`}>https://ticks.rutgers.edu/progress/${createdRecord.id}</a>"
+      mailUser(incomingInfo.email, subject, message)
+    }
     return res.json({ data: createdRecord })
   } catch (err) {
     console.log(err.message)
@@ -104,6 +119,10 @@ exports.getProgress = async (req, res, next) => {
         {
           model: db.pathogen,
           attributes: ["id", "pathogen", "name"]
+        },
+        {
+          model: db.citizen,
+          attributes: ["id", "email"]
         },
         {
           model: db.message,
