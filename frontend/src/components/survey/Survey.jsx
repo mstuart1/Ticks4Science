@@ -13,57 +13,8 @@ import getFormValues  from "./getFormValues";
 
 const Survey = () => {
   const navigate = useNavigate();
-
-  let initialState = {
-    userMuni: "",
-    userZip: "",
-    dateTickFound: "",
-    foundOn: "",
-    foundOnOther: "",
-    tickAttached: "",
-    animal: "",
-    dateRemoved: "",
-    locationDesc: "",
-    locationDescOther: "",
-    tickMuni: "",
-    tickCounty: "",
-    tickZip: "",
-    activities: "",
-    personBitten: "",
-    submitterBitten: "",
-    bittenMuni: "",
-    bittenZip: "",
-    bittenTraveledDom: "",
-    bittenTraveledIntl: "",
-    travelInfo: "",
-    photoFrontUrl: "",
-    photoBackUrl: "",
-    photoOtherUrl: "",
-    additionalInfo: "",
-  };
-
-  let initialBlur = {
-    userMuni: false,
-    userZip: false,
-    foundOn: false,
-    foundOnOther: false,
-    dateTickFound: false,
-    tickMuni: false,
-    tickCounty: false,
-    tickZip: false,
-    bittenMuni: false,
-    bittenZip: false,
-    locationDescOther: false,
-    imageFront: false,
-    additionalInfo: false,
-  };
-
-  const [input, setInput] = useState(initialState);
-  const [touched, setTouched] = useState(initialBlur);
-  const [inProgress, setInProgress] = useState(false);
-
-
   
+  const [inProgress, setInProgress] = useState(false);
 
   const handleSubmit = async (evt) => {
     
@@ -89,14 +40,12 @@ const Survey = () => {
       console.log("sent form, now sending photos");
       response = await SubmissionDataService.submitImage(id, photoFormData, config);
       // alert(JSON.stringify(response.data))
-      setInput(initialState);
+      
       navigate(`/thanks?id=${id}`);
     } catch (err) {
       console.log(err.message);
     }
   };
-
-
 
   if (inProgress) {
     return (<div style={{ width: '100vw', height: '100vh' }}><h1>Submitting form...</h1></div>)
@@ -106,6 +55,7 @@ const Survey = () => {
     <div className={styles.text}>
       <h2 className={styles.title}>Tick Submission Form</h2>
 
+<p>      <span className={styles.specialText}>If you intend to mail in more than one tick,</span> please fill out this form for each one, separate the ticks into different containers/bags,  and label each with the id numbers provided once you complete the forms.  Each tick will be tested separately so each tick needs an individual id number and data record.</p>
       <form onSubmit={handleSubmit} className={styles.form}>
         <SubmitterInfo />
         <TickAttached />
@@ -113,18 +63,8 @@ const Survey = () => {
         <PhotoSection/>
         <AdditionalInfo/>
 
-       
-       
-        {/* {!isEnabled && (
-          <h4>
-            Please scan the form for missing information and complete the form
-            in order to make the submit button active.
-          </h4>
-        )} */}
         <button
         type='submit'
-          // onClick={handleSubmit}
-          // disabled={!isEnabled}
           style={{
             borderRadius: "0.5rem",
             padding: "2rem",
