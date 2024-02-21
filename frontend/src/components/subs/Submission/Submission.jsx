@@ -9,7 +9,7 @@ const Submission = () => {
     const location = useLocation();
     //the data here will be an object since an object was
     const data = location.state;
-    const [loading, setLoading] = useState(true)
+    const [loading, setLoading] = useState(false)
     const [dbData, setDbData] = useState(data)
     const [error, setError] = useState(false)
 
@@ -37,12 +37,12 @@ const Submission = () => {
                 setLoading(false)
             })
         }
-    }, [id])
+    }, [id, dbData])
     console.log('dbData', dbData)
 
-    // if (loading) {
-    //     return <div>Loading...</div>
-    // }
+    if (loading) {
+        return <div>Loading...</div>
+    }
     if (error) {
         return <div>There was an error loading the data</div>
     }
@@ -76,7 +76,9 @@ const Submission = () => {
             <img className={styles.img} src={dbData?.photoFrontUrl} alt='a tick that is being submitted for identification' />
                 {!!dbData?.photoBackUrl?.length && <img className={styles.img} src={dbData?.photoBackUrl} alt='a tick that is being submitted for identification' />}
             </div>
-            <BorderlessFloatButton text='Back to tick progress' width='250px' handleClick={() => navigate(`/progress/${id}`)}></BorderlessFloatButton>
+            <div className={styles.buttonCont}>
+            <BorderlessFloatButton colors={{text: '#00626d', shadow: '#00626d' } } text='Back to tick progress' width='250px' handleClick={() => navigate(`/progress/${id}`)}></BorderlessFloatButton>
+            </div>
         </div>
     )
 }
