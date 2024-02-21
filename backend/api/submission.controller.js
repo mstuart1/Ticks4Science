@@ -49,6 +49,7 @@ exports.createSubm = async (req, res, next) => {
   }
 
 }
+// upload photos
 exports.uploadPhoto = async (req, res, next) => {
 
   console.log(`@@@@---receiving image from website---@@@@`, JSON.stringify(req.files));
@@ -147,7 +148,7 @@ exports.getProgress = async (req, res, next) => {
     next(err)
   }
 }
-
+// get all submissions
 exports.getAllSubs = async (req, res, next) => {
   console.log(`@@@@---getting all submissions---@@@@`);
   try {
@@ -198,7 +199,7 @@ exports.getAllSubs = async (req, res, next) => {
     next(err)
   }
 }
-
+// get a page of submissions
 exports.getSubPage = async (req, res, next) => {
   console.log(`@@@@---getting a page of submissions---@@@@`);
   console.log(`@@@@--- query ---@@@@`, req.query);
@@ -272,7 +273,7 @@ exports.getSubPage = async (req, res, next) => {
     next(err)
   }
 }
-
+// update submission
 exports.updateSubm = async (req, res, next) => {
 
   //!! model.update allows you to pass in any changes as an object.  model.save requires you to specify the exact field changes.
@@ -288,6 +289,10 @@ exports.updateSubm = async (req, res, next) => {
         // console.log('updated', updated)
         updatedTick = await Subm.findByPk(id, {
           include: [
+            {
+              model: db.citizen,
+              attributes: ['id', 'email', 'lastEmail']
+            },
             {
               model: db.ticks,
               as: 'photo',
@@ -319,6 +324,15 @@ exports.updateSubm = async (req, res, next) => {
     if (updatedTick === null) {
       throw new Error(`tick ${id} not found`)
     }
+    
+    
+    if (updatedTick.citizenId){
+      console.log('emailing user about change')
+      let subject = `NJTicks4Science Tick Update for tick id # ${updatedTick.id}`
+      let message = `An update has been made to information regarding tick # ${updatedTick.id}.  Check your tick's progress by clicking this link: <a href={"https://ticks.rutgers.edu/progress/${updatedTick.id}"}>https://ticks.rutgers.edu/progress/${updatedTick.id}</a>`
+      mailUser(updatedTick.citizen.email, subject, message)
+     
+    } 
     return res.json({ updatedTick })
   } catch (err) {
     // console.log(err.message)
