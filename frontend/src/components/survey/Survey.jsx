@@ -4,12 +4,7 @@ import styled from "styled-components";
 import SubmissionDataService from "../../services/submission";
 import { theme } from "../../theme";
 import { BasicPage } from "../GeneralStyles";
-import FormSelectionBlocks from "../ui/FormSelectionBlocks/FormSelectionBlocks";
 import styles from './survey.module.css'
-import { locationOptions } from "./surveyFormData";
-import GenericInput from "../ui/GenericInput";
-import GenericRadio from "../ui/GenericRadio";
-import GenericTextarea from "../ui/GenericTextarea";
 import SubmitterInfo from "./SubmitterInfo";
 import TickAttached from "./TickAttached";
 import TickLocation from "./TickLocation";
@@ -58,16 +53,6 @@ const Styles = {
     display: none;
   `,
 };
-
-const AdditionalText = () => {
-  return (
-    <div>
-    <p>Any additional information about the environment, tick(s), and or
-        person / pet: (please keep character number below 200)</p> <br />
-              Character count: { input.additionalInfo.length > 200 ? <span style={{ color: 'red' }}>{input.additionalInfo.length}</span> : (<span>{input.additionalInfo.length}</span>) }
-    </div>
-  )
-}
 
 const Survey = () => {
   const navigate = useNavigate();
@@ -119,7 +104,7 @@ const Survey = () => {
   const [input, setInput] = useState(initialState);
   const [imageFront, setImageFront] = useState([]);
   const [imageBack, setImageBack] = useState([]);
-  const [touched, setTouched] = useState(initialBlur);
+  // const [touched, setTouched] = useState(initialBlur);
   const [inProgress, setInProgress] = useState(false);
 
   const handleChange = (evt) => {
@@ -195,10 +180,10 @@ const Survey = () => {
     };
   };
   const errors = validate(input);
-  const handleBlur = (field) => {
-    // console.log("handling blur");
-    setTouched((prevState) => ({ ...prevState, [field]: true }));
-  };
+  // const handleBlur = (field) => {
+  //   // console.log("handling blur");
+  //   setTouched((prevState) => ({ ...prevState, [field]: true }));
+  // };
 
   const isEnabled =
     !Object.values(errors).some((x) => x === true) &&
@@ -206,7 +191,7 @@ const Survey = () => {
 
   const shouldMarkError = (field) => {
     let hasError = errors[field];
-    let shouldShow = touched[field];
+    let shouldShow = initialBlur[field];
     return hasError ? shouldShow : undefined;
   };
 
