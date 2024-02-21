@@ -63,46 +63,7 @@ const Survey = () => {
   const [inProgress, setInProgress] = useState(false);
 
 
-  const validate = (input) => {
-    // console.log("validating", input);
-    return {
-      // true means invalid
-      userMuni: input.userMuni.length === 0,
-      userZip: input.userZip.length < 4 || isNaN(input.userZip),
-      foundOn: input.foundOn.length === 0,
-      foundOnOther:
-        input.foundOn === "Other" && input.foundOnOther.length === 0,
-      dateTickFound:
-        input.dateTickFound.length === 0 ||
-        new Date(input.dateTickFound) > new Date(),
-      tickMuni: input.tickMuni.length === 0,
-      tickCounty: input.tickCounty.length === 0,
-      tickZip: input.tickZip.length < 4 || isNaN(input.tickZip),
-      bittenMuni:
-        input.submitterBitten === "No" && input.bittenMuni.length === 0,
-      bittenZip: input.submitterBitten === "No" && input.bittenZip.length === 0,
-      locationDescOther:
-        input.locationDesc === "Other" && input.locationDescOther.length === 0,
-      additionalInfo: input.additionalInfo.length > 200,
-    };
-  };
-
-
-  // const onSubmit = (e) => {
-  //   e.preventDefault();
-  //   const { isEmpty, data } = getFormValues(e.currentTarget);
-
-  //   if (isEmpty) {
-  //     console.log('please provide all values');
-  //     return;
-  //   }
-
-  //   // do something
-  //   console.log(data);
-
-  //   // clear inputs
-  //   e.currentTarget.reset();
-  // };
+  
 
   const handleSubmit = async (evt) => {
     

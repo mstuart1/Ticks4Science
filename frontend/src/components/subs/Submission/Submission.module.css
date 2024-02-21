@@ -1,0 +1,19 @@
+.container {
+  max-width: 800px;
+  display: table;
+}
+
+.text{
+    font-size: 2rem;
+    margin: 1rem 0;
+}
+.img {
+    max-width: 300px;
+    margin: 1rem;
+    border-radius: 0.5rem;
+}
+.buttonCont {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
