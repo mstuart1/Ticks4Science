@@ -7,6 +7,7 @@ const SubmitterInfo = () => {
             <div className={styles.responsiveDiv}>
                 <GenericInput label="Municipality *" idString="userMuni" required={true} placeholder="Where you live" />
                 <GenericInput label="Zip Code *" idString="userZip" required={true} placeholder="Where you live" />
+                <GenericInput label="Would you like to receive email notifications about your tick(s)?" placeholder={'email'} idString="email" required={false}  type='email' />
             </div>
         </div>)
 }
