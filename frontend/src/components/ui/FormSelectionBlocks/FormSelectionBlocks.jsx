@@ -10,7 +10,7 @@ const FormSelectionBlocks = ({input, handleChange, fieldName, valueArray = [{val
         checked={input[fieldName] === value.value}
         id={`${fieldName}-${value.value}`}
         onChange={evt => handleChange(evt)}
-        required={value.required}
+        
         />
         <label key={`${i}-label`} htmlFor={`${fieldName}-${value.value}`}>{value.label}</label>
         </div>
