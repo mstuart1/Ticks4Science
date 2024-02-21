@@ -5,6 +5,7 @@ const {
 module.exports = (sequelize, DataTypes) => {
     class submission extends Model {
         static associate(models) {
+          submission.belongsTo(models.citizen)
             submission.belongsTo(models.ticks, {
                 as: "photo",
               });
