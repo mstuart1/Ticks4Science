@@ -40,7 +40,7 @@ describe("POST /submission", () => {
   // update existing submission
   describe("PUT /submission/:id", () => {
     it("should add a userMuni to this submission", (done) => {
-      let id = 9
+      let id = 1253
       let newInfo = {
         userMuni: 'Test Muni'
       }
