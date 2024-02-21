@@ -27,11 +27,12 @@ import TickPage from './components/ticks/TickPage';
 import TickBlitz from './components/tickBlitz/TickBlitz';
 import BlitzSurvey from './components/tickBlitz/BlitzSurvey';
 import MissingId from './components/survey/MissingId';
-
+import './global.module.css';
 import ReactGA from 'react-ga'
 import { addGaScript, createWindowGTag } from './tools/googleAnalytics';
 import Maint from './components/maint/Maint';
 import MaintMessage from './components/maint/MaintMessage';
+import Submission from './components/subs/Submission';
 
 const trackingId = process.env.REACT_APP_GA_TRACKING
 ReactGA.initialize(trackingId)
@@ -137,6 +138,7 @@ const App = () => {
                   <Route path='/missingId' element={<MissingId />} />
                   <Route path='/progress' element={<TickProgressInput buttonColors={{ text: theme.colors.ruTeal, bg: 'white', shadow: theme.colors.ruTeal }} />} />
                   <Route path='/progress/:id' element={<TickProgress />} />
+                  <Route path='/submission/:id' element={<Submission />} />
                   <Route path="/admin/*" element={<AdminMgt />} />
                   <Route path='/reset/:token' element={<ResetPassword reset={true} />} />
                   <Route path='/createAccount/:token' element={<ResetPassword create={true} />} />
