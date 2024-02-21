@@ -64,6 +64,25 @@ cron.schedule("00 05 * * *", async () => {
   } 
 })
 
+exports.mailUser = async (email, subject, message) => {
+  let mailOptions = {
+    //   from: process.env.MAIL_USER,
+    to: email,
+    subject: subject,
+    html: `<div>${message}</div>`,
+  };
+
+  console.log('mailOptions', mailOptions)
+  await transporter
+    .sendMail(mailOptions)
+    .then((info) => {
+      return console.log(`Email sent: ${info.response}`);
+    })
+    .catch((error) => {
+      return console.log('email error', error);
+    });
+};
+
 
 exports.sendMail = async (email, message) => {
   let mailOptions = {
