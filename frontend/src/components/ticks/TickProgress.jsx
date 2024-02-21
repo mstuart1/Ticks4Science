@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { FaImages, FaMailBulk, FaRegEnvelopeOpen, FaSearch, FaWpforms } from 'react-icons/fa'
-import { useParams } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import styled from 'styled-components'
 import { BasicPage } from '../GeneralStyles'
 import SubmissionDataService from '../../services/submission'
@@ -137,7 +137,7 @@ const TickProgress = () => {
               <p className="tl-duration">{data.createdAt.substring(0, 10)}</p>
               <h3>Form Received</h3>
               <p>
-                We have received your form.  Please check back for updates.
+                  We have received your form.  You can view your form <Link to={`/submission/${id}`} state={data} className='link'><span>here</span>.</Link>  Please check back for updates.
               </p>
             </div>
 
