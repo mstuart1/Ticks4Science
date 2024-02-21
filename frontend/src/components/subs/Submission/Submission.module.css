@@ -12,3 +12,8 @@
     margin: 1rem;
     border-radius: 0.5rem;
 }
+.buttonCont {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
