@@ -23,10 +23,10 @@ const Survey = () => {
   const handleSubmit = async (evt) => {
 
     try {
-      // setInProgress(true);
+      setInProgress(true);
       evt.preventDefault();
-      const { isEmpty, data } = getFormValues(evt.currentTarget);
-      // console.log('form', 'empty', isEmpty, 'data', data)
+      const {  data } = getFormValues(evt.currentTarget);
+      
       let id = 0
       let idArray = []
       for (let i = 1; i <= numTicks; i++) {

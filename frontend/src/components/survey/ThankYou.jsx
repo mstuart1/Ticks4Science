@@ -1,5 +1,7 @@
 import React from 'react'
-import { useSearchParams, useLocation } from 'react-router-dom'
+import {
+    //  useSearchParams,
+     useLocation } from 'react-router-dom'
 import { BasicPage } from '../GeneralStyles'
 import { theme } from '../../theme'
 import HoverCard from '../ui/hoverCard/HoverCard'
