@@ -75,7 +75,7 @@ const Survey = () => {
     for (let i = 1; i <= numTicks; i++) {
       // let tickNum = i + 1;
       form.push(
-        <details open={i === 0} className={styles.details} key={i}>
+        <details open={i === 1} className={styles.details} key={i}>
           <summary className={styles.summary}>Tick {i}</summary>
           <TickAttached id={i} />
           <TickLocation id={i} />
