@@ -13,14 +13,20 @@ const TickLocation = ({id}) => {
     }
 
     return (
-        <div className={styles.formSection}>
+        <div className={styles.tickSection}>
 
             <h4 className={styles.sectionTitle}>Tick Location Information</h4>
             <div className={styles.responsiveDiv}>
+                <div style={{display: 'flex', justifyContent: 'space-evenly'}}>
+                <div style={{display: 'flex', flexDirection: 'column'}}>
                 <GenericInput label="Date tick was found *" idString={`tick${id}.dateTickFound`} required={true} type='date' />
                 <GenericInput label="Municipality where tick was found *" idString={`tick${id}.tickMuni`} required={true} type='text' />
+                </div>
+                    <div style={{ display: 'flex', flexDirection: 'column' }}>
                 <GenericInput label="County where tick was found *" idString={`tick${id}.tickCounty`} required={true} type='text' />
                 <GenericInput label="ZIP code where tick was found *" idString={`tick${id}.tickZip`} required={true} type='text' />
+                </div>
+                </div>
                 <GenericRadio label="Descriptor of Location*" idString={`tick${id}.locationDesc`} valueArray={locationOptions} state={input} handleChange={handleChange} />
 
                 {input[`tick${id}.locationDesc`] === "Other" && (

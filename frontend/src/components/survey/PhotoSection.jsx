@@ -5,7 +5,7 @@ import {Link} from 'react-router-dom'
 const PhotoSection = ({id}) => {
   
     return (
-      <div className={styles.formSection}>
+      <div className={styles.tickSection}>
         <h4 className={styles.sectionTitle}>
           Please submit at least one photo of the tick between 2kb and 8Mb in
           size.
