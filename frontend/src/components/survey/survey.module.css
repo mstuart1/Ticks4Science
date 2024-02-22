@@ -44,13 +44,18 @@ h4 {
   font-weight: 700;
   margin-bottom: 2rem;
 }
-
+.tickSection {
+  background-color: #ebb60040;
+  padding: 3rem;
+  border: 1px solid #ebb600;
+  border-collapse: collapse;
+}
 
 .formSection {
   background-color: #ebb60040;
   border-radius: 1rem;
   padding: 3rem;
-  margin: 1rem;
+  margin: 1rem 0;
   width: 100%;
 }
 .responsiveDiv {
@@ -85,12 +90,44 @@ h4 {
     border-radius: 0.5rem;
     border: 0.5px solid black;
   }
+.summary {
+  list-style: none;
+  display: inline-flex;
+  align-items: center;
+  padding: 10px;
+  font-weight: bold;
+}
 
-  .summary {
-    margin: 1rem;
-    padding: 2px 6px;
-    background-color: #ebb60040;
-  }
+.summary::after {
+  content: '';
+  width: 18px;
+  height: 10px;
+  background: url('https://uploads.sitepoint.com/wp-content/uploads/2023/10/1697699669arrow.svg') no-repeat;
+  background-size: cover;
+  margin-left: .75em;
+  transition: 0.2s;
+}
+
+.details[open] > summary::after {
+  transform: rotate(180deg);
+}
+
+.summary::-webkit-details-marker {
+  display: none;
+}
+
+.summary {
+  background-color: #ebb60040;
+  color: #30353b;
+  border-radius: 5px;
+}
+
+.details[open] summary {border-radius: 5px 5px 0 0;}
+
+.details {
+  border-radius: 5px;
+  margin: 1rem 0;
+}
   
 
 @media screen and (max-width: 748px) {

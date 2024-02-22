@@ -9,44 +9,62 @@ import TickAttached from "./TickAttached";
 import TickLocation from "./TickLocation";
 import PhotoSection from "./PhotoSection"
 import AdditionalInfo from "./AdditionalInfo"
-import getFormValues  from "./getFormValues";
+import getFormValues from "./getFormValues";
+import extractFromObj from "../../tools/extractFromObj";
+import renameKeys from "../../tools/renameKeys";
 
 const Survey = () => {
   const navigate = useNavigate();
-  
+
   const [inProgress, setInProgress] = useState(false);
   const [numTicks, setNumTicks] = useState(1);
   const [formValues, setFormValues] = useState({});
 
-  console.log('formValues', formValues) 
-
-
   const handleSubmit = async (evt) => {
-    
+
     try {
-      setInProgress(true);
+      // setInProgress(true);
       evt.preventDefault();
-        const { isEmpty, data } = getFormValues(evt.currentTarget);
-        console.log('form', 'empty', isEmpty, 'data', data)
-      
-      let photoFormData = new FormData();
-      photoFormData.append("photos", data.imageFront);
-      photoFormData.append("photos", data.imageBack);
+      const { isEmpty, data } = getFormValues(evt.currentTarget);
+      // console.log('form', 'empty', isEmpty, 'data', data)
+      let id = 0
+      let idArray = []
+      for (let i = 1; i <= numTicks; i++) {
+        let allTicksKeys = Object.keys(data).filter((key) => !key.includes(`tick`));
+        let oneTickKeys = Object.keys(data).filter((key) => key.includes(`tick${i}`));
+        const allTickData = extractFromObj(data, allTicksKeys)
+        const oneTickData = extractFromObj(data, oneTickKeys)
+        const renamedData = renameKeys(oneTickData, `tick${i}.`, '')
+        const mergedData = { ...allTickData, ...renamedData }
 
-      
-      const config = {
-        headers: {
-          "content-type": "multipart/form-data",
-        },
-      };
+        let photoFormData = new FormData();
+        photoFormData.append("photos", data[`tick${i}.imageFront`]);
+        photoFormData.append("photos", data[`tick${i}.imageBack`]);
 
-      let response = await SubmissionDataService.submitForm(data);
-      let id = response.data.data.id;
-      console.log("sent form, now sending photos");
-      response = await SubmissionDataService.submitImage(id, photoFormData, config);
-      // alert(JSON.stringify(response.data))
-      
-      navigate(`/thanks?id=${id}`);
+        const config = {
+          headers: {
+            "content-type": "multipart/form-data",
+          },
+        };
+
+        let response = await SubmissionDataService.submitForm(mergedData);
+        id = response.data.data.id;
+        idArray.push(id)
+        console.log("sent form, now sending photos");
+        response = await SubmissionDataService.submitImage(id, photoFormData, config);
+        
+      }
+      if (numTicks > 1) {
+        navigate('/thanks', {state: {id: idArray}})
+      } else {
+        navigate(`/thanks`, {state: {id: id}});
+      }
+
+
+
+
+      // // alert(JSON.stringify(response.data))
+
     } catch (err) {
       console.log(err.message);
     }
@@ -54,14 +72,14 @@ const Survey = () => {
 
   const generateForm = () => {
     let form = [];
-    for (let i = 0; i < numTicks; i++) {
-      let tickNum = i + 1;
+    for (let i = 1; i <= numTicks; i++) {
+      // let tickNum = i + 1;
       form.push(
         <details open={i === 0} className={styles.details} key={i}>
-          <summary className={styles.summary}>Tick {tickNum}</summary>
-          <TickAttached id={tickNum} />
-          <TickLocation id={tickNum} />
-          <PhotoSection id={tickNum}/>
+          <summary className={styles.summary}>Tick {i}</summary>
+          <TickAttached id={i} />
+          <TickLocation id={i} />
+          <PhotoSection id={i} />
         </details>
       );
     }
@@ -69,32 +87,30 @@ const Survey = () => {
   }
 
   let formElems = generateForm();
-  
+
   if (inProgress) {
     return (<div style={{ width: '100vw', height: '100vh' }}><h1>Submitting form...</h1></div>)
   }
-
-
 
   return (
     <div className={styles.text}>
       <h2 className={styles.title}>Tick Submission Form</h2>
 
-<p>      <span className={styles.specialText}>If you intend to mail in more than one tick,</span> please fill out this form for each one, separate the ticks into different containers/bags,  and label each with the id numbers provided once you complete the forms.  Each tick will be tested separately so each tick needs an individual id number and data record.</p>
-<div className={styles.form}>
-<div className={styles.formSection}>
-  How many ticks do you intend to mail in?
-  <input className={styles.input} type="number" min="1" onChange={(evt) => setNumTicks(evt.target.value)} value={numTicks} />
-</div>
-</div>
+      {/* <p>      <span className={styles.specialText}>If you intend to mail in more than one tick,</span> please fill out this form for each one, separate the ticks into different containers/bags,  and label each with the id numbers provided once you complete the forms.  Each tick will be tested separately so each tick needs an individual id number and data record.</p> */}
+      <div className={styles.form}>
+        <div className={styles.formSection}>
+          How many ticks do you intend to mail in?
+          <input className={styles.input} type="number" min="1" onChange={(evt) => setNumTicks(evt.target.value)} value={numTicks} />
+        </div>
+      </div>
       <form onSubmit={handleSubmit} className={styles.form}>
         <SubmitterInfo data={formValues} handleChange={setFormValues} />
-      
-       {formElems}
-        <AdditionalInfo/>
+
+        {formElems}
+        <AdditionalInfo />
 
         <button
-        // onClick={handleSubmit}
+          // onClick={handleSubmit}
           style={{
             borderRadius: "0.5rem",
             padding: "2rem",

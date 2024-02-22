@@ -1,12 +1,19 @@
 import React from 'react'
-import { useSearchParams } from 'react-router-dom'
+import { useSearchParams, useLocation } from 'react-router-dom'
 import { BasicPage } from '../GeneralStyles'
 import { theme } from '../../theme'
 import HoverCard from '../ui/hoverCard/HoverCard'
 
 const ThankYou = () => {
-    const [searchParams] = useSearchParams()
-    let id = searchParams.get('id')
+    // const [searchParams] = useSearchParams()
+    // let id = searchParams.get('id')
+
+    const location = useLocation()
+    let id = location.state?.id || ""
+    
+    if (typeof id === 'object') {
+        id = id.join(', ')
+    }
 
     return (
         <BasicPage.Text>
