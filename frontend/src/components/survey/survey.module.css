@@ -29,7 +29,9 @@ h4 {
 .form {
   display: flex;
   flex-direction: column;
-  margin-bottom: 2rem;
+  padding: 1rem;
+  margin-bottom: 10rem;
+  width: 100vw;
 }
 
 .form > label {
@@ -145,7 +147,8 @@ h4 {
 .btnDiv {
   display: flex;
   justify-content: space-between;
-  margin: 2rem 0
+  margin: 2rem 0;
+  align-items: center;  
 }
 
 @media screen and (max-width: 748px) {

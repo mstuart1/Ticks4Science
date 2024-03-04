@@ -26,6 +26,7 @@ flex-direction: column;
 align-items: center;
 font-size: 1.4em;
 margin: 1rem;
+margin-bottom: 10rem;
 min-height: 80vh;
 p {
   margin: 2rem;

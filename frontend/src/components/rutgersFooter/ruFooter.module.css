@@ -1,6 +1,6 @@
 .footer {
   background: #000;
-  display: flex;
+  display: none;
   justify-content: flex-start;
   align-items: center;
   width: 100vw;
@@ -55,14 +55,11 @@
 .disclaimer p {
   text-align: left;
 }
-@media screen and (max-width: var(--mobile-width)) {
-  .header,
-  .logoCont,
-  .footerNav {
-    display: none;
-  }
-}
+
 @media screen and (min-width: var(--mobile-width)) {
+  .footer {
+    display: flex;
+  }
   .widthCont {
     max-width: 1900px;
   }
