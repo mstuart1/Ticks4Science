@@ -8,7 +8,6 @@ import InternalLinkFloatButton from '../ui/internalLinkFloatButton/InternalLinkF
 import ExternalLinkFloatButton from '../ui/externalLinkFloatButton/ExternalLinkFloatButton'
 import { theme } from '../../theme'
 import SubPathos from '../subs/SubPathos'
-import QuestionSidebar from '../QuestionSidebar/QuestionSidebar'
 
 const Styles = {
   TimelineIcon: styled.div`
@@ -64,12 +63,6 @@ const Styles = {
 
   
 }
-`,
-Container: styled.div`
-  display: flex;
-@media screen and (max-width:${({ theme }) => theme.mobile}) {
- flex-direction: column;
-}
 `
 }
 
@@ -123,8 +116,7 @@ const TickProgress = () => {
         </BasicPage.Text>
       )
       : (
-        <div style={{display: 'flex', width: '90vw'}}>
-        <BasicPage.Text id='tick-progress-div'>
+        <BasicPage.Text>
           <BasicPage.Title>Tick Progress for Tick # {id}</BasicPage.Title>
           <BasicPage.SectionTitle>Bookmark this page!</BasicPage.SectionTitle>
           <Styles.Timeline>
@@ -248,8 +240,6 @@ const TickProgress = () => {
             {/* <!-- end timeline items --> */}
           </Styles.Timeline>
         </BasicPage.Text>
-        <QuestionSidebar subId={id} />
-        </div>
       )
 
   )
