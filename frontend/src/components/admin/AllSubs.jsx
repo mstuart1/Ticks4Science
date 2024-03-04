@@ -78,7 +78,12 @@ const AllSubs = () => {
 
   useEffect(() => {
     let getData = async (token, page, limit, filter) => {
-      return await SubmissionDataService.getPageSubm(token, page, limit, filter);
+      if (filter === 'questions'){
+        return await SubmissionDataService.getQuestions(token, page, limit)
+      } else {
+
+        return await SubmissionDataService.getPageSubm(token, page, limit, filter);
+      }
     }
 
     getData(token, page, limit, filter).then(response => {
@@ -118,6 +123,8 @@ const AllSubs = () => {
   let totalCards = createCardElems(data)
 
   let highestPage = Math.floor(limitMax / limit)
+
+  console.log('data', data)
 
   return (
     <BasicPage.Text>

@@ -1,6 +1,7 @@
 const db = require("../models");
 const { mailUser } = require("./mailHelper");
 const Op = db.Sequelize.Op;
+const sql = db.Sequelize.literal;
 const Subm = db.submission;
 const Sub_Pathos = db.submission_pathogen;
 const Citizen = db.citizen;
@@ -222,8 +223,10 @@ exports.getSubPage = async (req, res, next) => {
       query = { duplicate: { [Op.is]: null }, specimenIdentified: { [Op.not]: null } }
     } else if (filter === 'notReq') {
       query = { duplicate: { [Op.is]: null }, photosReviewed: { [Op.not]: null }, specimenIdentified: { [Op.is]: null }, specimenRequested: { [Op.is]: null } }
-    
-    } else {
+    } else if (filter === 'questions') {
+      // query = { duplicate: { [Op.is]: null }, messages: {id: {[Op.not]: null
+      query = { duplicate: { [Op.is]: null }, [Op.not]: { '$messages$': null } }
+      } else {
       query = { duplicate: { [Op.is]: null }, }
     }
 
@@ -233,7 +236,64 @@ exports.getSubPage = async (req, res, next) => {
       foundSubs = await Subm.findAll({
         limit: numLimit,
         offset: page * numLimit,
+        
+        include: [
+          {
+            model: db.ticks,
+            as: 'photo',
+            attributes: ['id', 'scientific', 'common']
+          },
+          {
+            model: db.ticks,
+            as: 'specimen',
+            attributes: ['id', 'scientific', 'common']
+          },
+          {
+            model: db.users,
+            as: 'specIdUser',
+            attributes: ['id', 'firstName', 'lastName']
+          },
+          {
+            model: db.users,
+            as: 'photoIdUser',
+            attributes: ['id', 'firstName', 'lastName']
+          },
+          
+          'messages',
+            // where: {id: {[Op.not]: null}}
+          
+        ],
         where: query,
+      }, { transaction: t })
+    })
+
+    console.log('@@@@@@@@@@@@@@@@@@@foundSubs', JSON.stringify(foundSubs, null, 1))
+    // if (filter === 'questions') {
+    //   foundSubs = foundSubs.filter(sub => sub.messages.length > 0 && sub.messages.filter(msg => !msg.answered).length > 0)
+    // }
+
+    res.json({ record: foundSubs })
+  } catch (err) {
+    console.log(err.message)
+    next(err)
+  }
+}
+
+exports.getQuestions = async (req, res, next) => {
+  console.log(`@@@@---getting a page of submissions with questions---@@@@`);
+  console.log(`@@@@--- query ---@@@@`, req.query);
+
+  try {
+
+    let numLimit = req.query.numLimit ? parseInt(req.query.numLimit) : 3;
+    let page = req.query.page > 0 ? parseInt(req.query.page) : 0;
+    let foundSubs;
+
+    await db.sequelize.transaction(async (t) => {
+      foundSubs = await Subm.findAll({
+        limit: numLimit,
+        offset: page * numLimit,
+        
         include: [
           {
             model: db.ticks,
@@ -257,16 +317,13 @@ exports.getSubPage = async (req, res, next) => {
           },
           {
             model: db.message,
-          }
-        ]
+            attributes: ['id', 'message', 'role', 'answered', 'createdAt'],
+            where: {answered: {[Op.not]: true}}
+          },
+        ],
+    
       }, { transaction: t })
     })
-
-    if (filter === 'questions') {
-      foundSubs = foundSubs.filter(sub => sub.messages.length > 0 && sub.messages.filter(msg => !msg.answered).length > 0)
-    }
-
-    // console.log(JSON.stringify(foundSubs, null, 1))
     res.json({ record: foundSubs })
   } catch (err) {
     console.log(err.message)

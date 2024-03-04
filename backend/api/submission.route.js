@@ -8,6 +8,7 @@ module.exports = (app) => {
   router
     .get("/", auth.verifyToken, SubmCtl.getAllSubs)
     .get("/paged", auth.verifyToken, SubmCtl.getSubPage)
+    .get("/questions", auth.verifyToken, SubmCtl.getQuestions)
     .get("/downloadData", SubmCtl.downloadData)
     .get('/deleted', auth.verifyToken, SubmCtl.getDeleted)
     .get('/dupes', auth.verifyToken, SubmCtl.getDupes)

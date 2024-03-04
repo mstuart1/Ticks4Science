@@ -29,6 +29,13 @@ class SubmissionDataService {
             }
         })
     }
+    getQuestions(token, page, limit) {
+        return http.get(`/submission/questions?numLimit=${limit}&page=${page}`, {
+            headers: {
+                'Authorization': `Basic ${token}`
+            }
+        })
+    }
     updateSub(data, id) {
         return http.put(`/submission/${id}`, data)
     }
