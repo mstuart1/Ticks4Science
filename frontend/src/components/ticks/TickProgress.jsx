@@ -137,7 +137,8 @@ const TickProgress = () => {
               <p className="tl-duration">{data.createdAt.substring(0, 10)}</p>
               <h3>Form Received</h3>
               <p>
-                  We have received your form.  You can view your form <Link to={`/submission/${id}`} state={data} className='link'><span>here</span>.</Link>  Please check back for updates.
+                  {/* #fff6d4 */}
+                  We have received your form.  You can view your form <Link to={`/submission/${id}`} state={data} className='link'><span style={{background: '#fce48b', padding: '0.5rem'}}>here</span>.</Link>  Please check back for updates. 
               </p>
             </div>
 
