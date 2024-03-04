@@ -108,15 +108,8 @@ const Survey = () => {
 
         {formElems}
         <AdditionalInfo />
-
-        <button
-          // onClick={handleSubmit}
-          style={{
-            borderRadius: "0.5rem",
-            padding: "2rem",
-            backgroundColor: theme.colors.ruYellow,
-          }}
-        >
+<div className={styles.btnDiv}>
+        <button className={styles.submitBtn}>
           Submit
         </button>
 
@@ -127,7 +120,9 @@ const Survey = () => {
             </BasicPage.LinkButton.CardSpecial>
           </BasicPage.HoverCard>
         </BasicPage.LinkButton.LinkSpec>
+        </div>
       </form>
+      
     </div>
   );
 };

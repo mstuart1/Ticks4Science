@@ -45,14 +45,14 @@ h4 {
   margin-bottom: 2rem;
 }
 .tickSection {
-  background-color: #ebb60040;
+  background-color: #00626D30;
   padding: 3rem;
-  border: 1px solid #ebb600;
+  border: 1px solid #00626D;
   border-collapse: collapse;
 }
 
 .formSection {
-  background-color: #ebb60040;
+  background-color: #00626D30;
   border-radius: 1rem;
   padding: 3rem;
   margin: 1rem 0;
@@ -70,26 +70,25 @@ h4 {
   color: #00626d;
 }
 .innieLink > span {
-    border-bottom: 1px solid #ebb600;
-    
-  }
-  /* TODO get this hover works with desktop but not mobile - NEED AN ON TOUCH FOR MOBILE */
-  .innieLink:hover {
-    border-bottom: 0px;
-  }
+  border-bottom: 1px solid #ebb600;
+}
+/* TODO get this hover works with desktop but not mobile - NEED AN ON TOUCH FOR MOBILE */
+.innieLink:hover {
+  border-bottom: 0px;
+}
 
-  .specialText {
-    font-weight: 700;
-    display: inline;
-  }
+.specialText {
+  font-weight: 700;
+  display: inline;
+}
 
-  .input {
-    padding: 1rem;
-    margin-left: 1rem;
-    width: 6rem;
-    border-radius: 0.5rem;
-    border: 0.5px solid black;
-  }
+.input {
+  padding: 1rem;
+  margin-left: 1rem;
+  width: 6rem;
+  border-radius: 0.5rem;
+  border: 0.5px solid black;
+}
 .summary {
   list-style: none;
   display: inline-flex;
@@ -102,9 +101,10 @@ h4 {
   content: '';
   width: 18px;
   height: 10px;
-  background: url('https://uploads.sitepoint.com/wp-content/uploads/2023/10/1697699669arrow.svg') no-repeat;
+  background: url('https://uploads.sitepoint.com/wp-content/uploads/2023/10/1697699669arrow.svg')
+    no-repeat;
   background-size: cover;
-  margin-left: .75em;
+  margin-left: 0.75em;
   transition: 0.2s;
 }
 
@@ -117,18 +117,36 @@ h4 {
 }
 
 .summary {
-  background-color: #ebb60040;
+  background-color: #00626D30;
   color: #30353b;
   border-radius: 5px;
 }
 
-.details[open] summary {border-radius: 5px 5px 0 0;}
+.details[open] summary {
+  border-radius: 5px 5px 0 0;
+}
 
 .details {
   border-radius: 5px;
   margin: 1rem 0;
 }
-  
+.submitBtn {
+  border-radius: 0.5rem;
+  /* padding: 2rem 1rem ; */
+  background-color: #00626D80;
+  border: 1px solid #00626D;
+  /* color: #00626D; */
+  font-size: 1.8rem;
+  width: 22.5rem;
+  height: 5rem;
+  text-align: center;
+  /* line-height: 5rem; */
+}
+.btnDiv {
+  display: flex;
+  justify-content: space-between;
+  margin: 2rem 0
+}
 
 @media screen and (max-width: 748px) {
   .text {
@@ -154,4 +172,3 @@ h4 {
     text-align: left;
   }
 }
-
