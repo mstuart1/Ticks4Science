@@ -59,6 +59,7 @@ h4 {
   padding: 3rem;
   margin: 1rem 0;
   width: 100%;
+  max-width: 800px;
 }
 .responsiveDiv {
   display: table;
