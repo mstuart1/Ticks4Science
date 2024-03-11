@@ -66,7 +66,7 @@ const Survey = () => {
       // // alert(JSON.stringify(response.data))
 
     } catch (err) {
-      console.log(err.message);
+     
     }
   };
 
@@ -75,7 +75,7 @@ const Survey = () => {
     for (let i = 1; i <= numTicks; i++) {
       // let tickNum = i + 1;
       form.push(
-        <details open={i === 1} className={styles.details} key={i}>
+        <details open={numTicks === 1} className={styles.details} key={i}>
           <summary className={styles.summary}>Tick {i}</summary>
           <TickAttached id={i} />
           <TickLocation id={i} />
@@ -105,9 +105,13 @@ const Survey = () => {
       </div>
       <form onSubmit={handleSubmit} className={styles.form}>
         <SubmitterInfo data={formValues} handleChange={setFormValues} />
-
+       {numTicks > 1 ?  <p style={{ padding: '0 10rem' }}>Click each tick to answer questions.</p> : null}
         {formElems}
         <AdditionalInfo />
+        
+
+  {numTicks > 1 ? <p style={{padding: '0 10rem'}}>If the form will not submit, click each tick (for example "Tick 1") to open the question section.  If the section is open when submitting, it will display which question is preventing the form from submitting.</p> : null}
+        
 <div className={styles.btnDiv}>
         <button className={styles.submitBtn}>
           Submit
