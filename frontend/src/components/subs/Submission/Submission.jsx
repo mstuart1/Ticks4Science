@@ -69,8 +69,6 @@ const Submission = () => {
                 <p className={styles.text}>ZIP code where tick was found: {dbData?.tickZip?.toString().padStart(5, "0")}</p>
                 <p className={styles.text}>Descriptor of Location: {dbData?.locationDesc}</p>
                 {dbData?.locationDesc === "Other" && <p className={styles.text}>Describe the location: {dbData?.locationDescOther}</p>}
-                <p className={styles.text}>Describe activity/activities when tick(s) were acquired: {dbData?.activities}</p>
-                
             </div>
             <div>
             <img className={styles.img} src={dbData?.photoFrontUrl} alt='a tick that is being submitted for identification' />
