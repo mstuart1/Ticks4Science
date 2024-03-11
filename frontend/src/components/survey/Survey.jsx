@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import SubmissionDataService from "../../services/submission";
 import { theme } from "../../theme";
 import { BasicPage } from "../GeneralStyles";
-import styles from './survey.module.css'
+import styles from './Survey.module.css'
 import SubmitterInfo from "./SubmitterInfo";
 import TickAttached from "./TickAttached";
 import TickLocation from "./TickLocation";

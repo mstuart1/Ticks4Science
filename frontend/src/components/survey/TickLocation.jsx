@@ -1,4 +1,4 @@
-import styles from './survey.module.css'
+import styles from './Survey.module.css'
 import GenericInput from '../ui/GenericInput'
 import GenericTextarea from '../ui/GenericTextarea'
 import GenericRadio from '../ui/GenericRadio'

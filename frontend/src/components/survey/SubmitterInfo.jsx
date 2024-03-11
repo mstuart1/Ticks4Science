@@ -1,5 +1,5 @@
 import GenericInput from '../ui/GenericInput'
-import styles from './survey.module.css'
+import styles from './Survey.module.css'
 const SubmitterInfo = () => {
     return (
         <div className={styles.formSection}>

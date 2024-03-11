@@ -1,4 +1,4 @@
-import styles from './survey.module.css'
+import styles from './Survey.module.css'
 import GenericTextarea from '../ui/GenericTextarea'
 
 const AdditionalInfo = () => {
