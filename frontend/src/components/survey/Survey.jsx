@@ -98,6 +98,7 @@ const Survey = () => {
 
      
       <div className={styles.form}>
+        <p>Answer the questions below to the best of your ability; if you do not remember the exact dates or locations give your best estimate.</p>
         <div className={styles.formSection}>
           How many ticks do you intend to mail in?
           <input className={styles.input} type="number" min="1" onChange={(evt) => setNumTicks(evt.target.value)} value={numTicks} />
