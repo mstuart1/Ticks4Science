@@ -1,6 +1,19 @@
+.outlineCard {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    border-radius: 1rem;
+    border: 2px solid grey;
+    background-color: #fff6d4;
+    padding: 2rem; 
+    margin: 1rem;
+    width: 30rem;
+}
 .cont {
     margin: 2rem;
     max-width: 300px;
+    background-color: aqua;
     
 }
 .title {

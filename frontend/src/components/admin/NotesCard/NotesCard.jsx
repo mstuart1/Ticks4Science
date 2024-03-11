@@ -1,6 +1,6 @@
 import SubmissionDataService from "../../../services/submission"
 import OutlineCard from "../../ui/outlineCard/OutlineCard"
-import styles from './notes.module.css'
+import styles from './Notes.module.css'
 import { useNavigate } from 'react-router-dom'
 
 const NotesCard = ({ notes, id, user }) => {
@@ -24,7 +24,7 @@ const NotesCard = ({ notes, id, user }) => {
         return
     }
     return (
-        <OutlineCard style={{ justifyContent: 'flex-start' }} width="30rem">
+        <div className={styles.outlineCard}>
             <h2 className={styles.title}>Lab Notes</h2>
             {/* {!!notes && <p>{notes}</p>} */}
             <form onSubmit={handleNotes}>
@@ -35,7 +35,7 @@ const NotesCard = ({ notes, id, user }) => {
             {notes?.data?.length && notes.data.map((note, index) => (<div key={index} className={styles.messageDiv}><div className={styles.text}><span className={styles.date}>{new Date(note.date).toString()} from {note.user}:</span><br /> <span className={styles.highlight}>{note.text}</span></div>
                
             </div>))}
-        </OutlineCard>
+        </div>
     )
 }
 export default NotesCard

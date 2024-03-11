@@ -1,5 +1,5 @@
 import OutlineCard from "../../ui/outlineCard/OutlineCard"
-import styles from './messages.module.css'
+import styles from './Messages.module.css'
 import MessageDataService from '../../../services/message'
 import { useEffect, useState } from "react"
 import {useNavigate} from 'react-router-dom'
@@ -47,7 +47,7 @@ const MessagesCard = ({messages, user, submissionId}) => {
 // 
   // console.log('answered messages', ansMsgs)
   return (
-    <OutlineCard style={{justifyContent: 'flex-start'}} width="30rem">
+    <div className={styles.outlineCard}>
       <h2 className={styles.title}>Add a public message to the submission</h2>
       <form onSubmit={handleQuestion}>
         <textarea className={styles.textarea} defaultValue='' id="message" name="message" rows="4" cols="30" placeholder="Drag the bottom right corner to create more space if needed."></textarea>
@@ -61,7 +61,7 @@ const MessagesCard = ({messages, user, submissionId}) => {
           {sortedMessages.map((message) => {
             // console.log('messageID', message)
             return (
-            <div key={message.id} className={styles.messageDiv}><div className={styles.text}><span className={styles.date}>{new Date(message.createdAt).toString()} from {message.role === 'submitter' ? message.role :  message.admin.firstName }:</span><br /> <span className={styles.highlight} style={{ background: message.role === 'admin' ? '#fff6d4' : '#e3f3ef'}}>{message.message}</span></div>
+            <div key={message.id} className={styles.messageDiv}><div className={styles.text}><span className={styles.date}>{new Date(message.createdAt).toString()} from {message.role === 'submitter' ? message.role :  message.admin.firstName }:</span><br /> <span className={styles.highlight} style={{ background: message.role === 'admin' ? '#e3f3ef' : '#fce48b' }}>{message.message}</span></div>
            {message.role === 'submitter' && <form>
               <label htmlFor='answered'>Answered? {'   '}</label>
               <input  type='checkbox' id='answered' name='answered' checked={ansMsgs?.includes(message.id)} onChange={(evt) => handleAnswered(message.id, evt)} />
@@ -72,7 +72,7 @@ const MessagesCard = ({messages, user, submissionId}) => {
         
         </>}
       
-    </OutlineCard>
+    </div>
   )
 }
 export default MessagesCard
