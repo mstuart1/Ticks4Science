@@ -1,10 +1,10 @@
 const db = require("../models");
 const { mailUser } = require("./mailHelper");
 const Op = db.Sequelize.Op;
-const sql = db.Sequelize.literal;
 const Subm = db.submission;
 const Sub_Pathos = db.submission_pathogen;
 const Citizen = db.citizen;
+// const sql = db.Sequelize.literal;
 
 //create submission
 exports.createSubm = async (req, res, next) => {
@@ -383,12 +383,13 @@ exports.updateSubm = async (req, res, next) => {
     }
     
     
-    if (updatedTick.citizenId){
-      console.log('emailing user about change')
-      let subject = `NJTicks4Science Tick Update for tick id # ${updatedTick.id}`
-      let message = `An update has been made to information regarding tick # ${updatedTick.id}.  Check your tick's progress by clicking this link: <a href={"https://ticks.rutgers.edu/progress/${updatedTick.id}"}>https://ticks.rutgers.edu/progress/${updatedTick.id}</a>`
-      mailUser(updatedTick.citizen.email, subject, message)
-     
+    if (updatedTick.citizenId ){
+      if (data.photoId || data.specimenId){
+        console.log('emailing user about change')
+        let subject = `NJTicks4Science Tick Update for tick id # ${updatedTick.id}`
+        let message = `An update has been made to information regarding tick # ${updatedTick.id}.  Check your tick's progress by clicking this link: <a href={"https://ticks.rutgers.edu/progress/${updatedTick.id}"}>https://ticks.rutgers.edu/progress/${updatedTick.id}</a>`
+        mailUser(updatedTick.citizen.email, subject, message)
+      }
     } 
     return res.json({ updatedTick })
   } catch (err) {

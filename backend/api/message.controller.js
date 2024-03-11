@@ -1,5 +1,6 @@
 const db = require("../models");
 const Message = db.message;
+const { mailUser } = require("./mailHelper");
 
 // create message
 exports.createMessage = async (req, res, next) => {
@@ -11,6 +12,15 @@ exports.createMessage = async (req, res, next) => {
             .transaction(async (t) => {
                 createdRecord = await Message.create(incomingInfo, { transaction: t })
             });
+            // todo #141 find out if related submission has a citizenId, find out if sender of message is user or admin, send email if citizenId and admin
+        // if (updatedTick.citizenId) {
+        //     if (data.photoId || data.specimenId) {
+        //         console.log('emailing user about change')
+        //         let subject = `NJTicks4Science Tick Update for tick id # ${updatedTick.id}`
+        //         let message = `An update has been made to information regarding tick # ${updatedTick.id}.  Check your tick's progress by clicking this link: <a href={"https://ticks.rutgers.edu/progress/${updatedTick.id}"}>https://ticks.rutgers.edu/progress/${updatedTick.id}</a>`
+        //         mailUser(updatedTick.citizen.email, subject, message)
+        //     }
+        // } 
         return res.json({ data: createdRecord })
     } catch (err) {
         console.log(err.message)
