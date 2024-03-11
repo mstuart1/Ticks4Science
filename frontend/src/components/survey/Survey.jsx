@@ -1,7 +1,6 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import SubmissionDataService from "../../services/submission";
-import { theme } from "../../theme";
 import { BasicPage } from "../GeneralStyles";
 import styles from './Survey.module.css'
 import SubmitterInfo from "./SubmitterInfo";
@@ -12,6 +11,7 @@ import AdditionalInfo from "./AdditionalInfo"
 import getFormValues from "./getFormValues";
 import extractFromObj from "../../tools/extractFromObj";
 import renameKeys from "../../tools/renameKeys";
+// import { theme } from "../../theme";
 
 const Survey = () => {
   const navigate = useNavigate();
@@ -96,11 +96,12 @@ const Survey = () => {
     <div className={styles.text}>
       <h2 className={styles.title}>Tick Submission Form</h2>
 
-      {/* <p>      <span className={styles.specialText}>If you intend to mail in more than one tick,</span> please fill out this form for each one, separate the ticks into different containers/bags,  and label each with the id numbers provided once you complete the forms.  Each tick will be tested separately so each tick needs an individual id number and data record.</p> */}
+     
       <div className={styles.form}>
         <div className={styles.formSection}>
           How many ticks do you intend to mail in?
           <input className={styles.input} type="number" min="1" onChange={(evt) => setNumTicks(evt.target.value)} value={numTicks} />
+          {numTicks > 1 ? (<p> <span className={styles.specialText}>*Note: Before mailing ticks in, they must be labeled with the corresponding number you assign them below (i.e Tick 1, Tick 2, etc). You must also label somewhere in/on the envelope the tick ID number you receive after submitting this form. See example of acceptable submissions <Link to='/multipleExample' target="_blank">here</Link>. </span> </p>) : null}
         </div>
       </div>
       <form onSubmit={handleSubmit} className={styles.form}>
