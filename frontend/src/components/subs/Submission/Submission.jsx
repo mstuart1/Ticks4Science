@@ -55,7 +55,7 @@ const Submission = () => {
                 <p className={styles.text}>Indicate on what tick was found: {dbData?.foundOn}</p>
                 {dbData?.foundOn === "Other" && <p className={styles.text}>Describe the object where you found the tick: {dbData?.foundOnOther}</p>}
                 {dbData?.foundOn === "Animal" && <p className={styles.text}>Specify Animal: {dbData?.animal}</p>}
-                {(dbData?.foundOn === "Person" || dbData?.foundOn === "Animal") && <p className={styles.text}>Tick Attached: {dbData?.tickAttached}</p>}
+                {(dbData?.foundOn === "Person" || dbData?.foundOn === "Animal") && <p className={styles.text}>Tick Embedded: {dbData?.tickAttached}</p>}
                 {dbData?.tickAttached?.toLowerCase() === "yes" && <p className={styles.text}>Date Removed: {new Date(dbData?.dateRemoved).toString()}</p>}
                 {dbData?.foundOn === "Person" && <p className={styles.text}>Submitter Bitten: {dbData?.submitterBitten}</p>}
                 {(dbData?.foundOn === "Person" && dbData?.submitterBitten?.toLowerCase() !== 'yes') && <p className={styles.text}>Other person bitten? {dbData?.personBitten}</p>}

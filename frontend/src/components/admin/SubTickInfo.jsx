@@ -42,7 +42,7 @@ const SubTickInfo = ({ tick }) => {
       <Styles.Container>
         <p>Date Tick Found: {tick.dateTickFound?.substring(0, 10)}</p>
         <p>Found On: {tick.foundOn}</p>
-        <p>Attached: {tick.tickAttached}</p>
+        <p>Embedded: {tick.tickAttached}</p>
         <p>Found in Municipality: {tick.tickMuni}</p>
         <p>Found in Zip Code: {tick.tickZip?.toString().padStart(5, "0")}</p>
         <p>Activities: {tick.activities}</p>

@@ -44,7 +44,7 @@ export const ticks = [
     common: "Gulf Coast Tick",
     comment: `Formerly distributed in Southeastern U.S. but new populations are being reported in Delaware and Maryland.  The closest distribution was in Delaware's Bombay Hook National Wildlife Refuge which is less than 13 miles from the Delware Bay in New Jersey.  Salem, Cumberland, and Cape May Counties border the Delaware Bay.`,
     habitat: 'open grassy areas and pastures',
-    engorged: {photos: [], desc: 'Prefers large wild and domestic mammals such as deer, cattle, and pets.  Commonly found attached to ears.'}
+    engorged: {photos: [], desc: 'Prefers large wild and domestic mammals such as deer, cattle, and pets.  Commonly found embedded to ears.'}
 },
     { id: 3, title: 'Carios kelleyi', path: `/ticks/3`, 
     common: 'Bat Tick',

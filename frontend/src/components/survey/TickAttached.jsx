@@ -12,10 +12,10 @@ const TickAttached = ({id}) => {
         setInput((prevState) => ({ ...prevState, [name]: value }))
     }
 
-    console.log('tickAttached.input', input)
+    // console.log('tickAttached.input', input)
     return (
         <div className={styles.tickSection}>
-            <h4 className={styles.sectionTitle}>Tick Attachment Information</h4>
+            <h4 className={styles.sectionTitle}>Tick Embedded Information</h4>
             <div className={styles.responsiveDiv}>
                 <GenericRadio label={`Indicate on who/what tick(s) were found *`} idString={`tick${id}.foundOn`} valueArray={foundArray} state={input} handleChange={handleChange} />
                 {input[`tick${id}.foundOn`] === "Other" && (
@@ -27,7 +27,7 @@ const TickAttached = ({id}) => {
 
                 {(input[`tick${id}.foundOn`] === "Person" || input[`tick${id}.foundOn`] === "Animal") && (
                     <>
-                        <GenericRadio label={`If tick(s) were found on person/animal, was it attached *?`} idString={`tick${id}.tickAttached`} valueArray={yesNoArray} state={input} handleChange={handleChange} />
+                        <GenericRadio label={`If tick(s) were found on person/animal, was it embedded *?`} idString={`tick${id}.tickAttached`} valueArray={yesNoArray} state={input} handleChange={handleChange} />
                         
 
 
