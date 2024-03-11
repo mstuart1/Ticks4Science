@@ -22,6 +22,8 @@ export const locationOptions = [
     {id: 4, required: true, label: 'Forest/Wooded area', value: 'Forest/Wooded area'},
     {id: 5, required: true, label: 'Field/Grassy area', value: 'Field/Grassy area'},
     {id: 6, required: true, label: 'Garden/Agriculture', value: 'Garden/Agriculture'},
+    {id: 8, required: true, label: 'Marshland', value: 'Marshland'},
+    {id: 9, required: true, label: 'Beach Area', value: 'Beach Area'},
     {id: 7, required: true, label: 'Other', value: 'Other'},
 ]
 
