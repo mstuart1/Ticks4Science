@@ -59,9 +59,9 @@ const MessagesCard = ({messages, user, submissionId}) => {
         {/* <h3>most recent on top</h3> */}
         
           {sortedMessages.map((message) => {
-            // console.log('messageID', message.id)
+            // console.log('messageID', message)
             return (
-            <div key={message.id} className={styles.messageDiv}><div className={styles.text}><span className={styles.date}>{new Date(message.createdAt).toString()} from {message.role === 'submitter' ? message.role : message.admin.firstName}:</span><br /> <span className={styles.highlight} style={{ background: message.role === 'admin' ? '#fff6d4' : '#e3f3ef'}}>{message.message}</span></div>
+            <div key={message.id} className={styles.messageDiv}><div className={styles.text}><span className={styles.date}>{new Date(message.createdAt).toString()} from {message.role === 'submitter' ? message.role :  message.admin.firstName }:</span><br /> <span className={styles.highlight} style={{ background: message.role === 'admin' ? '#fff6d4' : '#e3f3ef'}}>{message.message}</span></div>
            {message.role === 'submitter' && <form>
               <label htmlFor='answered'>Answered? {'   '}</label>
               <input  type='checkbox' id='answered' name='answered' checked={ansMsgs?.includes(message.id)} onChange={(evt) => handleAnswered(message.id, evt)} />
