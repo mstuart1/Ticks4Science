@@ -12,3 +12,6 @@ You can set up different files for different environments and depending on the t
 - start: .env.local > .env.development > .env
 - build: .env.local > .env.production > .env
 - test: .env.test > .env
+
+## production
+sudo cp -r ./build/. /var/www/ticks.rutgers.edu/
