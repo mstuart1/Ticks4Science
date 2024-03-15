@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import OutlineCard from '../ui/outlineCard/OutlineCard'
+// import OutlineCard from '../ui/outlineCard/OutlineCard'
 
 
 let SpecOutline = styled.div`

@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import SubmissionDataService from "../../services/submission";
-import { theme } from "../../theme";
 import { BasicPage } from "../GeneralStyles";
 import styles from './survey.module.css'
 import SubmitterInfo from "./SubmitterInfo";
@@ -12,6 +11,7 @@ import AdditionalInfo from "./AdditionalInfo"
 import getFormValues from "./getFormValues";
 import extractFromObj from "../../tools/extractFromObj";
 import renameKeys from "../../tools/renameKeys";
+// import { theme } from "../../theme";
 
 const Survey = () => {
   const navigate = useNavigate();
