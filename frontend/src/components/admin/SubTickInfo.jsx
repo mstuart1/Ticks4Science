@@ -1,7 +1,5 @@
 import React from 'react'
 import styled from 'styled-components'
-import OutlineCard from '../ui/outlineCard/OutlineCard'
-
 
 let SpecOutline = styled.div`
 display: flex;

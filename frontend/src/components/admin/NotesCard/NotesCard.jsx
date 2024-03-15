@@ -1,5 +1,4 @@
 import SubmissionDataService from "../../../services/submission"
-import OutlineCard from "../../ui/outlineCard/OutlineCard"
 import styles from './Notes.module.css'
 import { useNavigate } from 'react-router-dom'
 

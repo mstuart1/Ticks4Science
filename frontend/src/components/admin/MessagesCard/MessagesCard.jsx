@@ -1,4 +1,3 @@
-import OutlineCard from "../../ui/outlineCard/OutlineCard"
 import styles from './Messages.module.css'
 import MessageDataService from '../../../services/message'
 import { useEffect, useState } from "react"
