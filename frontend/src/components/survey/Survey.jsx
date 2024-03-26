@@ -76,7 +76,7 @@ const Survey = () => {
       // let tickNum = i + 1;
       form.push(
         <details open={numTicks === 1} className={styles.details} key={i}>
-          <summary className={styles.summary}>Tick {i} ID# will generate when you submit the form</summary>
+          <summary className={styles.summary}>Tick {i}<span style={{color: '#c00300', marginLeft: '0.5rem'}}>ID# will generate when you submit the form</span> </summary>
           <TickAttached id={i} />
           <TickLocation id={i} />
           <PhotoSection id={i} />
