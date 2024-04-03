@@ -6,7 +6,7 @@ import {useNavigate} from 'react-router-dom'
 const MessagesCard = ({messages, user, submissionId}) => {
   const navigate = useNavigate()
 // console.log('messages', messages, 'user', user, 'submissionId', submissionId)
-  let sortedMessages = messages?.sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt))
+  let sortedMessages = messages?.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
 
   const [ansMsgs, setAnsMsgs] = useState([])
 
