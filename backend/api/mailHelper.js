@@ -66,10 +66,10 @@ cron.schedule("00 05 * * *", async () => {
 
 exports.mailUser = async (email, subject, message) => {
   let mailOptions = {
-    //   from: process.env.MAIL_USER,
+      from: process.env.MAIL_USER,
     to: email,
     subject: subject,
-    html: `<div>${message}</div>`,
+    html: message,
   };
 
   console.log('mailOptions', mailOptions)
@@ -86,10 +86,10 @@ exports.mailUser = async (email, subject, message) => {
 
 exports.sendMail = async (email, message) => {
   let mailOptions = {
-    //   from: process.env.MAIL_USER,
+      from: process.env.MAIL_USER,
     to: email,
     subject: "Tick System Message",
-    html: `<p>${message}</p>`,
+    html: message,
   };
 
   await transporter
