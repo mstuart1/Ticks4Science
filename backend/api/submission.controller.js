@@ -344,11 +344,12 @@ exports.updateSubm = async (req, res, next) => {
 
         await Subm.update(data, { paranoid: false, where: { id } }, { transaction: t })
         // console.log('updated', updated)
+        // removed lastEmail from citizen because it is never used anywhere else and I'm not sure what it is
         updatedTick = await Subm.findByPk(id, {
           include: [
             {
               model: db.citizen,
-              attributes: ['id', 'email', 'lastEmail']
+              attributes: ['id', 'email']
             },
             {
               model: db.ticks,
