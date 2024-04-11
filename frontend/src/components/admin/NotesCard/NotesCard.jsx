@@ -3,6 +3,10 @@ import styles from './Notes.module.css'
 import { useNavigate } from 'react-router-dom'
 
 const NotesCard = ({ notes, id, user }) => {
+
+    console.log('notes', notes)
+    console.log('id', id)
+    console.log('user', user)
     const navigate = useNavigate()
     const handleNotes = async (evt) => {
         evt.preventDefault()
