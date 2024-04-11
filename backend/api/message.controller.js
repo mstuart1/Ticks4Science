@@ -15,11 +15,11 @@ exports.createMessage = async (req, res, next) => {
                 createdRecord = await Message.create(incomingInfo, { transaction: t })
             });
             if (incomingInfo.role === 'admin') {
-                let foundSub = await Submission.findByPk(incomingInfo.submissionId)
-                // console.log(JSON.stringify(foundSub, null, 1))
+                let foundSub = await Submission.findByPk(incomingInfo.submissionId, { include: db.citizen })
+                console.log(JSON.stringify(foundSub, null, 1))
                 if (foundSub.citizenId){
                     let subject = `NJTicks4Science - New Message`
-                    let message = `You have been sent a message regarding your submission. ${incomingInfo.message} Click this link to view your submission: <a href={"https://ticks.rutgers.edu/progress/${foundSub.id}"}>https://ticks.rutgers.edu/progress/${foundSub.id}</a>`
+                    let message = `You have been sent a message regarding your submission. <strong>${incomingInfo.message}</strong> View your submission at <a href={"https://ticks.rutgers.edu/progress/${foundSub.id}"}>https://ticks.rutgers.edu/progress/${foundSub.id}</a>`
                     mailUser(foundSub.citizen.email, subject, message)
                 }
             }
