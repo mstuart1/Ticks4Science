@@ -91,11 +91,11 @@ const App = () => {
   */
 
   // let currentDate = new Date()
-  // let maintDate = new Date("2024-01-17T00:00:00")
-  // let maintText = 'Due to inclement weather, the maintenance which will temporarily make the site unavailable has been rescheduled for January 17. We expect this maintenance to take less than an hour.'
-  let maintText = ''
+  // let maintDate = new Date("2024-04-11T00:00:00")
+  let maintText = 'The site is currently undergoing maintenance.  Please check back later.'
+  // let maintText = ''
   // let maintActive = currentDate > maintDate
-  let maintActive = false
+  let maintActive = true
 
   addGaScript()
   createWindowGTag()
