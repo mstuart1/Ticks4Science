@@ -15,7 +15,7 @@ const NotesCard = ({ notes, id, user }) => {
         let data
         if (notes){
 
-            data = {notes: {data: [...notes?.data, {date: new Date(), text: formObject.notes, user: `${user.firstName} ${user.lastName}`}]}}
+            data = {notes: {data: [...notes.data, {date: new Date(), text: formObject.notes, user: `${user.firstName} ${user.lastName}`}]}}
         } else {
             data = { notes: { data: [{ date: new Date(), text: formObject.notes, user: `${user.firstName} ${user.lastName}` }] } }
         }
