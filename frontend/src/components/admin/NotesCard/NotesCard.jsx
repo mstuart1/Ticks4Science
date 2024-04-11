@@ -13,8 +13,9 @@ const NotesCard = ({ notes, id, user }) => {
         const formData = new FormData(evt.currentTarget)
         const formObject = Object.fromEntries(formData)
         let data
+        console.log('notes', notes)
         if (notes){
-            console.log('notes', notes.data)
+            
             data = {notes: {data: [...notes.data, {date: new Date(), text: formObject.notes, user: `${user.firstName} ${user.lastName}`}]}}
         } else {
             data = { notes: { data: [{ date: new Date(), text: formObject.notes, user: `${user.firstName} ${user.lastName}` }] } }
