@@ -116,14 +116,7 @@ const TickOrInsect = () => {
         </div>)
         : (<HorizScrollCont cardArray={arachElems} />)}
 
-      <BasicPage.SectionSubtitle>
-  Arachnids
-</BasicPage.SectionSubtitle>
-{width > 450 
-? (<div style={{display: 'flex', justifyContent: 'center'}}>
-{arachElems}
-</div>) 
-: ( <HorizScrollCont cardArray={arachElems}/> )}
+     
 
 <BasicPage.SectionSubtitle>
   Insects
