@@ -273,7 +273,7 @@ const Survey = () => {
           <h4>Submitter Information</h4>
           <Styles.ResponsiveDiv>
             <Styles.FormDiv>
-              <label htmlFor={"userMuni"}>{"Municipality *"}</label>
+              <label htmlFor={"userMuni"}>{"City *"}</label>
               <Styles.Input
                 error={shouldMarkError("userMuni")}
                 onBlur={() => handleBlur("userMuni")}
@@ -447,7 +447,7 @@ const Survey = () => {
                         <Styles.ResponsiveDiv>
                           <Styles.FormDiv>
                             <label htmlFor={"bittenMuni"}>
-                              {"Municipality of bitten person *"}
+                              {"City of bitten person *"}
                             </label>
                             <Styles.Input
                               error={shouldMarkError("bittenMuni")}
@@ -576,7 +576,7 @@ const Survey = () => {
               </Styles.FormDiv>
               <Styles.FormDiv>
                 <label htmlFor={"tickMuni"}>
-                  {"Municipality where tick was found *"}
+                  {"City where tick was found *"}
                 </label>
                 <Styles.Input
                   error={shouldMarkError("tickMuni")}
