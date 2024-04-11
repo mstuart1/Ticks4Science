@@ -40,7 +40,8 @@ exports.createSubm = async (req, res, next) => {
     if (incomingInfo.email.length){
       console.log('sending email')
       let subject = `Thank you for your submission!`
-      let message = `Your tick ID # is ${createdRecord.id}. View your submission form at <a href={"https://ticks.rutgers.edu/submission/${createdRecord.id}"}>https://ticks.rutgers.edu/submission/${createdRecord.id}</a>.  Check your tick's progress at <a href={"https://ticks.rutgers.edu/progress/${createdRecord.id}"}>https://ticks.rutgers.edu/progress/${createdRecord.id}</a>`
+      let message = `<p>Your tick ID # is ${createdRecord.id}.</p><p> View your submission form at <a href={"https://ticks.rutgers.edu/submission/${createdRecord.id}"}>https://ticks.rutgers.edu/submission/${createdRecord.id}</a>. </p> <p>Check your tick's progress at <a href={"https://ticks.rutgers.edu/progress/${createdRecord.id}"}>https://ticks.rutgers.edu/progress/${createdRecord.id}</a></p>`
+      
       mailUser(incomingInfo.email, subject, message)
     }
     return res.json({ data: createdRecord })
