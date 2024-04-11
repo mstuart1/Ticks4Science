@@ -84,7 +84,7 @@ const TickOrInsect = () => {
       <BasicPage.ImageCont>
         <figure>
           <img src={mouth} alt='mouth parts' />
-          <figcaption style={{ fontSize: '1.6rem', width: '300px' }}>The tick’s mouthparts include the hypostome and palps. The hypostome enters the skin and draws up the blood. The palps do not enter the body when feeding, splaying out to the side while attached to its host. This photo is a close up of a blacklegged tick (photo credit Andrea Egizi, PhD).
+          <figcaption style={{ fontSize: '1.6rem', width: '300px' }}>The tick’s mouthparts include the hypostome and palps. The hypostome enters the skin and draws up the blood. The palps do not enter the body when feeding, splaying out to the side while embedded to its host. This photo is a close up of a blacklegged tick (photo credit Andrea Egizi, PhD).
           </figcaption>
         </figure>
       </BasicPage.ImageCont>
@@ -117,13 +117,29 @@ const TickOrInsect = () => {
         : (<HorizScrollCont cardArray={arachElems} />)}
 
       <BasicPage.SectionSubtitle>
-        Insects
-      </BasicPage.SectionSubtitle>
-      {width > 450
-        ? (<div style={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap' }}>
-          {insectElems}
-        </div>)
-        : (<HorizScrollCont cardArray={insectElems} />)}
+  Arachnids
+</BasicPage.SectionSubtitle>
+{width > 450 
+? (<div style={{display: 'flex', justifyContent: 'center'}}>
+{arachElems}
+</div>) 
+: ( <HorizScrollCont cardArray={arachElems}/> )}
+
+<BasicPage.SectionSubtitle>
+  Insects
+</BasicPage.SectionSubtitle>
+{width > 450 
+? (<div style={{display: 'flex', justifyContent: 'center', flexWrap: 'wrap'}}>
+{insectElems}
+</div>) 
+: ( <HorizScrollCont cardArray={insectElems}/> )}
+{/*<BasicPage.ImageCont>
+            <figure>
+              <img src={mouth} alt='mouth parts' />
+              <figcaption style={{fontSize: '1.6rem'}}>The tick’s mouthparts include the hypostome and palps. The hypostome enters the skin and draws up the blood. The palps do not enter the body when feeding, splaying out to the side while embedded to its host. Ixodes scapularis (photo credit Andrea Egizi, PhD).
+              </figcaption>
+            </figure>
+          </BasicPage.ImageCont> */}
       <BasicPage.LinkButton.LinkSpec to={'/steps'}>
         <BasicPage.HoverCard>
           <BasicPage.LinkButton.CardSpecial>

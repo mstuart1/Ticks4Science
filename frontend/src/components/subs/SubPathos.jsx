@@ -2,7 +2,7 @@ import React from 'react'
 
 const SubPathos = ({ data }) => {
 
-    console.log('SubPathos data: ', data)
+    // console.log('SubPathos data: ', data)
 
     let pathogenData = []
     if (data?.pathogens?.length) {
@@ -15,12 +15,12 @@ const SubPathos = ({ data }) => {
         if (pathogenData.length) {
             return (
                 <>
-                    <p>
-                        Your tick will be tested for the following pathogens.  The results will be posted here when they are available.
-                    </p>
+                    <h3>
+                        Your tick's pathogen-testing results:
+                    </h3>
                     <ul>
                         {pathogenData.map(pathogen => (
-                            <li key={pathogen.id}><em>{pathogen.name}</em> - {pathogen.submission_pathogen?.result}</li>)
+                            <li key={pathogen.id}><em>{pathogen.name}</em> - {pathogen.submission_pathogen?.result === 'pending' ? 'Testing in progress; check back for results' : pathogen.submission_pathogen?.result}</li>)
                         )}
                     </ul>
                 </>

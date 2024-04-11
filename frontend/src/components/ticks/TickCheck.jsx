@@ -57,7 +57,7 @@ const TickCheck = () => {
                     <StepStyles.CardSpecial>
                         <BasicPage.StepSpan>Extra Inspection - In the shower</BasicPage.StepSpan>
                         <p>
-                            When you're taking a shower, this will give you another opportunity to thoroughly inspect your body for ticks, and it may even help wash off ticks that haven't attached yet.
+                            When you're taking a shower, this will give you another opportunity to thoroughly inspect your body for ticks, and it may even help wash off ticks that haven't embedded yet.
                         </p>
                     </StepStyles.CardSpecial>
                 </OutlineCard>

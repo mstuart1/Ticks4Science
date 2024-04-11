@@ -33,6 +33,7 @@ import { addGaScript, createWindowGTag } from './tools/googleAnalytics';
 import Maint from './components/maint/Maint';
 import MaintMessage from './components/maint/MaintMessage';
 import Submission from './components/subs/Submission';
+import MultipleExample from './components/survey/MultipleExample';
 
 const trackingId = process.env.REACT_APP_GA_TRACKING
 ReactGA.initialize(trackingId)
@@ -143,6 +144,7 @@ const App = () => {
                   <Route path='/reset/:token' element={<ResetPassword reset={true} />} />
                   <Route path='/createAccount/:token' element={<ResetPassword create={true} />} />
                   <Route path='/ticks/:id' element={<TickPage />} />
+                  <Route path='/multipleExample' element={<MultipleExample />} />
                   <Route path='*' element={<About />} />
                 </>)}
 

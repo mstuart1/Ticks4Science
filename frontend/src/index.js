@@ -6,6 +6,7 @@ import { configureStore } from "./store"
 import { persistStore } from 'redux-persist'
 import { PersistGate } from 'redux-persist/lib/integration/react'
 import App from './App';
+import './index.css'
 
 const rootElement = document.getElementById('root')
 const basename = process.env.REACT_APP_BASENAME;

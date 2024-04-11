@@ -1,8 +1,8 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import SubmissionDataService from "../../services/submission";
 import { BasicPage } from "../GeneralStyles";
-import styles from './survey.module.css'
+import styles from './Survey.module.css'
 import SubmitterInfo from "./SubmitterInfo";
 import TickAttached from "./TickAttached";
 import TickLocation from "./TickLocation";
@@ -66,7 +66,7 @@ const Survey = () => {
       // // alert(JSON.stringify(response.data))
 
     } catch (err) {
-      console.log(err.message);
+     
     }
   };
 
@@ -75,8 +75,8 @@ const Survey = () => {
     for (let i = 1; i <= numTicks; i++) {
       // let tickNum = i + 1;
       form.push(
-        <details open={i === 1} className={styles.details} key={i}>
-          <summary className={styles.summary}>Tick {i}</summary>
+        <details open={numTicks === 1} className={styles.details} key={i}>
+          <summary className={styles.summary}>Tick {i}<span style={{color: '#c00300', marginLeft: '0.5rem'}}>ID# will generate when you submit the form</span> </summary>
           <TickAttached id={i} />
           <TickLocation id={i} />
           <PhotoSection id={i} />
@@ -96,18 +96,24 @@ const Survey = () => {
     <div className={styles.text}>
       <h2 className={styles.title}>Tick Submission Form</h2>
 
-      {/* <p>      <span className={styles.specialText}>If you intend to mail in more than one tick,</span> please fill out this form for each one, separate the ticks into different containers/bags,  and label each with the id numbers provided once you complete the forms.  Each tick will be tested separately so each tick needs an individual id number and data record.</p> */}
+     
       <div className={styles.form}>
+        <p>Answer the questions below to the best of your ability; if you do not remember the exact dates or locations give your best estimate.</p>
         <div className={styles.formSection}>
           How many ticks do you intend to mail in?
           <input className={styles.input} type="number" min="1" onChange={(evt) => setNumTicks(evt.target.value)} value={numTicks} />
+          {numTicks > 1 ? (<p> <span className={styles.specialText}>*Note: Before mailing ticks in, they must be labeled with the corresponding number you assign them below (i.e Tick 1, Tick 2, etc). You must also label somewhere in/on the envelope the tick ID number you receive after submitting this form. See example of acceptable submissions <Link to='/multipleExample' target="_blank">here</Link>. </span> </p>) : null}
         </div>
       </div>
       <form onSubmit={handleSubmit} className={styles.form}>
         <SubmitterInfo data={formValues} handleChange={setFormValues} />
-
+       {numTicks > 1 ?  <p style={{ padding: '0 10rem' }}>Click each tick to answer questions.</p> : null}
         {formElems}
         <AdditionalInfo />
+        
+
+  {numTicks > 1 ? <p style={{padding: '0 10rem'}}>If the form will not submit, click each tick (for example "Tick 1") to open the question section.  If the section is open when submitting, it will display which question is preventing the form from submitting.</p> : null}
+        
 <div className={styles.btnDiv}>
         <button className={styles.submitBtn}>
           Submit

@@ -20,7 +20,7 @@ const QuestionSidebar = ({subId, subMessages}) => {
   return (
     <div className={styles.cont} >
         <h2 className={styles.title}>Questions?</h2>
-        <p className={styles.text}>Enter any questions or comments in the box below.  Please DO NOT enter any personal information.  The response to your question/comment will appear here.</p>
+      <p className={styles.text}>Enter any questions or comments in the box below. Please DO NOT enter any personal/identifying information as this chat is public to anyone who searches your tick ID#. If you have a more private inquiry, use the "contact us" button on our homepage. The response to your question/comment will appear below.</p>
         <form  onSubmit={handleQuestion}>
             <textarea className={styles.textarea} defaultValue='' id="message" name="message" rows="4" cols="30" placeholder="Drag the bottom right corner to create more space if needed."></textarea>
             <br />

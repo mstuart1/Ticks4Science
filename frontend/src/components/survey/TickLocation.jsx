@@ -1,4 +1,4 @@
-import styles from './survey.module.css'
+import styles from './Survey.module.css'
 import GenericInput from '../ui/GenericInput'
 import GenericTextarea from '../ui/GenericTextarea'
 import GenericRadio from '../ui/GenericRadio'
@@ -17,12 +17,12 @@ const TickLocation = ({id}) => {
 
             <h4 className={styles.sectionTitle}>Tick Location Information</h4>
             <div className={styles.responsiveDiv}>
-                <div style={{display: 'flex', justifyContent: 'space-evenly'}}>
-                <div style={{display: 'flex', flexDirection: 'column'}}>
+                <div className={styles.tickSubSection}>
+                <div className={styles.tickSubSection}>
                 <GenericInput label="Date tick was found *" idString={`tick${id}.dateTickFound`} required={true} type='date' />
-                <GenericInput label="Municipality where tick was found *" idString={`tick${id}.tickMuni`} required={true} type='text' />
+                <GenericInput label="City where tick was found *" idString={`tick${id}.tickMuni`} required={true} type='text' />
                 </div>
-                    <div style={{ display: 'flex', flexDirection: 'column' }}>
+                    <div className={styles.tickSubSection}>
                 <GenericInput label="County where tick was found *" idString={`tick${id}.tickCounty`} required={true} type='text' />
                 <GenericInput label="ZIP code where tick was found *" idString={`tick${id}.tickZip`} required={true} type='text' />
                 </div>

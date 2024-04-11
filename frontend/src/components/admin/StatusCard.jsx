@@ -127,7 +127,7 @@ const StatusCard = ({ tick, updateSub, user, id }) => {
     };
 
     const handleNotATick = (id) => {
-        let data = { notATick: true, specimenIdentified: new Date() };
+        let data = { notATick: true, specimenIdentified: new Date(),  photoId: null, photoIdUserId: null };
         return updateSub(data, id);
     };
 
@@ -189,6 +189,8 @@ const StatusCard = ({ tick, updateSub, user, id }) => {
         { value: "true", required: true, label: "true" },
         { value: "false", required: true, label: "false" },
     ];
+
+    console.log('data', tick)
 
     return (
         <OutlineCard width="430px">
@@ -260,7 +262,7 @@ const StatusCard = ({ tick, updateSub, user, id }) => {
                     <br />
                 </RenderIf>
                 <RenderIf isTrue={tick.notATick}>
-                    <span>Photo ID: Not a tick</span>
+                    <span>Not a tick</span>
                 </RenderIf>
                 <RenderIf
                     isTrue={
@@ -309,7 +311,7 @@ const StatusCard = ({ tick, updateSub, user, id }) => {
                     isTrue={tick.specimenRequested && !tick.specimenReceived}
                 >
                     <BorderlessFloatButton
-                        text="Click if you've received a tick"
+                        text="Click if you've received a specimen"
                         colors={{ shadow: ruTeal }}
                         handleClick={() => handleReceived(tick.id)}
                     />

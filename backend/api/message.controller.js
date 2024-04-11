@@ -1,5 +1,7 @@
 const db = require("../models");
 const Message = db.message;
+const Submission = db.submission;
+const { mailUser } = require("./mailHelper");
 
 // create message
 exports.createMessage = async (req, res, next) => {
@@ -7,10 +9,20 @@ exports.createMessage = async (req, res, next) => {
     try {
         let createdRecord;
         let incomingInfo = req.body;
+        
         await db.sequelize
             .transaction(async (t) => {
                 createdRecord = await Message.create(incomingInfo, { transaction: t })
             });
+            if (incomingInfo.role === 'admin') {
+                let foundSub = await Submission.findByPk(incomingInfo.submissionId)
+                // console.log(JSON.stringify(foundSub, null, 1))
+                if (foundSub.citizenId){
+                    let subject = `NJTicks4Science - New Message`
+                    let message = `You have been sent a message regarding your submission. ${incomingInfo.message} Click this link to view your submission: <a href={"https://ticks.rutgers.edu/progress/${foundSub.id}"}>https://ticks.rutgers.edu/progress/${foundSub.id}</a>`
+                    mailUser(foundSub.citizen.email, subject, message)
+                }
+            }
         return res.json({ data: createdRecord })
     } catch (err) {
         console.log(err.message)
