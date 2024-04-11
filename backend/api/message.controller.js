@@ -19,7 +19,7 @@ exports.createMessage = async (req, res, next) => {
                 console.log(JSON.stringify(foundSub, null, 1))
                 if (foundSub.citizenId){
                     let subject = `NJTicks4Science - New Message`
-                    let message = `You have been sent a message regarding your submission. <strong>${incomingInfo.message}</strong> View your submission at <a href={"https://ticks.rutgers.edu/progress/${foundSub.id}"}>https://ticks.rutgers.edu/progress/${foundSub.id}</a>`
+                    let message = <div><p>You have been sent a message regarding your submission.</p><br/> <strong>${incomingInfo.message}</strong><br/> View your submission at <a href={"https://ticks.rutgers.edu/progress/${foundSub.id}"}>https://ticks.rutgers.edu/progress/${foundSub.id}</a></div>
                     mailUser(foundSub.citizen.email, subject, message)
                 }
             }
