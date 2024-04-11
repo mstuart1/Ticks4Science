@@ -3,7 +3,7 @@ import styles from './Notes.module.css'
 import { useNavigate } from 'react-router-dom'
 
 const NotesCard = ({ notes, id, user }) => {
-
+notes = typeof notes === 'string' ? JSON.parse(notes) : notes
     console.log('notes', typeof notes)
     console.log('id', id)
     console.log('user', user)
