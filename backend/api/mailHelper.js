@@ -65,6 +65,7 @@ cron.schedule("00 05 * * *", async () => {
 })
 
 exports.mailUser = async (email, subject, message) => {
+  console.log('mail user message', message)
   let mailOptions = {
       from: process.env.MAIL_USER,
     to: email,
@@ -85,6 +86,7 @@ exports.mailUser = async (email, subject, message) => {
 
 
 exports.sendMail = async (email, message) => {
+  console.log('send mail message', message)
   let mailOptions = {
       from: process.env.MAIL_USER,
     to: email,
