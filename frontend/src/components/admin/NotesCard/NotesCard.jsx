@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom'
 
 const NotesCard = ({ notes, id, user }) => {
 
-    console.log('notes', notes)
+    console.log('notes', notes["data"])
     console.log('id', id)
     console.log('user', user)
     const navigate = useNavigate()
