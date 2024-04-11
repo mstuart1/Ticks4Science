@@ -36,7 +36,7 @@ const NotesCard = ({ notes, id, user }) => {
                 <br />
                 <button className={styles.button} type="submit" value="Submit" ><span>Submit</span></button>
             </form>
-            {notes?.data?.length && notes.data.map((note, index) => (<div key={index} className={styles.messageDiv}><div className={styles.text}><span className={styles.date}>{new Date(note.date).toString()} from {note.user}:</span><br /> <span className={styles.highlight}>{note.text}</span></div>
+            { notes?.data?.map((note, index) => (<div key={index} className={styles.messageDiv}><div className={styles.text}><span className={styles.date}>{new Date(note.date).toString()} from {note.user}:</span><br /> <span className={styles.highlight}>{note.text}</span></div>
                
             </div>))}
         </div>
