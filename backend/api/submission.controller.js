@@ -344,7 +344,7 @@ exports.updateSubm = async (req, res, next) => {
 
         await Subm.update(data, { paranoid: false, where: { id } }, { transaction: t })
         // console.log('updated', updated)
-        // removed lastEmail from citizen because it is never used anywhere else and I'm not sure what it is
+        // removed lastEmail from citizen because it is never used anywhere else originally was created to track if we were sending emails too frequently, like don't send an email if the last email was sent in the past hour, but we changed what we were sending emails for so that won't be an issue
         updatedTick = await Subm.findByPk(id, {
           include: [
             {
@@ -388,7 +388,7 @@ exports.updateSubm = async (req, res, next) => {
       if (data.photoId || data.specimenId){
         console.log('emailing user about change')
         let subject = `NJTicks4Science Tick Update for tick id # ${updatedTick.id}`
-        let message = `An update has been made to information regarding tick # ${updatedTick.id}.  Check your tick's progress by clicking this link: <a href={"https://ticks.rutgers.edu/progress/${updatedTick.id}"}>https://ticks.rutgers.edu/progress/${updatedTick.id}</a>`
+        let message = `An update has been made to information regarding tick # ${updatedTick.id}.  Check your tick's progress by visiting <a href={"https://ticks.rutgers.edu/progress/${updatedTick.id}"}>https://ticks.rutgers.edu/progress/${updatedTick.id}</a>`
         mailUser(updatedTick.citizen.email, subject, message)
       }
     } 
