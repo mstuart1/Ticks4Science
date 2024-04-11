@@ -20,7 +20,7 @@ const TickLocation = ({id}) => {
                 <div className={styles.tickSubSection}>
                 <div className={styles.tickSubSection}>
                 <GenericInput label="Date tick was found *" idString={`tick${id}.dateTickFound`} required={true} type='date' />
-                <GenericInput label="Municipality where tick was found *" idString={`tick${id}.tickMuni`} required={true} type='text' />
+                <GenericInput label="City where tick was found *" idString={`tick${id}.tickMuni`} required={true} type='text' />
                 </div>
                     <div className={styles.tickSubSection}>
                 <GenericInput label="County where tick was found *" idString={`tick${id}.tickCounty`} required={true} type='text' />

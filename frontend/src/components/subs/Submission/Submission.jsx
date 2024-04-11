@@ -50,7 +50,7 @@ const Submission = () => {
         <div className={styles.container}>
             <div >
                 
-                <p className={styles.text}>Submitter Municipality: {dbData?.userMuni}</p>
+                <p className={styles.text}>Submitter City: {dbData?.userMuni}</p>
                 <p className={styles.text}>Submitter Zip Code: {dbData?.userZip?.toString().padStart(5, "0")}</p>
                 <p className={styles.text}>Indicate on what tick was found: {dbData?.foundOn}</p>
                 {dbData?.foundOn === "Other" && <p className={styles.text}>Describe the object where you found the tick: {dbData?.foundOnOther}</p>}
@@ -59,12 +59,12 @@ const Submission = () => {
                 {dbData?.tickAttached?.toLowerCase() === "yes" && <p className={styles.text}>Date Removed: {new Date(dbData?.dateRemoved).toString()}</p>}
                 {dbData?.foundOn === "Person" && <p className={styles.text}>Submitter Bitten: {dbData?.submitterBitten}</p>}
                 {(dbData?.foundOn === "Person" && dbData?.submitterBitten?.toLowerCase() !== 'yes') && <p className={styles.text}>Other person bitten? {dbData?.personBitten}</p>}
-                {dbData?.personBitten?.toLowerCase() === 'yes' && <p className={styles.text}>Municipality of bitten person: {dbData?.bittenMuni}</p>}
+                {dbData?.personBitten?.toLowerCase() === 'yes' && <p className={styles.text}>City of bitten person: {dbData?.bittenMuni}</p>}
                 {dbData?.personBitten?.toLowerCase() === "yes" && <p className={styles.text}>ZIP Code of bitten person: {dbData?.bittenZip?.toString().padStart(5, "0")}</p>}
                 {dbData?.submitterBitten?.toLowerCase() === "yes" && <p className={styles.text}>Did the bitten person travel outside of NJ in the past 10 days: {dbData?.bittenTraveledDom}</p>}
                 {dbData?.bittenTraveledDom?.toLowerCase() === "yes" && <p className={styles.text}>Where did the bitten person travel? {dbData?.travelInfo}</p>}
                 <p className={styles.text}>Date tick was found: {new Date(dbData?.dateTickFound).toString()}</p>
-                <p className={styles.text}>Municipality where tick was found: {dbData?.tickMuni}</p>
+                <p className={styles.text}>City where tick was found: {dbData?.tickMuni}</p>
                 <p className={styles.text}>County where tick was found: {dbData?.tickCounty}</p>
                 <p className={styles.text}>ZIP code where tick was found: {dbData?.tickZip?.toString().padStart(5, "0")}</p>
                 <p className={styles.text}>Descriptor of Location: {dbData?.locationDesc}</p>

@@ -7,7 +7,7 @@ const SubmitterInfo = () => {
             <div className={styles.responsiveDiv}>
                 <div style={{ display: 'flex', width: '100%', justifyContent: 'space-evenly' }}>
                     {/* <div style={{ display: 'flex', flexDirection: 'column' }}> */}
-                        <GenericInput label="Municipality *" idString="userMuni" required={true} placeholder="Where you live" />
+                        <GenericInput label="City *" idString="userMuni" required={true} placeholder="Where you live" />
                     {/* </div> */}
                     {/* <div style={{ display: 'flex', flexDirection: 'column' }}> */}
                         <GenericInput label="Zip Code *" idString="userZip" required={true} placeholder="Where you live" />

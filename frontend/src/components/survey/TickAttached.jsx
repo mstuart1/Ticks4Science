@@ -43,7 +43,7 @@ const TickAttached = ({id}) => {
 
                                         {input[`tick${id}.submitterBitten`] === "yes" && (
                                             <>
-                                                <GenericInput label="Municipality of bitten person *" idString={`tick${id}.bittenMuni`} required={true} placeholder="Where bitten person lives" />
+                                                <GenericInput label="City of bitten person *" idString={`tick${id}.bittenMuni`} required={true} placeholder="Where bitten person lives" />
                                                 <GenericInput label="ZIP Code of bitten person *" idString="bittenZip" required={true} placeholder="Where bitten person lives" />
                                             </>
                                         )}
