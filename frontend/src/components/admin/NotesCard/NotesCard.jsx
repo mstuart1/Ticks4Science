@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom'
 
 const NotesCard = ({ notes, id, user }) => {
 
-    console.log('notes', notes)
+    // console.log('notes', notes)
     console.log('id', id)
     console.log('user', user)
     const navigate = useNavigate()
@@ -14,7 +14,7 @@ const NotesCard = ({ notes, id, user }) => {
         const formObject = Object.fromEntries(formData)
         let data
         if (notes){
-
+            console.log('notes', notes.data)
             data = {notes: {data: [...notes.data, {date: new Date(), text: formObject.notes, user: `${user.firstName} ${user.lastName}`}]}}
         } else {
             data = { notes: { data: [{ date: new Date(), text: formObject.notes, user: `${user.firstName} ${user.lastName}` }] } }
