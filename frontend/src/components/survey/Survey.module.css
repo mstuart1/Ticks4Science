@@ -199,6 +199,9 @@ h4 {
   .form input {
     width: 90%;
   }
+  .form input::placeholder {
+    font-size: 1.2rem;
+  }
   .tickSection {
     display: flex;
     flex-wrap: wrap;
