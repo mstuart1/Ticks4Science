@@ -102,7 +102,7 @@
         width: 1000px;
     }
    }
-@media screen and (max-width: var(--width-mobile)) {
+@media screen and (max-width: 768px) {
     .centerCont {
         flex-direction: column;
         width: 100vw;
