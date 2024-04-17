@@ -93,6 +93,17 @@ h4 {
   margin: 2rem 0;
   display: block;
 }
+.specCard {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  padding: 1rem 2rem;
+}
+
+.specCard span {
+  padding: 1.6rem;
+  font-weight: bold;
+}
 
 .input {
   padding: 1rem;
