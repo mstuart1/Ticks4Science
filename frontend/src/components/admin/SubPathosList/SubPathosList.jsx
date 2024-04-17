@@ -1,60 +1,20 @@
-import styled from "styled-components"
-import { theme } from "../../theme"
 import { useEffect, useState } from "react"
-import SubmissionDataService from "../../services/submission"
-// import { useNavigate } from "react-router-dom"
-
-const Styles = {
-    InputDiv: styled.div`
-    display: flex;
-    justify-content: center;
-    input {
-        padding: 0.5rem;
-    }
-    `,
-    Table: styled.table`
-  font-family: Arial, Helvetica, sans-serif;
-  borderCollapse: collapse;
-  width: 100%;
-  td, th {
-    border: 1px solid #ddd;
-  padding: 0.8rem;
-  text-align: center;
-  }
-  tr:nth-child(even){background-color: #f2f2f2;}
-
-  tr:hover {background-color: #ddd;}
- 
-  th {
-   padding-top: 1.2rem;
-   padding-bottom: 1.2rem;
-   background-color: ${theme.colors.ruTeal}};
-   color: white;
- }
- td {
-    color: black;
-    }
-  `,
-    Container: styled.section`
-  display: flex;
-    flex-direction: column;
-    width: 80vw;
-    max-width: 900px;
-  `,
-    Title: styled.h1`
-  text-align: center;
-  `,
-}
-
+import styles from './SubPathosList.module.css'
+import SubmissionDataService from "../../../services/submission"
 
 const SubPathosList = ({ sub }) => {
 
     const { id: subId, specimen: { pathogens: speciesPathos }, pathogens: subPathos } = sub
-
+    // console.log('sub', sub)
+    // console.log('subPathos', subPathos)
+    // console.log('speciesPathos', speciesPathos)
     // ** combine subPathos and speciesPathos to remove duplicates but include any new items
     const combinedList = [...new Set([...subPathos.map(item => item.id), ...speciesPathos.map(item => item.id)])]
     // ** are there any differences between the ids in the combined list and the subPathos list?
     const differenceList = combinedList.filter(item => !subPathos.map(item => item.id).includes(item))
+
+    // console.log('combined list', combinedList)
+    // console.log('difference list', differenceList)
 
     const [tableData, setTableData] = useState(subPathos)
 
@@ -69,11 +29,11 @@ const SubPathosList = ({ sub }) => {
         // ** if there are any differences, update the subPathos list
         if (differenceList.length) {
             updateSubPathos(subId, speciesPathos).then(freshData => {
-                console.log('fresh data', freshData)
+                // console.log('fresh data', freshData)
                 setTableData(freshData?.pathogens)
             })
         }
-    }, [sub])
+    }, [differenceList.length, speciesPathos, subId])
 
     const handleResult = async ({ target: { name: pathogenId, value: result } }) => {
         try {
@@ -88,9 +48,9 @@ const SubPathosList = ({ sub }) => {
     }
 
     return (
-        <Styles.Container>
-            <Styles.Title>Test Status</Styles.Title>
-            <Styles.Table>
+        <section className={styles.container}>
+            <h1 className={styles.title}>Test Status</h1>
+            <table className={styles.table}>
                 <thead>
                     <tr>
                         <th>Pathogen Abbrv</th>
@@ -117,8 +77,8 @@ const SubPathosList = ({ sub }) => {
                         </tr>
                     ))}
                 </tbody>
-            </Styles.Table >
-        </Styles.Container >
+            </table >
+        </section >
     )
 }
 export default SubPathosList
