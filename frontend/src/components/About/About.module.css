@@ -1,0 +1,119 @@
+.centerCont {
+    display: flex;
+    justify-content: center; 
+    border-bottom: 2px solid var(--color-grey3);
+}
+.introCont {
+    display: flex;
+    align-items: center;
+    padding: 3rem 0;
+}
+
+.centerCol {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 95%;
+}
+
+.specLink {
+    text-decoration: none;
+    color: var(--color-ruTeal);
+
+}
+
+.specCard {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    padding: 1rem 2rem;
+}
+
+.specCard span {
+    padding: 1.6rem;
+}
+
+.leftAlignCont {
+    display: flex;
+    flex-direction: column;
+  align-items: flex-start;
+  max-width: 1000px;
+}
+.para {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    padding: 0 2rem;
+}
+.logo {
+    padding-left: 5rem;
+    padding-right: 5rem;
+    
+    
+}
+.logo img {
+    max-width: 25rem;
+}
+.title {
+    width: 95%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.5rem;
+    font-weight: 700;
+    text-align: center;
+    margin: 3rem;
+}
+.sectionTitle {
+    text-align: center;
+    font-size: 2rem;
+    font-weight: 600;
+    margin: 1rem;
+}
+.imgCont {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+}
+
+  .imgCont figure {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 2rem;
+  }
+  .imgCont figure  img {
+      max-width: 600px;
+      border-radius: var(--border-radius);
+    }
+    .imgCont figure figcaption {
+        width: 100%;
+        margin: 1rem;
+        font-size: 1.4rem;
+        text-align: center;
+        caption-side: bottom;
+    } 
+
+@media screen and (min-width: 1366px) {
+    .centerCont{
+        width: 1000px;
+    }
+   }
+@media screen and (max-width: var(--width-mobile)) {
+    .centerCont {
+        flex-direction: column;
+        width: 100vw;
+        margin: 1rem;
+    }
+    .leftAlignCont {
+        width: 100vw;
+    }
+    .logo {
+        display: none;
+    }
+    .imgCont figure img {max-width: 300px;}
+    
+}

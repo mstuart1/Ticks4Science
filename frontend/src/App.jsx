@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { Route, Routes, } from 'react-router-dom';
-import About from './components/About';
+import About from './components/About/About';
 import ScrollToTop from './components/ScrollToTop';
 import { ThemeProvider } from "styled-components";
 import { theme } from './theme'
