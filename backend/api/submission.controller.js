@@ -563,6 +563,8 @@ exports.getDupes = async (req, res, next) => {
     next(err)
   }
 }
+
+//** update the pathogens associated with the submission based on the identified species */
 exports.updatePathos = async (req, res, next) => {
   console.log(`@@@@---updating submission pathogens ---@@@@`, req.params, req.body);
   try {
@@ -574,20 +576,37 @@ exports.updatePathos = async (req, res, next) => {
 
     await db.sequelize
       .transaction(async (t) => {
-
+        //** get the submission object */
         let foundSub = await Subm.findByPk(subId, { include: db.pathogen }, { transaction: t })
-        console.log('foundSub', JSON.stringify(foundSub, null, 1))
-        let subPathos = foundSub.pathogens.map(item => item.id)
-        //** create a combined list so that if there are the same number of items but they are all different, they will be included in the list along with the old and the lengths will be different when we check in the logic below.  Example: old  [1,2,3,4] and new [5, 6,7, 8] then combined list will be [1,2,3,4,5,6,7,8] and will be different length than subPathos.length */
-        let combinedList = [...new Set([...subPathos, ...speciesPathos.map(item => item.id)])]
-        const differenceList = combinedList.filter(item => !subPathos.map(item => item.id).includes(item))
+        // console.log('foundSub', JSON.stringify(foundSub, null, 1))
 
-        if (differenceList.length) {
-          let createArr = differenceList
-            .map(item => (
-              { submissionId: subId, pathogenId: item, result: 'pending' }
-            ))
-          await Sub_Pathos.bulkCreate(createArr, { transaction: t })
+        //** get the tests that belong to the submission that do not have a result */
+        let subPathos = foundSub.pathogens.filter(item => item.results === 'pending').map(item => item.id)
+        console.log('speciesPathos', speciesPathos)
+        console.log('subPathos', subPathos)
+
+        //** which species test are already assigned to the sub */
+        let keepTests = subPathos.filter(item => speciesPathos.map(item => item.id).includes(item))
+        console.log('keepTests', keepTests)
+        let deleteTests = subPathos.filter(item => !speciesPathos.map(item => item.id).includes(item))
+        console.log('deleteTests', deleteTests)
+        let addTests = speciesPathos.filter(item => !subPathos.includes(item.id)).map(item => item.id)
+        console.log('addTests', addTests)
+
+        if (deleteTests.length) {
+          await Sub_Pathos.destroy({
+            where: {
+              submissionId: subId,
+              pathogenId: {[Op.in]:deleteTests}
+            }
+          }, { transaction: t })
+        }
+        if (addTests.length) {
+          let addArray = addTests.map(item => {
+            return { submissionId: subId, pathogenId: item, result: 'pending' }
+          })
+          console.log('addArray', addArray)
+          await Sub_Pathos.bulkCreate(addArray, { transaction: t })
         }
       });
 
@@ -602,7 +621,6 @@ exports.updatePathos = async (req, res, next) => {
         }
       ]
     })
-    // console.log(JSON.stringify(updatedSub, null, 1))
 
     return res.json({ updatedSub })
   } catch (err) {
