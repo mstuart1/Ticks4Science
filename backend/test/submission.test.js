@@ -106,6 +106,20 @@ describe("POST /submission", () => {
           done();
         });
     });
+    it("should change the submission pathogens based on the species provided", (done) => {
+      let id = 1264
+      let pathogens = [{ id: 5 }, { id: 6 }]
+      chai
+        .request(server)
+        .put(`/submission/${id}/pathos`)
+        .send({ pathogens })
+        .end((err, res) => {
+          // console.log(res.body);
+          res.should.have.status(200);
+          // res.body.should.have.property("code").eq("OK");
+          done();
+        });
+    });
   }
   )
   // update submission pathogens result
