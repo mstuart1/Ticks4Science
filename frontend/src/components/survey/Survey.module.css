@@ -191,6 +191,14 @@ h4 {
   margin: 2rem;
 
 }
+.errorDiv {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: 100vh;
+  padding: 1rem;
+}
 
 @media screen and (max-width: 748px) {
   .text {

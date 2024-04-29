@@ -11,12 +11,13 @@ import AdditionalInfo from "./AdditionalInfo"
 import getFormValues from "./getFormValues";
 import extractFromObj from "../../tools/extractFromObj";
 import renameKeys from "../../tools/renameKeys";
-// import { theme } from "../../theme";
+import OutlineFloatButton from '../ui/outlineFloatButton/OutlineFloatButton'
 
 const Survey = () => {
   const navigate = useNavigate();
 
   const [inProgress, setInProgress] = useState(false);
+  const [error, setError] = useState('');
   const [numTicks, setNumTicks] = useState(1);
   const [formValues, setFormValues] = useState({});
 
@@ -26,7 +27,7 @@ const Survey = () => {
       setInProgress(true);
       evt.preventDefault();
       const {  data } = getFormValues(evt.currentTarget);
-      
+      console.log('data', data[`tick1.imageFront`].type)
       let id = 0
       let idArray = []
       for (let i = 1; i <= numTicks; i++) {
@@ -37,7 +38,13 @@ const Survey = () => {
         const renamedData = renameKeys(oneTickData, `tick${i}.`, '')
         const mergedData = { ...allTickData, ...renamedData }
 
+        if (!data[`tick${i}.imageFront`].type.includes('image') || (!!data[`tick${i}.imageBack`] && !data[`tick${i}.imageBack`].type.includes('image'))) {
+          console.log('error')
+          setError(`Tick ${i} has an invalid image file type. Please upload a valid image file type.`)
+          return
+        }
         let photoFormData = new FormData();
+        console.log('photo data', data[`tick${i}.imageFront`.type])
         photoFormData.append("photos", data[`tick${i}.imageFront`]);
         photoFormData.append("photos", data[`tick${i}.imageBack`]);
 
@@ -50,9 +57,9 @@ const Survey = () => {
         let response = await SubmissionDataService.submitForm(mergedData);
         id = response.data.data.id;
         idArray.push(id)
-        console.log("sent form, now sending photos");
-        response = await SubmissionDataService.submitImage(id, photoFormData, config);
-        
+        console.log("sent form, now sending photos", response);
+        let response2 = await SubmissionDataService.submitImage(id, photoFormData, config).catch(err => {setError(`Tick ${i} has an invalid image file type. Please upload a valid image file type.`); return null});
+        console.log('response', response2)
       }
       if (numTicks > 1) {
         navigate('/thanks', {state: {id: idArray}})
@@ -66,7 +73,7 @@ const Survey = () => {
       // // alert(JSON.stringify(response.data))
 
     } catch (err) {
-     
+     setError(true)
     }
   };
 
@@ -87,10 +94,17 @@ const Survey = () => {
   }
 
   let formElems = generateForm();
-
+  
+  if (error.length) {
+    return (<div className={styles.errorDiv}><h1>{error ??  'There was an error processing your form.'}</h1>
+     <OutlineFloatButton colors={{ text: '#00626d', shadow: '#00626d', bg: '#00626d' }} handleClick={() => navigate(0)} text='Return to Survey'
+          />
+    </div>)
+  }
   if (inProgress) {
     return (<div style={{ width: '100vw', height: '100vh' }}><h1>Submitting form...</h1></div>)
   }
+  
 
   return (
     <div className={styles.text}>
