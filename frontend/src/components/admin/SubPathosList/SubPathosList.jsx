@@ -11,7 +11,7 @@ const SubPathosList = ({ sub }) => {
     // ** combine subPathos and speciesPathos to remove duplicates but include any new items
     const combinedList = [...new Set([...subPathos.map(item => item.id), ...speciesPathos.map(item => item.id)])]
     // ** are there any differences between the ids in the combined list and the subPathos list?
-    const differenceList = combinedList.filter(item => !subPathos.map(item => item.id).includes(item))
+    const differenceList = combinedList.filter(item => !speciesPathos.map(item => item.id).includes(item))
 
     // console.log('combined list', combinedList)
     // console.log('difference list', differenceList)
