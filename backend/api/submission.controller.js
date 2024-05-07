@@ -581,9 +581,9 @@ exports.updatePathos = async (req, res, next) => {
         // console.log('foundSub', JSON.stringify(foundSub, null, 1))
 
         //** get the tests that belong to the submission that do not have a result */
-        let subPathos = foundSub.pathogens.filter(item => item.results === 'pending').map(item => item.id)
-        console.log('speciesPathos', speciesPathos)
-        console.log('subPathos', subPathos)
+        let subPathos = foundSub.pathogens.filter(item => item.submission_pathogen.result === 'pending').map(item => item.id)
+        // console.log('speciesPathos', speciesPathos)
+        // console.log('subPathos', subPathos)
 
         //** which species test are already assigned to the sub */
         let keepTests = subPathos.filter(item => speciesPathos.map(item => item.id).includes(item))
