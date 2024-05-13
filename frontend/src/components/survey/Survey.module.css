@@ -26,35 +26,25 @@ h4 {
   text-align: center;
   margin: 1rem;
 }
-
 .form {
   display: flex;
   align-items: center;
   flex-direction: column;
   padding: 1rem;
   /* margin-bottom: 10rem; */
-  width: 100vw;
+  /* width: 100vw; */
 }
-
 .form > label {
   line-height: 2.24rem;
   /* font-weight: bold; */
   margin-top: 2rem;
   font-size: 1.6rem;
 }
-
 .sectionTitle {
   font-size: 1.75rem;
   font-weight: 700;
   margin-bottom: 2rem;
 }
-.tickSection {
-  background-color: #00626D30;
-  padding: 3rem;
-  border: 1px solid #00626D;
-  border-collapse: collapse;
-}
-
 .formSection {
   background-color: #00626D30;
   border-radius: 1rem;
@@ -155,21 +145,35 @@ h4 {
   max-width: 800px;
 }
 .submitBtn {
-  border-radius: 0.5rem;
-  /* padding: 2rem 1rem ; */
-  background-color: #00626D80;
-  border: 1px solid #00626D;
-  /* color: #00626D; */
   font-size: 1.8rem;
   width: 22.5rem;
   height: 5rem;
   text-align: center;
-  /* line-height: 5rem; */
+  cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 1rem;
+    border: none;
+    box-shadow: 0 3px 15px #00000016;
+    margin: 1rem;
+    background-color: #00626D40;
+    /* padding: ${({ padding }) => padding}; */    
+}
+.submitBtn:hover {
+  opacity: 0.9;
+      transform: scale(0.98);
+}
+.submitSpan {
+  font-weight: bold;
+  text-align: center;
+  font-size: 1.8rem;
+  color: #00626D;
 }
 .btnDiv {
   display: flex;
-  
-  justify-content: space-between;
+  width: 100%;
+  justify-content: space-evenly;
   margin: 2rem 0;
   align-items: center;
   margin-bottom: 10rem;  
@@ -210,12 +214,13 @@ h4 {
   .form input::placeholder {
     font-size: 1.2rem;
   }
-  .tickSection {
+  .formSection {
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    max-width: 300px;
   }
 
   .responsiveDiv {
