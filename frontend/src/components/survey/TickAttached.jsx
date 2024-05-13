@@ -3,7 +3,6 @@ import GenericInput from '../ui/GenericInput'
 import GenericRadio from '../ui/GenericRadio'
 import GenericTextarea from '../ui/GenericTextarea'
 import { yesNoArray, foundArray } from './surveyFormData'
-import { useState } from 'react'
 
 const TickAttached = ({id, data, handleData}) => {
 
