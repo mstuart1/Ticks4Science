@@ -14,7 +14,7 @@ const TickAttached = ({id}) => {
 
     // console.log('tickAttached.input', input)
     return (
-        <div className={styles.tickSection}>
+        <div className={styles.formSection}>
             <h4 className={styles.sectionTitle}>Tick Embedded Information</h4>
             <div className={styles.responsiveDiv}>
                 <GenericRadio label={`Indicate on who/what tick(s) were found *`} idString={`tick${id}.foundOn`} valueArray={foundArray} state={input} handleChange={handleChange} />
