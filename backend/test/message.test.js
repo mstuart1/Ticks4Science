@@ -7,7 +7,7 @@ chai.use(chaiHttp);
 
 describe("Message", () => {
 
-  // update existing submission
+  // create message
   describe("POST /message", () => {
     it("should add message to the db", (done) => {
       
@@ -30,5 +30,25 @@ describe("Message", () => {
     });   
     //  .timeout(5000000);
   });
+  // update message
+  describe("PUT /message", () => {
+    it.only("should delete a message and record who deleted it", (done) => {
+      
+      let body = {deletedBy: 14, deletedAt: new Date()};
+      let messageId = 21;
+      chai
+        .request(server)
+        .put(`/message/${messageId}`)
+        .send(body)
+        .end((err, res) => {
+          console.log(res.body);
+          res.should.have.status(200);
+          // res.body.should.have.property("code").eq("OK");
+          done();
+        });
+    });   
+    //  .timeout(5000000);
+  });
+
   
 });
