@@ -6,6 +6,7 @@ module.exports = (app) => {
     router
     .post("/", MessageCtl.createMessage)
     .put("/:id", MessageCtl.updateMessage)
+    .delete("/:id", MessageCtl.deleteMessage)
         // .get("/", auth.verifyToken, SubmCtl.getAllSubs)
         // .get("/paged", auth.verifyToken, SubmCtl.getSubPage)
         // .get("/downloadData", SubmCtl.downloadData)

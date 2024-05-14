@@ -47,3 +47,19 @@ exports.updateMessage = async (req, res, next) => {
             return res.json({ data: updatedMessage })
         } catch (err) {}
 }
+// delete message
+exports.deleteMessage = async (req, res, next) => {
+    try {
+        let { id } = req.params
+       
+
+        await db.sequelize
+            .transaction(async (t) => {
+
+                 await Message.destroy(id, { transaction: t })
+                 
+
+            })
+            return res.send('success')
+        } catch (err) {}
+}
