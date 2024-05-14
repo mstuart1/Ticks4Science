@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import SubmissionDataService from "../../services/submission";
 import { BasicPage } from "../GeneralStyles";
@@ -173,23 +173,24 @@ const Survey = () => {
         </div>
       </div>
       <form>
-        {formElems}
+        {ticks.map((currentTick, i) => {
+          return (
+            <details open={numTicks === 1} className={styles.details} key={i}>
+            <summary className={styles.summary}>Tick {i + 1}<span style={{ color: '#c00300', marginLeft: '0.5rem' }}>ID# will generate when you submit the form</span> </summary>
+            {i > 0 && <OutlineFloatButton colors={{ text: '#00626d', shadow: '#00626d', bg: '#ebb600' }} handleClick={() => handleCopyTick(i)} text='Use previous tick info' />}
+            <SubmitterInfo id={i} data={currentTick} handleChange={handleFormData} />
+            {numTicks > 1 ? <p style={{ padding: '0 10rem' }}>Click each tick to answer questions.</p> : null}
+            <TickAttached id={i} data={currentTick} handleData={handleFormData} />
+            <TickLocation id={i} handleData={handleFormData} data={currentTick} />
+            <PhotoSection id={i} handleData={handlePhoto} />
+          </details>
+          )
+        }
+      )}
       </form>
-      {/* {numTicks > 1 ? <p style={{padding: '0 10rem'}}>If the form will not submit, click each tick (for example "Tick 1") to open the question section.  If the section is open when submitting, it will display which question is preventing the form from submitting.</p> : null} */}
       <div className={styles.btnDiv}>
         <OutlineFloatButton width='200px' colors={{ text: '#00626d', shadow: '#00626d', bg: '#00626d' }} handleClick={handleSubmit} text='Submit Form' />
         <BorderlessFloatButton width='200px' colors={{ text: '#00626d', shadow: '#00626d' }} handleClick={() => navigate('/steps')} text='Cancel' />
-        {/* <button className={styles.submitBtn}>
-          <span className={styles.submitSpan}>Submit</span>
-        </button> */}
-
-        {/* <BasicPage.LinkButton.LinkSpec to={"/steps"}>
-          <BasicPage.HoverCard>
-            <BasicPage.LinkButton.CardSpecial>
-              <span>Cancel</span>
-            </BasicPage.LinkButton.CardSpecial>
-          </BasicPage.HoverCard>
-        </BasicPage.LinkButton.LinkSpec> */}
       </div>
 
     </div>
