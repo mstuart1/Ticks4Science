@@ -37,6 +37,102 @@ describe("POST /submission", () => {
   })
   // .timeout(5000000);
 });
+//bulk create submissions
+describe("POST /submission/bulkSubs", () => {
+  it("should create a new group of submissions", (done) => {
+    let submission = [
+      {
+          "key": 0,
+          "userMuni": "Bound Brook",
+          "userZip": "08805",
+          "email": "",
+          "dateTickFound": "2024-05-07",
+          "foundOn": "Environment/Outside",
+          "foundOnOther": "",
+          "tickAttached": "",
+          "animal": "",
+          "dateRemoved": null,
+          "locationDesc": "Park/Playground",
+          "locationDescOther": "",
+          "tickMuni": "Bound Brook",
+          "tickCounty": "NJ",
+          "tickZip": "08805",
+          "activities": "",
+          "personBitten": "",
+          "submitterBitten": "",
+          "bittenMuni": "",
+          "bittenZip": "",
+          "bittenTraveledDom": "",
+          "bittenTraveledIntl": "",
+          "travelInfo": "",
+          "imageFront": {},
+          "imageBack": "",
+          "additionalInfo": "",
+          "blitzLoc": "",
+          "blitzZip": "",
+          "sampler": "",
+          "timeStart": "",
+          "timeEnd": "",
+          "timeBlock": "",
+          "distance": "",
+          "weather": "",
+          "weatherOther": "",
+          "blitzPhotos": "",
+          "blitzAddInfo": ""
+      },
+      {
+          "key": 1,
+          "userMuni": "Bound Brook",
+          "userZip": "08805",
+          "email": "michelle@test.com",
+          "dateTickFound": "2024-05-06",
+          "foundOn": "Environment/Outside",
+          "foundOnOther": "",
+          "tickAttached": "",
+          "animal": "",
+          "dateRemoved": null,
+          "locationDesc": "Park/Playground",
+          "locationDescOther": "",
+          "tickMuni": "Bound Brook",
+          "tickCounty": "NJ",
+          "tickZip": "08805",
+          "activities": "",
+          "personBitten": "",
+          "submitterBitten": "",
+          "bittenMuni": "",
+          "bittenZip": "",
+          "bittenTraveledDom": "",
+          "bittenTraveledIntl": "",
+          "travelInfo": "",
+          "imageFront": {},
+          "imageBack": "",
+          "additionalInfo": "",
+          "blitzLoc": "",
+          "blitzZip": "",
+          "sampler": "",
+          "timeStart": "",
+          "timeEnd": "",
+          "timeBlock": "",
+          "distance": "",
+          "weather": "",
+          "weatherOther": "",
+          "blitzPhotos": "",
+          "blitzAddInfo": ""
+      }
+  ]
+    chai
+      .request(server)
+      .post("/submission/bulkSubs")
+      .send(submission)
+      .end((err, res) => {
+        console.log(res.body);
+        res.should.have.status(200);
+        // res.body.should.have.property("code").eq("OK");
+        done();
+      });
+  })
+  // .timeout(5000000);
+});
   // update existing submission
   describe("PUT /submission/:id", () => {
     it("should add a userMuni to this submission", (done) => {
