@@ -30,7 +30,8 @@ exports.createMessage = async (req, res, next) => {
     }
 
 }
-// update message
+// update message or delete message softly
+//!! I'm using update instead of destroy because I want to record who deleted the message and destroy won't let me do that.
 exports.updateMessage = async (req, res, next) => {
     try {
         let { id } = req.params
@@ -45,21 +46,5 @@ exports.updateMessage = async (req, res, next) => {
 
             })
             return res.json({ data: updatedMessage })
-        } catch (err) {}
-}
-// delete message
-exports.deleteMessage = async (req, res, next) => {
-    try {
-        let { id } = req.params
-       
-
-        await db.sequelize
-            .transaction(async (t) => {
-
-                 await Message.destroy(id, { transaction: t })
-                 
-
-            })
-            return res.send('success')
         } catch (err) {}
 }
