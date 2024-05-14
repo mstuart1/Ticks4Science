@@ -1,0 +1,14 @@
+.pageCont {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+    width: 1000px;
+}
+.card {
+margin: 5rem;
+}
+.img {
+   object-fit: cover; 
+   object-position: 0 0;
+}
