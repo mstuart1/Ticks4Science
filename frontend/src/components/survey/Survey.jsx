@@ -27,7 +27,62 @@ const Survey = () => {
   const [numTicks, setNumTicks] = useState(1);
   const [ticks, setTicks] = useState([initialTick])
 
-  const handleFormData = ({target: {name, value}}) => {
+  const handleValidate = () => {
+    let formIsValid = true;
+    ticks.forEach(tick => {
+      console.log('checking tick', tick.key + 1)
+      let required = extractFromObj(tick, requiredFields)
+      let emptyFields = Object.entries(required).filter(item => (item[1].length === 0 || item[1] === null))
+      // console.log('checking empty fields', emptyFields)
+      // let emptyFields = Object.entries(tick).filter(item => item[1].length === 0).filter(item => requiredFields.includes(item[0]))
+      if (emptyFields.length > 0) {
+        alert(`Please fill out all of the fields with an asterisk for tick ${tick.key + 1}`)
+        return formIsValid = false;
+      }
+      // console.log('checking tickAttached')
+      if ((tick.foundOn === 'Person' || tick.foundOn === 'Animal') && tick.tickAttached.length === 0) {
+        alert(`Please fill out the tick attached field for tick ${tick.key + 1}`)
+        return formIsValid = false;
+      }
+      // console.log('checking personBitten')
+      if ((tick.foundOn === 'Person' || tick.foundOn === 'Animal') && tick.personBitten.length === 0) {
+        alert(`Please fill out if the subject was bitten tick ${tick.key + 1}`)
+        return formIsValid = false;
+      }
+      // console.log('checking animal')
+      if (tick.foundOn === 'Animal' && tick.animal === '') {
+        alert(`Please fill out the tick kind of animal for tick ${tick.key}`)
+        return formIsValid = false;
+      }
+      // console.log('checking dateRemoved')
+      if (tick.tickAttached === 'yes' && tick.dateRemoved === null) {
+        alert(`Please fill out the date removed field for tick ${tick.key + 1}`)
+        return formIsValid = false;
+      }
+      // console.log('checking bittenMuni')
+      if (tick.personBitten === 'yes' && tick.bittenMuni === '') {
+        alert(`Please fill out city of bitten subject for tick ${tick.key + 1}`)
+        return formIsValid = false;
+      }
+      // console.log('checking bittenZip')
+      if (tick.personBitten === 'yes' && tick.bittenZip === '') {
+        alert(`Please fill out zip code of bitten subject for tick ${tick.key + 1}`)
+        return formIsValid = false;
+      }
+      // console.log('checking traveled')
+      if (tick.personBitten === 'yes' && tick.bittenTraveledDom === '') {
+        alert(`Please fill out if bitten subject has traveled for tick ${tick.key + 1}`)
+        return formIsValid = false;
+      }
+      // console.log('checking photo', tick.key)
+      if (!tick.imageFront.type.includes('image')) {
+        alert(`Please check the file type for the first image of tick ${tick.key + 1}, it cannot be a file type other than an image file type.  A pdf is not an image file type.`)
+        return formIsValid = false;
+      }
+      console.log('done checking tick', tick.key + 1)
+    })
+    return formIsValid
+  }
     let id = parseInt(name.split(',')[1]);
     name = name.split(',')[0] ;
     setTicks((prev) => prev.map((tick) => parseInt(tick.key) === parseInt(id) ? { ...tick, [name]: value } : tick))
