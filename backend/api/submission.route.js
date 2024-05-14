@@ -15,6 +15,7 @@ module.exports = (app) => {
     .get('/:id', SubmCtl.getProgress)
     .post("/", SubmCtl.createSubm)
     .post("/photos/:id", upload.array('photos', 2), SubmCtl.uploadPhoto)
+    .post('/bulkSubs', SubmCtl.createBulkSubs)
     .put('/:id/pathos', SubmCtl.updatePathos)
     .put('/:id/result', SubmCtl.updateResult)
     .put('/:id', SubmCtl.updateSubm)

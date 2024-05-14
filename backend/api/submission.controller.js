@@ -4,11 +4,11 @@ const Op = db.Sequelize.Op;
 const Subm = db.submission;
 const Sub_Pathos = db.submission_pathogen;
 const Citizen = db.citizen;
-// const sql = db.Sequelize.literal;
+
 
 //create submission
 exports.createSubm = async (req, res, next) => {
-  console.log(`@@@@---receiving form from arcgis or website---@@@@`);
+  console.log(`@@@@---receiving form from website---@@@@`);
   // console.log(JSON.stringify(req.body, null, 1))
   try {
     let createdRecord;
@@ -45,6 +45,57 @@ exports.createSubm = async (req, res, next) => {
       mailUser(incomingInfo.email, subject, message)
     }
     return res.json({ data: createdRecord })
+  } catch (err) {
+    console.log(err.message)
+    next({ status: 400, message: err.message })
+  }
+
+}
+// create a group of submissions
+exports.createBulkSubs = async (req, res, next) => {
+  console.log(`@@@@---receiving bulk form from  website---@@@@`);
+  // console.log(JSON.stringify(req.body, null, 1))
+  try {
+    let createdRecords;
+    let incomingInfo = req.body;
+    let email = '';
+    // console.log(`@@@@---req.body---@@@@`, incomingInfo);
+    for await (let sub of incomingInfo) {
+      if(sub.email){
+        email = sub.email
+        let foundCitizen = await Citizen.findOne({ where: { email: sub.email } })
+        // console.log('foundCitizen', foundCitizen.id)
+        if (!foundCitizen) {
+          // ** create a new citizen record and add the id to the submission
+        sub.citizen = {
+          email: sub.email,
+        }
+        
+       } else {
+        // ** add the citizen id to the submission
+          sub.citizenId = foundCitizen.id
+        }
+      }
+    }
+    await db.sequelize
+      .transaction(async (t) => {
+        createdRecords = await Subm.bulkCreate(incomingInfo, {
+                include: [{
+                  model: db.citizen,
+                }] }, {transaction: t});
+      })
+      
+      let createdRecordsIds = createdRecords.map(record => record.id)
+    if (email.length){
+      console.log('sending email to', email)
+      let subject = `Thank you for your submission!`
+      let message = `<p>Your tick ID #s are ${createdRecordsIds}.</p>
+      <p>Check your tick's progress at <a href={"https://ticks.rutgers.edu/progress/${createdRecordsIds[0]}"}>https://ticks.rutgers.edu/progress/${createdRecordsIds[0]}</a></p>
+      <p> View your submission form at <a href={"https://ticks.rutgers.edu/submission/${createdRecordsIds[0]}"}>https://ticks.rutgers.edu/submission/${createdRecordsIds[0]}</a>. </p> `
+      
+      mailUser(email, subject, message)
+    }
+    return res.json({ data: createdRecords })
   } catch (err) {
     console.log(err.message)
     next({ status: 400, message: err.message })
