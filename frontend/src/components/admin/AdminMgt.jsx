@@ -16,6 +16,7 @@ import DuplicateSubs from "./DuplicateSubs";
 import TickList from "./TickList";
 import PathosList from "./PathosList";
 import TickPathosList from "./TickPathosList";
+import DeletedMessages from "./DeletedMessages";
 
 const AdminMgt = () => {
 
@@ -36,6 +37,7 @@ const AdminMgt = () => {
                 <Route path="/data" element={<DownloadTable />} />
                 <Route path="/editData" element={<EditingTable />} />
                 <Route path="/deleted" element={<DeletedSubs />} />
+                <Route path="/deletedMessages" element={<DeletedMessages />} />
                 <Route path="/duplicates" element={<DuplicateSubs />} />
                 <Route path='/tickList' element={<TickList />} />
                 <Route path='/pathos-list' element={<PathosList />} />

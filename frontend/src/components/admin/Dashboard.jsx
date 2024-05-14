@@ -305,6 +305,16 @@ const Dashboard = () => {
           }}
         >
           <RenderIf isTrue={user.manageUsers}>
+          <OutlineFloatButton
+              colors={{
+                text: ruRed,
+                shadow: ruRed,
+                bg: theme.colors.white,
+              }}
+              handleClick={() => navigate("/admin/deletedMessages")}
+              text="View Deleted Messages"
+              padding="2rem"
+            />
             <OutlineCard>
               <BasicPage.SectionTitle>
                 Invite an Admin User

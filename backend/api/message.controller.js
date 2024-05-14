@@ -48,3 +48,22 @@ exports.updateMessage = async (req, res, next) => {
             return res.json({ data: updatedMessage })
         } catch (err) {}
 }
+
+exports.getDeleted = async (req, res, next) => {
+    let deletedMessages
+    try {
+        await db.sequelize
+        .transaction(async (t) => {
+        deletedMessages = await Message.findAll({ 
+            where: { 
+                deletedAt: { [db.Sequelize.Op.ne]: null } 
+            },
+            include: [{model: db.users, as: 'deletedById'}], 
+            paranoid: false,},  
+            {transaction: t})
+        })
+        return res.json({deletedMessages })
+    } catch (err) {
+        next({ status: 500, message: err.message })
+    }
+}

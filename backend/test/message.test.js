@@ -34,7 +34,7 @@ describe("Message", () => {
   describe("PUT /message", () => {
     it.only("should delete a message and record who deleted it", (done) => {
       
-      let body = {deletedBy: 14, deletedAt: new Date()};
+      let body = {deletedById: 14, deletedAt: new Date()};
       let messageId = 21;
       chai
         .request(server)

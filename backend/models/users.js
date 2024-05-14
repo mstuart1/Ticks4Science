@@ -10,7 +10,8 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      users.hasMany(models.message, {foreignKey: 'adminId'})
+      users.hasMany(models.message, {as: 'admin'})
+      users.hasMany(models.message, {as: 'deletedBy'})
     }
   }
   users.init({

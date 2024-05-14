@@ -11,6 +11,13 @@ class MessageDataService {
     updateMessage(data){
         return http.put(`/message/${data.id}`, data)
     }
+    getDeleted(token) {
+        return http.get(`/message/deleted`, {
+            headers: {
+                'Authorization': `Basic ${token}`
+            }
+        })
+    }
     
 
 }

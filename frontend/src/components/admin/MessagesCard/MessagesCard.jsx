@@ -5,7 +5,7 @@ import {useNavigate} from 'react-router-dom'
 
 const MessagesCard = ({messages, user, submissionId}) => {
   const navigate = useNavigate()
-// console.log('messages', messages, 'user', user, 'submissionId', submissionId)
+console.log('messages', messages, 'user', user, 'submissionId', submissionId)
   let sortedMessages = messages?.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
 
   const [ansMsgs, setAnsMsgs] = useState([])
@@ -43,6 +43,12 @@ const MessagesCard = ({messages, user, submissionId}) => {
         return
   }
 
+  const handleDelete = (id) => {
+    MessageDataService.updateMessage({id, deletedById: user.id, deletedAt: new Date()})
+    navigate(0, { replace: true })
+    return
+
+  }
 // 
   // console.log('answered messages', ansMsgs)
   return (
@@ -60,7 +66,8 @@ const MessagesCard = ({messages, user, submissionId}) => {
           {sortedMessages.map((message) => {
             // console.log('messageID', message)
             return (
-            <div key={message.id} className={styles.messageDiv}><div className={styles.text}><span className={styles.date}>{new Date(message.createdAt).toString()} from {message.role === 'submitter' ? message.role :  message.admin.firstName }:</span><br /> <span className={styles.highlight} style={{ background: message.role === 'admin' ? '#e3f3ef' : '#fce48b' }}>{message.message}</span></div>
+            <div key={message.id} className={styles.messageDiv}><div className={styles.text}><span className={styles.date}>{new Date(message.createdAt).toString()} from {message.role === 'submitter' ? message.role :  message.admin.firstName }:</span><br /> <span className={styles.highlight} style={{ background: message.role === 'admin' ? '#e3f3ef' : '#fce48b' }}>{message.message}</span>
+            <button onClick={() => handleDelete(message.id)}>Delete</button></div>
            {message.role === 'submitter' && <form>
               <label htmlFor='answered'>Answered? {'   '}</label>
               <input  type='checkbox' id='answered' name='answered' checked={ansMsgs?.includes(message.id)} onChange={(evt) => handleAnswered(message.id, evt)} />

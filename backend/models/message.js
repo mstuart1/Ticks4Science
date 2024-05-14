@@ -8,13 +8,13 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       message.belongsTo(models.submission);
       message.belongsTo(models.users, {as: 'admin'});
+      message.belongsTo(models.users, {as: 'deletedBy'});
     }
   }
   message.init({
     role: DataTypes.STRING,
     message: DataTypes.TEXT,
     answered: DataTypes.BOOLEAN,
-    deletedBy: DataTypes.INTEGER,
   }, {
     sequelize,
     modelName: 'message',

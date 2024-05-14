@@ -4,7 +4,7 @@ module.exports = {
     // logic for transforming into the new state
     return queryInterface.addColumn(
       'message',
-      'deletedBy',
+      'deletedById',
       {
         type: Sequelize.INTEGER,
         references: {
@@ -20,7 +20,7 @@ module.exports = {
     // logic for reverting the changes
     return queryInterface.removeColumn(
       'message',
-      'deletedBy'
+      'deletedById'
     );
   }
 }
