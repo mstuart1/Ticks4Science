@@ -142,27 +142,13 @@ const Survey = () => {
     }
   };
 
-  const generateForm = () => {
-    let form = [];
-    for (let i = 0; i <= numTicks - 1; i++) {
-      let currentTick = ticks.find((tick) => tick.key === i)
-      form.push(
-        <details open={numTicks === 1} className={styles.details} key={i}>
-          <summary className={styles.summary}>Tick {i + 1}<span style={{ color: '#c00300', marginLeft: '0.5rem' }}>ID# will generate when you submit the form</span> </summary>
-          {i > 1 && <OutlineFloatButton colors={{ text: '#00626d', shadow: '#00626d', bg: '#ebb600' }} handleClick={(evt) => handleSubmit(evt, i)} text='Use previous tick info' />}
-          <SubmitterInfo id={i} data={currentTick} handleChange={handleFormData} />
-          {numTicks > 1 ? <p style={{ padding: '0 10rem' }}>Click each tick to answer questions.</p> : null}
-          <TickAttached id={i} data={currentTick} handleData={handleFormData} />
-          <TickLocation id={i} handleData={handleFormData} data={currentTick} />
-          <PhotoSection id={i} handleData={handlePhoto} />
-        </details>
-
-      );
-    }
-    return form;
+  const handleCopyTick = (key) => {
+    let copiedTick = ticks.find(tick => tick.key === key - 1)
+    delete copiedTick.imageFront
+    delete copiedTick.imageBack
+    let freshTicks = ticks.map(tick => tick.key === key ? { ...copiedTick, key: key } : tick)
+    setTicks(freshTicks)
   }
-
-  let formElems = generateForm();
 
   if (error.length) {
     return (<div className={styles.errorDiv}><h1>{error ?? 'There was an error processing your form.'}</h1>
