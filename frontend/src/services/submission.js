@@ -8,6 +8,9 @@ class SubmissionDataService {
     submitForm(data) {
         return http.post(`/submission`, data)
     }
+    submitBulkForm(data) {
+        return http.post(`/submission/bulkSubs`, data)
+    }
     submitImage(id, formData, config) {
         return http.post(`/submission/photos/${id}`, formData, config)
     }
