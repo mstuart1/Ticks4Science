@@ -1,20 +1,21 @@
 import styles from './input.module.css'
 
-const GenericInput = ({ label, idString, required, placeholder, type = 'text', accept = "image/*" }) => {
+const GenericInput = ({handleChange, label, name, id, required, placeholder, type = 'text', accept = "image/*" }) => {
 
     return (
         <div
             className={styles.inputContainer}
         >
-            <label className={styles.label} htmlFor={idString}>{label}</label>
+            <label className={styles.label} htmlFor={id}>{label}</label>
             <input
                 className={styles.input}
                 type={type}
                 accept={accept}
-                name={idString}
-                id={idString}
+                name={name}
+                id={id}
                 required={required}
                 placeholder={placeholder}
+                onChange={handleChange}
             />
         </div>
     )
