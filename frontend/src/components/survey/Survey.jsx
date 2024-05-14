@@ -21,6 +21,7 @@ const Survey = () => {
   const [error, setError] = useState('');
   const [numTicks, setNumTicks] = useState(1);
   const [ticks, setTicks] = useState([initialTick])
+  const [showSurvey, setShowSurvey] = useState(false)
 
   const handleValidate = () => {
     let formIsValid = true;
@@ -159,13 +160,22 @@ const Survey = () => {
     <div className={styles.text}>
       <h2 className={styles.title}>Tick Submission Form</h2>
       <div className={styles.form}>
-        <p>Answer the questions below to the best of your ability; if you do not remember the exact dates or locations give your best estimate.</p>
-        <div className={styles.formSection}>
+      <p> Answer the questions below to the best of your ability; if you do not remember the exact dates or locations give your best estimate. <span className={styles.specialText}>*Note: Your tick must be in a sealed baggie or taped down before mailing in. You will get a tick ID number after submitting this form which must be included somewhere in/on your envelope. If you are submitting multiple ticks, you will be assigned multiple ID numbers and must label each tick with their corresponding number. See examples of acceptable submissions <Link to='/multipleExample' target="_blank">here</Link>. </span> </p>
+      <div className={styles.checkboxDiv}>
+        <label>
+      Click the box to acknowledge the message in red
+      </label>
+        <input className={styles.input} type="checkbox" onChange={(evt) => setShowSurvey(evt.target.checked)}/>
+      </div>
+      </div>
+      {showSurvey && (
+        <>
+         <div className={styles.formSection}>
           How many ticks do you intend to mail in?
           <input className={styles.input} type="number" min="1" onChange={handleNumTicks} value={numTicks} />
-          {numTicks > 1 ? (<p> <span className={styles.specialText}>*Note: Before mailing ticks in, they must be labeled with the corresponding number you assign them below (i.e Tick 1, Tick 2, etc). You must also label somewhere in/on the envelope the tick ID number you receive after submitting this form. See example of acceptable submissions <Link to='/multipleExample' target="_blank">here</Link>. </span> </p>) : null}
+          
         </div>
-      </div>
+    
       <form>
         {ticks.map((currentTick, i) => {
           return (
@@ -186,6 +196,9 @@ const Survey = () => {
         <OutlineFloatButton width='200px' colors={{ text: '#00626d', shadow: '#00626d', bg: '#00626d' }} handleClick={handleSubmit} text='Submit Form' />
         <BorderlessFloatButton width='200px' colors={{ text: '#00626d', shadow: '#00626d' }} handleClick={() => navigate('/steps')} text='Cancel' />
       </div>
+      </>
+      )}
+       
 
     </div>
   );

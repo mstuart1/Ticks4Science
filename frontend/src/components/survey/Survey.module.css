@@ -72,7 +72,6 @@ h4 {
 .innieLink > span {
   border-bottom: 1px solid #ebb600;
 }
-/* TODO get this hover works with desktop but not mobile - NEED AN ON TOUCH FOR MOBILE */
 .innieLink:hover {
   border-bottom: 0px;
 }
@@ -82,6 +81,12 @@ h4 {
   display: inline;
   margin: 2rem 0;
   display: block;
+  color: #cc0033;
+}
+.checkBoxDiv {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
 }
 .specCard {
   display: flex;
