@@ -1,20 +1,14 @@
-import { useEffect, useState } from "react";
+import {  useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import SubmissionDataService from "../../services/submission";
-import { BasicPage } from "../GeneralStyles";
 import styles from './Survey.module.css'
 import SubmitterInfo from "./SubmitterInfo";
 import TickAttached from "./TickAttached";
 import TickLocation from "./TickLocation";
 import PhotoSection from "./PhotoSection"
-import AdditionalInfo from "./AdditionalInfo"
-import getFormValues from "./getFormValues";
 import extractFromObj from "../../tools/extractFromObj";
-import renameKeys from "../../tools/renameKeys";
 import OutlineFloatButton from '../ui/outlineFloatButton/OutlineFloatButton'
 import BorderlessFloatButton from '../ui/borderlessFloatButton/BorderlessFloatButton'
-import GenericInput from "../ui/GenericInput";
-// import SurveyForm from "./SurveyForm";
 
 const Survey = () => {
   const navigate = useNavigate();
@@ -33,9 +27,11 @@ const Survey = () => {
     ticks.forEach(tick => {
       console.log('checking tick', tick.key + 1)
       let required = extractFromObj(tick, requiredFields)
-      let emptyFields = Object.entries(required).filter(item => (item[1].length === 0 || item[1] === null))
+      console.log('tick image', tick.imageFront)
+      console.log('emptyFields', Object.entries(required).filter(item => (item[1] === undefined || item[1] === null || item[1].length === 0  )))
+      
       // console.log('checking empty fields', emptyFields)
-      // let emptyFields = Object.entries(tick).filter(item => item[1].length === 0).filter(item => requiredFields.includes(item[0]))
+      let emptyFields = Object.entries(required).filter(item => (item[1] === undefined || item[1] === null || item[1].length === 0 ))
       if (emptyFields.length > 0) {
         alert(`Please fill out all of the fields with an asterisk for tick ${tick.key + 1}`)
         return formIsValid = false;
@@ -92,6 +88,7 @@ const Survey = () => {
   }
 
   const handlePhoto = ({ target: { name, files } }) => {
+    console.log('name', name)
     let id = parseInt(name.split(',')[1]);
     name = name.split(',')[0];
     let file = files[0];
@@ -106,9 +103,8 @@ const Survey = () => {
   const handleSubmit = async (evt) => {
 
     try {
-      // setInProgress(true);
+      setInProgress(true);
       evt.preventDefault();
-      console.log('ticks', ticks)
       const formIsValid = handleValidate()
       if (!formIsValid) {
         return
@@ -144,9 +140,7 @@ const Survey = () => {
 
   const handleCopyTick = (key) => {
     let copiedTick = ticks.find(tick => tick.key === key - 1)
-    delete copiedTick.imageFront
-    delete copiedTick.imageBack
-    let freshTicks = ticks.map(tick => tick.key === key ? { ...copiedTick, key: key } : tick)
+    let freshTicks = ticks.map(tick => tick.key === key ? { ...copiedTick, key: key, imageFront: '', imageBack: '' } : tick)
     setTicks(freshTicks)
   }
 
