@@ -8,7 +8,7 @@ const SubmitterInfo = ({id, data={}, handleChange }) => {
                 <div style={{ display: 'flex', width: '100%', justifyContent: 'space-evenly' }}>
                     <div style={{ display: 'flex', flexDirection: 'column' }}>
                         <GenericInput label="City *" name={`userMuni,${id}`} required={true} placeholder="Where you live"
-                         value={data.userMuni || null}
+                         value={data.userMuni}
                           handleChange={handleChange}/>
                         
                     </div>
