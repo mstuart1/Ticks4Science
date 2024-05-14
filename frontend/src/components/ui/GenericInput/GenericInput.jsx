@@ -1,6 +1,6 @@
 import styles from './input.module.css'
 
-const GenericInput = ({handleChange, label, name, id, required, placeholder, type = 'text', accept = "image/*" }) => {
+const GenericInput = ({handleChange, label, name, id, required, placeholder, type = 'text', accept = "image/*" , value}) => {
 
     return (
         <div
@@ -13,6 +13,7 @@ const GenericInput = ({handleChange, label, name, id, required, placeholder, typ
                 accept={accept}
                 name={name}
                 id={id}
+                value={value}
                 required={required}
                 placeholder={placeholder}
                 onChange={handleChange}
