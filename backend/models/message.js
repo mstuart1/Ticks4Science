@@ -13,7 +13,8 @@ module.exports = (sequelize, DataTypes) => {
   message.init({
     role: DataTypes.STRING,
     message: DataTypes.TEXT,
-    answered: DataTypes.BOOLEAN
+    answered: DataTypes.BOOLEAN,
+    deletedBy: DataTypes.INTEGER,
   }, {
     sequelize,
     modelName: 'message',
