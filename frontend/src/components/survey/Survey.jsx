@@ -12,6 +12,7 @@ import getFormValues from "./getFormValues";
 import extractFromObj from "../../tools/extractFromObj";
 import renameKeys from "../../tools/renameKeys";
 import OutlineFloatButton from '../ui/outlineFloatButton/OutlineFloatButton'
+import BorderlessFloatButton from '../ui/borderlessFloatButton/BorderlessFloatButton'
 import GenericInput from "../ui/GenericInput";
 // import SurveyForm from "./SurveyForm";
 
@@ -165,8 +166,21 @@ const Survey = () => {
 
 
       {/* {numTicks > 1 ? <p style={{padding: '0 10rem'}}>If the form will not submit, click each tick (for example "Tick 1") to open the question section.  If the section is open when submitting, it will display which question is preventing the form from submitting.</p> : null} */}
+      <div className={styles.btnDiv}>
+        <OutlineFloatButton width='200px' colors={{ text: '#00626d', shadow: '#00626d', bg: '#00626d' }} handleClick={handleSubmit} text='Submit Form' />
+        <BorderlessFloatButton width='200px' colors={{ text: '#00626d', shadow: '#00626d' }} handleClick={() => navigate('/steps')} text='Cancel' />
+        {/* <button className={styles.submitBtn}>
+          <span className={styles.submitSpan}>Submit</span>
+        </button> */}
 
-
+        {/* <BasicPage.LinkButton.LinkSpec to={"/steps"}>
+          <BasicPage.HoverCard>
+            <BasicPage.LinkButton.CardSpecial>
+              <span>Cancel</span>
+            </BasicPage.LinkButton.CardSpecial>
+          </BasicPage.HoverCard>
+        </BasicPage.LinkButton.LinkSpec> */}
+      </div>
 
     </div>
   );
