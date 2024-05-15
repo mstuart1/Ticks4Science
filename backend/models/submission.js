@@ -71,6 +71,7 @@ module.exports = (sequelize, DataTypes) => {
         lifeStage: DataTypes.STRING,
         labNumber: DataTypes.STRING,
         notes: DataTypes.JSON,
+        subGroup: DataTypes.STRING,
     }, {
         sequelize,
         modelName: 'submission',
