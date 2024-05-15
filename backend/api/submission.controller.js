@@ -60,23 +60,18 @@ exports.createBulkSubs = async (req, res, next) => {
     let incomingInfo = req.body;
     let email = '';
     // console.log(`@@@@---req.body---@@@@`, incomingInfo);
-    for await (let sub of incomingInfo) {
-      if(sub.email){
-        email = sub.email
-        let foundCitizen = await Citizen.findOne({ where: { email: sub.email } })
-        // console.log('foundCitizen', foundCitizen.id)
-        if (!foundCitizen) {
-          // ** create a new citizen record and add the id to the submission
-        sub.citizen = {
-          email: sub.email,
-        }
-        
-       } else {
-        // ** add the citizen id to the submission
-          sub.citizenId = foundCitizen.id
-        }
+    //** if the submitter added an email, capture it once */
+    let email = [...new Set(incomingInfo.map(item => item.email))][0]
+    if (email){
+      let foundCitizen = await Citizen.findOne({ where: { email } })
+      if (!foundCitizen) {  
+        let citizen = await Citizen.create({ email })
+        incomingInfo.forEach(item => item.citizenId = citizen.id)
+      } else {
+        incomingInfo.forEach(item => item.citizenId = foundCitizen.id)
       }
     }
+
     await db.sequelize
       .transaction(async (t) => {
         createdRecords = await Subm.bulkCreate(incomingInfo, {
