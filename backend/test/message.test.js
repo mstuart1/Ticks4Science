@@ -32,7 +32,7 @@ describe("Message", () => {
   });
   // update message
   describe("PUT /message", () => {
-    it.only("should delete a message and record who deleted it", (done) => {
+    it("should delete a message and record who deleted it", (done) => {
       
       let body = {deletedById: 14, deletedAt: new Date()};
       let messageId = 21;

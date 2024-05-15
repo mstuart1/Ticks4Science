@@ -58,7 +58,6 @@ exports.createBulkSubs = async (req, res, next) => {
   try {
     let createdRecords;
     let incomingInfo = req.body;
-    let email = '';
     // console.log(`@@@@---req.body---@@@@`, incomingInfo);
     //** if the submitter added an email, capture it once */
     let email = [...new Set(incomingInfo.map(item => item.email))][0]
@@ -81,6 +80,21 @@ exports.createBulkSubs = async (req, res, next) => {
       })
       
       let createdRecordsIds = createdRecords.map(record => record.id)
+
+      let subGroupString = JSON.stringify(createdRecordsIds)
+
+    await db.sequelize
+      .transaction(async (t) => {
+      await Subm.update(
+        {subGroup: subGroupString}, 
+        {where: 
+          {id: {
+            [Op.in]: createdRecordsIds
+          }}
+        }, 
+        {transaction: t})
+      })
+
     if (email.length){
       console.log('sending email to', email)
       let subject = `Thank you for your submission!`

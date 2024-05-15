@@ -39,13 +39,13 @@ describe("POST /submission", () => {
 });
 //bulk create submissions
 describe("POST /submission/bulkSubs", () => {
-  it("should create a new group of submissions", (done) => {
+  it ("should create a new group of submissions", (done) => {
     let submission = [
       {
           "key": 0,
           "userMuni": "Bound Brook",
           "userZip": "08805",
-          "email": "",
+          "email": 'test1@test.com',
           "dateTickFound": "2024-05-07",
           "foundOn": "Environment/Outside",
           "foundOnOther": "",
@@ -84,7 +84,7 @@ describe("POST /submission/bulkSubs", () => {
           "key": 1,
           "userMuni": "Bound Brook",
           "userZip": "08805",
-          "email": "michelle@test.com",
+        "email": 'test1@test.com',
           "dateTickFound": "2024-05-06",
           "foundOn": "Environment/Outside",
           "foundOnOther": "",
