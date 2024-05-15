@@ -190,8 +190,6 @@ const StatusCard = ({ tick, updateSub, user, id }) => {
         { value: "false", required: true, label: "false" },
     ];
 
-    console.log('data', tick)
-
     return (
         <OutlineCard width="430px">
             <Styles.CardInsides>
@@ -200,6 +198,9 @@ const StatusCard = ({ tick, updateSub, user, id }) => {
                 <br />
                 Date Submitted: {tick.createdAt?.substring(0, 10)}
                 <br />
+                All ticks submitted in this group: {tick.subGroup}
+                <br/>
+
                 <RenderIf isTrue={tick.duplicate}>
                     This is a duplicate of submission ID: {tick.duplicate}
                 </RenderIf>
