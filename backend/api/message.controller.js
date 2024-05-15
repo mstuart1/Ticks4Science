@@ -58,7 +58,7 @@ exports.getDeleted = async (req, res, next) => {
             where: { 
                 deletedAt: { [db.Sequelize.Op.ne]: null } 
             },
-            include: [{model: db.users, as: 'deletedById'}], 
+            include: [{model: db.users, as: 'deletedBy', attributes: ['firstName', 'lastName']}], 
             paranoid: false,},  
             {transaction: t})
         })
