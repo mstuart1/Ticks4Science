@@ -124,7 +124,7 @@ const AllSubs = () => {
 
   let highestPage = Math.floor(limitMax / limit)
 
-  console.log('data', data)
+  // console.log('data', data)
 
   return (
     <BasicPage.Text>
