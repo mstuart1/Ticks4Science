@@ -98,9 +98,14 @@ const Survey = () => {
 
   const handleNumTicks = ({ target: { value } }) => {
     setNumTicks(value)
-    setTicks((prev) => [...prev, { ...initialTick, key: parseInt(value - 1) }])
+    if (value < ticks.length) {
+      let freshTicks = ticks.filter(tick => tick.key < value)
+    setTicks(freshTicks)
 
+  } else {
+      setTicks((prev) => [...prev, { ...initialTick, key: parseInt(value - 1) }])
   }
+}
   const handleSubmit = async (evt) => {
 
     try {
