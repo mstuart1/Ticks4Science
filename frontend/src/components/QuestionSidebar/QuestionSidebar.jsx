@@ -25,7 +25,7 @@ const QuestionSidebar = ({subId, subMessages}) => {
       <p className={styles.text}>Enter any questions or comments in the box below. Please DO NOT enter any personal/identifying information as this chat is public to anyone who searches your tick ID#. If you have a more private inquiry, use the "contact us" button on our homepage. The response to your question/comment will appear below.</p>
       <div className={styles.checkboxDiv}>
         <label>
-        Click the box to acknowledge the message above
+        Click the box to acknowledge the message above; a submit button will not be available until the box is checked.
       </label>
         <input className={styles.input} type="checkbox" onChange={(evt) => setShowSubmit(evt.target.checked)}/>
       </div>
