@@ -113,13 +113,12 @@ const Survey = () => {
       evt.preventDefault();
       const formIsValid = handleValidate()
       if (!formIsValid) {
+        setInProgress(false)
         return
       }
-
-
       let response = await SubmissionDataService.submitBulkForm(ticks);
       let ids = response.data.data.map(item => item.id)
-      console.log('ids', ids)
+      // console.log('ids', ids)
       for await (let id of ids){
         let index = ids.indexOf(id)
         let tick = ticks.find(tick => tick.key === index)
@@ -132,7 +131,7 @@ const Survey = () => {
           },
         };
         let response2 = await SubmissionDataService.submitImage(id, photoFormData, config).catch(err => { console.log(err) });
-        console.log('response', response2)
+        // console.log('response', response2)
 
       }
 
