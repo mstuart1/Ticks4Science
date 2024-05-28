@@ -43,9 +43,12 @@ console.log('messages', messages, 'user', user, 'submissionId', submissionId)
         return
   }
 
-  const handleDelete = (id) => {
-    MessageDataService.updateMessage({id, deletedById: user.id, deletedAt: new Date()})
-    navigate(0, { replace: true })
+  const handleDelete = async (id) => {
+    if (window.confirm ('Are you sure you want to delete this message?')){
+
+      await MessageDataService.updateMessage({id, deletedById: user.id, deletedAt: new Date()})
+      navigate(0, { replace: true })
+    }
     return
 
   }
