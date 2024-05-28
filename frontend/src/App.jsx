@@ -24,8 +24,8 @@ import TickProgressInput from './components/ticks/TickProgressInput';
 import AdminMgt from './components/admin/AdminMgt';
 import ResetPassword from './components/login/ResetPassword';
 import TickPage from './components/ticks/TickPage';
-import TickBlitz from './components/tickBlitz/TickBlitz';
-import BlitzSurvey from './components/tickBlitz/BlitzSurvey';
+// import TickBlitz from './components/tickBlitz/TickBlitz';
+// import BlitzSurvey from './components/tickBlitz/BlitzSurvey';
 import MissingId from './components/survey/MissingId';
 import './global.module.css';
 import ReactGA from 'react-ga'
