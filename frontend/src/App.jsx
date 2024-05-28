@@ -146,7 +146,7 @@ const App = () => {
                   <Route path='/createAccount/:token' element={<ResetPassword create={true} />} />
                   <Route path='/ticks/:id' element={<TickPage />} />
                   <Route path='/multipleExample' element={<MultipleExample />} />
-                  <Route path='/education' element={<Education />} />
+                  <Route path='/resources' element={<Education />} />
                   <Route path='*' element={<About />} />
                 </>)}
 

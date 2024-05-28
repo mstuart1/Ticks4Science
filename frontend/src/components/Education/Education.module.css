@@ -3,7 +3,7 @@
     flex-wrap: wrap;
     justify-content: space-around;
     align-items: center;
-    width: 1000px;
+    width: 800px;
 }
 .card {
 margin: 5rem;
@@ -11,4 +11,11 @@ margin: 5rem;
 .img {
    object-fit: cover; 
    object-position: 0 0;
+}
+.title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-wrap: wrap;
+    padding: 1rem;
+    width: 200px;
 }
