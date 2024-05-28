@@ -1,4 +1,6 @@
-import { FaEye, FaHome, FaListOl, FaSpider, FaStroopwafel, FaRegBookmark } from "react-icons/fa"
+import { FaEye, FaHome, FaListOl, FaSpider, 
+    // FaStroopwafel, 
+    FaRegBookmark } from "react-icons/fa"
 
 const navMenuItems = [
     {id: 1, title: 'Home', path: '/', icon: <FaHome/>},
