@@ -1,10 +1,12 @@
 import styles from './question.module.css'
 import MessageDataService from '../../services/message'
 import { useNavigate } from 'react-router-dom'
+import {useState} from 'react'
 
 const QuestionSidebar = ({subId, subMessages}) => {
 
   const navigate = useNavigate()
+  const [showSubmit, setShowSubmit] = useState(false)
 
     const handleQuestion = async (evt) => {
         evt.preventDefault()
@@ -25,12 +27,15 @@ const QuestionSidebar = ({subId, subMessages}) => {
         <label>
         Click the box to acknowledge the message above
       </label>
-        <input className={styles.input} type="checkbox"/>
+        <input className={styles.input} type="checkbox" onChange={(evt) => setShowSubmit(evt.target.checked)}/>
       </div>
         <form  onSubmit={handleQuestion}>
             <textarea className={styles.textarea} defaultValue='' id="message" name="message" rows="4" cols="30" placeholder="Drag the bottom right corner to create more space if needed."></textarea>
             <br />
+            {showSubmit &&
+
             <button className={styles.button} type="submit" value="Submit" ><span>Submit</span></button>
+            }
         </form>
           
           {!!subMessages.length &&  <>
