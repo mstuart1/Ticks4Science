@@ -164,7 +164,12 @@ const Survey = () => {
     <div className={styles.text}>
       <h2 className={styles.title}>Tick Submission Form</h2>
       <div className={styles.form}>
-      <p> Answer the questions below to the best of your ability; if you do not remember the exact dates or locations give your best estimate. <span className={styles.specialText}>*Note: Your tick must be in a sealed baggie or taped down before mailing in. You will get a tick ID number after submitting this form which must be included somewhere in/on your envelope. If you are submitting multiple ticks, you will be assigned multiple ID numbers and must label each tick with their corresponding number. See examples of acceptable submissions <Link to='/multipleExample' target="_blank">here</Link>. </span> </p>
+        <p> Answer the questions below to the best of your ability; if you do not remember the exact dates or locations give your best estimate.</p>
+        <p className={styles.specialText}> 
+        
+            *Note: Tick(s) must be in a sealed baggie or taped down with their tick ID number(s) before mailing in. DO NOT wrap ticks in tissues, paper towels, etc before mailing in. Wrapping ticks in tissue/paper towels make it more likely that the tick will get lost upon opening. Therefore, if you choose to send your tick in a plastic baggie do not include anything other than the tick inside the baggie. 
+        </p><p className={styles.specialText}> You will get a tick ID number after submitting this form which must be included somewhere in/on your envelope. If you are submitting multiple ticks, you will be assigned multiple ID numbers and must label each tick with their corresponding number.  See examples of acceptable submissions <Link to='/multipleExample' target="_blank">here</Link>. 
+          </p>
       <div className={styles.checkboxDiv}>
         <label>
       Click the box to acknowledge the message in red
