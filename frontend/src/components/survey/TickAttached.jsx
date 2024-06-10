@@ -39,19 +39,19 @@ const TickAttached = ({id, data={foundOn:''}, handleData}) => {
 
                                 {data.foundOn === "Person" && (
                                     <>
-                                        <GenericRadio label={`Was the person bitten by the tick? *`} name={`submitterBitten,${id}`} valueArray={yesNoArray} state={data.submitterBitten} handleChange={handleData} />
+                                        {/* <GenericRadio label={`Was the person bitten by the tick? *`} name={`submitterBitten,${id}`} valueArray={yesNoArray} state={data.submitterBitten} handleChange={handleData} /> */}
 
-                                        {data.submitterBitten === "yes" && (
+                                        {data.tickAttached === "yes" && (
                                             <>
-                                                <GenericInput label="City of bitten person *"  name={`bittenMuni,${id}`} required={true} placeholder="Where bitten person lives"  value={data.bittenMuni} handleChange={handleData}/>
-                                                <GenericInput label="ZIP Code of bitten person *"  name={`bittenZip,${id}`} required={true} placeholder="Where bitten person lives" value={data.bittenZip} handleChange={handleData}/>
+                                                <GenericInput label="City of bitten person/animal *"  name={`bittenMuni,${id}`} required={true} placeholder="Where bitten person lives"  value={data.bittenMuni} handleChange={handleData}/>
+                                                <GenericInput label="ZIP Code of bitten person/animal *"  name={`bittenZip,${id}`} required={true} placeholder="Where bitten person lives" value={data.bittenZip} handleChange={handleData}/>
                                             </>
                                         )}
 
-                                        <GenericRadio label={`Has the bitten person traveled outside of New Jersey within the past 10 days? *`} name={`bittenTraveled,${id}`} valueArray={yesNoArray} state={data.bittenTraveled} handleChange={handleData} />
+                                        <GenericRadio label={`Has the bitten person/animal traveled outside of New Jersey within the past 10 days? *`} name={`bittenTraveled,${id}`} valueArray={yesNoArray} state={data.bittenTraveled} handleChange={handleData} />
 
                                         {data.bittenTraveled === "yes" && (
-                                            <GenericTextarea label="Where did the bitten person travel?"  name={`travelInfo,${id}`}
+                                            <GenericTextarea label="Where did the bitten person/animal travel?"  name={`travelInfo,${id}`}
                                             value={data.travelInfo} handleChange={handleData} />
 
                                         )}
