@@ -10,6 +10,10 @@ const QuestionSidebar = ({subId, subMessages}) => {
 
     const handleQuestion = async (evt) => {
         evt.preventDefault()
+        if (!showSubmit) {
+          alert('Please acknowledge the message by clicking the checkbox')
+          return
+        }
         const formData = new FormData(evt.currentTarget)
         formData.append('submissionId', subId)
         formData.append('role', 'submitter')
@@ -25,17 +29,17 @@ const QuestionSidebar = ({subId, subMessages}) => {
       <p className={styles.text}>Enter any questions or comments in the box below. Please DO NOT enter any personal/identifying information as this chat is public to anyone who searches your tick ID#. If you have a more private inquiry, use the "contact us" button on our homepage. The response to your question/comment will appear below.</p>
       <div className={styles.checkboxDiv}>
         <label className={styles.text}>
-        Click the box to acknowledge the message above; a submit button will not be available until the box is checked.
+        Click the box to acknowledge the message above.
       </label>
         <input className={styles.input} type="checkbox" onChange={(evt) => setShowSubmit(evt.target.checked)}/>
       </div>
         <form  onSubmit={handleQuestion}>
             <textarea className={styles.textarea} defaultValue='' id="message" name="message" rows="4" cols="30" placeholder="Drag the bottom right corner to create more space if needed."></textarea>
             <br />
-            {showSubmit &&
+            
 
-            <button className={styles.button} type="submit" value="Submit" ><span>Submit</span></button>
-            }
+            <button  className={ styles.button } type="submit" value="Submit" ><span>Submit</span></button>
+            
         </form>
           
           {!!subMessages.length &&  <>
