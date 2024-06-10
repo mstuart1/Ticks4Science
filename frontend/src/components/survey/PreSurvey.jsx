@@ -15,9 +15,11 @@ const PreSurvey = () => {
           Ticks sent in will be first identified carefully and then tested for bacteria (including Lyme) and parasites known to be transmitted by that tick species in NJ. Alpha-gal is an allergic reaction associated with a sugar found in the saliva of all lone star ticks, <i>Amblyomma americanum</i>, as well in red meat and meat products. All lone star ticks have it and there is no point in testing them for that. Whether or not you get Alpha-gal syndrome depends on how your immune system reacts to that sugar.
         </p>
         <p>
-          Our goal is to continue to optimize our program and keep tick testing free. Please consider making a <a className={styles.donateLink} href={donateLink} target="_blank" rel='noreferrer'>donation</a>. Donations will be solely used to support the NJTicks4Science! Program.
+          Our goal is to continue to optimize our program and keep <b>tick testing free</b>. Please consider making a <a className={styles.donateLink} href={donateLink} target="_blank" rel='noreferrer'>donation</a>. Donations will be solely used to support the NJTicks4Science! Program.
         </p>
-
+<p>
+          The pictures and tick submissions become the property of NJ Ticks 4 Science! and the Center for Vector Biology at Rutgers University and may be used in the website's photo gallery or other forms of publication.
+</p>
 
         <p>
           By clicking “I UNDERSTAND,” you agree to these terms.
