@@ -6,29 +6,28 @@ import donateLink from "../../data/donateLink";
 
 const PreSurvey = () => {
   return (
-    
-      <BasicPage.Text>
-        <div>
-        
-        <p>You are participating in a citizen science project to characterize the distribution of New Jersey ticks and tick-borne pathogens. If you are seeking a tick-borne disease diagnosis, consult a medical professional.
+
+    <BasicPage.Text>
+      <div>
+
+        <p>You are participating in a citizen science project to characterize the distribution of New Jersey ticks that blood feed on us humans and our pets. If you are seeking a tick-borne disease diagnosis, please consult a medical professional.
         </p><p>
-The pictures and tick submissions become the property of NJ Ticks 4 Science! and the Center for Vector Biology at Rutgers University and may be used in the website's photo gallery or other forms of publication.
-</p>
-<p>
-Ticks sent in will not be tested for all tick-borne diseases listed on our flyer/brochure. This is due to funding constraints and because not all ticks carry the same disease-causing pathogens. We test ticks for what they are most likely to be carrying in NJ based on their species identification. 
-</p>
-<p>
-Our goal is to continue to optimize our program and keep tick testing free. If you would like to help us keep tick testing free please consider <a className={styles.donateLink} href={donateLink} target="_blank" rel='noreferrer'>donating</a>.  
-</p>
-<p>
-Thank you for your participation!
-</p>
-<p>
-By clicking “I UNDERSTAND,” you agree to these terms. 
-</p>
-       
-        </div>
-      
+          Ticks sent in will be first identified carefully and then tested for bacteria (including Lyme) and parasites known to be transmitted by that tick species in NJ. Alpha-gal is an allergic reaction associated with a sugar found in the saliva of all lone star ticks, <i>Amblyomma americanum</i>, as well in red meat and meat products. All lone star ticks have it and there is no point in testing them for that. Whether or not you get Alpha-gal syndrome depends on how your immune system reacts to that sugar.
+        </p>
+        <p>
+          Our goal is to continue to optimize our program and keep tick testing free. Please consider making a <a className={styles.donateLink} href={donateLink} target="_blank" rel='noreferrer'>donation</a>. Donations will be solely used to support the NJTicks4Science! Program.
+        </p>
+
+
+        <p>
+          By clicking “I UNDERSTAND,” you agree to these terms.
+        </p>
+        <p>
+          Thank you for your participation!
+        </p>
+
+      </div>
+
 
       <BasicPage.LinkButton.LinkSpec to={'/survey'} >
         <BasicPage.HoverCard bgColor={theme.colors.main}>
@@ -37,7 +36,7 @@ By clicking “I UNDERSTAND,” you agree to these terms.
           </div>
         </BasicPage.HoverCard>
       </BasicPage.LinkButton.LinkSpec>
-      
+
       <BasicPage.LinkButton.LinkSpec to={'/steps'}>
         <BasicPage.HoverCard>
           <BasicPage.LinkButton.CardSpecial>
@@ -45,8 +44,8 @@ By clicking “I UNDERSTAND,” you agree to these terms.
           </BasicPage.LinkButton.CardSpecial>
         </BasicPage.HoverCard>
       </BasicPage.LinkButton.LinkSpec>
-      </BasicPage.Text>
-      
+    </BasicPage.Text>
+
   );
 };
 
