@@ -5,14 +5,14 @@ const SubmitterInfo = ({id, data={}, handleChange }) => {
         <div className={styles.formSection}>
             <h4 className={styles.sectionTitle}>Submitter Information</h4>
             <div className={styles.responsiveDiv}>
-                <div style={{ display: 'flex', width: '100%', justifyContent: 'space-evenly' }}>
-                    <div style={{ display: 'flex', flexDirection: 'column' }}>
+                <div className={styles.userLoc} >
+                    <div className={styles.tickSubSection}>
                         <GenericInput label="City *" name={`userMuni,${id}`} required={true} placeholder="Where you live"
                          value={data.userMuni}
                           handleChange={handleChange}/>
                         
                     </div>
-                    <div style={{ display: 'flex', flexDirection: 'column' }}>
+                    <div className={styles.tickSubSection}>
                         <GenericInput label="Zip Code *" name={`userZip,${id}`} required={true} placeholder="Where you live" 
                         value={data.userZip || null}
                          handleChange={handleChange} />
