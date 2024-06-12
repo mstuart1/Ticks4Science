@@ -8,15 +8,15 @@ h4 {
   font-size: 1.4em;
   margin: 1rem;
   min-height: 80vh;
-
+  margin-bottom: 10rem;
 }
 
-.text > p {
+.text>p {
   margin: 2rem;
   padding: 1rem;
 }
 
-.text > li {
+.text>li {
   padding: 1em 0;
 }
 
@@ -26,6 +26,7 @@ h4 {
   text-align: center;
   margin: 1rem;
 }
+
 .form {
   display: flex;
   align-items: center;
@@ -34,17 +35,20 @@ h4 {
   /* margin-bottom: 10rem; */
   /* width: 100vw; */
 }
-.form > label {
+
+.form>label {
   line-height: 2.24rem;
   /* font-weight: bold; */
   margin-top: 2rem;
   font-size: 1.6rem;
 }
+
 .sectionTitle {
   font-size: 1.75rem;
   font-weight: 700;
   margin-bottom: 2rem;
 }
+
 .formSection {
   background-color: #00626D30;
   border-radius: 1rem;
@@ -54,12 +58,14 @@ h4 {
   max-width: 800px;
   font-size: 2rem;
 }
+
 .responsiveDiv {
   display: table;
   flex-wrap: wrap;
   justify-content: space-evenly;
   align-items: center;
 }
+
 .tickSubSection {
   display: flex;
   flex-direction: column;
@@ -69,9 +75,11 @@ h4 {
   text-decoration: none;
   color: #00626d;
 }
-.innieLink > span {
+
+.innieLink>span {
   border-bottom: 1px solid #ebb600;
 }
+
 .innieLink:hover {
   border-bottom: 0px;
 }
@@ -83,11 +91,13 @@ h4 {
   display: block;
   color: #cc0033;
 }
+
 .checkBoxDiv {
   display: flex;
   justify-content: space-around;
   align-items: center;
 }
+
 .specCard {
   display: flex;
   justify-content: center;
@@ -107,6 +117,7 @@ h4 {
   border-radius: 0.5rem;
   border: 0.5px solid black;
 }
+
 .summary {
   list-style: none;
   display: inline-flex;
@@ -119,14 +130,13 @@ h4 {
   content: '';
   width: 18px;
   height: 10px;
-  background: url('https://uploads.sitepoint.com/wp-content/uploads/2023/10/1697699669arrow.svg')
-    no-repeat;
+  background: url('https://uploads.sitepoint.com/wp-content/uploads/2023/10/1697699669arrow.svg') no-repeat;
   background-size: cover;
   margin-left: 0.75em;
   transition: 0.2s;
 }
 
-.details[open] > summary::after {
+.details[open]>summary::after {
   transform: rotate(180deg);
 }
 
@@ -149,41 +159,46 @@ h4 {
   margin: 1rem 0;
   max-width: 800px;
 }
+
 .submitBtn {
   font-size: 1.8rem;
   width: 22.5rem;
   height: 5rem;
   text-align: center;
   cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 1rem;
-    border: none;
-    box-shadow: 0 3px 15px #00000016;
-    margin: 1rem;
-    background-color: #00626D40;
-    /* padding: ${({ padding }) => padding}; */    
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 1rem;
+  border: none;
+  box-shadow: 0 3px 15px #00000016;
+  margin: 1rem;
+  background-color: #00626D40;
+  /* padding: ${({ padding }) => padding}; */
 }
+
 .submitBtn:hover {
   opacity: 0.9;
-      transform: scale(0.98);
+  transform: scale(0.98);
 }
+
 .submitSpan {
   font-weight: bold;
   text-align: center;
   font-size: 1.8rem;
   color: #00626D;
 }
+
 .btnDiv {
   display: flex;
   width: 100%;
   justify-content: space-evenly;
   margin: 2rem 0;
   align-items: center;
-  margin-bottom: 10rem;  
+  margin-bottom: 10rem;
 }
-.multiDiv{
+
+.multiDiv {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -200,6 +215,7 @@ h4 {
   margin: 2rem;
 
 }
+
 .errorDiv {
   display: flex;
   flex-direction: column;
@@ -209,16 +225,31 @@ h4 {
   padding: 1rem;
 }
 
+.userLoc {
+  display: flex;
+  width: 100%;
+  justify-content: space-evenly;
+}
+.userInputSection {
+  
+}
+
 @media screen and (max-width: 748px) {
+  .userLoc {
+    flex-wrap: wrap;   
+  }
   .text {
     width: 100%;
   }
+
   .form input {
     width: 90%;
   }
+
   .form input::placeholder {
     font-size: 1.2rem;
   }
+
   .formSection {
     display: flex;
     flex-wrap: wrap;
@@ -233,6 +264,7 @@ h4 {
     display: flex;
     flex-direction: column;
   }
+
   .btnDiv {
     flex-wrap: wrap;
     justify-content: center;
@@ -246,12 +278,14 @@ h4 {
     text-align: left;
   }
 }
+
 @media screen and (min-width: 1010px) {
   .text {
     width: 1000px;
     text-align: left;
   }
 }
+
 .donateLink {
   text-decoration: underline;
 }

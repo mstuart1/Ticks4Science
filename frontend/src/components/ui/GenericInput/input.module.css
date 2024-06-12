@@ -30,3 +30,9 @@
   color: #ebb600;
   opacity: 0.8;
 }
+
+@media screen and (max-width: 748px) {
+  .input {
+   max-width: 50vw;
+  }
+}
