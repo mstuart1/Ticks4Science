@@ -43,10 +43,10 @@ const Survey = () => {
         return formIsValid = false;
       }
       // console.log('checking personBitten')
-      if ((tick.foundOn === 'Person' || tick.foundOn === 'Animal') && tick.personBitten.length === 0) {
-        alert(`Please fill out if the subject was bitten tick ${tick.key + 1}`)
-        return formIsValid = false;
-      }
+      // if ((tick.foundOn === 'Person' || tick.foundOn === 'Animal') && tick.tickAttached.length === 0) {
+      //   alert(`Please fill out if the subject was bitten tick ${tick.key + 1}`)
+      //   return formIsValid = false;
+      // }
       // console.log('checking animal')
       if (tick.foundOn === 'Animal' && tick.animal === '') {
         alert(`Please fill out the tick kind of animal for tick ${tick.key}`)
