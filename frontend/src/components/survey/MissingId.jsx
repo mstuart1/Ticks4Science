@@ -1,12 +1,12 @@
 import React from 'react'
-import { useSearchParams } from 'react-router-dom'
+// import { useSearchParams } from 'react-router-dom'
 import { BasicPage } from '../GeneralStyles'
 import HoverCard from '../ui/hoverCard/HoverCard'
 
 
 const MissingId = () => {
-    const [searchParams] = useSearchParams()
-    let id = searchParams.get('id')
+    // const [searchParams] = useSearchParams()
+    // let id = searchParams.get('id')
 
     return (
         <BasicPage.Text>

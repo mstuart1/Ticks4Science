@@ -2,7 +2,7 @@ import React from 'react'
 import styled from "styled-components";
 import OutlineCard from '../ui/outlineCard/OutlineCard';
 import { Link } from 'react-router-dom';
-import { theme } from '../../theme';
+// import { theme } from '../../theme';
 
 const Styles = {
   Input: styled.input`
