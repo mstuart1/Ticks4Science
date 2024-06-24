@@ -7,32 +7,31 @@ import seeTickImg from './seeTick.png'
 import freeTestImg from './freeTest.png'
 import njTicksImg from './njTicks.png'
 import tickMisconImg from './tickMiscon.png'
-import { Link } from 'react-router-dom'
 import styles from './Education.module.css'
 
 
 const Education = () => {
   return (
     <div className={styles.pageCont}>
-    <a className={styles.card} href={tickMisconPdf} target="_blank"><div>
+    <a className={styles.card} href={tickMisconPdf} target="_blank" rel='noreferrer'><div>
         <img alt={'infographic about ticks in new jersey'} className={styles.img} 
         width={300}
          src={tickMisconImg}/>
         <p className={styles.title}>NJT4S! Brochure (Front)</p>
         </div></a>
-    <a className={styles.card} href={njTicksPdf} target="_blank"><div>
+    <a className={styles.card} href={njTicksPdf} target="_blank" rel='noreferrer'><div>
         <img alt={'infographic about ticks in new jersey'} className={styles.img} width={300} 
         // height={300}
          src={njTicksImg}/>
         <p className={styles.title}>NJT4S! Brochure (Back)</p>
         </div></a>
-    <a className={styles.card} href={freeTestPdf} target="_blank"><div>
+    <a className={styles.card} href={freeTestPdf} target="_blank" rel='noreferrer'><div>
         <img alt={'infographic about ticks in new jersey'} className={styles.img} width={300}
         //  height={300} 
          src={freeTestImg}/>
         <p className={styles.title}>NJT4S! General Flyer</p>
         </div></a>
-    <a className={styles.card} href={seeTickPdf} target="_blank"><div>
+    <a className={styles.card} href={seeTickPdf} target="_blank" rel='noreferrer'><div>
         <img alt={'infographic about ticks in new jersey'} className={styles.img} width={300}
         //  height={300} 
          src={seeTickImg}/>
