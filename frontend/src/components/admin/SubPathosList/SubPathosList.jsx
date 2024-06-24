@@ -11,11 +11,12 @@ const SubPathosList = ({ sub }) => {
     // ** combine subPathos and speciesPathos to remove duplicates but include any new items
     const combinedList = [...new Set([...subPathos.map(item => item.id), ...speciesPathos.map(item => item.id)])]
     // ** are there any differences between the ids in the combined list and the subPathos list?
-    const differenceList = combinedList.filter(item => !speciesPathos.map(item => item.id).includes(item))
-
-    // console.log('combined list', combinedList)
-    // console.log('difference list', differenceList)
-
+    const differenceList = combinedList.filter(item => !subPathos.map(item => item.id).includes(item))
+    
+    console.log('combined list of species pathogens and pathogens already assigned to the submission', combinedList)
+    console.log('if difference list length is 0, no update will be made to table', differenceList)
+    
+    
     const [tableData, setTableData] = useState(subPathos)
 
     useEffect(() => {
@@ -26,8 +27,9 @@ const SubPathosList = ({ sub }) => {
                 return (response.data.updatedSub)
             } catch (err) { console.log(err) }
         }
-        // ** if there are any differences, update the subPathos list
+        // ** if there are any differences, update the subPathos list with the species pathogens
         if (differenceList.length) {
+            // console.log('calling updateSubPathos')
             updateSubPathos(subId, speciesPathos).then(freshData => {
                 // console.log('fresh data', freshData)
                 setTableData(freshData?.pathogens)
