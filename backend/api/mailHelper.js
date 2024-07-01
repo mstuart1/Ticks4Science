@@ -7,18 +7,28 @@ const Users = db.users;
 const { Op } = require("sequelize");
 
 let transporter = nodemailer.createTransport({
-  host: "127.0.0.1",
-  port: 25,
-  secure: false,
-  tls: {
-    rejectUnauthorized: false
-}
+  host: "smtp.rutgers.edu",
+  port: 25, //  25 587 465
+  secure: false, // false unless port is 465
+  auth: {
+    user: process.env.MAIL_SEND,
+    pass: process.env.MAIL_SECRET,
+  },
+  logger: true,
+});
 
-  // service: "gmail",
-  // auth: {
-  //   user: process.env.MAIL_USER,
-  //   pass: process.env.MAIL_PASS,
-  // },
+// console.log(
+//   "!!!!! @@@@@ -----  transporter",
+//   JSON.stringify(transporter.options, null, 1)
+// );
+
+// verify connection configuration
+transporter.verify(function (error, success) {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log("Server is ready to take our messages");
+  }
 });
 
 // send an email every day at noon if pending subs
