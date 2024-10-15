@@ -60,6 +60,6 @@ const FooterDisclaimer = () => (
       {/* <a href="/copyright-information" target="_blank" rel="noreferrer"> */}
       Copyright ©{new Date().getFullYear()}
       {/* </a> */}
-      , Rutgers, The State University of New Jersey. All rights reserved.&nbsp;<br /><a href="mailto:ora-it@njaes.rutgers.edu">Contact webmaster</a></p>
+      , Rutgers, The State University of New Jersey. All rights reserved.&nbsp;<br /><a href="mailto:cupr-server-alert@ejb.rutgers.edu">Contact webmaster</a></p>
   </section>
 )
