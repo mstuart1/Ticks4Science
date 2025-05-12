@@ -4,9 +4,9 @@ A citizen science portal that allows users to submit tick sightings, aiding in r
 
 ## 🛠 Technologies Used
 
-- Frontend: React, Tailwind CSS
+- Frontend: React
 - Backend: Node.js, Express
-- Database: PostgreSQL
+- Database: MySQL
 - Others: Mocha for testing
 
 ## 🚀 Features
