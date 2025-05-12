@@ -17,4 +17,4 @@ A citizen science portal that allows users to submit tick sightings, aiding in r
 
 ## 📸 Screenshots
 
-![Dashboard Screenshot](link-to-screenshot)
+![Home Page Screenshot](https://github.com/user-attachments/assets/6e3127fd-5a41-4c13-8bc1-3b363e77eee9)
